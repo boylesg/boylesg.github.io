@@ -1,0 +1,1411 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+	
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Micropython Libraries for Raspbe</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style1.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<script type="text/javascript" src="../Libraries.js"></script>
+		<title>General Purpose Libraries</title>
+			
+	</head>
+	
+	<body style="overflow:auto;">
+		
+		<div id="container"><!-- Begin Container -->
+			
+			<div id="masthead"><!-- Begin Masthead -->
+				<h1 style="font-size:36px;color:black;">Code Libraries for:</h1>
+				<h1 style="font-size:36px;color:black;">Micropython on Raspberry Pi Pico &amp; C++ on Arduino</h1>
+				<h3 style="color:black">By Gregary Boyles</h3>
+			</div><!-- End Masthead -->
+			
+			<div id="navigation"><!-- Begin Navigation -->
+				<ul>
+					<li><a href="../default.html">Home</a></li>
+					<li><a href="../PicoMicropython/PicoMicropython.html">Pico Micropython</a></li>
+					<li><a href="../PicoMicropython/DCMotorControllers.html">&nbsp;&nbsp;DC Motor Controllers</a></li>
+					<li><a href="../PicoMicropython/Wifi&Bluetooth.html">&nbsp;&nbsp;Wifi &amp; Bluetooth</a></li>
+					<li><a href="ArduinoC.html">Arduino C++</a></li>
+					<li><a href="GeneralPurpose.html">&nbsp;&nbsp;General Purpose</a></li>
+					<li><a href="ICs.html">&nbsp;&nbsp;Wifi &amp; ICs</a></li>
+					<li><a href="Shields.html">&nbsp;&nbsp;Shields</a></li>
+					<li><a href="TouchLCDScreen.html">&nbsp;&nbsp;TFT LCD</a></li>
+					<li><a href="../Contact.html">Contact</a></li>
+				</ul>
+			</div><!-- End Navigation -->
+			
+			<div id="content"><!-- Begin Content -->
+			
+				<!-- #BeginEditable "content" -->
+				
+				<h2>Arduino C Libraries - General Purpose</h2>
+				<div class="Library" id="CArray" onclick="OnClickLibrary('CArray')">
+					<h3>CArray</h3>
+					<p class="paragraph"><b>Purpose:</b> </p>
+					<ul>
+						<li>
+							<p class="paragraph">To implement the functions of an array without having to worry about array index over run errors.</p>
+						</li>
+						<li>
+							<p class="paragraph">It is a template class where you specify the data type it will contain and the maximum size.</p>
+						</li>
+						<li>
+							<p class="paragraph">You use it like this: CArray&lt;int, 100&gt; arrayIntegers;</p>
+						</li>
+						<li>
+							<p class="paragraph">The class does not use dynamic memory (new, alloc and malloc), which can cause memory fragmentation with the limited memory available on Arduino microcontrollers.</p>
+						</li>
+						<li>
+							<p class="paragraph">The second template parameter (100 in the above example) specifies the size of a regular C array inside the class.</p>
+						</li>
+					</ul>
+					<p class="paragraph"><b>Dependancies:</b> None</p>
+					<p class="paragraph"><b>Queue functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						These functions allow you to treat the array as a queue or FIFO data structure.
+					</p>
+					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool enqueue(DataType DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Add a new item at the end or array. The array length will increase by 1.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal</b>: new value to add.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns:</b> true if the number of items in the array is less 
+						than the maximum length, otherwise false.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool dequeue(DataType &amp;DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Remove an item from the beginning of the array.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						All other items in the array will be moved toward the beginning of the array by one place.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The array length will decrease by 1&nbsp;&nbsp;.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>DataVal:</b> The value removed is returned in this parameter.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns:</b> true if the array is not already empty, otherwise false.
+					</p>
+					
+					<p class="paragraph"><b>Stack functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						These functions allow you to treat the array as a stack or LIFO data structure.</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>bool push(DataType DataVal)</b>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Add a new item at the end of the array.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							The array length will increase by 1.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>DataVal:</b> The value to be pushed.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>Returns:</b> true if the array is not already at its maximum length, otherwise false.
+						</p>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool pop(DataType &amp;DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove an item from the end of the array.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The array length will decrease by 1.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						DataVal:</b> The value removed is returned in this parameter.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the array is not already empty, otherwise false.
+					</p>
+					<p class="paragraph"></p>
+					
+					<p class="paragraph"><b>List functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						These functions allow you to treat the array as a list data structure.</p>
+						<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool add(DataType DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Add a new value at the end of the array.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The array length will increase by 1.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> The value to be added..<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> true if the array is not already at its maximum length, otherwise false.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> bool insertAt(const uint8_t nI, DataType DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Insert a new value into the array after the specified index.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The item at that index and all other after it will move towards the end of the array by one place.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The array length will increase by 1.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nI:</b> The index the new value will be inserted at.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> The new value to insert.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> true if the array is not already at its maximum length, otherwise false.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool removeAt(const uint8_t nI, DataType &amp;DataVal)</b></p>
+						<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove an item from the array at the specified index.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The value is returned in parameter DataVal<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						All other items after that index will move towards the front of the array by one place.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The array length will deccrease by 1.<br/><b>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						nI:</b> The index of the value that will be removed.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> The removed value is returned in this parameter.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> true if the array is not already empty, otherwise false.</p>
+	
+					<p class="paragraph"><b>Array functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						These functions are the regular array indexing functions.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>bool setAt(const uint8_t nI, DataType DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Change the value of the item at the specified indexto the new specified value.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>nI:</b> The index of the value that will be changed.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> The new value.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> true if the nI is in range, otherwise false.</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> bool getAt(const uint8_t nI, DataType &amp;DataVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Return the value at the index specified by parameter nI<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The value is returned in parameter DataVal.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>nI:</b> The index of the value that will be fetched.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> The value is returned in this parameter.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> true if the nI is in range, otherwise false.</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataType operator [](const uint8_t nI)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Return the value at the index specified by parameter nI<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The value is returned in parameter DataVal.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nI:</b> The index of the value that will be fetched.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> the value at the specified index.
+					</p>
+	
+					<p class="paragraph"><b>General functions:</b></p>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; These functions are the regular array indexing functions.</p>
+					<br/>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>uint8_t size()</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns:</b> the current size of the array, not the maximum size.&nbsp;
+					</p>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>bool isEmpty()</b></p>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns:</b> true if current size of the array is 0, 
+					otherwise false.&nbsp; &nbsp;</p>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>void empty()</b><br/>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Empties the array of all values so that its size becomes 0.&nbsp;
+					</p>
+					<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>bool find(DataType DataVal)</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Searches for a value in the array.&nbsp;<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>DataVal:</b> the value to search for.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns:</b> true if thevalue is found, otherwise false.
+					</p>
+					<div class="PaypalButton">
+						<p class="paragraph"><b>PRICE:&nbsp;</b>$<script type="text/javascript">document.write(fPriceLevel1.toFixed(2));</script></p>
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="46P39KHGL7ZLW">
+							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</div>
+				</div>
+				<div class="Library" id="CButton" onclick="OnClickLibrary('CButton')">
+					<h3>CPushButton, CCapacitiveButton, CToggleButton</h3>
+					<p class="paragraph"><b>Purpose:</b></p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							To implement the functionality of hardware push, toggle and capacitive touch buttons.<br/><br/>
+						</p>
+						<p class="image_wrapper">
+							<img alt="" src="../images/PushButton.png" width="229" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<img alt="" src="../images/Switch.png" width="141" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<img alt="" src="../images/CapacitiveButton.png" width="299" /><br/>
+						</p>
+					</p>
+					<p class="paragraph"><b>Dependancies:</b> CBuff.h, 
+						CString.h, debug.h<br/><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Dependancy on CBuff.h and CString.h can be removed by replacing all references to CString with Arduino String.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Dependancy on debug.h can be removed by replacing all references to debug with appropriate Serial.print(...) <br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						and Serial.println(...) function calls.
+					</p>
+					<p class="paragraph">F<b>unctions:</b></p>
+					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>CPushButton(const uint8_t nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b>
+						<br/>
+						<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CToggleButton(const uint8_t nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>nPin:</b> the pin the button is connected to.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>bActiveHigh:</b> does pressing the button cause a LOW to HIGH or HIGH to LOW transition.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>nMillisTimeOut:</b> the number of milliseconds 
+							until the button will return another clicked event - the click repeat rate.
+						</p>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CCapacitiveButton(const uint8_t nSendPin, const uint8_t nReceivePin)</b>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>nSendPin:</b> the output pin that creates the iscillation.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>nReceivePin:</b> the input pin that reads the frequency of the oscillation.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void setName(const char *cstrName)</b>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void setName(const __FlashStringHelper *fstrName)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Set the button's name.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cstrName or fstrName</b>: string name.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>&nbsp;char *getName()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> the button's name.
+					</p>
+					
+					<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>&nbsp;void begin()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Must be called in the setup function - it puts the pin or pins, associated with the button, in the correct INPUT or OUTPUT mode.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>&nbsp;bool isClicked()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the button is currently clicked, otherwise false.
+					</p>
+					<div class="PaypalButton">
+						<p class="paragraph"><b>PRICE:&nbsp;</b>$<script type="text/javascript">document.write(fPriceLevel2.toFixed(2));</script></p>
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="SWH2DQ7B6PQAG">
+							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</div>
+				</div>
+				<div class="Library" id="CBuff" onclick="OnClickLibrary('CBuff')">
+					<h3>CBufF, CFixedBuff, CDynamicBuff</h3>
+					<p class="paragraph"><b>Purpose:</b> </p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						To implement the functionality of an array buffer. Unlike a native C array, CBuff, CFixedBuff and CDynamicBuff intialise their
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						internal arrays to 0's on declaration. <br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CBuff&nbsp; is a template class where you declare its maximum size like this: CBuff&lt;100&gt; buff. It avoids the use of 
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						dynamic memory which can cause memory fragmentation in the limited memory of an Arduino MCU.<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CDymanicBuff is a regula class where you declare the maximum size like this: CDynamicBuff buff(100). It does use dynamic 
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						memory and should be used sparingly and with caution on Arduino MCUs.<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CFixedBuff allows you to use an existing external native byte array as the internal array for the class. You use it like 
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						this:<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						char strText[100];<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						uint8_t arrayInts[100];<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CFixedBuff buff1(arrayInts, 100, true), buff2(arrayInts, 100, false);<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						All 3 classes are dervived from CBuffBase and objects can be used interchangeably as pointers:<br/>
+						<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CBuff&lt;100&gt; buff1;<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CDynamicBuff buff2(100);<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						CBuffBase pBuff = &amp;bff1;<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						pBuff = &amp;buff2;
+						<br/>
+					</p>
+					<p class="paragraph"><b>Dependancies:</b> None</p>
+					<p class="paragraph"><b>Functions:</b></p>
+					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>CFixedBuff(const char *strBuff, const uint16_t nBuffSize, const bool bClear)</b>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>strBuff:</b>a pointer to a byte array. It can be a char, uint8_t or int8_t array.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							n<b>BuffSize:</b>the capacity of the array.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>bClear:</b> true if you want the array to be initialised to 0's, false if not.
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>CDynamicBuff(const uint16_t nBuffSize)</b>
+							<p class="paragraph">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<b>nBuffSize: </b>the maximum capacity of the buffer.
+						</p>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void empty()</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						Sets all elements to 0.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>int capacity()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> the maximum capacity of the buffer.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>int length()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> assuming the buffer contains a string then it return the length of the string, up to the first NULL terminator.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void setAt(const uint16_t nI, const char cCh)()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Sets to value at the specified index to a new value.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nI:</b> the index of the value to be changed.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cCh:</b> the new value.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>char getAt(const uint16_t nI)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Gets the value at the specified index.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nI:</b> the index of the value to be fetched.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the value at the specified index.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>operator char*()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Converts the buffer object to a native C string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool enqueue(const char cCh)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Allows you to treat the buffer as a queue or FIFO data structure.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						It adds the specified new value to the end of the internal array.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the length of the buffer is less than it maximum capcity, otherwise false.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>char dequeue()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Allows you to treat the buffer as a queue or FIFO data structure.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						It removes the value at the beginning of the array and moves all values after it one place toward the beginning of the array.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the value removed if the array is not empty, otherwise 0.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>bool push(const char cCh)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Allows you to treat the buffer as a stack or LIFO data structure.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						It adds the specified new value to the end of the internal array.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cCh:</b> the new value to be added.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>char pop()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Allows you to treat the buffer as a stack or LIFO data structure.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						It removes the value at the end of the internal array and returns it.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the value that was removed if the inernal array is not empty, otherwise 0.
+					</p>
+					<div class="PaypalButton">
+						<p class="paragraph"><b>PRICE:&nbsp;</b>$<script type="text/javascript">document.write(fPriceLevel1.toFixed(2));</script></p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick">
+								<input type="hidden" name="hosted_button_id" value="64U4GAE5EJGF8">
+								<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+								<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+							</form>
+						</p>
+					</div>
+				</div>
+				<div class="Library" id="CString" onclick="OnClickLibrary('CString')">
+					<p class="paragraph"><b>Class names:</b> CString</p>
+					<p class="paragraph"><b>Purpose:</b>
+						<ul>
+							<li><p class="paragraph">To expand on the string manipulation functions provided by Arduino String class. </p></li>
+							<li><p class="paragraph">To provide an alternative string class that does not use dynamic memory, as this can cause fragmentation of the limited memory available on Arduino MCUs.. </p></li>
+							<li><p class="paragraph">Class CString uses CBuff 
+							and CFixedBuff as its internal array for storing 
+							characters if the string. These have a fixed maximum 
+							capacity. You can also use CDynamicBuff but doing so 
+							defeats the central purpose of CString in not using 
+							dynamic memory.</p></li>
+						</ul>
+					</p>
+					<p class="paragraph"><b>Dependancies:</b> None</p>
+					<p class="paragraph"><b>General Functions:</b></p>
+					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>CString(CBuffBase &amp;buff, const bool bClear = false)</b>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Intialises the CString object with its externally declared CBuff object.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							You declare a CString object like this:<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							CBuff<32> buff;<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							CString str(buff, true);<br/>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>buff:</b>The externall declared CBuff object.<br/>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<b>bClear:</b> true if you want the buffer to be initialised to 0's, false if not.
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>CString(CString&amp; strOther)</b>
+							<p class="paragraph">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Intialises the CString object with the CBuff object of another string. So changing the contents of one string also alters the contents of the other.<br/>
+							</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>const unsigned int length()</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>Returns: </b>The length of the internal string up to the first NULL terminator.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>int capacity()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> the maximum capacity of the internal buffer, beyond any NULL terminator.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>const unsigned int maxLength()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns:</b> the maximum length of any string that can be stored in the internal buffer, taking account of the need for a NULL terminator <br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						at the end of the buffer.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>const bool full()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns: </b>true if the length of the string is one character less than the capcity of the buffer.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void empty()()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Empty the string by changing all characters to NULL terminators.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bool isEmpty()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns: </b>true if the length of the string is 0.
+					</p>
+					<p class="paragraph"><b>Conversion Functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>const char* c_str()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The same as in Arduino String.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>operator const char*()</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>operator char*()</b></br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>operator byte*()</b></br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>operator const byte*()</b></br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>operator void*()</b></br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Other assorted conversion functions.
+					</p>
+					<p class="paragraph"><b>Indexing Functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>char&amp; operator[](const unsigned int nI)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nI: </b>index of the character to return.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns: </b>the chacter at the specified index.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>char&amp; operator[](const int nI)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nI: </b>index of the character to return.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Returns: </b>the chacter at the specified index.
+					</p>
+					<p class="paragraph"><b>Concatenation Function:</b>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>void operator +=(CString&amp; str)</b>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Adds the specified string to the end of the string.<br/>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>void operator +=(const char* str)</b>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Adds the specified string to the end of the string.<br/>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>void operator +=(const char cCh)</b>
+						</p>
+							<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Adds the specified character to the end of the string.<br/>
+						</p>
+
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>void operator +=(const __FlashStringHelper* fstr)</b>
+						</p>
+						<p class="paragraph">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Adds the specified string to the end of the string.<br/>
+						</p>
+					</p>
+					<p class="paragraph"><b>Assignment Functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CString&amp; operator =(const char cCh)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Replaces the string in the buffer with the specified character.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cCh:</b> the character to replace the string with.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the string object.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CString&amp; operator =(const char* str)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Replaces the string in the buffer with the specified string.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> str:</b> the string to replace the existing string with.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the string object.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CString&amp; operator =(const __FlashStringHelper* fstr)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Replaces the string in the buffer with the specified string.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> fstr:</b> the string to replace the existing string with.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the string object.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CString&amp; operator =(CString&amp; str)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Replaces the string in the buffer with the specified string.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> str:</b> the string to replace the existing string with.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the string object.
+					</p>					
+					
+					<p class="paragraph"><b>Alphabetic Comparison Functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+    					<b>bool operator ==(const char *str)</b><br/>
+    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    					<b>bool operator ==(const __FlashStringHelper *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &gt;=(const char *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &gt;=(const __FlashStringHelper *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &gt;(const char *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &gt;(const __FlashStringHelper *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &lt;=(const char *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &lt;=(const __FlashStringHelper *str)</b><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &lt;(const char *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator &lt;(const __FlashStringHelper *str)</b><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator !=(const char *str)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool operator !=(const __FlashStringHelper *str)</b><br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Case sensitive string comparison operator function.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>str: </b>the string to compare the internal buffer to.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Return:</b> true or false.
+					</p>					
+					<p class="paragraph"><b>Search Functions:</b></p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool find(const char cCh, const int nPos = 0)</b><br/>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool find(const char* str, const int nPos = 0)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool find(const __FlashStringHelper* fstr, const int nPos = 0)</b></br>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find a character or a substring in the string, in the forward direction.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> str, fstr or cCh:</b> character or substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching from. It defaults to 0 if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the character or substring is found, otherwise false.
+					</p>					
+					<p class="paragraph">					    
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool reverseFind(const char cCh, const int nPos = -1)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool reverseFind(const char* str, const int nPos = -1)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool reverseFind(const __FlashStringHelper* fstr, const int nPos = -1)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find a character or a substring in the string, in the reverse direction.<br/>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> str, fstr or cCh:</b> character or substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching backwards from. It defaults to -1 (or the end of the string) if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the character or substring is found, otherwise false.
+					</p>					
+					<p class="paragraph">   
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int findOneOf(const char* strCharList, const unsigned int nPos = 0)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int findOneOf(const __FlashStringHelper* fstrCharList, const unsigned int nPos = 0)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> str, fstr or cCh:</b> character or substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find any character from the specified list of characters in the string, in the forward direction.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cstrCharList or fstrCharList:</b> list of characters to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching forwards from. It defaults to 0 if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if any character from the list is found, otherwise false.
+					</p>					
+					<p class="paragraph">     
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int reverseFindOneOf(const char* strCharList, const unsigned int nPos = 0)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int reverseFindOneOf(const __FlashStringHelper* fstrCharList, const unsigned int nPos = 0)</b></br>
+					</p> 
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find any character from the specified list of characters in the string, in the reverse direction.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cstrCharList or fstrCharList:</b> list of characters to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching backwards from. It defaults to -1 (or the end of the string) if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if any character from the list is found, otherwise false.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int indexOf(const char cCh, const int nPos = 0)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int indexOf(const char* str, const int nPos = 0)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int indexOf(const __FlashStringHelper* fstr, const int nPos = 0)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Get the index of any character or substring in the existing string direction, in the forward direction.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cCh, str or fstr:</b> character or substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching forwards from. It defaults to 0 if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the index of the character or substring if it is found, otherwise -1.
+					</p>					
+					<p class="paragraph">  
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int reverseIndexOf(const char cCh, const int nPos = -1)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int reverseIndexOf(const char* str, const int nPos = -1)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>int reverseIndexOf(const __FlashStringHelper* fstr, const int nPos = -1)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Get the index of any character or substring in the existing string direction, in the backward direction.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cCh, str or fstr:</b> character or substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> nPos:</b> index to start searching backwards from. It defaults to -1 (or the end of the string) if it is not specified.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> the index of the character or substring if it is found, otherwise -1.
+					</p>					
+					<p class="paragraph">   
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool endsWith(const char *cstrFind)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool endsWith(const __FlashStringHelper *fstrFind)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find the specified substring at the end of the string.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cstrFind or fstrFind:</b> substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the string ends with the substring, otherwise false.
+					</p>						 
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool beginsWith(const char *cstrFind)</b></br>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>bool beginsWith(const __FlashStringHelper *fstrFind)</b></br>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Find the specified substring at the start of the string.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> cstrFind or fstrFind:</b> substring to find.
+					</p>					
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b> Returns:</b> true if the string starts with the substring, otherwise false.
+					</p>
+					
+
+
+
+
+
+
+
+
+
+
+
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void fromIPAddr(IPAddress ip)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Converts an IP address object to a string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>ip: </b>The IP address object to convert to a string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void fromBool(const bool bVal)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Converts a boolean value to a string - "true" or "false"
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>bVal: </b> The boolean value to convert to a string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void fromUint(const int nNum, const byte nBase = 10)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert a unsigned integer to a string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nNum: </b> The unsigned integer value to convert to a string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nBase : </b> The base to use, i.e. decimal, hex, binary or octal etc.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void fromInt(const int32_t nNum, const byte nBase = 10)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert a signed integer to a string
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nNum: </b> The signed ineteger value to convert to a string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nBase : </b> The base to use, i.e. decimal, hex, binary or octal etc.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void fromReal(const double dNum, const byte nDecimalPlaces)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert a floating point number to a string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>dNum: </b>The floating point value to convert to a string
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nDecimalPlaces: </b>The number of decimal places.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					  	<b>int toUint(const byte nBase = 10)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert the string to an unsigned integer.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nBase : </b> The base to use, i.e. decimal, hex, binary or octal etc.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					  	<b>int32_t toInt(const byte nBase = 10)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert the string to a signed integer.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nBase : </b> The base to use, i.e. decimal, hex, binary or octal etc.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					  	<b>double toReal()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert the string to a floating point number.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void encodeBase64()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Base64 encode the string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void decodeBase64()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Vase64 decode the string.
+					</p>					    
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void insert(const char cCh, const unsigned int nBeforePos)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void insert(const char* str, const unsigned int nBeforePos)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void insert(const __FlashStringHelper* fstr, const unsigned int nBeforePos)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    Insert the specified string or character before the specified index.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cCh, str or fstr: </b>The string or character to insert.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nBeforePos: </b>The index to insert the character or string before.
+					</p>					
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void replace(const char cFind, const char cReplace, const unsigned int nStartFrom = 0)</b>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void replace(const char* strFind, const char* strReplace, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void replace(const char* strFind, const __FlashStringHelper* fstrReplace, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void replace(const __FlashStringHelper* fstrFind, const char* strReplace, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void replace(const __FlashStringHelper* fstrFind, const __FlashStringHelper* fstrReplace, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Replace a substring in string with the specified character or substring.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cFind, fstrFind or strFind: </b>The character or substring to be replaced.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cReplace, fstrReplace or strReplace: </b>The substitute character or substring .
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nStartFrom : </b>The index to start searching the string from.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void removeCh(const char cFind, const int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void remove(const char* strFind, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void remove(const __FlashStringHelper* fstrFind, const unsigned int nStartFrom = 0)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Removes the first occurence of the specified character from the string.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cFind, strFind or fstrFind: </b> The character or substring to be removed.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nStartFrom : </b>The index to start searching the string from.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void remove(const int nPos, unsigned int nCount)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove the specified number of characters from the string starting from the specified index.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nPos: </b>The index to start from.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nCount: </b>The number of characters to remove.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void toLower()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert all alphabetic characters to lower case.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void toUpper()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Convert all alphabetic characters to upper case.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void trim()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove leading and trailing white space characters from the ends of the string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void trimLeft()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove leading white space characters from the start of the string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void trimRight()</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Remove trailing white space characters from the end of the string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void padLeft(const char cCh, const byte nLength)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Add the specified character to the beginning of the string until the string reaches the specified length.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cCh: </b>The character to add.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nLength: </b>The maximum length for the string.
+					</p>
+					<p class="paragraph">
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <b>void padRight(const char cCh, const byte nLength)</b>
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Add the specified character at the end of the string until the string reaches the specified length.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cCh: </b>The character to add.
+					</p>
+					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>nLength: </b>The maximum length for the string.
+					</p>
+					<div class="PaypalButton">
+						<p class="paragraph"><b>PRICE:&nbsp;</b>$<script type="text/javascript">document.write(fPriceLevel4.toFixed(2));</script></p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick">
+								<input type="hidden" name="hosted_button_id" value="3SD54RL2YT22A">
+								<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+								<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+							</form>
+						</p>
+					</div>
+				</div>	
+					
+					
+					
+					
+					
+				<h3>Color</h3>
+				<p>&nbsp;</p>
+				<h3>Common</h3>
+				<p>&nbsp;</p>
+				<h3>Constants</h3>
+				<p>&nbsp;</p>
+				<h3>Date &amp; Time</h3>
+				<p>&nbsp;</p>
+				<h3>Debug</h3>
+				<p>&nbsp;</p>
+				<h3>Encode</h3>
+				<p>&nbsp;</p>
+				<h3>I2C Scan<br/>
+				<p>&nbsp;</p>
+				<h3>Map<br/>
+				<p>&nbsp;</p>
+				<h3>Menu<br/>
+				<p>&nbsp;</p>
+				<h3>Morse Code<br/>
+				<p>&nbsp;</p>
+				<h3>Analogue Touch Button<br/>
+				<p>&nbsp;</p>
+				<h3>Power Control<br/>
+				<p>&nbsp;</p>
+				<h3>PWM Frequency<br/>
+				<p>&nbsp;</p>
+				<h3>Serial Manager<br/>
+				<p>&nbsp;</p>
+				<h3>String Serial Data Source<br/>
+				<p>&nbsp;</p>
+				<h3>Text File<br/>
+				<p>&nbsp;</p>
+				<h3>Polled Event Timer<br/>
+				<p>&nbsp;</p>
+				<h3>UDP Email Client<br/>
+				<p>&nbsp;</p>
+				<h3>UDP NTP Client<br/>
+				<p>&nbsp;</p>
+				<h3>Voltage Divider<br/>
+				<p>&nbsp;</p>
+				<h3>Wifi Manager<br/>
+				<p>&nbsp;</p>				
+				
+				<!-- #EndEditable "content" -->
+				
+			</div><!-- End Content -->
+			
+			<div id="footer"><!-- Begin Footer -->
+			
+				
+			</div><!-- End Footer -->
+			
+		</div><!-- End Container -->
+
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>
