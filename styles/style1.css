@@ -188,6 +188,13 @@ a:hover
 	padding-right: 10px;
 }
 
+.paragraph_li
+{
+	font-size: 14px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 .python
 {
 	background-color:black;
