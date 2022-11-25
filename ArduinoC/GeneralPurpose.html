@@ -1541,7 +1541,7 @@
 					</p>
 					<p class="paragraph"><b>Macros for ESP32</b></p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#undef F</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>#define F(CSTR) CSTR</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1591,7 +1591,7 @@
   					</p>
 					<p class="paragraph"><b>Macros for </b>Arduino Due</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#undef F</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>#define F(CSTR) CSTR</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Re-define the F macro so it does nothing and so code with F macros compiles for Arduin Due
@@ -1642,7 +1642,9 @@
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>bool sendATCommand(HardwareSerial &amp;rSerial, const __FlashStringHelper *fstrCommand, CString &amp;strResponse, const uint16_t nWait)</b><br/>
+						<b>bool sendATCommand(HardwareSerial &amp;rSerial, const __FlashStringHelper *fstrCommand, CString &amp;strResponse,<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						const uint16_t nWait)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>bool sendATCommand(HardwareSerial &amp;rSerial, const __FlashStringHelper *fstrCommand, const uint16_t nWait)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
