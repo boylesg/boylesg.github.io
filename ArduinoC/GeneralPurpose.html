@@ -1337,7 +1337,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						The colour value encoding is designed to work with the Arduino library 'PololuAPA102' for RGB LED strips.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Additional functionality includes obtaining opposite colours, random colours and stepping through the colours of the rainbow etc.
+						Additional functionality includes obtaining opposite colours, random colours and stepping through the colours of the rainbow<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						etc.
 					</p>
 						
 					<p class="paragraph"><b>Macros &amp; Functions</b></p>
@@ -1358,7 +1360,7 @@
 						<b> Returns:</b> the 32 bit coloir value.
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>uint8_t GET_RED(uint32_t nColor)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>uint8_t GET_GREEN(uint32_t nColor)</b><br/>
@@ -1507,14 +1509,18 @@
 						<b>Purpose: </b>To provide a variety of generally useful functions that could be used in any type of project.
 					</p>
 					<p class="paragraph">
-						<b>Dependancies: </b>Arduino assert.h, IPAddress.h &amp; Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject to define in Constants.h).<br/>
+						<b>Dependancies: </b>Arduino assert.h, IPAddress.h &amp; Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject to a<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Constants.h, CBuff.h/cpp, CString.h/cpp, debug.h/cpp, TextFile.h/cpp (optional &amp; subject to a define at the top of debug.h)<br/>
+						define in Constants.h).<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Dependancy on the latter 3 can be removed by replacing all references to CString with Arduino String and all
-						refernces to debug with appropriate<br/>
+						Constants.h, CBuff.h/cpp, CString.h/cpp, debug.h/cpp, TextFile.h/cpp (optional &amp; subject to a define at the<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Serial.print and Serial.println statements.
+						top of debug.h)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Dependancy on the latter 3 can be removed by replacing all references to CString with Arduino String and all<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						refernces to debug with appropriate Serial.print and Serial.println statements.<br/>
+						
 					</p>
 					<p class="paragraph"><b>Macros</b></p>
 					<p class="paragraph">
