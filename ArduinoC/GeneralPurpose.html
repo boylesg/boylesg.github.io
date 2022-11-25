@@ -1524,7 +1524,7 @@
 					</p>
 					<p class="paragraph"><b>Macros</b></p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#define LINE (uint16_t)__LINE__</b>: return the current line number<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#define MILLIS(SEC):</b> converts specified seconds to milliseconds.<br/>
@@ -1672,7 +1672,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Searches for the correct baud rate by sending the AT command "AT" and waiting for the response "OK". When it receives<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						the response "OK" the function terminates. Details are sent to Serial Monitor and the LCD screen if one is specified by pLCD.<br/><br/>
+						the response "OK" the function terminates. Details are sent to Serial Monitor and the LCD screen if one is specified by<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						pLCD.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>rSerial: </b>the hardware serial object, e.g. &amp;Serial and &amp;Serial3<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1691,26 +1693,38 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>const char* fromBool(const bool bVal)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>const char* fromUint(const uint32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
+						<b>const char* fromUint(const uint32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>const char* fromInt(const int32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
+						16(hex)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>const char* fromInt(const int32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						16(hex)<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>const char* fromReal(const double dNum, const uint8_t nDecimalPlaces): 
 						y</b>ou can specify the number of decimal places.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>const char* fromIP(IPAddress ip)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						Convert characters, boolean values, integers, floating point numbers, and IP addresses to c style strings without having to declare a CString object.<br/><br/>
+						Convert characters, boolean values, integers, floating point numbers, and IP addresses to c style strings without having to<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						declare a CString object.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>uint32_t toUint(const char *strNum, const uint8_t nBase): </b> you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
+						<b>uint32_t toUint(const char *strNum, const uint8_t nBase): </b> you can specify base 2(binary), 8(octal), 10(decimal) or<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>int32_t toInt(const char *strNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
+						16(hex)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>int32_t toInt(const char *strNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						16(hex)<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>double toReal(const char *strNum)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>IPAddress toIP(const char* strIP)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						Converts the string to corresponding boolean, integer, floating point or IP addresses without having to declare a CString object.<br/>
+						Converts the string to corresponding boolean, integer, floating point or IP addresses without having to declare a CString<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						object.<br/>
 					
 					</p>
 					<p class="paragraph"><b>Classes</b></p>
@@ -1718,7 +1732,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b> CReset</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Implements a hardware reset on an Arduino MCU. It requires a hardware connection between a digital pin, to be used to cause the reset,<br/>
+						Implements a hardware reset on an Arduino MCU. It requires a hardware connection between a digital pin, to be used to cause<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						the reset,<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						and the reset pin.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
