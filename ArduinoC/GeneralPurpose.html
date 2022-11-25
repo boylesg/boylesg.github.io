@@ -302,9 +302,12 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						<b>CPushButton(const uint8_t nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b>
 						<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CToggleButton(const uint8_t nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<b>CToggleButton(const uint8_t nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b>
 					</p>
 					<p class="paragraph">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Constructors.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						<b>nPin:</b> the pin the button is connected to.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -317,7 +320,7 @@
 						<b>CCapacitiveButton(const uint8_t nSendPin, const uint8_t nReceivePin)</b>
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>nSendPin:</b> the output pin that creates the iscillation.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>nReceivePin:</b> the input pin that reads the frequency of the oscillation.
@@ -326,14 +329,14 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>void setName(const char *cstrName)</b>
 						<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>void setName(const __FlashStringHelper *fstrName)</b>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Set the button's name.<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>cstrName or fstrName</b>: string name.
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>cstrName or fstrName: </b>button name.
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -585,8 +588,10 @@
 						</ul>
 					</p>
 					<p class="paragraph">
-						<b>Dependancies: </b>Arduino assert.h, IPAddress.h &amp; Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject to define in Constants.h).<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Dependancies: </b>Arduino assert.h, IPAddress.h &amp; Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject to define<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						in Constants.h).<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Constants.h, CBuff.h/cpp, CString.h/cpp, debug.h/cpp, TextFile.h/cpp (optional &amp; subject to a define at the top of debug.h)<br/>
 					</p>
 					<p class="paragraph"><b>General Functions:</b></p>
@@ -680,13 +685,13 @@
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>operator const char*()</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>operator char*()</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>operator byte*()</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>operator const byte*()</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>operator void*()</b><br/>
 					</p>
 					<p class="paragraph">
@@ -821,27 +826,27 @@
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
     					<b>bool operator ==(const char *str)</b><br/>
-    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     					<b>bool operator ==(const __FlashStringHelper *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &gt;=(const char *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &gt;=(const __FlashStringHelper *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &gt;(const char *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &gt;(const __FlashStringHelper *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &lt;=(const char *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &lt;=(const __FlashStringHelper *str)</b><br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &lt;(const char *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator &lt;(const __FlashStringHelper *str)</b><br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator !=(const char *str)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool operator !=(const __FlashStringHelper *str)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -860,9 +865,9 @@
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool find(const char cCh, const int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool find(const char* str, const int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool find(const __FlashStringHelper* fstr, const int nPos = 0)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -884,9 +889,9 @@
 					<p class="paragraph">					    
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool reverseFind(const char cCh, const int nPos = -1)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool reverseFind(const char* str, const int nPos = -1)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool reverseFind(const __FlashStringHelper* fstr, const int nPos = -1)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -908,7 +913,7 @@
 					<p class="paragraph">   
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int findOneOf(const char* strCharList, const unsigned int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int findOneOf(const __FlashStringHelper* fstrCharList, const unsigned int nPos = 0)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -934,7 +939,7 @@
 					<p class="paragraph">     
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int reverseFindOneOf(const char* strCharList, const unsigned int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int reverseFindOneOf(const __FlashStringHelper* fstrCharList, const unsigned int nPos = 0)</b><br/>
 					</p> 
 					<p class="paragraph">
@@ -956,9 +961,9 @@
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int indexOf(const char cCh, const int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int indexOf(const char* str, const int nPos = 0)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int indexOf(const __FlashStringHelper* fstr, const int nPos = 0)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -980,9 +985,9 @@
 					<p class="paragraph">  
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int reverseIndexOf(const char cCh, const int nPos = -1)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int reverseIndexOf(const char* str, const int nPos = -1)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>int reverseIndexOf(const __FlashStringHelper* fstr, const int nPos = -1)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -1004,7 +1009,7 @@
 					<p class="paragraph">   
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool endsWith(const char *cstrFind)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool endsWith(const __FlashStringHelper *fstrFind)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -1022,7 +1027,7 @@
 					<p class="paragraph">
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool beginsWith(const char *cstrFind)</b><br/>
-					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>bool beginsWith(const __FlashStringHelper *fstrFind)</b><br/>
 					</p>
 					<p class="paragraph">
@@ -1175,15 +1180,15 @@
 					</p>
 					<p class="paragraph">
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    <b>void replace(const char* strFind, const __FlashStringHelper* fstrReplace, const unsigned int nStartFrom = 0)</b>
+					    <b>void replace(const char* strFind, const __FlashStringHelper* fstrReplace, const uint16_t nStartFrom = 0)</b>
 					</p>
 					<p class="paragraph">
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    <b>void replace(const __FlashStringHelper* fstrFind, const char* strReplace, const unsigned int nStartFrom = 0)</b>
+					    <b>void replace(const __FlashStringHelper* fstrFind, const char* strReplace, const uint16_t nStartFrom = 0)</b>
 					</p>
 					<p class="paragraph">
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    <b>void replace(const __FlashStringHelper* fstrFind, const __FlashStringHelper* fstrReplace, const unsigned int nStartFrom = 0)</b>
+					    <b>void replace(const __FlashStringHelper* fstrFind, const __FlashStringHelper* fstrReplace, const uint16_t nStartFrom = 0)</b>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1322,14 +1327,16 @@
 							<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
 						</form>
 					</div>
-				</div>	
+				</div>					
 				<div class="Library" id="CColor" onclick="OnClickLibrary('CColor')">
 					<h3>CColor &amp; Macros</h3>
-					<p class="paragraph"><b>Purpose</b></p>
 					<p class="paragraph">
-						<b>Purpose: </b>Inspired by Microsoft's RGB(...) macro, this library allows you to combine 8 bit red, green and blue colour values into a single 32 bit value. 
-						And aso extract individual 8 bit red, green and blue colour values from a single 32 bit value.  The colour value encoding is designed to work with the 
-						Arduino library 'PololuAPA102' for RGB LED strips.<br/>
+						<b>Purpose: </b>Inspired by Microsoft's RGB(...) macro, this library allows you to combine 8 bit red, green and blue colour<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						values into a single 32 bit value. And asoextract individual 8 bit red, green and blue colour values from a single 32 bit value.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The colour value encoding is designed to work with the Arduino library 'PololuAPA102' for RGB LED strips.<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Additional functionality includes obtaining opposite colours, random colours and stepping through the colours of the rainbow etc.
 					</p>
 						
@@ -1340,9 +1347,11 @@
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						The macro takes 3 x 8 bit parameters - the red, green and blue values for the desired color. The blue value is stored in the first 8 bits of a 32 bit  value,<br/>
+						The macro takes 3 x 8 bit parameters - the red, green and blue values for the desired color. The blue value is stored in the first<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						the red value is stored in the second 8 bits and the green value is stored in the third 8 bits. The fourth 8 bits of the 32 bit value are unused.<br/>
+						8 bits of a 32 bit  value, the red value is stored in the second 8 bits and the green value is stored in the third 8 bits. <br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						The fourth 8 bits of the 32 bit value are unused.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1391,9 +1400,9 @@
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>Returns: </b>a random color from a gradient of presets The presets are designed such that there is a visible difference in colour (when displayed on a<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						 RGB LED) between them.<br/>
+						<b>Returns: </b>a random color from a gradient of presets The presets are designed such that there is<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						a visible difference in colour (when displayed on a  RGB LED) between them.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>uint32_t getNextColor(const uint8_t nSteps = 1)</b>
@@ -1412,7 +1421,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>uint16_t getColorCount()</b>
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>Returns: </b>the number of preset colours.<br/>
 					</p>
 					<p class="paragraph">
@@ -1509,7 +1518,7 @@
 					</p>
 					<p class="paragraph"><b>Macros</b></p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#define LINE (uint16_t)__LINE__</b>: return the current line number<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#define MILLIS(SEC):</b> converts specified seconds to milliseconds.<br/>
@@ -1526,7 +1535,7 @@
 					</p>
 					<p class="paragraph"><b>Macros for ESP32</b></p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>#undef F</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>#define F(CSTR) CSTR</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1616,7 +1625,7 @@
 					<p class="paragraph">
       					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>uint32_t getElapsedMillis(const uint32_t nStartMillis)</b><br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>uint32_t getElapsedMicros(const uint32_t nStartMicros)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						Returns the elapsed number of milliseconds or microseconds, taking into account roll over of the timer back to 0.<br/>
@@ -1635,7 +1644,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>bool sendATCommand(HardwareSerial &amp;rSerial, const char *cstrCommand, const uint16_t nWait)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Send an AT command to the serial device connected to the other end of the specified Hardware serial object, and wait for a response.<br/><br/>
+						Send an AT command to the serial device connected to the other end of the specified Hardware serial object, and wait<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						for a response.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>rSerial: </b>the hardware serial object, e.g. &amp;Serial and &amp;Serial3<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1651,9 +1662,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>bool findBaudRate(HardwareSerial &amp;rSerial, const __FlashStringHelper *fstrDeviceDesc, LiquidCrystal_I2C *pLCD)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						Searches for the correct baud rate by sending the AT command "AT" and waiting for the response "OK". When it receives the response "OK"<br/>
+						Searches for the correct baud rate by sending the AT command "AT" and waiting for the response "OK". When it receives<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						the function terminates. Details are sent to Serial Monitor and the LCD screen if one is specified by pLCD.<br/><br/>
+						the response "OK" the function terminates. Details are sent to Serial Monitor and the LCD screen if one is specified by pLCD.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>rSerial: </b>the hardware serial object, e.g. &amp;Serial and &amp;Serial3<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1661,7 +1672,9 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>pLCD: </b>Optional LCD screen object pointer.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>Returns: </b>true if the device returned the response "OK", otherwise false. If "OK" was returned the serial object will be set to the correct baud rate.<br/>
+						<b>Returns: </b>true if the device returned the response "OK", otherwise false. If "OK" was returned the serial object will<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						be set to the correct baud rate.<br/>
 					</p>	
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;They all use an internal CString object, and its functions, to do this.<br/><br/>
@@ -1670,15 +1683,16 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>const char* fromBool(const bool bVal)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>const char* fromUint(const uint32_t nNum, const uint8_t nBase) </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
+						<b>const char* fromUint(const uint32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>const char* fromInt(const int32_t nNum, const uint8_t nBase): </b>you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>const char* fromReal(const double dNum, const uint8_t nDecimalPlaces)You can specify the number of decimal places.</b><br/>
+						<b>const char* fromReal(const double dNum, const uint8_t nDecimalPlaces): 
+						y</b>ou can specify the number of decimal places.<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>const char* fromIP(IPAddress ip)</b><br/><br/>
+						<b>const char* fromIP(IPAddress ip)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						Convert characters, boolean values, integers, floating point numbers, and IP addresses to c style strings without having to declare a CString object.<br/>
+						Convert characters, boolean values, integers, floating point numbers, and IP addresses to c style strings without having to declare a CString object.<br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<b>uint32_t toUint(const char *strNum, const uint8_t nBase): </b> you can specify base 2(binary), 8(octal), 10(decimal) or 16(hex)<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1712,7 +1726,6 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						This cause the Arduino to do a hardware reset.
 					</p>
-
 					<div class="PaypalButton">
 						<p class="paragraph"><b>PRICE:&nbsp;</b>$<script type="text/javascript">document.write(fPriceLevel2.toFixed(2));</script>5</p>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -1788,46 +1801,46 @@
 						<b>Functions</b><br/>
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						CShortDate(CShortDate&amp; date)<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>CShortDate(CShortDate&amp; date)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDate(CDate&amp; date)<br/>
+						<b>CDate(CDate&amp; date)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CShortTime(CShortTime&amp; time)<br/>
+						<b>CShortTime(CShortTime&amp; time)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CTime(CTime&amp; time)<br/>
+						<b>CTime(CTime&amp; time)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDateTime(CDateTime&amp; datetime)<br/>
+						<b>CDateTime(CDateTime&amp; datetime)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						Standard copy constructors.<br/><br/>
+						<b>Standard copy constructors.</b><br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CShortDate(RealTimeClockDS1307&amp; rtc)<br/>
+						<b>CShortDate(RealTimeClockDS1307&amp; rtc)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDate(RealTimeClockDS1307&amp; rtc)<br/>
+						<b>CDate(RealTimeClockDS1307&amp; rtc)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CShortTime(RealTimeClockDS1307&amp; rtc)<br/>
+						<b>CShortTime(RealTimeClockDS1307&amp; rtc)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CTime(RealTimeClockDS1307&amp; rtc)<br/>
+						<b>CTime(RealTimeClockDS1307&amp; rtc)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDateTime(RealTimeClockDS1307&amp; rtc)<br/>
+						<b>CDateTime(RealTimeClockDS1307&amp; rtc)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						Constructors that use a RTC to intialise the date and/or time.<br/><br/>
+						<b>Constructors that use a RTC to intialise the date and/or time.</b><br/><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CShortDate(const uint8_t nDOM, const uint8_t nMonth)<br/>
+						<b>CShortDate(const uint8_t nDOM, const uint8_t nMonth)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDate(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear)<br/>
+						<b>CDate(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CShortTime(const uint8_t nHour, const uint8_t nMinute)<br/>
+						<b>CShortTime(const uint8_t nHour, const uint8_t nMinute)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CTime(const uint16_t nDOY, const uint8_t nHour, const uint8_t nMinute, const uint16_t nSecond)<br/>
+						<b>CTime(const uint16_t nDOY, const uint8_t nHour, const uint8_t nMinute, const uint16_t nSecond)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDateTime(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear, const uint8_t nHours, const uint8_t nMinutes, const uint8_t nSeconds)<br/>
+						<b>CDateTime(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear, const uint8_t nHours, const uint8_t nMinutes, const uint8_t nSeconds)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Constructors that use parameters to set the date and/or time.<br/><br/> 
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						bool parse(const char* str)<br/>
+						<b>bool parse(const char* str)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Parses a date and/or time from a string.<br/>			
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			
@@ -1835,169 +1848,169 @@
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
-					    void set(const uint8_t nDOM, const uint8_t nMonth)<br/>
+					    <b>void set(const uint8_t nDOM, const uint8_t nMonth)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    void set(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear)<br/>
+					    <b>void set(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void set(const uint8_t nHour, const uint8_t nMinute)<br/>
+						<b>void set(const uint8_t nHour, const uint8_t nMinute)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    void set(const uint16_t nDOY, const uint8_t nHour, const uint8_t nMinute, const uint8_t nSecond)<br/>
+					    <b>void set(const uint16_t nDOY, const uint8_t nHour, const uint8_t nMinute, const uint8_t nSecond)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    void set(const uint8_t nHour, const uint8_t nMinute, const uint8_t nSecond)<br/>
+					    <b>void set(const uint8_t nHour, const uint8_t nMinute, const uint8_t nSecond)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					void set(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear, const uint8_t nHours, const uint8_t nMinutes, const uint8_t nSeconds)<br/>
+     					<b>void set(const uint8_t nDOM, const uint8_t nMonth, const uint16_t nYear, const uint8_t nHours, const uint8_t nMinutes, const uint8_t nSeconds)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Set the date and/or time from parameters.<br/>
 	  				</p>
 	  				<p class="paragraph">
 		  				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					void set(RealTimeClockDS1307&amp; rtc)<br/>
+     					<b>void set(RealTimeClockDS1307&amp; rtc)</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Set the date and/or time from a RTC.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setDOM(const uint8_t nDOM)<br/>
+						<b>void setDOM(const uint8_t nDOM)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setMonth(const uint8_t nMonth)<br/>
+						<b>void setMonth(const uint8_t nMonth)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setYear(const uint16_t nYear)<br/>
+						<b>void setYear(const uint16_t nYear)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setSeconds(const uint8_t nSeconds)<br/>
+						<b>void setSeconds(const uint8_t nSeconds)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setMinutes(const uint8_t nMinutes)<br/>
+						<b>void setMinutes(const uint8_t nMinutes)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setHours(const uint8_t nHours)<br/>
+						<b>void setHours(const uint8_t nHours)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						void setDOY(const uint16_t nDOY)<br/>
+						<b>void setDOY(const uint16_t nDOY)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Set the individual elements of date and time.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					void empty()<br/>
+     					<b>void empty()</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Set the individual elements of date and time to 0.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					void isEmpty()<br/>
+     					<b>void isEmpty()</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Returns true of all the individual elements of date and/or time are 0, otherwise false.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
-						CShortDate &amp;operator =(CShortDate &amp;dateOther)<br/>
+						<b>CShortDate &amp;operator =(CShortDate &amp;dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-						CShortTime &amp;operator =(CShortTime &amp;timeOther)<br/>
+						<b>CShortTime &amp;operator =(CShortTime &amp;timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CTime &amp;operator =(CTime &amp;timeOther)<br/>
+						<b>CTime &amp;operator =(CTime &amp;timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CTime &amp;operator =(CShortTime &amp;timeOther)<br/>
+						<b>CTime &amp;operator =(CShortTime &amp;timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						CDate &amp;operator =(CDate &amp;dateOther)<br/>
+						<b>CDate &amp;operator =(CDate &amp;dateOther)</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Assignment functions that copy the contents of the object paraemeter to this object.<br/>
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CShortDate&amp; dateOther)<br/>
+						<b>bool operator ==(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CShortDate&amp; dateOther)<br/>
+						<b>bool operator &gt;=(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;=(CShortDate&amp; dateOther)<br/>
+						<b>bool operator &lt;=(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CShortDate&amp; dateOther)<br/>
+						<b>bool operator &gt;(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CShortDate&amp; dateOther)<br/>
+						<b>bool operator &lt;(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CShortDate&amp; dateOther)<br/>
+						<b>bool operator !=(CShortDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CDate&amp; dateOther)<br/>
+						<b>bool operator ==(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CDate&amp; dateOther)<br/>
+						<b>bool operator &gt;=(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;=(CDate&amp; dateOther)<br/>
+						<b>bool operator &lt;=(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CDate&amp; dateOther)<br/>
+						<b>bool operator &gt;(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CDate&amp; dateOther)<br/>
+						<b>bool operator &lt;(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CDate&amp; dateOther)<br/>
+						<b>bool operator !=(CDate&amp; dateOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CShortTime&amp; timeOther)<br/>
+						<b>bool operator ==(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &gt;=(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;=(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &lt;=(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &gt;(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &lt;(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CShortTime&amp; timeOther)<br/>
+						<b>bool operator !=(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CTime&amp; timeOther)<br/>
+						<b>bool operator ==(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CTime&amp; timeOther)<br/>
+						<b>bool operator &gt;=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;=(CTime&amp; timeOther)<br/>
+						<b>bool operator &lt;=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CTime&amp; timeOther)<br/>
+						<b>bool operator &gt;(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CTime&amp; timeOther)<br/>
+						<b>bool operator &lt;(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CTime&amp; timeOther)<br/>
+						<b>bool operator !=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CTime&amp; timeOther)<br/>
+						<b>bool operator ==(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CTime&amp; timeOther)<br/>
+						<b>bool operator &gt;=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;=(CTime&amp; timeOther)<br/>
+						<b>bool operator &lt;=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CTime&amp; timeOther)<br/>
+						<b>bool operator &gt;(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CTime&amp; timeOther)<br/>
+						<b>bool operator &lt;(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CTime&amp; timeOther)<br/>
+						<b>bool operator !=(CTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator ==(CShortTime&amp; timeOther)<br/>
+						<b>bool operator ==(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;=(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &gt;=(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &lt;(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &gt;(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &gt;(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator &lt;(CShortTime&amp; timeOther)<br/>
+						<b>bool operator &lt;(CShortTime&amp; timeOther)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						bool operator !=(CShortTime&amp; timeOther)<br/>
+						<b>bool operator !=(CShortTime&amp; timeOther)</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Assorted comparison functions that return true or false depending on whether the comparson,between this object and the object in the parameter,<br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 						
 						succeeds.<br/>
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					bool isPM()<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     					<b>bool isPM()</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					bool isAM()<br/>
+     					<b>bool isAM()</b><br/>
      					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Return true if the time is morning or afternoon.
 					</p>
 					<p class="paragraph">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						const char* toString(const bool bIncludeSeconds)<br/>
+						<b>const char* toString(const bool bIncludeSeconds)</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						Converts the date and/or time into a string with the format 23/11/2022 09:27:00
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     					void dump()<br/>
+     					<b>void dump()</b><br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						For debugging purposes - simply outputs the contents of all data members to Serial Monitor.
 					</p>
 					<p class="paragraph">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    <b>void addDays(const int8_t nDays, const uint16_t nStartYear)</b><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>void addDays(const int8_t nDays, const uint16_t nStartYear)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    <b>void addWeeks(const int16_t nWeeks, const uint16_t nStartYear)</b><br/>
 					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -2016,8 +2029,7 @@
 					<div class="PaypalButton">
 						<p class="paragraph"><b>Included in downloads of other libraries.</b></p>
 					</div>
-
-				</div>
+				</div>				
 				<div class="Library" id="Debug" onclick="OnClickLibrary('Debug')">				
 					<h3>CDebug</h3>
 					<p class="paragraph"><b>Purpose</b></p>
