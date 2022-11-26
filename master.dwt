@@ -10,6 +10,7 @@
 		<link href="styles/style1.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script type="text/javascript" src="Libraries.js"></script>
 		<title>XXXXXXXXXX</title>
+		<script src="http://www.w3schools.com/lib/w3data.js"></script> 
 			
 	</head>
 	
@@ -33,7 +34,7 @@
 					<li><a href="ArduinoC/GeneralPurpose.html">&nbsp;&nbsp;General Purpose</a></li>
 					<li><a href="ArduinoC/ICs.html">&nbsp;&nbsp;Wifi &amp; ICs</a></li>
 					<li><a href="ArduinoC/Shields.html">&nbsp;&nbsp;Shields</a></li>
-					<li><a href="ArduinoC/TouchLCDScreen.html">&nbsp;&nbsp;TFT LCD</a></li>
+					<li><a href="ArduinoC/TFTLCDScreen.html">&nbsp;&nbsp;TFT LCD</a></li>
 					<li><a href="Contact.html">Contact</a></li>
 				</ul>
 			</div><!-- End Navigation -->
