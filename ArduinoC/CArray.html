@@ -1,9 +1,10 @@
-﻿<p class=paragraph><b>Purpose: </b>To implement the functions of an array
+﻿<p class=paragraph><b>Purpose: </b></p>
+<p style='text-indent:36.0pt'>To implement the functions of an array
 without having to worry about array index over run errors. It is a template
-class where you specify the data type it will contain and the maximum size. The class does not use dynamic memory (new, alloc and
-malloc), which can cause memory fragmentation with the limited memory available
+class where you specify the data type it will <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contain and the maximum size. The class does not use dynamic memory (new, alloc and
+malloc), which can cause memory fragmentation with the limited memory <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; available
 on Arduino microcontrollers. The first template parameter (int in the above
-example) specifies the data type to be stored and the second template parameter
+example) specifies the data type to be stored and the second template <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parameter
 (100 in the above example) specifies the size of a regular C array inside the
 class.</p>
 
@@ -37,11 +38,13 @@ removed is returned in this parameter.</p>
 <p class=paragraph style='margin-left:72.0pt'><b>Returns:</b>  True if the
 array is not already empty, otherwise false.</p>
 
-<p class=paragraph><b>Stack Functions:</b><br>
-                These functions allow you to treat the array as a stack or LIFO
-data structure.</p>
+<p class=MsoNormal><b>Stack Functions:</b></p>
 
-<p class=paragraph>                <b>bool push(DataType DataVal)</b></p>
+<p class=MsoNormal style='text-indent:36.0pt'>These functions allow you to
+treat the array as a stack or LIFO data structure.</p>
+
+
+<p class=paragraph>            <b>bool push(DataType DataVal)</b></p>
 
 <p class=paragraph>                                Add a new item at the end of
 the array. The array length will increase by 1.</p>

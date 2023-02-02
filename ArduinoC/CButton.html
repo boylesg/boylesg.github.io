@@ -1,0 +1,88 @@
+﻿<p class=paragraph><b>Purpose:</b></p>
+
+<p class=paragraph style='text-indent:36.0pt'>To implement the functionality of
+hardware push, toggle and capacitive touch buttons.</p>
+
+<p class=paragraph style='text-indent:36.0pt'><img width=195 height=208
+id="Picture 1" src="../images/PushButton.png">  <img width=170 height=412
+id="Picture 3" src="../images/Switch.png"><img width=231 height=215
+id="Picture 2" src="../images/CapacitiveButton.png"> </p>
+
+<p class=paragraph>&nbsp;</p>
+
+<p class=paragraph><b>Dependancies:</b> CBuff.h, CString.h, debug.h</p>
+
+<p class=paragraph>                                Dependancy on CBuff.h and
+CString.h can be removed by replacing all references to CString with Arduino
+String.</p>
+
+<p class=paragraph>                                Dependancy on debug.h can be
+removed by replacing all references to debug with appropriate Serial.print(...)
+and <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Serial.println(...) function calls.</p>
+
+<p class=paragraph>                </p>
+
+<p class=paragraph><b>Functions:</b></p>
+
+<p class=paragraph style='text-indent:36.0pt'><b>&nbsp;CPushButton(const uint8_t
+nPin, const bool bActiveHigh, const uint16_t nMillisTimeOut)</b></p>
+
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CToggleButton(const uint8_t nPin, const
+bool bActiveHigh, const uint16_t nMillisTimeOut)</b></p>
+
+<p class=paragraph>                                Constructors.</p>
+
+<p class=paragraph>                                <b>nPin:</b> the pin the
+button is connected to.</p>
+
+<p class=paragraph>                                <b>bActiveHigh:</b> does
+pressing the button cause a LOW to HIGH or HIGH to LOW transition.</p>
+
+<p class=paragraph>                                <b>nMillisTimeOut:</b> the
+number of milliseconds until the button will return another clicked event - the
+click repeat rate.</p>
+
+<p class=paragraph style='text-indent:36.0pt'>&nbsp;</p>
+
+<p class=paragraph style='text-indent:36.0pt'><b>CCapacitiveButton(const
+uint8_t nSendPin, const uint8_t nReceivePin)</b></p>
+
+<p class=paragraph>                                <b>nSendPin:</b> the output
+pin that creates the iscillation.</p>
+
+<p class=paragraph>                                <b>nReceivePin:</b> the
+input pin that reads the frequency of the oscillation.</p>
+
+<p class=paragraph>&nbsp;</p>
+
+<p class=paragraph>                <b>void setName(const char *cstrName)</b></p>
+
+<p class=paragraph>                <b>void setName(const __FlashStringHelper
+*fstrName)</b></p>
+
+<p class=paragraph>                                Sets the button's name.</p>
+
+<p class=paragraph>                                <b>cstrName or fstrName:</b>
+button name.</p>
+
+<p class=paragraph>                </p>
+
+<p class=paragraph style='text-indent:36.0pt'><b>char *getName()</b></p>
+
+<p class=paragraph>                                <b>Returns:</b> the button's
+name.</p>
+
+<p class=paragraph>                </p>
+
+<p class=paragraph style='text-indent:36.0pt'><b>void begin()</b></p>
+
+<p class=paragraph>                                Must be called in the setup
+function - it puts the pin or pins, associated with the button, in the correct
+INPUT or OUTPUT mode.</p>
+
+<p class=paragraph>                </p>
+
+<p class=paragraph style='text-indent:36.0pt'><b>bool isClicked()</b></p>
+
+<p class=paragraph>                                <b>Returns:</b> true if the
+button is currently clicked, otherwise false.</p>

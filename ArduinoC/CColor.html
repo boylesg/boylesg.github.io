@@ -1,0 +1,174 @@
+<p class="paragaph"><b><u>Purpose:</u></b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'>Inspired by Microsoft's RGB(...)
+macro, this library allows you to combine 8 bit red, green and blue colour  values
+into a single 32 bit value. And also extract individual 8 bit red, green and
+blue colour values from a single 32 bit value. The colour value encoding is
+designed to work with the Arduino library 'PololuAPA102' for RGB LED strips.</p>
+
+<p class="paragaph" style='margin-left:36.0pt'>Additional functionality includes
+obtaining opposite colours, random colours and stepping through the colours of
+the rainbow etc.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Macros &amp; Functions:</u></b></p>
+
+<p class="paragaph" style='text-indent:36.0pt'><b>#define RGB(nRed, nGreen,
+nBlue)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'>The macro takes 3 x 8 bit
+parameters - the red, green and blue values for the desired color. The blue
+value is stored in the first 8 bits of a 32 bit  value, the red value is stored
+in the second 8 bits and the green value is stored in the third 8 bits. The
+fourth 8 bits of the 32 bit value are unused.</p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>Returns:</b>
+the 32 bit coloir value.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b>uint8_t GET_RED(uint32_t
+nColor)</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b>uint8_t GET_GREEN(uint32_t
+nColor)</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b>uint8_t GET_BLUE(uint32_t
+nColor)</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'>These function
+return the 8 bit red, green and blue colour values from a combined 32 bit
+colour value.</p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>Return:</b>
+the 8 bit red, green or blue colour value.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define WHITE</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define RED</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define YELLOW</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define GREEN</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define CYAN</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define BLUE</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define MAGENTA</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b> #define BLACK</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>Return:</b>
+32 bit colour values for white, red, yellow, green, cyan, blue, magenta and
+black.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Class CColor</u></b></p>
+
+<p class="paragaph"><b>                <u>Functions:</u></b></p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>uint32_t
+getRandomSecondaryColor()</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+a random color from blue, green, red, cyan, yellow or magenta.</p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>uint32_t
+getRandomColor()</b></p>
+
+<p class="paragaph" style='margin-left:108.0pt'><b>Returns:</b> a random color
+from a gradient of presets The presets are designed such that there is a
+visible difference in colour (when displayed on a  RGB LED) between them.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>uint32_t
+getNextColor(const uint8_t nSteps = 1)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'>This function
+steps through the preset colour by the specified number of steps.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>nSteps:</b>
+The number of steps to move down the colour presets.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+one of the preset colours.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b> uint16_t getColorCount()</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+the number of preset colours. </p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>uint32_t getColor(const
+uint16_t nColorIndex)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'>Gets the
+preset colour from the specified index.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>nColorIndex:</b>
+index of the preset colour to fetch.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+a pre-set colour value. </p>
+
+<p class="paragaph" style='margin-left:72.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>uint32_t getColor(const char*
+cstrColorName)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'>Gets the
+appropriate colour value given the specified colour name.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>cstrColorName:</b>
+the name of the colour: red, green, blue, yellow, magenta, cyan, white, black.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+a pre-set colour value. </p>
+
+<p class="paragaph" style='margin-left:72.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>const char *getColorName(const
+uint32_t nColor)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'>Gets the
+appropriate colour name given the specified colour value.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>nColor:</b>
+the colour value.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+the colour name - red, green, blue, yellow, magenta, cyan, white, black. </p>
+
+<p class="paragaph" style='margin-left:72.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>bool isPrimaryColor(const
+uint32_t nColor)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>nColor:</b>
+the colour value to test.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+true if the colour value corresponds to red, green, blue or black. </p>
+
+<p class="paragaph" style='margin-left:72.0pt'>&nbsp;</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>bool isSecondaryColor(const
+uint32_t nColor)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>nColor:</b>
+the colour value to test.</p>
+
+<p class="paragaph" style='margin-left:72.0pt;text-indent:36.0pt'><b>Returns:</b>
+true if the colour value corresponds to yellow, magenta, cyan or white.</p>
+
