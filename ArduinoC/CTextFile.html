@@ -1,0 +1,234 @@
+<p class="paragraph"><b><u>Purpose:</u></b></p>
+
+<p class="paragraph" style="margin-left:36.0pt;">To implement the functionality of
+a text based file for SD card readers. The class has a broader range of
+functions than the file class that come with the SD library.</p>
+
+<p class="paragraph"></p>
+
+<p class="paragraph"><b><u>Dependancies:</u></b></p>
+
+<p class="paragraph"> Constants.h, Common.h/cpp, CBuff.h/cpp,CString.h/cpp, debug.h/cpp, MySD.h/cpp</p>
+
+<p class="paragraph"></p>
+
+<p class="paragraph"><b><u>Classes:</u></b></p>
+
+<p class="paragraph" style="text-indent:36.0pt;"><b><u>CTextFile</u></b></p>
+
+<p class="paragraph"></p>
+
+<p class="paragraph" style="text-indent:72.0pt;"><b><u>Constructors:</u></b></p>
+
+<p class="paragraph" style="text-indent:108.0pt;"><b> CTextFile()</b></p>
+
+<p class="paragraph" style="text-indent:144.0pt;">Creates an empty CTextFile object.</p>
+
+<p class="paragraph" style="text-indent:72.0pt;"><b><u>Open &amp; Close Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool open(const __FlashStringHelper* fstrFilename, const uint8_t nMode)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool open(const char* strFilename, const uint8_t nMode)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool open(const char* strFilename, const char* strMode)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool open(const char* strFilename, const uint8_t nMode)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Opens the specified file name on the SD card in the specified mode.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>fstrFilename, strFilename: </b>the name of the file.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nMode: </b>READ, READ_APPEND, APPEND or REWRITE.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>true if the file could be opened, or else false.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void close()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"> Closes an open file. Function call is ignored if no file is open.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b><u>Read Functions:</u></b></p>
+
+<p class="paragraph" style="text-indent:108.0pt;"><b>  bool readWord(CString&amp; strWord)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Reads character from the file up to the first space or non-printing character such as carriage return, line feed and tab.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>strWord: </b>the word read is returned in this parameter.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>true if a word of  non zero length was read, otherwise false.</p>
+
+<p class="paragraph" style="text-indent:108.0pt;"><b>bool readWord(CString&amp; strWord, const char cDelim)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Reads character from the file up to the specified delimiting character.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>strWord: </b>the word read is returned in this parameter.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>cDelim: </b>the character that denotes the end if one word and the start of the next one.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>true if a string of  non zero length was read, otherwise false.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b> bool readLine(CString&amp; strLine, const bool bIncludeEOL = false, const bool bDebug = false)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Reads a line of text up to the terminating carriage return, line feed or carriage return line feed pair.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>strLine: </b>the line read is returned in this parameter.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>bIncludeEOL: </b>the terminating carriage return, line feed or carriage return 
+line feed pair is included in the line of text if this parameter is true, and not included if it is false. The default value is 
+false.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>bDebug: </b>if this parameter is true then debug information is displayed in 
+Serial Monitor during the reading process. The default value is false.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool read(CString &amp;strData)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b></b>Reads characters from the file up the maximum capacity of strData.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>strData: </b>the string read is returned in this parameter.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>true if a word of  non zero length was read, otherwise false.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>bool read(char* arrayBuff, const uint16_t nMaxLen)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b></b>Reads characters from the file up the specified maximum length.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>arrayBuff: </b>the string read is returned in this parameter.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nMaxLen: </b>the maximum size of the buffer.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b> Returns: </b>true if a string of  non zero length was read, otherwise false.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>char readChar()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b></b>Reads a single character from the file.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the character read.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b><u>Write Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const char* strText)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const __FlashStringHelper* fstrText)</b></p>
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const char* cstr)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const __FlashStringHelper* fstrText)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Writes the specified text to the file. The writeLine version of the function also writes a carriage return and line feed character.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>strText, fstrText: </b>the text to be written.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const unsigned int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const unsigned long int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const long int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const unsigned int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const unsigned long int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const long int nNum)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Writes the specified integer to the file. The writeLine version of the function alsowrites a carriage return and line feed character.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>nNum: </b>the integer to be written.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const float fNum, const uint8_t nDecPlaces = 2)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const float fNum, const uint8_t nDecPlaces = 2)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b> </b>Writes the specified real number to the file.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>fNum: </b>the real number to be written.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nDecPlaces: </b>the number of decimal places to include. Defaults to 2 decimal places.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const double dNum, const uint8_t nDecPlaces = 2)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const double dNum, const uint8_t nDecPlaces = 2)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Writes the specified real number to the file. The writeLine version of the function also writes a carriage return and line feed character.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>dNum: </b>the real number to be written.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nDecPlaces: </b>the number of decimal places to include. Defaults to 2 decimal places.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void write(const char cCh)</b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void writeLine(const char cCh)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Writes the specified character to the file. The writeLine version of the function also writes a carriage return and line feed character.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>cCh: </b>the character to be written.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>size_t write(const uint8_t *arrayBuff, size_t nBuffSize)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b></b>Writes the contents of the buffer to the file.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>arrayBuff: </b>the buffer containing the data to be written.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nBuffSize: </b>the size of the buffer.<b></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b></b></p>
+
+<p class="paragraph" style="margin-left:36.0pt;"><b><u>File Position Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>uint32_t position()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the current byte read position in the file from where the next read will start from.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b>void seek(uint32_t nFilePos)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Moves the byte read position to the specified absolute place in the file.</p>
+<p class="paragraph" style="margin-left:144.0pt;"><b>nFilePos: </b>the byte position number.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b>bool seekRel(int32_t nPos)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Moves the byte read position relative to the current position. If + then the 
+byte position is moved towards the end of the file. If  then the byte position is moved towards the beginning of the file.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>nPos: </b>number of places to move the byte position.</p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Ruturns: </b>true if the byte position was moved successfully or false otherwise.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b>char peek()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;">Reads the next character from the file without moving the byte position to the next characters.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b>bool eof()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>true if the byte position has reached the end of the file no more characters available to read.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>uint16_t available()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the remaining number of bytes available to read.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>uint32_t size()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the total number of bytes in the file.</p>
+
+<p class="paragraph" style="margin-left:72.0pt;"><b><u>Operator Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>operator Stream&amp;()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the CTextFile object as an Arduino Stream object.<b></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>operator bool()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the CTextFile object as true if the file has successfully been opened, otherwise false.</p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>const char* filename()</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"><b>Returns: </b>the CTextFile object as a string the name of the file on the SD card.</p>
+
+<p class="paragraph" style="margin-left:72Px;"> <b><u>Debug Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:108.0pt;"><b>void dump(const char* strFilename)</b></p>
+
+<p class="paragraph" style="margin-left:144.0pt;"> Outputs to Serial Monitor the details of the file.</p>
+
