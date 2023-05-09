@@ -47,7 +47,8 @@ body {
 }
 /* Masthead Styles */
 #masthead h1 {
-	color: #fff;
+	color: #402640;
+	font-size:50pt;
 }
 #masthead h3 {
 	color: #402640;
