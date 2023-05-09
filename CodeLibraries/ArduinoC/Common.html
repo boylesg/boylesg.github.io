@@ -1,0 +1,324 @@
+
+<p class="paragaph"><b><u>Purpose:</u></b><u> </u></p>
+
+<p class="paragaph" style="text-indent:36.0pt">To provide a variety of generally
+useful functions that could be used in any type of project.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Dependencies:</u></b><u> </u></p>
+
+<p class="paragaph" style="text-indent:36.0pt">Arduino assert.h, IPAddress.h &amp;
+Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject
+to a define in Constants.h).</p>
+
+<p class="paragaph" style="text-indent:36.0pt">Constants.h, CBuff.h/cpp,
+CString.h/cpp, debug.h/cpp, TextFile.h/cpp (optional &amp; subject to a define
+at the top of debug.h)</p>
+
+<p class="paragaph" style="text-indent:36.0pt">Dependency on the CBuff and
+CString can be removed by replacing all references to CString with Arduino String.</p>
+
+<p class="paragaph" style="text-indent:36.0pt">Dependency on CDebug can be
+removed by replacing all references to debug with appropriate Serial.print and
+Serial.println statements.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Macros:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define LINE __LINE__:</b>
+return the current code line number – it is just a shortened version of
+__LINE__</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS(SEC):</b>
+converts specified seconds to milliseconds.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS_MONTH:</b>
+converts a month (average 30 days) to milliseconds.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS_WEEK:</b>
+converts a week to milliseconds.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS_DAY:</b>
+converts a day to milliseconds.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS_HOUR:</b>
+converts an hour to milliseconds.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MILLIS_MINUTE:</b>
+converts a minute to milliseconds.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Macros for ESP32:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#undef F</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define F(CSTR)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Re-define the
+F macro so it does nothing and so code with F macros compiles for ESP32.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define BUILTIN_LED 2</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MIN(Arg1, Arg2)</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define MAX(Arg1, Arg2)</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A0    36</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A1    39</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A2    34</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A3    35</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A4    32</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A5    33</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A6    25</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A7    26</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A8    27</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A9    14</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A10   12</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A11   13</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A12   4</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A13   2</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A14   5</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define A15   0</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">ESP32 does not
+have these macros available.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Macros for Arduino Due:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#undef F</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>#define F(CSTR)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Re-define the
+F macro so it does nothing and so code with F macros compiles for Arduin Due</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"style="text-indent:36.0pt"><b>char *dtostre(const double dVal, const
+uint8_t nWidth, const uint8_t nPrec, char *strOut)</b></p>
+
+<p class="paragaph"><b>               char *dtostrf(double dVal, const uint8_t
+nWidth, const uint8_t nPrec, char *strOut)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Arduino Due
+does not have these functions available.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Type definitions:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>typedef void
+(*GlobalFunctionPtrType)()</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>typedef enum {SUN, MON, TUE,
+WED, THU, FRI, SAT} day_of_week</b></p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Functions:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>char getASCII(CString &amp;strHexCode)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Converts an
+HEX code, e.g. from a HTML request, to the ASCII character.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>strHexCode:</b>
+the hex code e.g. &quot;0D&quot;</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>Returns:</b>
+the ASCII character e.g. "\n"</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>uint32_t
+getElapsedMillis(const uint32_t nStartMillis)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>uint32_t
+getElapsedMicros(const uint32_t nStartMicros)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Returns the
+elapsed number of milliseconds or microseconds, taking into account roll over
+of the timer back to 0.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>nStartMillis
+or nStartMicros:</b> Staring millisecond or microsecond value.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>Returns:</b>
+ the elapsed milliseconds or microseconds from the specified start value.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>bool
+sendATCommand(HardwareSerial &amp;rSerial, const __FlashStringHelper
+*fstrCommand, CString &amp;strResponse, const uint16_t <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nWait)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool
+sendATCommand(HardwareSerial &amp;rSerial, const __FlashStringHelper
+*fstrCommand, const uint16_t nWait)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool
+sendATCommand(HardwareSerial &amp;rSerial, const char *cstrCommand, CString &amp;strResponse,
+const uint16_t nWait)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool
+sendATCommand(HardwareSerial &amp;rSerial, const char *cstrCommand, const
+uint16_t nWait)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Send an AT
+command to the serial device connected to the other end of the specified
+Hardware serial object, and wait for a response.</p>
+
+<p class="paragaph" style="margin-left:72.0pt"><b>rSerial:</b> the hardware
+serial object, e.g. &amp;Serial and &amp;Serial3</p>
+
+<p class="paragaph" style="margin-left:72.0pt"><b>fstrCommand or cstrCommand:</b>
+the AT command text.</p>
+
+<p class="paragaph" style="margin-left:72.0pt"><b>strResponse:</b> The response
+to the AT command is returned in this parameter</p>
+
+<p class="paragaph" style="margin-left:72.0pt"><b>nWait:</b> how many
+milliseconds to wait for a response.</p>
+
+<p class="paragaph" style="margin-left:72.0pt"><b>Returns:</b> true if the
+device returned the response &quot;OK&quot;, otherwise false.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>bool
+findBaudRate(HardwareSerial &amp;rSerial, const __FlashStringHelper
+*fstrDeviceDesc, LiquidCrystal_I2C *pLCD)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt">Searches for the correct baud
+rate by sending the AT command &quot;AT&quot; and waiting for the response
+&quot;OK&quot;. When it receives the response &quot;OK&quot; the function
+terminates. Details are sent to Serial Monitor and the LCD screen if one is
+specified by pLCD.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>rSerial:</b>
+the hardware serial object, e.g. &amp;Serial and &amp;Serial3</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>fstrDeviceDesc:</b>
+the device description for debug output purposes.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>pLCD:</b> Optional
+LCD screen object pointer.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>Returns:</b>
+true if the device returned the response &quot;OK&quot;, otherwise false. If
+&quot;OK&quot; was returned the serial object will be set to the correct baud
+rate.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Data Conversion Functions:</u></b></p>
+
+<p class="paragaph" style="text-indent:36.0pt">They all use an internal CString
+object, and its functions, to do this.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromChar(const
+char cCh)</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromBool(const
+bool bVal)</b></p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromUint(const
+uint32_t nNum, const uint8_t nBase):</b> you can specify base 2(binary),
+8(octal), 10(decimal) or 16(hex)</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromInt(const
+int32_t nNum, const uint8_t nBase):</b> you can specify base 2(binary),
+8(octal), 10(decimal) or16(hex)</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromReal(const
+double dNum, const uint8_t nDecimalPlaces): </b>you can specify the number of
+decimal places.</p>
+
+<p class="paragaph" style="text-indent:36.0pt"><b>const char* fromIP(IPAddress
+ip)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Convert
+characters, boolean values, integers, floating point numbers, and IP addresses
+to c style strings without having to declare a CString object.</p>
+
+<p class="paragaph" style="margin-left:72.0pt;">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>uint32_t toUint(const char
+*strNum, const uint8_t nBase):  you can specify base 2(binary), 8(octal),
+10(decimal) or 16(hex)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int32_t toInt(const char
+*strNum, const uint8_t nBase): you can specify base 2(binary), 8(octal),
+10(decimal) or16(hex)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>double toReal(const char
+*strNum)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>IPAddress toIP(const char*
+strIP)</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Converts the
+string to corresponding boolean, integer, floating point or IP addresses
+without having to declare a CString object.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Classes:</u></b></p>
+
+<p class="paragaph">                <b>CReset</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;">Implements a
+hardware reset on an Arduino MCU. It requires a hardware connection between a
+digital pin, to be used to cause the reset, and the reset&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph">                                <b>Constructors</b></p>
+
+<p class="paragaph">                                                <b>CReset(const
+uint8_t nPin)</b></p>
+
+<p class="paragaph" style="margin-left:108.0pt;text-indent:36.0pt"><b>nPin: </b>the
+digital pin to be used to hardware reset the Arduino.</p>
+
+<p class="paragaph">                                </p>
+
+<p class="paragaph" style="margin-left:72.0pt;"><b>Functions:</b></p>
+
+<p class="paragaph" style="margin-left:72.0pt;text-indent:36.0pt"><b>void
+begin()</b></p>
+
+<p class="paragaph" style="margin-left:108.0pt;text-indent:36.0pt">This function
+must be called to setup the digital pin in the correct mode.</p>
+
+<p class="paragaph" style="margin-left:108.0pt"><b>void reset()</b></p>
+
+<p class="paragaph" style="margin-left:108.0pt;text-indent:36.0pt">This cause
+the Arduino to do a hardware reset.</p>
+
+

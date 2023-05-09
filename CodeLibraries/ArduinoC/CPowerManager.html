@@ -1,0 +1,116 @@
+﻿<p class="paragraph"><b><u>Purpose:</u></b><u>
+</u></p>
+
+<p class="paragraph" style="margin-left:36pt;">
+	To extend Arduino power saving to connected devices like LCD screens. Each device is assumed to powered via a relay or FET and the 
+	controlling pin is added the list.
+	<br> 
+	When you want the Arduino to enter low power mode it automaticall disconnects power from all the devices listed.
+</p>
+
+<p class="paragraph"></p>
+<p class="paragraph"><b><u>Dependancies:</u></b> </p>
+
+<p class="paragraph" style="margin-left:36pt;">Constants.h, Common.h/cpp, CBuff.h/cpp, CString.h/cpp, debug.h/cpp.</p>
+
+<p class="paragraph"></p>
+
+<p class="paragraph"><b><u>class</u><u> CPowerManager</u></b></p>
+
+<p class="paragraph" style="margin-left:36pt;"><b><u>Constructors</u></b></p>
+		
+<p class="paragraph" style="margin-left:72pt;"><b>CPowerManager()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Creates an empty device list.<br>
+
+<p class="paragraph"></p>
+
+<p class="paragraph" style="margin-left:36pt;"><b><u>Functions:</u></b></p>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void addDevice(const uint8_t nRelayPin, const uint8_t nResetPin)</b></p>
+
+<p class="paragraph" style="margin-left:108pt;"><b></b>Adds a device to the list.<b></b></p>
+
+<p class="paragraph" style="margin-left:108pt;">
+	
+	Reads the input pin and returns the analogue voltage.<br>
+	<b>nRelayPin: </b>the pin that controls the relay or FET.<br>
+	<b>nResetPin: </b>the pin that resets th device.<br>
+</p>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void powerDown()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Power down all devices in the list and then powers down the Arduino.<b></b></p>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void powerUp()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Powers up all devices in the list when the Arduino wakes up.<br>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void turnOnDevices()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Power down all devices in the list seperately from the Arduino.<b></b></p>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void turnOffDevices()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Powers down all devices in the list seperately from the Arduino.<br>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void resetDevices()</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">Hardware resets all devices in the list.<br>
+<p class="paragraph" style="margin-left:72pt;"><b>void turnOnDevice(const uint8_t nI)</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">
+	Powers down the specified devicee in the list seperately from the Arduino.
+	<b>nI: </b>the index number of the device.<br>
+</p>
+<p class="paragraph" style="margin-left:72pt;"><b>void turnOffDevice(const uint8_t nI)</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">
+	Powers up the specified device in the list seperately from the Arduino.<br>
+	<b>nI: </b>the index number of the device.<br>
+</p>
+<p class="paragraph" style="margin-left:72pt;"><b>void resetDevice(const uint8_t nI)</b></p>
+
+<p class="paragraph" style="margin-left:108pt;">
+	Hardware resets the specified device in the list.<br>
+	<b>nI: </b>the index number of the device.<br>
+</p>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void detachInterrupts()</b></p>
+<p class="paragraph" style="margin-left:108pt;">Detaches all interrupts.<br>
+
+<p class="paragraph" style="margin-left:72pt;"><b>void setPin18ISR(GlobalFunctionPtrType pISR, const uint8_t nMode = FALLING)</b></p>
+<p class="paragraph" style="margin-left:72pt;"><b>void setPin19ISR(GlobalFunctionPtrType pISR, const uint8_t nMode = FALLING)</b></p>
+<p class="paragraph" style="margin-left:72pt;"><b>void setPin20ISR(GlobalFunctionPtrType pISR, const uint8_t nMode = FALLING)</b></p>
+<p class="paragraph" style="margin-left:72pt;"><b>void setPin21ISR(GlobalFunctionPtrType pISR, const uint8_t nMode = FALLING)</b></p>
+<p class="paragraph" style="margin-left:108pt;">
+	Sets the specified ISR on pins 18 - 21.<br>
+	<b>pISR: </b>a pointer to the ISR.<br>
+	<b>nMode: </b>the interrupt mode - FALLING, RISING, CHANGE etc.<br>
+</p>
+
+<p class="paragraph">&nbsp;</p>
+
+<p class="paragraph"><b><u>Example Usage</u></b></p>
+
+<p class="paragraph">                CPowerManager PM;</p>
+
+<p class="paragraph">                PM.addDevice(7, 8);</p>
+<p class="paragraph">                PM.addDevice(9, 10);</p>
+<p class="paragraph">                PM.addDevice(11, 12);</p>
+
+<p class="paragraph">                PM.PowerDown();</p>
+
+<p class="paragraph">                PM.turnOnDevices();</p>
+
+<p class="paragraph">                PM.turnOffDevices();</p>
+
+<p class="paragraph">                PM.resetOffDevices();</p>
+
+<p class="paragraph">                PM.turnOnDevice(1);</p>
+
+<p class="paragraph">                PM.turnOffDevices(1);</p>
+
+<p class="paragraph">                PM.resetDevices(1);</p>
+
+

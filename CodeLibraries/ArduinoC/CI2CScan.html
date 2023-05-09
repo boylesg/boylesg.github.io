@@ -1,0 +1,74 @@
+<p class="paragraph"><b><u>Purpose:</u></b><u> </u></p>
+
+<p class="paragraph" style='margin-left:36.0pt'>This is the Arduino I2C scan
+sketch in library form. It scans the I2C bus and, if a device is found at a
+particular address, then the debug output will show a list of <br>
+ICs the device could possibly be. It also returns an array containing the
+device addresses.</p>
+
+<p class="paragraph">&nbsp;</p>
+
+<p class="paragraph"><b><u>Dependencies: </u></b></p>
+
+<p class="paragraph" style='text-indent:36.0pt'>CMap.</p>
+
+<p class="paragraph">&nbsp;</p>
+
+<p class="paragraph"><b><u>Functions:</u></b></p>
+
+<p class="paragraph" style='text-indent:36.0pt'><b>void begin()</b></p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'>Must be called
+to insitalise the object and the I2C bus properly. </p>
+
+<p class="paragraph">                </p>
+
+<p class="paragraph" style='text-indent:36.0pt'><b>void end()</b></p>
+
+<p class="paragraph">                                Can be called to shut down
+the I2C bus. </p>
+
+<p class="paragraph">    </p>
+
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>void setTimeOut(uint16_t nTimeOut)</b></p>
+
+<p class="paragraph">                                Change the timeout (in
+milliseconds) for the bus scan to wait for a response for an address.</p>
+
+<p class="paragraph">    </p>
+
+<p class="paragraph" style='text-indent:36.0pt'><b>bool scan(uint8_t
+*arrayAddresses, const uint8_t nArraySize)</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'>Loops through byte addresses from
+01 to 7F, sends a ping and waits for a response. If a response is received then
+the it outputs to Serial Monitor <br>
+possible ICs that the device could be and adds the address to the array.</p>
+
+<p class="paragraph" style='margin-left:36.0pt'>                <b>arrayAddresses:</b>
+the array to store the address of found devices.</p>
+
+<p class="paragraph" style='margin-left:36.0pt'>                <b>nArraySize:</b>
+capacity of the array.</p>
+
+<p class="paragraph" style='margin-left:36.0pt'>    </p>
+
+<p class="paragraph" style='margin-left:36.0pt'><b>bool find(const uint8_t
+nAddress)</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt;'>Searches for a
+device at a specific address. Returns true if a device is found, otherewise
+false. </p>
+
+<p class="paragraph" style='margin-left:72.0pt;'><b>nAddress:</b>
+capacity of the array.</p>
+
+<p class="paragraph"><b><u>Example Usage:</u></b></p>
+<p class="paragraph" style='margin-left:36.0pt'&nbsp;</p>
+CI2CScan I2CScan;<br>const uint8_t nSize = 5;<br>uint8_t arrayAddresses[nSize];<br>
+memset(arrayAddresses, 0, nSize);<br>if (I2CScan.scan(arrayAddresses, nSize))<br>
+{<br>&nbsp;&nbsp;&nbsp; for (uint8_t nI = 0; nI &lt; nSize; nI++)<br>&nbsp;&nbsp;&nbsp; 
+{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Serial.println(arrayAddresses[nI]);<br>&nbsp;&nbsp;&nbsp; }<br>}<br>if 
+(I2CScan.find(0xFE))<br>&nbsp;&nbsp;&nbsp; Serial.println(F("Device found!"));

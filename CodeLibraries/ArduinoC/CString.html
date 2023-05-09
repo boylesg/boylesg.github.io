@@ -1,0 +1,673 @@
+<p class="paragaph"><b><u>Purpose: </u></b></p>
+
+<p class="paragaph" style='margin-left:36.0pt'>To provide the functionality
+Arduino class String without using dynamic memory that can cause memory fragmentation
+of the limited memory available on Ardiuino MCUs.</p>
+
+<p class="paragaph" style='margin-left:36.0pt'>&nbsp;</p>
+
+<p class="paragaph"><b><u>Dependancies:</u></b><u> </u></p>
+
+<p class="paragaph" style='margin-left:36.0pt'>Arduino assert.h, IPAddress.h &amp;
+Wire.h. LiquidCrystal_I2C.h for displaying debug output (optional &amp; subject
+to define in Constants.h).</p>
+
+<p class="paragaph" style='margin-left:36.0pt'>Constants.h, CBuff.h/cpp,
+CString.h/cpp, debug.h/cpp, TextFile.h/cpp (optional &amp; subject to a define
+at the top of debug.h)</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Constructors:</u></b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>CString(CBuffBase &amp;buff,
+const bool bClear = false)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Intialises the CString
+object with its externally declared CBuff object.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>buff:</b> The externall
+declared CBuff object.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>bClear:</b> true if you
+want the buffer to be initialised to 0's, false if not.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>CString(CString&amp; strOther)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'>Intialises the CString object
+with the CBuff object of another string. So changing the contents of one string
+also alters the contents of the other.</p>
+
+<p class="paragaph"><br>
+<b><u>General Function:</u></b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>const unsigned int length()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> The length
+of the internal string up to the first NULL terminator.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style='margin-left:36.0pt'><b>int capacity()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the maximum
+capacity of the internal buffer, beyond any NULL terminator.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>const unsigned int maxLength()</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>Returns:</b> the maximum
+length of any string that can be stored in the internal buffer, taking account
+of the need for a NULL terminator at the end of the buffer.</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>&nbsp;</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>const bool full()</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>Returns:</b> true if the
+length of the string is one character less than the capcity of the buffer.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void empty()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;">Empty the string by changing
+all characters to NULL terminators.</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool isEmpty()</b></p>
+
+<p class="paragaph" style='margin-left:36.0pt;text-indent:36.0pt'><b>Returns: </b>true
+if the length of the string is 0.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Conversion Functions:</u></b></p>
+
+<p class="paragaph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>const char* c_str()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> The same as in Arduino
+String.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>operator const char*()      
+</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>operator char*()                  
+</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>operator byte*()                  
+</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>operator const byte*()      
+</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>operator void*()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Other assorted conversion
+functions.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Indexing Functions:</u></b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>char&amp; operator[](const
+unsigned int nI)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nI:</b> index of the
+character to return.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the chacter
+at the specified index.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>char&amp; operator[](const int
+nI)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nI: </b>index of the
+character to return.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the chacter
+at the specified index.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Concatenation Function:</u></b> </p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void operator +=(CString&amp;
+str)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Adds the specified string to
+the end of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void operator +=(const char*
+str)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Adds the specified string to
+the end of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>void operator +=(const char cCh)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Adds the specified character
+to the end of the string.</p>
+
+<p class="paragaph"></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void operator +=(const
+__FlashStringHelper* fstr)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Adds the specified string to
+the end of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Assignment Functions:</u></b></p>
+
+<p class="paragaph" style="margin-left:36pt"><b>CString&amp; operator =(const char cCh)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Replaces the string in the
+buffer with the specified character.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cCh:</b> the character to
+replace the string with.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the string
+object.</p>
+
+<p class="paragaph"></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>CString&amp; operator =(const
+char* str)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Replaces the string in the
+buffer with the specified string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>str: </b>the string to
+replace the existing string with.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns: </b>the string object.</p>
+
+<p class="paragaph"></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>CString&amp; operator =(const
+__FlashStringHelper* fstr)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Replaces the string in the
+buffer with the specified string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>fstr:</b> the string to
+replace the existing string with.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns: </b>the string
+object.</p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>CString&amp; operator =(CString&amp; str)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Replaces the string in the
+buffer with the specified string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>str:</b> the string to
+replace the existing string with.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the string
+object.</p>
+
+<p class="paragaph">&nbsp;</p><p class="paragaph"><b><u>Alphabetic Comparison Functions:</u></b></p>
+
+<p class="paragaph"></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool operator ==(const char
+*str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator ==(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&gt;=(const char *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&gt;=(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&gt;(const char *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&gt;(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&lt;=(const char *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&lt;=(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&lt;(const char *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator &amp;&lt;(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator !=(const char *str)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool operator !=(const
+__FlashStringHelper *str)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Case sensitive string
+comparison operator function.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>str:</b> the string to
+compare the internal buffer to.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Return: </b>true or
+false.</p>
+
+<p class="paragaph" style="margin-left:36.0pt">&nbsp;</p>
+
+<p class="paragaph"><b><u>Search Functions:</u></b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool find(const char cCh,
+const int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool find(const char* str, const int nPos
+= 0)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>bool find(const __FlashStringHelper*
+fstr, const int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Find a character or a
+substring in the string, in the forward direction.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>str, fstr or cCh: </b>character
+or substring to find.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nPos:</b> index to start
+searching from. It defaults to 0 if it is not specified.</p>
+
+<p class="paragaph style="margin-left:72pt;"><b>Returns: </b>true if the
+character or substring is found, otherwise false.</p>
+
+<p class="paragaph" style="margin-left:36.0pt">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool reverseFind(const char
+cCh, const int nPos = -1)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool reverseFind(const char* str, const
+int nPos = -1)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool reverseFind(const__FlashStringHelper* fstr, const int nPos = -1)</b></p>
+<p class=paragaph style="text-indent:72.0pt"> Find a character or a substring
+in the string, in the reverse direction.</p>
+<p class=paragaph style="text-indent:72.0pt"><b> str, fstr or cCh:</b>
+character or substring to find.</p>
+<p class=paragaph style="text-indent:72.0pt"><b> nPos: </b>index to start searching backwards from. It defaults to -1 (or the end of the string) if it is not specified.</p>
+<p class=paragaph style="text-indent:72.0pt"><b> Returns:</b> true if the character or substring is found, otherwise false.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int findOneOf(const char*
+strCharList, const unsigned int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36pt;"><b>int findOneOf(const __FlashStringHelper*
+fstrCharList, const unsigned int nPos = 0)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'>Find any character from the
+specified list of characters in the string, in the forward <br>
+direction.</p>
+<p class="paragaph" style='margin-left:72.0pt'><b>cstrCharList or
+fstrCharList:</b> list of characters to find.</p>
+<p class="paragaph" style='margin-left:72.0pt'><b>nPos:</b> index to start
+searching forwards from. It defaults to 0 if it is not specified.</p>
+<p class="paragaph" style='margin-left:72.0pt'><b>Returns:</b> true if any
+character from the list is found, otherwise false.        </p>
+
+<p class="paragaph">                                     
+</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int reverseFindOneOf(const char*
+strCharList, const unsigned int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int reverseFindOneOf(const
+__FlashStringHelper* fstrCharList, const unsigned int nPos = 0)</b></p>
+
+<p class="paragaph" style='margin-left:72.0pt'>Find any character from the
+specified list of characters in the string, in the reverse </p>
+<p class="paragaph" style='margin-left:72.0pt'><b>cstrCharList or
+fstrCharList:</b> list of characters to find.</p>
+
+<p class="paragaph" style='margin-left:72.0pt'><b>nPos:</b> index to start
+searching backwards from. It defaults to -1 (or the end of the <br>
+string) if it is not specified.</p>
+<p class="paragaph" style='margin-left:72.0pt'><b>Returns:</b> true if any
+character from the list is found, otherwise false.</p>
+
+<p class="paragaph">                                                                                                                 </p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int indexOf(const char cCh,
+const int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int indexOf(const char* str, const int
+nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int indexOf(const __FlashStringHelper* fstr,
+const int nPos = 0)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Get the index of any
+character or substring in the existing string direction, in the forward
+direction.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cCh, str or fstr:</b>
+character or substring to find.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nPos:</b> index to start
+searching forwards from. It defaults to 0 if it is not specified.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the index of
+the character or substring if it is found, otherwise -1.</p>
+
+<p class="paragaph">                                                                                                                 </p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int reverseIndexOf(const char cCh, const
+int nPos = -1)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int reverseIndexOf(const char* str, const
+int nPos = -1)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int reverseIndexOf(const
+__FlashStringHelper* fstr, const int nPos = -1)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Get the index of any
+character or substring in the existing string direction, in the backward
+direction.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cCh, str or fstr:</b>
+character or substring to find.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nPos:</b> index to start
+searching backwards from. It defaults to -1 (or the end of the string) if it is
+not specified.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> the index of
+the character or substring if it is found, otherwise -1.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool endsWith(const char *cstrFind)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool endsWith(const __FlashStringHelper
+*fstrFind)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Find the specified substring
+at the end of the string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cstrFind or fstrFind:</b>
+substring to find.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> true if the
+string ends with the substring, otherwise false.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool beginsWith(const char *cstrFind)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>bool beginsWith(const __FlashStringHelper
+*fstrFind)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Find the specified substring
+at the start of the string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cstrFind or fstrFind:</b>
+substring to find.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>Returns:</b> true if the
+string starts with the substring, otherwise false.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph"><b><u>Data Conversion Functions:</u></b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void fromIPAddr(IPAddress ip)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Converts an IP address
+object to a string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>ip:</b> The IP address
+object to convert to a string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void fromBool(const bool bVal)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Converts a boolean value to
+a string - &quot;true&quot; or &quot;false&quot;</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>bVal: </b> The boolean
+value to convert to a string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void fromUint(const int nNum, const byte
+nBase = 10)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert a unsigned integer
+to a string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nNum:</b>  The unsigned
+integer value to convert to a string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nBase :</b>  The base to
+use, i.e. decimal, hex, binary or octal etc.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void fromInt(const int32_t nNum, const
+byte nBase = 10)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert a signed integer to
+a string</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nNum:</b>  The signed
+ineteger value to convert to a string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nBase :</b>  The base to
+use, i.e. decimal, hex, binary or octal etc.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void fromReal(const double dNum, const
+byte nDecimalPlaces)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert a floating point number
+to a string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>dNum:</b> The floating
+point value to convert to a string</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nDecimalPlaces:</b> The
+number of decimal places.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int toUint(const byte nBase = 10)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert the string to an
+unsigned integer.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nBase:</b>  The base to
+use, i.e. decimal, hex, binary or octal etc.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>int32_t toInt(const byte nBase = 10)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert the string to a
+signed integer.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nBase:</b>  The base to
+use, i.e. decimal, hex, binary or octal etc.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>double toReal()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert the string to a
+floating point number.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void insert(const char cCh, const
+unsigned int nBeforePos)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void insert(const char* str, const
+unsigned int nBeforePos)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void insert(const __FlashStringHelper*
+fstr, const unsigned int nBeforePos)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Insert the specified string
+or character before the specified index.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cCh, str or fstr:</b> The
+string or character to insert.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nBeforePos:</b> The index
+to insert the character or string before.</p>
+
+<p class="paragaph">                                                                                                                 </p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void replace(const char cFind, const char
+cReplace, const unsigned int nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void replace(const char* strFind, const
+char* strReplace, const unsigned int nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void replace(const char* strFind, const
+__FlashStringHelper* fstrReplace, const uint16_t nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void replace(const __FlashStringHelper*
+fstrFind, const char* strReplace, const uint16_t nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void replace(const __FlashStringHelper*
+fstrFind, const __FlashStringHelper* fstrReplace, const uint16_t nStartFrom =
+0)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Replace a substring in
+string with the specified character or substring.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cFind, fstrFind or
+strFind:</b> The character or substring to be replaced.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cReplace, fstrReplace or strReplace:</b>
+The substitute character or substring .</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nStartFrom :</b> The
+index to start searching the string from.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void removeCh(const char cFind, const int
+nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void remove(const char* strFind, const
+unsigned int nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void remove(const __FlashStringHelper*
+fstrFind, const unsigned int nStartFrom = 0)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Removes the first occurence
+of the specified character from the string.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cFind, strFind or
+fstrFind:</b>  The character or substring to be removed.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nStartFrom :</b> The
+index to start searching the string from.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void remove(const int nPos, unsigned int
+nCount)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Remove the specified number
+of characters from the string starting from the specified index.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nPos:</b> The index to
+start from.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nCount:</b> The number of
+characters to remove.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void toLower()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert all alphabetic
+characters to lower case.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void toUpper()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Convert all alphabetic characters
+to upper case.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void trim()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Remove leading and trailing
+white space characters from the ends of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void trimLeft()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Remove leading white space
+characters from the start of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void trimRight()</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Remove trailing white space
+characters from the end of the string.</p>
+
+<p class="paragaph">&nbsp;</p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void padLeft(const char cCh, const byte
+nLength)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Add the specified character
+to the beginning of the string until the string reaches the specified length.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>cCh:</b> The character to
+add.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nLength:</b> The maximum
+length for the string.</p>
+
+<p class="paragaph">                                  </p>
+
+<p class="paragaph" style="margin-left:36.0pt"><b>void padRight(const char cCh, const byte
+nLength)</b></p>
+
+<p class="paragaph" style="margin-left:72pt;"> Add the specified character
+at the end of the string until the string reaches the specified length.</p>
+
+<p class="paragaph" style="margin-left:72pt;"><b>cCh:</b> The character to
+add.</p>
+
+<p class="paragaph" style="margin-left:72pt;"> <b>nLength:</b> The maximum
+length for the string.</p>
+
+<p class="paragaph"><b><u>Example Usage:</u></b>       </p>
+<p class="paragaph">#include "CString.h"<br><br>CBuff&lt;32&gt; buff;<br>CString 
+str(buff)<br><br>char *str1[32];<br>CFixedBuff buff1(str1, 32, true);<br>CString 
+str1(buff1);<br><br>str = F("Hello world");<br>str += "XXXX";<br>
+str.fromUint(100);<br>uint8_t nNum = str.toUint(10);</p>
+<p class="paragaph">   </p>
+

@@ -1,0 +1,819 @@
+﻿<p class=paragraph><b>Purpose: </b></p>
+<p class="paragraph" style="text-indent:36.0pt">
+	To implement the functions of an array without having to worry about array index over run errors. It is a template class where 
+	you specify the data
+	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    type it will contain and the maximum size. The class does not use dynamic memory (new, alloc and malloc), which can cause 
+    memory 
+	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	fragmentation with the limited memory available on Arduino microcontrollers. The first template parameter (int in the above
+	example) specifies the 
+	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	data type to be stored and the second template parameter (100 in the above example) specifies the size of a regular C array 
+	inside the class.
+</p>
+
+<p class=paragraph><b>Dependancies: </b>None</p>
+
+<p class=paragraph><b>Queue Functions:</b></p>
+
+<p class=paragraph style="text-indent:36.0pt">These functions allow you to
+treat the array as a queue or FIFO data structure.</p>
+
+<p class=paragraph style="text-indent:36.0pt"><b>bool enqueue(DataType DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Add a new item
+at the end or array. The array length will increase by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> New value to add.</p>
+
+<p class=paragraph style="margin-left:72.0pt"><b>Returns:</b> True if the number
+of items in the array is less than the maximum length, otherwise false.</p>
+
+<p class=paragraph style="text-indent:36.0pt"><b>bool dequeue(DataType &amp;DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt">Remove an item from the beginning
+of the array. All other items in the array will be moved toward the beginning
+of the array by one place. The array length will decrease by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The value
+removed is returned in this parameter.</p>
+
+<p class=paragraph style="margin-left:72.0pt"><b>Returns:</b>  True if the
+array is not already empty, otherwise false.</p>
+
+<p class=MsoNormal><b>Stack Functions:</b></p>
+
+<p class=MsoNormal style="text-indent:36.0pt">These functions allow you to
+treat the array as a stack or LIFO data structure.</p>
+
+
+<p class=paragraph style="margin-left:36.0pt;"><b>bool push(DataType DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Add a new item at the end of the array. The array length will increase by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt"><b>DataVal:</b> The value to be pushed.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b>
+True if the array is not already at its maximum length, otherwise false.</p>
+
+<p class=paragraph style="text-indent:36.0pt"><b>bool pop(DataType &amp;ampDataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Remove an item
+from the end of the array. The array length will decrease by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The value removed is returned in this parameter.                                           </p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b>
+True if the array is not already empty, otherwise false.</p>
+
+<p class=paragraph><b>List functions:</b></p>
+
+<p class=paragraph style="margin-left:36.0pt;">These functions allow you to treat the array as a list data structure.</p>
+
+<p class=paragraph style="text-indent:36.0pt"><b>bool add(DataType DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Add a new
+value at the end of the array. The array length will increase by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b>
+The value to be added.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> True if the
+array is not already at its maximum length, otherwise false.</p>
+
+<p class=paragraph style="text-indent:36.0pt"><b>bool insertAt(const uint8_t
+nI, DataType DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt">Insert a new value into the array
+after the specified index. The item at that index and all other after it will
+move towards the end of the array by one place. The array length will increase
+by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>nI:</b> The
+index the new value will be inserted at.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The value to
+be inserted.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns: </b>True
+if the array is not already at its maximum length, otherwise false.</p>
+
+<p class=paragraph  style="margin-left:36.0pt;"><b>bool removeAt(const uint8_t
+nI, DataType &amp;ampDataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt">Remove an item from the array at
+the specified index. All other items after that index will move towards the
+front of the array by one place. The array length will decrease by 1.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>nI:</b> The
+index of the value that will be removed.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The removed
+value is returned in this parameter.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> True if the
+array is not already empty, otherwise false.</p>
+
+<p class=paragraph>&nbsp;</p>
+
+<p class=paragraph><b>Array functions:</b></p>
+
+<p class=paragraph style="margin-left:36.0pt;">These functions are the regular array indexing functions.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>bool setAt(const uint8_t nI, DataType
+DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Change the
+value of the item at the specified indexto the new specified value.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>nI:</b> The index of the
+value that will be changed.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The new
+value.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> True if the
+nI is in range, otherwise false.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>bool getAt(const uint8_t nI, DataType
+&amp;ampDataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Return the value at the
+index specified by parameter nI. </p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>nI:</b> The index of the
+value that will be fetched.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The value is
+returned in this parameter.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> True if the
+nI is in range, otherwise false.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>DataType operator [](const uint8_t nI)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Returns the value at the
+index specified by parameter nI.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>nI:</b> The index of the
+value that will be fetched.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> The value at
+the specified index.</p>
+
+<p class=paragraph><b>General functions:</b></p>
+
+<p class=paragraph style="margin-left:36.0pt;">These functions functions.           </p>
+
+<p class=paragraph style="margin-left:36.0pt;"> <b>uint8_t size()</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Returns: the current size of
+the array, not the maximum size.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"> <b>uint8_t capacity()</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Returns: the maximum size of
+the array.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>bool isEmpty()</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Returns: true if current size of the array is 0, otherwise false. </p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>void empty()</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Empties the array of all values so that its size becomes 0.</p>
+
+<p class=paragraph style="margin-left:36.0pt;"><b>bool find(DataType DataVal)</b></p>
+
+<p class=paragraph style="margin-left:72.0pt;">Searches for a value in the array.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>DataVal:</b> The value to search for.</p>
+
+<p class=paragraph style="margin-left:72.0pt;"><b>Returns:</b> True if the value is found, otherwise false.</p>
+
+<p class=paragraph><b>Example Usage:</b></p>
+
+<p class=paragraph  style="margin-left:36.0pt;">CArray  &lt;uint8_t, 10&gt; arrayInts;<br>
+uint8_t nVal = 0;<br>
+arrayInts.push(10);<br>
+arrayInts.push(20);</p>
+
+<p class=paragraph  style="margin-left:36.0pt;">&nbsp;</p>
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:30.2pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>0</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>1</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>2</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>3</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>4</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>5</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>6</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>7</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>8</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>9</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>10</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>20</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+ </tr>
+</table>
+
+<p class=paragraph  style="margin-left:36.0pt;">arrayInts.size() == 2<br>arrayInts.capacity() == 10</p>
+
+<p class=paragraph  style="margin-left:36.0pt;">&nbsp;</p>
+
+<p class=paragraph style="text-indent:36.0pt">arrayInts.enqueue(30);</p>
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:30.2pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>0</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>1</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>2</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>3</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>4</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>5</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>6</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>7</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>8</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>9</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>10</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>20</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>30</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+ </tr>
+</table>
+
+<p class=paragraph  style="margin-left:36.0pt;">arrayInts.size() == 3<br>
+arrayInts.capacity() == 10</p>
+
+<p class=paragraph  style="margin-left:36.0pt;">&nbsp;</p>
+
+<p class=paragraph style="margin-left:36.0pt;">arrayInts.pop(nVal);</p>
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:30.2pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>0</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>1</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>2</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>3</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>4</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>5</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>6</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>7</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>8</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>9</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>10</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>20</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+ </tr>
+</table>
+
+<p class=paragraph style='margin-left:36.0pt;line-height:normal'>nVal = 30<br>
+arrayInts.size() == 2<br>
+arrayInts.capacity() == 10</p>
+
+<p class=paragraph style="margin-left:36.0pt;">&nbsp;</p>
+
+<p class=paragraph style="margin-left:36.0pt;">arrayInts.insert(1, 40);</p>
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:30.2pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>0</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>1</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>2</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>3</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>4</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>5</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>6</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>7</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>8</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>9</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>10</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>40</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>30</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+ </tr>
+</table>
+
+<p class=paragraph style='margin-left:36.0pt;line-height:normal'>arrayInts.size()
+== 3<br>
+arrayInts.capacity() == 10</p>
+
+<p class=paragraph>&nbsp;</p>
+
+<p class=paragraph style="margin-left:36.0pt;">arrayInts.dequeue(nVal);</p>
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:30.2pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>0</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>1</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>2</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>3</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>4</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>5</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>6</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>7</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>8</b></p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b>9</b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=60 valign=top style='width:45.05pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>40</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>30</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+  <td width=60 valign=top style='width:45.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=paragraph align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'>0</p>
+  </td>
+ </tr>
+</table>

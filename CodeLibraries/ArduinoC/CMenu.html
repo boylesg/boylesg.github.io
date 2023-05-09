@@ -1,0 +1,117 @@
+<p class="paragraph"><b><u>Purpose:</u></b><u> </u></p>
+
+<p class="paragraph" style='margin-left:36.0pt'>To build interactive menus for
+LCD text screens. It requires 4 hardware push buttons or touch sensitive
+buttons representing ‘increment’, ‘decrement’, ‘enter’ and ‘back’.<br>
+There are 4 functions that you call, corresponding to each of those buttons,
+that scroll the menu and jump to sub-menus etc. It handles scrolling the menu
+when there are <br>
+more items than there are available lines on the LCD screen. The selected menu item
+is indicated by &gt;… &lt;. Menu items can also contain sub-menus and when your
+press <br>
+‘enter’ the sub-menu is displayed and scrolled. When you press ‘back’ the sub-menu
+is closed.</p>
+
+<p class="paragraph"> </p>
+
+<p class="paragraph"><b><u>Dependancies:</u></b> </p>
+
+<p class="paragraph" style='text-indent:36.0pt'>Constants.h, Common.h/cpp,
+CBuff.h/cpp, CString.h/cpp.</p>
+
+<p class="paragraph"><b><u><span style='text-decoration:none'>&nbsp;</span></u></b></p>
+
+<p class="paragraph"><b><u>Class CMenu:</u></b></p>
+
+<p class="paragraph" style='text-indent:36.0pt'><b><u>Constructors:</u></b></p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'><b><u>CMenuBase()</u></b></p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'>                Create
+an empty menu.</p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'><b>CMenu(const
+char *cstrName): CMenuBase(cstrName)</b></p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'><b>CMenu(const
+__FlashStringHelper *fstrName): CMenuBase(fstrName)</b></p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'>                Creates
+a menu with the specified name.</p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'>                <b>cstrName
+oe fstrName: </b>the name of the menu.</p>
+
+<p class="paragraph" style='text-indent:36.0pt'><b><u>Functions:</u></b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void addMenuItem(const char
+*cstrName, const uint8_t nID, const CMenuBase *pSubMenu = NULL)</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void addMenuItem(const
+__FlashStringHelper *fstrName, const uint8_t nID, const CMenuBase *pSubMenu =
+NULL)</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>                </b>Add an
+item to the menu.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'>                <b>cstrName or fstrName:
+</b>the name of the menu item.</p>
+
+<p class="paragraph" style='margin-left:108.0pt'><b>nID: </b>the unique ID of the
+menu item.</p>
+
+<p class="paragraph" style='margin-left:108.0pt'><b>pSubMenu: </b>Pointer to
+another CMenu object that acts as the sub-menu for this item.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>uint8_t EnterPressed()</b></p>
+
+<p class="paragraph" style='margin-left:108.0pt'>The function to call when the ‘enter’
+push button is pressed. It returns the ID of the menu item. If the menu item
+contains a sub-menu then the <br>
+sub-menu is opened.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void BackPressed()</b></p>
+
+<p class="paragraph" style='margin-left:108.0pt'>The function to call when the ‘back’
+push button is pressed. If it is a sub-menu open on the LCD screen then it is
+closed and the parent menu is<br>
+displayed.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void IncPressed()</b></p>
+
+<p class="paragraph" style='margin-left:108.0pt'>The function to call when the ‘increment’
+push button is pressed. Selects the next menu item. If the selected menu item
+is the last in the list then <br>
+it scrolls back to the first item and selects that.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void DecPressed()</b></p>
+
+<p class="paragraph" style='margin-left:108.0pt'>The function to call when the ‘decrement’
+push button is pressed. Selects the previous menu item. If the selected menu
+item is the first in the list then <br>
+it scrolls back to the last item and selects that.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>const char *getMenuItemText()</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>                </b>Returns
+the menu item name.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>uint8_t getMenuItemNum()</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>                </b>Returns
+the number position of the menu item.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>uint8_t getMenuItemID()</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>                </b>Returns
+the ID of the menu item.</p>
+
+<p class="paragraph" style='margin-left:72.0pt'><b>void
+displayMenu(LiquidCrystal_I2C *pLCD, uint8_t nNumLines, const uint8_t
+nNumColumns)</b></p>
+
+<p class="paragraph" style='margin-left:72.0pt'>                Displays the menu
+on the specified LCD screen. The name of the menu is displayed on the first
+line and menu items on subsequentlines.</p>
+
+<p class="paragraph" style='margin-left:36.0pt;text-indent:36.0pt'>&nbsp;</p>
