@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Greg's Aus Native Gardening &amp; Handyman Service</title>
+		<!-- #EndEditable -->
+		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
+		<style>
+			
+		</style>
+		<script type="text/javascript">
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+		</script>
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div id="logo" class="center_vertically logo">
+					<img alt="" height="100" src="BanksiaLogo.png" />
+				</div>
+				<div id="page_heading" class="center_vertically page_heading">
+					Greg's Australian Native Landscapes
+				</div>
+				<div id="contact" class="center_vertically contact">
+					<b>Mobile:</b> 0455328886<br />
+					<b>Email:</b> gregplants at bigpond dot com <br />
+					<b>Facebook:</b> 
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="Portfolio/default.html">Portfolio of Jobs</a></li>
+						<li><a href="NativePlants/default.html">Natvie Plants</a></li>
+						<li><a href="Facebook/default.html">Facebook</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">document.write("<h1><u>" + document.title + "</u></h1>");</script>
+					<!-- #BeginEditable "content" -->
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+					<!-- #EndEditable --></div>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div id="footer">
+				<div id="footer_links">
+					<script type="text/javascript">var nNumSpaces = 10;</script>
+					<a href="index.html">Home</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="Portfolio/default.html">Portfolio of Jobs</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="NativePlants/default.html">Natvie Plants</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="Facebook/default.html">Facebook</a>
+				</div>
+				<div id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+</html>
