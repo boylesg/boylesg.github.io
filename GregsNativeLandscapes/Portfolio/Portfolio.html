@@ -52,6 +52,8 @@
 
 
 
+
+
 				.Image
 				{
 	
@@ -111,7 +113,7 @@
 				<!-- Begin Content -->
 				<div id="content">
 					<script type="text/javascript">
-						document.write("<h1><u>" + document.title + "</u></h1>");
+						document.write("<h1 id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 						
 						var nLevel = 0;
 						
@@ -492,7 +494,11 @@
 			<!-- Begin Footer -->
 			<div id="footer">
 				<div id="footer_links">
-					<script type="text/javascript">var nNumSpaces = 10;</script>
+					<script type="text/javascript">
+						var nNumSpaces = 10;
+						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
+						SpaceGap(nNumSpaces );
+					</script>
 					<a href="../index.html">Home</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
 					<a href="Portfolio.html">Portfolio of Jobs</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
 					<a href="../NativePlants/NativePlants.html">Natvie Plants</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
