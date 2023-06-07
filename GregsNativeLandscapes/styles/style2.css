@@ -44,19 +44,35 @@ body
 	height: 478px;
 	height: 545px;
 }
-.TOC
+.TOCHeading
 {
-	
+	font-size: large;
+	font-weight: bold;
+	color: black;
+	margin: 0px;
 }
 .TOCList
 {
+	display: block;
+	background-color: #80C0C0;
 	list-style-type: none;
-	font-size: large;
+	font-size: medium;
 	font-weight: bold;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-right: 40px;
+	color: black;
+	width: 50%;
+	border: medium #50A9A9 outset;
 }
 .TOCListItem
 {
-	
+	margin-bottom: 5px;
+	display: block;
+}
+.TOCLine
+{
+	color: black;
 }
 #footer
 {

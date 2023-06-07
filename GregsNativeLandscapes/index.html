@@ -20,6 +20,13 @@
 					document.write("&nbsp;");
 			}
 		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
 	</head>
 	
 	<body>
@@ -55,7 +62,36 @@
 				<!-- End Sidebar -->
 				<!-- Begin Content -->
 				<div id="content">
-					<script type="text/javascript">document.write("<h1><u>" + document.title + "</u></h1>");</script>
+					<script type="text/javascript">
+						document.write("<h1><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						document.write("<ul class=\"TOCList\">");
+						document.write("<hr><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr>");
+						BuildTOC(arrayTOC, nLevel);
+						document.write("</ul>");
+
+					</script>
 					<!-- #BeginEditable "content" -->
 					<div style="text-align: left;">
 						<img alt="" height="280" src="images/Wahlenbergia_communis.jpg" />
