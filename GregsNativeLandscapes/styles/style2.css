@@ -44,6 +44,20 @@ body
 	height: 478px;
 	height: 550px;
 }
+.TOC
+{
+	
+}
+.TOCList
+{
+	list-style-type: none;
+	font-size: large;
+	font-weight: bold;
+}
+.TOCListItem
+{
+	
+}
 #footer
 {
 	clear: both;
