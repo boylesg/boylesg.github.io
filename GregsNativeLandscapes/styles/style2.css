@@ -39,6 +39,9 @@ body
 	margin-left: 140px;
 	padding: 10px;
 	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 478px;
 }
 #footer
 {
@@ -78,10 +81,11 @@ body
 	text-align:left;
 	float:left;
 	margin-left:30px;
-	width:70%;
+	width:62%;
 	margin-left: 10px;
-	font-size: 55px;
+	font-size: 50px;
 	font-weight: bold;
+	overflow: hidden;
 	/*background-color: aqua;*/
 }
 .contact
@@ -91,6 +95,7 @@ body
 	float:right;
 	font-size: small;
 	margin-right: 10px;
+	overflow: hidden;
 	/*background-color: fuchsia;*/
 }
 .logo
@@ -99,6 +104,7 @@ body
 	position: relative;
 	float: left;
 	margin-left: 10px;
+	overflow: hidden;
 	/*background-color: lime;*/
 }
 #masthead p {
