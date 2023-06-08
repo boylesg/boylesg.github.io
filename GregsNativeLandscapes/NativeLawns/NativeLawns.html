@@ -104,7 +104,7 @@
 				<!-- Begin Content -->
 				<div id="content">
 					<script type="text/javascript">
-						document.write("<h1 id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 						
 						var nLevel = 0;
 						
@@ -123,14 +123,14 @@
 								}
 								else
 								{
-									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
 								}
 							}
 						}
-						document.write("<ul class=\"TOCList\">");
-						document.write("<hr><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr>");
+						document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+						document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
 						BuildTOC(arrayTOC, nLevel);
-						document.write("<hr></ul>");
+						document.write("<hr class=\"TOCLine\"></ul>");
 
 					</script>
 					<!-- #BeginEditable "content" -->
