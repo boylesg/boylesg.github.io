@@ -48,7 +48,7 @@ body
 {
 	font-size: large;
 	font-weight: bold;
-	color: black;
+	color: #357171;
 	margin: 0px;
 }
 .TOCList
@@ -61,18 +61,31 @@ body
 	padding-top: 30px;
 	padding-bottom: 30px;
 	padding-right: 40px;
-	color: black;
 	width: 50%;
 	border: medium #50A9A9 outset;
+}
+#TOCList a:hover
+{
+	text-decoration: none;
+	color: white;
+	background-color: #357171;
 }
 .TOCListItem
 {
 	margin-bottom: 5px;
 	display: block;
+	color: white;
+	width: 70%;
+	/*background-color: navy;*/
+}
+.TOCLink
+{
+	color: white;
+	text-decoration: none;
 }
 .TOCLine
 {
-	color: black;
+	border: 1.5px solid #357171;
 }
 #footer
 {
@@ -117,7 +130,11 @@ body
 	font-size: 50px;
 	font-weight: bold;
 	overflow: hidden;
+	color: navy;
 	/*background-color: aqua;*/
+}.page_title
+{
+	color: navy;
 }
 .contact
 {
@@ -127,6 +144,7 @@ body
 	font-size: small;
 	margin-right: 10px;
 	overflow: hidden;
+	color: navy
 	/*background-color: fuchsia;*/
 }
 .logo
