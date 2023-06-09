@@ -85,11 +85,13 @@
 								}
 							}
 						}
-						document.write("<ul id=\"TOCList\" class=\"TOCList\">");
-						document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
-						BuildTOC(arrayTOC, nLevel);
-						document.write("<hr class=\"TOCLine\"></ul>");
-
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
 					</script>
 					<!-- #BeginEditable "content" -->
 					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
