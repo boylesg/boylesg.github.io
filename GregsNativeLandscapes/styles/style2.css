@@ -42,7 +42,6 @@ body
 	overflow-y: auto;
 	overflow-x: hidden;
 	height: 478px;
-	/*height: 545px;*/
 }
 .TOCHeading
 {
@@ -104,6 +103,7 @@ body
 	position: relative;
 	float: left;
 	margin-left: 10px;
+	color: navy;
 }
 #footer_copyright
 {
@@ -111,6 +111,7 @@ body
 	position: relative;
 	float: right;
 	margin-right: 10px;
+	color: navy;
 }
 .center_vertically
 {
@@ -198,10 +199,12 @@ h1,h2,h3,h4,h5,h6 {
 #footer a {
 	color: #393939;
 	text-decoration: underline;
+	color: navy;
 }
 #footer a:hover {
 	color: #393939;
 	text-decoration: none;
+	color: blue;
 }
 a {
 	color: #393939;
