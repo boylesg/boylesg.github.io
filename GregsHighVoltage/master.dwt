@@ -32,8 +32,8 @@
 					<ul>
 						<li><a href="index.htm">Home</a></li>
 						<li><a href="TeslaCoil/default.html">Tesla Coils</a></li>
-						<li><a href="PlasmaGlobe/default.html">Plasma Globes</a></li>
-						<li><a href="FlybackTransformer/default.html">Flyback Transformers</a></li>
+						<li><a href="PlasmaGlobe/PlasmaGlobe.html">Plasma Globes</a></li>
+						<li><a href="FlybackTransformer/FlybackTransformer.html">Flyback Transformers</a></li>
 						<li><a href="contact/default.html">Contact</a></li>
 					</ul>
 				</div>
@@ -61,8 +61,8 @@
 				<p>
 					<a href="index.htm">Home</a> | 
 					<a href="TeslaCoil/default.html">Tesla Coils</a> | 
-					<a href="PlasmaGlobe/default.html">Plasma Globes</a> |
-					<a href="FlybackTransformer/default.html">Flyback Transformer</a> |
+					<a href="PlasmaGlobe/PlasmaGlobe.html">Plasma Globes</a> |
+					<a href="FlybackTransformer/FlybackTransformer.html">Flyback Transformer</a> |
 					<a href="contact/default.html">Contact</a>
 				</p>
 			</div>
