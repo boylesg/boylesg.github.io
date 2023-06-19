@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Home</title>
+		<!-- #EndEditable -->
+		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		<script type="text/javascript">
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="images/STEM.png" />
+				</div>
+				<div class="center_vertically page_heading">
+					Greg's STEM Tuition
+				</div>
+				<div class="center_vertically contact">
+					<b>Mobile:</b> 0455328886<br />
+					<b>Email:</b> gregplants at bigpond dot com <br />
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="education/education.html">Education</a></li>
+						<li><a href="teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="work/work.html">Work History</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
+					</script>
+					<!-- #BeginEditable "content" -->
+					<div style="text-align: left;">
+						<img alt="" width="1100" src="images/STEM1.jpg" />
+					</div>
+					<p class="ContentsParagraph">I am currently located in Doreen Victoria.</p>
+					<h2>Why choose me?</h2>
+					<ul>
+						<li><b>Professional, hardworking &amp; reliable</b></li>
+						<li><b>WWCC:</b> 050748A-03</li>
+						<li><b>Bachelor of Science, Univerity of Melbourne</b></li>
+						<li><b>Graduate Diploma in Computer Science</b></li>
+						<li><b>Reasonable hourly rate:</b> $50 per hour</li>
+					</ul>
+					<p>&nbsp;</p>
+					<p class="ContentsParagraph">
+						I have an encyclopedic knowledge many areas of science and IT of and passion for passing that knowledge on
+						to any one interested in learning:
+						<ul>
+							<li class="ContentListItem">Biology</li>
+							<li class="ContentListItem">Chemistry</li>
+							<li class="ContentListItem">Maths</li>
+							<li class="ContentListItem">Physics</li>
+							<li class="ContentListItem">Biochemsitry</li>
+							<li class="ContentListItem">Genetics</li>
+							<li class="ContentListItem">Histology</li>
+							<li class="ContentListItem">Histopathology</li>
+							<li class="ContentListItem">Immunology</li>
+							<li class="ContentListItem">Microbiology</li>
+							<li class="ContentListItem">Pathology</li>
+							<li class="ContentListItem">Physiology</li>
+							<li class="ContentListItem">Virology</li>
+							<li class="ContentListItem">Coding</li>
+							<li class="ContentListItem">Digital Electronics</li>
+						</ul>
+					</p>
+					<p>&nbsp;</p>
+					<p class="ContentsParagraph">
+						My greatest strength is in being able to create visual aids and diagrams, and come up with every day analogies 
+						that make it easier for students to develop a deep understanding of concepts. My aim is to teach self reliance
+						and confidence in their natural abilities.
+					</p>
+					<p>&nbsp;</p>
+					<p class="ContentsParagraph">
+						Here is an example I created in an MS Word document to help my daughter understand mathematical sequences.<br/>
+						<img alt="" src="images/VisualAid.jpg" width="1000" /><br/>
+						The blue bit can be moved across the grid.
+					</p>	
+	
+									
+			
+
+					<!-- #EndEditable --></div>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div id="footer">
+				<div id="footer_links">
+					<script type="text/javascript">
+						var nNumSpaces = 10;
+						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
+						SpaceGap(nNumSpaces );
+					</script>
+					<a href="index.html">Home</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="Portfolio/Portfolio.html">Portfolio of Jobs</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="NativePlants/NativePlants.html">Natvie Plants</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="NativeLawns/NativeLawns.html">Natvie Lawns</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+				</div>
+				<div id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>
