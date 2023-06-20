@@ -41,7 +41,7 @@ body
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 478px;
+	height: /*478px*/446px;
 }
 .TOCHeading
 {

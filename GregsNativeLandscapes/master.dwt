@@ -4,7 +4,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Greg's Aus Native Gardening &amp; Handyman Service</title>
+		<title></title>
 		<!-- #EndEditable -->
 		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
@@ -35,7 +35,7 @@
 			<!-- Begin Masthead -->
 			<div id="masthead">
 				<div class="center_vertically logo">
-					<img alt="" height="100" src="BanksiaLogo.png" />
+					<img alt="" height="100" src="images/BanksiaLogo.png" />
 				</div>
 				<div class="center_vertically page_heading">
 					Greg's Australian Native Landscapes
@@ -112,12 +112,11 @@
 					<script type="text/javascript">
 						var nNumSpaces = 10;
 						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
-						SpaceGap(nNumSpaces );
+						SpaceGap(nNumSpaces * 3);
 					</script>
-					<a href="index.html">Home</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
-					<a href="Portfolio/Portfolio.html">Portfolio of Jobs</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
-					<a href="NativePlants/NativePlants.html">Natvie Plants</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
-					<a href="NativeLawns/NativeLawns.html">Natvie Lawns</a><script type="text/javascript">SpaceGap(nNumSpaces );</script>
+					<a href="../GregsSTEMTuition/index.html">Greg's STEM Tutition</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../GregsHighVoltage/index.htm">Greg's High Voltage</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../GregsCodingClub/index.html">Greg's Code Club</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
 				</div>
 				<div id="footer_copyright">
 					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
