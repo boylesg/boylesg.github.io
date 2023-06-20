@@ -41,7 +41,7 @@ body
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 594px;
+	height: 446px;
 }
 .ContentListItem
 {
@@ -146,7 +146,7 @@ body
 	overflow: hidden;
 	color: navy;
 	/*background-color: aqua;*/
-	width: 60%;
+	width: 75%;
 }
 .page_title
 {
