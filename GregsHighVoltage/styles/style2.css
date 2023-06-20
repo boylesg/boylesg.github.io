@@ -145,8 +145,8 @@ body
 	font-weight: bold;
 	overflow: hidden;
 	color: navy;
-	/*background-color: aqua;*/
-	width: 75%;
+	background-color: aqua;
+	width: 80%;
 }
 .page_title
 {
