@@ -1,125 +1,233 @@
-﻿@import url("layout.css");
-body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 0.8em;
-	background-color: #f2f2f7;
-	background-image: url("../images/background.gif");
-	background-repeat: repeat;
-	background-attachment: scroll;
+﻿@import url('../layout.css');
+body 
+{
+	font-family: Arial, sans-serif;
+	font-size: medium;
+	color: #000;
+	overflow: hidden;
 }
-#container {
-	width: 700px;
-	margin: 10px auto;
+#container 
+{
+	width: 100%;
+	height: 100%;
+	background-color: #cb8;
 }
-#masthead {
-	text-align: center;
-	width: 698px;
-	border-top: 1px solid #dcdcdc;
-	border-right: 1px solid #a9a9a9;
-	border-bottom: 1px solid #808080;
-	border-left: 1px solid #a9a9a9;
-	background-color: #fafaff;
+#masthead 
+{
+	width: 100%;
+	overflow: hidden;
+	text-align: right;
+	background-color: #c5d5e5;
+	height: 100px;
 }
-#navigation {
+#page_content 
+{
+	position: relative;
+	overflow: hidden;
+}
+#sidebar 
+{
 	position: relative;
 	float: left;
-	width: 148px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border-top: 1px solid #dcdcdc;
-	border-right: 1px solid #a9a9a9;
-	border-bottom: 1px solid #808080;
-	border-left: 1px solid #a9a9a9;
-	background-color: #fff;
+	width: 180px;
+	background-color: #cb8;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
-#content {
-	float: left;
-	width: 518px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
+#content 
+{
+	margin-left: 140px;
 	padding: 10px;
-	border-top: 1px solid #dcdcdc;
-	border-right: 1px solid #a9a9a9;
-	border-bottom: 1px solid #808080;
-	border-left: 1px solid #a9a9a9;
 	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 594px;
 }
-#footer {
-	text-align: center;
+.ContentListItem
+{
+	font-size: medium;
+	font-weight: bold;
+	color: black;
+}
+.ContentsParagraph
+{
+	font-size: large;
+	font-weight: bold;
+	color: black;
+	
+}
+.TOCHeading
+{
+	font-size: large;
+	font-weight: bold;
+	color: #357171;
+	margin: 0px;
+}
+.TOCList
+{
+	display: block;
+	background-color: #80C0C0;
+	list-style-type: none;
+	font-size: medium;
+	font-weight: bold;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-right: 40px;
+	width: 50%;
+	border: medium #50A9A9 outset;
+}
+#TOCList a:hover
+{
+	text-decoration: none;
+	color: white;
+	background-color: #357171;
+}
+.TOCListItem
+{
+	margin-bottom: 5px;
+	display: block;
+	color: white;
+	width: 70%;
+	/*background-color: navy;*/
+}
+.TOCLink
+{
+	color: white;
+	text-decoration: none;
+}
+.TOCLine
+{
+	border: 1.5px solid #357171;
+}
+#footer
+{
 	clear: both;
-	width: 698px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-top: 1px solid #dcdcdc;
-	border-right: 1px solid #a9a9a9;
-	border-bottom: 1px solid #808080;
-	border-left: 1px solid #a9a9a9;
-	background-color: #fefeff;
+	width: 99%;
+	overflow: hidden;
+	padding-top: 1%;
+	padding-right: 0;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	background-color: #cdf;
 }
-/* Masthead Styles */
-#masthead h1 {
-	color: #3d6c87;
+#footer_links
+{
+	display: inline-block;
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	color: navy;
 }
-#masthead h3 {
-	color: #5f8ea9;
+#footer_copyright
+{
+	display: inline-block;
+	position: relative;
+	float: right;
+	margin-right: 10px;
+	color: navy;
 }
-/* Navigation Styles */
-#navigation ul {
+.center_vertically
+{
+	position: relative;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.page_heading
+{
+	display: inline-block;
+	text-align:left;
+	float:left;
+	margin-left:30px;
+	width:62%;
+	margin-left: 10px;
+	font-size: 60px;
+	font-weight: bold;
+	overflow: hidden;
+	color: navy;
+	/*background-color: aqua;*/
+	width: 60%;
+}
+.page_title
+{
+	color: navy;
+}
+.contact
+{
+	display: inline-block;
+	text-align:left;
+	float:right;
+	font-size: small;
+	margin-right: 10px;
+	overflow: hidden;
+	color: navy;
+	/*background-color: fuchsia;*/
+	width: 18%;
+}
+.logo
+{
+	display: inline-block;
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	overflow: hidden;
+	/*background-color: lime;*/
+}
+#masthead p {
+	font-size: small;
+	margin: 0;
+	margin-right: 1%;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: Arial Black;
+}
+/* Styles for Navigation */
+#sidebar ul {
 	list-style-type: none;
 	width: 100%;
 	display: block;
 	margin: 0;
 	padding: 0;
 }
-#navigation li {
+#sidebar li {
 	display: block;
-	margin: 0;
-	padding: 0;
-	border: 1px solid #fff;
-	background-color: #fff;
+	border: 1px solid #cb8;
 }
-#navigation a {
-	color: #3d6c87;
+#sidebar a {
+	font-weight: bold;
 	text-decoration: none;
+	color: #393939;
+	padding: 5%;
 	display: block;
-	padding: 5px;
-	border: 1px solid #fff;
-	background-color: #fff;
+	border-bottom: 1px solid #f5f5f5;
 }
-#navigation a:hover {
-	color: #fff;
+#sidebar a:hover {
+	font-weight: bold;
 	text-decoration: none;
-	border: 1px solid #5f8ea9;
-	background-color: #5f8ea9;
+	color: #393939;
+	border-bottom: 1px solid #f5f5f5;
+	background-color: #dc9;
 }
-/* Content Styles */
-#content h1,h2,h3,h4,h5,h6 {
-	color: #3d6c87;
-}
-#content img {
-	padding: 5px;
-	border: 1px solid #808080;
-}
-/* Footer Styles */
+/* Styles for Footer */
 #footer p {
-	color: #808080;
-	margin-top: 5px;
+	font-size: x-small;
 }
 #footer a {
-	color: #5f8ea9;
+	color: #393939;
 	text-decoration: underline;
+	color: navy;
 }
 #footer a:hover {
-	color: #33627d;
+	color: #393939;
 	text-decoration: none;
+	color: blue;
 }
 a {
-	color: #5f8ea9;
+	color: #393939;
 	text-decoration: underline;
 }
 a:hover {
-	color: #33627d;
+	color: #78a;
 	text-decoration: underline;
 }
 .style_bold {

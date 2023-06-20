@@ -3,41 +3,100 @@
 
 <!-- #BeginTemplate "../master.dwt" -->
 
-<head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<!-- #BeginEditable "doctitle" -->
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
 <title>News</title>
-<!-- #EndEditable -->
-<link href="../styles/style1.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-</head>
-
-<body>
-
-<!-- Begin Container -->
-<div id="container">
-	<!-- Begin Masthead -->
-	<div id="masthead">
-		<h1>Greg's Coding Club</h1>
-		<h3><img alt="" height="181" src="../images/Coding.jpg" width="378" /></h3>
-		<h3>Become a creator of technology rather than a consumer of it.</h3>
-	</div>
-	<!-- End Masthead -->
-	<!-- Begin Navigation -->
-	<div id="navigation">
-		<ul>
-			<li><a href="../index.html">Home</a></li>
-			<li><a href="default.html">News</a></li>
-			<li><a href="../calendar/default.html">Calendar</a></li>
-			<li><a href="../photo_gallery/default.html">Photo Gallery</a></li>
-			<li><a href="../information_links/default.html">Links</a></li>
-			<li><a href="../faq/default.html">FAQ</a></li>
-			<li><a href="../contact/default.html">Contact</a></li>
-		</ul>
-	</div>
-	<!-- End Navigation -->
-	<!-- Begin Content -->
-	<div id="content">
-		<!-- #BeginEditable "content" -->
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+</style>
+		<!-- #EndEditable -->
+		<script type="text/javascript">
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically page_heading">
+					Greg's Code Club
+				</div>
+				<div class="center_vertically contact">
+					<b>Mobile:</b> 0455328886<br />
+					<b>Email:</b> gregplants at bigpond dot com <br />
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="default.html">News</a></li>
+						<li><a href="../calendar/default.html">Calendar</a></li>
+						<li><a href="../photo_gallery/default.html">Photo Gallery</a></li>
+						<li><a href="../information_links/default.html">Links</a></li>
+						<li><a href="../faq/default.html">FAQ</a></li>
+						<li><a href="../contact/default.html">Contact</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
+					</script>
+					<!-- #BeginEditable "content" -->
 		<h2>News</h2>
 		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque ornare 
 		ipsum at erat. Quisque elementum tempus urna. Donec ornare fringilla erat. 
@@ -57,22 +116,30 @@
 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque ornare 
 			ipsum at erat. Quisque elementum tempus urna.</li>
 		</ul>
-		<!-- #EndEditable "content" --></div>
-	<!-- End Content -->
-	<!-- Begin Footer -->
-	<div id="footer">
-		<p><a href="../index.html">Home</a> | <a href="default.html">News</a> | 
-		<a href="../calendar/default.html">
-		Calendar</a> | <a href="../photo_gallery/default.html">Photo Gallery</a> |
-		<a href="../information_links/default.html">Links</a> |
-		<a href="../faq/default.html">FAQ</a> | 
-		<a href="../contact/default.html">Contact</a></p>
-	</div>
-	<!-- End Footer --></div>
-<!-- End Container -->
-
-</body>
-
+					<!-- #EndEditable --></div>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div id="footer">
+				<div id="footer_links">
+					<script type="text/javascript">
+						var nNumSpaces = 10;
+						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
+						SpaceGap(nNumSpaces );
+					</script>
+					<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../../GregsSTEMTuition/index.html">Greg's STEM Tuition</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+				</div>
+				<div id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
 <!-- #EndTemplate -->
-
+	
 </html>
