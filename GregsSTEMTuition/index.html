@@ -210,7 +210,14 @@
 						    <span class="indent2 ContentsParagraph">uint16_t m_nI, m_nMainI;</span><br/>
 						    <span class="indent2 ContentsParagraph">uint8_t m_nAnalogPinRandomSeed;</span><br/>
 						<span class="ContentsParagraph">};</span><br/><br/>
-						
+						<p class="ContentsParagraph"><b><u>Class implementation (one of the functions only):</u></b></p>
+						<span class="ContentsParagraph">uint32_t CRainbow::getColor(const uint16_t nColorIndex)</span><br/>
+						<span class="ContentsParagraph">{</span><br/>
+  							<span class="ContentsParagraph indent1">uint32_t nColor = pgm_read_dword(m_arrayColorTable + nColorIndex);</span><br/>
+  							<span class="ContentsParagraph indent1">return nColor;</span><br/>
+						<span class="ContentsParagraph">}</span><br/>
+
+						<p class="ContentsParagraph"><b><u>What a class implementation essentially is:</u></b></p>
 						<span class="ContentsParagraph">uint32_t CRainbow::getColor(const uint16_t nColorIndex) / Chapter 'getColor'</span><br/>
 						<span class="ContentsParagraph">{ / Begin chapter</span><br/>
 						<span class="ContentsParagraph indent1"><u>The contents of chapter 'getColor':</u></span><br/>
