@@ -11,6 +11,14 @@
 		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+				.indent1
+				{
+					margin-left: 20px;
+				}
+				.indent2
+				{
+					margin-left: 40px;
+				}
 			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
@@ -147,7 +155,73 @@
 						Here is an example I created in an MS Word document to help my daughter understand mathematical sequences.<br/>
 						<img alt="" src="images/VisualAid.jpg" width="1000" /><br/>
 						The blue bit can be moved across the grid.
+					</p>
+					<p class="ContentsParagraph">
+						Here is another example that explains the concept behind implementaion of a C++ class.<br/><br/>
+						<p class="ContentsParagraph"><b><u>Class definition:</u></b></p>
+						<span class="ContentsParagraph">class CRainbow</span><br/>
+						<span class="ContentsParagraph">{</span><br/>
+						  <span class="indent1 ContentsParagraph">public:</span><br/>
+						    <span class="indent2 ContentsParagraph">// Construction, destruction and initialisation</span><br/>
+						    <span class="indent2 ContentsParagraph">CRainbow();</span><br/>
+						    <span class="indent2 ContentsParagraph">virtual ~CRainbow();</span><br/><br/>
+						
+						    <span class="indent2 ContentsParagraph">// Interface</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getRandomSecondaryColor();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getOppositeSecondaryColor(uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getNextColor(const uint8_t nSteps = 1);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getRandomColor();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint16_t getColorCount();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getColor(const uint16_t nColorIndex);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getColor(const char* cstrColorName);</span><br/>
+						    <span class="indent2 ContentsParagraph">const char *getColorName(const uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">bool isPrimaryColor(const uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">bool isSecondaryColor(const uint32_t nColor);</span><br/><br/>
+							
+						  <span class="indent1 ContentsParagraph">protected:</span><br/>
+						    <span class="indent2 ContentsParagraph">// Internal data</span><br/>						  
+						    <span class="indent2 ContentsParagraph">static const PROGMEM uint32_t m_arrayColorTable[];</span><br/>
+						    <span class="indent2 ContentsParagraph">uint16_t m_nI, m_nMainI;</span><br/>
+						    <span class="indent2 ContentsParagraph">uint8_t m_nAnalogPinRandomSeed;</span><br/>
+						<span class="ContentsParagraph">};</span><br/><br/>
+						
+						<p class="ContentsParagraph"><b><u>What a class definition essentially is:</u></b></p>
+						<span class="ContentsParagraph">class CRainbow / TOC CRainbow</span><br/><br/>
+						<span class="indent1 ContentsParagraph">public: / Available for you</span><br/>
+						  <span class="indent2 ContentsParagraph"><u>Introductory:</u></span><br/>
+						    <span class="indent2 ContentsParagraph">CRainbow() / Forward</span><br/>
+						    <span class="indent2 ContentsParagraph">virtual ~CRainbow(); / Epilog</span><br/><br/>
+						
+						    <span class="indent2 ContentsParagraph"><u>Chapters:</u></span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getRandomSecondaryColor();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getOppositeSecondaryColor(uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getNextColor(const uint8_t nSteps = 1);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getRandomColor();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint16_t getColorCount();</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getColor(const uint16_t nColorIndex);</span><br/>
+						    <span class="indent2 ContentsParagraph">uint32_t getColor(const char* cstrColorName);</span><br/>
+						    <span class="indent2 ContentsParagraph">const char *getColorName(const uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">bool isPrimaryColor(const uint32_t nColor);</span><br/>
+						    <span class="indent2 ContentsParagraph">bool isSecondaryColor(const uint32_t nColor);</span><br/><br/>
+							
+						  <span class="indent1 ContentsParagraph">protected: / For office use only &amp; not available for you</span><br/>
+						    <span class="indent2 ContentsParagraph"><u>Internal data</u></span><br/>						  
+						    <span class="indent2 ContentsParagraph">static const PROGMEM uint32_t m_arrayColorTable[];</span><br/>
+						    <span class="indent2 ContentsParagraph">uint16_t m_nI, m_nMainI;</span><br/>
+						    <span class="indent2 ContentsParagraph">uint8_t m_nAnalogPinRandomSeed;</span><br/>
+						<span class="ContentsParagraph">};</span><br/><br/>
+						
+						<span class="ContentsParagraph">uint32_t CRainbow::getColor(const uint16_t nColorIndex) / Chapter 'getColor'</span><br/>
+						<span class="ContentsParagraph">{ / Begin chapter</span><br/>
+						<span class="ContentsParagraph indent1"><u>The contents of chapter 'getColor':</u></span><br/>
+  							<span class="ContentsParagraph indent1">uint32_t nColor = pgm_read_dword(m_arrayColorTable + nColorIndex);</span><br/>
+  							<span class="ContentsParagraph indent1">return nColor;</span><br/>
+						<span class="ContentsParagraph">} / End chapter</span><br/>
+
+
+
 					</p>	
+
 	
 									
 			
