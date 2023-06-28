@@ -19,6 +19,14 @@
 				{
 					margin-left: 40px;
 				}
+				.red
+				{
+					color: red;
+				}
+				.blue
+				{
+					color: blue;
+				}
 			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
@@ -116,6 +124,8 @@
 						<li><b>Reasonable hourly rate:</b> $50 per hour</li>
 					</ul>
 					<p>&nbsp;</p>
+					<p class="ContentsParagraph">I can teach anyone from age 8 to 80.</p>
+					<p>&nbsp;</p>
 					<p class="ContentsParagraph">
 						I have an encyclopedic knowledge of many areas of science and IT of and passion for passing that knowledge on
 						to any one interested in learning:
@@ -153,12 +163,12 @@
 					<p>&nbsp;</p>
 					<p class="ContentsParagraph">
 						Here is an example I created in an MS Word document to help my daughter understand mathematical sequences.<br/>
-						<img alt="" src="images/VisualAid.jpg" width="1000" /><br/>
+						<img alt="" src="images/VisualAid.jpg" width="1000" /><br/><br/>
 						The blue bit can be moved across the grid.
 					</p>
 					<p class="ContentsParagraph">
 						Here is another example that explains the concept behind implementaion of a C++ class.<br/><br/>
-						<p class="ContentsParagraph"><b><u>Class definition:</u></b></p>
+						<p class="ContentsParagraph blue"><b><u>Class definition:</u></b></p>
 						<span class="ContentsParagraph">class CRainbow</span><br/>
 						<span class="ContentsParagraph">{</span><br/>
 						  <span class="indent1 ContentsParagraph">public:</span><br/>
@@ -185,14 +195,14 @@
 						    <span class="indent2 ContentsParagraph">uint8_t m_nAnalogPinRandomSeed;</span><br/>
 						<span class="ContentsParagraph">};</span><br/><br/>
 						
-						<p class="ContentsParagraph"><b><u>What a class definition essentially is:</u></b></p>
+						<p class="ContentsParagraph blue"><b><u>What a class definition essentially is:</u></b></p>
 						<span class="ContentsParagraph">class CRainbow / TOC CRainbow</span><br/><br/>
 						<span class="indent1 ContentsParagraph">public: / Available for you</span><br/>
-						  <span class="indent2 ContentsParagraph"><u>Introductory:</u></span><br/>
+						  <span class="indent2 ContentsParagraph red"><u>Introductory:</u></span><br/>
 						    <span class="indent2 ContentsParagraph">CRainbow() / Forward</span><br/>
 						    <span class="indent2 ContentsParagraph">virtual ~CRainbow(); / Epilog</span><br/><br/>
 						
-						    <span class="indent2 ContentsParagraph"><u>Chapters:</u></span><br/>
+						    <span class="indent2 ContentsParagraph red"><u>Chapters:</u></span><br/>
 						    <span class="indent2 ContentsParagraph">uint32_t getRandomSecondaryColor();</span><br/>
 						    <span class="indent2 ContentsParagraph">uint32_t getOppositeSecondaryColor(uint32_t nColor);</span><br/>
 						    <span class="indent2 ContentsParagraph">uint32_t getNextColor(const uint8_t nSteps = 1);</span><br/>
@@ -205,22 +215,22 @@
 						    <span class="indent2 ContentsParagraph">bool isSecondaryColor(const uint32_t nColor);</span><br/><br/>
 							
 						  <span class="indent1 ContentsParagraph">protected: / For office use only &amp; not available for you</span><br/>
-						    <span class="indent2 ContentsParagraph"><u>Internal data</u></span><br/>						  
+						    <span class="indent2 ContentsParagraph red"><u>Internal data</u></span><br/>						  
 						    <span class="indent2 ContentsParagraph">static const PROGMEM uint32_t m_arrayColorTable[];</span><br/>
 						    <span class="indent2 ContentsParagraph">uint16_t m_nI, m_nMainI;</span><br/>
 						    <span class="indent2 ContentsParagraph">uint8_t m_nAnalogPinRandomSeed;</span><br/>
 						<span class="ContentsParagraph">};</span><br/><br/>
-						<p class="ContentsParagraph"><b><u>Class implementation (one of the functions only):</u></b></p>
+						<p class="ContentsParagraph blue"><b><u>Class implementation (one of the functions only):</u></b></p>
 						<span class="ContentsParagraph">uint32_t CRainbow::getColor(const uint16_t nColorIndex)</span><br/>
 						<span class="ContentsParagraph">{</span><br/>
   							<span class="ContentsParagraph indent1">uint32_t nColor = pgm_read_dword(m_arrayColorTable + nColorIndex);</span><br/>
   							<span class="ContentsParagraph indent1">return nColor;</span><br/>
 						<span class="ContentsParagraph">}</span><br/>
 
-						<p class="ContentsParagraph"><b><u>What a class implementation essentially is:</u></b></p>
+						<p class="ContentsParagraph blue"><b><u>What a class implementation essentially is:</u></b></p>
 						<span class="ContentsParagraph">uint32_t CRainbow::getColor(const uint16_t nColorIndex) / Chapter 'getColor'</span><br/>
 						<span class="ContentsParagraph">{ / Begin chapter</span><br/>
-						<span class="ContentsParagraph indent1"><u>The contents of chapter 'getColor':</u></span><br/>
+						<span class="ContentsParagraph indent1 red"><u>The contents of chapter 'getColor':</u></span><br/>
   							<span class="ContentsParagraph indent1">uint32_t nColor = pgm_read_dword(m_arrayColorTable + nColorIndex);</span><br/>
   							<span class="ContentsParagraph indent1">return nColor;</span><br/>
 						<span class="ContentsParagraph">} / End chapter</span><br/>
