@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Coding Courses</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+</style>
+		<!-- #EndEditable -->
+		<script type="text/javascript">
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically page_heading">
+					Greg's STEM Tuition
+				</div>
+				<div class="center_vertically contact">
+					<b>Mobile:</b> 0455328886<br />
+					<b>Email:</b> gregplants at bigpond dot com <br />
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../pedogogy/Pedogogy.html">Pedogogy</a></li>
+						<li><a href="../Testimonials/Testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
+						<li><a href="courses.html">Courses</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
+					</script>
+					<!-- #BeginEditable "content" -->
+					<p class="ContentsParagraph">
+						&nbsp;
+					</p>
+					<p class="ContentsParagraph">
+						&nbsp;					</p>
+					<p class="ContentsParagraph">
+						&nbsp;					</p>
+					<p class="ContentsParagraph">
+						&nbsp;					</p>
+					<p class="ContentsParagraph">
+						&nbsp;
+					</p>
+
+
+					<!-- #EndEditable --></div>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div id="footer">
+				<div id="footer_links">
+					<script type="text/javascript">
+						var nNumSpaces = 10;
+						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
+						SpaceGap(nNumSpaces );
+					</script>
+					<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+					<a href="../../GregsCodingClub/index.html">Greg's Code Club</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+				</div>
+				<div id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>
