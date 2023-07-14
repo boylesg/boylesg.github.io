@@ -11,7 +11,7 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			function SpaceGap(nNumberSpaces)
@@ -19,7 +19,47 @@
 				for (var nI = 0; nI < nNumberSpaces; nI++)
 					document.write("&nbsp;");
 			}
-		</script>
+			function DoLogin(strTargetPassword)
+			{
+				let inputPassword = document.getElementById("password");
+				let divContent = document.getElementById("content0");
+				let divLogin = document.getElementById("login");
+				
+				if (inputPassword && divContent && divLogin)
+				{
+					//alert(window.atob(strTargetPassword) + ' ' + inputPassword.value);
+					if (inputPassword.value === window.atob(strTargetPassword))
+					{
+						divContent.style.display = "block";
+						divLogin.style.display = "none";
+					}
+				}
+			}
+			
+			var bCoursesPopupMenu = false;
+
+			function DoToggleCoursesPopupMenu()
+			{
+				var strPopupName = "Courses";
+		
+				if (document.getElementsByName(strPopupName) !== null)
+				{
+					if (bCoursesPopupMenu)
+					{
+						document.getElementsByName(strPopupName)[0].style.display = "none";
+					}
+					else
+					{
+						document.getElementsByName(strPopupName)[0].style.display = "block";
+					}
+					bCoursesPopupMenu = !bCoursesPopupMenu;
+				}
+				else
+				{
+					alert("No such object with name '" + strPopupName + "'!");
+				}
+			}
+			</script>
 		<!-- #BeginEditable "TOC" -->
 			<script type="text/javascript">
 			
@@ -59,6 +99,17 @@
 						<li><a href="../education/education.html">Education</a></li>
 						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
 						<li><a href="work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="../courses/c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="../courses/javascript_course.html">Javascript</a></li>
+									<li class="MenuPopupItem">
+									<a href="../courses/python_course.html">Python</a></li>
+								</ul>
+							</div>
 					</ul>
 				</div>
 				<!-- End Sidebar -->
