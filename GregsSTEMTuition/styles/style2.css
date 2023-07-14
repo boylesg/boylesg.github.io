@@ -88,7 +88,6 @@ body
 	display: block;
 	color: white;
 	width: 70%;
-	/*background-color: navy;*/
 }
 .TOCLink
 {
@@ -99,6 +98,7 @@ body
 {
 	border: 1.5px solid #357171;
 }
+
 #footer
 {
 	clear: both;
@@ -173,12 +173,14 @@ body
 	overflow: hidden;
 	/*background-color: lime;*/
 }
-#masthead p {
+#masthead p 
+{
 	font-size: small;
 	margin: 0;
 	margin-right: 1%;
 }
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 
+{
 	font-family: Arial Black;
 }
 /* Styles for Navigation */
@@ -193,7 +195,8 @@ h1,h2,h3,h4,h5,h6 {
 	display: block;
 	border: 1px solid #cb8;
 }
-#sidebar a {
+#sidebar a 
+{
 	font-weight: bold;
 	text-decoration: none;
 	color: #393939;
@@ -201,38 +204,70 @@ h1,h2,h3,h4,h5,h6 {
 	display: block;
 	border-bottom: 1px solid #f5f5f5;
 }
-#sidebar a:hover {
+#sidebar a:hover 
+{
 	font-weight: bold;
 	text-decoration: none;
 	color: #393939;
 	border-bottom: 1px solid #f5f5f5;
 	background-color: #dc9;
 }
+.MenuPopup
+{
+	/*display: inline.block;*/
+	display: none;
+	position: relative;
+	width: 88%;
+	background-color: #dc9;
+	padding: 5px;
+	margin-left: 10px;
+}
+.MenuPopupItem
+{
+	background-color: #dc9;
+}
+#MenuPopup a:hover 
+{
+	background-color: #cb8;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+	width:90%;
+}
 /* Styles for Footer */
-#footer p {
+#footer p 
+{
 	font-size: x-small;
 }
-#footer a {
+#footer a 
+{
 	color: #393939;
 	text-decoration: underline;
 	color: navy;
 }
-#footer a:hover {
+#footer a:hover 
+{
 	color: #393939;
 	text-decoration: none;
 	color: blue;
 }
-a {
+a
+{
 	color: #393939;
 	text-decoration: underline;
 }
-a:hover {
+a:hover
+{
 	color: #78a;
 	text-decoration: underline;
 }
-.style_bold {
+.style_bold 
+{
 	font-weight: bold;
 }
-.style_italic {
+.style_italic 
+{
 	font-style: italic;
 }
+
+
