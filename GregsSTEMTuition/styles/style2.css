@@ -18,7 +18,7 @@ body
 	overflow: hidden;
 	text-align: right;
 	background-color: #c5d5e5;
-	height: 100px;
+	height: 120px;
 }
 #page_content 
 {
@@ -41,7 +41,7 @@ body
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: /*478px*/446px;
+	height: 426px;
 }
 .ContentListItem
 {
@@ -133,7 +133,7 @@ body
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-.page_heading
+.website_banner
 {
 	display: inline-block;
 	text-align:left;
@@ -141,12 +141,23 @@ body
 	margin-left:30px;
 	width:62%;
 	margin-left: 10px;
-	font-size: 60px;
 	font-weight: bold;
 	overflow: hidden;
 	color: navy;
 	/*background-color: aqua;*/
 	width: 60%;
+	font-family:/*"Rockwell Extra Bold"*/"Bauhaus 93";
+}
+.website_heading
+{
+	/*background-color: red;*/
+	font-size: 60px;
+	line-height: 1.2;
+}
+.website_motto
+{
+	/*background-color: yellow;*/
+	font-size: large;
 }
 .page_title
 {
@@ -163,6 +174,22 @@ body
 	color: navy;
 	/*background-color: fuchsia;*/
 	width: 25%;
+}
+.Author
+{
+	
+}
+.Email
+{
+	color: red;
+}
+#Contact a:hover
+{
+	color: black;	
+}
+#Author a:hover
+{
+	color: black;
 }
 .logo
 {
@@ -250,16 +277,6 @@ h1,h2,h3,h4,h5,h6
 	color: #393939;
 	text-decoration: none;
 	color: blue;
-}
-a
-{
-	color: #393939;
-	text-decoration: underline;
-}
-a:hover
-{
-	color: #78a;
-	text-decoration: underline;
 }
 .style_bold 
 {
