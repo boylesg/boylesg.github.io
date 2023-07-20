@@ -11,7 +11,7 @@
 		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			function SpaceGap(nNumberSpaces)
@@ -19,6 +19,13 @@
 				for (var nI = 0; nI < nNumberSpaces; nI++)
 					document.write("&nbsp;");
 			}
+
+			function GenerateGregsEmailAddress()
+			{
+				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
+				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
+			}
+
 		</script>
 		<!-- #BeginEditable "TOC" -->
 			<script type="text/javascript">
@@ -38,13 +45,18 @@
 				<div class="center_vertically logo">
 					<img alt="" height="100" src="images/BanksiaLogo.png" />
 				</div>
-				<div class="center_vertically page_heading">
-					Greg's Australian Native Landscapes
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's Australian Native Landscapes<br/></div>
+					<div class="website_motto">Celebrate diverse Australian flora in your garden</div>
 				</div>
-				<div class="center_vertically contact">
+				<div class="center_vertically contact" id="Contact">
 					<b>Mobile:</b> 0455328886<br />
-					<b>Email:</b> gregplants at bigpond dot com <br />
-					<b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
 				</div>
 			</div>
 			<!-- End Masthead -->
