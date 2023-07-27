@@ -57,8 +57,7 @@
 				</div>
 				<div class="center_vertically contact" id="Contact">
 					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
-					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
-					<b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/<br/><br/>
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/><br/>
 					<div class="Author" id="Author">
 						<b>Web site coded by me &amp; hosted for free</b><br/>
 						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
