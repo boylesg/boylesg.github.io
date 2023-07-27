@@ -41,7 +41,7 @@ body
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 426px;
+	height: 420px;
 }
 .ContentListItem
 {
@@ -99,32 +99,50 @@ body
 	border: 1.5px solid #357171;
 }
 
-#footer
+.footer
 {
 	clear: both;
 	width: 99%;
+	height: 38px;
 	overflow: hidden;
-	padding-top: 1%;
+	padding-top: 0.5%;
 	padding-right: 0;
-	padding-bottom: 1%;
+	padding-bottom: 0.5%;
 	padding-left: 1%;
 	background-color: #cdf;
 }
-#footer_links
+.footer_links
 {
 	display: inline-block;
 	position: relative;
+	top: -6px;
 	float: left;
 	margin-left: 10px;
 	color: navy;
 }
-#footer_copyright
+.footer_link
+{
+	margin-left:0px;
+	margin-right: 80px;
+	color: white;
+	font-size: large;
+	/*background-color: aqua;*/
+}
+.footer_image
+{
+	position: relative;
+	top: 4px;
+}
+.footer_copyright
 {
 	display: inline-block;
 	position: relative;
+	top: -27px;
 	float: right;
 	margin-right: 10px;
 	color: navy;
+	/*background-color: lime;*/
+	font-size: small;
 }
 .center_vertically
 {
@@ -153,6 +171,7 @@ body
 	/*background-color: red;*/
 	font-size: 60px;
 	line-height: 1.2;
+	/*background-color: aqua;*/
 }
 .website_motto
 {
@@ -165,6 +184,8 @@ body
 }
 .contact
 {
+	position: relative;
+	top: -38px;
 	display: inline-block;
 	text-align:left;
 	float:right;
@@ -173,7 +194,7 @@ body
 	overflow: hidden;
 	color: navy;
 	/*background-color: fuchsia;*/
-	width: 25%;
+	width: 26%;
 }
 .Author
 {
@@ -261,11 +282,6 @@ h1,h2,h3,h4,h5,h6
 	color: black;
 	width:90%;
 }
-/* Styles for Footer */
-#footer p 
-{
-	font-size: x-small;
-}
 #footer a 
 {
 	color: #393939;
@@ -275,8 +291,8 @@ h1,h2,h3,h4,h5,h6
 #footer a:hover 
 {
 	color: #393939;
-	text-decoration: none;
-	color: blue;
+	text-decoration: underline;
+	color: red;
 }
 .style_bold 
 {
