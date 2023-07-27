@@ -11,7 +11,7 @@
 		<link href="styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			function SpaceGap(nNumberSpaces)
@@ -24,6 +24,12 @@
 			{
 				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
 				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
+			}
+
+			function GenerateGregsMobile()
+			{
+				var strMobile = "04" + "55" + "328" + "886";
+				document.write(strMobile);
 			}
 
 		</script>
@@ -50,7 +56,7 @@
 					<div class="website_motto">Celebrate diverse Australian flora in your garden</div>
 				</div>
 				<div class="center_vertically contact" id="Contact">
-					<b>Mobile:</b> 0455328886<br />
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
 					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
 					<b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/<br/><br/>
 					<div class="Author" id="Author">
@@ -185,18 +191,14 @@
 				<!-- End Content --></div>
 			<!-- End Page Content -->
 			<!-- Begin Footer -->
-			<div id="footer">
-				<div id="footer_links">
-					<script type="text/javascript">
-						var nNumSpaces = 10;
-						document.write("<a href=\"#" + document.title + "\">Top of Page</a>");
-						SpaceGap(nNumSpaces * 3);
-					</script>
-					<a href="../GregsSTEMTuition/index.html">Greg's STEM Tutition</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
-					<a href="../GregsHighVoltage/index.htm">Greg's High Voltage</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
-					<a href="../GregsCodingClub/index.html">Greg's Code Club</a><script type="text/javascript">SpaceGap(nNumSpaces);</script>
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link"><img alt="" width="1%" class="footer_image" src="images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link"><img alt="" width="3%" class="footer_image" src="images/STEM.png" />&nbsp;<a href="../GregsSTEMTuition/index.html">Greg's STEM Tutition</a></span>
+					<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/HighVoltage.png" />&nbsp;<a href="../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/IOTLogo.png" />&nbsp;<a href="../GregsCodingClub/index.html">Greg's Code Club</a></span>
 				</div>
-				<div id="footer_copyright">
+				<div class="footer_copyright" id="footer_copyright">
 					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
 				</div>
 			</div>
