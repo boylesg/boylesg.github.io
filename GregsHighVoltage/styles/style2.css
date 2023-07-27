@@ -18,7 +18,7 @@ body
 	overflow: hidden;
 	text-align: right;
 	background-color: #c5d5e5;
-	height: 100px;
+	height: 110px;
 }
 #page_content 
 {
@@ -41,7 +41,7 @@ body
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 446px;
+	height: 430px;
 }
 .ContentListItem
 {
@@ -99,32 +99,50 @@ body
 {
 	border: 1.5px solid #357171;
 }
-#footer
+.footer
 {
 	clear: both;
 	width: 99%;
+	height: 38px;
 	overflow: hidden;
-	padding-top: 1%;
+	padding-top: 0.5%;
 	padding-right: 0;
-	padding-bottom: 1%;
+	padding-bottom: 0.5%;
 	padding-left: 1%;
 	background-color: #cdf;
 }
-#footer_links
+.footer_links
 {
 	display: inline-block;
 	position: relative;
+	top: -6px;
 	float: left;
 	margin-left: 10px;
 	color: navy;
 }
-#footer_copyright
+.footer_link
+{
+	margin-left:0px;
+	margin-right: 80px;
+	color: white;
+	font-size: large;
+	/*background-color: aqua;*/
+}
+.footer_image
+{
+	position: relative;
+	top: 4px;
+}
+.footer_copyright
 {
 	display: inline-block;
 	position: relative;
+	top: -27px;
 	float: right;
 	margin-right: 10px;
 	color: navy;
+	/*background-color: lime;*/
+	font-size: small;
 }
 .center_vertically
 {
@@ -139,12 +157,25 @@ body
 	text-align:left;
 	float:left;
 	margin-left: 10px;
-	font-size: 60px;
-	font-weight: bold;
+	/*font-weight: bold;*/
+	font-family: "Impact";
 	overflow: hidden;
 	color: navy;
 	/*background-color: aqua;*/
-	width: 70%;
+	width: 62%;
+}
+.website_heading
+{
+	display: inline-block;
+	font-size: 58px;
+	line-height: 1.2;
+	/*background-color: lime;*/
+}
+.website_motto
+{
+	display: inline-block;
+	/*background-color: yellow;*/
+	font-size: large;
 }
 .page_title
 {
@@ -152,6 +183,8 @@ body
 }
 .contact
 {
+	position: relative;
+	top: 54px;
 	display: inline-block;
 	text-align:left;
 	float:right;
@@ -160,7 +193,19 @@ body
 	overflow: hidden;
 	color: navy;
 	/*background-color: fuchsia;*/
-	width: 16%;
+	width: 26%;
+}
+.Author
+{
+	
+}
+.Email
+{
+	color: red;
+}
+#Contact a:hover
+{
+	color: black;
 }
 .logo
 {
@@ -171,27 +216,32 @@ body
 	overflow: hidden;
 	/*background-color: lime;*/
 }
-#masthead p {
+#masthead p 
+{
 	font-size: small;
 	margin: 0;
 	margin-right: 1%;
 }
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 
+{
 	font-family: Arial Black;
 }
 /* Styles for Navigation */
-#sidebar ul {
+#sidebar ul 
+{
 	list-style-type: none;
 	width: 100%;
 	display: block;
 	margin: 0;
 	padding: 0;
 }
-#sidebar li {
+#sidebar li 
+{
 	display: block;
 	border: 1px solid #cb8;
 }
-#sidebar a {
+#sidebar a 
+{
 	font-weight: bold;
 	text-decoration: none;
 	color: #393939;
@@ -199,7 +249,8 @@ h1,h2,h3,h4,h5,h6 {
 	display: block;
 	border-bottom: 1px solid #f5f5f5;
 }
-#sidebar a:hover {
+#sidebar a:hover 
+{
 	font-weight: bold;
 	text-decoration: none;
 	color: #393939;
@@ -207,30 +258,37 @@ h1,h2,h3,h4,h5,h6 {
 	background-color: #dc9;
 }
 /* Styles for Footer */
-#footer p {
+#footer p 
+{
 	font-size: x-small;
 }
-#footer a {
+#footer a 
+{
 	color: #393939;
 	text-decoration: underline;
 	color: navy;
 }
-#footer a:hover {
+#footer a:hover 
+{
 	color: #393939;
-	text-decoration: none;
-	color: blue;
+	text-decoration: underline;
+	color: red;
 }
-a {
+a 
+{
 	color: #393939;
 	text-decoration: underline;
 }
-a:hover {
+a:hover 
+{
 	color: #78a;
 	text-decoration: underline;
 }
-.style_bold {
+.style_bold 
+{
 	font-weight: bold;
 }
-.style_italic {
+.style_italic 
+{
 	font-style: italic;
 }
