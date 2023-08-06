@@ -7,76 +7,32 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Testimonials</title>
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 </style>
 		<!-- #EndEditable -->
-		<script type="text/javascript">
-			
-			function GenerateGregsEmailAddress()
-			{
-				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
-				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
-			}
-
-			function GenerateGregsMobile()
-			{
-				var strMobile = "04" + "55" + "328" + "886";
-				document.write(strMobile);
-			}
-
-			function SpaceGap(nNumberSpaces)
-			{
-				for (var nI = 0; nI < nNumberSpaces; nI++)
-					document.write("&nbsp;");
-			}
-			function DoLogin(strTargetPassword)
-			{
-				let inputPassword = document.getElementById("password");
-				let divContent = document.getElementById("content0");
-				let divLogin = document.getElementById("login");
-				
-				if (inputPassword && divContent && divLogin)
-				{
-					//alert(window.atob(strTargetPassword) + ' ' + inputPassword.value);
-					if (inputPassword.value === window.atob(strTargetPassword))
-					{
-						divContent.style.display = "block";
-						divLogin.style.display = "none";
-					}
-				}
-			}
-			
-			var bCoursesPopupMenu = false;
-
-			function DoToggleCoursesPopupMenu()
-			{
-				var strPopupName = "Courses";
 		
-				if (document.getElementsByName(strPopupName) !== null)
-				{
-					if (bCoursesPopupMenu)
-					{
-						document.getElementsByName(strPopupName)[0].style.display = "none";
-					}
-					else
-					{
-						document.getElementsByName(strPopupName)[0].style.display = "block";
-					}
-					bCoursesPopupMenu = !bCoursesPopupMenu;
-				}
-				else
-				{
-					alert("No such object with name '" + strPopupName + "'!");
-				}
-			}
-			</script>
+		<script type="text/javascript" src="../Common.js"></script>
+			
+		<div id="TryItNowHTML">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<div class="TryItNowButtonDiv" id="TryItNowButtonDiv"><button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN ></button></div>
+				<textarea class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults"></iframe>
+			</div>
+		</div>
+		
 		<!-- #BeginEditable "TOC" -->
 			<script type="text/javascript">
 			
-				var arrayTOC = [];
+				g_arrayTOC = [];
 				
 			</script>
 		<!-- #EndEditable -->
@@ -123,7 +79,7 @@
 									<li class="MenuPopupItem">
 									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="../courses/javascript_course.html">Javascript</a></li>
+									<a href="../courses/web_course.html">Javascript</a></li>
 									<li class="MenuPopupItem">
 									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
@@ -135,37 +91,14 @@
 				<div id="content">
 					<script type="text/javascript">
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
-						
-						var nLevel = 0;
-						
-						function BuildTOC(arrayTOC, nLevel)
-						{
-							var strIndent = "", nI = 0;
-							
-							for (nI = 0; nI < nLevel; nI++)
-								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-								
-							for (nI = 0; nI < arrayTOC.length; nI++)
-							{
-								if (Array.isArray(arrayTOC[nI]))
-								{
-									BuildTOC(arrayTOC[nI], nLevel + 1);
-								}
-								else
-								{
-									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
-								}
-							}
-						}
-						if (arrayTOC.length > 0)
-						{
-							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
-							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
-							BuildTOC(arrayTOC, nLevel);
-							document.write("<hr class=\"TOCLine\"></ul>");
-						}
+						MakeTOC(g_arrayTOC);
 					</script>
 					<!-- #BeginEditable "content" -->
+
+
+
+
+
 					<hr/>
 					<p class="ContentsParagraph">
 						Greg has been working with us at CoderDojo Altona North for over 4+ years, is highly committed to what he 
@@ -184,6 +117,10 @@
 					<p class="ContentsParagraph">
 					</p>
 					<hr/>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 				<!-- End Content --></div>
