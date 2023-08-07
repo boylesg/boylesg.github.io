@@ -11,7 +11,7 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -109,10 +109,6 @@
 						MakeTOC(g_arrayTOC);
 					</script>
 					<!-- #BeginEditable "content" -->
-
-
-
-
 
 					<div style="display:none;" id="login">
 						<p>Purchase the password</p>
@@ -241,7 +237,7 @@
 						<div  id="Stage6" style="display:none">	
 							<h2>Body</h2>
 								<p>&lt;body&gt;<br/>.<br/>.<br/>.<br/>&lt;/body&gt;</p>
-								<p>These tags are also required and, by conention, all visual elements of your page should 
+								<p>These tags are also required and, by convention, all visual elements of your page should 
 								be between these tags. There are no specific properties for this 
 								tag and general properties are rarely applied.</p>
 								<p>
@@ -274,10 +270,7 @@
 									&nbsp;&nbsp;&lt;/body&gt;<br/>
 									&lt;/htm&gt;
 								</p>
-								<p>Create a text file, past on the above text, save the file with 
-								your choice of name but with the extension .htm or .html and 
-								then double click on that file to open it in your default web 
-								browser.</p>
+								<p>Click on this <a href="bare_minimum.html">link</a> to bring up the above bare minimum web page in your web browser.</p>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage7')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage9')">NEXT &gt;</button>
@@ -286,12 +279,107 @@
 						<div  id="Stage9" style="display:none">
 							<h2>Paragraphs</h2>
 								<p>
+									&lt;p&gt;The quick brown fox jumped over the lazy dog.&lt;/p&gt;
+								</p>
+								<p>This tag does not have any specific properties that can be aapplied to, but you can use any of
+								the general properties. Assuming the following HTML code:<br/><br/>
+								
+								&lt;p&gt;
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+									labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+									voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+									non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								&lt;/p&gt;
+								<br/><br/>
+								&lt;p&gt;
+									Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Libero nunc consequat interdum 
+									varius sit amet mattis vulputate. Habitant morbi tristique senectus et netus. Dui nunc mattis 
+									enim ut. Iaculis eu non diam phasellus. Cras pulvinar mattis nunc sed blandit libero. Nisl 
+									pretium fusce id velit. Iaculis urna id volutpat lacus. Augue interdum velit euismod in 
+									pellentesque massa placerat. Tristique magna sit amet purus gravida quis. Ac turpis egestas 
+									maecenas pharetra convallis posuere morbi leo urna.
+								&lt;/p&gt;</p>
+								<br/>
+								<br/>
+								<p>This is what it looks like in a web browser:<br/>
+								<img alt="" height="171" src="images/Paragraphs.jpg" width="942" /></p>
+								
+								<p>If you wqant the first line of the paragraph to be indented then use one of more of &amp;nbsp; like this:<br/><br/>								&lt;p&gt;
+										&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+										labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+										laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+										voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+										non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+									&lt;/p&gt;
+									<br/><br/>
+									&lt;p&gt;
+										&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Libero nunc consequat interdum 
+										varius sit amet mattis vulputate. Habitant morbi tristique senectus et netus. Dui nunc mattis 
+										enim ut. Iaculis eu non diam phasellus. Cras pulvinar mattis nunc sed blandit libero. Nisl 
+										pretium fusce id velit. Iaculis urna id volutpat lacus. Augue interdum velit euismod in 
+										pellentesque massa placerat. Tristique magna sit amet purus gravida quis. Ac turpis egestas 
+										maecenas pharetra convallis posuere morbi leo urna.
+									&lt;/p&gt;
+								</p>
+								<p>This is what it then looks like in a web browser:<br/>
+								<img alt="" height="171" src="images/IndentedParagraphs.jpg" width="942" /></p>
+								
+								<p>The reason for this is that multiple consecutive space characters, generated by hitting the 
+								space bar, are ignored by the web browser. They are for the purpose of formatting the HTML code
+								in a text editor. In order to get the web browser to render more than one space character you
+								must use &amp; symbol followed by a text code designating the non-alphanumeric and non-punctuation
+								 character you want. In HTML coding these are referred to as escape characters. In the case of a 
+								 space character the text code is 'nbsp', which is an acronym for 'non-breaking space'. The term 
+								 'breaking' refers to creating a new line of text.</p>
+								<p>There is also a special tag for creating a new line of text within a single paragraph and that 
+								is &lt;br/&gt;. This will result in any following text to appear on a new line but without any gap 
+								between the two lines of text, as would be the case if you enclosed both passages of text within 
+								separate sets of p tags.</p>
+								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage8')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage10')">NEXT &gt;</button>
 								</p>
 						</div>
 						<div  id="Stage10" style="display:none">
 							<h2>Images</h2>
+								
+								<p>
+									&lt;image src="..." alt="..."&gt;&lt;/image&gt;<br />
+									<br />
+									or<br />
+									<br />
+									&lt;image src="..." alt="..." /&gt;<br />
+									<br />
+									The /&gt; is short hand for &gt;&lt;/image&gt;</p>
+								<p>
+									There are two specific properties that you ought to use and they are:<br/>
+									<ul>
+										<li><b>src:</b> this is required and specifies the name, 
+										and optional path, of the image file 
+										that is to be rendered in the web page.</li>
+										If you don't specify a valid image file 
+										name, and the alt property is not 
+										specified or contains and empty string, 
+										then you will see a blank space in the 
+										web page.<br/><br/>
+										<li><b>alt:</b> this specifies the text 
+										to display in place of the image of 
+										there is a problem rendering the image.</li>
+									</ul>
+								</p>
+								<p>
+									A typical image tag looks like this: &lt;image src="images/MyImage.jpg" alt="images/MyImage.jpg" /&gt;. 
+									In this case the image file is found in a sub-folder named 'images'. Images are displayed 'inline' by 
+									default. To understand what that means then consider this example:
+									<br/><br/>
+									Lorem ipsum dolor sit <image src="images/Title.jpg" alt="images/Title.jpg" />amet, consectetur adipiscing
+									<br/><br/>
+									However you can change this through CSS so that the image displays on a separate line, similar to headings,
+									if you wish.
+									<br/><br/>
+									Lorem ipsum dolor sit <image src="images/Title.jpg" alt="images/Title.jpg" style="display:block;"/>amet, consectetur adipiscing
+								</p>;
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage9')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage1')">NEXT &gt;</button>
