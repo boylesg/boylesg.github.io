@@ -16,6 +16,10 @@ var g_bCoursesPopupMenu = false;
 //**********************************************************************************************************************
 //**********************************************************************************************************************
 
+function OnBodyLoad()
+{
+}
+
 function GenerateTryItNow()
 {
 	var divTryItNowHTML = document.getElementById("TryItNowHTML"),
@@ -79,20 +83,37 @@ function MakeTOC(arrayTOC)
 	}
 }
 
-function DoLogin(strTargetPassword)
+function DoLogin(strTargetPassword, strCourseName)
 {
 	let inputPassword = document.getElementById("password");
 	let divContent = document.getElementById("course_content");
 	let divLogin = document.getElementById("login");
-	
+
 	if (inputPassword && divContent && divLogin)
 	{
-		//alert(window.atob(strTargetPassword) + ' ' + inputPassword.value);
-		if (inputPassword.value === window.atob(strTargetPassword))
+		if ((inputPassword.value === strTargetPassword) || ((sessionStorage[strCourseName]) && (sessionStorage[strCourseName].length > 0)))
 		{
 			divContent.style.display = "block";
 			divLogin.style.display = "none";
+			sessionStorage[strCourseName] = strTargetPassword;
 		}
+	}
+}
+
+function DoShowHide(strIDDiv2Hide, strIDDiv2Show)
+{
+	var div2Hide = document.getElementById(strIDDiv2Hide),
+		div2Show = document.getElementById(strIDDiv2Show);
+		
+	if (div2Hide)
+	{
+		div2Hide.style.display = "none";
+	}
+	if (div2Show)
+	{
+		div2Show.style.display = "block";
+		sessionStorage["current_stage"] = strIDDiv2Show;
+		//alert(sessionStorage["current_stage"]);
 	}
 }
 
