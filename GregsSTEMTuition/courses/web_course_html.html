@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Web Programming Course - HTML</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<script type="text/javascript" src="../Common.js"></script>
+			
+		<div id="TryItNowHTML">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<div class="TryItNowButtonDiv" id="TryItNowButtonDiv"><button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN ></button></div>
+				<textarea class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults"></iframe>
+			</div>
+		</div>
+		
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				g_arrayTOC = [];
+				
+				function OnBodyLoad()
+				{
+					if (sessionStorage["web_course"] && (sessionStorage["web_course"].length > 0))
+					{
+						DoLogin(sessionStorage["web_course"], "web_course");
+
+						//alert(sessionStorage["current_stage"]);
+						if (sessionStorage["current_stage"] && (sessionStorage["current_stage"].length > 0))
+						{
+							document.getElementById(sessionStorage["current_stage"]).style.display = "block";
+						}
+						else
+						{
+							document.getElementById("Stage1").style.display = "block";
+
+						}
+					}
+				}
+				
+
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body onload="OnBodyLoad()">
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's STEM Tuition<br/></div>
+					<div class="website_motto">All you need is passion for the subject &amp; a love of learning.</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../Pedogogy/Pedogogy.html">Pedogogy</a></li>
+						<li><a href="../Testimonials/Testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="web_course_html.html">Javascript</a></li>
+									<li class="MenuPopupItem">
+									<a href="python_course.html">Python</a></li>
+								</ul>
+							</div>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						MakeTOC(g_arrayTOC);
+					</script>
+					<!-- #BeginEditable "content" -->
+
+					<div style="display:none;" id="login">
+						<p>Purchase the password</p>
+						<br/>					
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick" />
+							<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+							<input type="hidden" name="currency_code" value="AUD" />
+							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+						</form>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+										
+					<div style="display:none;" id="course_content">
+
+						<div style="display:none;" id="Stage1">
+							<h2>Introduction</h2>
+								<p>
+									HTML is based on tags that enclose the text to which the tags apply. An example is &lt;h1&gt;Title&lt;
+									/h1&gt;, which refers to first or top level heading that causes the text 'Title' to be rendered in a 
+									large font.
+								</p>
+								<ul>
+									<li>&lt;h1&gt;: start of&nbsp; first level heading</li>
+									<li>Title: the text to which the h1 tags apply.</li>
+									<li>&lt;/h1&gt; end of first level heading</li>
+								</ul>
+								<p>
+									Refer to this web page 
+									(<a href="https://www.w3schools.com/html/default.asp">W3 Schools HTML Reference</a>) 
+									for a full list of HTML tags that you can use in your web pages.
+									However only a selection of HTML tags, that you are likely to use the most often, will be detailed here.</p>
+								<p>
+									Tags have additional properties that can be applied. Some are specific to the tag while others are
+									general and can be applied equally to any tag. 
+									They look like the following: <br/><br/>
+									&lt;p class="paragragh" style="color:blue;"&gt;This is a paragraph of 
+									text. &lt;/p&gt;
+									<br/><br/>
+									In this example the &lt;p&gt; tag has two general properties applied to it: 
+									'class' and 'style'. The actual contents of the property must be 
+									enclosed in double quotes.</p>
+									<p>But again here we will only detail those 
+									properties that are required and the ones you are most likely to use 
+									regularly. For other properties please refer to the above comprehensive list 
+									of HTML tags at W3 Schools.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="document.location='web_course.html'">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage1', 'Stage2')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage2" style="display:none">
+							<h2>Headings</h2>
+								<p>
+									&lt;h1&gt;&lt;/h1&gt;<br/>
+									&lt;h2&gt;&lt;/h2&gt;<br/>
+									&lt;h3&gt;&lt;/h3&gt;<br/>
+									&lt;h4&gt;&lt;/h4&gt;<br/>
+									&lt;h5&gt;&lt;/h5&gt;<br/>
+									&lt;h6&gt;&lt;/h6&gt;<br/>
+								</p>
+								<p>These work in the same way as the headings in MS Word and other word proessing software. Each has a default
+								font size and color, that you can change via CSS if you wish. 
+								There are no specific properties that apply to these tags 
+								however you can apply the CSS properties 'class' and 'style' to 
+								them individually if you wish.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage2', 'Stage1')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage2', 'Stage3')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage3" style="display:none">
+							<h2>HTML</h2>
+								<p>&lt;html&gt;<br/>.<br/>.<br/>.<br/>&lt;/html&gt;</p>
+								<p>These tags are required, and all other tags and text on the page need to 
+								be between these. They tell the web browser where the HTML code starts and 
+								ends. </p>
+								<p>There are two specific properties that you ought to use and they are:<br/>
+								<ul>
+									<li><b>xmlns:</b> this specifies a xml namespace and should be set to "http://www.w3.org/1999/xhtml". 
+									You can think of it like a code library that contains all the HTML tags 
+									available for you to use in your web page.</li>
+									<br/>
+									<li><b>dir:</b> this is the direction of the text and is there to support 
+									different languages that use different text directions. For English it 
+									should be set to "ltr" or left to right. For some Asian languages it may 
+									be "rtl" or right to left. You can also set it to "auto" in which case 
+									the web browser will decide the directionality of the text.</li>
+								</ul>So the tag would look like this: &lt;html xmlns="
+								http://www.w3.org/1999/xhtml" dir="ltr"&gt;....&lt;/html&gt;</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage3', 'Stage2')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage3', 'Stage4')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage4" style="display:none">
+							<h2>Header</h2>
+								<p>&lt;head&gt;<br/>.<br/>.<br/>.<br/>&lt;/head&gt;</p>
+								<p>All web pages will have these tags and, by convention, all 
+								the non-visual page elements (those that are not visible to the 
+								user) will be listed between these tags. However if you do type 
+								some text or visual tags in this section they will be display as 
+								page content. There are no specific properties associated with 
+								this tag and general properties like 'style' and 'class' are 
+								rarely applied to them.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage4', 'Stage3')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage4', 'Stage5')">NEXT &gt;</button>
+								</p>
+						</div>	
+						<div  id="Stage5" style="display:none">
+							<h2>Title</h2>
+								<p>&lt;title&gt;MY TITLE&lt;/title&gt;</p>
+								<p>This is a non-visual element that specifies the title of the page. Rather 
+								than being displayed within the browser window it is actually displayed on 
+								the&nbsp;browser page tab.<br />
+								<img alt="" height="157" src="images/Title.jpg" width="384" /></p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage5', 'Stage4')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage5', 'Stage6')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage6" style="display:none">	
+							<h2>Body</h2>
+								<p>&lt;body&gt;<br/>.<br/>.<br/>.<br/>&lt;/body&gt;</p>
+								<p>These tags are also required and, by conention, all visual elements of your page should 
+								be between these tags. There are no specific properties for this 
+								tag and general properties are rarely applied.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage6', 'Stage5')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage6', 'Stage7')">NEXT &gt;</button>
+								</p>
+						</div>	
+						<div  id="Stage7" style="display:none">
+							<h2>Footer</h2>
+								<p>&lt;footer&gt;<br/>.<br/>.<br/>.<br/>&lt;/footer&gt;</p>
+								<p>Web pages do not always have these tags but you can use them if you wish. 
+								You might use them to list other non-visual page elements or use them to 
+								create a distinct region on your page for displaying particular common elements. 
+								There are no specific properties for this tag.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage7', 'Stage6')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage7', 'Stage8')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage8" style="display:none">
+							<h2>Bare Minimum HTML Web Page</h2>
+							<p>This is an absolute bare minimum HTML web page.</p>
+								<p>
+									&lt;htm xmlns="http://www.w3.org/1999/xhtml" dir="ltr"&gt;<br/>
+									&nbsp;&nbsp;&lt;head&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;MY TITLE&lt;/title&gt;<br/>
+									&nbsp;&nbsp;&lt;/head&gt;<br/>
+									&nbsp;&nbsp;&lt;body&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;HELLO WORLD!<br/>
+									&nbsp;&nbsp;&lt;/body&gt;<br/>
+									&lt;/htm&gt;
+								</p>
+								<p>Create a text file, past on the above text, save the file with 
+								your choice of name but with the extension .htm or .html and 
+								then double click on that file to open it in your default web 
+								browser.</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage7')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage9')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage9" style="display:none">
+							<h2>Paragraphs</h2>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage8')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage10')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage10" style="display:none">
+							<h2>Images</h2>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage9')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage1')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage11" style="display:none">
+							<h2>Hyperlinks</h2>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage10')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage12')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage12" style="display:none">
+							<h2>Divisions</h2>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage11')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage13')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage13" style="display:none">
+							<h2>Spans</h2>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage12')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage14')">NEXT &gt;</button>
+								</p>
+						</div>
+						
+					</div>
+
+					<!-- #EndEditable -->
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/HighVoltage.png" />&nbsp;<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>

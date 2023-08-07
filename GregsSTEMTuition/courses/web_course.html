@@ -6,12 +6,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Javascript Course</title>
-			<script type="text/javascript">
-			
-				var arrayTOC = [];
-				
-			</script>
+		<title>Web Programming Course</title>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
@@ -34,11 +29,20 @@
 			
 				g_arrayTOC = [];
 				
+				function OnBodyLoad()
+				{
+					if (sessionStorage["web_course"].length > 0)
+					{
+						DoLogin(sessionStorage["web_course"], "web_course");
+					}
+				}
+				
+
 			</script>
 		<!-- #EndEditable -->
 	</head>
 	
-	<body>
+	<body onload="OnBodyLoad()">
 	
 		<!-- Begin Container -->
 		<div id="container">
@@ -95,22 +99,62 @@
 					</script>
 					<!-- #BeginEditable "content" -->
 
-					<p>Purchase the password</p>
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-						<input type="hidden" name="cmd" value="_s-xclick" />
-						<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
-						<input type="hidden" name="currency_code" value="AUD" />
-						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-					</form>
-					<br/>					
-					<div id="login"><label for="password">Password&nbsp;</label><input type="password" id="password" value=""/>&nbsp;<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG')"/></div>
+					<div id="login">
+						<p>Purchase the password</p>
+						<br/>					
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<input type="hidden" name="cmd" value="_s-xclick" />
+							<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+							<input type="hidden" name="currency_code" value="AUD" />
+							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+						</form>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
 					
 					<div style="display:none;" id="course_content">
-						<h2>Introduction</h2>
-						<h2>HTML</h2>
-						<h2>CSS</h2>
-						<h2>Javescript</h2>
+						<p>Web programming involves the creation of text based 
+						files containing codes and instructions that read by a 
+						web browser and used to render the visual elements that 
+						make up the web page. It involves 3 distinct types of 
+						codes or instructions:</p>
+						<ul>
+							<li>
+								HTML tags - acronym for Hypertext Markup Language<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to construct the visual and non-visual elements of the page.</i><br/><br/>
+							</li>
+							
+							<li>
+								CSS - acronym for Cascading Style Sheets<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to arrange and format the visual elements on the page, and to implement 
+								the simple parts of user interaction with the 
+								web page.</i><br/><br/>
+							</li>
+					
+							<li>
+								Javascript<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to implement the 
+								more complex parts of user interaction with the web page.</i>
+							</li>
+						</ul>
+						<p>A web site consists of one or more HTML text files, with the extension .htm or .html, inter-linked together so that 
+						the user can switch from one page to another by clicking the hperlinks rather than opening and closing files. A web site 
+						will contain one 'home' or default page. Depending on the web server the web site is hosted on the home page is expected to
+						 be named any of 'index.htm', index.html', 'default.htm', 'default.html'.</p>
+						<p>Generally speaking each page in the web site has the same layout and 
+						color scheme, and with some form of navigation structure containing 
+						hyperlinks to all of the pages in the web siste. But each page will have 
+						unique content in one part of the page.</p>
+						<p>
+							<button class="PreviousNextButtons" onclick="document.location = 'Web_course_html.html';">NEXT &gt;</button>
+						</p>
 					</div>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 				<!-- End Content --></div>
