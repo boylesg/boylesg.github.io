@@ -1241,8 +1241,8 @@
 									password entered by the user. Which one you use depends on what you set the 'method' property to in
 									your form, method="get" or method="post".</p>
 								<p>Now you could compare that to a master password stored securely in a SQL database on the web server. 
-									If they match you cvould manipulate the HTML on the web page in order to make the rest of the 
-									content visible to the user.
+									If they match you cvould manipulate the HTML on the web page, before it is re-sent to the user's web browser,
+									 in order to make the rest of the content visible to the user.
 								</p>
 								<p>It is important to understand that the web server will remove all the code between the tags &lt;?php...?&gt;, 
 									and the tags themselves, before the html file is downloaded again by the web browser. This will also cause the 
