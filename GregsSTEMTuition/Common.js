@@ -96,6 +96,10 @@ function DoLogin(strTargetPassword, strCourseName)
 			divContent.style.display = "block";
 			divLogin.style.display = "none";
 			sessionStorage[strCourseName] = strTargetPassword;
+			if (sessionStorage["current_stage"] && (sessionStorage["current_stage"].length > 0))
+				document.getElementById(sessionStorage["current_stage"]).style.display = "block";
+			else
+				document.getElementById("Stage1").style.display = "block";
 		}
 	}
 }
