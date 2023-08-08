@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
-<!-- #BeginTemplate "../master.dwt" -->
+	<!-- #BeginTemplate "../master.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -29,30 +29,6 @@
 			
 				g_arrayTOC = [];
 				
-				function OnBodyLoad()
-				{
-					if (sessionStorage["web_course"] && (sessionStorage["web_course"].length > 0))
-					{
-						DoLogin(sessionStorage["web_course"], "web_course");
-
-						//alert(sessionStorage["current_stage"]);
-						if (sessionStorage["current_stage"] && (sessionStorage["current_stage"].length > 0))
-						{
-							document.getElementById(sessionStorage["current_stage"]).style.display = "block";
-						}
-						else
-						{
-							document.getElementById("Stage1").style.display = "block";
-
-						}
-					}
-					else
-					{
-						document.getElementById("login").style.display = "block";
-					}
-				}
-				
-
 			</script>
 		<!-- #EndEditable -->
 	</head>
@@ -114,7 +90,7 @@
 					</script>
 					<!-- #BeginEditable "content" -->
 
-					<div style="display:none;" id="login">
+					<div id="login">
 						<p>Purchase the password</p>
 						<br/>					
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -128,7 +104,7 @@
 						<input type="password" id="password" value=""/>&nbsp;
 						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
 					</div>
-										
+
 					<div style="display:none;" id="course_content">
 
 						<div style="display:none;" id="Stage1">
@@ -231,7 +207,7 @@
 								<p>&lt;title&gt;MY TITLE&lt;/title&gt;</p>
 								<p>This is a non-visual element that specifies the title of the page. Rather 
 								than being displayed within the browser window it is actually displayed on 
-								the&nbsp;browser page tab.<br />
+								the&nbsp;browser page tab.<br/>
 								<img alt="" height="157" src="images/Title.jpg" width="384" /></p>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage5', 'Stage4')">&lt; PREVIOUS</button>&nbsp;
@@ -349,12 +325,12 @@
 							<h2>Images</h2>
 								
 								<p>
-									&lt;image src="..." alt="..."&gt;&lt;/image&gt;<br />
-									<br />
-									or<br />
-									<br />
-									&lt;image src="..." alt="..." /&gt;<br />
-									<br />
+									&lt;image src="..." alt="..."&gt;&lt;/image&gt;<br/>
+									<br/>
+									or<br/>
+									<br/>
+									&lt;image src="..." alt="..." /&gt;<br/>
+									<br/>
 									The /&gt; is short hand for &gt;&lt;/image&gt;</p>
 								<p>
 									There are two specific properties that you ought to use and they are:<br/>
@@ -392,7 +368,7 @@
 						<div  id="Stage11" style="display:none">
 							<h2>Hyperlinks</h2>
 								<p>
-									&lt;a href="..."&gt;Hyperlink text visible to the user&lt;/a&gt;<br />
+									&lt;a href="..."&gt;Hyperlink text visible to the user&lt;/a&gt;<br/>
 								</p>
 								<p>
 									There is only one specific property for a hyperlink:<br/>
@@ -407,7 +383,7 @@
 											<br/>
 											<li>A bookmark within the current open page, e.g. &lt;a href="#BOOKMARK"&gt;CLICK ME&lt;/a&gt; In this 
 												case there must be a tag else where on the page that has the property id="BOOKMARK". The tag can be of 
-												any type.</li>
+												any type. E.G. &lt;h1 id="BOOKMARK"&gt;MY HEADING&lt;/h1&gt;</li>
 										</ul>								
 									</ul>
 								</p>
@@ -476,15 +452,900 @@
 								</p>
 						</div>
 						<div  id="Stage13" style="display:none">
-							<h2>XXXXXXXX</h2>
+							<h2>Escape Characters</h2>
+								<p>
+									Let's use the example of the &lt; character. If you literally type the character SHIFT + ,&lt; key
+									in your text editor, as part of a paragraph of plain text, then the web browser is going to read 
+									that character and assume you are trying to specify a tag. It will read the next word from the plain
+									text and then try and figure out what tag your are referring to. Chances are the next word will not 
+									specify a valid HTML tag name and your web browser will spit the dummy and probalby not dispaly the 
+									rest of your web page contents properly.
+								</p>
+								<p>
+									So how do you type are &lt; character in HTML code? You do it like this: &amp;lt;. The code 'lt' 
+									is an acronym for 'less than'. Logically the opposite character, &gt;, is specified by typing
+									&amp;gt; into your HTML code. The code 'gt' is an acronym for 'greater than'.
+								</p>
+								<p>
+									So here is a list of HTML escape characters you are most likely to want to use:
+									<style>
+										.Table
+										{
+											border-collapse: collapse;
+											border-style:solid;
+											border-color:black;
+											border-width:thin;
+										}
+										.Cell
+										{
+											border-style:solid;
+											border-color:black;
+											border-width:thin;
+											width: 240px;
+											padding-left: 10px;
+										}
+									</style>
+									<table class="Table">
+										<tr>
+											<th class="Cell">ESCAPE SEQUENCE</th>
+											<th class="Cell">RENDERED</th>
+											<th class="Cell">NAME</th>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;amp;</td>
+											<td class="Cell"><span style="background-color:silver">&amp;</span></td>
+											<td class="Cell">ampersand</td>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;lt;</td>
+											<td class="Cell"><span style="background-color:silver">&lt;</span></td>
+											<td class="Cell">less than</td>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;gt;</td>
+											<td class="Cell"><span style="background-color:silver">&gt;</span></td>
+											<td class="Cell">greater than</td>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;quot;</td>
+											<td class="Cell"><span style="background-color:silver">&quot;</span></td>
+											<td class="Cell">quotation mark</td>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;apos;</td>
+											<td class="Cell"><span style="background-color:silver">&apos;</span></td>
+											<td class="Cell">apostrophe</td>
+										</tr>
+										<tr>
+											<td class="Cell">&amp;nbsp;</td>
+											<td class="Cell"><span style="background-color:silver">&nbsp;</span></td>
+											<td class="Cell">non-breaking space</td>
+										</tr>
+									</table>
+								</p>
+								<p>
+									There are many other more obscure characters, but I won't cover them here as you are highly 
+									unlikely to have any cause to use them. Just remember these ones.
+								</p>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage12')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage14')">NEXT &gt;</button>
 								</p>
 						</div>
 						
-					</div>
+						<div  id="Stage14" style="display:none">
+							<h2>Tables</h2>
+							
+							<p>A small table that can fit within your page.
+								<br/>
+								&lt;table&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;caption&gt;DESCRIPTION OF YOUR TABLE&lt;/caption&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;th&gt;HEADING FOR COLUMN 1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;th&gt;HEADING FOR COLUMN 2&lt;/td&gt;&nbsp;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;th&gt;HEADING FOR COLUMN 3&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;th&gt;HEADING FOR COLUMN 4&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;&nbsp; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt; 
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;
+											<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+											<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&lt;/table&gt;
+								<br/>
+							</p>
+		
+							<p>A large table that requires scrolling.
+								<br/>
+								&lt;table&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;caption&gt;DESCRIPTION OF YOUR TABLE&lt;/caption&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;thead&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;HEADING FOR COLUMN 1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;HEADING FOR COLUMN 2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;HEADING FOR COLUMN 3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;HEADING FOR COLUMN 4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/thead&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tbody&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R2 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R2 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R2 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R2 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;<
+								br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R3 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R3 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R3 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R3 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tbody&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tfoor&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C1&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C2&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C3&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;td&gt;DATA FOR R1 C4&lt;/td&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tr&gt;
+								<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								&lt;/tfoot&gt;
+								<br/>
+								&lt;/table&gt;
+							</p>
+							<h3>&lt;caption&gt;&lt;/caption&gt;</h3>
+								<p>This defines a text description of your table that is displayed at the bottom of the table.</p>
+									
+							<h3>&lt;table&gt;&lt;/table&gt;</h3>
+								<p>This tag defines the whole table.</p>
+								<p>Specific properties include:</p>
+								<ul>
+									<li><b>border:</b> a postitive integer 0 or more, where 0 means no visible lines and 1 meaning the thinnest possible line. </li>
+									<br/>
+									E.G. &lt;table border="1"&gt;
+									<table border="1">
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+									</table>
+									<br/>
+									<li><b>cellspacing:</b> a postitive integer 0 or more, where 0 means no spacing between cells and rows.</li>
+									<br/>
+									E.G. &lt;table border="1" cellspacing="0"&gt;
+									<table border="1" cellspacing="0">
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+									</table>
+									<br/>
+									E.G. &lt;table border="1" cellspacing="10"&gt;
+									<table border="1" cellspacing="10">
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+									</table>
+									<br/>
+									<li><b>cellpadding:</b> a postitive integer 0 or more, where 0 means no padding between the lines of the cell and any contained text.</li>
+									<br/>
+									E.G. &lt;table border="1" cellspacing="0" cellpadding="5"&gt;
+									<table border="1" cellspacing="0" cellpadding="5">
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+										<tr>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+											<td>XXXX</td>
+										</tr>
+									</table>
+									<br/>
+	
+								</ul>
+								<p>These properties are deprecated, meaning that some modern web browsers or future versions of web browsers may ignore these
+								properties. All these table characteristics can be realised through 
+								modern CSS.</p>
+														
+								<h3>&lt;tr&gt;&lt;/tr&gt;</h3>
+								<p>This tag defines a row within the table. There is only one specific properties for this tag:</p>
+								<p>The specific properties for this tag are deprecated and may no longer work in some web browsers or future versions of 
+									web browsers. Use CSS to instead.</p>
+								
+														
+								<h3>&lt;th&gt;&lt;/th&gt;</h3>
+								<p>This tag defines a heading cell within the row. Any text in a heading cell will be highlighted in some way by the web 
+									browser, e.g. bold text. Typically you would define the cells of only the first row of your table with these tags. 
+									This tag uses the same properties as &lt;td&gt;&lt;/td&gt;.</p>
+								<h3>&lt;td&gt;&lt;/td&gt;</h3>
+								<p>This tag defines an ordinary cell within the row. There are 2 specific properties you can use with this tag and also 
+									&lt;th&gt;&lt;/th&gt;</p>
+								<ul>
+									<li><b>colspan: </b>merges multiple columns into a single column the same width as the specified number of coumns.
+										<br/>
+										You might use it in a table like this:
+										<br/>
+										E.G.<br/>
+										&lt;table border="1" cellspacing="0" cellpadding="5"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;ITEM&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;QUANTITY&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;UNIT COST&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;SUB_TOTAL&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Brackets&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;2&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$12.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$24.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Bolts&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;10&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$1.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$10.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Nuts&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;10&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$0.50&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$5.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td colspan="3"&gt;Total&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$39.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/tr&gt;<br/>
+										&lt;/table&gt;<br/>
+										<br/>
+										<table border="1" cellspacing="0" cellpadding="5">
+											<tr>
+												<th>ITEM</th>
+												<th>QUANTITY</th>
+												<th>UNIT COST</th>
+												<th>SUB_TOTAL</th>
+											</tr>
+											<tr>
+												<td>Brackets</td>
+												<td>2</td>
+												<td>$12.00</td>
+												<td>$24.00</td>
+											</tr>
+											<tr>
+												<td>Bolts</td>
+												<td>10</td>
+												<td>$1.00</td>
+												<td>$10.00</td>
+											</tr>
+											<tr>
+												<td>Nuts</td>
+												<td>10</td>
+												<td>$0.50</td>
+												<td>$5.00</td>
+											</tr>
+											<tr>
+												<th colspan="3" align="right">TOTAL</th>
+												<td>$39.00</td>
+											</tr>
+										</table>
+									</li>
+									<li><b>rowspan: </b>merges multiple rows into a single row the same height as the specified number of rows.
+										<br/>
+										You might use it in a table like this:
+										<br/>
+										E.G.<br/>
+										<br/>
+										&lt;table border="1" cellspacing="0" cellpadding="5"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;ITEM&lt;/th&gt;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Brackets&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Bolts&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;Nuts&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th rowspan="3"&gt;SUB-TOTAL&lt;/td&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;QUANTITY&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;2&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;10&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;10&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;UNIT COST&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$12.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$1.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$0.50&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;th&gt;SUB_TOTAL&lt;/th&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$24.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$10.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$5.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;td&gt;$39.00&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										&lt;/tr&gt;<br/>&lt;/table&gt;<br/>
+										<br/>
+										<table border="1" cellspacing="0" cellpadding="5">
+											<tr>
+												<th>ITEM</th>
+												<td>Brackets</td>
+												<td>Bolts</td>
+												<td>Nuts</td>
+												<th rowspan="3">SUB-TOTAL</th>
+											</tr>
+											<tr>
+												<th>QUANTITY</th>
+												<td>1</td>
+												<td>10</td>
+												<td>10</td>
+											</tr>
+											<tr>
+												<th>UNIT COST</th>
+												<td>$12.00</td>
+												<td>$1.00</td>
+												<td>$0.50</td>
+											</tr>
+											<tr>
+												<th>SUB_TOTAL</th>
+												<td>$24.00</td>
+												<td>$10.00</td>
+												<td>$5.00</td>
+												<td>$39.00</td>
+											</tr>
+										</table>
+									</li>
+								</ul>
+								<p>Other specific properties are deprecated and may no longer work in some web browsers or future versions of web browsers. 
+								Use CSS to instead.</p>
+								<h3>&lt;thead&gt;&lt;/thead&gt;</h3>
+								<p>
+									This tag defines a fixed row or rows, at the top of the table, that 
+									cannot be scrolled. Specific properties of this tag are deprecated 
+									and may not work in all web browsers or future versions of web 
+									browsers.&nbsp; Use CSS to instead.</p>
+									
+													
+								<h3>&lt;tbody&gt;&lt;/tbody&gt;</h3>
+									<p>This tag defines a series rows that can be scrolled. Specific 
+										properties of this tag are deprecated and may not work in all web 
+										browsers or future versions of web browsers. Use CSS to instead.</p>
+												
+								<h3>&lt;tfoot&gt;&lt;/tfoot&gt;</h3>
+									<p>This tag defines a fixed row or rows, at the bottom of the table, 
+										that cannot be scrolled. Specific properties of this tag are 
+										deprecated and may not work in all web browsers or future versions 
+										of web browsers. Use CSS to instead.</p>
+											
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage14', 'Stage13')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage14', 'Stage15')">NEXT &gt;</button>
+								</p>
+						</div>
 
+						<div  id="Stage15" style="display:none">
+							<h2>Block Quotes</h2>
+								<p>&lt;blockquote cite="..."&gt;...&lt;/blockquote&gt;<br/>
+								These are useful in that they automatically indent the contained text.</p>
+								<p>There is only one specific property 'cite' whoch you use to specify the source of the quote. Here is
+									and example:<br/><br/>
+								
+									E.G. &lt;p&gt;Here is a quote from WWF's website:&lt;/p&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blockquote cite="http://www.worldwildlife.org/who/index.html"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For 50 years, WWF has been protecting the future of nature. The world's leading conservation <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;organization, WWF works in 100 countries and is supported by 1.2 million members in the United <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;States and close to 5 million globally.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/blockquote&gt;<br/><br/>
+									
+									<p>Here is a quote from WWF's website:</p>
+									<blockquote cite="http://www.worldwildlife.org/who/index.html">
+										For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+									</blockquote>
+								</p>
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage15', 'Stage14')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage15', 'Stage16')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage16" style="display:none">
+							<h2>Forms</h2>
+								<p>&lt;form ...&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input .../&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input .../&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input .../&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input .../&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input ...&gt;&lt;/input&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input ...&gt;&lt;/input&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input ...&gt;&lt;/input&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input ...&gt;&lt;/input&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br/>																
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit"&gt;<br/>																
+									&lt;/form&gt;<br/><br/>
+
+									As in a construct in which the user enters details like their name, email adddress and phone number etc.
+									and then presses a button to do something with that data.</p>
+									<p>There are 6 specific properties that are worth mentioning:
+										<ul>
+											<li><b>action: </b>This is either a URL of an external web page or a local HTML web page (it can be the same
+												HTML web page that the form is on), to which the form data will be sent when the form is 
+												submitted. This property is required if you don't want the form data to disappear into thin
+												air when the form is submitted</li>
+											<br/><br/>
+											<li><b>method: This specifies the way the form data is sent to the web server.
+												Allowed values are as follows:</b>
+												<ul>
+													<li><b>post: </b>This essentially means that the form data is sent to the web server as 
+														text in a way that hides it from the user of the form.</li>
+													<li><b>get: </b>This essentially means that the form data is sent to the web server as
+														text appended to the URL of the web page in the web browser's search box.</li>
+												</ul>
+												If this property is not specified then the default for the form is 'post'.
+											</li>
+											<br/><br/>
+											<li><b>autocomplete: </b>
+												Allowed values are as follows:</b>
+												<ul>
+													<li><b>on: </b>This mean that typed text prediction is enabled.</li>
+													<li><b>off: </b>This mean that typed text prediction is disabled.</li>
+												</ul>
+											</li>
+											<br/><br/>
+											<li><b>name: </b></li>
+											any alphanumeric text string 
+											specifying the name of the form. 
+											This name is sent along with the 
+											data from the other form inputs 
+											elements. It is handy if you have 
+											more than one form on the page and 
+											you can use to figure out which of 
+											your forms the user submitted.<br/>
+										</ul>
+									<p>There are a few other properties 
+									available but you are not likely to need 
+									them unless you are an advanced programmer.</p>
+								<h3>How is form data sent to the web server?</h3>
+								<ol>
+									<li>The data entered by the user into each 
+									input element is sent via the 'name' 
+									property. If the input does not have its 
+									'name property' specified then any data the 
+									user entered into it is ignored by the web 
+									browser, and not sent to the web server.</li>
+									<br/>
+									<li>The form must have a input with the 
+									'type' property set to 'submit'. The 
+									'submit' input is simply a special type of 
+									button that automatically 'submits' the form 
+									when the user clicks it. It can have a name 
+									property or not. If you have multiple forms 
+									on a page then you can give each submit 
+									button a unique name and alternatively use 
+									it to figure out which form the user 
+									submitted.</li>
+								</ol>
+								<p>If the submission 'method' of the form is set 
+									to 'get' then then the form data will appear as 
+									part of the web pages URL. Consider this simple 
+									login form:<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;form action="MyWebPage.html" method="get"&gt;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									&lt;label for="password"&gt;Password&amp;nbsp;&lt;/label&gt;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									&lt;input type="password" id="password" name="password" value=""/&gt;&amp;nbsp;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									&lt;input type="submit" value="LOG IN" /&gt;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									&lt;/form&gt;</p>
+							        <form action="MyWebPage.html" method="get" style="background-color:silver;padding:10px;width:300px;">
+							                <label for="password">Password&nbsp;</label>
+							                <input type="password" id="password" name="password" value=""/>&nbsp;
+							                <input type="submit" value="LOG IN" />
+							        </form>
+							    </p>
+							    <p>If you enter 'XXXXXXXXXX' as the password and hit the submit button then this is the sort of thing
+							    	you will see in the URL: <b>MyWebPage.html?password=XXXXXXXXXX. </b> So we have the URL with the name of 
+							    	the html file, then a ? symbol, then the name of the first input field (in this case 'password'), then 
+							    	the = symbol and the data entered by the user (in this case XXXXXXXXXX without quotes).
+							    </p>
+								<p>If there are additional inputs with a 'name' property set then you will see a &amp; symbol next, 
+								then the contents of the 'name' of the next input field, then another = symbol and then the value of 
+								that inout field that was entered by the user. And so on till the last input field with its 'name' 
+								property set. E.G. <b>MyWebPage.html?password=XXXXXXXXXX&amp;Surname=Smith&amp;GivenNames=Fred</b></p>
+								<p>If the submission 'method' of the form is set to 'post' then the form data is sent in the same manner
+									except that it is hidden from the user and any one watching them enter data into your form.
+								</p>
+								<h3>POST Method</h3>
+								<p>
+									<b>ADVANTAGE: </b> More secure in that no one can see what password the user has entered for example.<br/>
+									<b>DISADVANTAGE: </b> It is harder to debug because you cannot readily see the form data.<br/>	
+								</p>
+								<h3>GET Method</h3>
+								<p>
+									<b>ADVANTAGE: </b> It is easier to debug because you can readily see the form data that was entered.<br/>
+									<b>DISADVANTAGE: </b> A password entered by the user can potentially be seen by some one watching them..<br/>	
+								</p>
+								<h3>How do you access the form data at the web server?</h3>
+								<p>ASSUMPTIONS:<br/>
+									<ol>
+										<li>You have specified the same HTML web page file that contains the form that sends the data.</li>
+										<li>PHP is the server language installed on your web server.</li>
+									</ol>
+								</p>
+								<p>Very briefly, some where in your HTML web page you would have the following code:<br/>
+									&lt;?php<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_GET["passord"];<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_POST["passord"];<br/>
+									?&gt;<br/>
+									One of these two expression would give you the string "XXXXXXXXXX" given the above example, which was the 
+									password entered by the user. Which one you use depends on what you set the 'method' property to in
+									your form, method="get" or method="post".</p>
+								<p>Now you could compare that to a master password stored securely in a SQL database on the web server. 
+									If they match you cvould manipulate the HTML on the web page in order to make the rest of the 
+									content visible to the user.
+								</p>
+								<p>It is important to understand that the web server will remove all the code between the tags &lt;?php...?&gt;, 
+									and the tags themselves, before the html file is downloaded again by the web browser. This will also cause the 
+									data entered form to be erased, as the HTML web page is rendered again from the HTML code by the web 
+									browser.
+								</p>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage16', 'Stage15')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage16', 'Stage17')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage18" style="display:none">
+							<h2>XXXXXXXXXXX</h2>
+							
+							
+							
+							
+							
+							
+							
+							
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage18', 'Stage17')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage18', 'Stage19')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage19" style="display:none">
+							<h2>XXXXXXXXXXx</h2>
+							
+							
+							
+							
+							
+							
+							
+							
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage19', 'Stage18')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage19', 'Stage20')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage20" style="display:none">
+							<h2>XXXXXXXXXXXXXX</h2>
+							
+							
+							
+							
+							
+							
+							
+							
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage20', 'Stage19')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage20', 'Stage21')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage21" style="display:none">
+							<h2>XXXXXXXXXx</h2>
+							
+							
+							
+							
+							
+							
+							
+							
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage21', 'Stage20')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage21', 'Stage22')">NEXT &gt;</button>
+								</p>
+						</div>
+						<div  id="Stage22" style="display:none">
+							<h2>XXXXXXXXXX</h2>
+							
+							
+							
+							
+							
+							
+							
+							
+								<p>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage22', 'Stage21')">&lt; PREVIOUS</button>&nbsp;
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage22', 'Stage23')">NEXT &gt;</button>
+								</p>
+						</div>
+
+					</div>
 
 
 
