@@ -46,6 +46,10 @@
 
 						}
 					}
+					else
+					{
+						document.getElementById("login").style.display = "block";
+					}
 				}
 				
 
@@ -379,28 +383,100 @@
 									if you wish.
 									<br/><br/>
 									Lorem ipsum dolor sit <image src="images/Title.jpg" alt="images/Title.jpg" style="display:block;"/>amet, consectetur adipiscing
-								</p>;
+								</p>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage9')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage1')">NEXT &gt;</button>
+									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage11')">NEXT &gt;</button>
 								</p>
 						</div>
 						<div  id="Stage11" style="display:none">
 							<h2>Hyperlinks</h2>
+								<p>
+									&lt;a href="..."&gt;Hyperlink text visible to the user&lt;/a&gt;<br />
+								</p>
+								<p>
+									There is only one specific property for a hyperlink:<br/>
+									<ul>
+										<li><b>href:</b> this is required and specifies the destination that the user will be sent to when they 
+											click the hyperlink. It can be either:
+										</li>
+										<ul>
+											<li>A local HTML file with an optional path, e.g. &lt;a href="destination.html"&gt;CLICK ME&lt;/a&gt;</li>
+											<br/>
+											<li>An external URL, e.g. &lt;a href="http://www.google.com"&gt;CLICK ME&lt;/a&gt;</li>
+											<br/>
+											<li>A bookmark within the current open page, e.g. &lt;a href="#BOOKMARK"&gt;CLICK ME&lt;/a&gt; In this 
+												case there must be a tag else where on the page that has the property id="BOOKMARK". The tag can be of 
+												any type.</li>
+										</ul>								
+									</ul>
+								</p>
+								<p>
+									In this example: &lt;a href="destination.html"&gt;CLICK ME&lt;/a&gt; the text 'CLICK ME' will
+									appear as the 'thing' you click on to follow the hyperlink:<br/>
+									<a href="">CLICK ME</a>
+								</p>
+								<p>
+									However this can also be an image such as:<br/>
+									as &lt;a href="destination.html"&gt; &lt;image src="ClickMe.png" alt="ClickMe.png"&gt; &lt;/a&gt;<br/>
+									<a href=""><img src="images/ClickMe.png" alt="images/ClickMe.png" /></a>
+								</p>
+								<p>
+									The hyperlink can also be to the image itself so that clicking on the image opens the image on its own, without 
+									the rest of the contents of the web page:<br/>
+									as &lt;a href="ClickMe.png"&gt; &lt;image src="ClickMe.png" alt="ClickMe.png"&gt; &lt;/a&gt;<br/>
+									<a href="images/ClickMe.png"><img src="images/ClickMe.png" alt="images/ClickMe.png" /></a>
+								</p>
+								<p>
+									Hyperlinks are also inline elements as this example shows:
+								</p>
+								<p>
+									
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+									labore et dolore magna aliqua. Ut enim ad <a href="">CLICK ME</a> minim veniam, quis nostrud exercitation ullamco 
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+									voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+									non proident, sunt in culpa qui officia deserunt <a href=""><img src="images/ClickMe.png" alt="images/ClickMe.png" /></a> 
+									mollit anim id est laborum.
+									
+								</p>								
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage10')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage12')">NEXT &gt;</button>
 								</p>
 						</div>
 						<div  id="Stage12" style="display:none">
-							<h2>Divisions</h2>
+							<h2>Divisions &amp; Spans</h2>
+								<p>
+									&lt;div&gt;...&lt;/div&gt;<br/>
+									&lt;span&gt;...&lt;/span&gt;<br/>
+									Divisions and spans are generic structural elements that are used to build web page structures and layouts. They
+									have no specific properties associated with them, but you can use a wide variety of general properties with them.
+								</p>
+								<p>
+									Divs are 'block' elements that display in the same way as paragraphs do. If you have 2 consecutive divs then
+									the first one will display above the second with a line break between them. And you can set a width and height 
+									for them independantly of the contents of the division. Consider the example:
+									&lt;div&gt;...&lt;/div&gt; &lt;div&gt;...&lt;/div&gt;
+									<br/><br/>
+									<div style="background-color:blue;width:100px;height:100px;"></div><div style="background-color:red;width:100px;height:100px;"></div>
+								</p>
+								<p>
+									Spans are 'inline' elements that display in the same way as hyperlinks and images do. If you have 2 consecutive 
+									spans then they will display side by side with no line break between them. The width and height of the span is determined 
+									by its contents. Consider the example: 
+									&lt;span&gt;...&lt;/span&gt; &lt;span&gt;...&lt;/span&gt;
+									<br/><br/>
+									<span style="background-color:blue;">XXXXXXX</span><span style="background-color:red;">XXXXXXX</span><br/>
+									In this case if you don't specify the contents of the spans as the text 'XXXXXXX' then the spans will not be visible.
+								</p>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage11')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage13')">NEXT &gt;</button>
 								</p>
 						</div>
 						<div  id="Stage13" style="display:none">
-							<h2>Spans</h2>
+							<h2>XXXXXXXX</h2>
 								<p>
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage12')">&lt; PREVIOUS</button>&nbsp;
 									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage14')">NEXT &gt;</button>
