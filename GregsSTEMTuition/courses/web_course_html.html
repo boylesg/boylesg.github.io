@@ -6,7 +6,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Web Programming Course - HTML</title>
+		<title>HTML Course</title>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
@@ -106,8 +106,9 @@
 					</div>
 
 					<div style="display:none;" id="course_content">
-
-						<div style="display:none;" id="Stage1">
+						
+						<div style="display:none;" id="Stage">
+						
 							<h2>Introduction</h2>
 								<p>
 									HTML is based on tags that enclose the text to which the tags apply. An example is &lt;h1&gt;Title&lt;
@@ -123,7 +124,8 @@
 									Refer to this web page 
 									(<a href="https://www.w3schools.com/html/default.asp">W3 Schools HTML Reference</a>) 
 									for a full list of HTML tags that you can use in your web pages.
-									However only a selection of HTML tags, that you are likely to use the most often, will be detailed here.</p>
+									However only a selection of HTML tags, that you are likely to use the most often, will be detailed 
+									here.</p>
 								<p>
 									Tags have additional properties that can be applied. Some are specific to the tag while others are
 									general and can be applied equally to any tag. 
@@ -134,16 +136,16 @@
 									In this example the &lt;p&gt; tag has two general properties applied to it: 
 									'class' and 'style'. The actual contents of the property must be 
 									enclosed in double quotes.</p>
-									<p>But again here we will only detail those 
-									properties that are required and the ones you are most likely to use 
-									regularly. For other properties please refer to the above comprehensive list 
-									of HTML tags at W3 Schools.</p>
+									<p>But again only those properties that are required or are otherwise likely to be used often will be 
+									 detailed here. For other properties please refer to the above comprehensive list of HTML tags at W3 Schools.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="document.location='web_course.html'">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage1', 'Stage2')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawFirstStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage2" style="display:none">
+						<div style="display:none;" id="Stage">
+
 							<h2>Headings</h2>
 								<p>
 									&lt;h1&gt;&lt;/h1&gt;<br/>
@@ -159,11 +161,12 @@
 								however you can apply the CSS properties 'class' and 'style' to 
 								them individually if you wish.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage2', 'Stage1')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage2', 'Stage3')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage3" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>HTML</h2>
 								<p>&lt;html&gt;<br/>.<br/>.<br/>.<br/>&lt;/html&gt;</p>
 								<p>These tags are required, and all other tags and text on the page need to 
@@ -183,11 +186,12 @@
 								</ul>So the tag would look like this: &lt;html xmlns="
 								http://www.w3.org/1999/xhtml" dir="ltr"&gt;....&lt;/html&gt;</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage3', 'Stage2')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage3', 'Stage4')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage4" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Header</h2>
 								<p>&lt;head&gt;<br/>.<br/>.<br/>.<br/>&lt;/head&gt;</p>
 								<p>All web pages will have these tags and, by convention, all 
@@ -198,11 +202,12 @@
 								this tag and general properties like 'style' and 'class' are 
 								rarely applied to them.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage4', 'Stage3')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage4', 'Stage5')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>	
-						<div  id="Stage5" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Title</h2>
 								<p>&lt;title&gt;MY TITLE&lt;/title&gt;</p>
 								<p>This is a non-visual element that specifies the title of the page. Rather 
@@ -210,22 +215,24 @@
 								the&nbsp;browser page tab.<br/>
 								<img alt="" height="157" src="images/Title.jpg" width="384" /></p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage5', 'Stage4')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage5', 'Stage6')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage6" style="display:none">	
+						<div style="display:none;" id="Stage">
 							<h2>Body</h2>
 								<p>&lt;body&gt;<br/>.<br/>.<br/>.<br/>&lt;/body&gt;</p>
 								<p>These tags are also required and, by convention, all visual elements of your page should 
 								be between these tags. There are no specific properties for this 
 								tag and general properties are rarely applied.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage6', 'Stage5')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage6', 'Stage7')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>	
-						<div  id="Stage7" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Footer</h2>
 								<p>&lt;footer&gt;<br/>.<br/>.<br/>.<br/>&lt;/footer&gt;</p>
 								<p>Web pages do not always have these tags but you can use them if you wish. 
@@ -233,11 +240,12 @@
 								create a distinct region on your page for displaying particular common elements. 
 								There are no specific properties for this tag.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage7', 'Stage6')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage7', 'Stage8')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage8" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Bare Minimum HTML Web Page</h2>
 							<p>This is an absolute bare minimum HTML web page.</p>
 								<p>
@@ -252,11 +260,12 @@
 								</p>
 								<p>Click on this <a href="bare_minimum.html">link</a> to bring up the above bare minimum web page in your web browser.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage7')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage8', 'Stage9')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage9" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Paragraphs</h2>
 								<p>
 									&lt;p&gt;The quick brown fox jumped over the lazy dog.&lt;/p&gt;
@@ -317,11 +326,12 @@
 								between the two lines of text, as would be the case if you enclosed both passages of text within 
 								separate sets of p tags.</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage8')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage9', 'Stage10')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage10" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Images</h2>
 								
 								<p>
@@ -361,11 +371,12 @@
 									Lorem ipsum dolor sit <image src="images/Title.jpg" alt="images/Title.jpg" style="display:block;"/>amet, consectetur adipiscing
 								</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage9')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage10', 'Stage11')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage11" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Hyperlinks</h2>
 								<p>
 									&lt;a href="..."&gt;Hyperlink text visible to the user&lt;/a&gt;<br/>
@@ -417,11 +428,12 @@
 									
 								</p>								
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage10')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage11', 'Stage12')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage12" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Divisions &amp; Spans</h2>
 								<p>
 									&lt;div&gt;...&lt;/div&gt;<br/>
@@ -447,11 +459,12 @@
 									In this case if you don't specify the contents of the spans as the text 'XXXXXXX' then the spans will not be visible.
 								</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage11')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage12', 'Stage13')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage13" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Escape Characters</h2>
 								<p>
 									Let's use the example of the &lt; character. If you literally type the character SHIFT + ,&lt; key
@@ -528,12 +541,12 @@
 									unlikely to have any cause to use them. Just remember these ones.
 								</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage12')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage13', 'Stage14')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						
-						<div  id="Stage14" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Tables</h2>
 							
 							<p>A small table that can fit within your page.
@@ -769,7 +782,7 @@
 								&lt;/table&gt;
 							</p>
 							<h3>&lt;caption&gt;&lt;/caption&gt;</h3>
-								<p>This defines a text description of your table that is displayed at the bottom of the table.</p>
+								<p>This defines a text description of your table that is displayed at the top of the table.</p>
 									
 							<h3>&lt;table&gt;&lt;/table&gt;</h3>
 								<p>This tag defines the whole table.</p>
@@ -936,6 +949,7 @@
 										&lt;/table&gt;<br/>
 										<br/>
 										<table border="1" cellspacing="0" cellpadding="5">
+											<caption><b>EXAMPLE TABLE WITH COLSPAN</b></caption>
 											<tr>
 												<th>ITEM</th>
 												<th>QUANTITY</th>
@@ -964,7 +978,7 @@
 												<th colspan="3" align="right">TOTAL</th>
 												<td>$39.00</td>
 											</tr>
-										</table>
+										</table><br/>
 									</li>
 									<li><b>rowspan: </b>merges multiple rows into a single row the same height as the specified number of rows.
 										<br/>
@@ -1026,6 +1040,7 @@
 										&lt;/tr&gt;<br/>&lt;/table&gt;<br/>
 										<br/>
 										<table border="1" cellspacing="0" cellpadding="5">
+											<caption><b>EXAMPLE TABLE WITH ROWSPAN</b></caption>
 											<tr>
 												<th>ITEM</th>
 												<td>Brackets</td>
@@ -1059,30 +1074,31 @@
 								Use CSS to instead.</p>
 								<h3>&lt;thead&gt;&lt;/thead&gt;</h3>
 								<p>
-									This tag defines a fixed row or rows, at the top of the table, that 
-									cannot be scrolled. Specific properties of this tag are deprecated 
-									and may not work in all web browsers or future versions of web 
-									browsers.&nbsp; Use CSS to instead.</p>
+									This tag defines a fixed row or rows, at the top of the table, form the semantic head of the table.
+									It might contain a single row with the column headings. 
+									Specific properties of this tag are deprecated and may not work in all web browsers or future versions
+									of web browsers.&nbsp; Use CSS to instead.</p>
 									
 													
 								<h3>&lt;tbody&gt;&lt;/tbody&gt;</h3>
-									<p>This tag defines a series rows that can be scrolled. Specific 
-										properties of this tag are deprecated and may not work in all web 
+									<p>This tag defines a series rows that form the semantic body of the table. The rows in this section
+										might contain the data in each column.
+										Specific properties of this tag are deprecated and may not work in all web 
 										browsers or future versions of web browsers. Use CSS to instead.</p>
 												
 								<h3>&lt;tfoot&gt;&lt;/tfoot&gt;</h3>
-									<p>This tag defines a fixed row or rows, at the bottom of the table, 
-										that cannot be scrolled. Specific properties of this tag are 
-										deprecated and may not work in all web browsers or future versions 
+									<p>This tag defines a fixed row or rows, at the bottom of the table. This might contain a single row that
+										shows totals and sub-totals that apply to each column.
+										Specific properties of this tag are deprecated and may not work in all web browsers or future versions 
 										of web browsers. Use CSS to instead.</p>
 											
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage14', 'Stage13')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage14', 'Stage15')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-
-						<div  id="Stage15" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Block Quotes</h2>
 								<p>&lt;blockquote cite="..."&gt;...&lt;/blockquote&gt;<br/>
 								These are useful in that they automatically indent the contained text.</p>
@@ -1102,11 +1118,12 @@
 									</blockquote>
 								</p>
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage15', 'Stage14')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage15', 'Stage16')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage16" style="display:none">
+						<div style="display:none;" id="Stage">
 							<h2>Forms</h2>
 								<p>&lt;form ...&gt;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input .../&gt;<br/>
@@ -1144,7 +1161,7 @@
 											</li>
 											<br/><br/>
 											<li><b>autocomplete: </b>
-												Allowed values are as follows:</b>
+												Allowed values are as follows:
 												<ul>
 													<li><b>on: </b>This mean that typed text prediction is enabled.</li>
 													<li><b>off: </b>This mean that typed text prediction is disabled.</li>
@@ -1228,8 +1245,9 @@
 								<h3>How do you access the form data at the web server?</h3>
 								<p>ASSUMPTIONS:<br/>
 									<ol>
-										<li>You have specified the same HTML web page file that contains the form that sends the data.</li>
+										<li>You have specified the same HTML web page file that contains the form.</li>
 										<li>PHP is the server language installed on your web server.</li>
+										<li>You are viewing the HTML web page from a web server and not directly from your hard disk.</li>
 									</ol>
 								</p>
 								<p>Very briefly, some where in your HTML web page you would have the following code:<br/>
@@ -1250,105 +1268,604 @@
 									browser.
 								</p>
 								
+								<h3>How do you access the form data through Javascript?</h3>
 								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
+									<p>Very briefly, some where in your HTML web page you would have the following code:<br/><br/>
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("password").value;<br/>
+										&lt;/script"&gt;<br/><br/>
+										Now <b>document.getElementById("password")</b> gets you the edit input where you enter the password and
+										<b>document.getElementById("password").value</b> gets you the actual text that was entered in the text 
+										input, in this example "XXXXXXXXXX".</p>
+										
+									<p>In a similar way you could compare the entered password to a master password stored some in the 
+										javascript code on the web page and, if the y match, then you could manipulate the properties of 
+										different HTML elements to make the rest of the content on the page visible.</p>
 								
 								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage16', 'Stage15')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage16', 'Stage17')">NEXT &gt;</button>
+									<script type="text/javascript">
+										DrawMidStageButtons("web_course.html");
+									</script>
 								</p>
 						</div>
-						<div  id="Stage18" style="display:none">
-							<h2>XXXXXXXXXXX</h2>
+						<div style="display:none;" id="Stage">
+
+							<h2>Inputs</h2>
 							
-							
-							
-							
-							
-							
-							
-							
-								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage18', 'Stage17')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage18', 'Stage19')">NEXT &gt;</button>
+								<p>&lt;input type="..." /&gt; or  &lt;input type="..." /&gt;...&lt;/input&gt;<br/>
+									A HTML input is a construct that allows a user to enter some form data or otherwise interact with the web page. 
+									Such as a text input that lets a user type their name or  button that the user can click.</p>
+								
+								<p>The main speciic property for the input tag is the 'type' property that determines what kind of input
+									it is. The allowed values are as follows:<br/>
+									<ul>
+										<li><b>button: </b>a button that causes something to happen when clicked by the user.</li>
+									    &lt;input type="button" value="CLICK ME"/&gt;<br/>
+									    <input type="button" value="CLICK ME"/><br/><br/>
+									    
+										<li><b>checkbox: </b>a toggle button that is used to denote, for example, true or false, 
+											yes or no, male or female etc. Toggle means that if you click it once it turn on and 
+											if you click it again it turns off. You can use the 'checked' property to have the
+											checkbox turned on bty default.
+										</li>
+										<br/>
+										&lt;label&gt;Do you want to receive our newsletter?&lt;/label&gt;&lt;input type="checkbox" /&gt;<br/>
+									    <label>Do you want to receive our newsletter?</label><input type="checkbox" /><br/><br/>
+									    
+									    &lt;label&gt;Do you want to receive our newsletter?&lt;/label&gt;&lt;input type="checkbox" checked/&gt;<br/>
+									    <label>Do you want to receive our newsletter?</label><input type="checkbox" checked/>
+									    <br/><br/>
+									    
+										<li><b>color: allows the user to pick a color.</b></li>
+									    &lt;label&gt;Choose a color &lt;/label&gt;&lt;input type="color" /&gt;<br/>
+									    <label>Choose a color </label><input type="color" /><br/><br/>
+									    
+										<li><b>date: </b>allows the user to pick a date.</li>
+									    &lt;label&gt;Select your date of birth &lt;/label&gt;&lt;input type="date" /&gt;<br/>
+									    <label>Select your date of birth </label><input type="date" /><br/><br/>
+			
+										<li><b>datetime-local: </b>allows the user to pick a date and time.</li><br/>
+										&lt;label&gt;Select your appointment time &lt;/label&gt;&lt;input type="datetime-local" /&gt;<br/>
+									    <label>Select your appointment time </label><input type="datetime-local" /><br/><br/>
+									    
+										<li><b>email: </b>Allows the user to enter an email address. Use the 'value' property to set a default 
+											value.</li><br/>
+										&lt;label&gt;What is your email address? &lt;/label&gt;&lt;input type="email" value="Fred.Smith@gmail.com"/&gt;<br/>
+									    <label>What is your email address? </label><input type="email" value="Fred.Smith@gmail.com"/><br/><br/>
+									    
+										<li><b>file: </b>allows the user to choose a file.</li><br/>
+										&lt;label&gt;Select the file to upload &lt;/label&gt;&lt;input type="file" /&gt;<br/>
+									    <label>Select the file to upload </label><input type="file" /><br/><br/>
+									    
+										<li><b>hidden: </b>hidden controls are not visible on the web page. You can use them to store 
+											data that is sent with the data in the visible inputs when the form is submitted.</li><br/>
+										&lt;label&gt;Hidden field is to the right&lt;/label&gt;&lt;input type="hidden" /&gt;<br/>
+									    <label>Hidden field is to the right</label><input type="hidden" /><br/><br/>
+									    
+										<li><b>image: </b>this allows you to use an image file as a submit button. For it to work you need 
+											to specify the 'src' property and set it to the optional path and name of your image file. You
+											can also specify the 'alt' property and set it to the text you want displayed if the image
+											cannot be loaded.</li><br/>
+											&lt;input type="image" src="images/ClickMe.png" alt="SUBMIT"/&gt;<br/>
+									    <input type="image" src="images/ClickMe.png" alt="SUBMIT"/><br/><br/>
+									    
+										<li><b>month: </b>allows the user to pick a month of the year. Not all web browsers support this
+											input type. If yours does not then this input will default back to a regular text input.</li><br/>
+										&lt;label&gt;Select your month of travel &lt;/label&gt;&lt;input type="month" /&gt;<br/>
+									    <label>Select your month of travel </label><input type="month" /><br/><br/>
+									    
+										<li><b>number: </b>allows the user to type text but there are 
+											added increment and decrement buttons on the right that will add 1 or subtract 1 from the 
+											typed value assuming it is a number. If it is not a number then the buttons do nothing. Use the
+											'value' property to set a default value.</li><br/>
+										&lt;label&gt;What is your age?&lt;/label&gt;&lt;input type="number" value="10"/&gt;<br/>
+									    <label>What is your age?</label><input type="number" value="10"/><br/><br/>
+									    
+										<li><b>password: </b>allows the user to type text but that text his hidden from anyone 
+											watching them. They are a secure way for the user to type their password for example. Use the
+											'value' property to set a default value.</li><br/>
+										&lt;label&gt;Password &lt;/label&gt;&lt;input type="password" value="password"/&gt;<br/>
+									    <label>Password </label><input type="password" value="password"/><br/><br/>
+									    
+										<li><b>radio: </b>these are buttons that denote a series of fixed options, such as payment method 
+											(Paypal, credit card, bank deposit). Only one of the buttons can be on at a time and clicking 
+											one button turns it on but also turns off any other button that was previously clicked. To get
+											this to work you must specify the name property for each radio button and give them all the
+											same value. You can use the 'checked' property to turn on one of the radio buttons by default.</li>
+										&lt;label&gt;MALE&lt;/label&gt;&lt;input type="radio" name="sex" /&gt;&lt;label&gt;FEMALE&lt;/label&gt;&lt;input type="radio" name="sex" selected/&gt;<br/>
+									    <label>MALE</label><input type="radio" name="sex" /><label>FEMALE</label><input type="radio" name="sex" checked/>
+									    <br/><br/>
+									    
+										<li><b>range: </b>allows the user to select a value from a fixed range in the form of a slider, such
+												sound volume. Use the 'min' and 'max' properties to set minimum and maximum values for the range, 
+												and the 'value' property to set a default value.</li><br/>
+										&lt;label&gt;Sound volume  0 &lt;/label&gt;&lt;input type="range" min="0" max="10" value="3"/&gt;&lt;label&gt; 10&lt;/label&gt;<br/>
+									    <label>Sound volume  0 </label><input type="range" min="0" max="10" value="3"/><label> 10</label><br/><br/>
+									    
+										<li><b>reset: </b>this is a button that has the specific purpose of clearing all the data from the 
+											form so the user can start again.</li><br/>
+										&lt;input type="reset" value="RESET"/&gt;<br/>
+									    <input type="reset" value="RESET"/><br/><br/>
+									    
+										<li><b>search: </b>this behaves like a regular text input and the difference between a text input and 
+											search input is semantic.</li><br/>
+										&lt;label&gt;Search Google for &lt;/label&gt;&lt;input type="search" /&gt;<br/>
+									    <label>Search Google for </label><input type="search" /><br/><br/>
+									    
+										<li><b>submit: </b>this is a button that has the specific purpose of submiting the form that results 
+											in the data entered into the form being sent to the web server.</li><br/>
+										&lt;input type="submit" value="SUBMIT"/&gt;<br/>
+									    <input type="submit" value="SUBMIT"/><br/><br/>
+									    
+										<li><b>tel: </b>this input behaves like a regular text field unless you specify the 'pattern' property
+											that should contain something like pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}". This causes an error message
+											to be displayed to the user, when the form is submitted, if they have not entered a valid phone
+											number. Use the 'value' property to set a default value.</li><br/>
+										&lt;label&gt;Telephone number &lt;/label&gt;&lt;input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/&gt;<br/>
+									    <label>Telephone number </label><input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"/><br/><br/>
+									    
+										<li><b>text: </b>allows the user to type any text. Use the 'value' property to set a default value.</li><br/>
+										&lt;label&gt;Surname &lt;/label&gt;&lt;input type="text" value="Smith"/&gt;<br/>
+									    <label>Surname </label><input type="text" value="Smith"/><br/><br/>
+									    
+										<li><b>time: </b>allows the user to pick a time.</li><br/>
+										&lt;label&gt;Select appointment time &lt;/label&gt;&lt;input type="time" /&gt;<br/>
+									    <label>Select appointment time </label><input type="time" /><br/><br/>
+									    
+										<li><b>url: </b>this input behaves as a regular text input until the form is submitted. If the user has
+											not typed a valid URL then an error message will be displayed. Use the 'value' property to set a default value.</li><br/>
+										&lt;label&gt;What is your web site URL &lt;/label&gt;&lt;input type="url" /&gt;<br/>
+									    <label>What is your web site URL </label><input type="url" /><br/><br/>
+									    
+										<li><b>week: </b>allows the user to pick a week of the year. No all web browsers support this inut type. 
+											If yours does not then this will behave like a regular text input.</li><br/>
+										&lt;label&gt;Select a week &lt;/label&gt;&lt;input type="week" /&gt;
+									    <label>Select a week </label><input type="week" />
+									</ul>
+									<br/>
+									All these inputs have the following common properties that can be applied to them:
+									<ul>
+										<li>disabled<b>: </b>Causes the control to be disabled and greyed out.</li><br/>
+										&lt;label&gt;Surname &lt;/label&gt;&lt;input type="text" value="Smith" disabled/&gt;<br/>
+									    <label>Surname </label><input type="text" value="Smith" disabled/><br/><br/>
+									    
+										<li>readonly<b>: </b>Prevents the used from entering any data or changing the state of the control.</li><br/>
+										&lt;label&gt;Surname &lt;/label&gt;&lt;input type="text" value="Smith" readonly/&gt;<br/>
+									    <label>Surname </label><input type="text" value="Smith" readonly/><br/><br/>
+									</ul>
 								</p>
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
 						</div>
-						<div  id="Stage19" style="display:none">
-							<h2>XXXXXXXXXXx</h2>
+						<div style="display:none;" id="Stage">
+						
+							<h2>Labels</h2>
 							
-							
-							
-							
-							
-							
-							
-							
-								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage19', 'Stage18')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage19', 'Stage20')">NEXT &gt;</button>
-								</p>
+							<p>&lt;label for="..."&gt;Label Name&lt;/label&gt;<br/><br/>
+								Label elements are typically used on forms as a description for the used as to what a particular input
+								is for, e.g. a text input with the label 'surname'.</p>
+								
+								<p>There is only one specific property for a label element and that is the 'for' property. And it should
+								be set to the same text value for the 'id' property of the input the label is attached to.<br/><br/>
+								&lt;label for="surname"&gt;Surname &lt;/label&gt;&lt;input type="text" id="surname"/&gt;<br/>
+								<label for="surname">Surname </label><input type="text" id="surname"/>
+							</p>
+
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
 						</div>
-						<div  id="Stage20" style="display:none">
-							<h2>XXXXXXXXXXXXXX</h2>
+						<div style="display:none;" id="Stage">
+						
+							<h2>Buttons</h2>
 							
+							<p>&lt;button type="..."&gt;&lt;b&gt;BUTTON LABEL&lt;/b&gt;lt;/button&gt;<br/><br/>
+								This is also a clickable button but, unlike the input version, you can use any valid HTML tags to form the label
+								of the button. That includes tags like &lt;b&gt;, &lt;i&gt;, &lt;i&gt;, &lt;u&gt; and &lt;img&gt;. They
+								are far more flexible than input type buttons.<br/><br/>
+								&lt;button type="button" value="XXXXX"&gt;&lt;b style="color:navy;"&gt;CLICK ME&lt;/b&gt;&lt;/button&gt;<br/>
+								<button type="button" value="XXXXX"><b style="color:navy;">CLICK ME</b></button>
+							</p>							
 							
-							
-							
-							
-							
-							
-							
-								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage20', 'Stage19')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage20', 'Stage21')">NEXT &gt;</button>
-								</p>
+							<p>The tag has a dozen or so poperties you can use but the main ones to remember are these ones:
+								<ul>
+									<li><b>type: </b> specifies what type of button it is and it can have these 3 value:</li>
+										<ul>
+											<li><b>button: </b>This value results in the button doing nothing when clicked unless you explicitly
+												make it do something though javascript.</li>
+											<li><b>submit: </b>This value causes the button to submit the form it is in and send the data entered 
+												by the user to the web server.</li>
+											<li><b>reset: </b>This value cause the form to reset, clearing all the data entered by the user previously.</li>
+										</ul>
+									<li>disabled<b>: </b>Causes the control to be disabled and greyed out.</li><br/>
+										&lt;button type="button" value="XXXXX"&gt;&lt;b style="color:navy;" disabled&gt;CLICK ME&lt;/b&gt;&lt;/button&gt;<br/>
+										<button type="button" value="XXXXX" disabled><b style="color:navy;">CLICK ME</b></button>								    
+								</ul>
+								Refer to <a href="https://www.w3schools.com/html/default.asp">W3 Schools</a> if you want to learn about the other properties.
+							</p>
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
 						</div>
-						<div  id="Stage21" style="display:none">
-							<h2>XXXXXXXXXx</h2>
-							
-							
-							
-							
-							
-							
-							
-							
-								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage21', 'Stage20')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage21', 'Stage22')">NEXT &gt;</button>
-								</p>
+						<div style="display:none;" id="Stage">
+						
+							<h2>Multiline Text Input</h2>
+
+							<p>&lt;textarea...&gt;DEFAULT TEXT&lt;/textarea&gt;<br/><br/>
+								This creates a multiline text control.</p>
+
+							<p>The specific properties of this tag, that you are most likely to use regularly, are:<br/>
+								<ul>
+									<li><b>cols: </b>This specified the width in characters.</li>
+									<li><b>rows: This specified the height in characters.</b></li>
+									<li><b>maxlength: </b>This specifies the maximum allowed length, in characters, of text the 
+										user can type.</li>
+									<li><b>placeholder: </b>This specfies the prompt displayed to the user when the input is empty.</li>
+									<li><b>wrap: </b>This specifies how new lines in the text input are handled when the form is submitted. 
+										There are 2 allowed values:<br/>
+										<ul>
+											<li><b>soft: </b>This means that seperate lines in the text input will be separated by 
+												space characters.</li>
+											<li><b>hard: </b>This means that separate lines in the text input will be seperated by
+												carriage return and line feed characters.</li>
+										</ul>
+									</li>
+								</ul>
+							</p>
+
+							<p>&lt;textarea cols="60" rows="10" placeholder="Your poem"&gt;&lt;/textarea&gt;<br/>
+								<textarea cols="60" rows="10" placeholder="Your poem"></textarea>
+							</p>
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
 						</div>
-						<div  id="Stage22" style="display:none">
-							<h2>XXXXXXXXXX</h2>
+						<div style="display:none;" id="Stage">
+						
+							<h2>Select Input</h2>
 							
+							<p>&lt;select...&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option...&gt;Option1&lt;/option&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option...&gt;Option2&lt;/option&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option...&gt;Option3&lt;/option&gt;<br/>
+								.<br/>
+								.<br/>
+								.<br/>
+								&lt;/select...&gt;<br/><br/>
+								This input consists of a non-editable text field and a drop down list of selectable items. When an item is
+								selected its text appears in the text field and the drop down list closes. You use as many 'option' tags 
+								as you need to specify each item in the list that can be selected.
+							</p>
+							<p>The specific properties for the 'select' tag are:<br/>
+								<ul>
+									<li><b>size: </b>If you specify this property then the input will appear as a list box, with a scroll bar 
+										if all the options do not fit inside it. The selected item is highlighted. If you do not specify 
+										this option then the input appears as a non-editable text field with a small down arrow at the right
+										edge. When you click the down arrow the list box with all the available options appears. When you 
+										select an item the item's test appears in the text field and the list box closes.</li><br/>
+										
+										&lt;label&gt;State &lt;/label&gt;&lt;select&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/><br/>
+										<label>State </label><select>
+											<option>ACT</option>
+											<option>NF</option>
+											<option>NSW</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select><br/><br/>
+										
+										&lt;label&gt;State &lt;/label&gt;&lt;select size="4"&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/>
+										<label>State </label><select size="4">
+											<option>ACT</option>
+											<option>NF</option>
+											<option>NSW</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select><br/><br/>
+										
+									<li><b>multiple: </b>This option causes the 'select' input to display as a list box in which you
+										can select more than one option. You can use the 'size' poperty to increase the height of the 
+										list box.</li><br/>
+									
+										&lt;label&gt;State &lt;/label&gt;&lt;select multiple&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/>
+										<label>State </label><select multiple>
+											<option>ACT</option>
+											<option>NF</option>
+											<option>NSW</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select><br/><br/>
+
+										&lt;label&gt;State &lt;/label&gt;&lt;select multiple size="7"&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/>
+										<label>State </label><select multiple size="7">
+											<option>ACT</option>
+											<option>NF</option>
+											<option>NSW</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select><br/><br/>
+
+									<li><b>required: </b>Using this option will cause an error message to be displayed to the used of
+										they submit the form but have not made a selection.</li><br/>
+										&lt;label&gt;State &lt;/label&gt;&lt;select required&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/>
+								</ul>
+							</p>
 							
+							<p>The specific options for the 'option' tag are:<br/>
+								<ul>
+									<li><b>value: </b>This property allows you to give an option a value other than the text name that is
+										available via Javascript.</li><br/>
+									
+									&lt;option value="3754"&gt;Dooreen&lt;/option&gt;<br/><br/>
+									
+									<li><b>selected: </b>This property causes the option to be slected by default.</li><br/>
+									
+										&lt;label&gt;State &lt;/label&gt;&lt;select&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;ACT&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NF&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option selected&gt;TAS&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+										&lt;/select&gt;<br/><br/>
+										<label>State </label><select>
+											<option>ACT</option>
+											<option>NF</option>
+											<option>NSW</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option selected>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select><br/><br/>
+									
+								</ul>
+
+							</p>
+
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
+						</div>
+						<div style="display:none;" id="Stage">
+
+							<h2>Ordered or Numbered Lists</h2>
 							
+							<p>&lt;ol&gt;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 1&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 2&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 3&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 4&lt;/li&gt;<br/>
+								&lt;/ol&gt;
+							</p>
 							
+							<ol>
+								<li>Item 1</li>
+								<li>Item 2</li>
+								<li>Item 3</li><br/>
+									<ol>
+										<li>Sub-item 1</li>
+										<li>Sub-item 2</li>
+										<li>Sub-item 3</li>
+									</ol><br/>
+								<li>Item 4</li>
+							</ol>
 							
+							<p>Numbered lists are created like this and they can be nested if you wish.</p>
 							
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
+						</div>
+						<div style="display:none;" id="Stage">
+
+							<h2>Unordered or Bulleted Lists</h2>
 							
+							<p>&lt;ul&gt;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 1&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 2&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&lt;Sub-item 3&lt;li&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 4&lt;/li&gt;<br/>
+								&lt;/ul&gt;
+							</p>
 							
-								<p>
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage22', 'Stage21')">&lt; PREVIOUS</button>&nbsp;
-									<button type="button" class="PreviousNextButtons" onclick="DoShowHide('Stage22', 'Stage23')">NEXT &gt;</button>
-								</p>
+							<ul>
+								<li>Item 1</li>
+								<li>Item 2</li>
+								<li>Item 3</li><br/>
+									<ul>
+										<li>Sub-item 1</li>
+										<li>Sub-item 2</li>
+										<li>Sub-item 3</li>
+
+									</ul><br/>
+								<li>Item 4</li>
+							</ul>
+							
+							<p>Numbered lists are created like this and they can be nested if you wish.</p>
+
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
+						</div>
+						<div style="display:none;" id="Stage">
+						
+							<h2>Drawing Canvas</h2>
+							
+							<p>This tag is used to create a region in your web page that your can eo free drawing. E.G. Of circles, squares,
+								lines and many other constructs. You can use the canvas tag to code games and animations etc.
+								<br/>
+								&lt;canvas id="MyCanvas" width="300" height="150"&gt;&lt;/canvas&gt;</p>
+								
+							<p>It has 2 specific properties that should be set:</p>
+							<ul>
+								<li><b>width: </b>The width of the canvas in pixels. If you don't specify this property then the default 
+									width is 300.</li>
+								<br/>
+								<li><b>height: </b>The height of the canvas in pixels. If you don't specify this property then the default 
+									height is 150.</li>
+							</ul>
+							<p>You use Javascript to implement the drawing and in order to do so the canvas element must have its ID 
+								property set to a unique name. The following is some brief sample code.<br/>
+								&lt;script type="text/javascript"&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const MyCanvas = document.getElementById("MyCanvas");<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (MyCanvas)<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const context2D = MyCanvas.getContext("2d");<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (context2D)<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.fillStyle = "red";<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.fillRect(20, 20, 150, 100);<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.beginPath();<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.moveTo(120, 20);<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.lineTo(150, 50);<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.lineTo(280, 100);<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context2D.stroke();<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/script&gt;<br/>
+								
+								<canvas style="background-color:silver" id="MyCanvas"></canvas>
+								<script type="text/javascript">
+									const MyCanvas = document.getElementById("MyCanvas");
+									if (MyCanvas)
+									{
+										const context2D = MyCanvas.getContext("2d");
+										if (context2D)
+										{
+											context2D.fillStyle = "red";
+											context2D.fillRect(20, 20, 150, 100);
+											context2D.beginPath();
+											context2D.moveTo(120, 20);
+											context2D.lineTo(150, 50);
+											context2D.lineTo(280, 100);
+											context2D.stroke();
+										}
+									}
+								</script>
+								<br/>There will be more detail about canvas drawing in a later tutorial.
+							</p>
+								
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
+						</div>
+						<div style="display:none;" id="Stage">
+							<h2>Other Tags</h2>
+							
+							<p>There are dozens of other tags you can explore and <a href="https://www.w3schools.com/html/default.asp">W3Schools</a> 
+								has a comprehesive list of them. There are too many to remember all of them, and even I have not had cause to ever use
+								over half of them. But try a new tag out from time to time, read up on its features and see what you can 
+								do with it in your web site.</p>
+														
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
 						</div>
 
+						<div style="display:none;" id="Stage">
+							<h2>Test Yourself</h2>
+							
+							<p></p>
+														
+							<p>
+								<script type="text/javascript">
+									DrawMidStageButtons("web_course.html");
+								</script>
+							</p>
+						</div>
 					</div>
-
-
-
+					
+					<script type="text/javascript">SetStageDivIDs();</script>
 
 					<!-- #EndEditable --></div>
 				<!-- End Content --></div>
