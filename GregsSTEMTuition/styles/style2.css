@@ -452,4 +452,45 @@ h1,h2,h3,h4,h5,h6
 	width: 80px;
 }
 
+/*********************************************************************/
+/*********************************************************************/
+/**
+/** COURSE STAGES
+/**
+/*********************************************************************/
+/*********************************************************************/
 
+.StageHeading
+{
+	color: red;
+}
+
+.StageLink
+{
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+	background-color: #CCBB88;
+	border-radius: 5px;
+	padding: 5px;
+	width: 220px;
+	font-size: small;
+	font-weight: bold;
+}
+
+a:hover
+{
+	background-color: #DDCC99;
+}
+
+.ContentHeader
+{
+	display: none;
+	background-color: #CCDDFF;
+	border-radius: 5px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	width: 1175px;
+}

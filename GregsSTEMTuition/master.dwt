@@ -80,6 +80,9 @@
 				<!-- End Sidebar -->
 				<!-- Begin Content -->
 				<div id="content">
+				
+					<div id="ContentHeader" class="ContentHeader"></div>
+					
 					<script type="text/javascript">
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 						MakeTOC(g_arrayTOC);
