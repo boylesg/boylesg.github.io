@@ -27,16 +27,7 @@
 		<!-- #BeginEditable "TOC" -->
 			<script type="text/javascript">
 			
-				g_arrayTOC = [];
-				
-				function OnBodyLoad()
-				{
-					if (sessionStorage["web_course"].length > 0)
-					{
-						DoLogin(sessionStorage["web_course"], "web_course");
-					}
-				}
-				
+				g_arrayTOC = [];				
 
 			</script>
 		<!-- #EndEditable -->
@@ -72,8 +63,8 @@
 				<div id="sidebar">
 					<ul>
 						<li><a href="../index.html">Home</a></li>
-						<li><a href="../Pedogogy/Pedogogy.html">Pedogogy</a></li>
-						<li><a href="../Testimonials/Testimonials.html">Testimonials</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
 						<li><a href="../education/education.html">Education</a></li>
 						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
 						<li><a href="../work/work.html">Work History</a></li>
@@ -94,12 +85,11 @@
 				<!-- Begin Content -->
 				<div id="content">
 				
-					<div id="ContentHeader" class="ContentHeader"></div>
-					
 					<script type="text/javascript">
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 						MakeTOC(g_arrayTOC);
 					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
 					<!-- #BeginEditable "content" -->
 
 

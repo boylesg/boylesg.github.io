@@ -19,6 +19,10 @@ var g_nStageNum = 1;
 
 function OnBodyLoad()
 {
+	if (sessionStorage["web_course"] && (sessionStorage["web_course"].length > 0))
+	{
+		DoLogin(sessionStorage["web_course"], "web_course");
+	}
 }
 
 function GenerateTryItNow()
@@ -222,7 +226,7 @@ function DrawFirstStageButtons(strStartPage, nStageNum)
 function DrawLastStageButtons(nStageNum)
 {	
 	nStageNum--;
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + nStageNum.toString() + "', 'Stage" + nPreviousStageNum + "')\">&lt; PREVIOUS</button>");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + nStageNum.toString() + "', 'Stage" + (nStageNum - 1).toString() + "')\">&lt; PREVIOUS</button>");
 	
 	return nStageNum + 1;
 }
@@ -245,6 +249,31 @@ function OnClickStageLink(strIDStageDiv2Show)
 
 function SetStageDivIDs(strStageLinkID)
 {
+	const divCourseContent = document.getElementById("course_content");
+	
+	if (divCourseContent)
+	{
+		let strTagName = "";
+		
+		for (let nI = 0; nI < divCourseContent.children.length; nI++)
+		{
+			strTagName = divCourseContent.children[nI].tagName;
+			if (strTagName == "DIV")
+			{
+				divCourseContent.children[nI].id = "Stage" + (nI + 1).toString();
+				
+				for (let nJ = 0; nJ < divCourseContent.children[nI].children.length; nJ++)
+				{
+					strTagName = divCourseContent.children[nI].children[nJ].tagName;
+					if (strTagName == "H2")
+					{
+						divCourseContent.children[nI].children[nJ].id = "Stage" + (nI + 1).ToString() + "Heading";
+					}
+				}
+			}
+		}
+	}
+/*
 	let divStage = null;
 	let headingStage = null;
 	let divContentHeader = document.getElementById("ContentHeader");
@@ -281,7 +310,7 @@ function SetStageDivIDs(strStageLinkID)
 			divContentHeader.innerHTML += g_arrayStageBookmarks[nI];
 		}
 	}
-
+*/
 }
 
 function WriteAsHTMLTags(arrayLinesHTML)
