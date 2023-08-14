@@ -247,6 +247,22 @@ function OnClickStageLink(strIDStageDiv2Show)
 	DoShowHide(strIDStageDiv2Show, sessionStorage["current_stage"]);
 }
 
+function GenerateStageMenu()
+{
+	let divContentHeader = document.getElementById("ContentHeader");
+	let divCourseContent = document.getElementById("course_content");
+
+	if (divContentHeader && divCourseContent)
+	{
+		console.log(g_arrayStageBookmarks);
+		divContentHeader.style.display = divCourseContent.style.display;
+		for (let nI = 0; nI < g_arrayStageBookmarks.length; nI++)
+		{
+			divContentHeader.innerHTML += g_arrayStageBookmarks[nI];
+		}
+	}
+}
+
 function SetStageDivIDs(strStageLinkID)
 {
 	const divCourseContent = document.getElementById("course_content");
@@ -267,50 +283,19 @@ function SetStageDivIDs(strStageLinkID)
 					strTagName = divCourseContent.children[nI].children[nJ].tagName;
 					if (strTagName == "H2")
 					{
-						divCourseContent.children[nI].children[nJ].id = "Stage" + (nI + 1).ToString() + "Heading";
+						divCourseContent.children[nI].children[nJ].id = "Stage" + (nI + 1).toString() + "Heading";
+						g_arrayStageBookmarks.push("<a href=\"#\" class=\"StageLink\" id=\"" + 
+																	divCourseContent.children[nI].children[nJ].innerText +
+																	"\" onclick=\"OnClickStageLink('" +
+																	divCourseContent.children[nI].id + "') \">" + 
+																	divCourseContent.children[nI].children[nJ].innerText + "</a>");
+						break;
 					}
 				}
 			}
 		}
+		GenerateStageMenu();
 	}
-/*
-	let divStage = null;
-	let headingStage = null;
-	let divContentHeader = document.getElementById("ContentHeader");
-	let divCourseContent = document.getElementById("course_content");
-	let divCode = null;
-	let nI = 1;
-
-	do
-	{
-		divStage = document.getElementById("Stage");
-		headingStage = document.getElementById("StageHeading");
-
-		if (divStage)
-		{
-			divStage.id = "Stage" + nI.toString();
-			if (headingStage)
-			{
-				headingStage.id = "Stage" + nI.toString() + "Heading";
-				g_arrayStageBookmarks.push("<a href=\"#\" class=\"StageLink\" id=\"" + 
-											headingStage.innerText + "\" onclick=\"OnClickStageLink('" +
-											divStage.id + "') \">" + headingStage.innerText + "</a>");
-			}
-			nI++;
-		}
-	}
-	while (divStage);
-	
-	if (divContentHeader && divCourseContent)
-	{
-		console.log(g_arrayStageBookmarks);
-		divContentHeader.style.display = divCourseContent.style.display;
-		for (let nI = 0; nI < g_arrayStageBookmarks.length; nI++)
-		{
-			divContentHeader.innerHTML += g_arrayStageBookmarks[nI];
-		}
-	}
-*/
 }
 
 function WriteAsHTMLTags(arrayLinesHTML)
