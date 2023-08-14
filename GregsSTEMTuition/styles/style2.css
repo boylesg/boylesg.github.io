@@ -413,45 +413,45 @@ h1,h2,h3,h4,h5,h6
 /*********************************************************************/
 .TryItNowContainer
 {
-	display: none;
+	display: block;
 	background-color: teal;
-	width: 100%;
+	width: 65.6em;
 	height: 100%;
 	padding: 10px;
+	border-radius: 10px;
 }
 
 .TryItNowCode
 {
 	display: inline;
-	width: 49%;
-	height: 96%;
 	background-color: white;
 	border-color: teal;
-	margin-right: 10px;
-	resize: none;
 }
 
 .TryItNowResults
 {
+	position: relative;
+	top: 2px;
 	display: inline-block;
 	background-color: white;
-	width: 49%;
-	height: 97.8%;
-}
-
-.TryItNowButtonDiv
-{
-	width: 100%;
-	background-color: teal;
-	padding-left: 614px;
-	margin-bottom: 10px;
+	margin-left: 5px;
+	width: 32.5em;
+	height: 10.7em;
 }
 
 .TryItNowButton
 {
+	display: inline-block;
 	width: 80px;
+	margin-bottom: 5px;
+	margin-left: 25em;
+	margin-right: 0.3em;
 }
 
+textarea 
+{
+  resize: none;
+}
 /*********************************************************************/
 /*********************************************************************/
 /**
@@ -493,4 +493,15 @@ a:hover
 	padding-right: 5px;
 	padding-bottom: 5px;
 	width: 1175px;
+}
+
+.Answers
+{
+	display: none;
+	background-color: #C5D5E5;
+	border-radius: 10px;
+	color: navy;
+	font-size: medium;
+	padding: 10px;
+	margin-top: 15px;
 }

@@ -318,18 +318,26 @@ function Replace(strText, strReplaceWhat, strReplaceWith)
 	return strText;
 }
 
-function WriteAsHTMLCode(arrayLinesHTML)
+function GetAsHTMLCode(arrayLinesHTML)
 {
+	let strHTMLCode = "", strLineHTML = "";
+	
 	for (let nI = 0; nI < arrayLinesHTML.length; nI++)
 	{
-		let strLineHTML = arrayLinesHTML[nI];
+		strLineHTML = arrayLinesHTML[nI];
 		strLineHTML = Replace(strLineHTML, " ", "&nbsp;&nbsp;");
 		strLineHTML = Replace(strLineHTML, "<", "&lt;");
 		strLineHTML = Replace(strLineHTML, ">", "&gt;");
 		if (strLineHTML.indexOf("</script_>"))
 			strLineHTML = strLineHTML.replace("</script_>", "</script>")
-		document.write(strLineHTML + "<br/>");
+		strHTMLCode += strLineHTML;
 	}
+	return strHTMLCode;
+}
+
+function WriteAsHTMLCode(arrayLinesHTML)
+{
+	document.write(GetAsHTMLCode(arrayLinesHTML) + "<br/>");
 }
 
 //**********************************************************************************************************************
@@ -338,16 +346,97 @@ function WriteAsHTMLCode(arrayLinesHTML)
 //**********************************************************************************************************************
 //**********************************************************************************************************************
 
+function OnClickSubmitAnswers(arrayQuestions)
+{
+	let divAnswers = document.getElementById("Answers");
+	
+	if (divAnswers)
+	{
+		divAnswers.style.display = "block";
+	}
+}
+
+function GetTryItNowCode(nQuestionNum)
+{
+	let divTryItNow = document.getElementById("TryItNowHTML");
+	let strTryItNowCode = "";
+	
+	if (divTryItNow)
+	{
+		strTryItNowCode = divTryItNow.innerHTML;
+		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowCode", "id=\"TryItNowCode" + nQuestionNum.toString());
+		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowResults", "id=\"TryItNowResults" + nQuestionNum.toString());
+		strTryItNowCode = strTryItNowCode.replace("OnClickButtonRun()", "OnClickButtonRun(" + nQuestionNum.toString() + ")");
+	}
+	return strTryItNowCode;
+}
+
 function GenerateQuestions(arrayQuestions)
 {
-
-
-
-
-
-
-
-
-
-
+	let strButton = "",
+		strText = "",
+		arrayOptions = []
+		nCorrectOption = -1;
+	
+	document.write("<ol>");
+	for (let nI = 0; nI < arrayQuestions.length; nI++)
+	{
+		document.write("<li><b>" + arrayQuestions[nI].strQuestion + "</b></li>");
+		if (arrayQuestions[nI].strType == "code")
+		{
+			document.write(GetTryItNowCode(nI));
+		}
+		else if (arrayQuestions[nI].strType == "multiple")
+		{
+			document.write("<p>");
+			for (let nJ = 0; nJ < arrayQuestions[nI].arrayOptions.length; nJ++)
+			{
+				document.write("<input type=\"radio\" name=\"Option\" id=\"Question" + nI.toString() + "_" + nJ.toString() + 
+					"\"><label for=\"Question" + nI.toString() + "_" + nJ.toString() + "\">" + arrayQuestions[nI].arrayOptions[nJ] + 
+					"</label><br/>");
+			}
+			nCorrectOption = arrayQuestions[nI].nCorrectOption;
+			arrayOptions = arrayQuestions[nI].arrayOptions;
+			strText = arrayOptions[nCorrectOption];
+		}
+		
+		document.write("<br/>");
+	}
+	document.write("</ol><br/><input type=\"button\" value=\"SUBMIT ANSWERS\" onclick=\"OnClickSubmitAnswers(arrayQuestions)\">");
 }
+
+function GenerateAnswers(arrayQuestions)
+{
+	let divAnswers = document.getElementById("Answers");
+	let strAnswers = "<p><h3><u>CORRECT ANSWERS</u></h3>";
+	
+	if (divAnswers)
+	{
+		for (let nI = 0; nI < arrayQuestions.length; nI++)
+		{
+			strAnswers += "<b>" + (nI + 1).toString() + ". </b>";
+			if (arrayQuestions[nI].strType == "code")
+			{
+				strAnswers += GetAsHTMLCode([arrayQuestions[nI].strCorrectAnswer]) + "<br/><br/>";
+			}
+			else if (arrayQuestions[nI].strType == "multiple")
+			{
+				strAnswers += arrayQuestions[nI].arrayOptions[arrayQuestions[nI].nCorrectOption] + "<br/><br/>";
+			}
+		}
+		divAnswers.innerHTML = strAnswers + "</p>";
+	}
+}
+
+function OnClickButtonRun(nQuestionNum)
+{
+	let textareaTryItNowCode = document.getElementById("TryItNowCode" + nQuestionNum.toString());
+	let iframeTryItNowResults = document.getElementById("TryItNowResults" + nQuestionNum.toString());
+	
+	if (textareaTryItNowCode && iframeTryItNowResults)
+	{
+		iframeTryItNowResults.srcdoc = textareaTryItNowCode.value;
+	}
+}
+
+

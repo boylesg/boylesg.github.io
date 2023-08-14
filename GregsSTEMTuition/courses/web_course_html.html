@@ -16,11 +16,13 @@
 		
 		<script type="text/javascript" src="../Common.js"></script>
 			
-		<div id="TryItNowHTML">
+		<div id="TryItNowHTML" style="display:none;">
 			<div class="TryItNowContainer" id="TryItNowContainer">
-				<div class="TryItNowButtonDiv" id="TryItNowButtonDiv"><button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN ></button></div>
-				<textarea class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
-				<iframe class="TryItNowResults" id="TryItNowResults"></iframe>
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
 			</div>
 		</div>
 		
@@ -186,7 +188,7 @@
 								<p>All web pages will have these tags and, by convention, all 
 								the non-visual page elements (those that are not visible to the 
 								user) will be listed between these tags. However if you do type 
-								some text or visual tags in this section they will be display as 
+								some text or visual tags in this section they will be displayed as 
 								page content. There are no specific properties associated with 
 								this tag and general properties like 'style' and 'class' are 
 								rarely applied to them.</p>
@@ -349,7 +351,7 @@
 									<img alt="" height="171" src="images/Paragraphs.jpg" width="942" />
 								</p>
 								
-								<p>If you wqant the first line of the paragraph to be indented then use one of more of &amp;nbsp; like this:<br/><br/>								&lt;p&gt;
+								<p>If you want the first line of the paragraph to be indented then use one of more of &amp;nbsp; like this:<br/><br/>								&lt;p&gt;
 										&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
 										labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
 										laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
@@ -558,6 +560,8 @@
 								<p>
 									So here is a list of HTML escape characters you are most likely to want to use:
 									<style>
+
+
 										.Table
 										{
 											border-collapse: collapse;
@@ -1456,6 +1460,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option>TAS</option>",
@@ -1477,6 +1482,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option>TAS</option>",
@@ -1502,6 +1508,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option>TAS</option>",
@@ -1523,6 +1530,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option>TAS</option>",
@@ -1546,6 +1554,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option>TAS</option>",
@@ -1576,6 +1585,7 @@
 																	"    <option>ACT</option>",
 																	"    <option>NF</option>",
 																	"    <option>NSW</option>",
+																	"    <option>NT</option>",
 																	"    <option>QLD</option>",
 																	"    <option>SA</option>",
 																	"    <option selected>TAS</option>",
@@ -1762,21 +1772,26 @@
 							
 							<script type="text/javascript">
 							
-								const arrayQuestions = [
-															{
-																strQuestion: "",
-																strType: "code",
-																strCode: ""
-															},
-															{
-																strQuestion: "",
-																strType: "multiple",
-																strOptions: ["", "", "", ""]
-															}
-													   ];
-								//alert("1111");					   
-								GenerateQuestions(arrayQuestions);
+								let arrayQuestions = [];
+								
+								arrayQuestions.push({strType:"code",
+														strQuestion:"Create a postage stamp sized image that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
+														strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" /></a>",
+														strAnswer:""});
+								
+								arrayQuestions.push({strType:"multiple",
+														strQuestion:"If you define this element <title>My Title</title>, then where will you see the text 'My Title'?",
+														arrayOptions:["The main content window of the web browser", "The web browser tab in which the page is open in", "No where"],
+														nCorrectOption:1, strAnswer:""});
+						
+								GenerateQuestions(arrayQuestions);					   
 							
+							</script>
+							
+							<div id="Answers" class="Answers"></div>
+							
+							<script type="text/javascript">
+								GenerateAnswers(arrayQuestions);
 							</script>
 														
 							<p>
