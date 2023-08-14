@@ -74,7 +74,7 @@
 									<li class="MenuPopupItem">
 									<a href="c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="web_course.html">Web Programming</a></li>
+									<a href="web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
 									<a href="python_course.html">Python</a></li>
 								</ul>
@@ -453,9 +453,20 @@
 											click the hyperlink. It can be either:
 										</li>
 										<ul>
-											<li>A local HTML file with an optional path, e.g. &lt;a href="destination.html"&gt;CLICK ME&lt;/a&gt;</li>
+											<li>A local HTML file with an optional path, e.g. &lt;a href="destination.html"&gt;CLICK ME&lt;/a&gt; <a href="../index.html">CLICK ME</a></li>
 											<br/>
-											<li>An external URL, e.g. &lt;a href="http://www.google.com"&gt;CLICK ME&lt;/a&gt;</li>
+											<li>An external URL, e.g. &lt;a href="http://www.google.com"&gt;CLICK ME&lt;/a&gt; <a href="http://www.google.com">CLICK ME</a></li>
+											<br/>
+											<li>An email link, e.g. &lt;a href="mailto:FredSmith@gmail.com"&gt;CLICK ME&lt;/a&gt; <a href="mailto:FredSmith@gmail.com">CLICK ME</a>
+												You can also specify subject, cc, bcc and body contents for the email like this:
+												<ul>
+													<li><b>subject: </b><br/>&lt;a href="mailto:FredSmith@gmail.com?subject=HELLO WORLD!"&gt;CLICK ME&lt;/a&gt;  <a href="mailto:FredSmith@gmail.com?subject=HELLO WORLD!">CLICK ME</a></li><br/>
+													<li><b>body: </b><br/>&lt;a href="mailto:FredSmith@gmail.com?body=HELLO WORLD!"&gt;CLICK ME&lt;/a&gt;  <a href="mailto:FredSmith@gmail.com?body=HELLO WORLD!">CLICK ME</a></li><br/>
+													<li><b>cc: </b><br/>&lt;a href="mailto:FredSmith@gmail.com?cc=JudySmith@gmail.com"&gt;CLICK ME&lt;/a&gt;  <a href="mailto:FredSmith@gmail.com?cc=JudySmith@gmail.com">CLICK ME</a></li><br/>
+													<li><b>bcc: </b><br/>&lt;a href="mailto:FredSmith@gmail.com?bcc=JudySmith@gmail.com"&gt;CLICK ME&lt;/a&gt;  <a href="mailto:FredSmith@gmail.com?bcc=JudySmith@gmail.com">CLICK ME</a></li><br/>
+													<li><b>Combined subject and body: </b><br/>&lt;a href="mailto:FredSmith@gmail.com?subject=HELLO WORLD!&body=This is my first HTML email."&gt;CLICK ME&lt;/a&gt; <a href="mailto:FredSmith@gmail.com?subject=HELLO WORLD!&body=This is my first HTML email.">CLICK ME</a></li>
+												</ul>
+											</li>
 											<br/>
 											<li>A bookmark within the current open page, e.g. &lt;a href="#BOOKMARK"&gt;CLICK ME&lt;/a&gt; In this 
 												case there must be a tag else where on the page that has the property id="BOOKMARK". The tag can be of 
@@ -1749,7 +1760,24 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">Test Yourself</h2>
 							
-							<p></p>
+							<script type="text/javascript">
+							
+								const arrayQuestions = [
+															{
+																strQuestion: "",
+																strType: "code",
+																strCode: ""
+															},
+															{
+																strQuestion: "",
+																strType: "multiple",
+																strOptions: ["", "", "", ""]
+															}
+													   ];
+								//alert("1111");					   
+								GenerateQuestions(arrayQuestions);
+							
+							</script>
 														
 							<p>
 								<script type="text/javascript">
