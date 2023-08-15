@@ -1017,6 +1017,45 @@ function GetTickOrCross(structQuestion)
 				}
 			}
 		}
+		/*
+			name=" id=""
+			name=X" id="!"
+			name=X" id="! 
+			
+			letters, digits, hyphens, underscores, colons and periods.
+			- _ : .
+		*/
+		bValid  = structQuestion.strAnswer.indexOf("=\" ") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"/") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"/") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"~") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"`") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"!") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"@") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"#") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"$") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"%") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"^") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"&") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"*") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"(") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\")") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"=") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"+") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"{") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"[") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"}") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"]") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"|") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"\\") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\";") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"'") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"?") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"/") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\"<") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\",") == -1;
+		bValid  &= structQuestion.strAnswer.indexOf("=\">") == -1;
+		
 		if (bValid)
 		{
 			strHTML = strHTMLTick;
@@ -1056,8 +1095,9 @@ function GenerateAnswers(g_arrayQuestions)
 			strAnswers += "<b style=\"color:red;\">YOUR ANSWER: </b>" + GetAsHTMLCode(g_arrayQuestions[nI].strAnswer) + 
 						GetTickOrCross(g_arrayQuestions[nI]) + "<br/><br/><hr><br/>";
 		}
-		strAnswers += "<p><b style=\"color:red;\">YOUR SCORE: </b><b>" + g_nScore.toString() + " / " + g_arrayQuestions.length.toString() + "</b> or <b>" + ((g_nScore * 100)/ g_arrayQuestions.length).toString() + "%</b></p>";
-		strAnswers += "<h1>" + structUL.strCOUNTRY + "</h1>";
+		strAnswers += "<p><b style=\"color:red;\">YOUR SCORE: </b><b>" + g_nScore.toString() + " / " + 
+			g_arrayQuestions.length.toString() + "</b> or <b>" + ((g_nScore * 100)/ g_arrayQuestions.length).toString() + 
+			"%</b></p>";
 		divAnswers.innerHTML = strAnswers + "</p>";
 		g_nScore = 0;
 	}
