@@ -123,6 +123,7 @@ function DoToggleCoursesPopupMenu()
 //**********************************************************************************************************************
 
 var g_arrayStageBookmarks = [];
+var g_nScore = 0;
 
 function DoHighlightCurrentStageLink(strIDLink2Highlight, strIDLink2Unhighlight)
 {
@@ -342,16 +343,19 @@ function WriteAsHTMLCode(arrayLinesHTML)
 
 //**********************************************************************************************************************
 //**********************************************************************************************************************
-//** COURSE FUNCTIONS
+//** TEST YOURSELF FUNCTIONS
 //**********************************************************************************************************************
 //**********************************************************************************************************************
 
-function OnClickSubmitAnswers(arrayQuestions)
+let g_arrayQuestions = [];
+
+function OnClickSubmitAnswers(g_arrayQuestions)
 {
 	let divAnswers = document.getElementById("Answers");
 	
 	if (divAnswers)
 	{
+		GenerateAnswers(g_arrayQuestions);
 		divAnswers.style.display = "block";
 	}
 }
@@ -367,64 +371,168 @@ function GetTryItNowCode(nQuestionNum)
 		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowCode", "id=\"TryItNowCode" + nQuestionNum.toString());
 		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowResults", "id=\"TryItNowResults" + nQuestionNum.toString());
 		strTryItNowCode = strTryItNowCode.replace("OnClickButtonRun()", "OnClickButtonRun(" + nQuestionNum.toString() + ")");
+		g_arrayQuestions[nQuestionNum].strID = "TryItNowCode" + nQuestionNum.toString();
 	}
 	return strTryItNowCode;
 }
 
-function GenerateQuestions(arrayQuestions)
+function GenerateQuestions(g_arrayQuestions)
 {
-	let strButton = "",
-		strText = "",
-		arrayOptions = []
-		nCorrectOption = -1;
-	
+	let strButton = "";
+		
 	document.write("<ol>");
-	for (let nI = 0; nI < arrayQuestions.length; nI++)
+	for (let nI = 0; nI < g_arrayQuestions.length; nI++)
 	{
-		document.write("<li><b>" + arrayQuestions[nI].strQuestion + "</b></li>");
-		if (arrayQuestions[nI].strType == "code")
+		document.write("<li><b>" + g_arrayQuestions[nI].strQuestion + "</b></li>");
+		if (g_arrayQuestions[nI].strType == "code")
 		{
 			document.write(GetTryItNowCode(nI));
 		}
-		else if (arrayQuestions[nI].strType == "multiple")
+		else if (g_arrayQuestions[nI].strType == "multiple")
 		{
 			document.write("<p>");
-			for (let nJ = 0; nJ < arrayQuestions[nI].arrayOptions.length; nJ++)
+			let strChecked = " checked";
+			for (let nJ = 0; nJ < g_arrayQuestions[nI].arrayOptions.length; nJ++)
 			{
-				document.write("<input type=\"radio\" name=\"Option\" id=\"Question" + nI.toString() + "_" + nJ.toString() + 
-					"\"><label for=\"Question" + nI.toString() + "_" + nJ.toString() + "\">" + arrayQuestions[nI].arrayOptions[nJ] + 
-					"</label><br/>");
+				let strText = "<input type=\"radio\" name=\"Option\" id=\"Question" + nI.toString() + "_" + nJ.toString() + 
+					"\"" + strChecked + "\">" + 
+					"<label for=\"Question" + nI.toString() + "_" + nJ.toString() + "\">" + g_arrayQuestions[nI].arrayOptions[nJ] + 
+					"</label><br/>";
+				document.write(strText);
+				strChecked = "";
 			}
-			nCorrectOption = arrayQuestions[nI].nCorrectOption;
-			arrayOptions = arrayQuestions[nI].arrayOptions;
-			strText = arrayOptions[nCorrectOption];
+			g_arrayQuestions[nI].strID = "Question" + nI.toString();
 		}
-		
 		document.write("<br/>");
 	}
-	document.write("</ol><br/><input type=\"button\" value=\"SUBMIT ANSWERS\" onclick=\"OnClickSubmitAnswers(arrayQuestions)\">");
+	document.write("</ol><br/><input type=\"button\" value=\"SUBMIT ANSWERS\" onclick=\"OnClickSubmitAnswers(g_arrayQuestions)\">");
 }
 
-function GenerateAnswers(arrayQuestions)
+function GetYourAnswer(nQuestionNum, structQuestion)
+{
+	let strAnswer = "";
+	let strID = "";
+	let input = null;
+	
+	if (structQuestion.strType == "code")
+	{
+		input = document.getElementById(structQuestion.strID);
+		if (input)
+		{
+			strAnswer = input.value;
+		}
+		else
+		{
+			strAnswer = "Input with ID '" + structQuestion.strID + "' not found!";
+		}
+	}
+	else if (structQuestion.strType == "multiple")
+	{
+		for (let nI = 0; nI < structQuestion.arrayOptions.length; nI++)
+		{
+			strID = "Question" + nQuestionNum.toString() + "_" + nI.toString();
+			input = document.getElementById(strID);
+			if (input && input.checked)
+			{
+				strAnswer = structQuestion.arrayOptions[nI];
+			}
+		}
+	}
+	return strAnswer;
+}
+
+function GetTickOrCross(structQuestion)
+{
+	let strHTML = "<img src=\"images/Cross.png\" alt=\"images/Cross.png\" width=\"20\" style=\"position:relative;top:5px;padding-left:20px;\">";
+	let strHTMLTick = "<img src=\"images/Tick.png\" alt=\"images/Tick.png\" width=\"20\" style=\"position:relative;top:5px;padding-left:20px;\">";
+	
+	if (structQuestion.strType == "code")
+	{
+		let nLastIndex = -1, nCurrentIndex = 0, nMaxIndex = 0, bValid = true;
+		
+		for (let nI = 0; nI < structQuestion.arrayCorrectParts.length; nI++)
+		{
+			if (Array.isArray(structQuestion.arrayCorrectParts[nI]))
+			{
+				for (let nJ = 0; nJ < structQuestion.arrayCorrectParts[nI].length; nJ++)
+				{
+					nCurrentIndex = structQuestion.strAnswer.indexOf(structQuestion.arrayCorrectParts[nI][nJ]);
+					if (nCurrentIndex > nLastIndex)
+					{
+						if (nCurrentIndex > nMaxIndex)
+							nMaxIndex = nCurrentIndex;
+					}
+					else
+					{
+						bValid = false;
+						break;
+					}
+				}
+				if (!bValid)
+				{
+					break;
+				}
+				else
+				{
+					nLastIndex = nMaxIndex;
+				}
+			}
+			else
+			{
+				nCurrentIndex = structQuestion.strAnswer.indexOf(structQuestion.arrayCorrectParts[nI], nLastIndex);
+				if (nCurrentIndex > nLastIndex)
+				{
+					nLastIndex = nCurrentIndex;
+				}
+				else
+				{
+					bValid = false;
+					break;
+				}
+			}
+		}
+		if (bValid)
+		{
+			strHTML = strHTMLTick;
+			g_nScore++;
+		}
+	}
+	else if (structQuestion.strType == "multiple")
+	{
+		if (structQuestion.strAnswer == structQuestion.arrayOptions[structQuestion.nCorrectOption])
+		{
+			strHTML = strHTMLTick;
+			g_nScore++;
+		}
+	}
+	return strHTML;
+}
+
+function GenerateAnswers(g_arrayQuestions)
 {
 	let divAnswers = document.getElementById("Answers");
 	let strAnswers = "<p><h3><u>CORRECT ANSWERS</u></h3>";
 	
 	if (divAnswers)
 	{
-		for (let nI = 0; nI < arrayQuestions.length; nI++)
+		for (let nI = 0; nI < g_arrayQuestions.length; nI++)
 		{
 			strAnswers += "<b>" + (nI + 1).toString() + ". </b>";
-			if (arrayQuestions[nI].strType == "code")
+			if (g_arrayQuestions[nI].strType == "code")
 			{
-				strAnswers += GetAsHTMLCode([arrayQuestions[nI].strCorrectAnswer]) + "<br/><br/>";
+				strAnswers += GetAsHTMLCode([g_arrayQuestions[nI].strCorrectAnswer]) + "<br/><br/>";
 			}
-			else if (arrayQuestions[nI].strType == "multiple")
+			else if (g_arrayQuestions[nI].strType == "multiple")
 			{
-				strAnswers += arrayQuestions[nI].arrayOptions[arrayQuestions[nI].nCorrectOption] + "<br/><br/>";
+				strAnswers += g_arrayQuestions[nI].arrayOptions[g_arrayQuestions[nI].nCorrectOption] + "<br/><br/>";
 			}
+			g_arrayQuestions[nI].strAnswer = GetYourAnswer(nI, g_arrayQuestions[nI]);
+			strAnswers += "<b style=\"color:red;\">YOUR ANSWER: </b>" + GetAsHTMLCode(g_arrayQuestions[nI].strAnswer) + 
+						GetTickOrCross(g_arrayQuestions[nI]) + "<br/><br/><hr><br/>";
 		}
+		strAnswers += "<p><b style=\"color:red;\">YOUR SCORE: </b><b>" + g_nScore.toString() + " / " + g_arrayQuestions.length.toString() + "</b> or <b>" + ((g_nScore * 100)/ g_arrayQuestions.length).toString() + "%</b></p>";
 		divAnswers.innerHTML = strAnswers + "</p>";
+		g_nScore = 0;
 	}
 }
 
@@ -435,6 +543,7 @@ function OnClickButtonRun(nQuestionNum)
 	
 	if (textareaTryItNowCode && iframeTryItNowResults)
 	{
+		g_arrayQuestions[nQuestionNum].strAnswer = textareaTryItNowCode.value;
 		iframeTryItNowResults.srcdoc = textareaTryItNowCode.value;
 	}
 }

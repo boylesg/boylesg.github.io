@@ -11,7 +11,7 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -21,7 +21,7 @@
 				<span><b>YOUR CODE</b></span>
 				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
 				<span><b>RESULTS</b></span><br/>
-				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0"></textarea>
 				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
 			</div>
 		</div>
@@ -1772,29 +1772,24 @@
 							<h2 class="StageHeading">Test Yourself</h2>
 							
 							<script type="text/javascript">
-							
-								let arrayQuestions = [];
 								
-								arrayQuestions.push({strType:"code",
-														strQuestion:"Create a postage stamp sized image that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
-														strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" /></a>",
-														strAnswer:""});
+								g_arrayQuestions.push({strType:"code",
+														strQuestion:"Create an image, with a width of 50 and that will display the file name of the image cannot be loaded, that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
+														strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" width=\"50\"/></a>",
+														arrayCorrectParts: ["<a href=\"images/Test.jpg\">", "<img ", ["src=\"images/Test.jpg\"", "alt=\"images/Test.jpg\"", "width=\"50\""], ">", "</a>"],
+														strAnswer:"", strID:""});
 								
-								arrayQuestions.push({strType:"multiple",
+								g_arrayQuestions.push({strType:"multiple",
 														strQuestion:"If you define this element <title>My Title</title>, then where will you see the text 'My Title'?",
 														arrayOptions:["The main content window of the web browser", "The web browser tab in which the page is open in", "No where"],
-														nCorrectOption:1, strAnswer:""});
-						
-								GenerateQuestions(arrayQuestions);					   
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								GenerateQuestions(g_arrayQuestions);					   
 							
 							</script>
 							
 							<div id="Answers" class="Answers"></div>
-							
-							<script type="text/javascript">
-								GenerateAnswers(arrayQuestions);
-							</script>
-														
+																					
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawLastStageButtons(g_nStageNum);
