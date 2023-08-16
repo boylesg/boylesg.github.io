@@ -697,7 +697,14 @@ function DoLogin(strTargetPassword, strCourseName)
 			if (sessionStorage["current_stage"] && (sessionStorage["current_stage"].length > 0))
 			{
 				//console.log("sessionStorage['current_stage'] = " + sessionStorage["current_stage"]);
-				document.getElementById(sessionStorage["current_stage"]).style.display = "block";
+				let divStage = document.getElementById(sessionStorage["current_stage"]);
+				if (!divStage)
+				{
+					sessionStorage["current_stage"] = "Stage1";
+					divStage = document.getElementById(sessionStorage["current_stage"]);
+				}
+				divStage.style.display = "block";
+					
 			}
 			else if (document.getElementById('Stage1'))
 			{
@@ -855,9 +862,9 @@ function GetAsHTMLCode(arrayLinesHTML)
 		strLineHTML = Replace(strLineHTML, " ", "&nbsp;&nbsp;");
 		strLineHTML = Replace(strLineHTML, "<", "&lt;");
 		strLineHTML = Replace(strLineHTML, ">", "&gt;");
-		if (strLineHTML.indexOf("</script_>"))
+		if (strLineHTML.indexOf("</script_>") > -1)
 			strLineHTML = strLineHTML.replace("</script_>", "</script>")
-		strHTMLCode += strLineHTML;
+		strHTMLCode += strLineHTML + "<br/>";
 	}
 	return strHTMLCode;
 }
