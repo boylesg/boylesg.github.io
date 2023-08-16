@@ -757,10 +757,12 @@ function DrawFirstStageButtons(strStartPage, nStageNum)
 	return nStageNum + 1;
 }
 
-function DrawLastStageButtons(nStageNum)
+function DrawLastStageButtons(strNextPage, nStageNum)
 {	
 	nStageNum--;
 	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + nStageNum.toString() + "', 'Stage" + (nStageNum - 1).toString() + "')\">&lt; PREVIOUS</button>");
+	if (strNextPage.length > 0)
+		document.write("&nbsp;<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"document.location='" + strNextPage+ "'\">NEXT &gt;</button>&nbsp;");
 	
 	return nStageNum + 1;
 }
