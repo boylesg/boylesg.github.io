@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- #BeginTemplate "courses.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>WEB PROGRAMMING - CSS</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<script type="text/javascript" src="../Common.js"></script>
+			
+		<div id="TryItNowHTML" style="display:none;">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0"></textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+			</div>
+		</div>
+		
+	</head>
+	
+	<body onload="OnBodyLoad()">
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's STEM Tuition<br/></div>
+					<div class="website_motto">All you need is passion for the subject &amp; a love of learning.</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="../work/c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="../work/web_course.html">Web Sites</a></li>
+									<li class="MenuPopupItem">
+									<a href="../work/python_course.html">Python</a></li>
+								</ul>
+							</div>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+				
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
+					<div id="login">
+						<p>Purchase the password</p>
+						<br/>			
+						<div style="display:none" id="TenDollarCountry">
+							<p><b>COST: </b>$10.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>						</div>
+						<div style="display:none" id="FiveDollarCountry">
+							<p><b>COST: </b>$5.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>				
+						</div>
+						<div style="display:none" id="OneDollarCountry">
+							<p><b>COST: </b>$1.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="JEVUQDXKFEAWL" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<div style="display:none" id="FiftyCentCountry">
+							<p><b>COST: </b>$0.50 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="QTC2QAC4J34U8" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+					
+					<div style="display:none;" id="course_content">
+					<!-- #BeginEditable "content" -->
+
+					<div style="display:none;">
+					
+						<h2 class="StageHeading">Introduction</h2>
+							<p class="ContentsParagraph">
+								What is CSS and what can you do with it? The lists of things you can do with it is VERY long, but
+								here are some things you can do with it:
+								<ul>
+									<li>Make elements visible or invisible.</li>
+									<li>Change the back ground color of elements.</li>
+									<li>Change the borders of elements:
+										<ul>
+											<li>Style</li>
+											<li>Width</li>
+											<li>Color</li>
+											<li>Thickness</li>
+											<li>Pointed or curved corners</li>
+										</ul>
+									</li>
+									<li>Change fonts
+									
+										<ul>
+											<li>Style</li>
+											<li>Color</li>
+											<li>Weight</li>
+											<li>Italic</li>
+											<li>Underlined</li>
+											<li>Strike through</li>											
+										</ul>
+									</li>
+									<li>Margins around elements</li>
+									<li>Padding within elements</li>
+									<li>Mouse hover characteristics (any of the above and below) of elements</li>
+									<li>Mouse pointer types</li>
+									<li>Height and width of elements</li>
+									<li>How overflow within an element is handled</li>
+									<li>Alignment of elements relative to other elements</li>
+									<li>Alignment of text within</li>
+								</ul>
+							
+							</p>
+							<p>
+								There are just too many for the average beginner, or even seasoned programmers, to remember. So
+								only a selection of the most frequently used properties will be detailed here.
+								Refer to this web page 
+								(<a href="https://www.w3schools.com/css/default.asp">W3 Schools CSS Reference</a>) 
+								for a full list of CSS properties that you can manipulate.
+							</p>
+							<p>
+								There are 3 ways you can apply CSS attributes to elements in your web pages:
+								<ul>
+									<li>Via the 'style' property in HTML tags</li>
+									<li>Via the 'class' property in which you can apply 1 or more CSS classes, seperated by a space.</li>
+									<li>Via the 'id' property.</li>
+								</ul>
+							</p>
+							<h2>The Style Property</h2>
+							<p>
+								The style property is applied to a HTML tag like this:<br/>
+								&lt;p style="background-color:blue;color:red"&gt;XXXXX&lt;/p&gt;
+								<p style="background-color:blue;color:red">XXXXX</p>
+								In this example to CSS attributes have been applied, 'background-color' and 'color'(the color of any text inside the 
+								element. Any invalid CSS attribute names are ignored. Following the attribute name there must be a colon :, and following 
+								that value for that CSS style. In this case the 'background-color' is set to blue and the (text)'color' attribute 
+								is set to red. Any invalid attribute values are also ignored.
+							</p>
+							<p>
+								This method is suitable for applying 3 or less CSS attributes, or combinations of more than 3 CSS attributes
+								that are to be used once on the web page. For longer lists of CSS attributes, and combinations of attributes that are used
+								repeatedly on different elements throughout the web page, then the class or id methods are more efficient.
+							</p>
+							<h2>The class property</h2>
+							<p>
+							
+							</p>
+							<h2>The id property</h2>
+							<p>
+							
+							</p>
+							<h2>Where can CSS classes be listed?</h2>
+							<h3>Between style tags &lt;style&gt;...&lt;/style&gt;</h3>
+							<p>
+								These tags can be any where within your web page because this element is not a visible one. But
+								typically your style section is located between the head tags at the top of your .html/.htm file, 
+								as in this <a href="bare_minimim.html">example</a>. You would typical include your CSS classes here if they are only used within the page and no where else. If
+								you need to use them in many of your web pages then you should list them in your .css file
+							</p>
+							<h3>In style.css that is included in your web page</h3>
+							<p>
+								Your .css file does not necessarily have to be named 'style', however that is the file name that is 
+								typically used (or variations of it). This file can be included in all of your web pages and act as 
+								a central repositry for all your CSS code. You include your .css file via the <b>&lt;link&gt;</b> tage, like 
+								this: <b>&lt;link href="../styles/style2.css" rel="stylesheet" type="text/css" /&gt;</b>. 
+								Typically this would also be located between the <b>&lt;head&gt;</b> tags at the top of your .html/.htm 
+								file. Here is an <a href="bare_minimim.html">example</a>.
+
+							<p>
+							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawFirstStageButtons("web_course.html", g_nStageNum);
+								</script>
+							</p>
+					</div>
+
+					<!-- #EndEditable --></div>
+					</div>
+					<script type="text/javascript">SetStageDivIDs();</script>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/HighVoltage.png" />&nbsp;<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>
