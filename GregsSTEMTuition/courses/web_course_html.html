@@ -11,7 +11,7 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -579,6 +579,7 @@
 							<p>
 								So here is a list of HTML escape characters you are most likely to want to use:
 								<style>
+
 
 
 
@@ -1892,17 +1893,69 @@
 						
 						<script type="text/javascript">
 							
-							g_arrayQuestions.push({strType:"code",
-													strQuestion:"Create an image, with a width of 50 and that will display the file name of the image cannot be loaded, that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
-													strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" width=\"50\"/></a>",
-													arrayCorrectParts: ["<a href=\"images/Test.jpg\">", "<img ", ["src=\"images/Test.jpg\"", "alt=\"images/Test.jpg\"", "width=\"50\""], ">", "</a>"],
-													strAnswer:"", strID:""});
-							
 							g_arrayQuestions.push({strType:"multiple",
 													strQuestion:"If you define this element <title>My Title</title>, then where will you see the text 'My Title'?",
 													arrayOptions:["The main content window of the web browser", "The web browser tab in which the page is open in", "No where"],
 													nCorrectOption:1, strAnswer:"", strID:""});
 
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"Which tag is used to create a region in your web page where you can do free drawing?",
+													arrayOptions:["<p>", "<h1>", "<blockquote", "<canvas>", "<td>"],
+													nCorrectOption:3, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"What is wrong with the following HTML code?\n<p>HELLO WORLD* /p>",
+													arrayOptions:["Nothing", "Missing < from /p>", "/p> should be <p>"],
+													nCorrectOption:1, strAnswer:"", strID:""});
+
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"What is wrong with the following HTML code?\n<p><b>HELLO WORLD</b><p>",
+													arrayOptions:["No matching closing tag for the first opening <p> tag", "Erroneous <b> tag", "Nothing"],
+													nCorrectOption:0, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"Which tag is used to make text display as bold?",
+													arrayOptions:["<i>", "<u>", "<s>", "<i>", "<b>"],
+													nCorrectOption:4, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"Which tag is used to make text display as italics?",
+													arrayOptions:["<i>", "<u>", "<s>", "<i>", "<b>"],
+													nCorrectOption:0, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"Which tag is used to make text display as underlined?",
+													arrayOptions:["<i>", "<u>", "<s>", "<i>", "<b>"],
+													nCorrectOption:1, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"Which tag is used to make text display as strike through?",
+													arrayOptions:["<i>", "<u>", "<s>", "<i>", "<b>"],
+													nCorrectOption:2, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"What do the tags <h1>, <h2>, <h3>, <h4>, <h5> and <h6> do?",
+													arrayOptions:["Create headings", "Create headings with decreasing size fonts on seperate lines", "Create headings with decreasing size fonts on the same line"],
+													nCorrectOption:1, strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"code",
+													strQuestion:"Create an image, with a width of 50 and that will display the file name of the image cannot be loaded, that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
+													strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" width=\"50\"/></a>",
+													arrayCorrectParts: ["<a href=\"images/Test.jpg\">", "<img ", ["src=\"images/Test.jpg\"", "alt=\"images/Test.jpg\"", "width=\"50\""], ">", "</a>"],
+													strAnswer:"", strID:""});							
+/*						
+							g_arrayQuestions.push({strType:"code",
+													strQuestion:"",
+													strCorrectAnswer:"",
+													arrayCorrectParts: ["", "", "", ["", "", ""], ""].
+													strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"multiple",
+													strQuestion:"",
+													arrayOptions:["Optio1", "Option2", "Option3"],
+													nCorrectOption:1, strAnswer:"", strID:""});
+*/
 							GenerateQuestions(g_arrayQuestions);
 														
 						</script>
@@ -1915,10 +1968,6 @@
 							</script>
 						</p>
 					</div>
-					
-
-
-
 
 					</div>
 					
