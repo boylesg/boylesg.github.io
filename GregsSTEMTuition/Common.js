@@ -862,6 +862,7 @@ function GetAsHTMLCode(arrayLinesHTML)
 		strLineHTML = Replace(strLineHTML, " ", "&nbsp;&nbsp;");
 		strLineHTML = Replace(strLineHTML, "<", "&lt;");
 		strLineHTML = Replace(strLineHTML, ">", "&gt;");
+		strLineHTML = Replace(strLineHTML, "\n", "<br/>");
 		if (strLineHTML.indexOf("</script_>") > -1)
 			strLineHTML = strLineHTML.replace("</script_>", "</script>")
 		strHTMLCode += strLineHTML + "<br/>";
@@ -916,7 +917,7 @@ function GenerateQuestions(g_arrayQuestions)
 	document.write("<ol>");
 	for (let nI = 0; nI < g_arrayQuestions.length; nI++)
 	{
-		document.write("<li><b>" + g_arrayQuestions[nI].strQuestion + "</b></li>");
+		document.write("<li><b>" + GetAsHTMLCode([g_arrayQuestions[nI].strQuestion]) + "</b></li>");
 		if (g_arrayQuestions[nI].strType == "code")
 		{
 			document.write(GetTryItNowCode(nI));
@@ -929,7 +930,7 @@ function GenerateQuestions(g_arrayQuestions)
 			{
 				let strText = "<input type=\"radio\" name=\"Option\" id=\"Question" + nI.toString() + "_" + nJ.toString() + 
 					"\"" + strChecked + "\">" + 
-					"<label for=\"Question" + nI.toString() + "_" + nJ.toString() + "\">" + g_arrayQuestions[nI].arrayOptions[nJ] + 
+					"<label for=\"Question" + nI.toString() + "_" + nJ.toString() + "\">" + GetAsHTMLCode([g_arrayQuestions[nI].arrayOptions[nJ]]) + 
 					"</label><br/>";
 				document.write(strText);
 				strChecked = "";

@@ -1914,6 +1914,18 @@
 													arrayOptions:["No matching closing tag for the first opening <p> tag", "Erroneous <b> tag", "Nothing"],
 													nCorrectOption:0, strAnswer:"", strID:""});
 
+							g_arrayQuestions.push({strType:"code",
+													strQuestion:"Given the following list, code a bulleted list, with each item as the bullet text. The list: Games, Windows apps, Web sites, Microcontrollers,\nAndroid apps.",
+													strCorrectAnswer:"<ul>\n     <li>Games</li>\n     <li>Windows apps</li>\n     <li>Web sites</li>\n     <li>Microcontrollers</li>\n     <li>Android apps</li>\n</ul>\n",
+													arrayCorrectParts: ["<ul>", "<li>Games</li>", "<li>Windows apps</li>", "<li>Web sites</li>", "<li>Microcontrollers</li>", "<li>Android apps</li>"],
+													strAnswer:"", strID:""});
+
+							g_arrayQuestions.push({strType:"code",
+													strQuestion:"Modify the above list to include the following list as a numbered sub-list under the 'Web sites' item. The list: HTML, CSS, Javascript, PHP.",
+													strCorrectAnswer:"<ul>\n     <li>Games</li>\n     <li>Windows apps</li>\n     <li>Web sites</li>\n     <li>Microcontrollers</li>\n     <li>Android apps</li>\n</ul>\n",
+													arrayCorrectParts: ["<ul>", "<li>Games</li>", "<li>Windows apps</li>", "<li>Web sites", "<ol>", "<li>HTML</li>", "<li>CSS</li>", "<li>Javascript</li>", "<li>PHP</li>", "</li>", "<li>Microcontrollers</li>", "<li>Android apps</li>"],
+													strAnswer:"", strID:""});
+
 							g_arrayQuestions.push({strType:"multiple",
 													strQuestion:"Which tag is used to make text display as bold?",
 													arrayOptions:["<i>", "<u>", "<s>", "<i>", "<b>"],
@@ -1940,15 +1952,23 @@
 													nCorrectOption:1, strAnswer:"", strID:""});
 
 							g_arrayQuestions.push({strType:"code",
-													strQuestion:"Create an image, with a width of 50 and that will display the file name of the image cannot be loaded, that you can click on to open the image file. Use Test.jpg in the 'images' folder.",
+													strQuestion:"Create an image, with a width of 50 and that will display the file name of the image cannot be loaded, that you can click on to open\nthe image file. Use Test.jpg in the 'images' folder.",
 													strCorrectAnswer:"<a href=\"images/Test.jpg\"><img src=\"images/Test.jpg\" alt=\"images/Test.jpg\" width=\"50\"/></a>",
 													arrayCorrectParts: ["<a href=\"images/Test.jpg\">", "<img ", ["src=\"images/Test.jpg\"", "alt=\"images/Test.jpg\"", "width=\"50\""], ">", "</a>"],
-													strAnswer:"", strID:""});							
+													strAnswer:"", strID:""});
+																			
+							g_arrayQuestions.push({strType:"code",
+													strQuestion:"Create a 3 x 3 table with cells containing the numbers 1 through to 9. Don't worry about borders etc.",
+													strCorrectAnswer:"<table>\n    <tr>\n        <td>1</td>\n        <td>2</td>\n        <td>3</td>\n    <tr>\n    <tr>\n        <td>4</td>\n        <td>5</td>\n        <td>6</td>\n    <tr>\n    <tr>\n        <td>7</td>\n        <td>8</td>\n        <td>9</td>\n    <tr>\n</table>",
+													arrayCorrectParts: ["<table>", "<tr>", "<td>1</td>", "<td>2</td>", "<td>3</td>", "</tr>", "<tr>", "<td>4</td>", "<td>5</td>", "<td>6</td>", "</tr>", "<tr>", "<td>7</td>", "<td>8</td>", "<td>9</td>", "</tr>", "</table>"],
+													strAnswer:"", strID:""});
+
+
 /*						
 							g_arrayQuestions.push({strType:"code",
 													strQuestion:"",
 													strCorrectAnswer:"",
-													arrayCorrectParts: ["", "", "", ["", "", ""], ""].
+													arrayCorrectParts: ["", "", "", ["", "", ""], ""],
 													strAnswer:"", strID:""});
 
 							g_arrayQuestions.push({strType:"multiple",
