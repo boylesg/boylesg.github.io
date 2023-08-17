@@ -11,6 +11,7 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 			</style>
 		<!-- #EndEditable -->
 		
@@ -178,11 +179,15 @@
 								for a full list of CSS properties that you can manipulate.
 							</p>
 							<p>
-								There are 3 ways you can apply CSS attributes to elements in your web pages:
+								There are 4 ways you can apply CSS attributes to elements in your web pages:
 								<ul>
 									<li>Via the 'style' property in HTML tags</li>
+									<br/>
 									<li>Via the 'class' property in which you can apply 1 or more CSS classes, seperated by a space.</li>
+									<br/>
 									<li>Via the 'id' property.</li>
+									<br/>
+									<li>Via tag names.</li>
 								</ul>
 							</p>
 							<h2>The Style Property</h2>
@@ -201,30 +206,363 @@
 								repeatedly on different elements throughout the web page, then the class or id methods are more efficient.
 							</p>
 							<h2>The class property</h2>
-							<p>
-							
-							</p>
+								<p>
+									CSS classes selectors are implemented like this:<br/><br/>
+									<script type="text/javascript">
+									
+										const arrayCode1 = [
+															".Border",
+															"{",
+															"    border-style: solid;",
+															"    border-width: medium;",
+															"    border-color: red;",
+															"}",
+															"",
+									
+															".Text",
+															"{",
+															"    font-size: large;",
+										        			"    font-weight: bold;",
+															"    font-size: 12px;",
+															"    color: navy;",
+															"}"
+														  ]
+														  
+										WriteAsHTMLCode(arrayCode);
+										document.write("<style>");
+										WriteAsHTMLTags(arrayCode);
+										document.write("</style>");
+																		
+									</script>
+								</p>
+								<p>You can apply multiple class selectors by seperating the names by a space like this: <b>&lt;p class="Border Text"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+								<p class="Border Text">HELLO WORLD</p>
+								<p>Or you can apply a single class selector like this: <b>&lt;p class="Border"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+								<p class="Border">HELLO WORLD</p>
+								<p>
+									The advantage of this method are that:
+									<ul>
+										<li>You can apply one or more class selectors to each element, which is great if you want to 
+											seperate different CSS properties into logical collections, as in the above examples.</li>
+											<br/>
+										<li>You can use the id properties of different elements independantly of each other.</li>
+									</ul>
+								</p>
 							<h2>The id property</h2>
-							<p>
+								<p>
+									CSS classes selectors are implemented like this:<br/><br/>
+									<script type="text/javascript">
+									
+										const arrayCode2 = [
+															"#Paragraph",
+															"{",
+															"    border-style: solid;",
+															"    border-width: medium;",
+															"    border-color: red;",
+															"    font-size: large;",
+										        			"    font-weight: bold;",
+															"    font-size: 12px;",
+															"    color: navy;",
+															"}"
+														  ]
+														  
+										WriteAsHTMLCode(arrayCode2);
+										document.write("<style>");
+										WriteAsHTMLTags(arrayCode2);
+										document.write("</style>");
+										
+									</script>
+								</p>
 							
-							</p>
+								<p>You can apply id selectors like this: <b>&lt;p id="Paragraph"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+								<p id="Paragraph">HELLO WORLD</p>
+								<p>
+									This method has two distinct disadvantages:
+									<ul>
+										<li>You cannot apply more one group of CSS attributes like you can with the class method. 
+											You have to combine all the attributes into one selector and this makes your CSS code less
+											flexible and re-usable for other elements in your web pages.</li>
+											<br/>
+										<li>If you have multiple elements that need the same group of CSS attributes then they all need
+											to have the same id. That makes it impossible to 'get' all of these elements via JavaScript
+											document.getElementById("...").</li>
+									</ul>
+								</p>
+
+							<h2>Tag name</h2>
+								<p>
+									Tag name selectors are implemented like this:<br/>
+									<script type="text/javascript">
+									
+										const arrayCode3 = [
+															"<style>",
+															"    h1",
+															"    {",
+															"        color: blue;",
+															"    }",
+															"",
+															"    h2",
+															"    {",
+															"        color: green;",
+															"    }",
+															"",
+															"    h3",
+															"    {",
+															"        color: red;",
+															"    }",
+															"",
+															"    h4",
+															"    {",
+															"        color: orange;",
+															"    }",
+															"",
+															"    h5",
+															"    {",
+															"        color: purple;",
+															"    }",
+															"",
+															"    h6",
+															"    {",
+															"        color: yellow;",
+															"    }"
+														  ]
+														  
+										WriteAsHTMLCode(arrayCode3);
+										
+									</script>
+									<style>
+									
+										#Special1 h1
+										{
+										    color: blue;
+										}
+										
+										#Special1 h2
+										{
+										    color: green;
+										}
+										
+										#Special1 h3
+										{
+										    color: red;
+										}
+										
+										#Special1 h4
+										{
+										    color: orange;
+										}
+										
+										#Special1 h5
+										{
+										    color: purple;
+										}
+									
+										#Special1 h6
+										{
+										    color: yellow;
+										}
+										
+									</style>								
+								</p>
+								<div id="Special1">
+									&lt;h1&gt;HEADING 1&lt;/h1&gt;
+									<h1>HEADING 1</h1>
+									&lt;h2&gt;HEADING 2&lt;/h2&gt;
+									<h2>HEADING 2</h2>
+									&lt;h3&gt;HEADING 3&lt;/h3&gt;
+									<h3>HEADING 3</h3>
+									&lt;h4&gt;HEADING 4&lt;/h4&gt;
+									<h4>HEADING 4</h4>
+									&lt;h5&gt;HEADING 5&lt;/h5&gt;
+									<h5>HEADING 5</h5>
+									&lt;h6&gt;HEADING 6&lt;/h6&gt;
+									<h6>HEADING 6</h6>
+								</div>
+								<p>
+									You can also combine tag names with one set of attributes like this:<br/>
+									<script type="text/javascript">
+								
+										const arrayCode4 = [
+															"<style>",
+															"    h1, h2, h3, h4, h5, h5",
+															"    {",
+															"        color: green;",
+															"    }",
+															"</style>"
+													  	];
+													  
+										WriteAsHTMLCode(arrayCode4);
+									
+									</script>
+									<style>
+									
+										#Special2 h4, h5, h6
+										{
+										    color: green;
+										}
+											
+									</style>								
+								</p>
+								<div id="Special2">
+									&lt;h4&gt;HEADING 4&lt;/h4&gt;
+									<h4>HEADING 4</h4>
+									&lt;h5&gt;HEADING 5&lt;/h5&gt;
+									<h5>HEADING 5</h5>
+									&lt;h6&gt;HEADING 6&lt;/h6&gt;
+									<h6>HEADING 6</h6>
+								</div>
+								<style>
+									#Special a:hover
+									{
+										background-color: yellow;
+									}
+								</style>
+								<p>
+									You can also combine tag names with mouse events, such as the mouse hovering over a hyperlink, like this:<br/>
+									<script type="text/javascript">
+							
+										const arrayCode5 = [
+															"<style>",
+															"    a: hover",
+															"    {",
+															"        background-color: yellow;",
+															"    }",
+															"</style>"
+														   ];
+												  
+										WriteAsHTMLCode(arrayCode5);
+								
+									</script>
+								
+									&lt;a href="#"&gt;HYPERLNK&lt;/a&gt;<br/>
+									<div id="Special3">
+										<a href="#">HYPERLNK</a>
+									</div>
+								</p>
+								
+								<p>
+									You can also restrict the above behavior to hyperlinks with an element with a particular ID like this:<br/>
+									<script type="text/javascript">
+							
+										const arrayCode6 = [
+															"<style>",
+															"    #Special4 a:hover",
+															"    {",
+															"        background-color: green;",
+														    "    }",
+														    "\n",
+														    "    #Special5 a:hover",
+														    "    {",
+															"        background-color: blue;",
+														    "    }",
+															"</style>",
+															"\n",
+															"<div id=\"Special4\">",
+															"    <a href=\"#\">HYPERLINK</a>",
+															"</div>",
+															"\n",
+															"<div id=\"Special5\">",
+															"    <a href=\"#\">HYPERLINK</a>",
+															"</div>"
+													  	];
+												  
+										WriteAsHTMLCode(arrayCode6);
+								
+									</script>
+								</p>
+								<div id="Special4">
+								    <a href="#">HYPERLINK</a>
+								</div>
+								<br/>
+								<div id="Special5">
+								    <a href="#">HYPERLINK</a>
+								</div>
+
 							<h2>Where can CSS classes be listed?</h2>
-							<h3>Between style tags &lt;style&gt;...&lt;/style&gt;</h3>
-							<p>
-								These tags can be any where within your web page because this element is not a visible one. But
-								typically your style section is located between the head tags at the top of your .html/.htm file, 
-								as in this <a href="bare_minimim.html">example</a>. You would typical include your CSS classes here if they are only used within the page and no where else. If
-								you need to use them in many of your web pages then you should list them in your .css file
-							</p>
-							<h3>In style.css that is included in your web page</h3>
-							<p>
-								Your .css file does not necessarily have to be named 'style', however that is the file name that is 
-								typically used (or variations of it). This file can be included in all of your web pages and act as 
-								a central repositry for all your CSS code. You include your .css file via the <b>&lt;link&gt;</b> tage, like 
-								this: <b>&lt;link href="../styles/style2.css" rel="stylesheet" type="text/css" /&gt;</b>. 
-								Typically this would also be located between the <b>&lt;head&gt;</b> tags at the top of your .html/.htm 
-								file. Here is an <a href="bare_minimim.html">example</a>.
-							</p>
+								<h3>Between style tags &lt;style&gt;...&lt;/style&gt;</h3>
+									<p>
+										These tags can be any where within your web page because this element is not a visible one. But
+										typically your style section is located between the head tags at the top of your .html/.htm file, 
+										as in this <a href="bare_minimim.html">example</a>. You would typical include your CSS classes here if they are only used within the page and no where else. If
+										you need to use them in many of your web pages then you should list them in your .css file
+									</p>
+								<h3>In style.css that is included in your web page</h3>
+									<p>
+										Your .css file does not necessarily have to be named 'style', however that is the file name that is 
+										typically used (or variations of it). This file can be included in all of your web pages and act as 
+										a central repositry for all your CSS code. You include your .css file via the <b>&lt;link&gt;</b> tage, like 
+										this: <b>&lt;link href="../styles/style2.css" rel="stylesheet" type="text/css" /&gt;</b>. 
+										Typically this would also be located between the <b>&lt;head&gt;</b> tags at the top of your .html/.htm 
+										file.
+									</p>
+									<p>
+										Here is an <a href="bare_minimim.html">example</a> of using the &lt;link&gt; tag to include style.css. And here
+										is an example of a <a href="../styles/style2.css">style.css</a> in this web site.
+									</p>
+
+							<h2>A selection of commonly used CSS attributes</h2>
+								<p>There are literally hundreds of these CSS attributes and it is impossible for even a seasoned 
+									programmer to remember them all. So we will only cover a small number of the most commonly
+									used attributes.</p>
+								<h3><u>Background colors and images</u></h3>
+									<h4>background-color</h4>
+										<p>&nbsp;</p>
+									<h4>background-image</h4>
+										<p>&nbsp;</p>
+								<h3><u>Borders</u></h3>
+									<h4>border, border-bottom, border-top, border-left, border-right</h4>
+										<p>&nbsp;</p>
+									<h4>border-color, border-bottom-color,  border-left-color, border-right-color, border-top-color</h4>
+										<p>&nbsp;</p>
+									<h4>border-radius, border-bottom-left-radius, border-bottom-right-radius, border-top-left-radius, border-top-right-radius</h4>
+										<p>&nbsp;</p>
+									<h4>border-style, border-bottom-style, border-top-style, border-left-style, border-right-style</h4>
+										<p>&nbsp;</p>
+									<h4>border-width, border-bottom-width, border-top-width, border-left-width, border-right-width</h4>
+										<p>&nbsp;</p>
+									<h4>border-color, border-bottom-color, border-left-color, border-right-color, border-top-color</h4>
+										<p>&nbsp;</p>
+								<h3><u>Fonts</u></h3>
+									<h4>font-color</h4>
+										<p>&nbsp;</p>
+									<h4>font-face</h4>
+										<p>&nbsp;</p>
+									<h4>font-size</h4>
+										<p>&nbsp;</p>
+									<h4>font-style</h4>
+										<p>&nbsp;</p>
+									<h4>font-weight</h4>
+										<p>&nbsp;</p>
+								<h3><u>Element size</u></h3>
+									<h4>Height</h4>
+										<p>&nbsp;</p>
+									<h4>Width</h4>
+										<p>&nbsp;</p>
+								<h3><u>Margins, padding &amp; overflow</u></h3>
+									<h4>margin, margin-bottom, margin-left, margin-right, margin-top</h4>
+										<p>&nbsp;</p>
+									<h4>padding, padding-bottom, padding-left, padding-right, padding-top</h4>
+										<p>&nbsp;</p>
+									<h4>overflow, overflow-x, overflow-y</h4>
+										<p>&nbsp;</p>
+								<h3><u>Miscellaneous</u></h3>
+									<h4>cursor</h4>
+										<p>&nbsp;</p>
+									<h4>display</h4>
+										<p>&nbsp;</p>
+								<h3><u>Positioning</u></h3>
+									<h4>position</h4>
+										<p>&nbsp;</p>
+									<h4>bottom</h4>
+										<p>&nbsp;</p>
+									<h4>left</h4>
+										<p>&nbsp;</p>
+									<h4>right</h4>
+										<p>&nbsp;</p>
+									<h4>top</h4>
+										<p>&nbsp;</p>
+									<h4>rotate</h4>
+										<p>&nbsp;</p>
 					</div>
 					<p>
 						<script type="text/javascript">
