@@ -839,6 +839,7 @@ function WriteAsHTMLTags(arrayLinesHTML)
 	for (let nI = 0; nI < arrayLinesHTML.length; nI++)
 	{
 		document.write(arrayLinesHTML[nI]);
+		console.log(arrayLinesHTML[nI]);
 	}
 }
 

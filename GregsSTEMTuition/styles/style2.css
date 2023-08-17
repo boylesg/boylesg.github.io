@@ -483,6 +483,21 @@ a:hover
 	background-color: #DDCC99;
 }
 
+#Special3 a:hover
+{
+	background-color: yellow;
+}
+
+#Special4 a:hover
+{
+	background-color: lime;
+}
+
+#Special5 a:hover
+{
+	background-color: blue;
+}
+
 .ContentHeader
 {
 	display: none;
