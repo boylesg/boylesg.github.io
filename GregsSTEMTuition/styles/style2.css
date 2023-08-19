@@ -411,6 +411,12 @@ h1,h2,h3,h4,h5,h6
 /**
 /*********************************************************************/
 /*********************************************************************/
+.TryItNowCode
+{
+	display: inline;
+	background-color: white;
+	border-color: teal;
+}
 .TryItNowContainer
 {
 	display: block;
@@ -419,13 +425,6 @@ h1,h2,h3,h4,h5,h6
 	height: 100%;
 	padding: 10px;
 	border-radius: 10px;
-}
-
-.TryItNowCode
-{
-	display: inline;
-	background-color: white;
-	border-color: teal;
 }
 
 .TryItNowResults
@@ -498,6 +497,21 @@ a:hover
 	background-color: blue;
 }
 
+.Border
+{
+    border-style: solid;
+    border-width: medium;
+    border-color: red;
+}
+
+.Text
+{
+    font-size: large;
+    font-weight: bold;
+    font-size: 12px;
+    color: navy;
+}
+
 .ContentHeader
 {
 	display: none;
@@ -520,3 +534,34 @@ a:hover
 	padding: 10px;
 	margin-top: 15px;
 }
+
+/*********************************************************************/
+/*********************************************************************/
+/**
+/** INFO POPUPS
+/**
+/*********************************************************************/
+/*********************************************************************/
+
+.info_popup_iframe
+{
+	width:32em;
+	height: 26em;
+	border-style: none;
+}
+
+.info_popup_container
+{
+	display: none;
+	position: absolute;
+	top: 0px;
+	background-color: lightgoldenrodyellow;
+	color: black;
+	padding: 1em;
+	z-index: 999;
+	width:32.5em;
+	height: auto;
+	overflow: auto;
+}
+
+

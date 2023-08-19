@@ -897,7 +897,7 @@ function OnClickSubmitAnswers(g_arrayQuestions)
 	}
 }
 
-function GetTryItNowCode(nQuestionNum)
+function GetTryItNowCode(nQuestionNum, strCode)
 {
 	let divTryItNow = document.getElementById("TryItNowHTML");
 	let strTryItNowCode = "";
@@ -908,6 +908,10 @@ function GetTryItNowCode(nQuestionNum)
 		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowCode", "id=\"TryItNowCode" + nQuestionNum.toString());
 		strTryItNowCode = strTryItNowCode.replace("id=\"TryItNowResults", "id=\"TryItNowResults" + nQuestionNum.toString());
 		strTryItNowCode = strTryItNowCode.replace("OnClickButtonRun()", "OnClickButtonRun(" + nQuestionNum.toString() + ")");
+		if (strCode)
+			strTryItNowCode = strTryItNowCode.replace("XXXX", strCode);
+		else
+			strTryItNowCode = strTryItNowCode.replace("XXXX", "");
 		g_arrayQuestions[nQuestionNum].strID = "TryItNowCode" + nQuestionNum.toString();
 	}
 	return strTryItNowCode;
