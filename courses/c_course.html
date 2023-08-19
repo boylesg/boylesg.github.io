@@ -1,17 +1,12 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
-<!-- #BeginTemplate "../master.dwt" -->
+	<!-- #BeginTemplate "courses.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>C Course</title>
-			<script type="text/javascript">
-			
-				var arrayTOC = [];
-				
-			</script>
+		<title>YOUR CODERESULTS</title>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
@@ -20,22 +15,18 @@
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
 			
-		<div id="TryItNowHTML">
+		<div id="TryItNowHTML" style="display:none;">
 			<div class="TryItNowContainer" id="TryItNowContainer">
-				<div class="TryItNowButtonDiv" id="TryItNowButtonDiv"><button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN ></button></div>
-				<textarea class="TryItNowCode" id="TryItNowCode" autofocus></textarea>
-				<iframe class="TryItNowResults" id="TryItNowResults"></iframe>
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
 			</div>
 		</div>
 		
-		<!-- #BeginEditable "TOC" -->
-			<script type="text/javascript">
-			
-				g_arrayTOC = [];
-				
-			</script>
-		<!-- #EndEditable -->
 	</head>
 	
 	<body onload="OnBodyLoad()">
@@ -68,8 +59,8 @@
 				<div id="sidebar">
 					<ul>
 						<li><a href="../index.html">Home</a></li>
-						<li><a href="../Pedogogy/Pedogogy.html">Pedogogy</a></li>
-						<li><a href="../Testimonials/Testimonials.html">Testimonials</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
 						<li><a href="../education/education.html">Education</a></li>
 						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
 						<li><a href="../work/work.html">Work History</a></li>
@@ -77,11 +68,11 @@
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="c_course.html">C</a></li>
+									<a href="../work/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="web_course.html">Web Programming</a></li>
+									<a href="../work/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="python_course.html">Python</a></li>
+									<a href="../work/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -89,34 +80,67 @@
 				<!-- End Sidebar -->
 				<!-- Begin Content -->
 				<div id="content">
+				
 					<script type="text/javascript">
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
-						MakeTOC(g_arrayTOC);
 					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
+					<div id="login">
+						<p>Purchase the password</p>
+						<br/>			
+						<div style="display:none" id="TenDollarCountry">
+							<p><b>COST: </b>$10.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>						</div>
+						<div style="display:none" id="FiveDollarCountry">
+							<p><b>COST: </b>$5.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>				
+						</div>
+						<div style="display:none" id="OneDollarCountry">
+							<p><b>COST: </b>$1.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="JEVUQDXKFEAWL" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<div style="display:none" id="FiftyCentCountry">
+							<p><b>COST: </b>$0.50 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="QTC2QAC4J34U8" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+					<!-- #BeginEditable "pre-content" -->
+					
+					<!-- #EndEditable -->
+					<div style="display:none;" id="course_content">
 					<!-- #BeginEditable "content" -->
 
 
 
 
 
-					<p>Purchase the password</p>
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-						<input type="hidden" name="cmd" value="_s-xclick" />
-						<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
-						<input type="hidden" name="currency_code" value="AUD" />
-						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-					</form>				<br/>			
-					<div id="login"><label for="password">Password&nbsp;</label><input type="password" id="password" value=""/>&nbsp;<input type="button" value="LOG IN" onclick="DoLogin('Mjl5RkdFYVlGZTZ5')"/></div>
-					
-					<div style="display:none;" id="course_content">
-						XXXXXXXX
-					</div>
-
-
-
-
-
 					<!-- #EndEditable --></div>
+					</div>
+					<script type="text/javascript">SetStageDivIDs();</script>
 				<!-- End Content --></div>
 			<!-- End Page Content -->
 			<!-- Begin Footer -->
