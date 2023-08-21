@@ -15,14 +15,16 @@
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
 			
 		<div id="TryItNowHTML" style="display:none;">
 			<div class="TryItNowContainer" id="TryItNowContainer">
 				<span><b>YOUR CODE</b></span>
 				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
 				<span><b>RESULTS</b></span><br/>
-				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0"></textarea>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
 				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+				ADD_ON_CODE
 			</div>
 		</div>
 		
@@ -67,11 +69,11 @@
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="../work/c_course.html">C</a></li>
+									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="../work/web_course.html">Web Sites</a></li>
+									<a href="../courses/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="../work/python_course.html">Python</a></li>
+									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -84,7 +86,7 @@
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 					</script>
 					<div id="ContentHeader" class="ContentHeader"></div>
-					<div id="login">
+					<div id="login" class="login">
 						<p>Purchase the password</p>
 						<br/>			
 						<div style="display:none" id="TenDollarCountry">
@@ -127,7 +129,117 @@
 						<input type="password" id="password" value=""/>&nbsp;
 						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
 					</div>
+					<!-- #BeginEditable "pre-content" -->
 					
+						<p>
+							Web programming involves the creation of text based files containing codes and instructions, that are 
+							read by a web browser and used to render the visual elements that make up the web page. It involves 3 
+							distinct types of codes or instructions:
+						</p>
+						<ul>
+							<li>
+								HTML tags - acronym for Hypertext Markup Language<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to construct the visual and non-visual elements of the page.</i><br/><br/>
+							</li>
+							
+							<li>
+								CSS - acronym for Cascading Style Sheets<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to arrange and format the visual elements on the page, and to implement 
+								the simple parts of user interaction with the 
+								web page.</i><br/><br/>
+							</li>
+					
+							<li>
+								Javascript<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to implement the 
+								more complex parts of user interaction with the web page.</i>
+							</li>
+						</ul>
+						<p>
+							A web site consists of one or more HTML text files, with the extension .htm or .html, inter-linked 
+							together so that the user can switch from one page to another by clicking the hyperlinks. Rather than 
+							explicitly opening and closing files. A web site will contain one 'home' or default page. Depending on 
+							the web server the web site is hosted on the home page is expected to be named any of 'index.htm', index.html', 'default.htm', 
+						  	'default.html', 'index.php', 'default.php', 'index.asp', 'default.asp'. There may be other possibilties too. Your
+						  	web hosting service will tell you what the HTML file for your home page should be named.
+						</p>
+						<p>
+						  	HTML files that use PHP or ASP on the web server will need to have the .php and .asp file extensions. If you
+						  	don't give your HTML files those extensions then any PHP or ASP code inside them may be ignored by the web
+						  	server. Other server languages may require different file extensions that flag to the web server what
+						  	server language they are using.
+						</p>
+						<p>Generally speaking each page in the web site has the same layout and color scheme, and with some form of
+						 	navigation structure containing hyperlinks to all of the pages in the web site. But each page will have 
+						 	unique content in one part of the page. Here is a typical structure:<br/>
+						 	<img src="images/WebPageStructure.jpg" width="800" alt="images/WebPageStructure.jpg"/><br/>
+						</p>
+						<p>The <b>header-&gt;content</b> nearly always contains the name of the company, group or individual. The <b>main-&gt;sidebar</b>
+							often contains a navigation structure with link to all the web pages in the web site. The <b>main-&gt;content</b> contains
+							the unique content of each web page. The <b>footer-&gt;content</b> often contains a secodary navigiation structure and
+							contact information. But there is wide variation among web sites and there is no right or wrong answer. It is what ever you are your
+						 	clients find aesthetically pleasing.
+						</p>
+						<p>What software should you use to create your web site and edit the pages? Well that is matter of personal preference. 
+							I prefer MS Expression Web to do the bulk of editing of my web sites. This software is about 15 years old and is
+							deprecated, or no longer maintained by Microsoft. That makes it FREE and I have not managed to find any web editing
+							software that matches its feature of:
+							<ul>
+								<li>A WYSIWYG page editing tab, that lets you edit your web pages in much the same way that you edit a 
+									Microsoft Word document. WYSIWYG = <b>W</b>hat <b>Y</b>ou <b>S</b>ee <b>I</b>s <b>W</b>hat <b>Y</b>ou 
+									<b>G</b>et<br/>
+									<a href="images/CodeTab.jpg"><img src="images/WYSIWYGTab.jpg" width="800" alt="images/WYSIWYGTab.jpg" /></a>
+								</li>
+								<br/><br/>
+								<li>A split tab that you can use to edit your web page like a word document but view the HTML and CSS at the same 
+									time. This give you a quick way to learn about all the HTML tags and CSS styling.<br/>
+									<a href="images/CodeTab.jpg"><img src="images/SplitTab.jpg" width="800" alt="images/SplitTab.jpg" /></a>
+								</li>
+								<br/><br/>
+								<li>A code tab your you directly edit the HTML, CSS and Javascript code.<br/>
+									<a href="images/CodeTab.jpg"><img src="images/CodeTab.jpg" width="800" alt="images/CodeTab.jpg" /></a>
+								</li>
+								<br/><br/>
+								<li>A site creation wizard that will create an entire web site for you, complete with all the navigation 
+									links, based on a small number of themed templates that you can choose from.<br/>
+									<a href="images/SiteWizard.jpg"><img src="images/SiteWizard.jpg" width="600" alt="images/SiteWizard.jpg" /></a>
+									</li>
+								<li>Automatic handling of <b>D</b>ynamic <b>W</b>eb <b>T</b>emplates. 
+									<p>These allow you to create a master web page, a .dwt file, that contains the standard layout and 
+										features that all other HTML web pages (that use the .dwt fie) will adhere to. When you change 
+										the .dwt file MS EXpression Web automatically updates all the other.html web pages. The .dwt file
+										contains editable regions that you can freely edit in each .html web page. The remaining code on
+										your .html files are highlighted with an orange background and is, strictly speaking, not editable.<br/>
+										<a href="images/DWT.jpg"><img src="images/DWT.jpg" width="800" alt="images/DWT.jpg" /></a>
+										</p>
+								</li>
+								<br/><br/>
+								<li> Flagging of HTML syntax errors, such as missing &lt; and &gt; characters and unterminated strings etc.</li>
+								<br/><br/>
+								<li> Flagging of mismatched tags, such as a &lt;p&gt; without a matching &lt;/p&gt;.</li>
+							</ul>
+							You can download MS Expression web
+							from <a href="https://www.majorgeeks.com/mg/getmirror/microsoft_expression_web,1.html">here</a>. It will only run under  
+							MS Windows or a 'Windows Box' on other operating systems.
+						</p>
+						<p>
+							You can also edit your web site and web pages with any standard text editor such as Notepad++ that you can download 
+							from <a href="https://notepad-plus-plus.org/downloads/">here</a>. This is a terrific text editor because it lets you
+							have multiple open text files in tabs and it does syntax highlighting that makes your HTML, CSS and Javascript code easier 
+							to read.
+						</p>
+						<p>
+							You can also use Microsoft Visual Studio Code or VSCode. You can download that software from 
+							<a href="https://code.visualstudio.com/download">"here.</a>
+						</p>
+						<p>Try them all, and many other web editing software out there, and see which one you like the best.</p>
+						<p>Now to get any further you need to purchase the password by clicking the Paypal button above. After paying the 
+							small fee Paypal will re-direct you to a page on my seb site that contains the password. It will not expire
+							so you can run through the web course as many times as you need to. A 'NEXT' button will appear below 
+							allowing you to proceed to the next stage.</p>
+						<p><b style="color:red;">If there are any bugs that prevent the above fom happening then I need to know about it, so please email me.</b></p>
+	
+					<!-- #EndEditable -->
 					<div style="display:none;" id="course_content">
 					<!-- #BeginEditable "content" -->
 
@@ -135,92 +247,7 @@
 
 
 
-					<p>Web programming involves the creation of text based files containing codes and instructions, that are 
-					read by a web browser and used to render the visual elements that make up the web page. It involves 3 
-					distinct types of codes or instructions:</p>
-					<ul>
-						<li>
-							HTML tags - acronym for Hypertext Markup Language<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to construct the visual and non-visual elements of the page.</i><br/><br/>
-						</li>
-						
-						<li>
-							CSS - acronym for Cascading Style Sheets<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to arrange and format the visual elements on the page, and to implement 
-							the simple parts of user interaction with the 
-							web page.</i><br/><br/>
-						</li>
-				
-						<li>
-							Javascript<br/>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i>Used to implement the 
-							more complex parts of user interaction with the web page.</i>
-						</li>
-					</ul>
-					<p>A web site consists of one or more HTML text files, with the extension .htm or .html, inter-linked 
-						together so that the user can switch from one page to another by clicking the hyperlinks. Rather than 
-						explicitly opening and closing files. A web site will contain one 'home' or default page. Depending on 
-						the web server the web site is hosted on the home page is expected to be named any of 'index.htm', index.html', 'default.htm', 
-					  	'default.html', 'index.php', 'default.php', 'index.asp', 'default.asp'. There may be other possibilties too. Your
-					  	web hosting service will tell you what the HTML file for your home page should be named.</p>
-					  	<p>HTML files that use PHP or ASP on the web server will need to have the .php and .asp file extensions. If you
-					  		don't give your HTML files those extensions then any PHP or ASP code inside them may be ignored by the web
-					  		server. Other server languages may require different file extensions that flag to the web server what
-					  		server language they are using.</p>
-					<p>Generally speaking each page in the web site has the same layout and color scheme, and with some form of
-					 	navigation structure containing hyperlinks to all of the pages in the web site. But each page will have 
-					 	unique content in one part of the page. Here is a typical structure:<br/>
-					 	<img src="images/WebPageStructure.jpg" width="800" alt="images/WebPageStructure.jpg"/><br/>
-					</p>
-					<p>The <b>header-&gt;content</b> nearly always contains the name of the company, group or individual. The <b>main-&gt;sidebar</b>
-						often contains a navigation structure with link to all the web pages in the web site. The <b>main-&gt;content</b> contains
-						the unique content of each web page. The <b>footer-&gt;content</b> often contains a secodary navigiation structure and
-						contact information. But there is wide variation among web sites and there is no right or wrong answer. It is what ever you are your
-					 	clients find aesthetically pleasing.
-					</p>
-					<p>What software should you use to create your web site and edit the pages? Well that is matter of personal preference. 
-						I prefer MS Expression Web to do the bulk of editing of my web sites. This software is about 15 years old and is
-						deprecated, or no longer maintained by Microsoft. That makes it FREE and I have not managed to find any web editing
-						software that matches its feature of:
-						<ul>
-							<li>A WYSIWYG page editing tab, that lets you edit your web pages in much the same way that you edit a 
-								Microsoft Word document. WYSIWYG = <b>W</b>hat <b>Y</b>ou <b>S</b>ee <b>I</b>s <b>W</b>hat <b>Y</b>ou 
-								<b>G</b>et<br/>
-								<a href="images/CodeTab.jpg"><img src="images/WYSIWYGTab.jpg" width="800" alt="images/WYSIWYGTab.jpg" /></a>
-							</li>
-							<li>A split tab that you can use to edit your web page like a word document but view the HTML and CSS at the same 
-								time. This give you a quick way to learn about all the HTML tags and CSS styling.<br/>
-								<a href="images/CodeTab.jpg"><img src="images/SplitTab.jpg" width="800" alt="images/SplitTab.jpg" /></a>
-							</li>
-							<li>A code tab your you directly edit the HTML, CSS and Javascript code.<br/>
-								<a href="images/CodeTab.jpg"><img src="images/CodeTab.jpg" width="800" alt="images/CodeTab.jpg" /></a>
-							</li>
-							<li>A site creation wizard that will create an entire web site for you, complete with all the navigation 
-								links, based on a small number of themed templates that you can choose from.<br/>
-								<a href="images/SiteWizard.jpg"><img src="images/SiteWizard.jpg" width="600" alt="images/SiteWizard.jpg" /></a>
-								</li>
-							<li>Automatic handling of <b>D</b>ynamic <b>W</b>eb <b>T</b>emplates. 
-								<p>These allow you to create a master web page, a .dwt file, that contains the standard layout and 
-									features that all other HTML web pages (that use the .dwt fie) will adhere to. When you change 
-									the .dwt file MS EXpression Web automatically updates all the other.html web pages. The .dwt file
-									contains editable regions that you can freely edit in each .html web page. The remaining code on
-									your .html files are highlighted with an orange background and is, strictly speaking, not editable.<br/>
-									<a href="images/DWT.jpg"><img src="images/DWT.jpg" width="800" alt="images/DWT.jpg" /></a>
-									</p>
-							</li>
-						</ul>
-						You can download MS Expression web
-						from <a href="https://www.majorgeeks.com/mg/getmirror/microsoft_expression_web,1.html">here</a>. It will only run under  
-						MS Windows or a 'Windows Box' on other operating systems.
-					</p>
-					<p>You can also edit your web site and web pages with any standard text editor such as Notepad++ that you can download 
-					from <a href="https://notepad-plus-plus.org/downloads/">here</a>. This is a terrific text editor because it lets you
-					have multiple open text files in tabs and it does syntax highlighting that makes your HTML, CSS and Javascript code easier 
-					to read </p>
-					<p>"
-					<p>You can also use Microsoft Visual Studio Code or VSCode. You can download that software from <a href="https://code.visualstudio.com/download">"here.</a>
-					<p>Try them all, and many other web editing software out there, and see which one you like the best.</p>
-					</p>
+					<p>
 						<button class="PreviousNextButtons" onclick="document.location = 'Web_course_html.html';">NEXT &gt;</button>
 					</p>
 

@@ -451,6 +451,24 @@ textarea
 {
   resize: none;
 }
+
+.RadioButtonGroup
+{
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+	padding: 5px;
+	vertical-align: top;
+	font-size: small;
+}
+.TexInputList
+{
+	list-style-type:none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0.5em;
+}
+
 /*********************************************************************/
 /*********************************************************************/
 /**
@@ -564,4 +582,9 @@ a:hover
 	overflow: auto;
 }
 
-
+.login
+{
+	background-color: teal;
+	border-radius: 10px;
+	padding: 20px;
+}

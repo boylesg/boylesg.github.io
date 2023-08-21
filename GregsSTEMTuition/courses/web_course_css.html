@@ -11,19 +11,20 @@
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-
 			</style>
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
 			
 		<div id="TryItNowHTML" style="display:none;">
 			<div class="TryItNowContainer" id="TryItNowContainer">
 				<span><b>YOUR CODE</b></span>
 				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
 				<span><b>RESULTS</b></span><br/>
-				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0"></textarea>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
 				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+				ADD_ON_CODE
 			</div>
 		</div>
 		
@@ -68,11 +69,11 @@
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="../work/c_course.html">C</a></li>
+									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="../work/web_course.html">Web Sites</a></li>
+									<a href="../courses/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="../work/python_course.html">Python</a></li>
+									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -85,7 +86,7 @@
 						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
 					</script>
 					<div id="ContentHeader" class="ContentHeader"></div>
-					<div id="login">
+					<div id="login" class="login">
 						<p>Purchase the password</p>
 						<br/>			
 						<div style="display:none" id="TenDollarCountry">
@@ -128,9 +129,15 @@
 						<input type="password" id="password" value=""/>&nbsp;
 						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
 					</div>
+					<!-- #BeginEditable "pre-content" -->
 					
+					<!-- #EndEditable -->
 					<div style="display:none;" id="course_content">
 					<!-- #BeginEditable "content" -->
+
+
+
+
 
 					<div style="display:none;">
 					
@@ -179,6 +186,16 @@
 								for a full list of CSS properties that you can manipulate.
 							</p>
 							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawFirstStageButtons("web_course_html.html", g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+					
+						<h2 class="StageHeading">Applying CSS</h2>
+							
+							<p>
 								There are 4 ways you can apply CSS attributes to elements in your web pages:
 								<ul>
 									<li>Via the 'style' property in HTML tags</li>
@@ -190,6 +207,14 @@
 									<li>Via tag names.</li>
 								</ul>
 							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+					
 							<h2>The Style Property</h2>
 							<p>
 								The style property is applied to a HTML tag like this:<br/>
@@ -205,370 +230,971 @@
 								that are to be used once on the web page. For longer lists of CSS attributes, and combinations of attributes that are used
 								repeatedly on different elements throughout the web page, then the class or id methods are more efficient.
 							</p>
-							<h2>The class property</h2>
-								<p>
-									CSS classes selectors are implemented like this:<br/><br/>
-									<script type="text/javascript">
-									
-										const arrayCode1 = [
-															".Border",
-															"{",
-															"    border-style: solid;",
-															"    border-width: medium;",
-															"    border-color: red;",
-															"}",
-															"",
-									
-															".Text",
-															"{",
-															"    font-size: large;",
-										        			"    font-weight: bold;",
-															"    font-size: 12px;",
-															"    color: navy;",
-															"}"
-														  ]
-														  
-										WriteAsHTMLCode(arrayCode);
-										document.write("<style>");
-										WriteAsHTMLTags(arrayCode);
-										document.write("</style>");
-																		
-									</script>
-								</p>
-								<p>You can apply multiple class selectors by seperating the names by a space like this: <b>&lt;p class="Border Text"&gt;HELLO WORLD&lt;/p&gt;</b></p>
-								<p class="Border Text">HELLO WORLD</p>
-								<p>Or you can apply a single class selector like this: <b>&lt;p class="Border"&gt;HELLO WORLD&lt;/p&gt;</b></p>
-								<p class="Border">HELLO WORLD</p>
-								<p>
-									The advantage of this method are that:
-									<ul>
-										<li>You can apply one or more class selectors to each element, which is great if you want to 
-											seperate different CSS properties into logical collections, as in the above examples.</li>
-											<br/>
-										<li>You can use the id properties of different elements independantly of each other.</li>
-									</ul>
-								</p>
-							<h2>The id property</h2>
-								<p>
-									CSS classes selectors are implemented like this:<br/><br/>
-									<script type="text/javascript">
-									
-										const arrayCode2 = [
-															"#Paragraph",
-															"{",
-															"    border-style: solid;",
-															"    border-width: medium;",
-															"    border-color: red;",
-															"    font-size: large;",
-										        			"    font-weight: bold;",
-															"    font-size: 12px;",
-															"    color: navy;",
-															"}"
-														  ]
-														  
-										WriteAsHTMLCode(arrayCode2);
-										document.write("<style>");
-										WriteAsHTMLTags(arrayCode2);
-										document.write("</style>");
-										
-									</script>
-								</p>
-							
-								<p>You can apply id selectors like this: <b>&lt;p id="Paragraph"&gt;HELLO WORLD&lt;/p&gt;</b></p>
-								<p id="Paragraph">HELLO WORLD</p>
-								<p>
-									This method has two distinct disadvantages:
-									<ul>
-										<li>You cannot apply more one group of CSS attributes like you can with the class method. 
-											You have to combine all the attributes into one selector and this makes your CSS code less
-											flexible and re-usable for other elements in your web pages.</li>
-											<br/>
-										<li>If you have multiple elements that need the same group of CSS attributes then they all need
-											to have the same id. That makes it impossible to 'get' all of these elements via JavaScript
-											document.getElementById("...").</li>
-									</ul>
-								</p>
-
-							<h2>Tag name</h2>
-								<p>
-									Tag name selectors are implemented like this:<br/>
-									<script type="text/javascript">
-									
-										const arrayCode3 = [
-															"<style>",
-															"    h1",
-															"    {",
-															"        color: blue;",
-															"    }",
-															"",
-															"    h2",
-															"    {",
-															"        color: green;",
-															"    }",
-															"",
-															"    h3",
-															"    {",
-															"        color: red;",
-															"    }",
-															"",
-															"    h4",
-															"    {",
-															"        color: orange;",
-															"    }",
-															"",
-															"    h5",
-															"    {",
-															"        color: purple;",
-															"    }",
-															"",
-															"    h6",
-															"    {",
-															"        color: yellow;",
-															"    }"
-														  ]
-														  
-										WriteAsHTMLCode(arrayCode3);
-										
-									</script>
-									<style>
-									
-										#Special1 h1
-										{
-										    color: blue;
-										}
-										
-										#Special1 h2
-										{
-										    color: green;
-										}
-										
-										#Special1 h3
-										{
-										    color: red;
-										}
-										
-										#Special1 h4
-										{
-										    color: orange;
-										}
-										
-										#Special1 h5
-										{
-										    color: purple;
-										}
-									
-										#Special1 h6
-										{
-										    color: yellow;
-										}
-										
-									</style>								
-								</p>
-								<div id="Special1">
-									&lt;h1&gt;HEADING 1&lt;/h1&gt;
-									<h1>HEADING 1</h1>
-									&lt;h2&gt;HEADING 2&lt;/h2&gt;
-									<h2>HEADING 2</h2>
-									&lt;h3&gt;HEADING 3&lt;/h3&gt;
-									<h3>HEADING 3</h3>
-									&lt;h4&gt;HEADING 4&lt;/h4&gt;
-									<h4>HEADING 4</h4>
-									&lt;h5&gt;HEADING 5&lt;/h5&gt;
-									<h5>HEADING 5</h5>
-									&lt;h6&gt;HEADING 6&lt;/h6&gt;
-									<h6>HEADING 6</h6>
-								</div>
-								<p>
-									You can also combine tag names with one set of attributes like this:<br/>
-									<script type="text/javascript">
-								
-										const arrayCode4 = [
-															"<style>",
-															"    h1, h2, h3, h4, h5, h5",
-															"    {",
-															"        color: green;",
-															"    }",
-															"</style>"
-													  	];
-													  
-										WriteAsHTMLCode(arrayCode4);
-									
-									</script>
-									<style>
-									
-										#Special2 h4, h5, h6
-										{
-										    color: green;
-										}
-											
-									</style>								
-								</p>
-								<div id="Special2">
-									&lt;h4&gt;HEADING 4&lt;/h4&gt;
-									<h4>HEADING 4</h4>
-									&lt;h5&gt;HEADING 5&lt;/h5&gt;
-									<h5>HEADING 5</h5>
-									&lt;h6&gt;HEADING 6&lt;/h6&gt;
-									<h6>HEADING 6</h6>
-								</div>
-								<style>
-									#Special a:hover
-									{
-										background-color: yellow;
-									}
-								</style>
-								<p>
-									You can also combine tag names with mouse events, such as the mouse hovering over a hyperlink, like this:<br/>
-									<script type="text/javascript">
-							
-										const arrayCode5 = [
-															"<style>",
-															"    a: hover",
-															"    {",
-															"        background-color: yellow;",
-															"    }",
-															"</style>"
-														   ];
-												  
-										WriteAsHTMLCode(arrayCode5);
-								
-									</script>
-								
-									&lt;a href="#"&gt;HYPERLNK&lt;/a&gt;<br/>
-									<div id="Special3">
-										<a href="#">HYPERLNK</a>
-									</div>
-								</p>
-								
-								<p>
-									You can also restrict the above behavior to hyperlinks with an element with a particular ID like this:<br/>
-									<script type="text/javascript">
-							
-										const arrayCode6 = [
-															"<style>",
-															"    #Special4 a:hover",
-															"    {",
-															"        background-color: green;",
-														    "    }",
-														    "\n",
-														    "    #Special5 a:hover",
-														    "    {",
-															"        background-color: blue;",
-														    "    }",
-															"</style>",
-															"\n",
-															"<div id=\"Special4\">",
-															"    <a href=\"#\">HYPERLINK</a>",
-															"</div>",
-															"\n",
-															"<div id=\"Special5\">",
-															"    <a href=\"#\">HYPERLINK</a>",
-															"</div>"
-													  	];
-												  
-										WriteAsHTMLCode(arrayCode6);
-								
-									</script>
-								</p>
-								<div id="Special4">
-								    <a href="#">HYPERLINK</a>
-								</div>
-								<br/>
-								<div id="Special5">
-								    <a href="#">HYPERLINK</a>
-								</div>
-
-							<h2>Where can CSS classes be listed?</h2>
-								<h3>Between style tags &lt;style&gt;...&lt;/style&gt;</h3>
-									<p>
-										These tags can be any where within your web page because this element is not a visible one. But
-										typically your style section is located between the head tags at the top of your .html/.htm file, 
-										as in this <a href="bare_minimim.html">example</a>. You would typical include your CSS classes here if they are only used within the page and no where else. If
-										you need to use them in many of your web pages then you should list them in your .css file
-									</p>
-								<h3>In style.css that is included in your web page</h3>
-									<p>
-										Your .css file does not necessarily have to be named 'style', however that is the file name that is 
-										typically used (or variations of it). This file can be included in all of your web pages and act as 
-										a central repositry for all your CSS code. You include your .css file via the <b>&lt;link&gt;</b> tage, like 
-										this: <b>&lt;link href="../styles/style2.css" rel="stylesheet" type="text/css" /&gt;</b>. 
-										Typically this would also be located between the <b>&lt;head&gt;</b> tags at the top of your .html/.htm 
-										file.
-									</p>
-									<p>
-										Here is an <a href="bare_minimim.html">example</a> of using the &lt;link&gt; tag to include style.css. And here
-										is an example of a <a href="../styles/style2.css">style.css</a> in this web site.
-									</p>
-
-							<h2>A selection of commonly used CSS attributes</h2>
-								<p>There are literally hundreds of these CSS attributes and it is impossible for even a seasoned 
-									programmer to remember them all. So we will only cover a small number of the most commonly
-									used attributes.</p>
-								<h3><u>Background colors and images</u></h3>
-									<h4>background-color</h4>
-										<p>&nbsp;</p>
-									<h4>background-image</h4>
-										<p>&nbsp;</p>
-								<h3><u>Borders</u></h3>
-									<h4>border, border-bottom, border-top, border-left, border-right</h4>
-										<p>&nbsp;</p>
-									<h4>border-color, border-bottom-color,  border-left-color, border-right-color, border-top-color</h4>
-										<p>&nbsp;</p>
-									<h4>border-radius, border-bottom-left-radius, border-bottom-right-radius, border-top-left-radius, border-top-right-radius</h4>
-										<p>&nbsp;</p>
-									<h4>border-style, border-bottom-style, border-top-style, border-left-style, border-right-style</h4>
-										<p>&nbsp;</p>
-									<h4>border-width, border-bottom-width, border-top-width, border-left-width, border-right-width</h4>
-										<p>&nbsp;</p>
-									<h4>border-color, border-bottom-color, border-left-color, border-right-color, border-top-color</h4>
-										<p>&nbsp;</p>
-								<h3><u>Fonts</u></h3>
-									<h4>font-color</h4>
-										<p>&nbsp;</p>
-									<h4>font-face</h4>
-										<p>&nbsp;</p>
-									<h4>font-size</h4>
-										<p>&nbsp;</p>
-									<h4>font-style</h4>
-										<p>&nbsp;</p>
-									<h4>font-weight</h4>
-										<p>&nbsp;</p>
-								<h3><u>Element size</u></h3>
-									<h4>Height</h4>
-										<p>&nbsp;</p>
-									<h4>Width</h4>
-										<p>&nbsp;</p>
-								<h3><u>Margins, padding &amp; overflow</u></h3>
-									<h4>margin, margin-bottom, margin-left, margin-right, margin-top</h4>
-										<p>&nbsp;</p>
-									<h4>padding, padding-bottom, padding-left, padding-right, padding-top</h4>
-										<p>&nbsp;</p>
-									<h4>overflow, overflow-x, overflow-y</h4>
-										<p>&nbsp;</p>
-								<h3><u>Miscellaneous</u></h3>
-									<h4>cursor</h4>
-										<p>&nbsp;</p>
-									<h4>display</h4>
-										<p>&nbsp;</p>
-								<h3><u>Positioning</u></h3>
-									<h4>position</h4>
-										<p>&nbsp;</p>
-									<h4>bottom</h4>
-										<p>&nbsp;</p>
-									<h4>left</h4>
-										<p>&nbsp;</p>
-									<h4>right</h4>
-										<p>&nbsp;</p>
-									<h4>top</h4>
-										<p>&nbsp;</p>
-									<h4>rotate</h4>
-										<p>&nbsp;</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 					</div>
-					<p>
-						<script type="text/javascript">
-							g_nStageNum = DrawFirstStageButtons("web_course.html", g_nStageNum);
-						</script>
-					</p>
+					<div style="display:none;">
+					
+						<h2>The class property</h2>
+							<p>
+								CSS classes selectors are implemented like this:<br/><br/>
+								<script type="text/javascript">
+									
+									const arrayCode1 = [
+														".Border",
+														"{",
+														"    border-style: solid;",
+														"    border-width: medium;",
+														"    border-color: red;",
+														"}",
+														"",
+								
+														".Text",
+														"{",
+														"    font-size: large;",
+									        			"    font-weight: bold;",
+														"    font-size: 12px;",
+														"    color: navy;",
+														"}"
+													  ]
+													  
+									WriteAsHTMLCode(arrayCode1);
+									document.write("<style>");
+																	
+								</script>
+							</p>
+							<p>You can apply multiple class selectors by seperating the names by a space like this: <b>&lt;p class="Border Text"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+							<p class="Border Text">HELLO WORLD</p>
+							<p>Or you can apply a single class selector like this: <b>&lt;p class="Border"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+							<p class="Border">HELLO WORLD</p>
+							<p>
+								The advantage of this method are that:
+								<ul>
+									<li>You can apply one or more class selectors to each element, which is great if you want to 
+										seperate different CSS properties into logical collections, as in the above examples.</li>
+										<br/>
+									<li>You can use the id properties of different elements independantly of each other.</li>
+								</ul>
+							</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+							
+						<h2>The id property</h2>
+							<p>
+								CSS classes selectors are implemented like this:<br/><br/>
+								<script type="text/javascript">
+								
+									const arrayCode2 = [
+														"#Paragraph",
+														"{",
+														"    border-style: solid;",
+														"    border-width: medium;",
+														"    border-color: red;",
+														"    font-size: large;",
+									        			"    font-weight: bold;",
+														"    font-size: 12px;",
+														"    color: navy;",
+														"}"
+													  ]
+													  
+									WriteAsHTMLCode(arrayCode2);
+									document.write("<style>");
+									WriteAsHTMLTags(arrayCode2);
+									document.write("</style>");
+									
+								</script>
+							</p>
+						
+							<p>You can apply id selectors like this: <b>&lt;p id="Paragraph"&gt;HELLO WORLD&lt;/p&gt;</b></p>
+							<p id="Paragraph">HELLO WORLD</p>
+							<p>
+								This method has two distinct disadvantages:
+								<ul>
+									<li>You cannot apply more one group of CSS attributes like you can with the class method. 
+										You have to combine all the attributes into one selector and this makes your CSS code less
+										flexible and re-usable for other elements in your web pages.</li>
+										<br/>
+									<li>If you have multiple elements that need the same group of CSS attributes then they all need
+										to have the same id. That makes it impossible to 'get' all of these elements via JavaScript
+										document.getElementById("...").</li>
+								</ul>
+							</p>
+
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+												
+						<h2>Tag name</h2>
+
+							<p>
+								Tag name selectors are implemented like this:<br/>
+								<script type="text/javascript">
+								
+									const arrayCode3 = [
+														"<style>",
+														"    h1",
+														"    {",
+														"        color: blue;",
+														"    }",
+														"",
+														"    h2",
+														"    {",
+														"        color: green;",
+														"    }",
+														"",
+														"    h3",
+														"    {",
+														"        color: red;",
+														"    }",
+														"",
+														"    h4",
+														"    {",
+														"        color: orange;",
+														"    }",
+														"",
+														"    h5",
+														"    {",
+														"        color: purple;",
+														"    }",
+														"",
+														"    h6",
+														"    {",
+														"        color: yellow;",
+														"    }"
+													  ]
+													  
+									WriteAsHTMLCode(arrayCode3);
+									
+								</script>
+								<style>
+
+
+								
+									#Special1 h1
+									{
+									    color: blue;
+									}
+									
+									#Special1 h2
+									{
+									    color: green;
+									}
+									
+									#Special1 h3
+									{
+									    color: red;
+									}
+									
+									#Special1 h4
+									{
+									    color: orange;
+									}
+									
+									#Special1 h5
+									{
+									    color: purple;
+									}
+								
+									#Special1 h6
+									{
+									    color: yellow;
+									}
+									
+								</style>								
+							</p>
+							<div id="Special1">
+								&lt;h1&gt;HEADING 1&lt;/h1&gt;
+								<h1>HEADING 1</h1>
+								&lt;h2&gt;HEADING 2&lt;/h2&gt;
+								<h2>HEADING 2</h2>
+								&lt;h3&gt;HEADING 3&lt;/h3&gt;
+								<h3>HEADING 3</h3>
+								&lt;h4&gt;HEADING 4&lt;/h4&gt;
+								<h4>HEADING 4</h4>
+								&lt;h5&gt;HEADING 5&lt;/h5&gt;
+								<h5>HEADING 5</h5>
+								&lt;h6&gt;HEADING 6&lt;/h6&gt;
+								<h6>HEADING 6</h6>
+							</div>
+							<p>
+								You can also combine tag names with one set of attributes like this:<br/>
+								<script type="text/javascript">
+							
+									const arrayCode4 = [
+														"<style>",
+														"    h1, h2, h3, h4, h5, h5",
+														"    {",
+														"        color: green;",
+														"    }",
+														"</style>"
+												  	];
+												  
+									WriteAsHTMLCode(arrayCode4);
+								
+								</script>
+								<style>
+
+
+								
+									#Special2 h4, h5, h6
+									{
+									    color: green;
+									}
+										
+								</style>								
+							</p>
+							<div id="Special2">
+								&lt;h4&gt;HEADING 4&lt;/h4&gt;
+								<h4>HEADING 4</h4>
+								&lt;h5&gt;HEADING 5&lt;/h5&gt;
+								<h5>HEADING 5</h5>
+								&lt;h6&gt;HEADING 6&lt;/h6&gt;
+								<h6>HEADING 6</h6>
+							</div>
+							<style>
+
+
+								#Special a:hover
+								{
+									background-color: yellow;
+								}
+							</style>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+													
+						<h2>Mouse hover event</h2>
+						<p>
+								You can also combine tag names with the mouse hover event like this:<br/>
+								<script type="text/javascript">
+						
+									const arrayCode5 = [
+														"<style>",
+														"    a: hover",
+														"    {",
+														"        background-color: yellow;",
+														"    }",
+														"</style>"
+													   ];
+											  
+									WriteAsHTMLCode(arrayCode5);
+							
+								</script>
+							
+								&lt;a href="#"&gt;HYPERLNK&lt;/a&gt;<br/>
+								<div id="Special3">
+									<a href="#">HYPERLNK</a>
+								</div>
+							</p>
+							
+							<p>
+								You can also restrict the above behavior to hyperlinks with an element with a particular ID like this:<br/>
+								<script type="text/javascript">
+						
+									const arrayCode6 = [
+														"<style>",
+														"    #Special4 a:hover",
+														"    {",
+														"        background-color: green;",
+													    "    }",
+													    "\n",
+													    "    #Special5 a:hover",
+													    "    {",
+														"        background-color: blue;",
+													    "    }",
+														"</style>",
+														"\n",
+														"<div id=\"Special4\">",
+														"    <a href=\"#\">HYPERLINK</a>",
+														"</div>",
+														"\n",
+														"<div id=\"Special5\">",
+														"    <a href=\"#\">HYPERLINK</a>",
+														"</div>"
+												  	];
+											  
+									WriteAsHTMLCode(arrayCode6);
+							
+								</script>
+							</p>
+							<div id="Special4">
+							    <a href="#">HYPERLINK</a>
+							</div>
+							<br/>
+							<div id="Special5">
+							    <a href="#">HYPERLINK</a>
+							</div>
+
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+												
+						<h2>Where can CSS classes be listed?</h2>
+
+							<h3>Between style tags &lt;style&gt;...&lt;/style&gt;</h3>
+								<p>
+									These tags can be any where within your web page because this element is not a visible one. But
+									typically your style section is located between the head tags at the top of your .html/.htm file, 
+									as in this <a href="bare_minimim.html">example</a>. You would typical include your CSS classes here if they are only used within the page and no where else. If
+									you need to use them in many of your web pages then you should list them in your .css file
+								</p>
+							<h3>In style.css that is included in your web page</h3>
+								<p>
+									Your .css file does not necessarily have to be named 'style', however that is the file name that is 
+									typically used (or variations of it). This file can be included in all of your web pages and act as 
+									a central repositry for all your CSS code. You include your .css file via the <b>&lt;link&gt;</b> tage, like 
+									this: <b>&lt;link href="../styles/style2.css" rel="stylesheet" type="text/css" /&gt;</b>. 
+									Typically this would also be located between the <b>&lt;head&gt;</b> tags at the top of your .html/.htm 
+									file.
+								</p>
+								<p>
+									Here is an <a href="bare_minimim.html">example</a> of using the &lt;link&gt; tag to include style.css. And here
+									is an example of a <a href="../styles/style2.css">style.css</a> in this web site.
+								</p>
+
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>
+					<div style="display:none;">
+					
+						<h2>Commonly used CSS attributes</h2>
+						
+							<p>There are literally hundreds of these CSS attributes and it is impossible for even a seasoned 
+								programmer to remember them all. So we will only cover a small number of the most commonly
+								used attributes.</p>
+							<p>We will cover the following attributes:
+								<ul>
+									<li>Background colors and images
+										<ul>
+											<li>background-color</li>
+											<li>background-image</li>
+										</ul>
+									</li>
+									<li>Borders
+										<ul>
+											<li>border, border-bottom, border-top, border-left, border-right</li>
+											<li>border-color, border-bottom-color,  border-left-color, border-right-color, border-top-color</li>
+											<li>border-radius, border-bottom-left-radius, border-bottom-right-radius, border-top-left-radius, border-top-right-radius</li>
+											<li>border-style, border-bottom-style, border-top-style, border-left-style, border-right-style</li>
+											<li>border-width, border-bottom-width, border-top-width, border-left-width, border-right-width</li>
+											<li></li>
+										</ul>
+									</li>
+									<li>Fonts
+										<li>font-color</li>
+										<li>font-face</li>
+										<li>font-size</li>
+										<li>font-style</li>
+										<li>font-weight</li>
+									</li>
+									<li>Element Size
+										<ul>
+											<li>height</li>
+											<li>width</li>										
+										</ul>
+									</li>
+									<li>Margins &amp; Padding
+										<ul>
+											<li>margin, margin-bottom, margin-left, margin-right, margin-top</li>
+											<li>padding, padding-bottom, padding-left, padding-right, padding-top</li>
+											<li></li>
+										</ul>
+									</li>
+									<li>Cropping
+										<ul>
+											<li>overflow-x</li>
+											<li>overflow-y</li>
+											<li>overflow</li>
+										</ul>
+									</li>
+									<li>Positioning
+										<ul>
+											<li>position</li>
+											<li>bottom</li>
+											<li>left</li>
+											<li>right</li>
+											<li>top</li>
+											<li>rotate</li>
+										</ul>
+									</li>
+									<li>Miscellaneous
+										<li>cursor</li>
+										<li>display</li>
+										<li>visibility</li>
+									</li>
+								</ul>
+							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+					</div>		
+					<div style="display:none;">		
+						<h2><u>Background colors and images</u></h2>
+							<h3>background-color</h3>
+								<p>
+									This attribute changes the background color of an element from the default white to what 
+									ever color you specify. You can specify colors in 3 ways: 
+										
+									<ul>
+										<li><b>Color name</b>, e.g. background-color: "red";<br/>
+											Recognized color names are:
+											<ul>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:black;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;black</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:silver;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;silver</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:gray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:white;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;white</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:maroon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;maroon</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:red;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;red</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:purple;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;purple</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:fuchsia;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;fuchsia</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:green;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;green</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lime;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lime</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:olive;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olive</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:yellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;yellow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:navy;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;navy</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:blue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:teal;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;teal</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:aqua;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aqua</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:aliceblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aliceblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:antiquewhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;antiquewhite</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:aquamarine;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aquamarine</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:azure;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;azure</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:beige;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;beige</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:bisque;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;bisque</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:bisque;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blanchedalmond</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:blueviolet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blueviolet</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:brown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;brown</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:burlywood;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;burlywood</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:cadetblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cadetblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:chartreuse;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;chartreuse</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:chocolate;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;chocolate</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:coral;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;coral</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:cornflowerblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cornflowerblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:cornsilk;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cornsilk</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:crimson;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;crimson</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:cyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cyan</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkcyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkcyan</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgoldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgoldenrod</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkkhaki;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkkhaki</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkmagenta;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkmagenta</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkolivegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkolivegreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkorange;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkorange</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkorchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkorchid</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkred</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darksalmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darksalmon</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkseagreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslateblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslateblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslategray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslategrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkturquoise</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkviolet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkviolet</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:deeppink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;deeppink</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:deepskyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;deepskyblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:dimgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dimgray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:dimgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dimgrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:dodgerblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dodgerblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:firebrick;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;firebrick</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:floralwhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;floralwhite</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:forestgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;forestgreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;fuchsia</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:fuchsia;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gainsboro</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:ghostwhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;ghostwhite</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:gold;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gold</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:goldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;goldenrod</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:gray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:green;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;green</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:greenyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;greenyellow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:grey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;grey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:honeydew;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;honeydew</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:hotpink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;hotpink</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:indianred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;indianred</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:indigo;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;indigo</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:ivory;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;ivory</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:khaki;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;khaki</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lavender;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lavender</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lavenderblush;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lavenderblush</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lawngreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lawngreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lemonchiffon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lemonchiffon</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightcoral;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightcoral</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightcyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightcyan</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgoldenrodyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgoldenrodyellow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightpink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightpink</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightsalmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightsalmon</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightseagreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightskyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightskyblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightslategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightslategray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightslategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightslategrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightsteelblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightsteelblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightyellow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:lime;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lime</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:limegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;limegreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:linen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;linen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:magenta;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;magenta</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumaquamarine;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumaquamarine</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumorchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumorchid</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumpurple;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumpurple</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumseagreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumslateblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumslateblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumspringgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumspringgreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumturquoise</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumvioletred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumvioletred</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:midnightblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;midnightblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mintcream;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mintcream</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:mistyrose;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mistyrose</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:moccasin;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;moccasin</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:navajowhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;navajowhite</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:oldlace;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;oldlace</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:olive;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olive</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:olivedrab;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olivedrab</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:orange;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orange</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:orangered;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orangered</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:orchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orchid</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:palegoldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palegoldenrod</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:palegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palegreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:paleturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;paleturquoise</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:palevioletred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palevioletred</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:papayawhip;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;papayawhip</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:peachpuff;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;peachpuff</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:peru;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;peru</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:pink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;pink</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:plum;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;plum</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:powderblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;powderblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:rosybrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;rosybrown</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:royalblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;royalblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:saddlebrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;saddlebrown</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:salmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;salmon</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:sandybrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;sandybrown</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:seagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;seagreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:seashell;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;seashell</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:sienna;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;sienna</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:skyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;skyblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slateblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slategray</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slategrey</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:snow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;snow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:springgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;springgreen</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:steelblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;steelblue</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:tan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;tan</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:thistle;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;thistle</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:tomato;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;tomato</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:turquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;turquoise</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:violet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;violet</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:wheat;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;wheat</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:white;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;white</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:whitesmoke;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;whitesmoke</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:yellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;yellow</li>
+												<li><span style="border-style:solid;border-color:black;border-width:thin;background:yellowgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;yellowgreen</li>
+											</ul>
+										</li>
+										<li><b>RGB &amp; RGBA Colors</b>, e.g. background-color: rgb(10, 255, 100); and background-color: 
+											rgba(10, 255, 100, 0.5);. If you don't understand how RGB colors work then click 
+											<a href="#" onclick="DoOpenInfoPopup('rgb_colors', 'RGBColors.html')">here</a>.</li>
+										<li><b>Hex color</b>, e.g. background-color: #02F534; or background-color: #2F3; (shorthand for #22FF33). If you you
+											don't understand how hex colors work then click <a href="#" onclick="DoOpenInfoPopup('hex_colors', 'HexColors.html')">here</a>. 
+											If you don't understand what hex numbers are then click <a href="#" onclick="DoOpenInfoPopup('hex_numbers', 'HexNumbers.html')">here</a>.
+										</li>
+										<li><b>HSL &amp; HSLA Colors</b>, e.g. background-color: hsl(0, 100%, 50%);. If you don't understand HSL colors then click 
+											<a href="#" onclick="DoOpenInfoPopup('hsl_colors', 'HSLColors.html')">here</a>.
+										</li>
+										
+									</ul>
+								</p>
+							<h3>Try It Yourself</h3>
+								<p>Why don't you try some colors out. Change the value of the 'background-color' and 'color' attributes using color names, hex colors and HSL colors.</p>
+								<script type="text/javascript">document.write(GetTryItNowCode_(1, "<p style=\"background-color:navy;color:aqua;\">HELLO WORLD!</p>"));</script>
+						
+							<h3>background-image</h3>
+								<p>
+									You specify a background image using the JavaScript function url("..."). You can specify a local
+									image file, e.g. url("images/Image.jpg"), or you can specify and external image file, e.g. 
+									url("https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg"). The default 
+									mode is to tile the image if it is to small to cover the designated area of the screen.<br/><br/>
+									<script type="text/javascript">
+										
+										const arrayCode7 = [
+															"<div style=\"width:400px;height:300px;color:white;background-image:url('https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg')\">",
+															"<b>HELLO WORLD!</b></div>"
+															];
+															
+										WriteAsHTMLCode(arrayCode7);
+										WriteAsHTMLTags(arrayCode7);
+
+									</script> 
+								</p>														
+							<h3>background-repeat</h3>
+								<p>
+									This attribute controls how the image covers the background. Allow values are:
+									<ul>
+										<li><b>repeat: </b>this causes the background image to be tiled across the space in both
+											the horizontal and vertical directions. The image will be clipped aling the right and
+											bottom edges if necessary.</li>
+										<br/>
+										<li><b>repeat-x: </b>this causes the background image to be tiled horizontally only.</li>
+										<br/>
+										<li><b>repeat-y: </b>this causes the background image to be tiled vertically only.</li>
+										<br/>
+										<li><b>no-repeat: </b>this cause the image to be centered in the area and not tiled. If it is 
+											too small to cover the area then there will be blank margins around it.</li>
+										<br/>
+										<li><b>space: </b>this prevents clipping o the image when it is tiled across the area. There may
+											be blank spaces along the right and bottom edges if image cannot fit in the space available.
+										</li>
+										<br/>
+										<li><b>round: </b>this causes the image to be stretched horizontally and/or vertically so that it 
+											can be tiled across the area evenly wit no clipping of the image at the left and bottom edges.
+										</li>
+									</ul>
+								</p>														
+							<h3>background-position</h3>
+								<p>
+									This attribute controls where the position in the area where tiling with the image starts:
+									<ul>
+										<li><b>left top: </b>this means that the tiling begins at the top left corner of the area.</li>
+										<br/>
+										<li><b>left center: </b>this means that the tiling begins at the center of the left edge of the area.</li>
+										<br/>
+										<li><b>left bottom: </b>this means that the tiling begins at the bottom left corner of the area.</li>
+										<br/>
+										<li><b>right top: </b>this means that the tiling begins at the top right corner of the area.</li>
+										<br/>
+										<li><b>right center: </b>this means that the tiling begins at the middle of the right edge of the area.</li>
+										<br/>
+										<li><b>right bottom: </b>this means that the tiling begins at the bottom right corner of the area.</li>
+										<br/>
+										<li><b>center top: </b>this means that tiling starts at the center of the top edge of the area.</li>
+										<br/>
+										<li><b>center center: </b>this means that tiling starts at the center of the area.</li>
+										<br/>
+										<li><b>center bottom: </b>this means that tiling starts at the center of the bottom edge.</li>
+										<br/>
+										<li><b>X% Y%: </b>this means, that if the area has width of 300 pixels and height of 200 pixels, then tiling starts
+											at X% of 300 pixels in the horizontal direction and Y% of 200 pixels in the vertical direction.</li>
+										<br/>
+										<li><b>Xpx Ypx: </b>this means that tiling begins at pixel number X and pixel number Y in the area.</li>
+									</ul>
+								</p>
+							<h3>background-position-x</h3>
+								<p>
+									This attribute controls where the position in the area where tiling with the image starts:
+									<ul>
+										<li><b>left: </b>this means that the tiling begins at the left side of the area.</li>
+										<br/>
+										<li><b>center: </b>this means that the tiling begins at the horizontal center of the area.</li>
+										<br/>
+										<li><b>right: </b>this means that the tiling begins at the right edge of the area.</li>
+										<br/>
+										<li><b>X%: </b>this means, that if the area has width of 300 pixels and height of 200 pixels, then tiling starts
+											at X% of 300 pixels in the horizontal direction.</li>
+										<br/>
+										<li><b>Xpx: </b>this means that tiling begins at pixel number X in the horizontal direction of the area.</li>
+									</ul>
+								</p>
+
+							<h3>background-position-y</h3>
+								<p>
+									This attribute controls where the position in the area where tiling with the image starts:
+									<ul>
+										<li><b>top: </b>this means that the tiling begins at the top edge of the area.</li>
+										<br/>
+										<li><b>center: </b>this means that the tiling begins at the vertical center of the area.</li>
+										<br/>
+										<li><b>bottom: </b>this means that the tiling begins at the bottom edge of the area.</li>
+										<br/>
+										<li><b>Y%: </b>this means, that if the area has height of 200 pixels, then tiling starts
+											at Y% of 200 pixels in the vertical direction.</li>
+										<br/>
+										<li><b>Ypx: </b>this means that tiling begins at pixel number Y in the vertical direction of the area.</li>
+									</ul>
+								</p>						
+							<h3>background-size</h3>
+								<p>
+									:
+									<ul>
+										<li><b>auto: </b>default value - the background image is displayed in its original size.</li>
+										<br/>
+										<li><b>length: </b>expects one or two values - the first value specifies the width of the image 
+											and the second value is the height of the image. Values are expressed in pixels like this 50px.</li>
+										<br/>
+										<li><b>percentage: </b>also expects one or two values - the width and height of the image. Except the
+											values are expressed as percentages of the width and height of the area, like this 50%.</li>
+										<br/>
+										<li><b>cover: </b>this causes the image to stretch or shrink to cover the entire area. the image may be 
+											clipped vertically or horizontally.</li>
+										<br/>
+										<li><b>contain: </b>this causes the image to stretch or shrink to fill the entire width or height of 
+											the area without clipping.</li>
+									</ul>
+								</p>						
+							<h3>background-origin</h3>
+								<p>
+									:
+									<ul>
+										<li><b>padding-box: </b>default value - the background image starts from the upper left corner of the 
+											padding edge.</li>
+										<br/>
+										<li><b>border-box: </b>the background image starts from the upper left corner of the border.</li>
+										<br/>
+										<li><b>content-box: </b>the background image starts from the upper left corner of the content.</li>
+									</ul>
+								</p>	
+					
+							<h3>Try It Yourself</h3>
+							
+							<script type="text/javascript">
+								
+								let arrayBackgroundRadioButtons = [
+									"<table>",
+									"    <tr>",
+									"        <td class=\"RadioButtonGroup\">",
+									"            <label><b>background-repeat</b></label>",
+									"            <br/><br/>",
+									"            <input type=\"radio\" value=\"background-repeat:repeat;\" name=\"background_repeat\" checked onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>repeat</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-repeat:repeat-x;\" name=\"background_repeat\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>repeat-x</label>",							
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-repeat:repeat-y;\" name=\"background_repeat\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>repeat-y</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-repeat:no-repeat;\" name=\"background_repeat\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>no-repeat</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-repeat:space;\" name=\"background_repeat\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>space</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-repeat:round;\" name=\"background_repeat\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>round</label>",
+									"        </td>",
+								
+									"        <td class=\"RadioButtonGroup\">",
+									"            <label><b>background-position</b></label>",
+									"           <br/><br/>",
+									"            <input type=\"radio\" value=\"background-position:left top;\" id=\"radio-background-position-xy\" name=\"background_position\" checked onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>left top</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:left center;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>left center</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:left bottom;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>left bottom</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:right top;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>right top</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:right center;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>right center</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:right bottom;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>right bottom</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:center top;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>center top</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:center center;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>center center</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:center bottom;\" id=\"radio-background-position-xy\" name=\"background_position\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>center bottom</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position:0% 0%;\" name=\"background_position\" id=\"radio-background-position-xy-percentage\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>X,Y as %</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>X = </label><input type=\"number\" disabled id=\"text-background-position-xy-percentage-x\" size=\"4\" value=\"0\" oninput=\"OnChangeX(this, document.getElementById('radio-background-position-xy-percentage'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> %</label></li>",
+									"                    <li><label>Y = </label><input type=\"number\" disabled id=\"text-background-position-xy-percentage-y\" size=\"4\" value=\"0\" oninput=\"OnChangeY(this, document.getElementById('radio-background-position-xy-percentage'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> %</label></li>",
+									"                </ul>",
+									"            <input type=\"radio\" value=\"background-position:0px 0px;\" name=\"background_position\" id=\"radio-background-position-xy-pixels\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>X,Y as pixels</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>X = </label><input type=\"number\" disabled id=\"text-background-position-xy-pixel-x\" size=\"4\" value=\"0\" oninput=\"OnChangeX(this, document.getElementById('radio-background-position-xy-pixels'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> px</label><br/></li>",
+									"                    <li><label>Y = </label><input type=\"number\" disabled id=\"text-background-position-xy-pixel-y\" size=\"4\" value=\"0\" oninput=\"OnChangeY(this, document.getElementById('radio-background-position-xy-pixels'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> px</label></li>",
+									"                </ul>",
+									"        </td>",						
+								
+									"        <td class=\"RadioButtonGroup\">",
+									"            <label><b>background-position-x</b></label>",
+									"            <br/><br/>",
+									"            <input type=\"radio\" value=\"background-position-x:left;\" id=\"radio-background-position-x\" name=\"background_position_x\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>left</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-x:center;\" id=\"radio-background-position-x\" name=\"background_position_x\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>center</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-x:right;\" id=\"radio-background-position-x\" name=\"background_position_x\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>right</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-x:0%;\" name=\"background_position_x\" id=\"radio-background-position-x-percentage\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>X as %</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>X = </label><input type=\"number\" disabled size=\"4\" id=\"text-background-position-x-percentage\" value=\"0\" oninput=\"OnChangeX(this, document.getElementById('radio-background-position-x-percentage'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> %</label></li>",
+									"                </ul>",
+									"            <input type=\"radio\" value=\"background-position-x:0px;\" name=\"background_position_x\" id=\"radio-background-position-x-pixels\"  onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>X as pixels</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>X = </label><input type=\"number\" disabled size=\"4\" id=\"text-background-position-x-pixel\" value=\"0\" oninput=\"OnChangeX(this, document.getElementById('radio-background-position-x-pixels'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> px</label></li>",
+									"                </ul>",
+									"        </td>",
+								
+									"        <td class=\"RadioButtonGroup\">",
+									"            <label><b>background-position-y</b></label>",
+									"            <br/><br/>",
+									"            <input type=\"radio\" value=\"background-position-y:top\" id=\"radio-background-position-y\" name=\"background_position_y\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>top</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-ycenter\" id=\"radio-background-position-Y\" name=\"background_position_y\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>center</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-y:bottom\" id=\"radio-background-position-y\" name=\"background_position_y\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>bottom</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-position-y:0%;\" name=\"background_position_y\" id=\"radio-background-position-y-percentage\"  onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'), document.getElementById('TryItNowResults2'))\" /><label>Y as %</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>Y = </label><input type=\"number\" disabled size=\"4\" id=\"text-background-position-y-percentage\" value=\"0\" oninput=\"OnChangeY(this, document.getElementById('radio-background-position-y-percentage'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> %</label></li>",
+									"                </ul>",
+									"            <input type=\"radio\" value=\"background-position-y:0px;\" name=\"background_position_y\" id=\"radio-background-position-y-pixels\"  onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>Y as pixels</label>",
+									"                <ul class=\"TexInputList\">",
+									"                    <li><label>Y = </label><input type=\"number\" disabled size=\"4\" id=\"text-background-position-y-pixel\" value=\"0\" oninput=\"OnChangeY(this, document.getElementById('radio-background-position-y-pixels'), document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\"/><label> px</label></li>",
+									"                </ul>",
+									"        </td>",
+					
+									"        <td class=\"RadioButtonGroup\">",
+									"            <label><b>background-size</b></label>",
+									"            <br/><br/>",
+									"            <input type=\"radio\" value=\"background-size:auto;\" name=\"background_size\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>auto</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-size:length;\" name=\"background_size\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>length</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-size:percentage;\" name=\"background_size\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>percentage</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-size:cover;\" name=\"background_size\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>cover</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-size:contain;\" name=\"background_size\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>contain</label>",			
+									"        </td>",
+										
+									"        <td class=\"RadioButtonGroup\">",			
+									"            <label><b>background-origin</b></label>",
+									"            <br/><br/>",
+									"            <input type=\"radio\" value=\"background-origin:padding-box;\" name=\"background_origin\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>padding-box</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-origin:border-box;\" name=\"background_origin\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>border-box</label>",
+									"            <br/>",
+									"            <input type=\"radio\" value=\"background-origin:content-box;\" name=\"background_origin\" onclick=\"OnClickRadioBackground(this, document.getElementById('TryItNowCode2'),  document.getElementById('TryItNowResults2'))\" /><label>content-box</label>",
+									"        </td>",
+									"    </tr>",							
+									"</table>"
+								];						
+								
+								document.write(GetTryItNowCode_(2, "<div style=\"width:500px;height:148px;border-style:solid;background-image:url('images/Tile.jpg');background-repeat:repeat;background-position:left top;background-size:auto;background-origin:padding-box;\"></div>", GetAsHTMLTags(arrayBackgroundRadioButtons)));
+								OnClickButtonRunIDs("TryItNowCode2", "TryItNowResults2");
+
+							</script>
+
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+						<h3><u>Borders</u></h3>
+							<h4>border, border-bottom, border-top, border-left, border-right</h4>
+									<p>&nbsp;</p>
+								<h4>border-color, border-bottom-color,  border-left-color, border-right-color, border-top-color</h4>
+									<p>&nbsp;</p>
+								<h4>border-radius, border-bottom-left-radius, border-bottom-right-radius, border-top-left-radius, border-top-right-radius</h4>
+									<p>&nbsp;</p>
+								<h4>border-style, border-bottom-style, border-top-style, border-left-style, border-right-style</h4>
+									<p>&nbsp;</p>
+								<h4>border-width, border-bottom-width, border-top-width, border-left-width, border-right-width</h4>
+									<p>&nbsp;</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+					
+						<h2><u>Fonts</u></h2>
+							<h3>font-color</h3>
+								<p>&nbsp;</p>
+							<h3>font-face</h3>
+								<p>&nbsp;</p>
+							<h3>font-size</h3>
+								<p>&nbsp;</p>
+							<h3>font-style</h3>
+								<p>&nbsp;</p>
+							<h3>font-weight</h3>
+								<p>&nbsp;</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+						<h2><u>Element size</u></h2>
+							<h3>Height</h3>
+								<p>&nbsp;</p>
+							<h3>Width</h3>
+								<p>&nbsp;</p>
+					</div>
+					<div style="display:none;">
+						<h2><u>Margins, padding &amp; overflow</u></h2>
+							<h3>margin, margin-bottom, margin-left, margin-right, margin-top</h3>
+								<p>&nbsp;</p>
+							<h3>padding, padding-bottom, padding-left, padding-right, padding-top</h3>
+								<p>&nbsp;</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+						<h2>overflow, overflow-x, overflow-y</h2>
+							<p>&nbsp;</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
+					</div>
+					<div style="display:none;">
+						<h2><u>Miscellaneous</u></h2>
+							<h3>cursor</h3>
+								<p>&nbsp;</p>
+							<h3>display</h3>
+								<p>&nbsp;</p>
+						<h2><u>Positioning</u></h2>
+							<h3>position</h3>
+								<p>&nbsp;</p>
+							<h3>bottom</h3>
+								<p>&nbsp;</p>
+							<h3>left</h3>
+								<p>&nbsp;</p>
+							<h3>right</h3>
+								<p>&nbsp;</p>
+							<h3>top</h3>
+								<p>&nbsp;</p>
+							<h3>rotate</h3>
+								<p>&nbsp;</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = DrawLastStageButtons("web_course_js.html", g_nStageNum);
+							</script>
+						</p>
+					</div>
+
 					<script type="text/javascript">
 					
 						g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
@@ -578,6 +1204,10 @@
 						g_arrayStageBookmarks.push("<hr>");
 
 					</script>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 					</div>
