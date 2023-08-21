@@ -134,6 +134,27 @@ function OnClickRadioBackground(inputRadioButton, textareaCode, iframeResults)
 			document.getElementById("text-background-position-xy-pixel-x").disabled = true;
 			document.getElementById("text-background-position-xy-pixel-y").disabled = true;
 		}
+		else if (inputRadioButton.id == "radio-background-size-percentage")
+		{
+			document.getElementById("text-background-size-percentage-x").disabled = !inputRadioButton.checked;
+			document.getElementById("text-background-size-percentage-y").disabled = !inputRadioButton.checked;
+			document.getElementById("text-background-size-length-x").disabled = inputRadioButton.checked;
+			document.getElementById("text-background-size-length-y").disabled = inputRadioButton.checked;
+		}
+		else if (inputRadioButton.id == "radio-background-size-length")
+		{
+			document.getElementById("text-background-size-percentage-x").disabled = inputRadioButton.checked;
+			document.getElementById("text-background-size-percentage-y").disabled = inputRadioButton.checked;
+			document.getElementById("text-background-size-length-x").disabled = !inputRadioButton.checked;
+			document.getElementById("text-background-size-length-y").disabled = !inputRadioButton.checked;
+		}
+		else if (inputRadioButton.id == "radio-background-size")
+		{
+			document.getElementById("text-background-size-percentage-x").disabled = true;
+			document.getElementById("text-background-size-percentage-y").disabled = true;
+			document.getElementById("text-background-size-length-x").disabled = true;
+			document.getElementById("text-background-size-length-y").disabled = true;
+		}
 		else if (inputRadioButton.id == "radio-background-position-x-percentage")
 		{
 			document.getElementById("text-background-position-x-percentage").disabled = !inputRadioButton.checked;
