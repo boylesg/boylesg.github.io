@@ -942,7 +942,7 @@
 								</p>						
 							<h3>background-size</h3>
 								<p>
-									:
+									With this attribute you can change the size of the image or its widht and height independantly. Allowed values are:
 									<ul>
 										<li><b>auto: </b>default value - the background image is displayed in its original size.</li>
 										<br/>
@@ -961,15 +961,20 @@
 								</p>						
 							<h3>background-origin</h3>
 								<p>
-									:
+									You can use this attribute to set the starting point of a background image. Allowed Values are:
 									<ul>
 										<li><b>padding-box: </b>default value - the background image starts from the upper left corner of the 
-											padding edge.</li>
+											padding edge. If the padding of the element is 0 pixels then the background image starts at the 
+											border edge.</li>
 										<br/>
-										<li><b>border-box: </b>the background image starts from the upper left corner of the border.</li>
+										<li><b>border-box: </b>the background image starts from the upper left corner of the border edge and 
+											it will be clipped if a border style other than 'none' is set.</li>
 										<br/>
-										<li><b>content-box: </b>the background image starts from the upper left corner of the content.</li>
+										<li><b>content-box: </b>the background image starts from the upper left corner of the content edge.</li>
 									</ul>
+									If you have more than one background image then you can set them with different values by seperating the values 
+									with spaces, e.g. in the case of 2 background images: background-origin: padding-box content-box, the first image 
+									gets the fist value and the second image gets the second value etc.
 								</p>	
 					
 							<h3>Try It Yourself</h3>
@@ -1093,7 +1098,7 @@
 									"</table>"
 								];						
 								
-								document.write(GetTryItNowCode_(2, "<div style=\"width:500px;height:148px;border-style:solid;background-image:url('images/Tile.jpg');background-repeat:repeat;background-position:left top;background-size:auto;background-origin:padding-box;\"></div>", GetAsHTMLTags(arrayBackgroundRadioButtons)));
+								document.write(GetTryItNowCode_(2, "<div style=\"width:500px;height:148px;border-style:dashed;border-width:thick;background-image:url('images/Tile.jpg');background-repeat:repeat;background-position:left top;background-size:auto;background-origin:padding-box;\"></div>", GetAsHTMLTags(arrayBackgroundRadioButtons)));
 								OnClickButtonRunIDs("TryItNowCode2", "TryItNowResults2");
 
 							</script>
