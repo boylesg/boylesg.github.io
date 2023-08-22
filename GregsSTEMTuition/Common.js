@@ -806,6 +806,7 @@ function SetStageDivIDs(strStageLinkID)
 	if (divCourseContent)
 	{
 		let strTagName = "";
+		//g_arrayStageBookmarks = [];
 		
 		for (let nI = 0; nI < divCourseContent.children.length; nI++)
 		{
@@ -834,13 +835,20 @@ function SetStageDivIDs(strStageLinkID)
 	}
 }
 
-function WriteAsHTMLTags(arrayLinesHTML)
+function GetAsHTMLTags(arrayLinesHTML)
 {
+	let strHTML = "";
+	
 	for (let nI = 0; nI < arrayLinesHTML.length; nI++)
 	{
-		document.write(arrayLinesHTML[nI]);
-		console.log(arrayLinesHTML[nI]);
+		strHTML += arrayLinesHTML[nI];
 	}
+	return strHTML;
+}
+
+function WriteAsHTMLTags(arrayLinesHTML)
+{
+	document.write(GetAsHTMLTags(arrayLinesHTML));
 }
 
 function Replace(strText, strReplaceWhat, strReplaceWith)
