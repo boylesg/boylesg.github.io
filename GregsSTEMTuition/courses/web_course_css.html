@@ -1279,6 +1279,24 @@
 										WriteAsHTMLTags(arrayCodeIndividualBorderStyles);																			
 																
 									</script>
+									
+									<p>Here is an example of a practical use for one of these CSS attributes - to create a simple navigation struture for your web page.</p>
+									
+									<script type="text/javascript">
+									
+										let arrayNavStruct = [
+																"<ul>",
+																"        <li style=\"padding:5px;list-style:none;width:20%;background-color:palegreen;border-bottom-style:solid;border-top-style:solid;border-width:thin;\">HOME</li>",
+																"        <li style=\"padding:5px;list-style:none;width:20%;background-color:palegreen;border-bottom-style:solid;border-width:thin;\">EDUCATION</li>",
+																"        <li style=\"padding:5px;list-style:none;width:20%;background-color:palegreen;border-bottom-style:solid;border-width:thin;\">WORK EXPERIENCE</li>",
+																"        <li style=\"padding:5px;list-style:none;width:20%;background-color:palegreen;border-bottom-style:solid;border-width:thin;\">PERSONAL PROJECTS</li>",
+																"</ul>"
+															];
+															
+										WriteAsHTMLCode(arrayNavStruct);
+										WriteAsHTMLTags(arrayNavStruct);
+										
+									</script>
 
 								<h3>border-width, border-bottom-width, border-top-width, border-left-width, border-right-width</h3>
 									<p>These attributes give you individual control over border widths. They expect a single parameter specifying 
