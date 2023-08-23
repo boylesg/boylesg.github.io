@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- #BeginTemplate "courses.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Colors</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
+			
+		<div id="TryItNowHTML" style="display:none;">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+				ADD_ON_CODE
+			</div>
+		</div>
+		
+	</head>
+	
+	<body onload="OnBodyLoad()">
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's STEM Tuition<br/></div>
+					<div class="website_motto">All you need is passion for the subject &amp; a love of learning.</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li>
+						<a href="../index.html">Home</a></li>
+						<li>
+						<a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li>
+						<a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li>
+						<a href="../education/education.html">Education</a></li>
+						<li>
+						<a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li>
+						<a href="../work/work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="web_course.html">Web Sites</a></li>
+									<li class="MenuPopupItem">
+									<a href="python_course.html">Python</a></li>
+								</ul>
+							</div>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+				
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
+					<div id="login" class="login">
+						<p>Purchase the password</p>
+						<br/>			
+						<div style="display:none" id="TenDollarCountry">
+							<p><b>COST: </b>$10.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>						</div>
+						<div style="display:none" id="FiveDollarCountry">
+							<p><b>COST: </b>$5.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>				
+						</div>
+						<div style="display:none" id="OneDollarCountry">
+							<p><b>COST: </b>$1.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="JEVUQDXKFEAWL" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<div style="display:none" id="FiftyCentCountry">
+							<p><b>COST: </b>$0.50 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="QTC2QAC4J34U8" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+					<!-- #BeginEditable "pre-content" -->
+					
+					<!-- #EndEditable -->
+					<div style="display:none;" id="course_content">
+					<!-- #BeginEditable "content" -->
+
+						<p>You can specify a color in the following ways:
+							<ul>
+								<li><b>Color name</b></li>
+								<li><b>rgb &amp; rgba colors</b></li>
+								<li><b>hsl &amp; hsla colors</b></li>
+								<li><b>Hex colors</b></li>
+								<li><b>Color name</b></li>							
+							</ul>
+						</p>
+
+						<h2>Color names</h2>
+							<p>The recognized color names are:
+								<ul>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:black;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;black</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:silver;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;silver</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:gray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:white;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;white</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:maroon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;maroon</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:red;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;red</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:purple;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;purple</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:fuchsia;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;fuchsia</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:green;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;green</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lime;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lime</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:olive;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olive</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:yellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;yellow</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:navy;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;navy</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:blue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:teal;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;teal</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:aqua;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aqua</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:aliceblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aliceblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:antiquewhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;antiquewhite</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:aquamarine;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;aquamarine</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:azure;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;azure</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:beige;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;beige</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:bisque;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;bisque</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:blanchedalmond;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blanchedalmond</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:blueviolet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;blueviolet</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:brown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;brown</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:burlywood;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;burlywood</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:cadetblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cadetblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:chartreuse;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;chartreuse</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:chocolate;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;chocolate</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:coral;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;coral</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:cornflowerblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cornflowerblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:cornsilk;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cornsilk</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:crimson;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;crimson</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:cyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;cyan</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkcyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkcyan</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgoldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgoldenrod</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkgrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkkhaki;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkkhaki</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkmagenta;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkmagenta</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkolivegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkolivegreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkorange;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkorange</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkorchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkorchid</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkred</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darksalmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darksalmon</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkseagreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslateblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslateblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslategray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkslategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkslategrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkturquoise</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:darkviolet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;darkviolet</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:deeppink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;deeppink</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:deepskyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;deepskyblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:dimgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dimgray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:dimgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dimgrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:dodgerblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;dodgerblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:firebrick;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;firebrick</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:floralwhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;floralwhite</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:forestgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;forestgreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:gainsboro;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gainsboro</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:ghostwhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;ghostwhite</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:gold;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gold</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:goldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;goldenrod</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:gray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;gray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:greenyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;greenyellow</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:grey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;grey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:honeydew;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;honeydew</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:hotpink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;hotpink</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:indianred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;indianred</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:indigo;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;indigo</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:ivory;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;ivory</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:khaki;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;khaki</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lavender;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lavender</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lavenderblush;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lavenderblush</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lawngreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lawngreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lemonchiffon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lemonchiffon</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightcoral;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightcoral</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightcyan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightcyan</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgoldenrodyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgoldenrodyellow</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightgrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightgrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightpink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightpink</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightsalmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightsalmon</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightseagreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightskyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightskyblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightslategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightslategray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightslategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightslategrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightsteelblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightsteelblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:lightyellow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;lightyellow</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:limegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;limegreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:linen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;linen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:magenta;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;magenta</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumaquamarine;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumaquamarine</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumorchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumorchid</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumpurple;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumpurple</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumseagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumseagreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumslateblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumslateblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumspringgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumspringgreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumturquoise</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mediumvioletred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mediumvioletred</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:midnightblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;midnightblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mintcream;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mintcream</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:mistyrose;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;mistyrose</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:moccasin;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;moccasin</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:navajowhite;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;navajowhite</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:oldlace;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;oldlace</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:olive;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olive</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:olivedrab;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;olivedrab</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:orange;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orange</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:orangered;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orangered</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:orchid;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;orchid</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:palegoldenrod;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palegoldenrod</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:palegreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palegreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:paleturquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;paleturquoise</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:palevioletred;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;palevioletred</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:papayawhip;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;papayawhip</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:peachpuff;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;peachpuff</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:peru;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;peru</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:pink;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;pink</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:plum;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;plum</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:powderblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;powderblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:rosybrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;rosybrown</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:royalblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;royalblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:saddlebrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;saddlebrown</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:salmon;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;salmon</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:sandybrown;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;sandybrown</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:seagreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;seagreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:seashell;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;seashell</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:sienna;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;sienna</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:skyblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;skyblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategray;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slateblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slategray</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:slategrey;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;slategrey</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:snow;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;snow</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:springgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;springgreen</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:steelblue;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;steelblue</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:tan;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;tan</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:thistle;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;thistle</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:tomato;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;tomato</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:turquoise;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;turquoise</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:violet;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;violet</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:wheat;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;wheat</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:whitesmoke;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;whitesmoke</li>
+									<li><span style="border-style:solid;border-color:black;border-width:thin;background:yellowgreen;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;yellowgreen</li>
+								</ul>
+							</p>
+
+						<h2>Colors specified via red, green and blue amounts</h2>
+							
+							<p>
+								Red, green and blue are primary colors, that is they are not made by combining other colors. On the other hand yelow
+								is made by combining red and green, cyan is made by combining blue and green, magenta is made by combining red and 
+								blue and white is made by combining red, green and blue. Cyan, yellow, magenta and white are referred to as secondary
+								colors.
+							</p>
+							<p>
+								Now by varying the amount of red, green and blue you can create any color that you can imagine. This is where rgb 
+								colors come in. In CSS an rgb color is specified by a call to the Javascript function 'rgb(amount_red, amount_green, amount_blue)'. 
+								The parameters amount_red, amount_green, amount_blue specify the amount of red, green and blue light and should be 
+								numbers between 0 and 255, e.g. <b>rgb(50, 250, 100)</b>. What color is that? 
+								<span style="background-color:rgb(50, 250, 100)">Here it is!</span>
+							</p>
+							<p>
+								You can also use the JavaScript function 'rgb(amount_red, amount_green, amount_blue, transparency)'. The first 3 parameters 
+								are the same as for the function 'rgb(...)'. The fourth parameter specifies the tasparency of the color and your be a number 
+								between 0 and 1 where 0 is fully transparent and  1 is fully opaque, e.g. <b>rgb(50, 250, 100, 0.5)</b>. 
+								Let's see the difference side by side.<br/>
+								<span style="background-color:rgb(50, 250, 100)">XXXX</span><span style="background-color:rgba(50, 250, 100, 0.5)">XXXX</span>
+							</p>
+							<p>An advantage of rgb and rgba colors is that you can specify red, green and blue amounts as more familiar decimal numbers.</p>
+						
+						<h2>Colors specified via hue, saturation and lightness</h2>
+
+							<p>
+								HSL colors are specified via a call to this JavaScript function: <b>hsl(hue, saturation, lightness)</b>. The parametsr of this
+								function are as follows:
+								<ul>
+									<li><b>hue: </b>this must be between 0 an 360 and represents an angle on the color wheel. So 0 dgree would give you 
+										red, 150 degrees would give you green and 300 degrees would give you blue.
+										<br/>
+										<img src="images/ColorWheel.png" alt="images/ColorWheel.png" width="300" />
+									</li>
+									<br/><br/>
+									<li><b>saturation: </b>this must be between 0 and 100 and represents how greyed the color appears. 0 (0%) means the 
+										color just appears as grey while 100 (100%) means there is no greying of the color at all.
+									</li>
+									<br/><br/>
+									<li><b>lightness: </b>this must be between 0 and 100 and represents how darkened or lightened the color appears. 
+										0 (0%) means the color appears as black, 100 (100%) means that the color appears as pure white and 50 (50%) 
+										means that the color is normal.
+									</li>
+								</ul>
+								E.G. <span style="background-color:hsl(35, 50%, 80%);">XXXX</span>
+							</p>
+							<p>
+								You can also use the JavaScript function: <b>hsla(hue, saturation, lightness, transparency)</b>. This has the additional parameter 
+								'transparency', which should be a number between 0 and 1 and that specifies how opaque the color is. 0 is fully transparent 
+								while 1 is fully opaque. Let's see the difference side by side.<br/>
+								<span style="background-color:hsl(35, 50%, 80%, 1.0);">XXXX</span><span style="background-color:hsla(35, 50%, 80%, 0.5);">XXXX</span>
+							</p>
+
+						<h2>Hex colors</h2>
+						
+							<p>
+								Red, green and blue are primary colors, that is they are not made by combining other colors. On the other hand yelow
+								is made by combining red and green, cyan is made by combining blue and green, magenta is made by combining red and 
+								blue and white is made by combining red, green and blue. Cyan, yellow, magenta and white are referred to as secondary
+								colors.
+							</p>
+							<p>
+								Now by varying the amount of red, green and blue you can create any color that you can imagine. This is where hex 
+								colors come in. In CSS a hex color is flagged via the character #. Following that there should be 3 sets of 2 digit
+								<a href="#" onclick="DoOpenInfoPopup('hex_numbers', 'HexNumbers.html')">hex integers</a> that specify the amount of 
+								red, green and blue light:<br/><br/>
+								# 03 A6 D5<br/><br/>
+								Those spaces are there just to make things clearer for you and you would not normally include them. But 03 is the amount
+								of red light, A6 is the amount of green light and D5 is the amount of blue light. What color is that? 
+								<span style="background-color:#03A6D5">Here it is!</span>
+							</p>
+
+					<!-- #EndEditable --></div>
+					</div>
+					<script type="text/javascript">SetStageDivIDs();</script>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/HighVoltage.png" />&nbsp;<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>

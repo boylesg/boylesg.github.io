@@ -1,4 +1,11 @@
-﻿let g_mapDialogs = new Map();
+﻿//**********************************************************************************************************************
+//**********************************************************************************************************************
+//** INFO POPUPS 
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+
+
+let g_mapDialogs = new Map();
 
 function DoOpenInfoPopup(strID, strWebPage)
 {
@@ -40,6 +47,12 @@ function DoCloseInfoPopup(dialogPopupContainer)
 	}
 }
 
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+//** TRY IT NOW 
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+
 function OnClickButtonRunIDs(strIDTextArea, strIDFrame)
 {
 	let textareaTryItNowCode = document.getElementById(strIDTextArea);
@@ -75,7 +88,361 @@ function GetTryItNowCode_(nI, strRunCode, strAddOnCode)
 	return strTryItNowCode;
 }
 
-function OnClickRadioBackground(inputRadioButton, textareaCode, iframeResults)
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+//** BACKGROUND COLOR TRY IT NOW 
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+
+let g_bTargetIsBG = true;
+
+function OnClickRadioTarget(radioTarget)
+{
+	if (radioTarget)
+	{
+		g_bTargetIsBG = radioTarget.id == "color_target_background";
+	}
+}
+
+function OnClickRadioColor(inputRadio, textareaCode, iframeResults)
+{
+	if (inputRadio && textareaCode && iframeResults)
+	{
+		let strCode = textareaCode.value,
+			nPos1 = -1,
+			nPos2 = -1,
+			nPos3 = -1;
+			
+		if (g_bTargetIsBG)
+		{
+			nPos1 = strCode.indexOf("background-color");
+			
+			if (nPos1 > -1)
+			{
+				nPos2 = strCode.indexOf(";", nPos1);
+				if (nPos2 > -1)
+				{
+					strCode = strCode.slice(0, nPos1) + inputRadio.value + strCode.slice(nPos2, strCode.length);
+					textareaCode.value = strCode;
+					iframeResults.srcdoc = strCode;
+				}
+			}
+		}
+		else
+		{
+			nPos1 = strCode.indexOf("\"color");
+			if (nPos1 == -1)
+				nPos1 = strCode.indexOf(";color");
+			
+			if (nPos1 > -1)
+			{
+				nPos2 = strCode.indexOf(";", nPos1 + 1);
+				if (nPos2 > -1)
+				{
+					nPos3 = inputRadio.value.indexOf("-");
+					strCode = strCode.slice(0, nPos1 + 1) + inputRadio.value.slice(nPos3 + 1) + strCode.slice(nPos2, strCode.length);
+					textareaCode.value = strCode;
+					iframeResults.srcdoc = strCode;
+				}
+			}
+		}
+	}
+}
+
+function OnClickRadioColorRGB_HSL_HEX(inputRadio, textareaCode, iframeResults)
+{
+	// Enable and disable number fields
+	let numberRGBRed = document.getElementById("text-color-RGB-red"),
+		numberRGBGreen = document.getElementById("text-color-RGB-green"),
+		numberRGBBlue = document.getElementById("text-color-RGB-blue"),
+		numberRGBOpacity = document.getElementById("text-color-RGB-opacity"),
+		numberHSLHue = document.getElementById("text-color-HSL-hue"),
+		numberHSLSaturation = document.getElementById("text-color-HSL-saturation"),
+		numberHSLLightness = document.getElementById("text-color-HSL-lightness"),
+		numberHSLOpacity = document.getElementById("text-color-HSL-opacity"),
+		numberHEXRed = document.getElementById("text-color-HEX-red"),
+		numberHEXGreen = document.getElementById("text-color-HEX-green"),
+		numberHEXBlue = document.getElementById("text-color-HEX-blue");
+		
+	if (numberRGBRed && numberRGBGreen && numberRGBBlue && numberRGBOpacity && 
+		numberHSLHue && numberHSLSaturation && numberHSLLightness && numberHSLOpacity &&
+		numberHEXRed && numberHEXGreen && numberHEXBlue && inputRadio && textareaCode && iframeResults)
+	{
+		numberRGBRed.disabled = inputRadio.id.indexOf("radio-color-rgb") == -1;
+		numberRGBGreen.disabled = inputRadio.id.indexOf("radio-color-rgb") == -1;
+		numberRGBBlue.disabled = inputRadio.id.indexOf("radio-color-rgb") == -1;
+		numberRGBOpacity.disabled = inputRadio.id != "radio-color-rgba";
+
+		numberHSLHue.disabled = inputRadio.id.indexOf("radio-color-hsl") == -1;
+		numberHSLSaturation.disabled = inputRadio.id.indexOf("radio-color-hsl") == -1;
+		numberHSLLightness.disabled = inputRadio.id.indexOf("radio-color-hsl") == -1;
+		numberHSLOpacity.disabled = inputRadio.id != "radio-color-hsla";
+
+		numberHEXRed.disabled = inputRadio.id.indexOf("radio-color-hex") == -1;
+		numberHEXGreen.disabled = inputRadio.id.indexOf("radio-color-hex") == -1;
+		numberHEXBlue.disabled = inputRadio.id.indexOf("radio-color-hex") == -1;
+	}
+	OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+}
+
+function ReplaceInt(nIntNum, strCode, nNewIntVal, bIsHex, strAddOn)
+{
+	let nPos1 = -1, nPos2 = -1,
+		strPadding = "";
+	
+	if (bIsHex)
+	{
+		if (nNewIntVal <= 15)
+			strPadding = "0";
+			
+		nPos1 = strCode.indexOf("#") + (nIntNum * 2);
+		nPos2 = nPos1 + 2;
+		strCode = strCode.slice(0, nPos1 + 1) + strPadding + nNewIntVal.toString(16) + strCode.slice(nPos2 + 1, strCode.length);
+	}
+	else
+	{
+		nPos1 = strCode.indexOf("(");
+		nPos2 = strCode.indexOf(",", nPos1);
+
+		for (let nI = 0; nI < nIntNum; nI++)
+		{
+			nPos1 = nPos2;
+			nPos2 = strCode.indexOf(",", nPos1 + 1);
+		}
+		if (nPos2 < -1)
+			nPos2 = strCode.indexOf(")");
+		
+		if (nIntNum == 3)
+			nNewIntVal /= 10;
+		strCode = strCode.slice(0, nPos1 + 1) + nNewIntVal.toString() + strAddOn + strCode.slice(nPos2, strCode.length)
+	}
+	return strCode;
+}
+
+function OnChangeRGBRed(inputNumber, inputRadioRGB, inputRadioRGBA, textareaCode, iframeResults)
+{
+	if (inputRadioRGB && inputRadioRGBA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioRGB.checked)
+		{
+			strCode = inputRadioRGB.value;
+			inputRadio = inputRadioRGB;
+		}
+		else if (inputRadioRGBA.checked)
+		{
+			strCode = inputRadioRGBA.value;
+			inputRadio = inputRadioRGBA;
+		}
+		strCode = ReplaceInt(0, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeRGBGreen(inputNumber, inputRadioRGB, inputRadioRGBA, textareaCode, iframeResults)
+{
+	if (inputRadioRGB && inputRadioRGBA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioRGB.checked)
+		{
+			strCode = inputRadioRGB.value;
+			inputRadio = inputRadioRGB;
+		}
+		else if (inputRadioRGBA.checked)
+		{
+			strCode = inputRadioRGBA.value;
+			inputRadio = inputRadioRGBA;
+		}
+		strCode = ReplaceInt(1, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeRGBBlue(inputNumber, inputRadioRGB, inputRadioRGBA, textareaCode, iframeResults)
+{
+	if (inputRadioRGB && inputRadioRGBA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioRGB.checked)
+		{
+			strCode = inputRadioRGB.value;
+			inputRadio = inputRadioRGB;
+		}
+		else if (inputRadioRGBA.checked)
+		{
+			strCode = inputRadioRGBA.value;
+			inputRadio = inputRadioRGBA;
+		}
+		strCode = ReplaceInt(2, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeRGBOpacity(inputNumber, inputRadioRGB, inputRadioRGBA, textareaCode, iframeResults)
+{
+	if (inputRadioRGB && inputRadioRGBA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioRGB.checked)
+		{
+			strCode = inputRadioRGB.value;
+			inputRadio = inputRadioRGB;
+		}
+		else if (inputRadioRGBA.checked)
+		{
+			strCode = inputRadioRGBA.value;
+			inputRadio = inputRadioRGBA;
+		}
+		strCode = ReplaceInt(3, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHSLHue(inputNumber, inputRadioHSL, inputRadioHSLA, textareaCode, iframeResults)
+{
+	if (inputRadioHSL && inputRadioHSLA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioHSL.checked)
+		{
+			strCode = inputRadioHSL.value;
+			inputRadio = inputRadioHSL;
+		}
+		else if (inputRadioHSLA.checked)
+		{
+			strCode = inputRadioHSLA.value;
+			inputRadio = inputRadioHSLA;
+		}
+		strCode = ReplaceInt(0, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHSLSaturation(inputNumber, inputRadioHSL, inputRadioHSLA, textareaCode, iframeResults)
+{
+	if (inputRadioHSL && inputRadioHSLA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioHSL.checked)
+		{
+			strCode = inputRadioHSL.value;
+			inputRadio = inputRadioHSL;
+		}
+		else if (inputRadioHSLA.checked)
+		{
+			strCode = inputRadioHSLA.value;
+			inputRadio = inputRadioHSLA;
+		}
+		strCode = ReplaceInt(1, strCode, Number(inputNumber.value), false, "%");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHSLLightness(inputNumber, inputRadioHSL, inputRadioHSLA, textareaCode, iframeResults)
+{
+	if (inputRadioHSL && inputRadioHSLA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioHSL.checked)
+		{
+			strCode = inputRadioHSL.value;
+			inputRadio = inputRadioHSL;
+		}
+		else if (inputRadioHSLA.checked)
+		{
+			strCode = inputRadioHSLA.value;
+			inputRadio = inputRadioHSLA;
+		}
+		strCode = ReplaceInt(2, strCode, Number(inputNumber.value), false, "%");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHSLOpacity(inputNumber, inputRadioHSL, inputRadioHSLA, textareaCode, iframeResults)
+{
+	if (inputRadioHSL && inputRadioHSLA && textareaCode && iframeResults)
+	{
+		let strCode = "",
+			inputRadio = null;
+		
+		if (inputRadioHSL.checked)
+		{
+			strCode = inputRadioHSL.value;
+			inputRadio = inputRadioHSL;
+		}
+		else if (inputRadioHSLA.checked)
+		{
+			strCode = inputRadioHSLA.value;
+			inputRadio = inputRadioHSLA;
+		}
+		strCode = ReplaceInt(3, strCode, Number(inputNumber.value), false, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHEXRed(inputNumber, inputRadio, textareaCode, iframeResults)
+{
+	if (inputNumber && inputRadio && textareaCode && iframeResults)
+	{
+		let strCode = inputRadio.value;
+		strCode = ReplaceInt(0, strCode, Number(inputNumber.value), true, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHEXGreen(inputNumber, inputRadio, textareaCode, iframeResults)
+{
+	if (inputNumber && inputRadio && textareaCode && iframeResults)
+	{
+		let strCode = inputRadio.value;
+		strCode = ReplaceInt(1, strCode, Number(inputNumber.value), true, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+function OnChangeHEXBlue(inputNumber, inputRadio, textareaCode, iframeResults)
+{
+	if (inputNumber && inputRadio && textareaCode && iframeResults)
+	{
+		let strCode = inputRadio.value;
+		strCode = ReplaceInt(2, strCode, Number(inputNumber.value), true, "");
+		inputRadio.value = strCode;
+		OnClickRadioColor(inputRadio, textareaCode, iframeResults);
+	}
+}
+
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+//** BACKGROUND IMAGE TRY IT NOW
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+
+function OnClickRadioBackgroundImg(inputRadioButton, textareaCode, iframeResults)
 {
 	if (textareaCode)
 	{
@@ -208,7 +575,7 @@ function OnChangeX(inputNum, inputRadio, textareaCode, iframeResults)
 		
 		strValue = strValue.slice(0, nPos1 + 1) + inputNum.value + strValue.slice(nPos2, strValue.length);
 		inputRadio.value = strValue;
-		OnClickRadioBackground(inputRadio, textareaCode, iframeResults);
+		OnClickRadioBackgroundImg(inputRadio, textareaCode, iframeResults);
 	}
 }
 
@@ -233,7 +600,7 @@ function OnChangeY(inputNum, inputRadio, textareaCode, iframeResults)
 			nPos2 = strValue.lastIndexOf("%");
 		strValue = strValue.slice(0, nPos1 + 1) + inputNum.value + strValue.slice(nPos2, strValue.length);
 		inputRadio.value = strValue;
-		OnClickRadioBackground(inputRadio, textareaCode, iframeResults);
+		OnClickRadioBackgroundImg(inputRadio, textareaCode, iframeResults);
 	}
 }
 

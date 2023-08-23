@@ -1,10 +1,10 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|21 Aug 2023 16:43:50 -0000
+vti_timelastmodified:TR|23 Aug 2023 09:10:26 -0000
 vti_timecreated:TR|18 Aug 2023 13:08:52 -0000
 vti_extenderversion:SR|12.0.0.0
-vti_backlinkinfo:VX|courses/courses.dwt courses/c_course.html courses/web_course_css.html courses/HexNumbers.html courses/python_course.html courses/editing.html courses/web_course.html courses/web_course_html.html
-vti_nexttolasttimemodified:TW|21 Aug 2023 16:37:56 -0000
-vti_cacheddtm:TX|21 Aug 2023 16:43:50 -0000
-vti_filesize:IR|9443
+vti_backlinkinfo:VX|courses/courses.dwt courses/c_course.html courses/web_course_css.html courses/HexNumbers.html courses/python_course.html courses/editing.html courses/colors.html courses/web_course.html courses/web_course_html.html
+vti_nexttolasttimemodified:TW|23 Aug 2023 09:06:45 -0000
+vti_cacheddtm:TX|23 Aug 2023 09:10:26 -0000
+vti_filesize:IR|21784
