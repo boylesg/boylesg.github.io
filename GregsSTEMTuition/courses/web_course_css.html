@@ -1327,16 +1327,425 @@
 					<div style="display:none;">
 					
 						<h2><u>Fonts</u></h2>
-							<h3>font-color</h3>
-								<p>&nbsp;</p>
-							<h3>font-face</h3>
-								<p>&nbsp;</p>
+							<p>
+								These attributes control the characteristics of the text in an element - the fond, bold, italic, underlined, strikethrough, 
+								size and style. Here are the font characteristics that you are likely to use often.
+							</p>
+							<h3>font-family</h3>
+								<p>
+									This atttribute can hold one or more font names. If more than one font is listed then it acts 
+									as a  as a fallback system should the viewers operating system not suport the first font in the 
+									list. You can use either:
+									<ul>
+    									<li><b>Family name: </b>e.g. "times", "courier", "arial", etc.</li>
+    									<li><b>Generic family: </b>e.g. "serif", "sans-serif", "cursive", "fantasy", "monospace".</li>
+									</ul>
+								</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+										
+										let arrayFontFamily = [
+																"<p style=\"font-family:'Times New Roman', Times, serif\">HELLO WORLD!</p>"
+															  ];
+															  
+										WriteAsHTMLCode(arrayFontFamily);										
+										WriteAsHTMLTags(arrayFontFamily);																			
+										
+									</script>
+								</p>
 							<h3>font-size</h3>
-								<p>&nbsp;</p>
+								<p>
+									This atttribute controls the size of the font. It can be specified in the following ways:
+									<ul style="font-size:">
+										<li>
+											<b>key words: </b>xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger.<br/><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizexxSmall = [
+																			"<p style=\"font-size:xx-small\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizexxSmall);										
+													WriteAsHTMLTags(arrayFontSizexxSmall);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizexSmall = [
+																			"<p style=\"font-size:x-small\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizexSmall);										
+													WriteAsHTMLTags(arrayFontSizexSmall);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeSmall = [
+																			"<p style=\"font-size:small\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeSmall);										
+													WriteAsHTMLTags(arrayFontSizeSmall);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeMedium = [
+																			"<p style=\"font-size:medium\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeMedium);										
+													WriteAsHTMLTags(arrayFontSizeMedium);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeLarge = [
+																			"<p style=\"font-size:large\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeLarge);										
+													WriteAsHTMLTags(arrayFontSizeLarge);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizexLarge = [
+																			"<p style=\"font-size:x-large\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizexLarge);										
+													WriteAsHTMLTags(arrayFontSizexLarge);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizexxLarge = [
+																			"<p style=\"font-size:xx-large\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizexxLarge);										
+													WriteAsHTMLTags(arrayFontSizexxLarge);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeLarger = [
+																			"<p style=\"font-size:larger\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeLarger);										
+													WriteAsHTMLTags(arrayFontSizeLarger);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>pixels: </b>e.g. 5px, 20px, 50px,...<br/><br/>
+											
+												<script type="text/javascript">
+													
+													let arrayFontSize5px = [
+																			"<p style=\"font-size:5px\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSize5px);										
+													WriteAsHTMLTags(arrayFontSize5px);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSize10px = [
+																			"<p style=\"font-size:10px\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSize10px);										
+													WriteAsHTMLTags(arrayFontSize10px);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSize20px = [
+																			"<p style=\"font-size:20px\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSize20px);										
+													WriteAsHTMLTags(arrayFontSize20px);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSize40px = [
+																			"<p style=\"font-size:40px\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSize40px);										
+													WriteAsHTMLTags(arrayFontSize40px);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>percentage: </b>e.g. 20%, 40%, 80%,...<br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizePC1 = [
+																			"<p style=\"font-size:20%\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizePC1);										
+													WriteAsHTMLTags(arrayFontSizePC1);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizePC2 = [
+																			"<p style=\"font-size:40%\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizePC2);										
+													WriteAsHTMLTags(arrayFontSizePC2);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizePC3 = [
+																			"<p style=\"font-size:100%\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizePC3);										
+													WriteAsHTMLTags(arrayFontSizePC3);																			
+													
+												</script><br/>
+											
+										</li>
+										<li>
+											<b>em: e.g. 2em, 3em, 5em,...</b><br/>
+											
+												<script type="text/javascript">
+													
+													let arrayFontSizeEM1 = [
+																			"<p style=\"font-size:1em\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeEM1);										
+													WriteAsHTMLTags(arrayFontSizeEM1);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeEM2 = [
+																			"<p style=\"font-size:2em\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeEM2);										
+													WriteAsHTMLTags(arrayFontSizeEM2);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontSizeEM3 = [
+																			"<p style=\"font-size:5em\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontSizeEM3);										
+													WriteAsHTMLTags(arrayFontSizeEM3);																			
+													
+												</script><br/>
+										</li>
+									</ul>								
+								</p>
 							<h3>font-style</h3>
-								<p>&nbsp;</p>
+								<p>
+									This attribute controls the font style as in:
+									<ul>
+										<li>
+											<b>normal: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStyle1 = [
+																			"<p style=\"font-style:normal\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStyle1);										
+													WriteAsHTMLTags(arrayFontStyle1);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>italic: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStyle2 = [
+																			"<p style=\"font-style:italic\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStyle2);										
+													WriteAsHTMLTags(arrayFontStyle2);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>oblique: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStyle3 = [
+																			"<p style=\"font-style:oblique\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStyle3);										
+													WriteAsHTMLTags(arrayFontStyle3);																			
+													
+												</script><br/>
+										</li>
+									</ul>
+								</p>
 							<h3>font-weight</h3>
-								<p>&nbsp;</p>
+								<p>
+									This attribute controls the font weight as in:
+									<ul>
+										<li>
+											<b>normal: </b>
+												<script type="text/javascript">
+													
+													let arrayFontWeight1 = [
+																			"<p style=\"font-weight:normal\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontWeight1);										
+													WriteAsHTMLTags(arrayFontWeight1);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>bold: </b>
+												<script type="text/javascript">
+													
+													let arrayFontWeight2 = [
+																			"<p style=\"font-weight:bold\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontWeight2);										
+													WriteAsHTMLTags(arrayFontWeight2);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>Integer: </b>100, 200, 300, 400 (normal), 500, 600, 700  (bold), 800, 900<br/><br/>
+												<script type="text/javascript">
+													
+													let arrayFontWeight200 = [
+																			"<p style=\"font-weight:200\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontWeight200);										
+													WriteAsHTMLTags(arrayFontWeight200);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontWeight600 = [
+																			"<p style=\"font-weight:600\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontWeight600);										
+													WriteAsHTMLTags(arrayFontWeight600);																			
+													
+												</script><br/>
+												<script type="text/javascript">
+													
+													let arrayFontWeight900 = [
+																			"<p style=\"font-weight:900\">HELLO WORLD!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontWeight900);										
+													WriteAsHTMLTags(arrayFontWeight900);																			
+													
+												</script><br/>
+										</li>
+									</ul>								
+								</p>
+								
+							<h3>font-variant</h3>
+								<p>
+									This attribute controls the other variations of the font:
+									<ul>
+										<li>
+											<b>normal: </b>
+												<script type="text/javascript">
+													
+													let arrayFontVariant1 = [
+																			"<p style=\"font-style:normal\">Hello World!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontVariant1);										
+													WriteAsHTMLTags(arrayFontVariant1);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>small-caps: </b>
+												<script type="text/javascript">
+													
+													let arrayFontVariant2 = [
+																			"<p style=\"font-variant:small-caps\">Hello World!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontVariant2);										
+													WriteAsHTMLTags(arrayFontVariant2);																			
+													
+												</script><br/>
+										</li>
+									</ul>
+								</p>
+								
+
+							<h3>font-stretch</h3>
+								<p>
+									This attribute controls the width occupied by the font:
+									<ul>
+										<li>
+											<b>normal: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStretch1 = [
+																			"<p style=\"font-stretch:normal\">Hello World!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStretch1);										
+													WriteAsHTMLTags(arrayFontStretch1);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>condensed: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStretch2 = [
+																			"<p style=\"font-stretch:condensed\">Hello World!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStretch2);										
+													WriteAsHTMLTags(arrayFontStretch2);																			
+													
+												</script><br/>
+										</li>
+										<li>
+											<b>stretched: </b>
+												<script type="text/javascript">
+													
+													let arrayFontStretch3 = [
+																			"<p style=\"font-stretch:stretched\">Hello World!</p>"
+																			  ];
+																		  
+													WriteAsHTMLCode(arrayFontStretch3);										
+													WriteAsHTMLTags(arrayFontStretch3);																			
+													
+												</script><br/>
+										</li>
+									</ul>
+								</p>
+								
 						<p>
 							<script type="text/javascript">
 								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
