@@ -874,7 +874,7 @@
 										"            <label style=\"display:inline-block;text-align:right;width:7em;\">OPACITY=0.</label><input type=\"number\" disabled id=\"text-color-HSL-opacity\" size=\"4\" value=\"5\" min=\"0\" max=\"10\" oninput=\"OnChangeHSLOpacity(this, document.getElementById('radio-color-hsl'), document.getElementById('radio-color-hsla'), document.getElementById('TryItNowCode1'), document.getElementById('TryItNowResults1'))\"/>",
 										"        </td>",
 															
-										"        <td class=\"RadioButtonGroup\"  style=\"\">",
+										"        <td class=\"RadioButtonGroup\">",
 										"            <label><b>HEX Color</b></label>",
 										"            <br/><br/>",
 										"            <input type=\"radio\" value=\"background-color:#0000FF\" name=\"radio-color\" id=\"radio-color-hex\" onclick=\"OnClickRadioColorRGB_HSL_HEX(this, document.getElementById('TryItNowCode1'), document.getElementById('TryItNowResults1'))\" /><label>HEX</label>",
@@ -1754,17 +1754,338 @@
 					</div>
 					<div style="display:none;">
 						<h2><u>Element size</u></h2>
-							<h3>Height</h3>
-								<p>&nbsp;</p>
-							<h3>Width</h3>
-								<p>&nbsp;</p>
+							<h3>height</h3>
+								<p>
+									This attribute specifies the fixed height of an element. You can specify the height as:
+									<ul>
+										<li><b>pixels, e.g. height:100px;</b></li>
+										<li><b>em, e.g. height:5em;</b></li>
+										<li><b>percent, e.g. height:30%;</b></li>
+									</ul>
+									<br/>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayHeightPx = [
+																"<div style=\"background-color:lime;height:60px;\"></div>"
+															];
+															
+										WriteAsHTMLCode(arrayHeightPx);										
+										WriteAsHTMLTags(arrayHeightPx);
+													
+									</script>
+									<br/>
+									<script type="text/javascript">
+									
+										let arrayHeightPC = [
+																"<div style=\"background-color:navy;height:5em;\"></div>"
+															];
+															
+										WriteAsHTMLCode(arrayHeightPC);										
+										WriteAsHTMLTags(arrayHeightPC);
+													
+									</script>
+								</p>
+							<h3>min-height</h3>
+								<p>
+									This attribute specifies a minimum height for an element, but as more content is added to the 
+									element its height will increase as required. You can specify it in pixels, percentage or em.
+								</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayMinHeight1 = [
+																"<div style=\"background-color:navy;min-height:50px;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																"</div>"
+															];
+									
+										WriteAsHTMLCode(arrayMinHeight1);										
+										WriteAsHTMLTags(arrayMinHeight1);	
+																		
+									</script>
+									<br/>
+									<script type="text/javascript">
+									
+										let arrayMinHeight2 = [
+																"<div style=\"background-color:navy;min-height:50px;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ",
+																"dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non ",
+																"proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit ",
+																"voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ",
+																"beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ",
+																"magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, ",
+																"adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad ",
+																"minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis ",
+																"autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat ",
+																"quo voluptas nulla pariatur",
+																"</div>"
+															];
+									
+										WriteAsHTMLCode(arrayMinHeight2);										
+										WriteAsHTMLTags(arrayMinHeight2);	
+																		
+									</script>
+								</p>
+							<h3>max-height</h3>
+								<p>
+									This attribute specifies a maximum height for an element. Its height will increase as more content is 
+									added to the element but once the maximum height is reached then the height will not increase any 
+									further. You can specify it in pixels, percentage or em.
+								</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayMaxHeight1 = [
+																"<div style=\"background-color:lime;max-height:50px;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																"</div>"
+															];
+									
+										WriteAsHTMLCode(arrayMaxHeight1);										
+										WriteAsHTMLTags(arrayMaxHeight1);	
+																		
+									</script>
+									<br/>
+									<script type="text/javascript">
+									
+										let arrayMaxHeight2 = [
+																"<div style=\"background-color:lime;max-height:50px;overflow:hidden;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ",
+																"dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non ",
+																"proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit ",
+																"voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ",
+																"beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia ",
+																"consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit ",
+																"amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat ",
+																"voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi ",
+																"consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui ",
+																"dolorem eum fugiat quo voluptas nulla pariatur",
+																"</div>"
+															];
+									
+										WriteAsHTMLCode(arrayMaxHeight2);										
+										WriteAsHTMLTags(arrayMaxHeight2);	
+																		
+									</script>
+								</p>
+							<h3>width</h3>
+								<p>
+									This attribute specifies the fixed width of an element. You can specify the width as pixels, em,
+									percent.
+									<br/>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayWidthPx = [
+																"<div style=\"background-color:lime;height:60px;width:200px;\"></div>"
+															];
+															
+										WriteAsHTMLCode(arrayWidthPx);										
+										WriteAsHTMLTags(arrayWidthPx);
+													
+									</script>
+									<br/>
+									<script type="text/javascript">
+									
+										let arrayWidthPC = [
+																"<div style=\"background-color:navy;height:60px;width:20em;\"></div>"
+															];
+															
+										WriteAsHTMLCode(arrayWidthPC);										
+										WriteAsHTMLTags(arrayWidthPC);
+													
+									</script>
+								</p>
+							<h3>min-width</h3>
+								<p>This attribute specifies a minimum width for an element, but as more content is added to the 
+									element its width will increase as required. You can specify it in pixels, percentage or em.</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayMinWidth1 = [
+																"<div style=\"background-color:purple;height:100px;min-width:300px;max-width:500px;overflox:hidden;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																"</div>"
+															];
+									
+										WriteAsHTMLCode(arrayMinWidth1);										
+										WriteAsHTMLTags(arrayMinWidth1);	
+																		
+									</script>
+								</p>
+							<h3>max-width</h3>
+								<p>This attribute specifies a maximum width for an element. Its width will increase as more content is 
+									added to the element but once the maximum width is reached then the width will not increase any 
+									further. You can specify it in pixels, percentage or em.</p>
+									<p>
+										E.G.<br/>
+										<script type="text/javascript">
+										
+											let arrayMinWidth2 = [
+																	"<div style=\"background-color:purple;height:100px;min-width:300px;max-width:800px;overflow:hidden;\">",
+																	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+																	"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ",
+																	"dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non ",
+																	"proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit ",
+																	"voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto ",
+																	"beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ",
+																	"magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, ",
+																	"adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad ",
+																	"minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis ",
+																	"autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat ",
+																	"quo voluptas nulla pariatur",
+																	"</div>"
+																];
+										
+											WriteAsHTMLCode(arrayMinWidth2);										
+											WriteAsHTMLTags(arrayMinWidth2);	
+																			
+										</script>
+									</p>
+							<h3>line-height</h3>
+								<p>This attribute essentially sets the line spacing of an elelemnt. You can specify the height as:
+									<ul>
+										<li><b>pixels, e.g. height:100px;</b></li>
+										<li><b>em, e.g. height:5em;</b></li>
+										<li><b>percent, e.g. height:30%;</b></li>
+									</ul>
+									<br/>
+									E.G.<br/>
+									<script type="text/javascript">
+									
+										let arrayLineHeight1 = [
+																"<div style=\"background-color:orange;line-height:auto;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+																"eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ",
+																"enim ad minim veniam, quis nostrud exercitation ullamco laboris ",
+																"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in ",
+																"reprehenderit in voluptate velit esse cillum dolore eu fugiat ",
+																"nulla pariatur. Excepteur sint occaecat cupidatat non proident, ",
+																"sunt in culpa qui officia deserunt mollit anim id est laborum.",
+																"</div>"
+															];
+															
+										WriteAsHTMLCode(arrayLineHeight1);										
+										WriteAsHTMLTags(arrayLineHeight1);
+													
+									</script>
+									<br/>
+									<script type="text/javascript">
+									
+										let arrayLineHeight2 = [
+																"<div style=\"background-color:orange;line-height:30px;\">",
+																"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+																"eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ",
+																"enim ad minim veniam, quis nostrud exercitation ullamco laboris ",
+																"nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in ",
+																"reprehenderit in voluptate velit esse cillum dolore eu fugiat ",
+																"nulla pariatur. Excepteur sint occaecat cupidatat non proident, ",
+																"sunt in culpa qui officia deserunt mollit anim id est laborum.",
+																"</div>"
+															];
+															
+										WriteAsHTMLCode(arrayLineHeight2);										
+										WriteAsHTMLTags(arrayLineHeight2);
+													
+									</script>
+									<br/>
+								</p>
+						<p>
+							<script type="text/javascript">
+								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
+							</script>
+						</p>
 					</div>
 					<div style="display:none;">
 						<h2><u>Margins, padding &amp; overflow</u></h2>
 							<h3>margin, margin-bottom, margin-left, margin-right, margin-top</h3>
-								<p>&nbsp;</p>
+								<p>
+									This attribute specifies the width of blank space around the outside of an element. You can 
+									specify it as:
+									<ul>
+										<li><b>pixels: </b>e.g. margin:20px;</li>
+										<li><b>percentage: </b>e.g. margin:20%;</li>
+										<li><b>em: </b>e.g. margin:2em;</li>
+									</ul>
+								</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+										
+										let arrayMarginRadioButtons = [
+	"<table cellpadding=\"10\">",
+	"    <tr>",
+	"        <td class=\"RadioButtonGroup\">",
+	"            <label><b>Margins</b></label>",
+	"            <br/><br/>",
+	"            <input type=\"radio\" checked value=\"margin:2em;\" name=\"radio-margin\" id=\"radio-margin\" ",
+	"					onclick=\"OnClickRadioMargin(this, document.getElementById('TryItNowCode3'), document.getElementById('TryItNowResults3'))\" /><label>margin:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"margin-left:2em;\" name=\"radio-margin\" id=\"radio-margin\" ",
+	"					onclick=\"OnClickRadioMargin(this, document.getElementById('TryItNowCode3'), document.getElementById('TryItNowResults3'))\" /><label>margin-left:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"margin-right:2em;\" name=\"radio-margin\" id=\"radio-margin\" ",
+	"					onclick=\"OnClickRadioMargin(this, document.getElementById('TryItNowCode3'), document.getElementById('TryItNowResults3'))\" /><label>margin-right:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"margin-top:2em;\" name=\"radio-margin\" id=\"radio-margin\" ",
+	"					onclick=\"OnClickRadioMargin(this, document.getElementById('TryItNowCode3'), document.getElementById('TryItNowResults3'))\" /><label>margin-top:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"margin-bottom:2em;\" name=\"radio-margin\" id=\"radio-margin\" ",
+	"					onclick=\"OnClickRadioMargin(this, document.getElementById('TryItNowCode3'), document.getElementById('TryItNowResults3'))\" /><label>margin-bottom:2em;</label>",
+	"        </td>",
+		
+	"    </tr>",							
+	"</table>"
+																		];
+																		
+										document.write(GetTryItNowCode_(3, "<div style=\"background-color:yellow;min-height:2em;\"></div><div style=\"background-color:navy;color:white;margin:2em;\">HELLO WORLD!</div><div style=\"background-color:yellow;min-height:2em;\">", GetAsHTMLTags(arrayMarginRadioButtons)));
+										OnClickButtonRunIDs("TryItNowCode3", "TryItNowResults3");
+										
+									</script>
+								</p>
 							<h3>padding, padding-bottom, padding-left, padding-right, padding-top</h3>
-								<p>&nbsp;</p>
+								<p>
+									This attribute specifies the width of blank space around the inside of an element. You can 
+									specify it as:
+									<ul>
+										<li><b>pixels: </b>e.g. margin:20px;</li>
+										<li><b>percentage: </b>e.g. margin:20%;</li>
+										<li><b>em: </b>e.g. margin:2em;</li>
+									</ul>
+								</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+										
+										let arrayPaddingRadioButtons = [
+	"<table cellpadding=\"10\">",
+	"    <tr>",
+	"        <td class=\"RadioButtonGroup\">",
+	"            <label><b>Padding</b></label>",
+	"            <br/><br/>",
+	"            <input type=\"radio\" checked value=\"padding:2em;\" name=\"radio-padding\" id=\"radio-padding\" ",
+	"					onclick=\"OnClickRadioPadding(this, document.getElementById('TryItNowCode4'), document.getElementById('TryItNowResults4'))\" /><label>padding:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"padding-left:2em;\" name=\"radio-padding\" id=\"radio-padding\" ",
+	"					onclick=\"OnClickRadioPadding(this, document.getElementById('TryItNowCode4'), document.getElementById('TryItNowResults4'))\" /><label>padding-left:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"padding-right:2em;\" name=\"radio-padding\" id=\"radio-padding\" ",
+	"					onclick=\"OnClickRadioPadding(this, document.getElementById('TryItNowCode4'), document.getElementById('TryItNowResults4'))\" /><label>padding-right:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"padding-top:2em;\" name=\"radio-padding\" id=\"radio-padding\" ",
+	"					onclick=\"OnClickRadioPadding(this, document.getElementById('TryItNowCode4'), document.getElementById('TryItNowResults4'))\" /><label>padding-top:2em;</label><br/>",
+	"            <input type=\"radio\" value=\"padding-bottom:2em;\" name=\"radio-padding\" id=\"radio-padding\" ",
+	"					onclick=\"OnClickRadioPadding(this, document.getElementById('TryItNowCode4'), document.getElementById('TryItNowResults4'))\" /><label>padding-bottom:2em;</label>",
+	"        </td>",
+		
+	"    </tr>",							
+	"</table>"
+																		];
+																		
+										document.write(GetTryItNowCode_(4, "<div style=\"background-color:yellow;min-height:2em;\"></div><div style=\"background-color:navy;color:white;padding:2em;\">XXXXXXXXXXXX HELLO WORLD! XXXXXXXXXXXX</div><div style=\"background-color:yellow;min-height:2em;\">", GetAsHTMLTags(arrayPaddingRadioButtons)));
+										OnClickButtonRunIDs("TryItNowCode4", "TryItNowResults4");
+										
+									</script>
+								</p>
 						<p>
 							<script type="text/javascript">
 								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -1773,7 +2094,82 @@
 					</div>
 					<div style="display:none;">
 						<h2>overflow, overflow-x, overflow-y</h2>
-							<p>&nbsp;</p>
+							<p>
+								These attributes control how contents of an element, that can't fit inside it, are handled. You can 
+								use the following values:
+								<ul>
+									<li><b>visible: </b></li>
+									<li><b>hidden: </b></li>
+									<li><b>clip: </b></li>
+									<li><b>scroll: </b></li>
+									<li><b>auto: </b></li>
+								</ul>
+							</p>
+								<p>
+									E.G.<br/>
+									<script type="text/javascript">
+										
+										let arrayOverflowRadioButtons = [
+	"<table cellpadding=\"10\">",
+	"    <tr>",
+	"        <td class=\"RadioButtonGroup\" style=\"width:25em\">",
+	"            <label><b>Overflow</b></label>",
+	"            <br/><br/>",
+	"            <input type=\"radio\" checked value=\"overflow:\" name=\"radio-overflow\" id=\"radio-overflow\" ",
+	"					onclick=\"OnClickRadioOverflow(this, document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\" /><label>overflow</label>",
+	"            <label> = </label><select id=\"select-overflow\" onchange=\"OnClickRadioOverflow(document.getElementById('radio-overflow'), document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\">",
+	"                <option selected value=\"visible\">visible</option>",
+	"                <option value=\"hidden\">hidden</option>",
+	"                <option value=\"clipped\">clipped</option>",
+	"                <option value=\"scroll\">scroll</option>",
+	"                <option value=\"auto\">auto</option>",
+	"            </select><br><br/>",
+	"            <input type=\"radio\" value=\"overflow-x:\" name=\"radio-overflow\" id=\"radio-overflow-x-only\" ",
+	"					onclick=\"OnClickRadioOverflow(this, document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\" /><label>overflow-x</label>",
+	"           <label> = </label><select disabled id=\"select-overflow-x-only\" onchange=\"OnClickRadioOverflow(document.getElementById('radio-overflow-x-only'), document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\">",
+	"                <option selected value=\"visible\">visible</option>",
+	"                <option value=\"hidden\">hidden</option>",
+	"                <option value=\"clipped\">clipped</option>",
+	"                <option value=\"scroll\">scroll</option>",
+	"                <option value=\"auto\">auto</option>",
+	"            </select><br><br/>",
+	"            <input type=\"radio\" value=\"overflow-y:\" name=\"radio-overflow\" id=\"radio-overflow-y-only\" ",
+	"					onclick=\"OnClickRadioOverflow(this, document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\" /><label>overflow-y</label>",
+	"           <label> = </label><select disabled id=\"select-overflow-y-only\" onchange=\"OnClickRadioOverflow(document.getElementById('radio-overflow-y-only'), document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\">",
+	"                <option selected value=\"visible\">visible</option>",
+	"                <option value=\"hidden\">hidden</option>",
+	"                <option value=\"clipped\">clipped</option>",
+	"                <option value=\"scroll\">scroll</option>",
+	"                <option value=\"auto\">auto</option>",
+	"            </select><br><br/>",
+	"            <input type=\"radio\" value=\"overflow-x:XXXX;overflow-y:YYYY\" name=\"radio-overflow\" id=\"radio-overflow-xy\" ",
+	"					onclick=\"OnClickRadioOverflow(this, document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\" />",
+	"                  <label>overflow-x = </label>",
+	"                  <select id=\"select-overflow-x\" disabled onchange=\"OnClickRadioOverflow(document.getElementById('radio-overflow-xy'), document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\">",
+	"                      <option selected value=\"visible\">visible</option>",
+	"                      <option value=\"hidden\">hidden</option>",
+	"                      <option value=\"clipped\">clipped</option>",
+	"                      <option value=\"scroll\">scroll</option>",
+	"                      <option value=\"auto\">auto</option>",
+	"                  </select>",
+	"                  <label>overflow-y = </label>",
+	"                  <select id=\"select-overflow-y\" disabled onchange=\"OnClickRadioOverflow(document.getElementById('radio-overflow-xy'), document.getElementById('TryItNowCode5'), document.getElementById('TryItNowResults5'))\">",
+	"                      <option selected value=\"visible\">visible</option>",
+	"                      <option value=\"hidden\">hidden</option>",
+	"                      <option value=\"clipped\">clipped</option>",
+	"                      <option value=\"scroll\">scroll</option>",
+	"                      <option value=\"auto\">auto</option>",
+	"                  </select>",
+	"        </td>",
+	"    </tr>",							
+	"</table>"
+																		];
+																		
+										document.write(GetTryItNowCode_(5, "<div style=\"background-color:darkgreen;height:2em;\"></div><div style=\"overflow:visible;background-color:navy;color:black;height:3em;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div><div style=\"background-color:darkgreen;height:2em;\">", GetAsHTMLTags(arrayOverflowRadioButtons)));
+										OnClickButtonRunIDs("TryItNowCode5", "TryItNowResults5");
+										
+									</script>
+								</p>
 						<p>
 							<script type="text/javascript">
 								g_nStageNum = g_nStageNum = DrawMidStageButtons(g_nStageNum);
