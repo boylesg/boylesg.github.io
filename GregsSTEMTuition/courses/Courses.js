@@ -1255,4 +1255,36 @@ function OnClickRadioOverflow(inputRadio, textareaTryItNowCode, iframeTryItNowRe
 	}
 }
 
+function OnClickRadioPosition(inputRadio, divPosDemo)
+{
+	if (inputRadio && divPosDemo)
+	{
+		let	radioRelative = document.getElementById("radio-relative"),
+			numberPosX = document.getElementById("position-x"),
+			numberPosY = document.getElementById("position-y");
+			
+		if (numberPosX && numberPosY && radioRelative)
+		{
+			numberPosX.disabled = !radioRelative.checked;
+			numberPosY.disabled = !radioRelative.checked;
+		}
+		divPosDemo.style.position = inputRadio.value;
+	}
+}
+
+function OnChangePositionX(inputNumberPositionX, divPosDemo)
+{
+	if (inputNumberPositionX && divPosDemo)
+	{
+		divPosDemo.style.left = inputNumberPositionX.value + "px";
+	}
+}
+
+function OnChangePositionY(inputNumberPositionY, divPosDemo)
+{
+	if (inputNumberPositionY && divPosDemo)
+	{
+		divPosDemo.style.top = inputNumberPositionY.value + "px";
+	}
+}
 
