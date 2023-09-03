@@ -585,6 +585,7 @@
 
 
 
+
 	
 	
 	
@@ -1969,6 +1970,40 @@
 														strAnswer:"", strID:""});
 	
 	
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which tags are recommended (but not required) in a minimal web page?",
+														arrayOptions:["<htm>, <body>", "<body>, <head>", "<htm>, <body>, <head>, <title>", "<htm>, <body>, <head>"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+								
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What tag will create a horizontal line on the page?",
+														arrayOptions:["<h1>", "<hl>", "<hr>", "<hline>"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+	
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What tag is used to create an area for CSS styling specific to the page?",
+														arrayOptions:["<head>", "<title>", "<style>", "<link>"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which tag defines a text input where a user can enter a single line of text such as their name?",
+														arrayOptions:["<textarea>", "<input type='text'", "<select>"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What methods are used by HTML forms to submit the form's data to the web server for processing?",
+														arrayOptions:["GET & POST", "GET", "POST", "SUBMIT"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What tag is used to create an input that allows the user to select a value from a list?",
+														arrayOptions:["<textarea>", "<select>", "<input>", "<list>"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What tag is used to create a table?",
+														arrayOptions:["<table>", "<tr>", "<thead>", "<tbody>", "<td>", "<tfoot>", "<th>", "All of them"],
+														nCorrectOption:7, strAnswer:"", strID:""});
 	/*						
 								g_arrayQuestions.push({strType:"code",
 														strQuestion:"",
@@ -1978,7 +2013,7 @@
 	
 								g_arrayQuestions.push({strType:"multiple",
 														strQuestion:"",
-														arrayOptions:["Optio1", "Option2", "Option3"],
+														arrayOptions:["Option1", "Option2", "Option3"],
 														nCorrectOption:1, strAnswer:"", strID:""});
 	*/
 								GenerateQuestions(g_arrayQuestions);
