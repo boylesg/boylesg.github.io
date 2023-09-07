@@ -2515,6 +2515,110 @@
 							
 								<script type="text/javascript">
 
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which method of inclusion of groups of CSS attributes that are used more than once on a single page?",
+														arrayOptions:["External styles.css", "<style> tags", "style property on HTML tags"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which method of inclusion of groups of CSS attributes that are used on multiple page?",
+														arrayOptions:["External styles.css", "<style> tags", "style property on HTML tags"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which method of inclusion of a small number of CSS attributes that are used one off?",
+														arrayOptions:["External styles.css", "<style> tags", "style property on HTML tags"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which CSS attribute specifies how an element is displayed on the page relative to other elements, or if it is displayed at all?",
+														arrayOptions:["display", "visibility", "clear"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you include an external style sheet or .css file?",
+														arrayOptions:["<stylesheet>mystyle.css</stylesheet>", "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">", " <style src=\"mystyle.css\">"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+														
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which is the correct CSS syntax?",
+														arrayOptions:["body {color: black;}", " {body:color=black;}", " body:color=black;", "{body;color:black;}"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+	
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which of these is a comment in CSS?",
+														arrayOptions:["' this is a comment", " // this is a comment //", " // this is a comment", " /* this is a comment */"],
+														nCorrectOption:3, strAnswer:"", strID:""});
+
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which CSS attribute changes the back ground color of an element?",
+														arrayOptions:["color", "bgcolor", "background-color"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How would you add a background color to all <h1> elements?",
+														arrayOptions:["Option1", "Option2", "Option3"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"",
+														arrayOptions:["h1.all{bacground-color:#FFFFFF;}", "h1{bacground-color:#FFFFFF;}", "all.h1{bacground-color:#FFFFFF;}"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which CSS attribute chnages the color of text in an element?",
+														arrayOptions:["color", "text-color", "fgcolor"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which CSS attribute changes the size of text?",
+														arrayOptions:["text-size", "font-size", "text-style", "font-style"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"What is the correct CSS syntax for making all the <p> elements bold?",
+														arrayOptions:["p {font-weight:bold;}", " <p style=\"text-size:bold;\">", "p {text-size:bold;}", " <p style=\"font-size:bold;\">"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you display hyperlinks without an underline?",
+														arrayOptions:["a {text-decoration:none;}", "a {underline:none;}", "a {text-decoration:no-underline;}", "a {decoration:no-underline;}"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you make each word in a text start with a capital letter?",
+														arrayOptions:["text-transform:capitalize", "You can't do that with CSS", "transform:capitalize", "text-style:capitalize"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which property is used to change the font of an element?",
+														arrayOptions:["font-style", "font-family", "font-weight"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you make the text bold?",
+														arrayOptions:["style:bold;", "font:bold;", "font-weight:bold;"],
+														nCorrectOption:2, strAnswer:"", strID:""});
+
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you display a border with a top thickness of 10px, bottom thickness of 5 pixels, left thickness of 20px and right thickness of 1 pixel?",
+														arrayOptions:[" border-width:10px 5px 20px 1px;", " border-width:10px 20px 5px 1px;", " border-width:5px 20px 10px 1px;", " border-width:10px 1px 5px 20px;"],
+														nCorrectOption:3, strAnswer:"", strID:""});
+														
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"Which property is used to change the left margin of an element?",
+														arrayOptions:["padding-left", "margin-left", "indent"],
+														nCorrectOption:1, strAnswer:"", strID:""});
+														
+								g_arrayQuestions.push({strType:"multiple",
+														strQuestion:"How do you make a list that lists its items with squares?",
+														arrayOptions:["list-style-type: square;", "list-type: square;", "list: square;"],
+														nCorrectOption:0, strAnswer:"", strID:""});
+
 	/*						
 								g_arrayQuestions.push({strType:"code",
 														strQuestion:"",
@@ -2528,7 +2632,9 @@
 														nCorrectOption:1, strAnswer:"", strID:""});
 	*/
 							
-								</script>
+								GenerateQuestions(g_arrayQuestions);
+																
+							</script>
 							
 						</div>
 						<script type="text/javascript">
