@@ -409,7 +409,8 @@ function DoLogin(strTargetPassword, strCourseName)
 					sessionStorage["current_stage"] = "Stage1";
 					divStage = document.getElementById(sessionStorage["current_stage"]);
 				}
-				divStage.style.display = "block";
+				if (divStage)
+					divStage.style.display = "block";
 					
 			}
 			else if (document.getElementById('Stage1'))
