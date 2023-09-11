@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- #BeginTemplate "courses.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>WEB PROGRAMMING - JavaScript</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
+			
+		<div id="TryItNowHTML" style="display:none;">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+				ADD_ON_CODE
+			</div>
+		</div>
+		
+	</head>
+	
+	<body onload="OnBodyLoad()">
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's STEM Tuition<br/></div>
+					<div class="website_motto">All you need is passion for the subject &amp; a love of learning.</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="../courses/c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="../courses/web_course.html">Web Sites</a></li>
+									<li class="MenuPopupItem">
+									<a href="../courses/python_course.html">Python</a></li>
+								</ul>
+							</div>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+				
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><b><u>" + document.title + "</u></b></h1>");
+					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
+					<div id="login" class="login">
+						<p>Purchase the password</p>
+						<br/>			
+						<div style="display:none" id="TenDollarCountry">
+							<p><b>COST: </b>$10.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>						</div>
+						<div style="display:none" id="FiveDollarCountry">
+							<p><b>COST: </b>$5.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>				
+						</div>
+						<div style="display:none" id="OneDollarCountry">
+							<p><b>COST: </b>$1.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="JEVUQDXKFEAWL" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<div style="display:none" id="FiftyCentCountry">
+							<p><b>COST: </b>$0.50 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="QTC2QAC4J34U8" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+					<!-- #BeginEditable "pre-content" -->
+					
+					<!-- #EndEditable -->
+					<div style="display:none;" id="course_content">
+					<!-- #BeginEditable "content" -->
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Introduction</h2>
+							<h3>What is JavaScript</h3>
+							<p>
+									JavaScript is a programming language that allows you to implement more complex features 
+									on web page. There are 3 layers to any web page:
+									<ul>
+										<li><b>HTML: </b>allows you to code the basic structure of the web page.</li>
+										<li><b>CSS: </b>allows you to modify the formatting of the basic structures within the web 
+											page, i.e. change back ground colors, text colors, borders and fonts etc. as well as
+											implement simple intereactactivity such as mouse pointer hover effects etc.</li>
+										<li><b>JavaScript: </b>allows you to implement far more complex types of intereactivity such as 
+											displaying timely content updates, interactive maps, animated 2D/3D graphics, scrolling 
+											video jukeboxes, etc.
+										</li>
+									</ul>
+								</p>
+								<p>
+									It is important to know that JavaScript and Java are two unrelated programming languages that are 
+									used on different platforms and for different types of software. JavaScript is an 'untyped' language, 
+									which means you don't need to specify a data type for any variables you declare. And you can assign 
+									data of any type to your variable. In short you can do this in JavaScript:<br/><br/>
+									let MyVariable = 0;<br/>
+									MyVariable = "Hellow world!";<br/>
+									MyVariable = 3.45;<br/><br/>
+									In contrast, if you tried this in C (a strictly typed language), then you would get syntax errors 
+									because, for example, you can't assign the string value "Hello world!" to a variable that has been 
+									delcared as an integer variable.					
+								</p>
+								<p>
+									JavaScript is also an interpretted language, meaning that your text based code is converted to 
+									binary CPU instructions one line at a time by the web browsers, and executed. This is in contrast 
+									to a copiled language like C where all your text based code is converted to binary CPU instructions 
+									before any of the instructions are executed by the CPU. Because it is an interpretted language it 
+									will work on any device and under any operating system because the specific web browser deals 
+									with the specifics of the video hardware of the device - your JavaScript code does not have to.<br/>
+								</p>
+								<p>
+									The syntax of JavaScript is identical to C, so of you are a C programmer then you will have 
+									little trouble getting the hang of JavaScript. It is also strictly a client side or web browser 
+									language - it gives you no access to the web server functions. The need for security also means there 
+									are limits to what you can do with it in the web browser. You cannot do any the following with JavaScript:
+									<ul>
+										<li>File handling.</li>
+										<li>Run programs on the user's system.</li>
+										<li>Access the user's contacts or personal data.</li>
+										<li>Access the user's OS settings.</li>
+									</ul>
+									Your code is strictly confined to the web browser's internal environment.
+								</p>
+								<h3>How do you include JavaScript in your web page?</h3>
+								<p>
+									You include JavaScript in your web page by using the &lt;script&gt; tag like this:<br/><br/>
+									&lt;script type="text/javascript"&gt;<br/>
+									........<br/>
+									&lt;/script&gt;<br/><br/>
+									You can have as many of these script tags through out your web page as you want or need. And it 
+									does not matter where in your web page you include script tags - they are remain invisible to 
+									anyone viewing the web page. Any variables or functions declared within script tags at the top 
+									if the web page will be available for use within script tags further down in your web page.
+								</p>
+								<h3>Syntax and run time errors in JavaScript</h3>
+								<p>
+									If your JavaScript contains a syntax error or a run time error then the we browser will simply 
+									stop executing your code from that point on. So it can lead to confusing faults in your web page. 
+									Elements after the JavaScript error may not display properly or at all and elements that rely on 
+									your JavaScript code after the error will just fail to be interactive.
+								</p>
+								<p>
+									The best way to detect such error is to use the 'developer tools' in either:
+									<ul> 
+										<li>
+											Firefox Developer Edition<br/><br/>
+											<a href="images/FirefoxDeveloperToolsMenu.jpg"><img src="images/FirefoxDeveloperToolsMenu.jpg" alt="FirefoxDeveloperToolsMenu.jpg" /></a><br/><br/>
+											<a href="images/FirefoxDeveloperTools.jpg"><img src="images/FirefoxDeveloperTools.jpg" width="100%" alt="FirefoxDeveloperTools.jpg" /></a><br/><br/>
+										</li>
+										<li>
+											Google Chome<br/><br/>
+											<a href="images/ChromeDeveloperToolsMenu.jpg"><img src="images/ChromeDeveloperToolsMenu.jpg" alt="ChromeDeveloperToolsMenu.jpg" /></a><br/><br/>
+											<a href="images/ChromeDeveloperTools.jpg"><img src="images/ChromeDeveloperTools.jpg" width="100%" alt="ChromeDeveloperTools.jpg" /></a><br/><br/>
+										</li>
+									</ul>
+									Any syntax or run time errors will be flagged in the 'console' tab, and the error message will include the file name and 
+									the line number of the error.
+								</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawFirstStageButtons("web_course_css.html", g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Reserved words</h2>
+								<p>
+									You cannot use any of the following words as variable or function names, as they have a specific purposes in 
+									JavaScript:
+									<ul>
+										<li><b>abstract</b></li>
+										<li><b>arguments</b></li>
+										<li><b>await</b></li>
+										<li><b>boolean</b></li>
+										<li><b>break</b></li>
+										<li><b>byte</b></li>
+										<li><b>case</b></li>
+										<li><b>catch</b></li>
+										<li><b>char</b></li>
+										<li><b>class</b></li>
+										<li><b>const</b></li>
+										<li><b>continue</b></li>
+										<li><b>debugger</b></li>
+										<li><b>default</b></li>
+										<li><b>delete</b></li>
+										<li><b>do</b></li>
+										<li><b>double</b></li>
+										<li><b>else</b></li>
+										<li><b>enum</b></li>
+										<li><b>eval</b></li>
+										<li><b>export</b></li>
+										<li><b>extends</b></li>
+										<li><b>false</b></li>
+										<li><b>final</b></li>
+										<li><b>finally</b></li>
+										<li><b>float</b></li>
+										<li><b>for</b></li>
+										<li><b>function</b></li>
+										<li><b>goto</b></li>
+										<li><b>if</b></li>
+										<li><b>implements</b></li>
+										<li><b>import</b></li>
+										<li><b>in</b></li>
+										<li><b>instanceof</b></li>
+										<li><b>int</b></li>
+										<li><b>interface</b></li>
+										<li><b>let</b></li>
+										<li><b>long</b></li>
+										<li><b>native</b></li>
+										<li><b>new</b></li>
+										<li><b>null</b></li>
+										<li><b>package</b></li>
+										<li><b>private</b></li>
+										<li><b>protected</b></li>
+										<li><b>public</b></li>
+										<li><b>return</b></li>
+										<li><b>short</b></li>
+										<li><b>static</b></li>
+										<li><b>super</b></li>
+										<li><b>switch</b></li>
+										<li><b>synchronized</b></li>
+										<li><b>this</b></li>
+										<li><b>throw</b></li>
+										<li><b>throws</b></li>
+										<li><b>transient</b></li>
+										<li><b>true</b></li>
+										<li><b>try</b></li>
+										<li><b>typeof</b></li>
+										<li><b>var</b></li>
+										<li><b>void</b></li>
+										<li><b>volatile</b></li>
+										<li><b>while</b></li>
+										<li><b>with</b></li>
+										<li><b>yield</b></li>
+										<li><b>Array</b></li>
+										<li><b>Date</b></li>
+										<li><b>eval</b></li>
+										<li><b>function</b></li>
+										<li><b>hasOwnProperty</b></li>
+										<li><b>Infinity</b></li>
+										<li><b>isFinite</b></li>
+										<li><b>isNaN</b></li>
+										<li><b>isPrototypeOf</b></li>
+										<li><b>length</b></li>
+										<li><b>Math</b></li>
+										<li><b>NaN</b></li>
+										<li><b>name</b></li>
+										<li><b>Number</b></li>
+										<li><b>Object</b></li>
+										<li><b>prototype</b></li>
+										<li><b>String</b></li>
+										<li><b>toString</b></li>
+										<li><b>undefined</b></li>
+										<li><b>valueOf</b></li>
+										<li><b>getClass</b></li>
+										<li><b>java</b></li>
+										<li><b>JavaArray</b></li>
+										<li><b>javaClass</b></li>
+										<li><b>JavaObject</b></li>
+										<li><b>JavaPackage</b></li>
+									</ul> 
+								</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawMidStageButtons(g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Variables</h2>
+								<p>&nbsp;</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawMidStageButtons(g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Data structures</h2>
+								<p class="ContentsParagraph">
+								</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Conditional statements</h2>
+								<p class="ContentsParagraph">
+								</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Loops</h2>
+								<p class="ContentsParagraph">
+								</p>
+								<p>
+									<script type="text/javascript">
+										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+									</script>
+								</p>
+						</div>
+						<script type="text/javascript">
+						
+							g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_css.html\" class=\"StageLink\"><b>CSS</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_build.html\" class=\"StageLink\"><b>Build a web site</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_php.html\" class=\"StageLink\"><b>PHP</b></a>");
+							g_arrayStageBookmarks.push("<hr>");
+	
+						</script>
+
+					<!-- #EndEditable --></div>
+					</div>
+					<script type="text/javascript">SetStageDivIDs();</script>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/HighVoltage.png" />&nbsp;<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>
