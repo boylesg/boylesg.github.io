@@ -229,7 +229,8 @@
 						</div>
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Reserved words</h2>
+							<h2 class="StageHeading">Miscellaneous</h2>
+								<h3>Reserved words</h3>
 								<p>
 									You cannot use any of the following words as variable or function names, as they have a specific purposes in 
 									JavaScript:
@@ -326,6 +327,77 @@
 										<li><b>JavaPackage</b></li>
 									</ul> 
 								</p>
+								<h3>Reserved characters</h3>
+								<p>
+									You cannot use any of the following characters as part of variable or function names, as they also have a specific purposes in 
+									JavaScript:
+									<ul>
+										<li>`</li>
+										<li>~</li>
+										<li>!</li>
+										<li>@</li>
+										<li>#</li>
+										<li>%</li>
+										<li>^</li>
+										<li>&amp;</li>
+										<li>*</li>
+										<li>(</li>
+										<li>)</li>
+										<li>-</li>
+										<li>=</li>
+										<li>+</li>
+										<li>[</li>
+										<li>{</li>
+										<li>]</li>
+										<li>}</li>
+										<li>|</li>
+										<li>\</li>
+										<li>;</li>
+										<li>:</li>
+										<li>"</li>
+										<li></li>
+										<li>&gt;</li>
+										<li>&lt;</li>
+										<li>,</li>
+										<li>.</li>
+										<li></li>
+										<li>/</li>
+										<li>?</li>
+									</ul>
+								</p>
+								<h3>Special characters</h3>
+								<p>
+									These are also known as 'escaped' characters and provide a way of including non-printing characters 
+									and certain reserved characters in a string:
+									<ul>
+										<li><b>Single quote: </b>\', e.g. "\'"</li>
+										<li><b>Double quote: </b>\", e.g. "\""</li>
+										<li><b>Ampersand: </b>\&amp;, e.g. "\&"</li>
+										<li><b>Newline: </b>\n, e.g. ""</li>
+										<li><b>Tab: </b>\t, e.g. "\t"</li>
+										<li><b>Backslash: </b>\\, e.g. "\\"</li>
+										<li><b>Carries return: </b>\r, e.g. "\t"</li>
+										<li><b>Backspace: </b>\b, e.g. "\b"</li>
+										<li><b>Form feed: </b>\f, e.g. "\f"</li>
+										<li><b>Vertical tab: </b>\v, e.g. "\v"</li>
+									</ul><br/>
+									Essentially, as long as you have the reserved word of special charatcers enclosed in single or double 
+									quotes then it is allowed.
+								</p>
+								<h3>Use in strings</h3>
+								<p>
+									There is no such restriction with the used of reserved words and special characters if they are part 
+									of strings. These examples are allowed:
+									<ul>
+										<li>"abstract"</li>
+										<li>"break"</li>
+										<li>"while"</li>
+										<li>","</li>
+										<li>"."</li>
+										<li>"{"</li>
+										<li>"("</li>
+									</ul>
+								</p>
 								<p>
 									<script type="text/javascript">
 										g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -335,7 +407,153 @@
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Variables</h2>
-								<p>&nbsp;</p>
+								<h3>Naming rules</h3>
+								<p>
+									<ul>
+										<li>The first character must be a letter, dollar or underscore.</li>
+										<li>Contain any number and combination of letters, dollars, underscores and digits.</li>
+									</ul>
+									<ul>
+										<li>Letters: A to Z or a to z</li>
+										<li>Underscore: _</li>
+										<li>Dollar: $</li>
+										<li>Digits: 0 to 9</li>
+									</ul>
+									Variable names are case sensitive. So, for example msg, MSG, Msg, mSg are all considered to 
+									be unique variables. Also you cannot declare variables with the same spelling in the same scope, 
+									e.g. you cannot do the following inside a function:<br/><br/>
+									function MyFunction()<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+									}<br/><br/>
+									The above is a variable naming conflict that occurs when you try to give two variables the same 
+									name. The following is however is valid:<br/><br/>
+									function MyFunction()<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;var Msg;<br/>
+									}<br/><br/>
+									Remember that vaiable names are case sensitive.
+
+								</p>
+								<h3>Declaring a variable</h3>
+								<p>
+									Variables must be explicitly declared before they can be used. You can do this by using either 
+									the <b>var</b>or the <b>let</b> key words. The difference between these two key words are as follows:
+									<ul>
+										<li><b>var: </b>e.g. var msg;</li><br/>
+											Variables declared with <b>var</b> have global scope, which means you can 'access' that variable any 
+											where in your JavaScript code on a given HTML web page. If you declare the variable inside a 
+											function then it is accessible from code that is not part of that function or from code that 
+											is part of another function. For this reason it is not recommended that you declare variables 
+											using the <b>var</b> key word for these reasons:<br/><br/>
+											<ul>
+												<li>
+													It can lead to variable naming conflicts if you want to use the same variable name in 
+													the same scope, e.g. <br/><br/>
+													function MyFunction1()<br/>
+													{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+													}<br/><br/>
+													function MyFunction2()<br/>
+													{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+													}<br/><br/>
+													Because <b>var</b> has been used to declare both variables they are in the same global scope 
+													and therefore they cannot have the same name.
+												</li>
+												<li>
+													It can lead to coding confusion, and hard to find runtime errors, where you get 
+													unexpected values in variables that, for example, are declared a different 
+													function and contain a value that is unrelated to the function your are coding, 
+													e.g.<br/><br/>
+													function GetUserName()<br/>
+													{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var User = "Fred Smith";
+													}<br/><br/>
+													function GetUserDOB()<br/>
+													{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;// This would return "Fred Smith" rather than a valid date.<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
+													}<br/><br/>
+												</li>
+											</ul>
+										<li>
+											<b>let: </b>e.g. let msg;<br/>
+											Variables declared with <b>let</b> are local, which means that, for example, a variable 
+											declared inside a function can ONLY be accessed by following code that is part of the 
+											function. You will not be able to access it from code that is not part of your function. 
+											E.G. There is no variable naming conflict in the following example.<br/><br/>
+											function MyFunction1()<br/>
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;let msg;
+											}<br/><br/>
+											function MyFunction2()<br/>
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;let msg;
+											}<br/><br/>
+											Because <b>let</b> has been used to declare both variables they are in different local scopes 
+											and therefore they can have the same name.<br/><br/>
+											Therefore, if you did the following, then it would cause a syntax error.<br/><br/>
+											function GetUserName()<br/>
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;let User = "Fred Smith";
+											}<br/><br/>
+											function GetUserDOB()<br/>
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;// This would cause a syntax error because the variable <b>User</b> has not been declared before use.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;// As far as this function is concerned the variable <b>User</b>, declared in the function <b>GetUserName()</b>, is out of scope and does not exist.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
+											}<br/><br/>
+											Think of function <b>MyFunction1</b> and function <b>MyFunction2</b> as two remote 
+											Pacific islands, each with their own copy of the variable named <b>msg</b> and each 
+											copy containing a different value.<br/><br/>
+											It is strongly recommended that you get into the habit of declaring your JavaScript variables using the <b>let</b> keyword.
+										</li>
+									</ul>
+								</p>
+								<h3>Assigning a value to a variable</h3>
+								<p>
+									You can do this as part of the variable declaration:<br/><br/>
+									let msg = "Hello World!";<br/><br/>
+									And any time after the declaration:<br/><br/>
+									msg = "Hello Fred!";<br/>
+									msg = "Hello Jill!";<br/><br/>
+									Think of the above two assignment statements like this:<br/>
+									<img src="images/JavaScriptVariableAssignment.jpg" alt="images/JavaScriptVariableAssignment.jpg" />
+								</p>
+								<h3>Simple data types</h3>
+									<p>
+										Simple data types can be divided into the following broad categories:
+										<ul>
+											<li>
+												<b>Integers or whole numbers: </b>they can be either negative or positive, e.g. 
+												1, 100, -99 and 0
+											</li><br/>
+											<li>
+												<b>Real or floating point or decimal numbers: </b>they can be either psoitive  
+												or neagtive and consist of a whole number part and a fraction part, seperated 
+												by a decimal point, e.g. 0.234, 100.34, -99.478 and 0.0.
+											</li><br/>
+											<li><b>Strings or text: </b>string of ASCII characters that form human readable text.</li><br/>
+											<li><b>Boolean: </b>this data type has only two possible values, either 'true' or 'false'.</li>
+										</ul> 
+									</p>
+									<p>
+										JavaScript is not a 'typed' language. This means you don't have to specify, at declaration, what 
+										type of data your variable will store. And you can therefore assign ANY value to your variable at 
+										any time:<br/><br/>
+										let MyVar = 0;<br/>
+										MyVar = "Hello world!";<br/>
+										MyVar = false;<br/><br/>
+										This is in contrast to C where you must specify a data type for your variable, and there after 
+										you can only assign values to that variable of the correct data type:<br/><br/>
+										int MyVar = 0;<br/>
+										MyVar = 100;<br/><br/>
+										But if you tried the following in C then you would get a compile error:<br/><br/>
+										MyVar = "Hello world!";
+									</p>
 								<p>
 									<script type="text/javascript">
 										g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -345,8 +563,65 @@
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Data structures</h2>
-								<p class="ContentsParagraph">
-								</p>
+								<h3>Primary data structures</h3>
+									<h4>Arrays</h4>
+										<p>
+											In a strictly typed language like C, an array is a collection of variables in a row all 
+											with the same simple data type. An example is as follows:<br/><br/>
+											<img src="images/Array.jpg" alt="images/Array.jpg" /><br/><br/>
+										</p>
+										<p>
+											However JavaScript is not a strictly typed language and therefore an array can contain 
+											values of different data types as in the following example:<br/><br/>
+											<img src="images/JSArray.jpg" alt="images/JSArray.jpg" />
+										</p>
+										<p>
+											Think of office pidgeon holes where each staff member's mail is placed for them to pick up. 
+										</p>
+	
+									<h4>Objects</h4>
+										<p>
+											In C this type of data structure is referred to as a 'struct', in Pascal it is referred to 
+											as a 'record' and in Python it is referred to as a 'collection'. Essentially they are a 
+											number of variables, containing different data types, all stored together is a single 
+											container. Think of a manilla folder containing all the information pertaining to a student or 
+											a patient - a photo, name, address, age, email address, phone numbers,...
+										</p>
+										<p>
+											This is how you declare an object in JavaScript:<br/><br/>
+										
+											let Student = {<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											strSurname: "Smith",<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											strGivenNames: "Fred",<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											nAge: 56<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
+											You can access one of the fields like this:<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;Student["strSurname"]<br/><br/>
+											You can assign a field a new value like this:<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname = "Jones";<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;Student["nAge"] = 57;<br/><br/>
+										</p>
+									<h4>Compound data structures</h4>
+										<p>
+											A compound data structure combines multiple simple data structures into a more complex ones. An 
+											example is an array of objects:<br/><br/>
+											let arrayStudents = [<br/>
+																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											                     {strSurname: "Smith", strGivenNames: "Fred", nAge: 56},<br/>
+																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											                     {strSurname: "Jones", strGivenNames: "Tom", nAge: 61},<br/>
+																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											                     {strSurname: "Fredricks", strGivenNames: "John", nAge: 77}<br/>
+																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											                    ];<br/><br/>
+											arrayStudents[0].strSurname contains the value "Smith"<br/>
+											arrayStudents[1]["nAge"] contains the value 61<br/>
+											arrayStudents[2].strGivenNamescontains the value "John"<br/>
+										</p>
 								<p>
 									<script type="text/javascript">
 										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
