@@ -964,6 +964,7 @@
 									container. Think of a manilla folder containing all the information pertaining to a student or 
 									a patient - a photo, name, address, age, email address, phone numbers,...
 								</p>
+								<br/>
 								<p>
 									This is how you declare an object in JavaScript:<br/><br/>
 								
@@ -976,6 +977,7 @@
 									nAge: 56<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 								</p>
+								<br/>
 								<p>
 									You can access one of the fields like this:<br/><br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname<br/><br/>
@@ -987,6 +989,7 @@
 									Or like this:<br/><br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;Student["nAge"] = 57;
 								</p>
+								<br/>
 								<p>
 									You can also create a new object by means of a function like so:<br/><br/>
 									function CreateStudent(strSurname, strGivenNames, nAge)<br/>
@@ -997,6 +1000,32 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
 									}<br/>
 									Student = new CreateStudent("Jones", "Tom", 34);
+								</p>
+								<br/>
+								<p>
+									Objects can also have functions as members like this:<br/><br/>
+									This is how you declare an object in JavaScript:<br/><br/>
+								
+									let Student = {<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									strSurname: "Smith",<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									strGivenNames: "Fred",<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									nAge: 56<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									getFullName: function()<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    									return this.strGivenNames + " " + this.strSurname;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 									}<br/>
+ 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
+									And you would call the function like this:<br/><br/>
+									alert(Student.getFullName());<br/><br/>
+									You would see a message box popup containing the string "Fred Smith".
+									
 								</p>
 						</div>
 						<div style="display:none;">
