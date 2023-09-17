@@ -526,20 +526,83 @@
 								<h3>Simple data types</h3>
 									<p>
 										Simple data types can be divided into the following broad categories:
+										
 										<ul>
 											<li>
-												<b>Integers or whole numbers: </b>they can be either negative or positive, e.g. 
-												1, 100, -99 and 0
+												<b>Null: </b>this is used to denote and end point in compound data structures liked
+												linked lists and trees etc. where nodes are chained together in some way.
+											</li>
+											<li>
+												<b>Undefined: </b>specifies that the content of a vriable is undefined. You will 
+												get 'undefined' if you do something like the following:<br/><br/>
+												let nMyVariable;<br/>
+												alert(nMyVariable);<br/>
 											</li><br/>
 											<li>
-												<b>Real or floating point or decimal numbers: </b>they can be either psoitive  
-												or neagtive and consist of a whole number part and a fraction part, seperated 
-												by a decimal point, e.g. 0.234, 100.34, -99.478 and 0.0.
+												<b>Boolean: </b>this data type has only two possible values, either true or false 
+												(exactly as typed).
 											</li><br/>
-											<li><b>Strings or text: </b>string of ASCII characters that form human readable text.</li><br/>
-											<li><b>Boolean: </b>this data type has only two possible values, either 'true' or 'false'.</li>
-										</ul> 
+											<li>
+												<b>Number: </b>whole or decimal number, either positive or negative, e.g. 1, 100, -99.034, -203 and 0.32. 
+												You can use the function Number(Value) to convert other data types to a number.<br/><br/>
+												There are however limits to how big a number you can store in a 'Number':<br/>
+												<ul>
+													<li>
+														<b>Positive decimal numbers: </b>between 2<sup>-1074</sup> 
+														(Number.MIN_VALUE) and 2<sup>1024</sup> (Number.MAX_VALUE). Positive 
+														values smaller than Number.MIN_VALUE are converted to +0.
+													</li><br/>
+													<li>
+														<b>Negative decimal numbers: </b>between -2<sup>-1074</sup> 
+														(Number.MIN_VALUE) and -2<sup>1024</sup> (Number.MAX_VALUE). Negative 
+														values greater than -Number.MIN_VALUE are converted to -0.
+													</li><br/>
+													<li>
+														<b>Integers: </b>btween -(2<sup>53</sup> − 1) (Number.MIN_SAFE_INTEGER) 
+														and (2<sup>53</sup> − 1) (Number.MAX_SAFE_INTEGER). Positive values 
+														greater than Number.MAX_VALUE are converted to +Infinity. Negative values 
+														smaller than -Number.MAX_VALUE are converted to -Infinity.
+													</li>
+												</ul><br/>
+												If you perform any type of arithmetic operation on variable or literal value that is 
+												not a number then <b>NaN</b> (Not a Number) will be returned, e.g. let nVal = "Hello world! + 1, then 
+												nVal will contain the value <b>NaN</b>.
+											</li><br/>
+											<li>
+												<b>BigInt: </b>this data type can handle number beyond the limits for 'Number'. You can specify a 
+												by the following means:<br/><br/>
+												<ul>
+													<li>let nVal = BigInt();</li><br/>
+													<li>
+														Appending lower case n to the end of a literal number, e.g. 
+														2342340723047820374027340723n
+													</li>
+												</ul>
+											</li><br/>
+											<li>
+												<b>String: </b>string of ASCII characters that form human readable text, e.g. 
+												"Hello world!" or 'Hello world!' - you can use either single or double quotes 
+												to denote strings in JavaScript. You can use the function String(Value) to 
+												convert any other data type to a string.
+											</li><br/>
+											<li><b>Symbol: </b></li>
+										</ul><br/>
+										You can use the typeof operator/function to check the data type of a variable like this:<br/><br/>
+										let MyVar = 10;<br/>
+										alert(typeof MyVar);<br/>
+										alert(typeof(MyVar));<br/><br/>
+										
+										The operator/function typeof will return the following for each of the data types:<br/>
+										<ul>
+											<li><b>Null: </b>"object"</li>
+											<li><b>Undefined: </b>"undefined"</li>
+											<li><b>Boolean: </b>"boolean"</li>
+											<li><b>Number: </b>"number"</li>
+											<li><b>BigInt: </b>"bigint"</li>
+											<li><b>String: </b>"string"</li>
+										</ul><br/><br/>										
 									</p>
+									<h3>Weak typing</h3>
 									<p>
 										JavaScript is not a 'typed' language. This means you don't have to specify, at declaration, what 
 										type of data your variable will store. And you can therefore assign ANY value to your variable at 
@@ -560,8 +623,187 @@
 									</script>
 								</p>
 						</div>
+						<div  style="display:none;">
+							<h2 class="StageHeading">Type checking &amp; conversion</h2>
+								<h3>Type checking functions</h3>						
+								<ul>
+									<li><b>isNaN(Expression): </b>evaluates the expression and returns true if it is not a valid number.</li><br/>
+									<li><b>isNull(Expression): </b>evaluates the expression and returns true if it is equal to null.</li><br/>
+									<li><b>isFinite(Expression): </b>evaluates the expression and returns true if the result is a finite number</li><br/>
+									<li><b>Number.isInteger(Expression): </b>evaluates the expression and returns true if the result is a whole number, e.g. let num = 34.56; num.isInteger();, would return false.</li><br/>
+									<li><b>Number.isSafeInteger(Expression): </b>evaluates the expression and returns true if the resukt is an integer within the following range  (2<sup>53</sup> - 1) to -(2<sup>53</sup> - 1), e.g. let num = 34; num.isInteger();, would return true.</li>
+								</ul>
+								<h3>Type conversion functions</h3>
+								<ul>
+									<li><b>Number(Expression): </b>converts the exprestion to a numeric value or NaN, e.g. Number("258");</li><br/>
+									<li><b>Number(false): </b> returns 0.</li><br/>
+									<li><b>Number(true): </b> returns 1.</li><br/>
+									<li><b>String(false or false.toString()): </b> return "false".</li><br/>
+									<li><b>String(true) or true.toString(): </b> returns "true".</li><br/>
+									<li><b>parseFloat(strValue): </b>converts the string to an integer until a non-digit character is reached or NaN, e.g. parseFloat("34.56") would return 34.56, parseFloat("10.1 hello") would return 10.1 and parseFloat("hello") would return NaN.</li><br/>
+									<li><b>parseInt(strValue): </b>converts the string to an integer until a non-digit character is reached or NaN, e.g. parseInt("34") would return 34, parseInt("10.1") would return 10 and parseInt("hello") would return NaN.</li><br/>
+									<li><b>Number.toExponential(strValue): </b>converts a number to a string, in exponential format, with the specified number of decimal places, e.g. let Num = 30.434535789456757; Num.toExponential(2);, would return the string "3.04e+1"</li><br/>
+									<li><b>Number.toFixed(nNumDecimalPlaces): </b>converts a number to a string with the specified number of decimal places, e.g. let Num = 30.434535789456757; Num.toFixed(2);, would return the string "30.43"</li><br/>
+									<li><b>Number.toPrecision(nNumDigits):</b>converts a number to a string with the specified number of decimal digits, e.g. let Num = 30.434535789456757; Num.toPrecision(3);, would return the string "30.4"</li>								
+								</ul>
+								<h3>Automatic type conversion</h3>
+								<ul>
+									<li><b>5 + null: </b>returns 5 since null is converted to 0.</li><br/>
+									<li><b>"5" + null: </b>returns "5null since null is converted toa string</li><br/>
+									<li><b>"5" + 2: </b>returns "52" since s is converted to a string.</li><br/>
+									<li><b>"5" - 2: </b>returns 3 since "5" is converted ti the integer 5.</li><br/>
+									<li><b>"5" * "2": </b>returns 10 since the string "5" and "2" are converted to the integers 5 and 2.</li>
+								</ul>				
+						</div>
 						<div style="display:none;">
-						
+							<h2 class="StageHeading">String data type</h2>
+							<p>
+								Strings have a number of functions available to you to carry out a variety of manipulations. It is 
+								important to remember that JavaScript strings are 0 based. Consider the string "Hello world!". The 
+								length is 12 characters, however the index of the last character (!)is 11, or length - 1. The index 
+								of first character (H) is 0.
+								<table border="1" cellpadding="4" style="text-align:center;">
+									<tr style="font-weight:bold;">
+										<td>0</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8</td>
+										<td>9</td>
+										<td>10</td>
+										<td>11</td>
+									</tr>
+									<tr>
+										<td>H</td>
+										<td>e</td>
+										<td>l</td>
+										<td>l</td>
+										<td>o</td>
+										<td> </td>
+										<td>w</td>
+										<td>o</td>
+										<td>r</td>
+										<td>l</td>
+										<td>d</td>
+										<td>!</td>
+									</tr>
+								</table>
+								
+							</p>
+							<p>
+								There are a number of functions available to you to carry out a variety of string operations and 
+								they are follows. Note that these functions do not modify the string they are called on, they make 
+								a copy of the string, modify the copy and return the copy.
+								<ul>
+									<li>
+										<b>String.length: </b>returns the number of characters in the string<br/><br/>
+										E.G. let strVar = "Hello world!;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar.length;<br/><br/>
+										Would return 12.
+									</li><br/>
+									<li>
+										<b>String[nIndex]: </b>returns the character as the specified index or undefined if the 
+										specified index is out of range (0 to length)<br/><br/>
+										E.G. let strVar = "Hello world!;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar[4];<br/><br/>
+										Would return "o".
+									</li><br/>
+									<li>
+										String.substr(nIndexStart, nNumChars): </b>returns a substring starting at the specified 
+										starting index and ending after the specified number of characters have been extracted.<br/><br/>
+										E.G. let strVal = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(); // Returns "Hello world!"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1); // Returns "!"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1, 4); // Returns "!"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 6); // Returns "llo wo"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 100); // Returns "llo world!"
+									</li><br/>
+									<li>
+										<b>String.slice(nIndexStart, nIndexEndNotIncluding)<br/>
+										String.substring(nIndexStart, nIndexEndNotIncluding): </b>returns a substring starting at nIndexStart  
+										and finishing at nIndexEndNotIncluding but not inlcuding that character.<br/><br/>
+										E.G. let strVal = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(); // Returns "Hello world!"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(-1); // Returns "!"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(-1, 4); // Returns ""<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(2, 7); // Returns "llo w"<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(2, 100); // Returns "llo world!"
+									</li><br/>
+									<li>
+										<b>String.replace(strFind, strReplace): </b>finds the first occurence of the string in strFind and replaces it with 
+										the string in strReplace. It is case sensitive.<br/><br/>
+										E.G. let strVal = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.replace("world", "Tom"); // Returns "Hello Tom!"
+									</li><br/>
+									<li>
+										<b>String.replaceAll(strFind, strReplace): </b>finds the all occurences of the string in strFind and replaces them 
+										all with the string in strReplace. It is case sensitive. And you can use regular expressions 
+										but they will not be covered here, refer to <a href="https://www.w3schools.com/js/default.asp">W3schools JavaScript 
+										reference</a><br/><br/>
+										E.G. let strText = "I love cats. Cats are very easy to love. Cats are very popular.";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("Cats","Dogs"); // strText contains "I love cats. Dogs are very easy to love. Dogs are very popular."
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("cats","dogs"); // strText contains "I love dogs. Dogs are very easy to love. Dogs are very popular."
+									</li><br/>
+									<li>
+										<b>String.toUpperCase(): </b>converts all the characters to upper case.<br/><br/>
+										E.G. let strVal = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.upperCase(); // Returns "HELLO WORLD!"
+									</li><br/>
+									<li>
+										<b>String.toLowerCase(): </b>converts all the characters to lower case.<br/><br/>
+										E.G. let strVal = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.lowerCase(); // Returns "hello world!"
+									</li><br/>
+									<li>
+										<b>String.concat(): </b>joins 2 strings together intio a single string.<br/><br/>
+										E.G. let strText = "Hello ";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.concat("world!"); // Returns "Hellow world!"
+									</li><br/>
+									<li>
+										<b>String.trim(): </b>removes both leading and trailing white space characters. White space characters 
+										consists of spaces (ASCII 32) and tabs (ASCII 9).<br/><br/>
+										E.G. let strText = "    Hello world!    ";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.trim(); // Returns "Hello world!"
+									</li><br/>
+									<li>
+										<b>String.trimStart(): </b>removes both leading white space characters.
+									</li><br/>
+									<li>
+										<b>String.trimEnd(): </b>removes both trailing white space characters.
+									</li><br/>
+									<li>
+										<b>String.padStart(nMaxLength, strPadWith): </b>adds the text in strPadWith to the front of the string 
+										until it reaches or exceeds the maximum length specified in nMaxLength.<br/><br/>
+										E.G. let strText = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello world!"
+									</li><br/>
+									<li>
+										<b>String.padEnd(nMaxLength, strPadWith): </b>adds the text in strPadWith to the end of the string 
+										string until it reaches or exceeds the maximum length specified in nMaxLength.<br/><br/>
+										E.G. let strText = "Hello world!";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "Hello world!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+									</li><br/>
+									<li>
+										<b>String.charAt(): </b>it is an alternative to idexing via [] and also returns the character as the specified index or undefined if the specified index is out of range (0 to length), e.g. let strVar = "Hello world!; strVar.charAt(4);, would return "o".
+									</li><br/>
+									<li>
+										<b>String.charCodeAt(): </b>it does similar job to the function charAt except it returns the ASCII code of the charatcer rather than the character itself, e.g. let strVar = "Hello world!; strVar.charCodeAt(4);, would return 111 - the ASCII numeric code for the character 'o'.
+									</li><br/>
+									<li>
+										<b>String.split(strToSplitAt): </b>this function converts an string to an array. It splits 
+										the string at all occurrences of the string in strToSplitAt, converts each bit of text 
+										between occurrences of strToSplitAt to array elements.<br/><br/>
+										E.G. let strText = "A,B,C,D";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.split(","); // returns the array ["A", "B", "C", "D"]
+									</li>							
+								</ul>
+							</p>
+						</div>
+						<div style="display:none;">
 							<h2 class="StageHeading">Data structures</h2>
 								<h3>Primary data structures</h3>
 									<h4>Arrays</h4>
