@@ -804,236 +804,243 @@
 							</p>
 						</div>
 						<div style="display:none;">
-							<h2 class="StageHeading">Data structures</h2>
-								<h3>Primary data structures</h3>
-									<h4>Arrays</h4>
-										<p>
-											In a strictly typed language like C, an array is a collection of variables in a row all 
-											with the same simple data type. An example is as follows:<br/><br/>
-											<img src="images/Array.jpg" alt="images/Array.jpg" /><br/><br/>
-										</p>
-										<p>
-											However JavaScript is not a strictly typed language and therefore an array can contain 
-											values of different data types as in the following example:<br/><br/>
-											<img src="images/JSArray.jpg" alt="images/JSArray.jpg" />
-										</p>
-										<br/>
-										<p>
-											Think of office pidgeon holes where each staff member's mail is placed for them to pick up. 
-											JavaScript arrays are zero based meaning that, if the array has 4 elements, then the elements 
-											will have the indexes 0 to 3. You can create an array in the following ways:
-											
-											<ul>
-												<li>let arrayNumbers = []; // Empty array</li><br/>
-												<li>let arrayNumbers = new Array(); // Also an empty array</li><br/>
-												<li>let arrayNumbers = [12, 34, 459, 1];</li><br/>
-												<li>let arrayNumbers = new Array(12, 34, 459, 1);</li>
-											</ul>
-										</p>
-										<br/>
-										<p>
-											The following is the full list of array functions you have available to you:
-											<ul>
-												<li><b>length: </b>this returns the number of elements in the array.</li><br/>
-												<li>
-													<b>toString(): </b>converts an array to a string of (comma separated) array values.													
-												</li><br/>
-												<li>
-													<b>join(strSeperator): </b>also converts an array to a string of array values except that it lets you specify what seperator 
-													to use.
-												</li><br/>
-												<li>
-													<b>pop(): </b>removes the last element from the array and returns it.<br/><br/>
-													let arrayNums = [0, 1, 2, 3];<br/>
-													arrayNums.pop();<br/><br/>
-													The array becomes [0, 1, 2]
-												</li><br/>
-												<li>
-													<b>push(): </b>inserts a new element at the fron of the array and returns the 
-													modified array.<br/><br/>
-													let arrayNums = [1, 2, 3, 4];<br/>
-													arrayNums.push(5);<br/><br/>
-													The array becomes [1, 2, 3, 4, 5]<br/>
-													This has the same effect:<br/><br/>
-													arrayNums[arrayNums.length] = 5;<br/><br/>
-													The array contains these elements [1, 2, 3, 4]. The indexes are numbered 0 to 3. 
-													So arrayNums[arrayNums.length] becomes arrayNums[4], but array[4] does not yet 
-													exist. However arrayNums[arrayNums.length] = 4 creates the 5<sup>th</sup> 
-													element, and after that arrayNums[4] contains the value 5.
-
-												</li><br/>
-												<li>
-													<b>shift(): </b>removes the first array element, returns it and moves all 
-													other elements forward by one place.<br/><br/>
-													let arrayNums = [0, 1, 2, 3];<br/>
-													arrayNums.shift();<br/><br/>
-													The array becomes [1, 2, 3, 4]
-												</li><br/>
-												<li>
-													<b>unshift(NewElement): </b>inserts the specified new element at the front of 
-													the array and moves all the other elements back by one place.<br/><br/>
-													let arrayNums = [0, 1, 2, 3];<br/>
-													arrayNums.unshift(4);<br/><br/>
-													The array becomes [4, 0, 1, 2, 3]
-												</li><br/>
-												<li>
-													<b>delete(Object): </b>e.g. delete(arrayStudents[1]) or delete arrayStudents[1], 
-													this deletes an array element but it does not move any of the elements so, in 
-													this example, arrayStudents[1] would be undefined.<br/><br/>
-													let arrayNums = [0, 1, 2, 3];<br/>
-													delete arrayNums[2];<br/><br/>
-													The array becomes [0, 1, undefined, 3]
-													
-												</li><br/>
-												<li>
-													<b>concat(arrayOther): </b>joins the specified new array to the end of the 
-													existing array and retunrs that modified array.<br/><br/>
-													let arrayNums1 = [0, 1, 2, 3];<br/>
-													let arrayNums2 = [4, 5];<br/>
-													arrayNums1  = arrayNums1.concat(arrayNums2);<br/>
-													The array becomes [0, 1, 2, 3, 4, 5]
-												</li><br/>
-												<li>
-													<b>flat(): </b>assuming that one or more elements of your array is itself an array then this function concatenates that 
-													array element with the parent array.<br/><br/>
-													let arrayNumbers = [[0,1], [2,3], [4,5]];<br/><br/>
-													This is 2D array:
-													<table border="1">
-														<tr>
-															<td>0</td>
-															<td>1</td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>3</td>
-														</tr>
-														<tr>
-															<td>5</td>
-															<td>6</td>
-														</tr>
-													</table><br/>
-													So if we do:<br/><br/>
-													arrayNumbers = arrayNumbers.flat()<br/><br/>
-													Then the array becomes:<br/>
-													[0,1,2,3,4,5]
-													<br/><br/>or<br/><br/>
-													<table border="1">
-														<tr>
-															<td>0</td>
-															<td>1</td>
-															<td>2</td>
-															<td>3</td>
-															<td>5</td>
-															<td>6</td>
-														</tr>
-													</table>
-													
-												</li><br/>
-												<li>
-													<b>splice(nIndexToStartAt, nNumElementsToRemove, FirstElementToAdd, SecondElementToAdd,...): 
-													</b>adds or removes elements to an array. The first parameter specifies where to start adding 
-													or deleting elements. The second parameter specifies the number of elements to delete and it 
-													can be 0 or more. All subsequent parameters are assumed to be items you want to add to the array.<br/><br/>
-													
-													let arrayNumbers = [0,1,2,3,4,5];<br/><br/>
-													Then:<br/><br/>
-													arrayNumbers = arrayNumbers.splice(1, 2);<br/><br/>
-													Will result in:<br/><br/>
-													[0,"HELLO",3,4,5]<br/><br/>
-													And:<br/><br/>
-													arrayNumbers = arrayNumbers.splice(1, 2, "HELLO");<br/><br/>
-													Will result in:<br/><br/>
-													[0,3,4,5]<br/><br/>
-												</li><br/>
-												<li>
-													<b>slice(nIndexToStartAt, nElementToEndAtNotIncluding): </b>cuts out the specified elements and returns them as a sub-array.<br/><br/>
-													let arrayNumbers = [0,1,2,3,4,5];<br/><br/>
-													Then:<br/><br/>
-													arrayNumbers = arrayNumbers.slice(1, 3);<br/><br/>
-													Will result in:<br/><br/>
-													[1,2]<br/><br/>
-												</li><br/>		
-											</ul>
-											You can read the full details of these functions, and experiment with them, on the <a href="https://www.w3schools.com/js/js_array_methods.asp">WSchools array methods reference</a>
-										</p>
-
-									<h4>Objects</h4>
-										<p>
-											In C this type of data structure is referred to as a 'struct', in Pascal it is referred to 
-											as a 'record' and in Python it is referred to as a 'collection'. Essentially they are a 
-											number of variables, containing different data types, all stored together is a single 
-											container. Think of a manilla folder containing all the information pertaining to a student or 
-											a patient - a photo, name, address, age, email address, phone numbers,...
-										</p>
-										<p>
-											This is how you declare an object in JavaScript:<br/><br/>
-										
-											let Student = {<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											strSurname: "Smith",<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											strGivenNames: "Fred",<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											nAge: 56<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
-											You can access one of the fields like this:<br/><br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname<br/><br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;Student["strSurname"]<br/><br/>
-											The line between an object and a map data structure is blurred in JavaScript.<br/><br/>
-											You can assign a field a new value like this:<br/><br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname = "Jones";<br/><br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;Student["nAge"] = 57;<br/><br/>
-											You can also create a new object by means of a function like so:<br/><br/>
-											function CreateStudent(strSurname, strGivenNames, nAge)<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;this.strGivenNames= strGivenNames;<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;this.nAge= nAge;<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
-											}<br/>
-											Student = new CreateStudent("Jones", "Tom", 34);
-										</p>
-									<h4>Compound data structures</h4>
-										<p>
-											A compound data structure combines multiple simple data structures into a more complex ones. An 
-											example is an array of objects:<br/><br/>
-											let arrayStudents = [<br/>
-																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											                     {strSurname: "Smith", strGivenNames: "Fred", nAge: 56},<br/>
-																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											                     {strSurname: "Jones", strGivenNames: "Tom", nAge: 61},<br/>
-																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											                     {strSurname: "Fredricks", strGivenNames: "John", nAge: 77}<br/>
-																 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											                    ];<br/>
-											<ul>
-												<li>arrayStudents[0].strSurname contains the value "Smith"</li>
-												<li>arrayStudents[1]["nAge"] contains the value 61</li>
-												<li>arrayStudents[2].strGivenNames contains the value "John"</li>
-											</ul>
-										</p>
-										<p>
-											You can change the fields in each element individually like this:<br/>
-											<ul>
-												<li>arrayStudents[0].strSurname = "Johnson"</li>
-												<li>arrayStudents[1]["nAge"] = 70</li>
-												<li>arrayStudents[2].strGivenNames = "Greg"</li>
-											</ul>
-											Or you can change all the fields in an element by means a constructor like this:<br/><br/>
-											function Student(strSurname, strGivenNames, nAge)<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;
-											&nbsp;&nbsp;&nbsp;&nbsp;this.strGivenNames = strGivenNames;<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;this.nAge = nAge;<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
-											}<br/>
-											arrayStudents[0] = new Student("Jones", "Susan", 100);
-										</p>
+							<h2 class="StageHeading">Arrays data structure</h2>
 								<p>
-									<script type="text/javascript">
-										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
-									</script>
+									In a strictly typed language like C, an array is a collection of variables in a row all 
+									with the same simple data type. An example is as follows:<br/><br/>
+									<img src="images/Array.jpg" alt="images/Array.jpg" /><br/><br/>
 								</p>
+								<p>
+									However JavaScript is not a strictly typed language and therefore an array can contain 
+									values of different data types as in the following example:<br/><br/>
+									<img src="images/JSArray.jpg" alt="images/JSArray.jpg" />
+								</p>
+								<br/>
+								<p>
+									Think of office pidgeon holes where each staff member's mail is placed for them to pick up. 
+									JavaScript arrays are zero based meaning that, if the array has 4 elements, then the elements 
+									will have the indexes 0 to 3. You can create an array in the following ways:
+									
+									<ul>
+										<li>let arrayNumbers = []; // Empty array</li><br/>
+										<li>let arrayNumbers = new Array(); // Also an empty array</li><br/>
+										<li>let arrayNumbers = [12, 34, 459, 1];</li><br/>
+										<li>let arrayNumbers = new Array(12, 34, 459, 1);</li>
+									</ul>
+								</p>
+								<br/>
+								<p>
+									The following is the full list of array functions you have available to you:
+									<ul>
+										<li><b>length: </b>this returns the number of elements in the array.</li><br/>
+										<li>
+											<b>toString(): </b>converts an array to a string of (comma separated) array values.													
+										</li><br/>
+										<li>
+											<b>join(strSeperator): </b>also converts an array to a string of array values except that it lets you specify what seperator 
+											to use.
+										</li><br/>
+										<li>
+											<b>pop(): </b>removes the last element from the array and returns it.<br/><br/>
+											let arrayNums = [0, 1, 2, 3];<br/>
+											arrayNums.pop();<br/><br/>
+											The array becomes [0, 1, 2]
+										</li><br/>
+										<li>
+											<b>push(): </b>inserts a new element at the fron of the array and returns the 
+											modified array.<br/><br/>
+											let arrayNums = [1, 2, 3, 4];<br/>
+											arrayNums.push(5);<br/><br/>
+											The array becomes [1, 2, 3, 4, 5]<br/>
+											This has the same effect:<br/><br/>
+											arrayNums[arrayNums.length] = 5;<br/><br/>
+											The array contains these elements [1, 2, 3, 4]. The indexes are numbered 0 to 3. 
+											So arrayNums[arrayNums.length] becomes arrayNums[4], but array[4] does not yet 
+											exist. However arrayNums[arrayNums.length] = 4 creates the 5<sup>th</sup> 
+											element, and after that arrayNums[4] contains the value 5.
+
+										</li><br/>
+										<li>
+											<b>shift(): </b>removes the first array element, returns it and moves all 
+											other elements forward by one place.<br/><br/>
+											let arrayNums = [0, 1, 2, 3];<br/>
+											arrayNums.shift();<br/><br/>
+											The array becomes [1, 2, 3, 4]
+										</li><br/>
+										<li>
+											<b>unshift(NewElement): </b>inserts the specified new element at the front of 
+											the array and moves all the other elements back by one place.<br/><br/>
+											let arrayNums = [0, 1, 2, 3];<br/>
+											arrayNums.unshift(4);<br/><br/>
+											The array becomes [4, 0, 1, 2, 3]
+										</li><br/>
+										<li>
+											<b>delete(Object): </b>e.g. delete(arrayStudents[1]) or delete arrayStudents[1], 
+											this deletes an array element but it does not move any of the elements so, in 
+											this example, arrayStudents[1] would be undefined.<br/><br/>
+											let arrayNums = [0, 1, 2, 3];<br/>
+											delete arrayNums[2];<br/><br/>
+											The array becomes [0, 1, undefined, 3]
+											
+										</li><br/>
+										<li>
+											<b>concat(arrayOther): </b>joins the specified new array to the end of the 
+											existing array and retunrs that modified array.<br/><br/>
+											let arrayNums1 = [0, 1, 2, 3];<br/>
+											let arrayNums2 = [4, 5];<br/>
+											arrayNums1  = arrayNums1.concat(arrayNums2);<br/>
+											The array becomes [0, 1, 2, 3, 4, 5]
+										</li><br/>
+										<li>
+											<b>flat(): </b>assuming that one or more elements of your array is itself an array then this function concatenates that 
+											array element with the parent array.<br/><br/>
+											let arrayNumbers = [[0,1], [2,3], [4,5]];<br/><br/>
+											This is 2D array:
+											<table border="1">
+												<tr>
+													<td>0</td>
+													<td>1</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>3</td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td>6</td>
+												</tr>
+											</table><br/>
+											So if we do:<br/><br/>
+											arrayNumbers = arrayNumbers.flat()<br/><br/>
+											Then the array becomes:<br/>
+											[0,1,2,3,4,5]
+											<br/><br/>or<br/><br/>
+											<table border="1">
+												<tr>
+													<td>0</td>
+													<td>1</td>
+													<td>2</td>
+													<td>3</td>
+													<td>5</td>
+													<td>6</td>
+												</tr>
+											</table>
+											
+										</li><br/>
+										<li>
+											<b>splice(nIndexToStartAt, nNumElementsToRemove, FirstElementToAdd, SecondElementToAdd,...): 
+											</b>adds or removes elements to an array. The first parameter specifies where to start adding 
+											or deleting elements. The second parameter specifies the number of elements to delete and it 
+											can be 0 or more. All subsequent parameters are assumed to be items you want to add to the array.<br/><br/>
+											
+											let arrayNumbers = [0,1,2,3,4,5];<br/><br/>
+											Then:<br/><br/>
+											arrayNumbers = arrayNumbers.splice(1, 2);<br/><br/>
+											Will result in:<br/><br/>
+											[0,"HELLO",3,4,5]<br/><br/>
+											And:<br/><br/>
+											arrayNumbers = arrayNumbers.splice(1, 2, "HELLO");<br/><br/>
+											Will result in:<br/><br/>
+											[0,3,4,5]<br/><br/>
+										</li><br/>
+										<li>
+											<b>slice(nIndexToStartAt, nElementToEndAtNotIncluding): </b>cuts out the specified elements and returns them as a sub-array.<br/><br/>
+											let arrayNumbers = [0,1,2,3,4,5];<br/><br/>
+											Then:<br/><br/>
+											arrayNumbers = arrayNumbers.slice(1, 3);<br/><br/>
+											Will result in:<br/><br/>
+											[1,2]<br/><br/>
+										</li><br/>		
+									</ul>
+									You can read the full details of these functions, and experiment with them, on the <a href="https://www.w3schools.com/js/js_array_methods.asp">WSchools array methods reference</a>
+								</p>
+						</div>
+						<div style="display:none;">
+							<h2 class="StageHeading">Object data structure</h2>
+								<p>
+									In C this type of data structure is referred to as a 'struct', in Pascal it is referred to 
+									as a 'record' and in Python it is referred to as a 'collection'. Essentially they are a 
+									number of variables, containing different data types, all stored together is a single 
+									container. Think of a manilla folder containing all the information pertaining to a student or 
+									a patient - a photo, name, address, age, email address, phone numbers,...
+								</p>
+								<p>
+									This is how you declare an object in JavaScript:<br/><br/>
+								
+									let Student = {<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									strSurname: "Smith",<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									strGivenNames: "Fred",<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									nAge: 56<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+								</p>
+								<p>
+									You can access one of the fields like this:<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname<br/><br/>
+									Or like this:<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;Student["strSurname"]<br/><br/>
+									The line between an object and a map data structure is blurred in JavaScript.<br/><br/>
+									You can assign a field a new value like this:<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname = "Jones";<br/><br/>
+									Or like this:<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;Student["nAge"] = 57;
+								</p>
+								<p>
+									You can also create a new object by means of a function like so:<br/><br/>
+									function CreateStudent(strSurname, strGivenNames, nAge)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strGivenNames= strGivenNames;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.nAge= nAge;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
+									}<br/>
+									Student = new CreateStudent("Jones", "Tom", 34);
+								</p>
+						</div>
+						<div style="display:none;">
+							<h2 class="StageHeading">Compound data structures</h2>
+								<p>
+									A compound data structure combines multiple simple data structures into a more complex ones. An 
+									example is an array of objects:<br/><br/>
+									let arrayStudents = [<br/>
+														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									                     {strSurname: "Smith", strGivenNames: "Fred", nAge: 56},<br/>
+														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									                     {strSurname: "Jones", strGivenNames: "Tom", nAge: 61},<br/>
+														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									                     {strSurname: "Fredricks", strGivenNames: "John", nAge: 77}<br/>
+														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									                    ];<br/>
+									<ul>
+										<li>arrayStudents[0].strSurname contains the value "Smith"</li>
+										<li>arrayStudents[1]["nAge"] contains the value 61</li>
+										<li>arrayStudents[2].strGivenNames contains the value "John"</li>
+									</ul>
+								</p>
+								<p>
+									You can change the fields in each element individually like this:<br/>
+									<ul>
+										<li>arrayStudents[0].strSurname = "Johnson"</li>
+										<li>arrayStudents[1]["nAge"] = 70</li>
+										<li>arrayStudents[2].strGivenNames = "Greg"</li>
+									</ul>
+									Or you can change all the fields in an element by means a constructor like this:<br/><br/>
+									function Student(strSurname, strGivenNames, nAge)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strGivenNames = strGivenNames;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.nAge = nAge;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
+									}<br/>
+									arrayStudents[0] = new Student("Jones", "Susan", 100);
+								</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
