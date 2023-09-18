@@ -1072,9 +1072,247 @@
 							</p>
 						</div>
 						<div style="display:none;">
-						
+							<h2 class="StageHeading">Operators</h2>
+								<h3>Arithmetic operations</h3>
+								<p>These operators always return a numeric value or NaN.</p>
+								<ul>
+									<li>
+										<b>Addition: </b>+<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal + 1;<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 + 1;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+									</li><br/>
+									<li>
+										<b>Subtraction: </b>-<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal - 1;<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 - 1;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = -1;
+									</li><br/>
+									<li>
+										<b>Subtraction: </b>*<br/><br/>
+										E.G. let nVal = 1;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal * 10;<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 * 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10;
+									</li><br/>
+									<li>
+										<b>Exponentiation: </b>**<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal ** 3;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10<sup>3</sup><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 * 10 * 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1000;
+									</li><br/>
+									<li>
+										<b>Division: </b>/<br/><br/>
+										E.G. let nVal = 1;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal / 10;<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 / 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0.1;
+									</li><br/>
+									<li>
+										<b>Modulus or remainder after division: </b>%<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal % 3;<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 % 3;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 / 3 = 3 with 1 remainder<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+									</li><br/>
+									<li>
+										<b>Increment: </b>++<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal++;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal + 1
+									</li><br/>
+									<li>
+										<b>Decrement: </b>--<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal--;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 1
+									</li><br/>						
+									<li>
+										<b>Addition shorthand: </b>+=<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal += 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal + 10
+									</li><br/>
+									<li>
+										<b>Subtraction shorthand: </b>-=<br/><br/>
+										E.G. let nVal = 0;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal -= 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 10
+									</li><br/>
+									<li>
+										<b>Multiplication shorthand: </b>*=<br/><br/>
+										E.G. let nVal = 1;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal *= 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal * 10
+									</li><br/>
+									<li>
+										<b>Division shorthand: </b>/=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal /= 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal / 10
+									</li><br/>
+									<li>
+										<b>Modulus shorthand: </b>%=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal %= 3;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal % 3
+									</li><br/>
+									<li>
+										<b>Exponentiation shorthand: </b>**=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal **= 3;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal ** 3
+									</li><br/>
+								</ul>
+								<h3>Comparisons</h3>
+								<p>These operator always return a bollean value (either true or false).</p>
+								<ul>
+									<li>
+										<b>Values are equal?: </b>==<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Values &amp; types are equal?: </b>===<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is not converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Values are not equal?: </b>!=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Values &amp; types are not equal?: </b>!==<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is not converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Left value greater than right value?: </b>&gt;<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 9; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 10; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 11; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; "9"; // true, because "9" is converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Left value less than right value?: </b>&lt;<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 9; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 10; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 11; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; "11"; // true, because "11" is converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Left value greater than or equal to right value?: </b>&gt;=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 9; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 10; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 11; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= "9"; // true, because "9" is converted to a number.<br/>
+									</li><br/>
+									<li>
+										<b>Left value greater than or equal to right value?: </b>&lt;=<br/><br/>
+										E.G. let nVal = 10;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 9; // false<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 10; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 11; // true<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= "11"; // true, because "11" is converted to a number.<br/>
+									</li><br/>
+								</ul>
+						</div>
+						<div style="display:none;">
 							<h2 class="StageHeading">Conditional statements</h2>
-								<p class="ContentsParagraph">
+								<h3>If statements</h3>
+								<p>
+									These are used to execute different blocks of statements if different conditions are met. Normally 
+									the conditions would be boolean expressions that evaluate to either treu or false. However you can 
+									also use expressions that evaluate to numeric values. In that case 0 or less is deemed to be false 
+									while 1 or greater is deemed to be true.
+								</p>
+								<p>
+									if (condition 1)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
+									}<br/><br/>
+									OR<br/><br/>
+									if (condition 1)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
+									}<br/>
+									else<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is false then this code block is executed.<br/>
+									}<br/>								
+									OR<br/><br/>
+									if (condition 1)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
+									}<br/>
+									else if (Condition 2)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 2 is true then this code block is executed.<br/>
+									}<br/>
+									.<br/>
+									.<br/>
+									.<br/><br/>
+									OR<br/><br/>
+									if (condition 1)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
+									}<br/>
+									else if (Condition 2)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 2 is true then this code block is executed.<br/>
+									}<br/>
+									.<br/>
+									.<br/>
+									.<br/>
+									else<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If all of the conditions are false then this code block is executed.<br/>
+									}<br/>								
+								</p>
+								<h3>Switch statements</h3>
+								<p>
+									Normally you would use and expression that evaluates to a numeric value and each case statement handles 
+									a particular numeric value that the expression may evaluate to.
+								</p>
+								<p>
+									switch(expression)<br/> 
+									{<br/>
+									  &nbsp;&nbsp;&nbsp;&nbsp;case x:<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to value x.<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									  &nbsp;&nbsp;&nbsp;&nbsp;case y:<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to value y.<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									}<br/>
+									OR<br/><br/>								
+									switch(expression)<br/> 
+									{<br/>
+									  &nbsp;&nbsp;&nbsp;&nbsp;case x:<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to value x.<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									  &nbsp;&nbsp;&nbsp;&nbsp;case y:<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to value y.<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									  &nbsp;&nbsp;&nbsp;&nbsp;default:<br/>
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to neither x or y.<br/>
+									}								
 								</p>
 								<p>
 									<script type="text/javascript">
@@ -1085,7 +1323,20 @@
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Loops</h2>
-								<p class="ContentsParagraph">
+								<h3>For loops</h3>
+								<p>
+								</p>
+								<h3>For in loops</h3>
+								<p>
+								</p>
+								<h3>For of loops</h3>
+								<p>
+								</p>
+								<h3>While loops</h3>
+								<p>
+								</p>
+								<h3>Do while loops</h3>
+								<p>
 								</p>
 								<p>
 									<script type="text/javascript">
