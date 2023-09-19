@@ -421,21 +421,28 @@
 									</ul>
 									Variable names are case sensitive. So, for example msg, MSG, Msg, mSg are all considered to 
 									be unique variables. Also you cannot declare variables with the same spelling in the same scope, 
-									e.g. you cannot do the following inside a function:<br/><br/>
+									e.g. you cannot do the following inside a function:
+								</p>
+								<p class="Code">
 									function MyFunction()<br/>
 									{<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
-									}<br/><br/>
+									}
+								</p>
+								<p>
 									The above is a variable naming conflict that occurs when you try to give two variables the same 
-									name. The following is however is valid:<br/><br/>
+									name. The following is however is valid:
+								</p>
+								<p class="Code">
 									function MyFunction()<br/>
 									{<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;var Msg;<br/>
-									}<br/><br/>
+									}
+								</p>
+								<p>
 									Remember that vaiable names are case sensitive.
-
 								</p>
 								<h3>Declaring a variable</h3>
 								<p>
@@ -451,15 +458,17 @@
 											<ul>
 												<li>
 													It can lead to variable naming conflicts if you want to use the same variable name in 
-													the same scope, e.g. <br/><br/>
-													function MyFunction1()<br/>
-													{<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
-													}<br/><br/>
-													function MyFunction2()<br/>
-													{<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
-													}<br/><br/>
+													the same scope, e.g. 
+													<p class="Code">
+														function MyFunction1()<br/>
+														{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+														}<br/><br/>
+														function MyFunction2()<br/>
+														{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;var msg;<br/>
+														}
+													</p>
 													Because <b>var</b> has been used to declare both variables they are in the same global scope 
 													and therefore they cannot have the same name.
 												</li>
@@ -467,16 +476,18 @@
 													It can lead to coding confusion, and hard to find runtime errors, where you get 
 													unexpected values in variables that, for example, are declared a different 
 													function and contain a value that is unrelated to the function your are coding, 
-													e.g.<br/><br/>
-													function GetUserName()<br/>
-													{<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;var User = "Fred Smith";
-													}<br/><br/>
-													function GetUserDOB()<br/>
-													{<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;// This would return "Fred Smith" rather than a valid date.<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
-													}<br/><br/>
+													e.g.
+													<p class="Code">
+														function GetUserName()<br/>
+														{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;var User = "Fred Smith";
+														}<br/><br/>
+														function GetUserDOB()<br/>
+														{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;// This would return "Fred Smith" rather than a valid date.<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
+														}
+													</p>
 												</li>
 											</ul>
 										<li>
@@ -484,28 +495,32 @@
 											Variables declared with <b>let</b> are local, which means that, for example, a variable 
 											declared inside a function can ONLY be accessed by following code that is part of the 
 											function. You will not be able to access it from code that is not part of your function. 
-											E.G. There is no variable naming conflict in the following example.<br/><br/>
-											function MyFunction1()<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;let msg;
-											}<br/><br/>
-											function MyFunction2()<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;let msg;
-											}<br/><br/>
+											E.G. There is no variable naming conflict in the following example.
+											<p class="Code">
+												function MyFunction1()<br/>
+												{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let msg;
+												}<br/><br/>
+												function MyFunction2()<br/>
+												{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let msg;
+												}
+											</p>
 											Because <b>let</b> has been used to declare both variables they are in different local scopes 
 											and therefore they can have the same name.<br/><br/>
-											Therefore, if you did the following, then it would cause a syntax error.<br/><br/>
-											function GetUserName()<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;let User = "Fred Smith";
-											}<br/><br/>
-											function GetUserDOB()<br/>
-											{<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;// This would cause a syntax error because the variable <b>User</b> has not been declared before use.<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;// As far as this function is concerned the variable <b>User</b>, declared in the function <b>GetUserName()</b>, is out of scope and does not exist.<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
-											}<br/><br/>
+											Therefore, if you did the following, then it would cause a syntax error.
+												<p class="Code">
+												function GetUserName()<br/>
+												{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let User = "Fred Smith";
+												}<br/><br/>
+												function GetUserDOB()<br/>
+												{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;// This would cause a syntax error because the variable <b>User</b> has not been declared before use.<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;// As far as this function is concerned the variable <b>User</b>, declared in the function <b>GetUserName()</b>, is out of scope and does not exist.<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;return User;<br/>
+												}
+											</p>
 											Think of function <b>MyFunction1</b> and function <b>MyFunction2</b> as two remote 
 											Pacific islands, each with their own copy of the variable named <b>msg</b> and each 
 											copy containing a different value.<br/><br/>
@@ -513,6 +528,24 @@
 										</li>
 									</ul>
 								</p>
+								<p>
+									You can declare multiple variables with: 
+								</p>
+								<ul>
+									<li>A single 'let' 
+										<p class="Code">
+											let nStart = 0;<br/>
+											let nEnd = 0;
+										</p>
+									</li>
+									<br/>
+									<li>
+										More than one 'let'
+										<p class="Code">
+											let nStart = 0, nEnd = 0;
+										</p>
+									</li>
+								</ul>
 								<h3>Assigning a value to a variable</h3>
 								<p>
 									You can do this as part of the variable declaration:<br/><br/>
@@ -701,73 +734,103 @@
 								<ul>
 									<li>
 										<b>String.length: </b>returns the number of characters in the string<br/><br/>
-										E.G. let strVar = "Hello world!;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar.length;<br/><br/>
+										E.G.
+										<p class="Code">
+											let strVar = "Hello world!;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar.length;
+										</p>
 										Would return 12.
 									</li><br/>
 									<li>
 										<b>String[nIndex]: </b>returns the character as the specified index or undefined if the 
 										specified index is out of range (0 to length)<br/><br/>
-										E.G. let strVar = "Hello world!;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar[4];<br/><br/>
+										E.G. 
+										<p class="Code">
+											let strVar = "Hello world!;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVar[4];
+										</P>
 										Would return "o".
 									</li><br/>
 									<li>
 										String.substr(nIndexStart, nNumChars): </b>returns a substring starting at the specified 
 										starting index and ending after the specified number of characters have been extracted.<br/><br/>
-										E.G. let strVal = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(); // Returns "Hello world!"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1); // Returns "!"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1, 4); // Returns "!"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 6); // Returns "llo wo"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 100); // Returns "llo world!"
+										E.G. 
+										<p class="Code">
+											let strVal = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(); // Returns "Hello world!"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1); // Returns "!"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(-1, 4); // Returns "!"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 6); // Returns "llo wo"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substr(2, 100); // Returns "llo world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.slice(nIndexStart, nIndexEndNotIncluding)<br/>
 										String.substring(nIndexStart, nIndexEndNotIncluding): </b>returns a substring starting at nIndexStart  
 										and finishing at nIndexEndNotIncluding but not inlcuding that character.<br/><br/>
-										E.G. let strVal = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(); // Returns "Hello world!"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(-1); // Returns "!"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(-1, 4); // Returns ""<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(2, 7); // Returns "llo w"<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(2, 100); // Returns "llo world!"
+										E.G. 
+										<p class="Code">
+											let strVal = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(); // Returns "Hello world!"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(-1); // Returns "!"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(-1, 4); // Returns ""<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.substring(2, 7); // Returns "llo w"<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.slice(2, 100); // Returns "llo world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.replace(strFind, strReplace): </b>finds the first occurence of the string in strFind and replaces it with 
 										the string in strReplace. It is case sensitive.<br/><br/>
-										E.G. let strVal = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.replace("world", "Tom"); // Returns "Hello Tom!"
+										E.G. 
+										<p class="Code">
+											let strVal = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.replace("world", "Tom"); // Returns "Hello Tom!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.replaceAll(strFind, strReplace): </b>finds the all occurences of the string in strFind and replaces them 
 										all with the string in strReplace. It is case sensitive. And you can use regular expressions 
 										but they will not be covered here, refer to <a href="https://www.w3schools.com/js/default.asp">W3schools JavaScript 
 										reference</a><br/><br/>
-										E.G. let strText = "I love cats. Cats are very easy to love. Cats are very popular.";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("Cats","Dogs"); // strText contains "I love cats. Dogs are very easy to love. Dogs are very popular."
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("cats","dogs"); // strText contains "I love dogs. Dogs are very easy to love. Dogs are very popular."
+										E.G. 
+										<p class="Code">
+											let strText = "I love cats. Cats are very easy to love. Cats are very popular.";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("Cats","Dogs"); // strText contains "I love cats. Dogs are very easy to love. Dogs are very popular."
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText = strText.replaceAll("cats","dogs"); // strText contains "I love dogs. Dogs are very easy to love. Dogs are very popular."
+										</p>
 									</li><br/>
 									<li>
 										<b>String.toUpperCase(): </b>converts all the characters to upper case.<br/><br/>
-										E.G. let strVal = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.upperCase(); // Returns "HELLO WORLD!"
+										E.G. 
+										<p class="Code">
+											let strVal = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.upperCase(); // Returns "HELLO WORLD!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.toLowerCase(): </b>converts all the characters to lower case.<br/><br/>
-										E.G. let strVal = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.lowerCase(); // Returns "hello world!"
+										E.G. 
+										<p class="Code">
+											let strVal = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strVal.lowerCase(); // Returns "hello world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.concat(): </b>joins 2 strings together intio a single string.<br/><br/>
-										E.G. let strText = "Hello ";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.concat("world!"); // Returns "Hellow world!"
+										E.G. 
+										<p class="Code">
+											let strText = "Hello ";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.concat("world!"); // Returns "Hellow world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.trim(): </b>removes both leading and trailing white space characters. White space characters 
 										consists of spaces (ASCII 32) and tabs (ASCII 9).<br/><br/>
-										E.G. let strText = "    Hello world!    ";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.trim(); // Returns "Hello world!"
+										E.G. 
+										<p class="Code">
+											let strText = "    Hello world!    ";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.trim(); // Returns "Hello world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.trimStart(): </b>removes both leading white space characters.
@@ -778,14 +841,20 @@
 									<li>
 										<b>String.padStart(nMaxLength, strPadWith): </b>adds the text in strPadWith to the front of the string 
 										until it reaches or exceeds the maximum length specified in nMaxLength.<br/><br/>
-										E.G. let strText = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello world!"
+										E.G. 
+										<p class="Code">
+											let strText = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello world!"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.padEnd(nMaxLength, strPadWith): </b>adds the text in strPadWith to the end of the string 
 										string until it reaches or exceeds the maximum length specified in nMaxLength.<br/><br/>
-										E.G. let strText = "Hello world!";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "Hello world!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+										E.G. 
+										<p class="Code">
+											let strText = "Hello world!";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.padStart(20, " "); // Returns "Hello world!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+										</p>
 									</li><br/>
 									<li>
 										<b>String.charAt(): </b>it is an alternative to idexing via [] and also returns the character as the specified index or undefined if the specified index is out of range (0 to length), e.g. let strVar = "Hello world!; strVar.charAt(4);, would return "o".
@@ -797,8 +866,11 @@
 										<b>String.split(strToSplitAt): </b>this function converts an string to an array. It splits 
 										the string at all occurrences of the string in strToSplitAt, converts each bit of text 
 										between occurrences of strToSplitAt to array elements.<br/><br/>
-										E.G. let strText = "A,B,C,D";<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.split(","); // returns the array ["A", "B", "C", "D"]
+										E.G. 
+										<p class="Code">
+											let strText = "A,B,C,D";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strText.split(","); // returns the array ["A", "B", "C", "D"]
+										</p>
 									</li>							
 								</ul>
 							</p>
@@ -966,8 +1038,9 @@
 								</p>
 								<br/>
 								<p>
-									This is how you declare an object in JavaScript:<br/><br/>
-								
+									This is how you declare an object in JavaScript:
+								</p>
+								<p class="Code">
 									let Student = {<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									strSurname: "Smith",<br/>
@@ -979,19 +1052,35 @@
 								</p>
 								<br/>
 								<p>
-									You can access one of the fields like this:<br/><br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname<br/><br/>
-									Or like this:<br/><br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;Student["strSurname"]<br/><br/>
+									You can access one of the fields like this:
+								</p>
+								<p class="Code">
+									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname
+								</p>
+								<p>
+									Or like this:
+								</p>
+								<p class="Code">
+									&nbsp;&nbsp;&nbsp;&nbsp;Student["strSurname"]
+								</p>
+								<p>
 									The line between an object and a map data structure is blurred in JavaScript.<br/><br/>
-									You can assign a field a new value like this:<br/><br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname = "Jones";<br/><br/>
-									Or like this:<br/><br/>
+									You can assign a field a new value like this:
+								</p>
+								<p class="Code">
+									&nbsp;&nbsp;&nbsp;&nbsp;Student.strSurname = "Jones";
+								</p>
+								<p>
+									Or like this:
+								</p>
+								<p class="Code">
 									&nbsp;&nbsp;&nbsp;&nbsp;Student["nAge"] = 57;
 								</p>
 								<br/>
 								<p>
-									You can also create a new object by means of a function like so:<br/><br/>
+									You can also create a new object by means of a function like so:
+								</p>
+								<p class="Code">
 									function CreateStudent(strSurname, strGivenNames, nAge)<br/>
 									{<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;<br/>
@@ -1004,8 +1093,9 @@
 								<br/>
 								<p>
 									Objects can also have functions as members like this:<br/><br/>
-									This is how you declare an object in JavaScript:<br/><br/>
-								
+									This is how you declare an object in JavaScript:
+								</p>
+								<p class="Code">
 									let Student = {<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									strSurname: "Smith",<br/>
@@ -1022,8 +1112,14 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  									}<br/>
  									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
-									And you would call the function like this:<br/><br/>
-									alert(Student.getFullName());<br/><br/>
+ 								</p>
+ 								<p>
+									And you would call the function like this:
+								</p>
+								<p class="Code">
+									alert(Student.getFullName());
+								</p>
+								<p>
 									You would see a message box popup containing the string "Fred Smith".
 									
 								</p>
@@ -1032,7 +1128,9 @@
 							<h2 class="StageHeading">Compound data structures</h2>
 								<p>
 									A compound data structure combines multiple simple data structures into a more complex ones. An 
-									example is an array of objects:<br/><br/>
+									example is an array of objects:
+								</p>
+								<p class="Code">
 									let arrayStudents = [<br/>
 														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									                     {strSurname: "Smith", strGivenNames: "Fred", nAge: 56},<br/>
@@ -1041,21 +1139,25 @@
 														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									                     {strSurname: "Fredricks", strGivenNames: "John", nAge: 77}<br/>
 														 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									                    ];<br/>
-									<ul>
-										<li>arrayStudents[0].strSurname contains the value "Smith"</li>
-										<li>arrayStudents[1]["nAge"] contains the value 61</li>
-										<li>arrayStudents[2].strGivenNames contains the value "John"</li>
-									</ul>
+									                    ];
 								</p>
+								<ul>
+									<li>arrayStudents[0].strSurname contains the value "Smith"</li>
+									<li>arrayStudents[1]["nAge"] contains the value 61</li>
+									<li>arrayStudents[2].strGivenNames contains the value "John"</li>
+								</ul>
 								<p>
-									You can change the fields in each element individually like this:<br/>
-									<ul>
-										<li>arrayStudents[0].strSurname = "Johnson"</li>
-										<li>arrayStudents[1]["nAge"] = 70</li>
-										<li>arrayStudents[2].strGivenNames = "Greg"</li>
-									</ul>
-									Or you can change all the fields in an element by means a constructor like this:<br/><br/>
+									You can change the fields in each element individually like this:
+								</p>
+								<ul>
+									<li>arrayStudents[0].strSurname = "Johnson"</li>
+									<li>arrayStudents[1]["nAge"] = 70</li>
+									<li>arrayStudents[2].strGivenNames = "Greg"</li>
+								</ul>
+								<p>
+									Or you can change all the fields in an element by means a constructor like this:
+								</p>
+								<p class="Code">
 									function Student(strSurname, strGivenNames, nAge)<br/>
 									{<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;this.strSurname = strSurname;
@@ -1078,47 +1180,65 @@
 								<ul>
 									<li>
 										<b>Addition: </b>+<br/><br/>
-										E.G. let nVal = 0;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal + 1;<br/><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 + 1;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+										E.G. 
+										<p class="Code">
+											let nVal = 0;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal + 1;<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 + 1;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+										</p>
 									</li><br/>
 									<li>
 										<b>Subtraction: </b>-<br/><br/>
-										E.G. let nVal = 0;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal - 1;<br/><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 - 1;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = -1;
+										E.G. 
+										<p class="Code">
+											let nVal = 0;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal - 1;<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0 - 1;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = -1;
+										</p>
 									</li><br/>
 									<li>
 										<b>Subtraction: </b>*<br/><br/>
-										E.G. let nVal = 1;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal * 10;<br/><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 * 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10;
+										E.G. 
+										<p class="Code">
+											let nVal = 1;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal * 10;<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 * 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10;
+										</p>
 									</li><br/>
 									<li>
 										<b>Exponentiation: </b>**<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal ** 3;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10<sup>3</sup><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 * 10 * 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1000;
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal ** 3;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10<sup>3</sup><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 * 10 * 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1000;
+										</p>
 									</li><br/>
 									<li>
 										<b>Division: </b>/<br/><br/>
-										E.G. let nVal = 1;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal / 10;<br/><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 / 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0.1;
+										E.G. 
+										<p class="Code">
+											let nVal = 1;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal / 10;<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1 / 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 0.1;
+										</p>
 									</li><br/>
 									<li>
 										<b>Modulus or remainder after division: </b>%<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal % 3;<br/><br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 % 3;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 / 3 = 3 with 1 remainder<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = nVal % 3;<br/><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 10 % 3;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 / 3 = 3 with 1 remainder<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal = 1;
+										</p>
 									</li><br/>
 									<li>
 										<b>Increment: </b>++<br/><br/>
@@ -1128,45 +1248,66 @@
 									</li><br/>
 									<li>
 										<b>Decrement: </b>--<br/><br/>
-										E.G. let nVal = 0;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal--;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 1
+										E.G. 
+										<p class="Code">
+											let nVal = 0;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal--;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 1
+										</p>
 									</li><br/>						
 									<li>
 										<b>Addition shorthand: </b>+=<br/><br/>
-										E.G. let nVal = 0;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal += 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal + 10
+										E.G. 
+										<p class="Code">
+											let nVal = 0;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal += 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal + 10
+										</p>
 									</li><br/>
 									<li>
 										<b>Subtraction shorthand: </b>-=<br/><br/>
-										E.G. let nVal = 0;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal -= 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 10
+										E.G. 
+										<p class="Code">
+											let nVal = 0;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal -= 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal - 10
+										</p>
 									</li><br/>
 									<li>
 										<b>Multiplication shorthand: </b>*=<br/><br/>
-										E.G. let nVal = 1;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal *= 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal * 10
+										E.G. 
+										<p class="Code">
+											let nVal = 1;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal *= 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal * 10
+										</p>
 									</li><br/>
 									<li>
 										<b>Division shorthand: </b>/=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal /= 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal / 10
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal /= 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal / 10
+										</p>
 									</li><br/>
 									<li>
 										<b>Modulus shorthand: </b>%=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal %= 3;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal % 3
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal %= 3;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal % 3
+										</p>
 									</li><br/>
 									<li>
 										<b>Exponentiation shorthand: </b>**=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal **= 3;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal ** 3
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal **= 3;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal ** 3
+										</p>
 									</li><br/>
 								</ul>
 								<h3>Comparisons</h3>
@@ -1174,63 +1315,87 @@
 								<ul>
 									<li>
 										<b>Values are equal?: </b>==<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Values &amp; types are equal?: </b>===<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is not converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is not converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Values are not equal?: </b>!=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // false, because "10" is converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Values &amp; types are not equal?: </b>!==<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is not converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 10; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == 11; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal == "10"; // true, because "10" is not converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Left value greater than right value?: </b>&gt;<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 9; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 10; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 11; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; "9"; // true, because "9" is converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 9; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 10; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; 11; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt; "9"; // true, because "9" is converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Left value less than right value?: </b>&lt;<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 9; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 10; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 11; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; "11"; // true, because "11" is converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 9; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 10; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; 11; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt; "11"; // true, because "11" is converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
-										<b>Left value greater than or equal to right value?: </b>&gt;=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 9; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 10; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 11; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= "9"; // true, because "9" is converted to a number.<br/>
+										<b>
+										<p class="Code">
+											Left value greater than or equal to right value?: </b>&gt;=<br/><br/>
+											E.G. let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 9; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 10; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 11; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= "9"; // true, because "9" is converted to a number.<br/>
+										</p>
 									</li><br/>
 									<li>
 										<b>Left value greater than or equal to right value?: </b>&lt;=<br/><br/>
-										E.G. let nVal = 10;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 9; // false<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 10; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 11; // true<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= "11"; // true, because "11" is converted to a number.<br/>
+										E.G. 
+										<p class="Code">
+											let nVal = 10;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 9; // false<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 10; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= 11; // true<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &lt;= "11"; // true, because "11" is converted to a number.<br/>
+										</p>
 									</li><br/>
 								</ul>
 						</div>
@@ -1243,12 +1408,16 @@
 									also use expressions that evaluate to numeric values. In that case 0 or less is deemed to be false 
 									while 1 or greater is deemed to be true.
 								</p>
-								<p>
+								<p class="Code">
 									if (condition 1)<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
-									}<br/><br/>
-									OR<br/><br/>
+									}
+								</p>
+								<p>
+									OR
+								</p>
+								<p class="Code">
 									if (condition 1)<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
@@ -1256,8 +1425,12 @@
 									else<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is false then this code block is executed.<br/>
-									}<br/>								
-									OR<br/><br/>
+									}
+								</p>
+								<p>								
+									OR
+								</p>
+								<p class="Code">
 									if (condition 1)<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
@@ -1269,7 +1442,11 @@
 									.<br/>
 									.<br/>
 									.<br/><br/>
-									OR<br/><br/>
+								</p>
+								<p>
+									OR
+								</p>
+								<p class="Code">
 									if (condition 1)<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this code block is executed.<br/>
@@ -1284,14 +1461,108 @@
 									else<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;// If all of the conditions are false then this code block is executed.<br/>
-									}<br/>								
+									}								
 								</p>
+								<br/>
+								<p>
+									If each code block consists of one statement only then you can leave out the braces, { and }.
+								</p>
+								<p class="Code">
+									if (condition 1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this statement is executed.
+								</p>
+								<p>
+									OR
+								</p>
+								<p class="Code">
+									if (condition 1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this statement is executed.<br/>
+									else<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is false then this statement is executed.
+								</p>
+								<p>								
+									OR
+								</p>
+								<p class="Code">
+									if (condition 1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this statement is executed.<br/>
+									else if (Condition 2)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 2 is true then this statement is executed.<br/>
+									.<br/>
+									.<br/>
+									.
+								</p>
+								<p>
+									OR
+								</p>
+								<p class="Code">
+									if (condition 1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 1 is true then this statement is executed.<br/>
+									else if (Condition 2)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If condition 2 is true then this statement is executed.<br/>
+									.<br/>
+									.<br/>
+									.<br/>
+									else<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// If all of the conditions are false then this statement is executed.
+								</p>
+								<p>
+									Here is an example involving displaying a day of the week in a popup message box given a day number in 
+									the week, where 0 is Sunday and 6 is Saturday.
+								</p>
+								<p class="Code" id="if_example">
+									let nDayNum = 5;<br/><br/>
+									if (nDayNum == 0)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Sunday");<br/>
+									else if (nDayNum == 1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Monday");<br/>
+									else if (nDayNum == 2)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Tuesday");<br/>
+									else if (nDayNum == 3)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Wednesday");<br/>
+									else if (nDayNum == 4)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Thursday");<br/>
+									else if (nDayNum == 5)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Friday");<br/>
+									else if (nDayNum == 6)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Saturday");<br/>
+									else<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;alert("Unknown day of week '" + nDayNum + "'!");
+								</p>
+								
+								<script type="text/javascript">
+									
+									function RunIfExample(nDayNum)
+									{
+										let strText = "if statement - ";
+										
+										if (nDayNum == 0)
+										 	alert(strText + "Sunday");
+										else if (nDayNum == 1)
+											alert(strText + "Monday");
+										else if (nDayNum == 2)
+											alert(strText + "Tuesday");
+										else if (nDayNum == 3)
+											alert(strText + "Wednesday");
+										else if (nDayNum == 4)
+											 alert(strText + "Thursday");
+										else if (nDayNum == 5)
+											alert(strText + "Friday");
+										else if (nDayNum == 6)
+											alert(strText + "Saturday");
+										else
+											alert(strText + "Unknown day of week '" + nDayNum + "'!");
+									}
+									
+								</script>
+								<label for="if_day_num">Day number: </label>&nbsp;<input type="number" value="0" id="if_day_num"/><input type="button" value="Run example code" onclick="RunIfExample(document.getElementById('if_day_num').value)"/>
+								
 								<h3>Switch statements</h3>
 								<p>
 									Normally you would use and expression that evaluates to a numeric value and each case statement handles 
 									a particular numeric value that the expression may evaluate to.
 								</p>
-								<p>
+								<p class="Code">
 									switch(expression)<br/> 
 									{<br/>
 									  &nbsp;&nbsp;&nbsp;&nbsp;case x:<br/>
@@ -1300,8 +1571,11 @@
 									  &nbsp;&nbsp;&nbsp;&nbsp;case y:<br/>
 									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This code block is executed if expression evaluates to value y.<br/>
 									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
-									}<br/><br/>
-									OR<br/><br/>								
+									}
+								</p>
+								<p>OR</p>
+								<p class="Code">
+							
 									switch(expression)<br/> 
 									{<br/>
 									  &nbsp;&nbsp;&nbsp;&nbsp;case x:<br/>
@@ -1315,6 +1589,81 @@
 									}								
 								</p>
 								<p>
+									Here is the same example as above except implemented with a switch/case statement instead of an if/else if/else statement.
+								</p>
+								<p class="Code">
+									let nDayNum = 5;<br/><br/>
+									switch(nDayNum)<br/><br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 0:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Sunday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 1:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Monday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 2:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Tuesday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 3:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Wednesday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 4:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Thursday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 5:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Friday");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;case 6:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Saturday");<br/>	
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;default:<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Unknown day of week '" + nDayNum + "'!");<br/>	
+									}
+								</p>
+								<script type="text/javascript">
+									
+									function RunSwitchExample(nDayNum)
+									{
+										let strText = "switch statement - ";
+										
+										switch (Number(nDayNum))
+										{
+											case 0:
+										 		alert(strText + "Sunday");
+										 		break;
+										 		
+											case  1:
+												alert(strText + "Monday");
+										 		break;
+										 		
+											case  2:
+												alert(strText + "Tuesday");
+										 		break;
+										 		
+											case  3:
+												alert(strText + "Wednesday");
+										 		break;
+										 		
+											case  4:
+												 alert(strText + "Thursday");
+										 		break;
+										 		
+											case  5:
+												alert(strText + "Friday");
+										 		break;
+										 		
+											case  6:
+												alert(strText + "Saturday");
+										 		break;
+										 		
+											default:
+												alert(strText + "Unknown day of week '" + nDayNum + "'!");
+										}
+									}
+									
+								</script>
+								<label for="switch_day_num">Day number: </label>&nbsp;<input type="number" value="0" id="switch_day_num"/><input type="button" value="Run example code" onclick="RunSwitchExample(document.getElementById('switch_day_num').value)"/>
+								<p>
 									<script type="text/javascript">
 										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
 									</script>
@@ -1325,18 +1674,276 @@
 							<h2 class="StageHeading">Loops</h2>
 								<h3>For loops</h3>
 								<p>
+									A for loop has the following structure:<br/><br/>
+									for (&lt;initialion expression&gt;;&lt;condition expression&gt;;&lt;iteration expression&gt;)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iteration statements&gt;<br/>
+									}<br/><br/>
+								</p>
+								<ul>
+									<li>
+										<b>initialion expression: </b>is executed once before the loop starts to iterate. This is 
+										where you commonly initialise your indexing variable to 0 if you are interesting through an 
+										array, for example. The index of the first array element is 0. It is however optional and 
+										you can leave it out if, for example, you do all the necessary loop initialisation above 
+										the loop: for (;&lt;condition expression&gt;;&lt;iteration expression&gt;)
+									</li>
+									<br/>
+									<li>
+										<b>condition expression: </b>is evaluated before the next iteration of the loop starts. If 
+										the condition evaluates to true then the next iteration of the loop proceeds with execution 
+										of all the iteration statements. Commonly you would test your indexing variable against the 
+										length of your array. If it is beyond the end of your array then you don't want to carry out 
+										any more iterations. It is also optional and you can leave it out: for (;;;). That would be 
+										an infinite loop unless you use break; within the iteration starements to stop loop iteration.
+									</li>
+									<br/>
+									<li>
+										<b>iteration expression: </b>is evaluated at the end of each iteration after the iteration 
+										statements have been executed. Commonly you would increment your indexing variable to the 
+										next element in your array. It is also optional and you can leave it out if, for example, you 
+										do the incrementing within the iteration statements: for (&lt;initialion expression&gt;;&lt;condition expression&gt;;)
+									</li>
+									<br/>
+									<li>
+										<b>iteration statements: </b>are executed after the condition expression is evaluted and found 
+										to be true.
+									</li>
+								</ul>
+								<p>
+									For loops are used when you know the starting point and the end point of your loop, and an 
+									example of that is iterating through an array. You know the index of the first array element 
+									is 0 so 0 is your starting point. And you always know how many elements your array has via 
+									its 'length' property.<br/>
+									E.G.
+								</p>
+								<p class="Code">
+									let arrayNums[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];<br/><br/>
+									for (let nI = 0; nI &lt; arrayNums.length; nI++)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;arrayNums[nI] = nI;<br/>
+									}<br/>
+								</p>
+								<p>
+									The array becomes [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br/><br/>
+									In example the for loop has its own local indexing variable that is only available to the code 
+									within the loop. You could also use an indexing variable located outside the loop like this:
+								</p>
+								<p class="Code">
+									let arrayNums[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];<br/>
+									let nI = 0;<br/><br/>
+									for (nI = 0; nI &lt; arrayNums.length; nI++)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;arrayNums[nI] = nI;<br/>
+									}<br/>
+								</p>
+								<p>
+									A for loop requires less typing than doing the following:
+								</p>
+								<p class="Code">
+									let arrayNums[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];<br/><br/>
+									arrayNums[0] = 0;<br/>
+									arrayNums[1] = 1;<br/>
+									arrayNums[2] = 2;<br/>
+									arrayNums[3] = 3;<br/>
+									arrayNums[4] = 4;<br/>
+									arrayNums[5] = 5;<br/>
+									arrayNums[6] = 6;<br/>
+									arrayNums[7] = 7;<br/>
+									arrayNums[8] = 8;<br/>
+									arrayNums[9] = 9;
 								</p>
 								<h3>For in loops</h3>
 								<p>
+									A for in loop has the follwoing structure:
+								</p>
+								<p class="Code">
+									for (&lt;key&gt; in &lt;object&gt;)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iteration statements&gt;<br/>
+									}
+								</p>
+								<ul>
+									<li>
+										<b>key: </b>each field or attribute in the object is loaded , one by one, into this 
+										variable as a string. Remember that you can access fields or attributes in an object in 
+										the following ways: object.attibute_name or object["attibute_name"].
+									</li>
+									<br/>
+									<li>
+										<b>object: </b>this is the variable containing the objects whose attributes we are iterating 
+										through.
+									</li>
+									<br/>
+									<li>
+										<b>iteration statements: </b>these statements are executed for each attribute in the object.
+									</li>
+								</ul>
+								<p>
+									For in loops are used specifically to iterate through the fields of an object.
+								</p>
+								<p>E.G.</p>
+								<p class="Code">
+									let objectPerson = {strSurname: "Smith", strGivenName: "Fred", nAge: 45};<br/>
+									let strText = "";<br/><br/>
+									for (let strKey in objectPerson)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;strText += objectPerson[strKey] + ", ";
+									}
 								</p>
 								<h3>For of loops</h3>
 								<p>
+									A for of loop has the follwoing structure:
 								</p>
+								<p class="Code">
+									for (&lt;element&gt; of &lt;array&gt;)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iteration statements&gt;<br/>
+									}
+								</p>
+								<ul>
+									<li>
+										<b>element: </b>each element in the array is loaded, one by one, into this 
+										variable.
+									</li>
+									<br/>
+									<li>
+										<b>array: </b>this is the variable containing any array, including strings.
+									</li>
+									<br/>
+									<li>
+										<b>iteration statements: </b>these statements are executed for each attribute in the object.
+									</li>
+								</ul>
+								<p>
+									For in loops are used specifically to iterate through arrays and strings.
+								</p>
+								<p>E.G.</p>
+
+								<p class="Code">
+									let arrayNames = {"John", "Fred", "Jane"};<br/>
+									let strText = "";<br/><br/>
+									for (let strElement of arrayNames)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;strText += strElement + ", ";<br/>
+									}
+								</p>
+								
 								<h3>While loops</h3>
 								<p>
+									A while loop has the following structure:
+								</p>
+								<p class="Code">
+									while (&lt;condition expression&gt;)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iteration statements&gt;<br/>
+									}
+								</p>
+								<ul>
+									<li>
+										<b>condition expression: </b>is evaluated before the next iteration of the loop starts. If 
+										the condition evaluates to true then the next iteration of the loop proceeds with execution 
+										of all the iteration statements.
+									</li>
+									<br/>
+									<li>
+										<b>iteration statements: </b>are executed after the condition expression is evaluted and found 
+										to be true.
+									</li>
+								</ul>
+								<p>
+									While loops are used when you don't know the end point of the loop, for example when you are reading lines 
+									from a text file until you reach the end of the file. These loops are executed 0 or times. If reading lines 
+									from a text file then the loop may not execute at all in the case where the file is empty and you are at 
+									the end of the file before the while loop starts. While loops terminate when the condition expression 
+									evaluates to false.
+								</p>
+								<p>
+									You can create a while loop like this too if you wish:
+								</p>
+								<p class="Code">
+									while (true)<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (&lt;condition&gt;)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									}
+								</p>
+								<p>
+									The expression while (true) sets up an ininite loop, but you do you condition checking inside the 
+									loop instead and terminate iteration with 'break;' if that condition evaluates to true.
+								</p>
+								<p>E.G.</p>
+								<p class="Code">
+									let nTotal = 0;<br/><br/>
+									while (nTotal &lt; 10)<br/> // if nTotal is less than 10 then iterate again
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;nTotal += Math.random(); // Add a random number between 0 and 1 to nTotal<br/>
+									}<br/><br/>
+									while (true) // Infinite loop<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;nTotal += Math.random(); // Add a random number between 0 and 1 to nTotal<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (nTotal &gt; 10) // If the nTotal is greater than 10 then...<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;// Terminate the loop<br/>
+									}
 								</p>
 								<h3>Do while loops</h3>
 								<p>
+									A do while loop has the following structure:
+								</p>
+								<p class="Code">
+									do<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iteration statements&gt;<br/>
+									}<br/>
+									while (&lt;condition expression&gt;);<br/>
+								</p>
+								<ul>
+									<li>
+										<b>condition expression: </b>is evaluated at the end of the next iteration of the loop. If 
+										the condition evaluates to false then the next iteration of the loop proceeds with execution 
+										of all the iteration statements. 
+									</li>
+									<br/>
+									<li>
+										<b>iteration statements: </b>are executed before the condition expression is evaluted and found 
+										to be false.
+									</li>
+								</ul>
+								<p>
+									Do while loops are used when you don't know the end point of the loop but the loop needs to 
+									iterate at least once. So a do while loop iterates 1 or more times. And the condition expression 
+									needs to be the reverse of what you would use in a while loop.
+								</p>
+								<p>
+									You can create a do while loop like this too if you wish:
+								</p>
+								<p class="Code">
+									do<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (&lt;condition&gt;)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+									}<br/>
+									while (true)<br/>
+								</p>
+								<p>
+									The expression while (true) sets up an ininite loop, but you do you condition checking inside the 
+									loop instead and terminate iteration with 'break;' if that condition evaluates to true.
+								</p>
+								<p>E.G.</p>
+								<p class="Code">
+									let nTotal = 0;<br/><br/>
+									do<br/> // if nTotal is less than 10 then iterate again
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;nTotal += Math.random(); // Add a random number between 0 and 1 to nTotal<br/>
+									}<br/>
+									while (nTotal &lt; 10);<br/><br/>
+									do<br/>
+									{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;nTotal += Math.random(); // Add a random number between 0 and 1 to nTotal<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (nTotal &gt; 10) // If the nTotal is greater than 10 then...<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;// Terminate the loop<br/>
+									}<br/>
+									while (true); // Infinite loop
 								</p>
 								<p>
 									<script type="text/javascript">
