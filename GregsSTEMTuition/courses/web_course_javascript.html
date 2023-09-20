@@ -990,7 +990,7 @@
 													<td>5</td>
 													<td>6</td>
 												</tr>
-											</table><br/>
+											</table>
 											So if we do:<br/><br/>
 											arrayNumbers = arrayNumbers.flat()<br/><br/>
 											Then the array becomes:<br/>
@@ -1489,20 +1489,7 @@
 										</table>
 										
 									</li><br/>
-								</ul>
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
+								</ul>							
 								<h3>Bitwise</h3>
 								<p>
 									These operators always return a numeric value and operate on individual bits of the opearands. To 
@@ -2058,7 +2045,7 @@
 												<td>0</td>
 											</tr>
 										</table>
-									</li>								
+									</li><br/>							
 									<li>
 										<b>Shift right: </b>&gt;&gt;, the left hand operand is the integer to perform the bit shift on 
 										and the right hand operand is the number of places to move each bit. A copy of the left most bit 
@@ -2097,7 +2084,7 @@
 												<td>0</td>
 											</tr>
 										</table>
-									</li>								
+									</li><br/>								
 									<li>
 										<b>Zero fill shift right: </b>&gt;&gt;&gt;, the left hand operand is the integer to perform the bit shift on 
 										and the right hand operand is the number of places to move each bit. A 0  is pushed in from 
@@ -2693,20 +2680,152 @@
 						</div>
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Maths &amp; Random</h2>
+							<h2 class="StageHeading">Maths</h2>
 							
-								<p>
+								<h3>Constants</h3>
+									<ul>
+										<li>
+											<b>Math.E: </b>Euler's constant = 2.7182818284590452353602874713527... or 1/0! + 1/1! + 1/2! 
+											+ 1/3! + 1/4! + 1/5! + 1/6! + 1/7! + ...
+										</li><br/>
+										<li>
+											<b>Math.PI: </b>Pi = 3.14159265359...
+										</li><br/>
+										<li>
+											<b>Math.SQRT2: </b>Square 3oot of 2 = 1.41421356237...
+										</li><br/>
+										<li>
+											<b>Math.SQRT1_2: </b>Square toot of 0.5 = 0.70710678118...
+										</li><br/>
+										<li>
+											<b>Math.LN2: </b>The natural logarithm of 2 = 0.69314718056...
+										</li><br/>
+										<li>
+											<b>Math.LN10: </b>The natural logarithm of 10 = 2.30258509299...
+										</li><br/>
+										<li>
+											<b>Math.LOG2E: </b>The log<sub>2</sub>e = 1.44269504089
+										</li><br/>
+										<li>
+											<b>Math.LOG10E: </b>The log<sub>10</sub>e = 0.4342944819...
+										</li><br/>
+									</ul>
+									
+								<h3>Functions</h3>
 								
-								</p>
-							
+									<ul>
+										<li>
+											<b>Math.round(nDecimalNum)</b>: returns the number rounded up to the nearest integer if 
+											the decimal part is greater than or equal to 0.5, or rounded down to the nearest integer 
+											otherwise.
+										</li><br/>
+										<li>
+											<b>Math.ceil(nDecimalNum)</b>: returns the number rounded up to the nearest integer.
+										</li><br/>
+										<li>
+											<b>Math.floor(nDecimalNum)</b>: returns the number rounded down to the nearest integer.
+										</li><br/>
+										<li>
+											<b>Math.trunc(nDecimalNum)</b>: returns the number with the decimal part of the number removed.
+										</li><br/>
+										<li>
+											<b>Math.sign(nDecimalNum)</b>: returns 1 if the number is positive, -1 if the number is negative 
+											or 0 if the number is 0.
+										</li><br/>
+										<li>
+											<b>Math.pow(nBase, nExponent): </b>returns nBase to the power of nExponent.
+										</li><br/>
+										<li>
+											<b>Math.sqrt(nNum): </b>returns the square root of nNum.
+										</li><br/>
+										<li>
+											<b>Math.abs(nNum): </b>return the absolute value of nNum, in other words if nNum is 
+											negative then it returns nNum x -1.
+										</li><br/>
+										<li>
+											<b>Math.min(nNum1m nNum2): </b> returns which ever number is the smallest.
+										</li><br/>
+										<li>
+											<b>Math.max(nNum1m nNum2): </b> returns which ever number is the largest.
+										</li><br/>
+										<li>
+											<b>Math.sin(fRadians): </b>returns the sine of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.cos(fRadians): : </b>returns the cosine of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.tan(fRadians): : </b>returns the tangent of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.asin(fRadians): </b>returns the arcsine or inverse sine of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.acos(fRadians): : </b>returns the arccosine or inverse cosine of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.atan(fRadians): : </b>returns the arctangent or inverse tangen of the angle in radians.
+										</li><br/>
+										<li>
+											<b>Math.atan2(fOpposite, fAdjacent): : </b>returns the arctangent or inverse tangent of the 
+											angle in radians, but using the the lengths of the opposite and adjacent side of the right 
+											angle triangle.
+										</li><br/>
+										<li>
+											<b>Convert degrees to radians: </b>fDegrees * Math.PI/180
+										</li><br/>
+										<li>
+											<b>Convert radians to degrees: </b>fRadians * 180 / Math.PI
+										</li><br/>
+										<li>
+											<b>Math.cbrt(nNum): </b>returns the cube root of the number.
+										</li><br/>
+										<li>
+											<b>Math.log(nNum): </b>returns the natural logaritm of the number or log<sub>e</sub>(nNum).
+										</li><br/>
+										<li>
+											<b>Math.log10(nNum): </b>returns the base 10 logarithm of nNum, or log<sub>10</sub>(nNum).
+										</li><br/>
+										<li>
+											<b>Math.log2(nNum): </b>returns the base 2 logarithm of nNum, or log<sub>2</sub>(nNum).
+										</li><br/>
+										<li>
+											<b>Math.random(): </b>returns a random number between 0 and 1.
+										</li>
+									</ul>
+									<p>
+										There are additional functions but they will not be included here. Refer to 
+										<a href="https://www.w3schools.com/jsref/jsref_obj_math.asp">W3Schools maths reference</a> for 
+										the full list of functions.
+									</p>
 						</div>
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Sets</h2>
 							
-								<p>
-								
-								</p>
+								<ul>
+									<li>
+										<b>new Set(): </b>Creates a new Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>add(): </b>Adds a new element to the Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>delete(): </b>Removes an element from a Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>has(): </b>Returns true if a value exists in the Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>forEach(): </b>Invokes a callback for each element in the Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>values(): </b>Returns an iterator with all the values in a Set.<br/><br/>
+									</li><br/>
+									<li>
+										<b>size: </b>Returns the number of elements in a Set.<br/><br/>
+									</li><br/>	
+							</ul>
 							
 						</div>
 						<div style="display:none;">
@@ -2720,7 +2839,25 @@
 						</div>
 						<div style="display:none;">
 						
+							<h2 class="StageHeading">Dates</h2>
+							
+								<p>
+								
+								</p>
+							
+						</div>
+						<div style="display:none;">
+						
 							<h2 class="StageHeading">Classes</h2>
+							
+								<p>
+								
+								</p>
+							
+						</div>
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">DOM</h2>
 							
 								<p>
 								
