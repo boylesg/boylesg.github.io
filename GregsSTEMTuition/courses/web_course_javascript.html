@@ -1307,7 +1307,7 @@
 											let nVal = 10;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal %= 3;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal % 3
-										</p>
+							</p>
 									</li><br/>
 									<li>
 										<b>Exponentiation shorthand: </b>**=<br/><br/>
@@ -1407,12 +1407,6 @@
 										</p>
 									</li><br/>
 								</ul>
-								
-								
-								
-								
-								
-								
 								<h3>Logic</h3>
 								<p>These operators are used to combine comparisons.</p>
 								<ul>
@@ -2802,68 +2796,1206 @@
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Sets</h2>
-							
+								<p>
+									The Set is used to store a number of unique values, e.g. are car manufacturers, dog breeds and 
+									colors.
+								</p>
 								<ul>
 									<li>
-										<b>new Set(): </b>Creates a new Set.<br/><br/>
+										<b>new Set(): </b>creates a new Set.<br/><br/>
+										E.G.<br/>
+										Create an empty set:
+										<p class="Code">
+											let setCarBrands = new Set();
+										</p>
+										Create a set with an array:
+										<p class="Code">
+											let setCarBrands = new Set(["BMW", "Ford", "Holden", "Mitsubishi", "Toyota"]);
+										</p>
 									</li><br/>
 									<li>
-										<b>add(): </b>Adds a new element to the Set.<br/><br/>
+										<b>Set.add(Item): </b>adds a the specified item to the Set.<br/><br/>
+										E.G.<br/>
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");
+										</p>
 									</li><br/>
 									<li>
-										<b>delete(): </b>Removes an element from a Set.<br/><br/>
+										<b>Set.delete(Item): </b>removes an element from a Set.<br/><br/>
+										E.G.<br/>
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");<br/>
+											setCarBrands.delete("Mitsubishi");
+										</p>
 									</li><br/>
 									<li>
-										<b>has(): </b>Returns true if a value exists in the Set.<br/><br/>
+										<b>Set.has(Item): </b>returns true if a value exists in the Set.<br/><br/>
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");<br/>
+											if (setCarBrands.has("Mitsubishi"))<br/>
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+											}
+										</p>
 									</li><br/>
 									<li>
-										<b>forEach(): </b>Invokes a callback for each element in the Set.<br/><br/>
+										<b>Set.forEach(): </b>invokes a callback for each element in the Set.<br/><br/>
+										E.G.
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");<br/><br/>
+											function PrintToConsole(Value)
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;console.log(Value);<br/>
+											}<br/><br/>
+											setCarBrands.foreach(PrintToConsole))<br/>
+										</p>
 									</li><br/>
 									<li>
-										<b>values(): </b>Returns an iterator with all the values in a Set.<br/><br/>
+										<b>Set.values(): </b>returns an iterator with all the values in a Set.<br/><br/>
+										E.G.
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");<br/><br/>
+											for (const Value of setCarBrands.values())<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;console.log(Value);<br/>
+											}
+										</p>
 									</li><br/>
 									<li>
-										<b>size: </b>Returns the number of elements in a Set.<br/><br/>
+										<b>Set.size: </b>returns the number of elements in a Set.<br/><br/>
+										E.G.
+										<p class="Code">
+											let setCarBrands = new Set();<br/><br/>
+											setCarBrands.add("BMW");<br/>
+											setCarBrands.add("Ford");<br/>
+											setCarBrands.add("Holder");<br/>
+											setCarBrands.add("Mitsubishi");<br/>
+											setCarBrands.add("Toyota");<br/><br/>
+											console.log(setCarBrands.size);
+										</p>
 									</li><br/>	
 							</ul>
-							
 						</div>
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Maps</h2>
-							
 								<p>
-								
+									A map is a list of key/value pairs, where you use the key value to fetch the value stored against it. 
+									An example might be a list of car manufacturers, each with a number people who own that make of car.
 								</p>
-							
+								<ul>
+									<li><b>new Map(): </b>creates a new Map</li><br/>
+										E.G.<br/>
+										Create an empty map:
+										<p class="Code">
+											let mapCarBrandFreq = new Map();
+										</p>
+										Create a map with a 2D array:
+										<p class="Code">
+											let mapCarBrandFreq = new Map([["BMW", 0], ["Ford", 0], ["Holden", 0], ["Mitsubishi", 0], ["Toyota", 0]]);
+										</p>
+											[["BMW", 0], ["Ford", 0], ["Holden", 0], ["Mitsubishi", 0], ["Toyota", 0]] is an array where each element is 
+											itself an array with just two elements - the first element is the key and the second element is the value 
+											stored against that key.
+										<p>
+										
+										</p>
+									<li><b>Map.set(Key, Value): </b>sets the value for a key in a Map.</li><br/>
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										mapCarBrandFreq.set("BMW", 10);
+									</p>
+									<li><b>Map.get(): </b>gets the value for a key in a Map.</li><br/>
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										mapCarBrandFreq.set("BMW", 10);<br/>
+										console.log(mapCarBrandFreq.set("BMW")); // Would output 10.
+									</p>
+									<li><b>Map.delete(Key): </b>removes a Map element specified by the key.</li><br/>
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										mapCarBrandFreq.set("BMW", 10);<br/>
+										mapCarBrandFreq.delete("BMW");
+									</p>
+									<li><b>Map.has(Key): </b>returns true if a key exists in a Map.</li><br/>
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										mapCarBrandFreq.set("BMW", 10);<br/>
+										console.log(mapCarBrandFreq.has("BMW")); // Would output true.
+									</p>
+									<li><b>Map.forEach(): </b>calls a function for each key/value pair in a Map.</li><br/>
+									E.G.
+									<p class="Code">
+											let mapCarBrandFreq = new Map();<br/><br/>
+											mapCarBrandFreq.set("BMW", 10);<br/>
+											function PrintToConsole(Value, Key)
+											{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;console.log(Key + " =&gt; " + Value);<br/>
+											}<br/><br/>
+											setCarBrands.foreach(PrintToConsole))<br/>
+									</p>
+									<li><b>Map.entries(): </b>returns an iterator with the [key, value] pairs in a Map.</li><br/>
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										mapCarBrandFreq.set("BMW", 10);<br/>
+										mapCarBrandFreq.set("Ford", 4);<br/>
+										mapCarBrandFreq.set("Holden", 5);<br/>
+										mapCarBrandFreq.set("Toyota", 110);<br/>
+										for (const KeyValuePair of mapCarBrandFreq.entries())<br/>
+										{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;console.log(KeyValuePair);<br/>
+										}
+									</p>
+									<li><b>Map.size: </b>returns the number of elements in a Map.</li><br/>		
+									E.G.
+									<p class="Code">
+										let mapCarBrandFreq = new Map();<br/><br/>
+										setCarBrands.set("BMW", 3);<br/>
+										setCarBrands.set("Ford", 5);<br/>
+										setCarBrands.set("Holder", 45);<br/>
+										setCarBrands.set("Mitsubishi", 23);<br/>
+										setCarBrands.set("Toyota", 12);<br/>
+										console.log(setCarBrands.size);
+									</p>
+								</ul>
 						</div>
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Dates</h2>
-							
 								<p>
-								
+									The Date data structure is used to store a date and/or a time.
 								</p>
-							
-						</div>
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Classes</h2>
-							
-								<p>
-								
-								</p>
-							
+								<ul>
+									<li>
+										<b>new Date()<br/>
+										new Date("October 13, 2014 11:13:00")<br/>
+										new Date(2023, 9)<br/>
+										new Date(2023, 9, 1)<br/>
+										new Date(2023, 9, 1, 20)<br/>
+										new Date(2023, 9, 1, 20, 56)<br/>
+										new Date(2023, 9, 1, 20, 56, 23)<br/>
+										new Date(2023, 9, 1, 20, 56, 23, 12)<br/>
+										new Date(nMilliSeconds): </b>creates a new date. In the case of millseconds the date is 
+										calculated as the number of milliseconds elapsed since 1/1/1970. In the case of no parameters 
+										the current system time will be set.
+									</li>
+									<li>
+										<b>Date.toString(): </b>this returns a string representation of the date, including the time 
+										zone.
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.toString());
+										</p>
+										<p>
+											<b>Example output: </b>Thu Sep 21 2023 21:07:02 GMT+1000 (Australian Eastern Standard Time)
+										</p>
+									</li>
+									<li>
+										<b>Date.toDateString(): </b>returns a more readable string representation of the date.
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.toDateString());
+										</p>
+										<p>
+											<b>Example output: </b>Thu Sep 21 2023
+										</p>
+									</li>
+									<li>
+										<b>Date.toUTCString(): returns a string representation of the date in UTC format.</b>
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.toUTCString());
+										</p>
+										<p>
+											<b>Example output: </b>Thu, 21 Sep 2023 11:09:10 GMT
+										</p>
+									</li>
+									<li>
+										<b>Date.toISOString(): returns a string representation of the date in ISO format.</b>
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.toISOString());
+										</p>
+										<p>
+											<b>Example output: </b>2023-09-21T11:11:38.177Z
+										</p>
+									</li>
+									<li>
+										<b>Date.parse("March 21, 2012"): </b>parses the supplied date and return the number of 
+										milliseconds elapsed since 1/1/1970.<br/><br/>
+										E.G.
+										<p class="Code">
+										let msec = Date.parse("March 21, 2012");
+										</p>
+									</li>
+									<li>
+										<b>Date.getFullYear(): </b>get year as a four digit number (yyyy)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getFullYear());
+										</p>
+									</li>
+									<li>
+										<b>Date.getMonth(): </b>get month as a number (0-11)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getMonth());
+										</p>
+									</li>
+									<li>
+										<b>Date.getDate(): </b>get day as a number (1-31)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getDate());
+										</p>
+									</li>
+									<li>
+										<b>Date.getDay(): </b>get weekday as a number (0-6)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getDay());
+										</p>
+									</li>
+									<li>
+										<b>Date.getHours(): </b>get hour (0-23)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getHour());
+										</p>
+									</li>
+									<li>
+										<b>Date.getMinutes(): </b>get minute (0-59)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getMinutes());
+										</p>
+									</li>
+									<li>
+										<b>Date.getSeconds(): </b>get second (0-59)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getSeconds());
+										</p>
+									</li>
+									<li>
+										<b>Date.getMilliseconds(): </b>get millisecond (0-999)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getMilliseconds());
+										</p>
+									</li>
+									<li>
+										<b>Date.getTime(): </b>get time (milliseconds since January 1, 1970)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(2023, 9, 1, 20, 56, 23);<br/>
+											console.log(MyDate.getTime());
+										</p>
+									</li>
+									<li>
+										<b>Date.setDate(): </b>set the day as a number (1-31)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setDate(15);
+										</p>
+									</li>
+									<li>
+										<b>Date.setFullYear(): </b>set the year (optionally month and day)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setFullYear(2023);
+										</p>
+									</li>
+									<li>
+										<b>Date.setHours(): </b>set the hour (0-23)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setHours(10);
+										</p>
+									</li>
+									<li>
+										<b>Date.setMilliseconds(): </b>set the milliseconds (0-999)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setMilliseconds(345);
+										</p>
+									</li>
+									<li>
+										<b>Date.setMinutes(): </b>set the minutes (0-59)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date(32);<br/>
+											MyDate.setMinutes();
+										</p>
+									</li>
+									<li>
+										<b>Date.setMonth(): </b>set the month (0-11)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setMonth(5);
+										</p>
+									</li>
+									<li>
+										<b>Date.setSeconds(): </b>set the seconds (0-59)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setSeconds(34);
+										</p>
+									</li>
+									<li>
+										<b>Date.setTime(): </b>set the time (milliseconds since January 1, 1970)<br/><br/>
+										E.G.
+										<p class="Code">
+											let MyDate = new Date();<br/>
+											MyDate.setTime(114144343);
+										</p>
+									</li>
+							</ul>
 						</div>
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">DOM</h2>
 							
 								<p>
-								
+									DOM is an acronym for <b>D</b>ocument <b>O</b>bject <b>M</b>odel. DOM forms a heirarchy tree of 
+									objects or HTML elements.<br/><br/>
+									<a href="images/DOM.jpg"><img src="images/DOM.jpg" width="" /></a><br/><br/>
+									Central tp DOM is the JavaScript global object <b>document</b>. With this object you have access to 
+									every part web page:
+									<ul>
+										<li>HTML elements</li>
+										<li>Their CSS attributes</li>
+										<li>Their internal text</li>
+										<li>Their internal HTML</li>
+									</ul>
+									You can change font characteristics, hide and show HTML elements, dynamically add new HTML 
+									elements, process data enetered into inputs, draw shapes and create popup menus etc.
 								</p>
-							
+								<h3>Getting access to elements</h3>
+									<p class="Code">
+										document.getElementById("unique_id")
+									</p>
+									<p>
+										To use this function the element that you want to obtain a handle to must have its <b>id</b> 
+										property set to a unique string value, e.g.
+									</p>
+									<p class="Code">
+										&lt;div id="my_div"&gt;XXXXXXXXXX&lt;/div&gt;<br/>
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let MyDiv = document.getElementById("my_div");<br/>
+										&lt;/script&gt;
+									</p>
+									<p>
+										If you omitted the <b>id</b> property then <b>MyDiv</b> would contain the value <b>null</b>.
+									</p>
+									<p class="Code">
+										&lt;div&gt;XXXXXXXXXX&lt;/div&gt;<br/>
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let MyDiv = document.getElementById("my_div");<br/>
+										&lt;/script&gt;
+									</p>
+									<p>
+										If you have man elements with the same value for their <b>id</b>s then <b>MyDiv</b> would 
+										contain the handle to the first element in your web page with that value for its <b>id</b>. 
+										If you did the following them there would be no way you could get a handle to the second 
+										<b>&lt;div&gt;</b> element.
+									</p>
+									<p class="Code">
+										&lt;div id="my_div"&gt;XXXXXXXXXX&lt;/div&gt;<br/>
+										&lt;div id="my_div"&gt;XXXXXXXXXX&lt;/div&gt;<br/>
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let MyDiv = document.getElementById("my_div");<br/>
+										&lt;/script&gt;
+									</p>
+									<p>
+										<b>MyDiv</b> in the above example is an <b>object</b> and it contains a bunch of fields or 
+										properties that correspond to such things as CSS styles, text contents and HTML contents. If 
+										change the value of these in your JavaScript then the appearance of your web page will change 
+										accordingly. Lets now have a look at a selection of these fields or attributes.
+									</p>
 						</div>
+						<div style="display:none;">
+							<h2>The document object</h2>
+							<h3>Attributes</h3>
+							<ul>
+								<li><b>activeElement: </b>returns the currently focused element in the document.</li><br/>
+								<li><b>baseURI: </b>returns the absolute base URI of a document.</li><br/>
+								<li><b>body: </b>sets or returns the document's body (the &lt;body&gt; element).</li><br/>
+								<li><b>characterSet: </b>returns the character encoding for the document.</li><br/>
+								<li><b>defaultView: </b>returns the window object associated with a document, or null if none is available.</li><br/>
+								<li><b>designMode: </b>controls whether the entire document should be editable or not.</li><br/>
+								<li><b>doctype: </b>returns the Document Type Declaration associated with the document.</li><br/>
+								<li><b>documentElement: </b>returns the Document Element of the document (the &lt;html&gt; element).</li><br/>
+								<li><b>documentURI: </b>sets or returns the location of the document.</li><br/>
+								<li><b>domain: </b>returns the domain name of the server that loaded the document.</li><br/>
+								<li><b>embeds: </b>returns a collection of all &lt;embed&gt; elements the document.</li><br/>
+								<li><b>forms: </b>returns a collection of all &lt;form&gt; elements in the document.</li><br/>
+								<li><b>head: </b>returns the &lt;head&gt; element of the document.</li><br/>
+								<li><b>images: </b>returns a collection of all &lt;img&gt; elements in the document.</li><br/>
+								<li><b>implementation: </b>returns the DOMImplementation object that handles this document.</li><br/>
+								<li><b>lastModified: </b>returns the date and time the document was last modified.</li><br/>
+								<li><b>links: </b>returns a collection of all &lt;a&gt; and &lt;area&gt; elements in the document that have a href attribute.</li><br/>
+								<li><b>readyState: </b>returns the (loading) status of the document.</li><br/>
+								<li><b>referrer: </b>returns the URL of the document that loaded the current document.</li><br/>
+								<li><b>scripts: </b>returns a collection of &lt;script&gt; elements in the document.</li><br/>
+								<li><b>title: </b>sets or returns the title of the document.</li><br/>
+								<li><b>URL: </b>returns the full URL of the HTML document.</li>
+							</ul>
+							
+							<h3>Methods</h3>
+							<ul>
+								<li><b>addEventListener(): </b>attaches an event handler to the document.</li><br/>
+								<li><b>adoptNode(): </b>adopts a node from another document.</li><br/>
+								<li><b>close(): </b>closes the output stream previously opened with document.open().</li><br/>
+								<li><b>cookie: </b>returns all name/value pairs of cookies in the document.</li><br/>
+								<li><b>createAttribute(): </b>creates an attribute node.</li><br/>
+								<li><b>createComment(): </b>creates a Comment node with the specified text.</li><br/>
+								<li><b>createDocumentFragment(): </b>creates an empty DocumentFragment node.</li><br/>
+								<li><b>createElement(): </b>creates an Element node.</li><br/>
+								<li><b>createEvent(): </b>creates a new event.</li><br/>
+								<li><b>createTextNode(): </b>creates a Text node.</li><br/>
+								<li><b>getElementById(): </b>returns the element that has the ID attribute with the specified value.</li><br/>
+								<li><b>getElementsByClassName(): </b>returns an HTMLCollection containing all elements with the specified class name.</li><br/>
+								<li><b>getElementsByName(): </b>returns an live NodeList containing all elements with the specified name.</li><br/>
+								<li><b>getElementsByTagName(): </b>returns an HTMLCollection containing all elements with the specified tag name.</li><br/>
+								<li><b>hasFocus(): </b>returns a Boolean value indicating whether the document has focus.</li><br/>
+								<li><b>importNode(): </b>imports a node from another document.</li><br/>
+								<li><b>normalize(): </b>removes empty Text nodes, and joins adjacent nodes.</li><br/>
+								<li><b>open(): </b>opens an HTML output stream to collect output from document.write().</li><br/>
+								<li><b>querySelector(): </b>returns the first element that matches a specified CSS selector(s) in the document.</li><br/>
+								<li><b>querySelectorAll(): </b>returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document.</li><br/>
+								<li><b>removeEventListener(): </b>removes an event handler from the document (that has been attached with the addEventListener() method).</li><br/>
+								<li><b>write(): </b>writes HTML expressions or JavaScript code to a document.</li><br/>
+								<li><b>writeln(): </b>same as write(), but adds a newline character after each statement.</li>
+							</ul>
+						</div>
+						<div style="display:none;">
+							<h2>Element styles</h2>
+								<p class="Code">
+									&lt;div id="my_div" style="background-color:red;border-style:solid;color:white;"&gt;XXXXXXXXXX&lt;/div&gt;<br/>
+									&lt;script type="text/javascript"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let MyDiv = document.getElementById("my_div");<br/>
+									&lt;/script&gt;
+								</p>
+								<p>
+									Now <b>MyDiv.style</b> is one of the fields that every JavaScript element object has by default. 
+									It is iteself an object and it contains ALL legal CSS attributes for the element. Some of these 
+									will be set and some will be undefined. The <b>&lt;div&gt;</b> element above has its 
+									<b>background-color</b>, <b>border-style</b> and <b>color</b> attributes explicitly set. You can access 
+									each of those with <b>MyDiv.style.<i>backgroundColor</i></b>, <b>MyDiv.style.<i>borderStyle </i></b> and 
+									<b>MyDiv.style.<i>color </i></b> respectively. If you do this in your JavaScript code 
+									<b>MyDiv.style.<i>backgroundColor = "blue"</i></b> then the back ground color will change to blue instantly.
+								</p>
+								<p>
+									Here is a selection of CSS attributes available in the <b>.style</b> field. For the full list 
+									please refer to <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">W3Schools style object reference</a><br/>
+									For all the below style attributes those enclosed in &lt;...&gt; are required while those enclosed in [...] are 
+									optional.
+								</p>
+								<ul>
+									<li>
+										<b>backgroundAttachment: </b>sets or returns whether a background-image is fixed or scrolls 
+										with the page. Permitted values are:
+										<script type="text/javascript">CreateAttachmentList("backgroundAttachment");</script>
+									</li><br/>
+									<li>
+										<b>backgroundColor: </b>sets or returns the background-color of an element. Permitted 
+										values are:
+										<script type="text/javascript">CreateColorList("backgroundColor");</script>										E.G.
+									</li><br/>
+									<li>
+										<b>backgroundImage: </b>sets or returns the background-image for an element. Permitted 
+										values are:
+										<script type="text/javascript">CreateImageList("backgroundImage");</script>
+									</li><br/>
+									<li>
+										<b>backgroundPosition: </b>sets or returns the starting position of a background-image. Permitted 
+										values are:
+										<script type="text/javascript">CreatePositionList("backgroundPosition");</script>
+										Left &amp; right are the horizontal position while top &amp; bottom are the vertical position.<br/>
+									</li><br/>
+									<li>
+										<b>backgroundRepeat: </b>sets or returns how to repeat (tile) a background-image. Permitted 
+										values are:
+										<script type="text/javascript">CreateRepeatList("backgroundRepeat");</script>
+									</li><br/>
+									<li>
+										<b>backgroundClip: </b>sets or returns the painting area of the background. Permitted 
+										values are:
+										<script type="text/javascript">CreateClipOriginList("backgroundClip");</script>
+									</li><br/>
+									<li>
+										<b>backgroundOrigin: </b>sets or returns the positioning area of the background images. Permitted 
+										values are:
+										<script type="text/javascript">CreateClipOriginList("backgroundOrigin");</script>										E.G.
+									</li><br/>
+									<li>
+										<b>backgroundSize: </b>sets or returns the size of the background image. Two values are expected 
+										separated by a space: width height. Width and height can be specified in the following ways:
+										<script type="text/javascript">CreateSizeList("backgroundSize");</script>
+									</li><br/>
+									<li>
+										<b>background: </b>sets or returns all the background properties in one declaration.<br/><br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayColorOptions, g_arrayImageOptions, g_arrayRepeatOptions, g_arratAttachmentOptions, g_arrayPositionOptions, g_arraySizeOptions, g_arrayClipOptions);</script>
+										E.G.
+										<p class="Code">
+											document.body.style.background = "#f3f3f3 url('img_tree.png') no-repeat right top";
+										</p>
+									</li><br/>
+									<li>
+										<b>borderBottomColor: </b>sets or returns the color of the bottom border. Permitted 
+										values are:
+										<script type="text/javascript">CreateColorList("borderBottomColor");</script>
+									</li><br/>
+									<li>
+										<b>borderBottomLeftRadius: </b>sets or returns the shape of the border of the bottom-left corner. Permitted 
+										values are:
+										<script type="text/javascript">CreateLengthList("borderBottomLeftRadius");</script>									</li><br/>
+									<li>
+										<b>borderBottomRightRadius: </b>sets or returns the shape of the border of the bottom-right corner. Permitted 
+										values are:
+										<script type="text/javascript">CreateLengthList("borderBottomRightRadius");</script>									</li><br/>
+									<li>
+										<b>borderBottomStyle: </b>sets or returns the style of the bottom border. Permitted 
+										values are:
+										<script type="text/javascript">CreateBorderStyleList("borderBottomStyle");</script>									
+									</li><br/>
+									<li>
+										<b>borderBottomWidth: </b>sets or returns the width of the bottom border. Permitted 
+										values are:
+										<script type="text/javascript">CreateLengthList("borderBottomWidth");</script>									</li><br/>
+									<li>
+										<b>borderCollapse: </b>sets or returns whether the table border should be collapsed into a 
+										single border, or not. Permitted values are:
+										<script type="text/javascript">CreateCollapseList("borderCollapse");</script>
+									</li><br/>
+									<li>
+										<b>borderColor: </b>sets or returns the color of an element's border (can have up to four 
+										values). Permitted values are:
+										<script type="text/javascript">CreateColorList("borderColor");</script>
+									</li><br/>
+									<li><b>
+										borderImage: </b>a shorthand property for setting or returning all the borderImage 
+										properties. Permitted values are:
+										<script type="text/javascript">CreateImageList("borderImage");</script>
+									</li><br/>
+									<li><b>
+										borderImageOutset: </b>sets or returns the amount by which the border image area extends 
+										beyond the border box. Permitted values are:
+										<ul>
+											<li><b>: </b></li>
+										</ul>
+									</li><br/>
+									<li><b>
+										borderImageRepeat: </b>sets or returns whether the image-border should be repeated, rounded 
+										or stretched. Permitted values are:
+										<script type="text/javascript">CreateRepeatList("borderImageRepeat");</script>
+									</li><br/>
+									<li><b>
+										borderLeftColor: </b>sets or returns the color of the left border. Permitted values are:
+										<script type="text/javascript">CreateColorList("borderLeftColor");</script>									</li><br/>
+									<li><b>
+										borderLeftStyle: </b>sets or returns the style of the left border. Permitted values are:
+										<script type="text/javascript">CreateBorderStyleList("borderLeftStyle");</script>
+									</li><br/>
+									<li><b>
+										borderLeftWidth: </b>sets or returns the width of the left border. Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderLeftWidth");</script>
+									</li><br/>
+									<li><b>
+										borderRadius: </b>a shorthand property for setting or returning all the four borderRadius 
+										properties. Permitted values are:
+										<script type="text/javascript">CreateLengthList(null);</script>
+										The four values for each radii are given in the order top-left, top-right, bottom-right and  
+										bottom-left.
+										<script type="text/javascript">CreateLengthList("borderRadius")</script>
+									</li><br/>
+									<li><b>
+										borderRightColor: </b>sets or returns the color of the right border. Permitted values are:
+										<script type="text/javascript">CreateColorList("borderRightColor");</script>									</li><br/>
+									<li><b>
+										borderRightStyle: </b>sets or returns the style of the right border. Permitted values are:
+										<script type="text/javascript">CreateBorderStyleList("borderRightStyle");</script>										
+									</li><br/>
+									<li><b>
+										borderRightWidth: </b>sets or returns the width of the right border. Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderRightWidth");</script>
+									</li><br/>
+									<li><b>
+										borderSpacing: </b>sets or returns the space between cells in a table. Permitted values are:
+										<script type="text/javascript">CreateSizeList("borderSpacing");</script>
+									</li><br/>
+									<li><b>
+										borderStyle: </b>sets or returns the style of an element's border (can have up to four values).
+										<script type="text/javascript">CreateBorderStyleList("borderStyle");</script>
+									</li><br/>
+									<li>
+										<b>borderTopColor: </b>sets or returns the color of the top border. Permitted values are:
+										<script type="text/javascript">CreateColorList("borderTopColor");</script>									</li><br/>
+									<li><b>
+										borderTopLeftRadius: </b>sets or returns the shape of the border of the top-left corner. Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderTopLeftRadius");</script>
+									</li><br/>
+									<li><b>
+										borderTopRightRadius: </b>sets or returns the shape of the border of the top-right corner. Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderTopRightRadius");</script>									
+									</li><br/>
+									<li>
+										<b>borderTopStyle: </b>sets or returns the style of the top border. Permitted values are:
+										<script type="text/javascript">CreateBorderStyleList("borderTopStyle");</script>										
+									</li><br/>
+									<li>
+										<b>borderTopWidth: </b>sets or returns the width of the top border. Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderTopWidth");</script>									
+									</li><br/>
+									<li>
+										<b>borderWidth: </b>sets or returns the width of an element's border (can have up to four 
+										values). Permitted values are:
+										<script type="text/javascript">CreateLengthList("borderWidth");</script>
+									</li><br/>								
+									<li>
+										<b>border: </b>sets or returns borderWidth, borderStyle, and borderColor in one declaration.<br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
+										E.G.
+										<p class="Code">
+											document.body.style.border = "thick solid #0000FF";
+										</p>
+									</li><br/>
+
+									<li>
+										<b>borderBottom: </b>sets or returns all the borderBottom properties in one declaration.<br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
+										E.G.
+										<p class="Code">
+											document.body.style.borderBottom = "thick solid #0000FF";
+										</p>
+									</li><br/>
+									<li>
+										<b>borderLeft: </b>sets or returns all the borderLeft properties in one declaration.<br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
+										E.G.
+										<p class="Code">
+											document.body.style.borderLeft = "thick solid #0000FF";
+										</p>
+									</li><br/>
+									<li>
+										<b>borderTop: </b>sets or returns all the borderTop properties in one declaration.<br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
+										E.G.
+										<p class="Code">
+											document.body.style.borderTop = "thick solid #0000FF";
+										</p>
+									</li><br/>								
+									<li>
+										<b>borderRight: </b>sets or returns all the borderRight properties in one declaration.<br/>
+										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
+										E.G.
+										<p class="Code">
+											document.body.style.borderRight = "thick solid #0000FF";
+										</p>
+									</li><br/>							
+									<li>
+										<b>bottom: </b>sets or returns the bottom position of a positioned element.<br/>
+										<script type="text/javascript">CreateLengthList("bottom");</script>
+									</li><br/>
+									<li>
+										<b>caretColor: </b>sets or returns the caret/cursor color of an element.<br/>
+										<script type="text/javascript">CreateColorList("caretColor");</script>
+									</li><br/>
+									<li>
+										<b>clear: </b>sets or returns the position of the element relative to floating objects.
+										<script type="text/javascript">CreateClearList("clear");</script>
+									</li><br/>
+									<li>
+										<b>color: </b>sets or returns the color of the text.<br/>
+										<script type="text/javascript">CreateColorList("color");</script>
+									</li><br/>
+									<li>
+										<b>cursor: </b>sets or returns the type of cursor to display for the mouse pointer.
+										<script type="text/javascript">CreateCursorList("cursor");</script>
+									</li><br/>
+									<li>
+										<b>direction: </b>sets or returns the text direction.
+										<script type="text/javascript">CreateDirectionList("direction");</script>
+									</li><br/>
+									<li>
+										<b>display: </b>sets or returns an element's display type.
+										<script type="text/javascript">CreateDisplayList("display");</script>
+									</li><br/>
+									
+									<li><b>font: </b>sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration.</li><br/>
+									<li>
+										<b>fontFamily: </b>sets or returns the font family for text.<br/><br/>
+										<p class="Code">
+											// A selection of possible fonts.<br/>
+											document.body.style.fontFamily = "<select>
+																				  <option>Georgia</option>
+																				  <option>Palatino Linotype</option>
+																				  <option>Book Antiqua</option>
+																				  <option>Times New Roman</option>
+																				  <option>Arial</option>
+																				  <option>Helvetica</option>
+																				  <option>Arial Black</option>
+																				  <option>Impact</option>
+																				  <option>Lucida Sans Unicode</option>
+																				  <option>Tahoma</option>
+																				  <option>Verdana</option>
+																				  <option>Courier New</option>
+																				  <option>Lucida Console</option>
+																			  </select>";
+										</p>
+									</li><br/>
+									<li>
+										<b>fontSize: </b>sets or returns the font size of the text.<br/><br/>
+										<script type="text/javascript">CreateFontSizeList("fontSize");</script>
+									</li><br/>
+									<li>
+										<b>fontStyle: </b>sets or returns whether the style of the font is normal, italic or oblique.
+										<script type="text/javascript">CreateFontStyleList("fontStyle");</script>
+									</li><br/>
+									<li>
+										<b>fontVariant: </b>sets or returns whether the font should be displayed in small capital letters.
+										<script type="text/javascript">CreateFontVariantList("fontVariant");</script>
+									</li><br/>
+									<li>
+										<b>fontWeight: </b>sets or returns the boldness of the font.
+										<script type="text/javascript">CreateFontWeightList("fontWeight");</script>
+									</li><br/>
+									<li>
+										<b>fontSizeAdjust: </b>Preserves the readability of text when font fallback occurs.
+										<script type="text/javascript">CreateLengthList("fontSizeAdjust");</script>
+									</li><br/>
+									<li>
+										<b>fontStretch: </b>selects a normal, condensed, or expanded face from a font family.
+										<script type="text/javascript">CreateFontStretchList("fontStretch");</script>
+									</li><br/>
+									<li>
+										<b>left: </b>sets or returns the left position of a positioned element.
+										<script type="text/javascript">CreateLengthList("left");</script>
+									</li><br/>
+									<li>
+										<b>letterSpacing: </b>sets or returns the space between characters in a text.<br/>
+										<script type="text/javascript">CreateLengthList("letterSpacing");</script>
+									</li><br/>
+									<li>
+										<b>lineHeight: </b>sets or returns the distance between lines in a text.<br/>
+										<script type="text/javascript">CreateLengthList("lineHeight");</script>
+									</li><br/>
+
+									<li>
+										<b>listStyleImage: </b>sets or returns an image as the list-item marker.
+										<script type="text/javascript">CreateImageList("listStyleImage");</script>
+									</li><br/>
+									<li>
+										<b>listStylePosition: </b>sets or returns the position of the list-item marker.
+										<script type="text/javascript">CreateListStylePositionList("listStylePosition");</script>
+									</li><br/>
+									<li>
+										<b>listStyleType: </b>sets or returns the list-item marker type.
+										<script type="text/javascript">CreateListStyleTypeList("listStyleType");</script>
+									</li><br/>
+									<li>
+										<b>listStyle: </b>sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration.
+										<p class="Code">
+											document.body.style.listStyle= "&lt;&nbsp;<select>
+																				<option selected>armenian</option>
+																				<option>circle</option>
+																				<option>cjk-ideographic</option>
+																				<option>decimal</option>
+																				<option>decimal-leading-zero</option>
+																				<option>disc</option>
+																				<option>georgian</option>
+																				<option>hebrew</option>
+																				<option>hiragana</option>
+																				<option>hiragana-iroha</option>
+																				<option>katakana</option>
+																				<option>katakana-iroha</option>
+																				<option>lower-alpha</option>
+																				<option>lower-greek</option>
+																				<option>lower-latin</option>
+																				<option>lower-roman</option>
+																				<option>none</option>
+																				<option>square</option>
+																				<option>upper-alpha</option>
+																				<option>upper-latin</option>
+																				<option>upper-roman</option>																			  <option>Georgia</option>
+																			  </select>&nbsp;&gt;
+																			  &nbsp;
+																			  [&nbsp;<select>
+																				<option selected>inside</option>
+																				<option>outside</option>
+																			  </select>&nbsp;]
+																			  &nbsp;
+																			  [&nbsp;<select>
+																				<option>url("image.jpg")</option>
+																				<option>url("image.png")</option>
+																			  </select>&nbsp;]";
+										</p>
+									</li><br/>									
+									<li>
+										<b>margin: </b>sets or returns the margins of an element (can have up to four values).
+										<ul>
+											<li>
+												<b>1 value: </b>all four margins get that value.
+												<p class="Code">
+													document.body.style.margin = "10px";
+												</p>
+											</li>
+											<li>
+												<b>2 values: </b>top and bottom get the first margin width and the left and right get the second margin width.
+												<p class="Code">
+													document.body.style.margin = "10px 20px";
+												</p>
+											</li>
+											<li>
+												<b>3 values: </b>top gets the first margin width, the left and right get the second margin width and the bottom gets the third margin width.
+												<p class="Code">
+													document.body.style.margin = "10px 20px 30px";
+												</p>
+											</li>
+											<li>
+												<b>3 values: </b>top gets the first margin width, the right gets the second margin width, the bottom gets the third margin width and  the left gets the last margin width.
+												<p class="Code">
+													document.body.style.margin = "10px 20px 30px 40px";
+												</p>
+											</li>
+										</ul>
+										Margins can be specified is the following ways:
+										<ul>
+											<li>
+												<b>Pixels: </b>px
+												<p class="Code">
+													document.body.style.margin = "5px 5px 5px 5px";
+												</p>
+											</li>
+											<li>
+												<b>Pixels: </b>e,
+												<p class="Code">
+													document.body.style.margin = "5em";
+												</p>
+											</li>
+											<li>
+												<b>Percent: </b>%,
+												<p class="Code">
+													document.body.style.margin = "1%";
+												</p>
+											</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>marginBottom: </b>sets or returns the bottom margin of an element.<br/>
+										<script type="text/javascript">CreateLengthList("marginBottom");</script>
+									</li><br/>
+									<li>
+										<b>marginLeft: </b>sets or returns the left margin of an element.<br/>
+										<script type="text/javascript">CreateLengthList("marginLeft");</script>
+									</li><br/>
+									<li>
+										<b>marginRight: </b>sets or returns the right margin of an element.<br/>
+										<script type="text/javascript">CreateLengthList("marginRight");</script>
+									</li><br/>
+									<li>
+										<b>marginTop: </b>sets or returns the top margin of an element.<br/>
+										<script type="text/javascript">CreateLengthList("marginTop");</script>
+									</li><br/>
+									<li>
+										<b>maxHeight: </b>sets or returns the maximum height of an element.<br/>
+										<script type="text/javascript">CreateLengthList("maxHeight");</script>
+									</li><br/>
+									<li>
+										<b>maxWidth: </b>sets or returns the maximum width of an element.<br/>
+										<script type="text/javascript">CreateLengthList("maxWidth");</script>
+									</li><br/>
+									<li>
+										<b>minHeight: </b>sets or returns the minimum height of an element.<br/>
+										<script type="text/javascript">CreateLengthList("minHeight");</script>
+									</li><br/>
+									<li>
+										<b>minWidth: </b>sets or returns the minimum width of an element.<br/>
+										<script type="text/javascript">CreateLengthList("minWidth");</script>
+									</li><br/>
+									<li>
+										<b>opacity: </b>sets or returns the opacity level for an element. Must be a decimal number 
+										between 0 and 1.0.<br/>
+										E.G.
+										<p class="Code">
+											document.body.style.opacity = 0.5;
+										</p>
+									</li><br/>
+									<li>
+										<b>overflow: </b>sets or returns what to do with content that renders outside the element box.<br/>
+										<script type="text/javascript">CreateOverflowList("overflow");</script>
+									</li><br/>
+									<li>
+										<b>overflowX: </b>specifies what to do with the left/right edges of the content, if it overflows the element's content area.<br/>
+										<script type="text/javascript">CreateOverflowList("overflowX");</script>
+									</li><br/>
+									<li>
+										<b>overflowY: </b>specifies what to do with the top/bottom edges of the content, if it overflows the element's content area.<br/>
+										<script type="text/javascript">CreateOverflowList("overflowY");</script>
+									</li><br/>
+									<li>
+										<b>paddingBottom: </b>sets or returns the bottom padding of an element.<br/>
+										<script type="text/javascript">CreateLengthList("paddingBottom");</script>
+									</li><br/>
+									<li>
+										<b>paddingLeft: </b>sets or returns the left padding of an element.<br/>
+										<script type="text/javascript">CreateLengthList("paddingLeft");</script>
+									</li><br/>
+									<li>
+										<b>paddingRight: </b>sets or returns the right padding of an element.<br/>
+										<script type="text/javascript">CreateLengthList("paddingRight");</script>
+									</li><br/>
+									<li>
+										<b>paddingTop: </b>sets or returns the top padding of an element.<br/>
+										<script type="text/javascript">CreateLengthList("paddingTop");</script>
+									</li><br/>
+									<li>
+										<b>padding: </b>sets or returns the padding of an element (can have up to four values).
+										<ul>
+											<li>
+												<b>1 value: </b>all four padding get that value.
+												<p class="Code">
+													document.body.style.margin = "10px";
+												</p>
+											</li>
+											<li>
+												<b>2 values: </b>top and bottom get the first padding width and the left and right padding get the second padding width.
+												<p class="Code">
+													document.body.style.padding = "10px 20px";
+												</p>
+											</li>
+											<li>
+												<b>3 values: </b>top gets the first padding width, the left and right get the second padding width and the bottom gets the third padding width.
+												<p class="Code">
+													document.body.style.margin = "10px 20px 30px";
+												</p>
+											</li>
+											<li>
+												<b>3 values: </b>top gets the first padding width, the right gets the second padding width, the bottom gets the third padding width and  the left gets the last padding width.
+												<p class="Code">
+													document.body.style.margin = "10px 20px 30px 40px";
+												</p>
+											</li>
+										</ul>
+										Padding can be specified is the following ways:
+										<ul>
+											<li>
+												<b>Pixels: </b>px
+												<p class="Code">
+													document.body.style.padding = "5px 5px 5px 5px";
+												</p>
+											</li>
+											<li>
+												<b>Pixels: </b>e,
+												<p class="Code">
+													document.body.style.padding = "5em";
+												</p>
+											</li>
+											<li>
+												<b>Percent: </b>%,
+												<p class="Code">
+													document.body.style.padding = "1%";
+												</p>
+											</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>position: </b>sets or returns the type of positioning method used for an element (static, relative, absolute or fixed).
+										<script type="text/javascript">CreatePositionList("position");</script>
+									</li><br/>
+									<li>
+										<b>resize: </b>sets or returns whether or not an element is resizable by the user.
+										<script type="text/javascript">CreateResizeList("resize");</script>
+									</li><br/>
+									<li>
+										<b>right: </b>sets or returns the right position of a positioned element.<br/>
+										<script type="text/javascript">CreateLengthList("right");</script>
+									</li><br/>
+									
+									
+									<li><b>textDecoration: </b>sets or returns the decoration of a text.</li><br/>
+									<li><b>textDecorationColor: </b>sets or returns the color of the text-decoration.</li><br/>
+									
+									
+									<li>
+										<b>top: </b>sets or returns the top position of a positioned element.<br/>
+										<script type="text/javascript">CreateLengthList("top");</script>
+									</li><br/>
+									<li>
+										<b>verticalAlign: </b>sets or returns the vertical alignment of the content in an element.
+										<script type="text/javascript">CreateVertAlignList("verticalAlign");</script>
+									</li><br/>
+									<li>
+										<b>visibility: </b>sets or returns whether an element should be visible.
+										<script type="text/javascript">CreateVisibilityList("visibility");</script>
+									</li><br/>
+									<li>
+										<b>width: </b>sets or returns the width of an element.
+										<script type="text/javascript">CreateLengthList("width");</script>
+									</li><br/>
+									<li>
+										<b>zIndex: </b>sets or returns the stack order of a positioned element. An integer between 1 and 999.
+										<p class="Code">document.body.style.zIndex = 999;</p>
+									</li><br/>						
+								</ul>
+								<br/><br/>
+							<!--
+								<ul>
+									<li><b>alignContent: </b>sets or returns the alignment between the lines inside a flexible container when the items do not use all available space.</li><br/>
+									<li><b>alignItems: </b>sets or returns the alignment for items inside a flexible container.</li><br/>
+									<li><b>alignSelf: </b>sets or returns the alignment for selected items inside a flexible container.</li><br/>
+									<li><b>animation: </b>a shorthand property for all the animation properties below, except the animationPlayState property.</li><br/>
+									<li><b>animationDelay: </b>sets or returns when the animation will start.</li><br/>
+									<li><b>animationDirection: </b>sets or returns whether or not the animation should play in reverse on alternate cycles.</li><br/>
+									<li><b>animationDuration: </b>sets or returns how many seconds or milliseconds an animation takes to complete one cycle.</li><br/>
+									<li><b>animationFillMode: </b>sets or returns what values are applied by the animation outside the time it is executing.</li><br/>
+									<li><b>animationIterationCount: </b>sets or returns the number of times an animation should be played.</li><br/>
+									<li><b>animationName: </b>sets or returns a name for the @keyframes animation.</li><br/>
+									<li><b>animationTimingFunction: </b>sets or returns the speed curve of the animation.</li><br/>
+									<li><b>animationPlayState: </b>sets or returns whether the animation is running or paused.</li><br/>
+									<li><b>backfaceVisibility: </b>sets or returns whether or not an element should be visible when not facing the screen.</li><br/>
+									<li><b>boxDecorationBreak: </b>sets or returns the behaviour of the background and border of an element at page-break, or, for in-line elements, at line-break.</li><br/>
+									<li><b>boxShadow: </b>Attaches one or more drop-shadows to the box.</li><br/>
+									<li><b>boxSizing: </b>Allows you to define certain elements to fit an area in a certain way.</li><br/>
+									<li><b>captionSide: </b>sets or returns the position of the table caption.</li><br/>
+									<li><b>clip: </b>sets or returns which part of a positioned element is visible.</li><br/>
+									<li><b>columnCount: </b>sets or returns the number of columns an element should be divided into.</li><br/>
+									<li><b>columnFill: </b>sets or returns how to fill columns.</li><br/>
+									<li><b>columnGap: </b>sets or returns the gap between the colums.</li><br/>
+									<li><b>columnRule: </b>a shorthand property for setting or returning all the columnRule properties.</li><br/>
+									<li><b>columnRuleColor: </b>sets or returns the color of the rule between columns.</li><br/>
+									<li><b>columnRuleStyle: </b>sets or returns the style of the rule between columns.</li><br/>
+									<li><b>columnRuleWidth: </b>sets or returns the width of the rule between columns.</li><br/>
+									<li><b>columns: </b>a shorthand property for setting or returning columnWidth and columnCount.</li><br/>
+									<li><b>columnSpan: </b>sets or returns how many columns an element should span across.</li><br/>
+									<li><b>columnWidth: </b>sets or returns the width of the columns.</li><br/>
+									<li><b>content: </b>Used with the :before and :after pseudo-elements, to insert generated content.</li><br/>
+									<li><b>counterIncrement: </b>Increments one or more counters.</li><br/>
+									<li><b>counterReset: </b>Creates or resets one or more counters.</li><br/>
+									<li><b>emptyCells: </b>sets or returns whether to show the border and background of empty cells, or not.</li><br/>
+									<li><b>filter: </b>sets or returns image filters (visual effects, like blur and saturation).</li><br/>
+									<li><b>flex: </b>sets or returns the length of the item, relative to the rest.</li><br/>
+									<li><b>flexBasis: </b>sets or returns the initial length of a flexible item.</li><br/>
+									<li><b>flexDirection: </b>sets or returns the direction of the flexible items.</li><br/>
+									<li><b>flexFlow: </b>a shorthand property for the flexDirection and the flexWrap properties.</li><br/>
+									<li><b>flexGrow: </b>sets or returns how much the item will grow relative to the rest.</li><br/>
+									<li><b>flexShrink: </b>sets or returns how the item will shrink relative to the rest.</li><br/>
+									<li><b>flexWrap: </b>sets or returns whether the flexible items should wrap or not.</li><br/>
+									<li><b>cssFloat: </b>sets or returns the horizontal alignment of an element.</li><br/>
+									<li><b>hangingPunctuation: </b>specifies whether a punctuation character may be placed outside the line box.</li><br/>
+									<li><b>hyphens: </b>sets how to split words to improve the layout of paragraphs.</li><br/>
+									<li><b>icon: </b>Provides the author the ability to style an element with an iconic equivalent.</li><br/>
+									<li><b>imageOrientation: </b>specifies a rotation in the right or clockwise direction that a user agent applies to an image.</li><br/>									
+									<li><b>isolation: </b>Defines whether an element must create a new stacking content.</li><br/>
+									<li><b>justifyContent: </b>sets or returns the alignment between the items inside a flexible container when the items do not use all available space..</li><br/>
+									<li><b>borderImageSlice: </b>sets or returns the inward offsets of the image-border. Permitted values are:</li><br/>
+									<li><b>borderImageSource: </b>sets or returns the image to be used as a border. Permitted values are:</li><br/>
+									<li><b>borderImageWidth: </b>sets or returns the widths of the image-border. Permitted values are:</li><br/>
+									<li><b>navDown: </b>sets or returns where to navigate when using the arrow-down navigation key.</li><br/>
+									<li><b>navIndex: </b>sets or returns the tabbing order for an element.</li><br/>
+									<li><b>navLeft: </b>sets or returns where to navigate when using the arrow-left navigation key.</li><br/>
+									<li><b>navRight: </b>sets or returns where to navigate when using the arrow-right navigation key.</li><br/>
+									<li><b>navUp: </b>sets or returns where to navigate when using the arrow-up navigation key
+									<li><b>objectFit: </b>specifies how the contents of a replaced element should be fitted to the box established by its used height and width.</li><br/>
+									<li><b>objectPosition: </b>specifies the alignment of the replaced element inside its box.</li><br/>
+									<li><b>order: </b>sets or returns the order of the flexible item, relative to the rest.</li><br/>
+									<li><b>orphans: </b>sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element.</li><br/>
+									<li><b>outline: </b>sets or returns all the outline properties in one declaration.</li><br/>
+									<li><b>outlineColor: </b>sets or returns the color of the outline around a element.</li><br/>
+									<li><b>outlineOffset: </b>Offsets an outline, and draws it beyond the border edge.</li><br/>
+									<li><b>outlineStyle: </b>sets or returns the style of the outline around an element.</li><br/>
+									<li><b>outlineWidth: </b>sets or returns the width of the outline around an element.</li><br/>
+									<li><b>pageBreakAfter: </b>sets or returns the page-break behavior after an element.</li><br/>
+									<li><b>pageBreakBefore: </b>sets or returns the page-break behavior before an element.</li><br/>
+									<li><b>pageBreakInside: </b>sets or returns the page-break behavior inside an element.</li><br/>
+									<li><b>perspective: </b>sets or returns the perspective on how 3D elements are viewed.</li><br/>
+									<li><b>perspectiveOrigin: </b>sets or returns the bottom position of 3D elements.</li><br/>
+									<li><b>quotes: </b>sets or returns the type of quotation marks for embedded quotations.</li><br/>
+									<li><b>scrollBehavior: </b>specifies whether to smoothly animate the scroll position, instead of a straight jump, when the user clicks on a link within a scrollable boxt.</li><br/>
+									<li><b>tabSize: </b>sets or returns the length of the tab-character.</li><br/>
+									<li><b>textAlign: </b>sets or returns the horizontal alignment of text.</li><br/>
+									<li><b>textAlignLast: </b>sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is "justify".</li><br/>
+									<li><b>tableLayout: </b>sets or returns the way to lay out table cells, rows, and columns.</li><br/>
+									<li><b>textDecorationLine: </b>sets or returns the type of line in a text-decoration.</li><br/>
+									<li><b>textDecorationStyle: </b>sets or returns the style of the line in a text decoration.</li><br/>
+									<li><b>textIndent: </b>sets or returns the indentation of the first line of text.</li><br/>
+									<li><b>textJustify: </b>sets or returns the justification method used when text-align is "justify".</li><br/>
+									<li><b>textOverflow: </b>sets or returns what should happen when text overflows the containing element.</li><br/>
+									<li><b>textShadow: </b>sets or returns the shadow effect of a text.</li><br/>
+									<li><b>textTransform: </b>sets or returns the capitalization of a text.</li><br/>
+									<li><b>transform: </b>applies a 2D or 3D transformation to an element.</li><br/>
+									<li><b>transformOrigin: </b>sets or returns the position of transformed elements.</li><br/>
+									<li><b>transformStyle: </b>sets or returns how nested elements are rendered in 3D space.</li><br/>
+									<li><b>transition: </b>a shorthand property for setting or returning the four transition properties.</li><br/>
+									<li><b>transitionProperty: </b>sets or returns the CSS property that the transition effect is for.</li><br/>
+									<li><b>transitionDuration: </b>sets or returns how many seconds or milliseconds a transition effect takes to complete.</li><br/>
+									<li><b>transitionTimingFunction: </b>sets or returns the speed curve of the transition effect.</li><br/>
+									<li><b>transitionDelay: </b>sets or returns when the transition effect will start.</li><br/>
+									<li><b>unicodeBidi: </b>sets or returns whether the text should be overridden to support multiple languages in the same document.</li><br/>
+									<li><b>userSelect: </b>sets or returns whether the text of an element can be selected or not.</li><br/>
+									<li><b>whiteSpace: </b>sets or returns how to handle tabs, line breaks and whitespace in a text.</li><br/>
+									<li><b>widows: </b>sets or returns the minimum number of lines for an element that must be visible at the top of a page.</li><br/>
+									<li><b>wordBreak: </b>sets or returns line breaking rules for non-CJK scripts.</li><br/>
+									<li><b>wordSpacing: </b>sets or returns the spacing between words in a text.</li><br/>
+									<li><b>wordWrap: </b>allows long, unbreakable words to be broken and wrap to the next line.</li><br/>
+								</ul>
+							-->
+						</div>
+						
+						<div style="display:none;">
+							<h2>XXXXXXX</h2>
+							<p>
+							
+							</p>
+						</div>
+						
 						<script type="text/javascript">
 						
 							g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
