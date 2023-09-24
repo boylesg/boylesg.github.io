@@ -3262,81 +3262,702 @@
 						</div>
 						<div style="display:none;">
 							<h2>The document object</h2>
+							<p>
+								There is no way you are going to be able to memorise all these so don't bother trying. I can't rememeber 
+								them all myself and have to frequently refer to W3Schools to find the right attributes and the right values 
+								for them. But you will memorise perhaps a dozen of these, over time, that are used frequently in web pages. 
+								So just look at this as showing you the very high level of control you have over how your web pages appear. 
+							</p>
 							<h3>Attributes</h3>
 							<ul>
-								<li><b>activeElement: </b>returns the currently focused element in the document.</li><br/>
-								<li><b>baseURI: </b>returns the absolute base URI of a document.</li><br/>
-								<li><b>body: </b>sets or returns the document's body (the &lt;body&gt; element).</li><br/>
-								<li><b>characterSet: </b>returns the character encoding for the document.</li><br/>
-								<li><b>defaultView: </b>returns the window object associated with a document, or null if none is available.</li><br/>
-								<li><b>designMode: </b>controls whether the entire document should be editable or not.</li><br/>
-								<li><b>doctype: </b>returns the Document Type Declaration associated with the document.</li><br/>
-								<li><b>documentElement: </b>returns the Document Element of the document (the &lt;html&gt; element).</li><br/>
-								<li><b>documentURI: </b>sets or returns the location of the document.</li><br/>
-								<li><b>domain: </b>returns the domain name of the server that loaded the document.</li><br/>
-								<li><b>embeds: </b>returns a collection of all &lt;embed&gt; elements the document.</li><br/>
-								<li><b>forms: </b>returns a collection of all &lt;form&gt; elements in the document.</li><br/>
-								<li><b>head: </b>returns the &lt;head&gt; element of the document.</li><br/>
-								<li><b>images: </b>returns a collection of all &lt;img&gt; elements in the document.</li><br/>
-								<li><b>implementation: </b>returns the DOMImplementation object that handles this document.</li><br/>
-								<li><b>lastModified: </b>returns the date and time the document was last modified.</li><br/>
-								<li><b>links: </b>returns a collection of all &lt;a&gt; and &lt;area&gt; elements in the document that have a href attribute.</li><br/>
-								<li><b>readyState: </b>returns the (loading) status of the document.</li><br/>
-								<li><b>referrer: </b>returns the URL of the document that loaded the current document.</li><br/>
-								<li><b>scripts: </b>returns a collection of &lt;script&gt; elements in the document.</li><br/>
-								<li><b>title: </b>sets or returns the title of the document.</li><br/>
-								<li><b>URL: </b>returns the full URL of the HTML document.</li>
+								<li>
+									<b>document.activeElement: </b>returns the currently focused element in the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.baseURI: </b>returns the absolute base URI of a document.<br/>
+								</li><br/>
+								<li>
+									<b>document.body: </b>sets or returns the document's body, or all the child tags between the &lt;body&gt; tags.<br/>
+								</li><br/>
+								<li>
+									<b>document.characterSet: </b>returns the character encoding for the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.defaultView: </b>returns the window object associated with a document, or null if none is available.<br/>
+								</li><br/>
+								<li>
+									<b>document.designMode: </b>controls whether the entire document should be editable or not.<br/>
+								</li><br/>
+								<li>
+									<b>document.doctype: </b>returns the Document Type Declaration associated with the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.documentElement: </b>returns the Document Element of the document (the &lt;html&gt; element).<br/>
+								</li><br/>
+								<li>
+									<b>document.URI: </b>sets or returns the location of the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.domain: </b>returns the domain name of the server that loaded the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.embeds: </b>returns a collection of all &lt;embed&gt; elements the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.forms: </b>returns a collection of all &lt;form&gt; elements in the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.head: </b>returns all the cild tags between the &lt;head&gt; tags.<br/>
+								</li><br/>
+								<li>
+									<b>document.images: </b>returns a collection of all &lt;img&gt; elements in the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.implementation: </b>returns the DOMImplementation object that handles this document.<br/>
+								</li><br/>
+								<li>
+									<b>document.lastModified: </b>returns the date and time the document was last modified.<br/>
+								</li><br/>
+								<li>
+									<b>document.links: </b>returns a collection of all &lt;a&gt; and &lt;area&gt; elements in the document that have a href attribute.<br/>
+								</li><br/>
+								<li>
+									<b>document.readyState: </b>returns the (loading) status of the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.referrer: </b>returns the URL of the document that loaded the current document.<br/>
+								</li><br/>
+								<li>
+									<b>document.scripts: </b>returns a collection of &lt;script&gt; elements in the document.<br/>
+								</li><br/>
+								<li>
+									<b>document.title: </b>sets or returns the title of the document - the text between the &lt;title&gt; tags..<br/>
+								</li><br/>
+								<li>
+									<b>document.URL: </b>returns the full URL of the HTML document.<br/>
+								</li>
 							</ul>
 							
 							<h3>Methods</h3>
+							<p>
+								Again I have omitted those methods you are highly unlikely to use as a beginner. If you want to see 
+								the full list then see <a hreff="https://www.w3schools.com/jsref/dom_obj_document.asp">
+								W3Schools document refference</a>.
+							</p>
 							<ul>
-								<li><b>addEventListener(): </b>attaches an event handler to the document.</li><br/>
-								<li><b>adoptNode(): </b>adopts a node from another document.</li><br/>
-								<li><b>close(): </b>closes the output stream previously opened with document.open().</li><br/>
-								<li><b>cookie: </b>returns all name/value pairs of cookies in the document.</li><br/>
-								<li><b>createAttribute(): </b>creates an attribute node.</li><br/>
-								<li><b>createComment(): </b>creates a Comment node with the specified text.</li><br/>
-								<li><b>createDocumentFragment(): </b>creates an empty DocumentFragment node.</li><br/>
-								<li><b>createElement(): </b>creates an Element node.</li><br/>
-								<li><b>createEvent(): </b>creates a new event.</li><br/>
-								<li><b>createTextNode(): </b>creates a Text node.</li><br/>
-								<li><b>getElementById(): </b>returns the element that has the ID attribute with the specified value.</li><br/>
-								<li><b>getElementsByClassName(): </b>returns an HTMLCollection containing all elements with the specified class name.</li><br/>
-								<li><b>getElementsByName(): </b>returns an live NodeList containing all elements with the specified name.</li><br/>
-								<li><b>getElementsByTagName(): </b>returns an HTMLCollection containing all elements with the specified tag name.</li><br/>
-								<li><b>hasFocus(): </b>returns a Boolean value indicating whether the document has focus.</li><br/>
-								<li><b>importNode(): </b>imports a node from another document.</li><br/>
-								<li><b>normalize(): </b>removes empty Text nodes, and joins adjacent nodes.</li><br/>
-								<li><b>open(): </b>opens an HTML output stream to collect output from document.write().</li><br/>
-								<li><b>querySelector(): </b>returns the first element that matches a specified CSS selector(s) in the document.</li><br/>
-								<li><b>querySelectorAll(): </b>returns a static NodeList containing all elements that matches a specified CSS selector(s) in the document.</li><br/>
-								<li><b>removeEventListener(): </b>removes an event handler from the document (that has been attached with the addEventListener() method).</li><br/>
-								<li><b>write(): </b>writes HTML expressions or JavaScript code to a document.</li><br/>
-								<li><b>writeln(): </b>same as write(), but adds a newline character after each statement.</li>
+								<li>
+									<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document.<br/><br/>
+									<ul>
+										<li><b>strEvent: </b>this parameter is required.<br/><br/>
+											<table border="1" cellspacing="0" cellpadding="5" style="background-color:#FFFFCC;font-size:small">
+												<tr style="background-color:#CCCC00">
+													<td><b>EVENT NAME</b></td>
+													<td><b>HTML TAG PROPERTY</b></td>
+													<td><b>EVENT DESCRIPTION</b></td>
+													<td><b>EVENT TYPE</b></td>
+												</tr>
+												<tr>
+													<td>"abort"</td>
+													<td>onabort=""</td>
+													<td>The loading of a media is aborted</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"afterprint"</td>
+													<td>onafterprint=""</td>
+													<td>A page has started printing.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"animationend"</td>
+													<td>onanimationend=""</td>
+													<td>A CSS animation has completed.</td>
+													<td>AnimationEvent</td>
+												</tr>
+												<tr>
+													<td>"animationiteration"</td>
+													<td>onanimationiteration=""</td>
+													<td>A CSS animation is repeated.</td>
+													<td>AnimationEvent</td>
+												</tr>
+												<tr>
+													<td>"animationstart"</td>
+													<td>onanimationstart=""</td>
+													<td>A CSS animation has started.</td>
+													<td>AnimationEvent</td>
+												</tr>
+												<tr>
+													<td>"beforeprint"</td>
+													<td>onbeforeprint=""</td>
+													<td>A page is about to be printed.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"beforeunload"</td>
+													<td>onbeforeunload=""</td>
+													<td>Before a document is about to be unloaded.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"blur"</td>
+													<td>onblur=""</td>
+													<td>An element loses focus.</td>
+													<td>FocusEvent</td>
+												</tr>
+												<tr>
+													<td>"canplay"</td>
+													<td>oncanplay=""</td>
+													<td>The browser can start playing a media (has buffered enough to begin).</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"canplaythrough"</td>
+													<td>oncanplaythrough=""</td>
+													<td>The browser can play through a media without stopping for buffering.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"change"</td>
+													<td>onchange=""</td>
+													<td>The content of a form element has changed.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"click"</td>
+													<td>onckick=""</td>
+													<td>An element is clicked on.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"contextmenu"</td>
+													<td>oncontextmenu=""</td>
+													<td>An element is right-clicked to open a context menufMouseEvent</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"copy"</td>
+													<td>oncopy=""</td>
+													<td>The content of an element is copied.</td>
+													<td>ClipboardEvent</td>
+												</tr>
+												<tr>
+													<td>"cut"</td>
+													<td>oncut=""</td>
+													<td>The content of an element is cut.</td>
+													<td>ClipboardEvent</td>
+												</tr>
+												<tr>
+													<td>"dblclick"</td>
+													<td>ondbclick=""</td>
+													<td>An element is double-clicked.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"drag"</td>
+													<td>ondrag=""</td>
+													<td>An element is being dragged.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"dragend"</td>
+													<td>ondragged=""</td>
+													<td>Dragging of an element has ended.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"dragenter"</td>
+													<td>ondragenter=""</td>
+													<td>A dragged element enters the drop target.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"dragleave"</td>
+													<td>ondragleave=""</td>
+													<td>A dragged element leaves the drop target.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"dragover"</td>
+													<td>ondragover=""</td>
+													<td>A dragged element is over the drop target.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"dragstart"</td>
+													<td>ondragstart=""</td>
+													<td>Dragging of an element has started.</td>
+													<td>DragEvent</td>
+												<tr>
+												</tr>
+													<td>"drop"</td>
+													<td>ondrop=""</td>
+													<td>A dragged element is dropped on the target.</td>
+													<td>DragEvent</td>
+												</tr>
+												<tr>
+													<td>"durationchange"</td>
+													<td>ondurationchange=""</td>
+													<td>The duration of a media is changed.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"ended"</td>
+													<td>onended=""</td>
+													<td>A media has reach the end ("thanks for listening").</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"error"</td>
+													<td>onerror=""</td>
+													<td>An error has occurred while loading a file.</td>
+													<td>ProgressEvent, UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"focus"</td>
+													<td>onfocus=""</td>
+													<td>An element gets focus.</td>
+													<td>FocusEvent</td>
+												</tr>
+												<tr>
+													<td>"focusin"</td>
+													<td>onfocusin=""</td>
+													<td>An element is about to get focus.</td>
+													<td>FocusEvent</td>
+												</tr>
+												<tr>
+													<td>"focusout"</td>
+													<td>onfocusout=""</td>
+													<td>An element is about to lose focus.</td>
+													<td>FocusEvent</td>
+												</tr>
+												<tr>
+													<td>"fullscreenchange"</td>
+													<td>onfullscreenchange=""</td>
+													<td>An element is displayed in fullscreen mode.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"fullscreenerror"</td>
+													<td>on=fullscreenerror""</td>
+													<td>An element can not be displayed in fullscreen mode.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"hashchange"</td>
+													<td>onhaschange=""</td>
+													<td>There has been changes to the anchor part of a URL.</td>
+													<td>HashChangeEvent</td>
+												</tr>
+												<tr>
+													<td>"input"</td>
+													<td>oninput=""</td>
+													<td>An element gets user input.</td>
+													<td>InputEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"invalid"</td>
+													<td>oninvalid=""</td>
+													<td>An element is invalid.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"keydown"</td>
+													<td>onkeydown=""</td>
+													<td>A key is down.</td>
+													<td>KeyboardEvent</td>
+												</tr>
+												<tr>
+													<td>"keypress"</td>
+													<td>onkeypress=""</td>
+													<td>A key is pressed.</td>
+													<td>KeyboardEvent</td>
+												</tr>
+												<tr>
+													<td>"keyup"</td>
+													<td>onkeyup=""</td>
+													<td>A key is released.</td>
+													<td>KeyboardEvent</td>
+												</tr>
+												<tr>
+													<td>"load"</td>
+													<td>onload=""</td>
+													<td>An object has loaded.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"loadeddata"</td>
+													<td>onloaddata=""</td>
+													<td>Media data is loaded.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"loadedmetadata"</td>
+													<td>onloadedmetadata=""</td>
+													<td>Meta data (like dimensions and duration) are loaded.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"loadstart"</td>
+													<td>onloadstart=""</td>
+													<td>The browser starts looking for the specified media.</td>
+													<td>ProgressEvent</td>
+												</tr>
+												<tr>
+													<td>"message"</td>
+													<td>onmessage=""</td>
+													<td>A message is received through the event source.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"mousedown"</td>
+													<td>onmousedown=""</td>
+													<td>The mouse button is pressed over an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mouseenter"</td>
+													<td>onmouseenter=""</td>
+													<td>The pointer is moved onto an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mouseleave"</td>
+													<td>onmouseleave=""</td>
+													<td>The pointer is moved out of an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mousemove"</td>
+													<td>onmousemove=""</td>
+													<td>The pointer is moved over an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mouseover"</td>
+													<td>onmouseover=""</td>
+													<td>The pointer is moved onto an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mouseout"</td>
+													<td>onmouseout=""</td>
+													<td>The pointer is moved out of an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mouseup"</td>
+													<td>onmouseup=""</td>
+													<td>A user releases a mouse button over an element.</td>
+													<td>MouseEvent</td>
+												</tr>
+												<tr>
+													<td>"mousewheel"</td>
+													<td>onmousewheel=""</td>
+													<td>Deprecated. Use the wheel event instead.</td>
+													<td>WheelEvent</td>
+												</tr>
+												<tr>
+													<td>"offline"</td>
+													<td>onofflinep=""</td>
+													<td>The browser starts working offline.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"online"</td>
+													<td>ononline=""</td>
+													<td>The browser starts working online.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"open"</td>
+													<td>onopen=""</td>
+													<td>A connection with the event source is opened.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"pagehide"</td>
+													<td>onpagehide=""</td>
+													<td>User navigates away from a webpage.</td>
+													<td>PageTransitionEvent</td>
+												</tr>
+												<tr>
+													<td>"pageshow"</td>
+													<td>onpageshow=""</td>
+													<td>User navigates to a webpage.</td>
+													<td>PageTransitionEvent</td>
+												</tr>
+												<tr>
+													<td>"paste"</td>
+													<td>onpaste=""</td>
+													<td>Some content is pasted in an element.</td>
+													<td>ClipboardEvent</td>
+												</tr>
+												<tr>
+													<td>"pause"</td>
+													<td>onpause=""</td>
+													<td>A media is paused.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"play"</td>
+													<td>onplay=""</td>
+													<td>The media has started or is no longer paused.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"playing"</td>
+													<td>onplaying=""</td>
+													<td>The media is playing after being paused or buffered.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"popstate"</td>
+													<td>onpopstate=""</td>
+													<td>The window's history changes.</td>
+													<td>PopStateEvent</td>
+												</tr>
+												<tr>
+													<td>"progress"</td>
+													<td>onprogress=""</td>
+													<td>The browser is downloading media data.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"ratechange"</td>
+													<td>onratechange=""</td>
+													<td>The playing speed of a media is changed.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"resize"</td>
+													<td>onresize=""</td>
+													<td>The document view is resized.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"reset"</td>
+													<td>onreset=""</td>
+													<td>A form is reset.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"scroll"</td>
+													<td>onscroll=""</td>
+													<td>An scrollbar is being scrolled.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"search"</td>
+													<td>onmsearch=""</td>
+													<td>Something is written in a search field.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"seeked"</td>
+													<td>onseekend=""</td>
+													<td>Skipping to a media position is finished.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"seeking"</td>
+													<td>onseeking=""</td>
+													<td>Skipping to a media position is started.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"select"</td>
+													<td>onselect=""</td>
+													<td>User selects some text.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"show"</td>
+													<td>onshow=""</td>
+													<td>A &lt;menu&gt; element is shown as a context menu.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"stalled"</td>
+													<td>onstalled=""</td>
+													<td>The browser is trying to get unavailable media data.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"storage"</td>
+													<td>onstorage=""</td>
+													<td>A Web Storage area is updated.</td>
+													<td>StorageEvent</td>
+												</tr>
+												<tr>
+													<td>"submit"</td>
+													<td>onsubmit=""</td>
+													<td>A form is submitted.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"suspend"</td>
+													<td>onsuspend=""</td>
+													<td>The browser is intentionally not getting media data.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"timeupdate"</td>
+													<td>ontimeupdate=""</td>
+													<td>The playing position has changed (the user moves to a different point in the media).</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"toggle"</td>
+													<td>ontoggle=""</td>
+													<td>The user opens or closes the &lt;details&gt; element.</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"touchcancel"</td>
+													<td>ontouchcancel=""</td>
+													<td>The touch is interrupted.</td>
+													<td>TouchEvent</td>
+												</tr>
+												<tr>
+													<td>"touchend"</td>
+													<td>ontouchend=""</td>
+													<td>A finger is removed from a touch screen.</td>
+													<td>TouchEvent</td>
+												</tr>
+												<tr>
+													<td>"touchmove"</td>
+													<td>onmousemove=""</td>
+													<td>A finger is dragged across the screen.</td>
+													<td>TouchEvent</td>
+												</tr>
+												<tr>
+													<td>"touchstart"</td>
+													<td>ontouchstart=""</td>
+													<td>A finger is placed on a touch screen.</td>
+													<td>TouchEvent</td>
+												</tr>
+												<tr>
+													<td>"transitionend"</td>
+													<td>ontransitionend=""</td>
+													<td>A CSS transition has completed.</td>
+													<td>TransitionEvent</td>
+												</tr>
+												<tr>
+													<td>"unload"</td>
+													<td>onupload=""</td>
+													<td>A page has unloaded.</td>
+													<td>UiEvent, Event</td>
+												</tr>
+												<tr>
+													<td>"volumechange"</td>
+													<td>onvolumechange=""</td>
+													<td>The volume of a media is changed (includes muting).</td>
+													<td>Event</td>
+												</tr>
+												<tr>
+													<td>"waiting"</td>
+													<td>onwaiting=""</td>
+													<td>A media is paused but is expected to resume (e.g. buffering).</td>
+													<td>Event</td>
+												<tr>
+												</tr>
+													<td>"wheel"</td>
+													<td>onwheel=""</td>
+													<td>The mouse wheel rolls up or down over an element.</td>
+													<td>WheelEvent</td>
+												</tr>
+											</table>
+										</li><br/>
+										<li>
+											<b>Function(): </b>this parameter is required. It is the function to be called when the 
+											event occurs.<br/><br/>
+										</li><br/>
+										<li>
+											<b>capture: </b>this parameter is optional and it is a boolean value. If not provided 
+											the default value is false.<br/>
+											<ul>
+												<li><b>true: </b> the handler is executed in the capturing phase.</li>
+												<li><b>false: </b> the handler is executed in the bubbling phase.</li>
+											</ul>
+										</li>
+									</ul>
+									E.G.							
+									<p class="Code">
+										&lt;input type="button" id="button"/&gt;<br/><br/>
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;function DoOnClick()<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(button").addEventListener("click", DoOnClick, true);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;// OR<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(button").addEventListener("click", DoOnClick);<br/>
+										&lt;/script&gt;
+									</p>
+								</li><br/>
+								<li>
+									<b>createElement(strElementType): </b>creates a HTML element dynamically. It takes one string 
+									parameter that specifies the tag name of the element, e.g. "p", "h1" and "div" etc.<br/><br/>
+									E.G.
+									<p class="Code">
+										&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;const para = document.createElement("p");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;para.innerText = "This is a paragraph";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;document.body.appendChild(para);<br/>
+									&lt;/script&gt;								
+									</p>
+								</li><br/>
+								<li>
+									<b>createEvent(): </b>this allows you to create an event on an element without the need for user 
+									input.<br/><br/>
+									E.G.
+									<p class="Code">
+										&lt;div id="my_div" onhover="DoOnHover()"&gt;&lt;/div&gt;<br/><br/>
+										&lt;script type="text/javascript"&gt;
+											&nbsp;&nbsp;&nbsp;&nbsp;const ev = document.createEvent("MouseEvent");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;ev.initMouseEvent("mouseover", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("my_div").dispatchEvent(ev);<br/><br/>
+											
+											&nbsp;&nbsp;&nbsp;&nbsp;function DoOnHover()<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("DoOnHover()");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;}<br/>							
+										&lt;/script&gt;
+									</p>
+								</li><br/>
+								<li>
+									<b>getElementById(): </b>returns the element that has the ID attribute with the specified value.<br/>
+								</li><br/>
+								<li>
+									<b>getElementsByTagName(): </b>returns an HTMLCollection containing all elements with the specified tag name.<br/>
+								</li><br/>
+								<li>
+									<b>hasFocus(): </b>returns a Boolean value indicating whether the document has focus.<br/>
+								</li><br/>
+								<li>
+									<b>removeEventListener(): </b>removes an event handler from the document (that has been attached with the addEventListener() method).<br/>
+								</li><br/>
+								<li>
+									<b>write(): </b>writes HTML expressions or JavaScript code to a document.<br/>
+								</li><br/>
+								<li>
+									<b>writeln(): </b>same as write(), but adds a newline character after each statement.<br/>
+								</li>
 							</ul>
 						</div>
 						<div style="display:none;">
 							<h2>Element styles</h2>
-								<p class="Code">
-									&lt;div id="my_div" style="background-color:red;border-style:solid;color:white;"&gt;XXXXXXXXXX&lt;/div&gt;<br/>
-									&lt;script type="text/javascript"&gt;<br/>
-									&nbsp;&nbsp;&nbsp;&nbsp;let MyDiv = document.getElementById("my_div");<br/>
-									&lt;/script&gt;
+								<p>
+									There is no way you are going to be able to memorise all these so don't bother trying. I can't rememeber 
+									them all myself and have to frequently refer to <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">
+									W3Schools style object reference</a>to find the right attributes and the right values for them. 
+									But you will memorise perhaps a dozen of these, over time, that are used frequently in web pages. 
 								</p>
 								<p>
-									Now <b>MyDiv.style</b> is one of the fields that every JavaScript element object has by default. 
-									It is iteself an object and it contains ALL legal CSS attributes for the element. Some of these 
-									will be set and some will be undefined. The <b>&lt;div&gt;</b> element above has its 
-									<b>background-color</b>, <b>border-style</b> and <b>color</b> attributes explicitly set. You can access 
-									each of those with <b>MyDiv.style.<i>backgroundColor</i></b>, <b>MyDiv.style.<i>borderStyle </i></b> and 
-									<b>MyDiv.style.<i>color </i></b> respectively. If you do this in your JavaScript code 
-									<b>MyDiv.style.<i>backgroundColor = "blue"</i></b> then the back ground color will change to blue instantly.
-								</p>
-								<p>
-									Here is a selection of CSS attributes available in the <b>.style</b> field. For the full list 
-									please refer to <a href="https://www.w3schools.com/jsref/dom_obj_style.asp">W3Schools style object reference</a><br/>
-									For all the below style attributes those enclosed in &lt;...&gt; are required while those enclosed in [...] are 
-									optional.
+									So fere is a selection of CSS attributes available in the <b>.style</b> field to give you some idea 
+									of the fine level of control you have over the appearance of your web pages.
+									For all the below style attributes those enclosed in &lt;...&gt; are required while those enclosed 
+									in [...] are optional.
 								</p>
 								<ul>
 									<li>
@@ -3400,7 +4021,7 @@
 									<li>
 										<b>borderBottomRightRadius: </b>sets or returns the shape of the border of the bottom-right corner. Permitted 
 										values are:
-										<script type="text/javascript">CreateLengthList("borderBottomRightRadius");</script>									</li><br/>
+									<script type="text/javascript">CreateLengthList("borderBottomRightRadius");</script>									</li><br/>
 									<li>
 										<b>borderBottomStyle: </b>sets or returns the style of the bottom border. Permitted 
 										values are:
@@ -3507,7 +4128,6 @@
 											document.body.style.border = "thick solid #0000FF";
 										</p>
 									</li><br/>
-
 									<li>
 										<b>borderBottom: </b>sets or returns all the borderBottom properties in one declaration.<br/>
 										<script type="text/javascript">MakeAttributeOptions(g_arrayBorderThicknessOptions, g_arrayBorderStyleOptions, g_arrayColorOptions);</script><br/>
@@ -4006,7 +4626,13 @@
 	
 						</script>
 
-					<!-- #EndEditable --></div>
+											</details>
+
+											<tr>
+												<td>
+											<details> 
+											<li>
+											</div>
 					</div>
 					<script type="text/javascript">SetStageDivIDs();</script>
 				<!-- End Content --></div>
@@ -4030,6 +4656,8 @@
 			<!-- End Footer --></div>
 		<!-- End Container -->
 	
+					<!-- #EndEditable -->
+												
 	</body>
 	
 <!-- #EndTemplate -->
