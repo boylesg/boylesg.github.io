@@ -55,6 +55,8 @@
 			</div>
 			<!-- End Masthead -->
 			<!-- Begin Page Content -->
+					<!-- #BeginEditable "content" -->
+
 			<div id="page_content">
 				<!-- Begin Sidebar -->
 				<div id="sidebar">
@@ -129,11 +131,7 @@
 						<input type="password" id="password" value=""/>&nbsp;
 						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
 					</div>
-					<!-- #BeginEditable "pre-content" -->
-					
-					<!-- #EndEditable -->
 					<div style="display:none;" id="course_content">
-					<!-- #BeginEditable "content" -->
 
 						<div style="display:none;">
 						
@@ -3908,8 +3906,15 @@
 									</p>
 								</li><br/>
 								<li>
-									<b>createEvent(): </b>this allows you to create an event on an element without the need for user 
-									input.<br/><br/>
+									<b>createEvent(strEventName): </b>this allows you to create an event on an element without the need for user 
+									input. It takes 1 parameter:<br/>
+									<ul>
+										<li>
+											<b>strEventName: </b>the name of the event. See addEventListener(...) for the full list 
+											of event names.
+										</li>
+									</ul>
+									<br/>
 									E.G.
 									<p class="Code">
 										&lt;div id="my_div" onhover="DoOnHover()"&gt;&lt;/div&gt;<br/><br/>
@@ -3926,22 +3931,231 @@
 									</p>
 								</li><br/>
 								<li>
-									<b>getElementById(): </b>returns the element that has the ID attribute with the specified value.<br/>
+									<b>getElementById(strID): </b>returns an object corresponding to the element that has the ID attribute with the specified value.<br/><br/>
+									E.G.
+									<p class="Code">
+										&lt;div id="my_id"&gt;XXXXX&lt;/div&gt;<br/><br/>
+										&lt;script type=text/javascript&gt;<br/>
+											let objDiv = document.getElementById("my_id");<br/>
+											alert(objDiv.innerText); // Displays a popup message box containing XXXXX
+										&lt;/script&gt;
+									</p>
 								</li><br/>
 								<li>
-									<b>getElementsByTagName(): </b>returns an HTMLCollection containing all elements with the specified tag name.<br/>
+									<b>getElementsByTagName(strTagName): </b>returns an HTMLCollection object (or array) containing 
+									an array with objects for all the elements with the specified tag name within the element with 
+									the specified id. Allowed values are as follows:
+									<table border="1" cellspacing="0" cellpadding="5" style="background-color:#FFFFCC;font-size:small">
+										<tr style="background-color:#CCCC00">
+											<td><b>TAG NAME</b></td>
+											<td><b>HTML TAG</b></td>
+											<td><b>DESCRIPTION</b></td>
+										</tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>A</b></td></tr>
+										<tr>
+										<tr><td>"a"</td><td>&lt;a&gt;</td><td>It is termed as anchor tag and it creates a hyperlink or link.</td></tr>
+										<tr><td>"abbr"</td><td>&lt;abbr&gt;</td><td>It defines an abbreviation for a phrase or longer word.</td></tr>
+										<tr><td>"acronym"</td><td>&lt;acronym&gt;</td><td>It defines acronym for a word. (Not supported in HTML5)</td></tr>
+										<tr><td>"address"</td><td>&lt;address&gt;</td><td>It defines the author's contact information of the HTML article</td></tr>
+										<tr><td>"applet"</td><td>&lt;applet&gt;</td><td>It defines an embedded Java applet. (Not supported in HTML5)</td></tr>
+										<tr><td>"area"</td><td>&lt;area&gt;</td><td>It defines the area of an image map.</td></tr>
+										<tr><td>"article"</td><td>&lt;article&gt;</td><td>It defines the self-contained content.</td></tr>
+										<tr><td>"aside"</td><td>&lt;aside&gt;</td><td>It defines content aside from main content. Mainly represented as sidebar.</td></tr>
+										<tr><td>"audio"</td><td>&lt;audio&gt;</td><td>It is used to embed sound content in HTML document.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>B</b></td></tr>
+										<tr><td>"b"</td><td>&lt;b&gt;</td><td>It is used to make a text bold.</td></tr>
+										<tr><td>"base"</td><td>&lt;base&gt;</td><td>This tag defines the base URL for all relative URL within the document.</td></tr>
+										<tr><td>"bdi"</td><td>&lt;bdi&gt;</td><td>This tag is used to provide isolation for that part of text which may be formatted in different directions from its surrounding text.</td></tr>
+										<tr><td>"bdo"</td><td>&lt;bdo&gt;</td><td>It is used to override the current text direction.</td></tr>
+										<tr><td>"blockquote"</td><td>&lt;blockquote&gt;</td><td>It is used to define a content which is taken from another source.</td></tr>
+										<tr><td>"body"</td><td>&lt;body&gt;</td><td>It is used to define the body section of an HTML document.</td></tr>
+										<tr><td>"br"</td><td>&lt;br&gt;</td><td>It is used to apply single line break.</td></tr>
+										<tr><td>"button"</td><td>&lt;button&gt;</td><td>It is used to represent a clickable button.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>C</b></td></tr>
+										<tr><td>"canvas"</td><td>&lt;canvas&gt;</td><td>It is used to provide a graphics space within a web document.</td></tr>
+										<tr><td>"caption"</td><td>&lt;caption&gt;</td><td>It is used to define a caption for a table.</td></tr>
+										<tr><td>"cite"</td><td>&lt;cite&gt;</td><td>It is used to define the title of the work, book, website, etc.</td></tr>
+										<tr><td>"code"</td><td>&lt;code&gt;</td><td>It is used to display a part of programming code in an HTML document.</td></tr>
+										<tr><td>"col"</td><td>&lt;col&gt;</td><td>It defines a column within a table which represent common properties of columns and used with the &lt;colgroup&gt; element.</td></tr>
+										<tr><td>"colgroup"</td><td>&lt;colgroup&gt;</td><td>It is used to define group of columns in a table.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>D</b></td></tr>
+										<tr><td>"data"</td><td>&lt;data&gt;</td><td>It is used to link the content with the machine-readable translation.</td></tr>
+										<tr><td>"datalist"</td><td>&lt;datalist&gt;</td><td>It is used to provide a predefined list for input option.</td></tr>
+										<tr><td>"dd"</td><td>&lt;dd&gt;</td><td>It is used to provide definition/description of a term in description list.</td></tr>
+										<tr><td>"del"</td><td>&lt;del&gt;</td><td>It defines a text which has been deleted from the document.</td></tr>
+										<tr><td>"details"</td><td>&lt;details&gt;</td><td>It defines additional details which user can either view or hide.</td></tr>
+										<tr><td>"dfn"</td><td>&lt;dfn&gt;</td><td>It is used to indicate a term which is defined within a sentence/phrase.</td></tr>
+										<tr><td>"dialog"</td><td>&lt;dialog&gt;</td><td>It defines a dialog box or other interactive components.</td></tr>
+										<tr><td>"div"</td><td>&lt;div&gt;</td><td>It defines a division or section within HTML document.</td></tr>
+										<tr><td>"dl"</td><td>&lt;dl&gt;</td><td>It is sued to define a description list.</td></tr>
+										<tr><td>"dt"</td><td>&lt;dt&gt;</td><td>It is used to define a term in description list.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>E</b></td></tr>
+										<tr><td>"em"</td><td>&lt;em&gt;</td><td>It is used to emphasis the content applied within this element.</td></tr>
+										<tr><td>"embed"</td><td>&lt;embed&gt;</td><td>It is used as embedded container for external file/application/media, etc.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>F</b></td></tr>
+										<tr><td>"fieldset"</td><td>&lt;fieldset&gt;</td><td>It is used to group related elements/labels within a web form.</td></tr>
+										<tr><td>"figcaption"</td><td>&lt;figcaption&gt;</td><td>It is used to add a caption or explanation for the &lt;figure&gt; element.</td></tr>
+										<tr><td>"figure"</td><td>&lt;figure&gt;</td><td>It is used to define the self-contained content, and s mostly refer as single unit.</td></tr>
+										<tr><td>"footer"</td><td>&lt;footer&gt;</td><td>It defines the footer section of a webpage.</td></tr>
+										<tr><td>"form"</td><td>&lt;form&gt;</td><td>It is used to define an HTML form.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>H</b></td></tr>
+										<tr><td>"h1"</td><td>&lt;h1&gt;</td><td>It defines a level 1 heading.</td></tr>
+										<tr><td>"h2"</td><td>&lt;h2&gt;</td><td>It defines a level 2 heading.</td></tr>
+										<tr><td>"h3"</td><td>&lt;h3&gt;</td><td>It defines a level 3 heading.</td></tr>
+										<tr><td>"h4"</td><td>&lt;h4&gt;</td><td>It defines a level 4 heading.</td></tr>
+										<tr><td>"h5"</td><td>&lt;h5&gt;</td><td>It defines a level 5 heading.</td></tr>
+										<tr><td>"h6"</td><td>&lt;h6&gt;</td><td>It defines a level 6 heading.</td></tr>
+										<tr><td>"head"</td><td>&lt;head&gt;</td><td>It defines the head section of an HTML document.</td></tr>
+										<tr><td>"header"</td><td>&lt;header&gt;</td><td>It defines the header of a section or webpage.</td></tr>
+										<tr><td>"hr"</td><td>&lt;hr&gt;</td><td>It is used to apply thematic break between paragraph-level elements.</td></tr>
+										<tr><td>"html"</td><td>&lt;html&gt;</td><td>It represents root of an HTML document.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>I</b></td></tr>
+										<tr><td>"i"</td><td>&lt;i&gt;</td><td>It is used to represent a text in some different voice.</td></tr>
+										<tr><td>"iframe"</td><td>&lt;iframe&gt;</td><td>It defines an inline frame which can embed other content.</td></tr>
+										<tr><td>"img"</td><td>&lt;img&gt;</td><td>It is used to insert an image within an HTML document.</td></tr>
+										<tr><td>"input"</td><td>&lt;input&gt;</td><td>It defines an input field within an HTML form.</td></tr>
+										<tr><td>"ins"</td><td>&lt;ins&gt;</td><td>It represent text that has been inserted within an HTML document.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>K</b></td></tr>
+										<tr><td>"kbd"</td><td>&lt;kbd&gt;</td><td>It is used to define keyboard input.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>L</b></td></tr>
+										<tr><td>"label"</td><td>&lt;label&gt;</td><td>It defines a text label for the input field of form.</td></tr>
+										<tr><td>"legend"</td><td>&lt;legend&gt;</td><td>It defines a caption for content of &lt;fieldset&gt;.</td></tr>
+										<tr><td>"li"</td><td>&lt;li&gt;</td><td>It is used to represent items in list.</td></tr>
+										<tr><td>"link"</td><td>&lt;link&gt;</td><td>It represents a relationship between current document and an external resource.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>M</b></td></tr>
+										<tr><td>"main"</td><td>&lt;main&gt;</td><td>It represents the main content of an HTML document.</td></tr>
+										<tr><td>"map"</td><td>&lt;map&gt;</td><td>It defines an image map with active areas.</td></tr>
+										<tr><td>"mark"</td><td>&lt;mark&gt;</td><td>It represents a highlighted text.</td></tr>
+										<tr><td>"menu"</td><td>&lt;menu&gt;</td><td>It is used for creating a menu list of commands.</td></tr>
+										<tr><td>"meta"</td><td>&lt;meta&gt;</td><td>It defines metadata of an HTML document.</td></tr>
+										<tr><td>"meter"</td><td>&lt;meter&gt;</td><td>It defines scalar measurement with known range or fractional value.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>N</b></td></tr>
+										<tr><td>"nav"</td><td>&lt;nav&gt;</td><td>It represents section of page to represent navigation links.</td></tr>
+										<tr><td>"noscript"</td><td>&lt;noscript&gt;</td><td>It provides an alternative content if a script type is not supported in browser.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>O</b></td></tr>
+										<tr><td>"object"</td><td>&lt;object&gt;</td><td>It is used to embed an object in HTML file.</td></tr>
+										<tr><td>"ol"</td><td>&lt;ol&gt;</td><td>It defines an ordered list of items.</td></tr>
+										<tr><td>"optgroup"</td><td>&lt;optgroup&gt;</td><td>It is used to group the options of a drop-down list.</td></tr>
+										<tr><td>"option"</td><td>&lt;option&gt;</td><td>It is used to define options or items in a drop-down list.</td></tr>
+										<tr><td>"output"</td><td>&lt;output&gt;</td><td>It is used as container element which can show result of a calculation.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>P</b></td></tr>
+										<tr><td>"p"</td><td>&lt;p&gt;</td><td>It represents a paragraph in an HTML document.</td></tr>
+										<tr><td>"param"</td><td>&lt;param&gt;</td><td>It defines parameter for an &lt;object&gt; element.</td></tr>
+										<tr><td>"picture"</td><td>&lt;picture&gt;</td><td>It defines more than one source element and one image element.</td></tr>
+										<tr><td>"pre"</td><td>&lt;pre&gt;</td><td>It defines preformatted text in an HTML document.</td></tr>
+										<tr><td>"progress"</td><td>&lt;progress&gt;</td><td>It defines the progress of a task within HTML document.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>Q</b></td></tr>
+										<tr><td>"q"</td><td>&lt;q&gt;</td><td>It defines short inline quotation.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>R</b></td></tr>
+										<tr><td>"rp"</td><td>&lt;rp&gt;</td><td>It defines an alternative content if browser does not supports ruby annotations.</td></tr>
+										<tr><td>"rt"</td><td>&lt;rt&gt;</td><td>It defines explanations and pronunciations in ruby annotations.</td></tr>
+										<tr><td>"ruby"</td><td>&lt;ruby&gt;</td><td>It is used to represent ruby annotations.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>S</b></td></tr>
+										<tr><td>"s"</td><td>&lt;s&gt; 	It render text which is no longer correct or relevant.</td></tr>
+										<tr><td>"samp"</td><td>&lt;samp&gt;</td><td>It is used to represent sample output of a computer program.</td></tr>
+										<tr><td>"script"</td><td>&lt;script&gt;</td><td>It is used to declare the JavaScript within HTML document.</td></tr>
+										<tr><td>"section"</td><td>&lt;section&gt;</td><td>It defines a generic section for a document.</td></tr>
+										<tr><td>"select"</td><td>&lt;select&gt;</td><td>It represents a control which provides a menu of options.</td></tr>
+										<tr><td>"small"</td><td>&lt;small&gt;</td><td>It is used to make text font one size smaller than documents base font size.</td></tr>
+										<tr><td>"source"</td><td>&lt;source&gt;&gt;</td><td>It defines multiple media recourses for different media element such as &lt;picture&gt;, &lt;video&gt;, and &lt;audio&gt; element.</td></tr>
+										<tr><td>"span"</td><td>&lt;span&gt;</td><td>It is used for styling and grouping inline.</td></tr>
+										<tr><td>"strong"</td><td>&lt;strong&gt;</td><td>It is used to define important text.</td></tr>
+										<tr><td>"style"</td><td>&lt;style&gt;</td><td>It is used to contain style information for an HTML document.</td></tr>
+										<tr><td>"sub"</td><td>&lt;sub&gt;</td><td>It defines a text which displays as a subscript text.</td></tr>
+										<tr><td>"summary"</td><td>&lt;summary&gt;</td><td>It defines summary which can be used with &lt;details&gt; tag.</td></tr>
+										<tr><td>"sup"</td><td>&lt;sup&gt;</td><td>It defines a text which represent as superscript text.</td></tr>
+										<tr><td>"svg"</td><td>&lt;svg&gt;</td><td>It is used as container of SVG (Scalable Vector Graphics).</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>T</b></td></tr>
+										<tr><td>"table"</td><td>&lt;table&gt;</td><td>It is used to present data in tabular form or to create a table within HTML document.</td></tr>
+										<tr><td>"svg"</td><td>&lt;tbody&gt;</td><td>It represents the body content of an HTML table and used along with &lt;thead&gt; and &lt;tfoot&gt;.</td></tr>
+										<tr><td>"tbody"</td><td>&lt;td&gt;</td><td>It is used to define cells of an HTML table which contains table data.</td></tr>
+										<tr><td>"template"</td><td>&lt;template&gt;</td><td>It is used to contain the client side content which will not display at time of page load and may render later using JavaScript.</td></tr>
+										<tr><td>"textarea"</td><td>&lt;textarea&gt;</td><td>It is used to define multiple line input, such as comment, feedback, and review, etc.</td></tr>
+										<tr><td>"tfoot"</td><td>&lt;tfoot&gt;</td><td>It defines the footer content of an HTML table.</td></tr>
+										<tr><td>"th"</td><td>&lt;th&gt;</td><td>It defines the head cell of an HTML table.</td></tr>
+										<tr><td>"thead"</td><td>&lt;thead&gt;</td><td>It defines the header of an HTML table. It is used along with &lt;tbody&gt; and &lt;tfoot&gt; tags.</td></tr>
+										<tr><td>"time"</td><td>&lt;time&gt;</td><td>It is used to define data/time within an HTML document.</td></tr>
+										<tr><td>"title"</td><td>&lt;title&gt;</td><td>It defines the title or name of an HTML document.</td></tr>
+										<tr><td>"tr"</td><td>&lt;tr&gt;</td><td>It defines the row cells in an HTML table.</td></tr>
+										<tr><td>"track"</td><td>&lt;track&gt;</td><td>It is used to define text tracks for &lt;audio&gt; and &lt;video&gt; elements.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>U</b></td></tr>
+										<tr><td>"u"</td><td>&lt;u&gt;</td><td>It is used to render enclosed text with an underline.</td></tr>
+										<tr><td>"ul"</td><td>&lt;ul&gt;</td><td>It defines unordered list of items.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>V</b></td></tr>
+										<tr><td>"var"</td><td>&lt;var&gt;</td><td>It defines variable name used in mathematical or programming context.</td></tr>
+										<tr><td>"video"</td><td>&lt;video&gt;</td><td>It is used to embed a video content with an HTML document.</td></tr>
+										<tr><td colspan="3" style="background-color:#CCCC00;"><b>W</b></td></tr>
+										<tr><td>"wbr"</td><td>&lt;wbr&gt;</td><td>It defines a position within text where break line is possible.</td></tr>
+									</table>
+									<br/><br/>
+									<p class="Code">
+										&lt;div id="my_id"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;HEADING1&lt;/h1&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;XXXXXX&lt;/p&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;HEADING2&lt;/h1&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;YYYYYY&lt;/p&gt;<br/>
+										&lt;/div&gt;<br/><br/>
+										&lt;script type=text/javascript&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;let objDiv = document.getElementById("my_id");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;let arrayChildObjs = objDiv.getElementsByTagName("h1");<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;arrayChildObjs[0]; // Corresponds to element &lt;h1&gt;HEADING1&lt;/h1&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;arrayChildObjs[1]; // Corresponds to element &lt;h1&gt;HEADING2&lt;/h1&gt;<br/>
+										&lt;/script&gt;
+									</p>
 								</li><br/>
 								<li>
-									<b>hasFocus(): </b>returns a Boolean value indicating whether the document has focus.<br/>
+									<b>hasFocus(): </b>returns a Boolean value indicating whether the document has focus.<br/><br/>
+									E.G.
+									<p class="Code">
+										&lt;script type=text/javascript&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;if (document.hasFocus())<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("The document has focus.");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("The document does NOT have focus.");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&lt;/script&gt;
+									</p>
 								</li><br/>
 								<li>
-									<b>removeEventListener(): </b>removes an event handler from the document (that has been attached with the addEventListener() method).<br/>
+									<b>removeEventListener(strEventName, HandlerFunction()): </b>removes an event handler from the document, that 
+									has been attached with the addEventListener(...) method. It takes two parameters:
+									<ul>
+										<li>
+											<b>strEventName: </b>the event name - see addEventListener(...) above for the full list 
+											of event names.
+										</li>
+										<li><b>HandlerFunction(): </b>the handler function to be removed.</li>
+									</ul>
+									<br/>
+									E.G.
+									<p class="Code">
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=text/javascript&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.removeEventListener("mousemove", myFunction);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+									</p>
 								</li><br/>
 								<li>
-									<b>write(): </b>writes HTML expressions or JavaScript code to a document.<br/>
+									<b>write(...): </b>writes HTML expressions or JavaScript code to a document. Takes 1 parameters 
+									of any data type.<br/><br>
+									E.G.
+									<p class="Code">
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=text/javascript&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;h1&gt;HELLO WORLD!&lt;/h1&gt;");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+									</p>
 								</li><br/>
 								<li>
-									<b>writeln(): </b>same as write(), but adds a newline character after each statement.<br/>
+									<b>writeln(...): </b>same as write(), but adds a newline character after each statement. Takes 
+									1 parameters of any data type.<br/><br/>
+									E.G.
+									<p class="Code">
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=text/javascript&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.writeln("&lt;h1&gt;HELLO WORLD!&lt;/h1&gt;");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;
+									</p>
 								</li>
 							</ul>
 						</div>
@@ -4608,9 +4822,112 @@
 								</ul>
 							-->
 						</div>
-						
 						<div style="display:none;">
-							<h2>XXXXXXX</h2>
+							<h2>The window object</h2>
+								<h3>Properties</h3>
+								
+									<ul>
+										<li><b>closed: </b>Returns a boolean true if a window is closed.</li><br/>
+										<li><b>console: </b>Returns the Console Object for the window. See also the console object.</li><br/>
+										<li><b>document: </b>Returns the Document object for the window.</li><br/>
+										<li><b>frameElement: </b>Returns the frame in which the window runs.</li><br/>
+										<li><b>frames: </b>Returns all window objects running in the window.</li><br/>
+										<li><b>history: </b>Returns the History object for the window. See also the history object.</li><br/>
+										<li><b>innerHeight: </b>Returns the height of the window's content area (viewport) including scrollbars.</li><br/>
+										<li><b>innerWidth: </b>Returns the width of a window's content area (viewport) including scrollbars.</li><br/>
+										<li><b>length: </b>Returns the number of &lt;iframe&gt; elements in the current window.</li><br/>
+										<li><b>localStorage: </b>Allows to save key/value pairs in a web browser. Stores the data with no expiration date.</li><br/>
+										<li><b>location: </b>Returns the Location object for the window. See also the location object.</li><br/>
+										<li><b>name: </b>Sets or returns the name of a window.</li><br/>
+										<li><b>navigator: </b>Returns the Navigator object for the window. See also the navigator object.</li><br/>
+										<li><b>opener: </b>Returns a reference to the window that created the window.</li><br/>
+										<li><b>outerHeight: </b>Returns the height of the browser window, including toolbars/scrollbars.</li><br/>
+										<li><b>outerWidth: </b>Returns the width of the browser window, including toolbars/scrollbars.</li><br/>
+										<li><b>pageXOffset: </b>Returns the pixels the current document has been scrolled (horizontally) from the upper left corner of the window.</li><br/>
+										<li><b>pageYOffset: </b>Returns the pixels the current document has been scrolled (vertically) from the upper left corner of the window.</li><br/>
+										<li><b>parent: </b>Returns the parent window of the current window.</li><br/>
+										<li><b>screen: </b>Returns the Screen object for the window. See also the screen object.</li><br/>
+										<li><b>screenLeft: </b>Returns the horizontal coordinate of the window relative to the screen.</li><br/>
+										<li><b>screenTop: </b>Returns the vertical coordinate of the window relative to the screen.</li><br/>
+										<li><b>screenX: </b>Returns the horizontal coordinate of the window relative to the screen.</li><br/>
+										<li><b>screenY: </b>Returns the vertical coordinate of the window relative to the screen.</li><br/>
+										<li><b>sessionStorage: </b>Allows to save key/value pairs in a web browser. Stores the data for one session.</li><br/>
+										<li><b>scrollX: </b>An alias of pageXOffset.</li><br/>
+										<li><b>scrollY: </b>An alias of pageYOffset.</li><br/>
+										<li><b>self: </b>Returns the current window.</li><br/>
+										<li><b>top: </b>Returns the topmost browser window.</li><br/>
+									</ul>
+						
+								<h3>Methods</h3>
+								
+									<ul>
+										<li><b>addEventListener(): </b>Attaches an event handler to the window.</li><br/>
+										<li><b>alert(): </b>Displays an alert box with a message and an OK button.</li><br/>
+										<li><b>atob(): </b>Decodes a base-64 encoded string.</li><br/>
+										<li><b>blur(): </b>Removes focus from the current window.</li><br/>
+										<li><b>btoa(): </b>Encodes a string in base-64.</li><br/>
+										<li><b>clearInterval(): </b>Clears a timer set with setInterval().</li><br/>
+										<li><b>clearTimeout(): </b>Clears a timer set with setTimeout().</li><br/>
+										<li><b>close(): </b>Closes the current window.</li><br/>
+										<li><b>confirm(): </b>Displays a dialog box with a message and an OK and a Cancel button.</li><br/>
+										<li><b>focus(): </b>Sets focus to the current window.</li><br/>
+										<li><b>getComputedStyle(): </b>Gets the current computed CSS styles applied to an element.</li><br/>
+										<li><b>getSelection(): </b>Returns a Selection object representing the range of text selected by the user.</li><br/>
+										<li><b>matchMedia(): </b>Returns a MediaQueryList object representing the specified CSS media query string.</li><br/>
+										<li><b>moveBy(): </b>Moves a window relative to its current position.</li><br/>
+										<li><b>moveTo(): </b>Moves a window to the specified position.</li><br/>
+										<li><b>open(): </b>Opens a new browser window.</li><br/>
+										<li><b>print(): </b>Prints the content of the current window.</li><br/>
+										<li><b>prompt(): </b>Displays a dialog box that prompts the visitor for input.</li><br/>
+										<li><b>removeEventListener(): </b>Removes an event handler from the window.</li><br/>
+										<li><b>requestAnimationFrame(): </b>Requests the browser to call a function to update an animation before the next repaint.</li><br/>
+										<li><b>resizeBy(): </b>Resizes the window by the specified pixels.</li><br/>
+										<li><b>resizeTo(): </b>Resizes the window to the specified width and height.</li><br/>
+										<li><b>scrollBy(): </b>Scrolls the document by the specified number of pixels.</li><br/>
+										<li><b>scrollTo(): </b>Scrolls the document to the specified coordinates.</li><br/>
+										<li><b>setInterval(): </b>Calls a function or evaluates an expression at specified intervals (in milliseconds).</li><br/>
+										<li><b>setTimeout(): </b>Calls a function or evaluates an expression after a specified number of milliseconds.</li><br/>
+										<li><b>stop(): </b>Stops the window from loading.</li><br/>
+									</ul>
+						</div>
+						<div style="display:none;">
+							<h2>The console object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>The history object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>The localStorage object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>The location object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>The navigator object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>The screen object</h2>
+							<p>
+							
+							</p>
+						</div>
+						<div style="display:none;">
+							<h2>Global functions</h2>
 							<p>
 							
 							</p>
@@ -4625,14 +4942,6 @@
 							g_arrayStageBookmarks.push("<hr>");
 	
 						</script>
-
-											</details>
-
-											<tr>
-												<td>
-											<details> 
-											<li>
-											</div>
 					</div>
 					<script type="text/javascript">SetStageDivIDs();</script>
 				<!-- End Content --></div>
