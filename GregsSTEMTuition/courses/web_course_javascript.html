@@ -3344,527 +3344,11 @@
 							</p>
 							<ul>
 								<li>
-									<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document.<br/><br/>
+									<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document. 
+									See the list of <a href="javascript_event_names.html">JavaScript event names.</a><br/><br/>
 									<ul>
 										<li><b>strEvent: </b>this parameter is required.<br/><br/>
-											<table border="1" cellspacing="0" cellpadding="5" style="background-color:#FFFFCC;font-size:small">
-												<tr style="background-color:#CCCC00">
-													<td><b>EVENT NAME</b></td>
-													<td><b>HTML TAG PROPERTY</b></td>
-													<td><b>EVENT DESCRIPTION</b></td>
-													<td><b>EVENT TYPE</b></td>
-												</tr>
-												<tr>
-													<td>"abort"</td>
-													<td>onabort=""</td>
-													<td>The loading of a media is aborted</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"afterprint"</td>
-													<td>onafterprint=""</td>
-													<td>A page has started printing.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"animationend"</td>
-													<td>onanimationend=""</td>
-													<td>A CSS animation has completed.</td>
-													<td>AnimationEvent</td>
-												</tr>
-												<tr>
-													<td>"animationiteration"</td>
-													<td>onanimationiteration=""</td>
-													<td>A CSS animation is repeated.</td>
-													<td>AnimationEvent</td>
-												</tr>
-												<tr>
-													<td>"animationstart"</td>
-													<td>onanimationstart=""</td>
-													<td>A CSS animation has started.</td>
-													<td>AnimationEvent</td>
-												</tr>
-												<tr>
-													<td>"beforeprint"</td>
-													<td>onbeforeprint=""</td>
-													<td>A page is about to be printed.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"beforeunload"</td>
-													<td>onbeforeunload=""</td>
-													<td>Before a document is about to be unloaded.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"blur"</td>
-													<td>onblur=""</td>
-													<td>An element loses focus.</td>
-													<td>FocusEvent</td>
-												</tr>
-												<tr>
-													<td>"canplay"</td>
-													<td>oncanplay=""</td>
-													<td>The browser can start playing a media (has buffered enough to begin).</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"canplaythrough"</td>
-													<td>oncanplaythrough=""</td>
-													<td>The browser can play through a media without stopping for buffering.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"change"</td>
-													<td>onchange=""</td>
-													<td>The content of a form element has changed.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"click"</td>
-													<td>onckick=""</td>
-													<td>An element is clicked on.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"contextmenu"</td>
-													<td>oncontextmenu=""</td>
-													<td>An element is right-clicked to open a context menufMouseEvent</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"copy"</td>
-													<td>oncopy=""</td>
-													<td>The content of an element is copied.</td>
-													<td>ClipboardEvent</td>
-												</tr>
-												<tr>
-													<td>"cut"</td>
-													<td>oncut=""</td>
-													<td>The content of an element is cut.</td>
-													<td>ClipboardEvent</td>
-												</tr>
-												<tr>
-													<td>"dblclick"</td>
-													<td>ondbclick=""</td>
-													<td>An element is double-clicked.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"drag"</td>
-													<td>ondrag=""</td>
-													<td>An element is being dragged.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"dragend"</td>
-													<td>ondragged=""</td>
-													<td>Dragging of an element has ended.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"dragenter"</td>
-													<td>ondragenter=""</td>
-													<td>A dragged element enters the drop target.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"dragleave"</td>
-													<td>ondragleave=""</td>
-													<td>A dragged element leaves the drop target.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"dragover"</td>
-													<td>ondragover=""</td>
-													<td>A dragged element is over the drop target.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"dragstart"</td>
-													<td>ondragstart=""</td>
-													<td>Dragging of an element has started.</td>
-													<td>DragEvent</td>
-												<tr>
-												</tr>
-													<td>"drop"</td>
-													<td>ondrop=""</td>
-													<td>A dragged element is dropped on the target.</td>
-													<td>DragEvent</td>
-												</tr>
-												<tr>
-													<td>"durationchange"</td>
-													<td>ondurationchange=""</td>
-													<td>The duration of a media is changed.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"ended"</td>
-													<td>onended=""</td>
-													<td>A media has reach the end ("thanks for listening").</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"error"</td>
-													<td>onerror=""</td>
-													<td>An error has occurred while loading a file.</td>
-													<td>ProgressEvent, UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"focus"</td>
-													<td>onfocus=""</td>
-													<td>An element gets focus.</td>
-													<td>FocusEvent</td>
-												</tr>
-												<tr>
-													<td>"focusin"</td>
-													<td>onfocusin=""</td>
-													<td>An element is about to get focus.</td>
-													<td>FocusEvent</td>
-												</tr>
-												<tr>
-													<td>"focusout"</td>
-													<td>onfocusout=""</td>
-													<td>An element is about to lose focus.</td>
-													<td>FocusEvent</td>
-												</tr>
-												<tr>
-													<td>"fullscreenchange"</td>
-													<td>onfullscreenchange=""</td>
-													<td>An element is displayed in fullscreen mode.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"fullscreenerror"</td>
-													<td>on=fullscreenerror""</td>
-													<td>An element can not be displayed in fullscreen mode.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"hashchange"</td>
-													<td>onhaschange=""</td>
-													<td>There has been changes to the anchor part of a URL.</td>
-													<td>HashChangeEvent</td>
-												</tr>
-												<tr>
-													<td>"input"</td>
-													<td>oninput=""</td>
-													<td>An element gets user input.</td>
-													<td>InputEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"invalid"</td>
-													<td>oninvalid=""</td>
-													<td>An element is invalid.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"keydown"</td>
-													<td>onkeydown=""</td>
-													<td>A key is down.</td>
-													<td>KeyboardEvent</td>
-												</tr>
-												<tr>
-													<td>"keypress"</td>
-													<td>onkeypress=""</td>
-													<td>A key is pressed.</td>
-													<td>KeyboardEvent</td>
-												</tr>
-												<tr>
-													<td>"keyup"</td>
-													<td>onkeyup=""</td>
-													<td>A key is released.</td>
-													<td>KeyboardEvent</td>
-												</tr>
-												<tr>
-													<td>"load"</td>
-													<td>onload=""</td>
-													<td>An object has loaded.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"loadeddata"</td>
-													<td>onloaddata=""</td>
-													<td>Media data is loaded.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"loadedmetadata"</td>
-													<td>onloadedmetadata=""</td>
-													<td>Meta data (like dimensions and duration) are loaded.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"loadstart"</td>
-													<td>onloadstart=""</td>
-													<td>The browser starts looking for the specified media.</td>
-													<td>ProgressEvent</td>
-												</tr>
-												<tr>
-													<td>"message"</td>
-													<td>onmessage=""</td>
-													<td>A message is received through the event source.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"mousedown"</td>
-													<td>onmousedown=""</td>
-													<td>The mouse button is pressed over an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mouseenter"</td>
-													<td>onmouseenter=""</td>
-													<td>The pointer is moved onto an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mouseleave"</td>
-													<td>onmouseleave=""</td>
-													<td>The pointer is moved out of an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mousemove"</td>
-													<td>onmousemove=""</td>
-													<td>The pointer is moved over an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mouseover"</td>
-													<td>onmouseover=""</td>
-													<td>The pointer is moved onto an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mouseout"</td>
-													<td>onmouseout=""</td>
-													<td>The pointer is moved out of an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mouseup"</td>
-													<td>onmouseup=""</td>
-													<td>A user releases a mouse button over an element.</td>
-													<td>MouseEvent</td>
-												</tr>
-												<tr>
-													<td>"mousewheel"</td>
-													<td>onmousewheel=""</td>
-													<td>Deprecated. Use the wheel event instead.</td>
-													<td>WheelEvent</td>
-												</tr>
-												<tr>
-													<td>"offline"</td>
-													<td>onofflinep=""</td>
-													<td>The browser starts working offline.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"online"</td>
-													<td>ononline=""</td>
-													<td>The browser starts working online.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"open"</td>
-													<td>onopen=""</td>
-													<td>A connection with the event source is opened.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"pagehide"</td>
-													<td>onpagehide=""</td>
-													<td>User navigates away from a webpage.</td>
-													<td>PageTransitionEvent</td>
-												</tr>
-												<tr>
-													<td>"pageshow"</td>
-													<td>onpageshow=""</td>
-													<td>User navigates to a webpage.</td>
-													<td>PageTransitionEvent</td>
-												</tr>
-												<tr>
-													<td>"paste"</td>
-													<td>onpaste=""</td>
-													<td>Some content is pasted in an element.</td>
-													<td>ClipboardEvent</td>
-												</tr>
-												<tr>
-													<td>"pause"</td>
-													<td>onpause=""</td>
-													<td>A media is paused.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"play"</td>
-													<td>onplay=""</td>
-													<td>The media has started or is no longer paused.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"playing"</td>
-													<td>onplaying=""</td>
-													<td>The media is playing after being paused or buffered.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"popstate"</td>
-													<td>onpopstate=""</td>
-													<td>The window's history changes.</td>
-													<td>PopStateEvent</td>
-												</tr>
-												<tr>
-													<td>"progress"</td>
-													<td>onprogress=""</td>
-													<td>The browser is downloading media data.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"ratechange"</td>
-													<td>onratechange=""</td>
-													<td>The playing speed of a media is changed.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"resize"</td>
-													<td>onresize=""</td>
-													<td>The document view is resized.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"reset"</td>
-													<td>onreset=""</td>
-													<td>A form is reset.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"scroll"</td>
-													<td>onscroll=""</td>
-													<td>An scrollbar is being scrolled.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"search"</td>
-													<td>onmsearch=""</td>
-													<td>Something is written in a search field.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"seeked"</td>
-													<td>onseekend=""</td>
-													<td>Skipping to a media position is finished.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"seeking"</td>
-													<td>onseeking=""</td>
-													<td>Skipping to a media position is started.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"select"</td>
-													<td>onselect=""</td>
-													<td>User selects some text.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"show"</td>
-													<td>onshow=""</td>
-													<td>A &lt;menu&gt; element is shown as a context menu.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"stalled"</td>
-													<td>onstalled=""</td>
-													<td>The browser is trying to get unavailable media data.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"storage"</td>
-													<td>onstorage=""</td>
-													<td>A Web Storage area is updated.</td>
-													<td>StorageEvent</td>
-												</tr>
-												<tr>
-													<td>"submit"</td>
-													<td>onsubmit=""</td>
-													<td>A form is submitted.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"suspend"</td>
-													<td>onsuspend=""</td>
-													<td>The browser is intentionally not getting media data.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"timeupdate"</td>
-													<td>ontimeupdate=""</td>
-													<td>The playing position has changed (the user moves to a different point in the media).</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"toggle"</td>
-													<td>ontoggle=""</td>
-													<td>The user opens or closes the &lt;details&gt; element.</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"touchcancel"</td>
-													<td>ontouchcancel=""</td>
-													<td>The touch is interrupted.</td>
-													<td>TouchEvent</td>
-												</tr>
-												<tr>
-													<td>"touchend"</td>
-													<td>ontouchend=""</td>
-													<td>A finger is removed from a touch screen.</td>
-													<td>TouchEvent</td>
-												</tr>
-												<tr>
-													<td>"touchmove"</td>
-													<td>onmousemove=""</td>
-													<td>A finger is dragged across the screen.</td>
-													<td>TouchEvent</td>
-												</tr>
-												<tr>
-													<td>"touchstart"</td>
-													<td>ontouchstart=""</td>
-													<td>A finger is placed on a touch screen.</td>
-													<td>TouchEvent</td>
-												</tr>
-												<tr>
-													<td>"transitionend"</td>
-													<td>ontransitionend=""</td>
-													<td>A CSS transition has completed.</td>
-													<td>TransitionEvent</td>
-												</tr>
-												<tr>
-													<td>"unload"</td>
-													<td>onupload=""</td>
-													<td>A page has unloaded.</td>
-													<td>UiEvent, Event</td>
-												</tr>
-												<tr>
-													<td>"volumechange"</td>
-													<td>onvolumechange=""</td>
-													<td>The volume of a media is changed (includes muting).</td>
-													<td>Event</td>
-												</tr>
-												<tr>
-													<td>"waiting"</td>
-													<td>onwaiting=""</td>
-													<td>A media is paused but is expected to resume (e.g. buffering).</td>
-													<td>Event</td>
-												<tr>
-												</tr>
-													<td>"wheel"</td>
-													<td>onwheel=""</td>
-													<td>The mouse wheel rolls up or down over an element.</td>
-													<td>WheelEvent</td>
-												</tr>
-											</table>
+
 										</li><br/>
 										<li>
 											<b>Function(): </b>this parameter is required. It is the function to be called when the 
@@ -3910,8 +3394,8 @@
 									input. It takes 1 parameter:<br/>
 									<ul>
 										<li>
-											<b>strEventName: </b>the name of the event. See addEventListener(...) for the full list 
-											of event names.
+											<b>strEventName: </b>the name of the event. See the list of 
+											<a href="javascript_event_names.html">JavaScript event names.</a>
 										</li>
 									</ul>
 									<br/>
@@ -4825,90 +4309,937 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">The window object</h2>
 								<h3>Properties</h3>
-								
-									<ul>
-										<li><b>closed: </b>Returns a boolean true if a window is closed.</li><br/>
-										<li><b>console: </b>Returns the Console Object for the window. See also the console object.</li><br/>
-										<li><b>document: </b>Returns the Document object for the window.</li><br/>
-										<li><b>frameElement: </b>Returns the frame in which the window runs.</li><br/>
-										<li><b>frames: </b>Returns all window objects running in the window.</li><br/>
-										<li><b>history: </b>Returns the History object for the window. See also the history object.</li><br/>
-										<li><b>innerHeight: </b>Returns the height of the window's content area (viewport) including scrollbars.</li><br/>
-										<li><b>innerWidth: </b>Returns the width of a window's content area (viewport) including scrollbars.</li><br/>
-										<li><b>length: </b>Returns the number of &lt;iframe&gt; elements in the current window.</li><br/>
-										<li><b>localStorage: </b>Allows to save key/value pairs in a web browser. Stores the data with no expiration date.</li><br/>
-										<li><b>location: </b>Returns the Location object for the window. See also the location object.</li><br/>
-										<li><b>name: </b>Sets or returns the name of a window.</li><br/>
-										<li><b>navigator: </b>Returns the Navigator object for the window. See also the navigator object.</li><br/>
-										<li><b>opener: </b>Returns a reference to the window that created the window.</li><br/>
-										<li><b>outerHeight: </b>Returns the height of the browser window, including toolbars/scrollbars.</li><br/>
-										<li><b>outerWidth: </b>Returns the width of the browser window, including toolbars/scrollbars.</li><br/>
-										<li><b>pageXOffset: </b>Returns the pixels the current document has been scrolled (horizontally) from the upper left corner of the window.</li><br/>
-										<li><b>pageYOffset: </b>Returns the pixels the current document has been scrolled (vertically) from the upper left corner of the window.</li><br/>
-										<li><b>parent: </b>Returns the parent window of the current window.</li><br/>
-										<li><b>screen: </b>Returns the Screen object for the window. See also the screen object.</li><br/>
-										<li><b>screenLeft: </b>Returns the horizontal coordinate of the window relative to the screen.</li><br/>
-										<li><b>screenTop: </b>Returns the vertical coordinate of the window relative to the screen.</li><br/>
-										<li><b>screenX: </b>Returns the horizontal coordinate of the window relative to the screen.</li><br/>
-										<li><b>screenY: </b>Returns the vertical coordinate of the window relative to the screen.</li><br/>
-										<li><b>sessionStorage: </b>Allows to save key/value pairs in a web browser. Stores the data for one session.</li><br/>
-										<li><b>scrollX: </b>An alias of pageXOffset.</li><br/>
-										<li><b>scrollY: </b>An alias of pageYOffset.</li><br/>
-										<li><b>self: </b>Returns the current window.</li><br/>
-										<li><b>top: </b>Returns the topmost browser window.</li><br/>
+																
+    								<ul>
+										<li>
+											<b>closed: </b>Returns a boolean true if a window is closed.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+											
+													&nbsp;&nbsp;&nbsp;&nbsp;if (myWindow.closed)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("It is closed.");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("It is open.");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>	    	
+    											&lt;sript&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>console: </b>Returns the Console Object for the window. See also the console.<br/><br/>
+											E.G.
+											<p class="Code">
+												script type="text/javascript"&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;window.console.error("You made a mistake");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;window.console.log("You made a mistake");<br/>		
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>document: </b>Returns the Document object for the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let url = window.document.URL;<br/>	
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>frameElement: </b>Returns the frame in which the window runs.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;if (window.frameElement)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("YES");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>														
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>frames: </b>Returns all window objects running in the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.frames[0].location = "https://www.w3schools.com/jsref/";<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>history: </b>Returns the History object for the window. See also the history object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let nLength = window.history.length;<br/>
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>innerHeight: </b>Returns the height of the window's content area (viewport) including scrollbars.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nHeight = window.innerHeight;<br/>	
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>innerWidth: </b>Returns the width of a window's content area (viewport) including scrollbars.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nWidth = window.innerWidth;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>length: </b>Returns the number of &lt;iframe&gt; elements in the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nHeight = window.length;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>localStorage: </b>Allows to save key/value pairs in a web browser. Stores the data with no expiration date.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.localStorage.setItem("last_name", "Smith");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.localStorage.getItem("last_name");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>location: </b>Returns the Location object for the window. See also the location object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let origin = window.location.origin;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>name: </b>Sets or returns the name of a window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;alert(window.name);<br/>	
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>navigator: </b>Returns the Navigator object for the window. See also the navigator object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;alert(window.navigator.language);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>opener: </b>Returns a reference to the window that created the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const myWindow = window.open("", "", "width=300,height=300");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.opener.document.getElementById("demo").innerHTML = "HELLO!";<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>outerHeight: </b>Returns the height of the browser window, including toolbars/scrollbars.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nHeight = window.outerHeight;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>outerWidth: </b>Returns the width of the browser window, including toolbars/scrollbars.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nWidth = window.outerWidth;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>pageXOffset: </b>Returns the pixels the current document has been scrolled (horizontally) from the upper left corner of the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nX = window.pageXOffset;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>pageYOffset: </b>Returns the pixels the current document has been scrolled (vertically) from the upper left corner of the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;et nY = window.pageYOffset;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>parent: </b>Returns the parent window of the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.parent.document.body.style.backgroundColor = "lightblue";<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>screen: </b>Returns the Screen object for the window. See also the screen object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nWidth = window.screen.width;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>screenLeft: </b>Returns the horizontal coordinate of the window relXative to the screen.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nLeft = window.screenLeft;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>screenTop: </b>Returns the vertical coordinate of the window relative to the screen.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nTop = window.screenTop;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>screenX: </b>Returns the horizontal coordinate of the window relative to the screen.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nX = window.screenX;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>screenY: </b>Returns the vertical coordinate of the window relative to the screen.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nY = window.screenY;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>sessionStorage: </b>Allows to save key/value pairs in a web browser. Stores the data for one session.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.sessionStorage.setItem("last_name", "Smith");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.sessionStorage.getItem("last_name");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>scrollX: </b>An alias of pageXOffset.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nX = windows.scrollX;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>scrollY: </b>An alias of pageYOffset.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nY = windows.scrollY;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>self: </b>Returns the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+												
+												&nbsp;&nbsp;&nbsp;&nbsp;if (window.top != window.self)
+												&nbsp;&nbsp;&nbsp;&nbsp;{
+												  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text = "This window is NOT the topmost window!";
+												&nbsp;&nbsp;&nbsp;&nbsp;}
+												&nbsp;&nbsp;&nbsp;&nbsp;else
+												&nbsp;&nbsp;&nbsp;&nbsp;{
+												  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text = "This window is the topmost window!";
+												&nbsp;&nbsp;&nbsp;&nbsp;}
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>top: </b>Returns the topmost browser window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let nTop = window.top;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
 									</ul>
 						
 								<h3>Methods</h3>
 								
 									<ul>
-										<li><b>addEventListener(): </b>Attaches an event handler to the window.</li><br/>
-										<li><b>alert(): </b>Displays an alert box with a message and an OK button.</li><br/>
-										<li><b>atob(): </b>Decodes a base-64 encoded string.</li><br/>
-										<li><b>blur(): </b>Removes focus from the current window.</li><br/>
-										<li><b>btoa(): </b>Encodes a string in base-64.</li><br/>
-										<li><b>clearInterval(): </b>Clears a timer set with setInterval().</li><br/>
-										<li><b>clearTimeout(): </b>Clears a timer set with setTimeout().</li><br/>
-										<li><b>close(): </b>Closes the current window.</li><br/>
-										<li><b>confirm(): </b>Displays a dialog box with a message and an OK and a Cancel button.</li><br/>
-										<li><b>focus(): </b>Sets focus to the current window.</li><br/>
-										<li><b>getComputedStyle(): </b>Gets the current computed CSS styles applied to an element.</li><br/>
-										<li><b>getSelection(): </b>Returns a Selection object representing the range of text selected by the user.</li><br/>
-										<li><b>matchMedia(): </b>Returns a MediaQueryList object representing the specified CSS media query string.</li><br/>
-										<li><b>moveBy(): </b>Moves a window relative to its current position.</li><br/>
-										<li><b>moveTo(): </b>Moves a window to the specified position.</li><br/>
-										<li><b>open(): </b>Opens a new browser window.</li><br/>
-										<li><b>print(): </b>Prints the content of the current window.</li><br/>
-										<li><b>prompt(): </b>Displays a dialog box that prompts the visitor for input.</li><br/>
-										<li><b>removeEventListener(): </b>Removes an event handler from the window.</li><br/>
-										<li><b>requestAnimationFrame(): </b>Requests the browser to call a function to update an animation before the next repaint.</li><br/>
-										<li><b>resizeBy(): </b>Resizes the window by the specified pixels.</li><br/>
-										<li><b>resizeTo(): </b>Resizes the window to the specified width and height.</li><br/>
-										<li><b>scrollBy(): </b>Scrolls the document by the specified number of pixels.</li><br/>
-										<li><b>scrollTo(): </b>Scrolls the document to the specified coordinates.</li><br/>
-										<li><b>setInterval(): </b>Calls a function or evaluates an expression at specified intervals (in milliseconds).</li><br/>
-										<li><b>setTimeout(): </b>Calls a function or evaluates an expression after a specified number of milliseconds.</li><br/>
-										<li><b>stop(): </b>Stops the window from loading.</li><br/>
+										<li>
+											<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document. 
+											See the list of <a href="javascript_event_names.html">JavaScript event names.</a><br/><br/>
+											<ul>
+												<li><b>strEvent: </b>this parameter is required.<br/><br/>
+		
+												</li><br/>
+												<li>
+													<b>Function(): </b>this parameter is required. It is the function to be called when the 
+													event occurs.<br/><br/>
+												</li><br/>
+												<li>
+													<b>capture: </b>this parameter is optional and it is a boolean value. If not provided 
+													the default value is false.<br/>
+													<ul>
+														<li><b>true: </b> the handler is executed in the capturing phase.</li>
+														<li><b>false: </b> the handler is executed in the bubbling phase.</li>
+													</ul>
+												</li>
+											</ul>
+											E.G.							
+											<p class="Code">
+												&lt;input type="button" id="button"/&gt;<br/><br/>
+												&lt;script type="text/javascript"&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;function DoOnClick()<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(button").addEventListener("click", DoOnClick, true);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;// OR<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById(button").addEventListener("click", DoOnClick);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>alert(...): </b>Displays an alert box with a message and an OK button. It takes one 
+											parameter of any data type.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;alert("Hello! I am an alert box!!");
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>atob(strText): </b>Decodes a base-64 encoded string. Takes one string parameter to be decoded.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let strText = "Hello World!";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let strEncoded = window.btoa(strText);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let strDecoded = window.atob(strEncoded);<br/>
+												&lt;/script&gt;	
+											</p>
+										</li><br/>
+										<li>
+											<b>blur(): </b>Removes focus from the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const myWindow = window.open("", "", "width=200, height=100");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.blur();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>btoa(strText): </b>Encodes a string in base-64. Takes one string parameter to be encoded.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let text = "Hello World!";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let encoded = window.btoa(text);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li><b>clearInterval(objTimer): </b>Clears a timer set with setInterval(). Takes one parameter that 
+											should be a timer object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const myInterval = setInterval(myTimer, 1000);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;clearInterval(myInterval);
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>clearTimeout(objTimeout): </b>Clears a timer set with setTimeout(). Takes one parameter that 
+											should be a timeout object.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													
+													&nbsp;&nbsp;&nbsp;&nbsp;const myTimeout = setTimeout(myGreeting, 3000);
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function myGreeting()<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("demo").innerHTML = "Happy Birthday to You !!"<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function myStopFunction()<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clearTimeout(myTimeout);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>close(): </b>Closes the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													
+													&nbsp;&nbsp;&nbsp;&nbsp;let myWindow;<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function openWin()<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myWindow = window.open("", "myWindow", "width=200, height=100");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function closeWin()<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myWindow.close();<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&lt;/script&gt;											
+											</p>
+										</li><br/>
+										<li>
+											<b>confirm(...): </b>Displays a dialog box with a message and an OK and a Cancel button. Takes 
+											one string parameter that is the prompt to be diplayed in the message box.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;confirm("Press a button!");<br/>
+												&lt;/script&gt;											
+											</p>
+										</li><br/>
+										<li>
+											<b>focus(): </b>Sets focus to the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const myWindow = window.open("", "", "width=200, height=100");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.focus();<br/>
+												&lt;/script&gt;											
+											</p>
+										</li><br/>
+										<li>
+											<b>getComputedStyle(): </b>Gets the current computed CSS styles applied to an element. It takes 
+											two parameters as follows:
+											<ul>
+												<li><b>element: </b>The element to get the computed style for. Required.</li>
+												<li><b>pseudoelement: </b>A pseudo-element to get. Optional, can be null.</li>
+											</ul>
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;div id="test"&gt;&lt;/div&gt;<br/><br/>
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const element = document.getElementById("test");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const cssObj = window.getComputedStyle(element, null);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let colorBG = cssObj.getPropertyValue("background-color");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>getSelection(): </b>Returns a Selection object representing the range of text selected by the user.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const selObj = window.getSelection();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>matchMedia(strMediaQueryString): </b>Returns a MediaQueryList object representing the specified CSS 
+											media query string in the parameter.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													
+													&nbsp;&nbsp;&nbsp;&nbsp;if (window.matchMedia("(max-width: 700px)").matches)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Viewport is less or equal to 700 pixels wide<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Viewport is greater than 700 pixels wide<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&lt;/script&gt;	
+											</p>
+										</li><br/>
+										<li>
+											<b>moveBy(nX, nY): </b>Moves a window relative to its current position. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifying the distance to move the element horizontally.</li>
+												<li><b>nY: </b>A number specifying the distance to move the element vertically.</li>
+											</ul>
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let myWindow = window.open('', '', 'width=400, height=400');<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.moveBy(250, 250);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>moveTo(nX, nY): </b>Moves a window to the specified position. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifying the horizontal position to move the element to.</li>
+												<li><b>nY: </b>A number specifying the vertical distance to move the element to.</li>
+											</ul>											
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let myWindow = window.open('', '', 'width=400, height=400');<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.moveTo(500, 100);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>open(strURL): </b>Opens a new browser window. It takes one string parameter that specifies 
+											the URL to open in the window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.open("https://www.w3schools.com");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>print(): </b>Prints the content of the current window.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.print();
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>prompt(): </b>Displays a dialog box that prompts the visitor for input.  It takes 
+											one string parameter that specifies the prompt to be displayed. It returns:
+											<ul>
+												<li><b>"OK": </b>If the user clicks the OK button.</li>
+												<li><b>null: </b>If the user does not click the OK button.</li>
+											</ul>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													
+													&nbsp;&nbsp;&nbsp;&nbsp;let person = prompt("Please enter your name", "Harry Potter");<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;if (person != null)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("demo").innerHTML = "Hello " + person + "! How are you today?";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>removeEventListener(strEventName, HandlerFunction()): </b>removes an event handler from the document, that 
+											has been attached with the addEventListener(...) method. It takes two parameters:
+											<ul>
+												<li>
+													<b>strEventName: </b>the event name - see addEventListener(...) above for the full list 
+													of event names.
+												</li>
+												<li><b>HandlerFunction(): </b>the handler function to be removed.</li>
+											</ul>
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.removeEventListener("mousemove", myFunction);	
+												&lt;/script&gt;
+											
+											</p>									
+										</li><br/>
+										<li>
+											<b>requestAnimationFrame(): </b>Requests the browser to call a function to update an 
+											animation before the next repaint. It takes one parameter that should be a function with one 
+											parameter for a time object. The function is called when it is time to repaint the animation.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>	
+													&nbsp;&nbsp;&nbsp;&nbsp;let adiv = document.getElementById('mydiv');<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let leftpos = 0;<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function movediv(timestamp)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leftpos += 5;<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adiv.style.left = leftpos + 'px';<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestAnimationFrame(movediv);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;requestAnimationFrame(movediv);<br/>
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li><b>resizeBynX, nY(): </b>Resizes the window by the specified pixels. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifying the horizontal amount to reduce the element width by.</li>
+												<li><b>nY: </b>A number specifying the vertical amount to reduce the element height by.</li>
+											</ul>											
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let myWindow = window.open("", "", "width=100, height=100");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.resizeBy(250, 250);<br/>
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li><b>resizeTo(nX, nY): </b>Resizes the window to the specified width and height. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifying the horizontal amount to reduce the element width to.</li>
+												<li><b>nY: </b>A number specifying the vertical amount to reduce the element height to.</li>
+											</ul>											
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let myWindow = window.open("", "", "width=200, height=100");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;myWindow.resizeTo(300, 300);<br/>
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>scrollBy(nX, nY): </b>Scrolls the document by the specified number of pixels. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifiying the horizontal distance to scroll the window by.</li>
+												<li><b>nY: </b>A number specifiying the vertical distance to scroll the window by.</li>
+											</ul>							
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;window.scrollBy(100, 0);
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>scrollTo(nX, nY): </b>Scrolls the document to the specified coordinates. It takes two 
+											parameters as follows:
+											<ul>
+												<li><b>nX: </b>A number specifiying the horizontal distance to scroll the window to.</li>
+												<li><b>nY: </b>A number specifiying the vertical distance to scroll the window to.</li>
+											</ul>							
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>setInterval(): </b>Calls a function or evaluates an expression at specified intervals (in milliseconds).<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
+										<li>
+											<b>setTimeout(Function, nMillis): </b>Calls a function or evaluates an expression after 
+											a specified number of milliseconds. It takes two parameters as follows:
+											<ul>
+												<li><b>Function: </b>A function to be called when the timer expires.</li>
+												<li><b>nMillis: </b>The number of milliseconds until the time expires.</li>
+											</ul>
+											
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function MyFunction()<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert("Timer has expired!");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;const myTimeout = setTimeout(MyFunction, 5000);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li><b>stop(): </b>Stops the window from loading.<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;Window.stop();
+												&lt;/script&gt;
+											
+											</p>
+										</li><br/>
 									</ul>
 						</div>
 						<div style="display:none;">
-							<h2 class="StageHeading">The console object</h2>
-								
-								<h3>Attributes</h3>
-								
-								
+							<h2 class="StageHeading">The console object</h2>								
+								The console object corresponds to the 'console' tab of the web browser debugging tools:<br/>
+								<a href="images/FirefoxDeveloperTools.jpg"><img src="images/FirefoxDeveloperTools.jpg" width="1200" alt="images/FirefoxDeveloperTools.jpg" /></a>
 								<h3>Methods</h3>
+									<ul>
+										<li>
+											<b>assert(bExpression, strText): </b>Writes an error message to the console if a 
+											assertion is false. It takes two parameters as follows:
+											<ul>
+												<li><b>bExpression: </b>Any boolean expression.</li>
+												<li><b>strText: </b>Text to be written to the console.</li>
+											</ul>
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.assert(11 == 10, "Expression returned false");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.assert(10 == 10, "Expression returned true");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>clear(): </b>Clears the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.clear();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>count(strText): </b>Logs the number of times that this particular call to count() 
+											has been called. I takes one option string parameter that is writtent to console along 
+											with the current count. If it is not specified or is numm then the text "default" is 
+											written to the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.count("Current count is: ");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.count();<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.count(null);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>error(strText): </b>Outputs an error message to the console. It takes one string 
+											parameter specifying the error message to be writtent to the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.error("You made a mistake");
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>group(): </b>Creates a new inline group in the console. This indents following console 
+											messages by an additional level, until console.groupEnd() is called. It takes one optional 
+											string parameter that specifies the name of the group. If it is not specified or is null them
+											the group name defaults to "&lt;no group label&gt;".
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello world!");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.group("GROUP");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello again, this time inside a group!");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>groupCollapsed(): </b>Creates a new inline group in the console. However, the new group 
+											is created collapsed. The user will need to use the disclosure button to expand it.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello world!");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.groupCollapsed();<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello again, this time inside a collapsed group!");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>groupEnd(): </b>Exits the current inline group in the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello world!");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.group();<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello again, this time inside a group!");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.groupEnd();<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("and we are back.");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>info(): </b>Outputs an informational message to the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.info("Hello world!");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>log(): </b>Outputs a message to the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.log("Hello world!");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>table(arrayItems): </b>Displays tabular data as a table. It takes one array or 
+											object parameter specifying the items in the table.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.table(["Audi", "Volvo", "Ford"]);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.table({firstname:"John", lastname:"Doe"});<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>time(): </b>Starts a timer (can track how long an operation takes).
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.time();
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>timeEnd(): </b>Stops a timer that was previously started by console.time().
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;for (let i = 0; i &lt; 100000; i++)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// some code<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.timeEnd();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>trace(): </b>Outputs a stack trace to the console.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.trace();
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>warn(): </b>Outputs a warning message to the console.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;console.warn("This is a warning!");
+												&lt;/script&gt;
+											</p>
+										</li>
+								</ul>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The history object</h2>
 								
-								<h3>Attributes</h3>
-								
-								
 								<h3>Methods</h3>
+								
+									<ul>
+										<li>
+											<b>back(): </b>Loads the previous URL (page) in the history list.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;button onclick="history.back()"&gt;Go Back&lt;/button&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>forward(): </b>Loads the next URL (page) in the history list.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;button onclick="history.forward()"&gt;Go Forward&lt;/button&gt;											</p>
+										</li><br/>
+										<li>
+											<b>go(nNum): </b>Loads a specific URL (page) from the history list. It takes one 
+											integer parameter that specifies the number of steps to go back or forward. A negative 
+											integer means go back while a positive integer means go forward.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;button onclick="history.go(-2)"&gt;Go Back 2 Pages&lt;/button&gt;											</p>
+										</li><br/>
+										<li>
+											<b>length: </b>Returns the number of URLs (pages) in the history list.
+											<br/><br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let length = history.length;<br/>
+												&lt;/script&gt;
+											</p>
+										</li>
+									</ul>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The localStorage object</h2>
 								
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											</p>
 								<h3>Attributes</h3>
 								
 								
@@ -4917,6 +5248,13 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">The location object</h2>
 								
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											</p>
 								<h3>Attributes</h3>
 								
 								
@@ -4925,6 +5263,13 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">The navigator object</h2>
 								
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											</p>
 								<h3>Attributes</h3>
 								
 								
@@ -4933,6 +5278,13 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">The screen object</h2>
 								
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											</p>
 								<h3>Attributes</h3>
 								
 								
@@ -4941,6 +5293,13 @@
 						<div style="display:none;">
 							<h2 class="StageHeading">Global functions</h2>
 								
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;
+												&lt;/script&gt;
+											</p>
 								<h3>Attributes</h3>
 								
 								
