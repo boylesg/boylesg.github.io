@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+	<!-- #BeginTemplate "courses.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Build a web page</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<script type="text/javascript" src="../Common.js"></script>
+		<script type="text/javascript" src="Courses.js"></script>
+			
+		<div id="TryItNowHTML" style="display:none;">
+			<div class="TryItNowContainer" id="TryItNowContainer">
+				<span><b>YOUR CODE</b></span>
+				<button id="TryItNowButton" class="TryItNowButton" onclick="OnClickButtonRun()">RUN &gt;</button>
+				<span><b>RESULTS</b></span><br/>
+				<textarea cols="70" rows="10" class="TryItNowCode" id="TryItNowCode" autofocus tabindex="0" value="">XXXX</textarea>
+				<iframe class="TryItNowResults" id="TryItNowResults" sandbox="allow-scripts allow-forms allow-popups allow-same-origin"></iframe>
+				ADD_ON_CODE
+			</div>
+		</div>
+		
+	</head>
+	
+	<body onload="OnBodyLoad()">
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/STEM.png" />
+				</div>
+				<div class="center_vertically website_banner">
+					<div class="website_heading">Greg's STEM Tuition<br/></div>
+					<div class="website_motto">All you need is passion for the subject &amp; a love of learning.</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
+					<b>Facebook:</b> https://www.facebook.com/GregsSTEMTuition/<br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
+						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
+							<div class="MenuPopup" id="MenuPopup" name="Courses">
+								<ul>
+									<li class="MenuPopupItem">
+									<a href="c_course.html">C</a></li>
+									<li class="MenuPopupItem">
+									<a href="web_course.html">Web Sites</a></li>
+									<li class="MenuPopupItem">
+									<a href="python_course.html">Python</a></li>
+								</ul>
+							</div>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+				
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><b><u>" + document.title + "</u></b></h1>");
+					</script>
+					<div id="ContentHeader" class="ContentHeader"></div>
+					<div id="login" class="login">
+						<p>Purchase the password</p>
+						<br/>			
+						<div style="display:none" id="TenDollarCountry">
+							<p><b>COST: </b>$10.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>						</div>
+						<div style="display:none" id="FiveDollarCountry">
+							<p><b>COST: </b>$5.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="ZD6NY62CX4YU2" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>				
+						</div>
+						<div style="display:none" id="OneDollarCountry">
+							<p><b>COST: </b>$1.00 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="JEVUQDXKFEAWL" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<div style="display:none" id="FiftyCentCountry">
+							<p><b>COST: </b>$0.50 AUD</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="QTC2QAC4J34U8" />
+								<input type="hidden" name="currency_code" value="AUD" />
+								<input type="image" src="btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+							</form>
+						</div>
+						<br/><br/>
+						<label for="password">Password&nbsp;</label>
+						<input type="password" id="password" value=""/>&nbsp;
+						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+					</div>
+					<!-- #BeginEditable "pre-content" -->
+					
+					<!-- #EndEditable -->
+					<div style="display:none;" id="course_content">
+					<!-- #BeginEditable "content" -->
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Introduction</h2>
+							
+							<p>In this section I will teach you to build a basic web page using a variety of common constructs, 
+							such as popup menus and navigation structures etc. I will do this in a series of screen capture videos 
+							but I will provide minimal ongoing commentary as I do it. Just watch as I edit the code and view the 
+							results in the web browser and should should get the idea.</p>
+							
+							<p>It would be best if you open <a href="https://www.majorgeeks.com/mg/getmirror/microsoft_expression_web,1.html">
+							MS Expression Web</a> and do the same file editing as I am doing in my source file. You can pause the 
+							video as you repeat each of the editing steps that I do. By the end of it you should reasonably 
+							confident about the coding techniques.<br/><br/>
+							<a href="images/CodeTab.jpg"><img src="images/CodeTab.jpg" alt="images/CodeTab.jpg" width="1200"/></a>
+							</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawFirstStageButtons("web_course_javascript.html", g_nStageNum);
+								</script>
+							</p>
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Page structure</h2>
+							<p>
+								To begin with we are going to create the following page structure. It is just one example of how you can structure your web 
+								pages and they way you can do so is limited only by your imagination. There is no right or wrong way to structure them.<br/><br/>
+								<a href="images/PageStructure.jpg"><img src="images/PageStructure.jpg" alt="images/PageStructure.jpg" width="800"/></a>
+							</p>
+							<p>
+								<video width="1000"controls>
+									<source src="images/PageStructure.webm" type="video/mp4">
+									Your browser does not support the video tag.
+								</video><br/><br/>
+								So you can see from that video it is just a matter of playing around with various CSS attributes and 
+								value until you get the elements to arrange how you want them. Those CSS attribute I was using, you will 
+								use frequently and you get to know them quite well in time. You can jump back to my CSS page to refresh your 
+								memory as to the values available for those CSS attributes and that you will most likely use.
+							</p>
+							<p>
+								In fact why don't you play around with the different values for 'float' and 'display' and see what effect they have 
+								on the layout for your page. Try some different values for the 'height' and 'width' atttributes. Try some different 
+								back ground colours. This is by far the best way to memorise them and to get to understand what they do.
+							</p>
+							<p>
+								In the next part we will continue with this page and refine it structure some more.
+							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+						</div>
+						
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Refining the page structure</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Navigation structure</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">111111</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">222222</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">333333</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">444444</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">555555</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">666666</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">777777</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">888888</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">999999</h2>
+							
+							<p>&nbsp;</p>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+
+						<div style="display:none;">
+						
+							<h2 class="StageHeading">Popup menu</h2>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawLastStageButtons("web_course_site.html", g_nStageNum);
+								</script>
+							</p>
+						</div>
+
+						<script type="text/javascript">
+							g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_css.html\" class=\"StageLink\"><b>CSS</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_javascript.html\" class=\"StageLink\"><b>Javascript</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_site.html\" class=\"StageLink\"><b>Build a web site</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_php.html\" class=\"StageLink\"><b>PHP</b></a>");
+							g_arrayStageBookmarks.push("<hr>");
+							console.log("g_nStageNum == " + g_nStageNum)
+						</script>
+
+					<!-- #EndEditable --></div>
+					</div>
+					<script type="text/javascript">SetStageDivIDs();</script>
+				<!-- End Content --></div>
+			<!-- End Page Content -->
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div id="footer_links" class="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/HighVoltage.png" />&nbsp;<a href="../../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>

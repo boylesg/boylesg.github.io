@@ -55,27 +55,31 @@
 			</div>
 			<!-- End Masthead -->
 			<!-- Begin Page Content -->
-					<!-- #BeginEditable "content" -->
-
 			<div id="page_content">
 				<!-- Begin Sidebar -->
 				<div id="sidebar">
 					<ul>
-						<li><a href="../index.html">Home</a></li>
-						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
-						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
-						<li><a href="../education/education.html">Education</a></li>
-						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
-						<li><a href="../work/work.html">Work History</a></li>
+						<li>
+						<a href="../index.html">Home</a></li>
+						<li>
+						<a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li>
+						<a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li>
+						<a href="../education/education.html">Education</a></li>
+						<li>
+						<a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li>
+						<a href="../work/work.html">Work History</a></li>
 						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="../courses/c_course.html">C</a></li>
+									<a href="c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="../courses/web_course.html">Web Sites</a></li>
+									<a href="web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="../courses/python_course.html">Python</a></li>
+									<a href="python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -131,7 +135,11 @@
 						<input type="password" id="password" value=""/>&nbsp;
 						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
 					</div>
+					<!-- #BeginEditable "pre-content" -->
+					
+					<!-- #EndEditable -->
 					<div style="display:none;" id="course_content">
+					<!-- #BeginEditable "content" -->
 
 						<div style="display:none;">
 						
@@ -207,13 +215,17 @@
 									<ul> 
 										<li>
 											Firefox Developer Edition<br/><br/>
-											<a href="images/FirefoxDeveloperToolsMenu.jpg"><img src="images/FirefoxDeveloperToolsMenu.jpg" alt="FirefoxDeveloperToolsMenu.jpg" /></a><br/><br/>
-											<a href="images/FirefoxDeveloperTools.jpg"><img src="images/FirefoxDeveloperTools.jpg" width="100%" alt="FirefoxDeveloperTools.jpg" /></a><br/><br/>
+											<a href="../images/FirefoxDeveloperToolsMenu.jpg">
+											<img src="../images/FirefoxDeveloperToolsMenu.jpg" alt="FirefoxDeveloperToolsMenu.jpg" /></a><br/><br/>
+											<a href="../images/FirefoxDeveloperTools.jpg">
+											<img src="../images/FirefoxDeveloperTools.jpg" width="100%" alt="FirefoxDeveloperTools.jpg" /></a><br/><br/>
 										</li>
 										<li>
 											Google Chome<br/><br/>
-											<a href="images/ChromeDeveloperToolsMenu.jpg"><img src="images/ChromeDeveloperToolsMenu.jpg" alt="ChromeDeveloperToolsMenu.jpg" /></a><br/><br/>
-											<a href="images/ChromeDeveloperTools.jpg"><img src="images/ChromeDeveloperTools.jpg" width="100%" alt="ChromeDeveloperTools.jpg" /></a><br/><br/>
+											<a href="../images/ChromeDeveloperToolsMenu.jpg">
+											<img src="../images/ChromeDeveloperToolsMenu.jpg" alt="ChromeDeveloperToolsMenu.jpg" /></a><br/><br/>
+											<a href="../images/ChromeDeveloperTools.jpg">
+											<img src="../images/ChromeDeveloperTools.jpg" width="100%" alt="ChromeDeveloperTools.jpg" /></a><br/><br/>
 										</li>
 									</ul>
 									Any syntax or run time errors will be flagged in the 'console' tab, and the error message will include the file name and 
@@ -552,7 +564,7 @@
 									msg = "Hello Fred!";<br/>
 									msg = "Hello Jill!";<br/><br/>
 									Think of the above two assignment statements like this:<br/>
-									<img src="images/JavaScriptVariableAssignment.jpg" alt="images/JavaScriptVariableAssignment.jpg" />
+									<img src="../images/JavaScriptVariableAssignment.jpg" alt="images/JavaScriptVariableAssignment.jpg" />
 								</p>
 								<h3>Simple data types</h3>
 									<p>
@@ -685,6 +697,11 @@
 									<li><b>"5" - 2: </b>returns 3 since "5" is converted ti the integer 5.</li><br/>
 									<li><b>"5" * "2": </b>returns 10 since the string "5" and "2" are converted to the integers 5 and 2.</li>
 								</ul>				
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">String data type</h2>
@@ -750,7 +767,7 @@
 										Would return "o".
 									</li><br/>
 									<li>
-										String.substr(nIndexStart, nNumChars): </b>returns a substring starting at the specified 
+										<b>String.substr(nIndexStart, nNumChars): </b>returns a substring starting at the specified 
 										starting index and ending after the specified number of characters have been extracted.<br/><br/>
 										E.G. 
 										<p class="Code">
@@ -872,6 +889,11 @@
 									</li>							
 								</ul>
 							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -881,18 +903,23 @@
 								
 								</p>
 							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">Arrays data structure</h2>
 								<p>
 									In a strictly typed language like C, an array is a collection of variables in a row all 
 									with the same simple data type. An example is as follows:<br/><br/>
-									<img src="images/Array.jpg" alt="images/Array.jpg" /><br/><br/>
+									<img src="../images/Array.jpg" alt="images/Array.jpg" /><br/><br/>
 								</p>
 								<p>
 									However JavaScript is not a strictly typed language and therefore an array can contain 
 									values of different data types as in the following example:<br/><br/>
-									<img src="images/JSArray.jpg" alt="images/JSArray.jpg" />
+									<img src="../images/JSArray.jpg" alt="images/JSArray.jpg" />
 								</p>
 								<br/>
 								<p>
@@ -1033,6 +1060,11 @@
 									</ul>
 									You can read the full details of these functions, and experiment with them, on the <a href="https://www.w3schools.com/js/js_array_methods.asp">WSchools array methods reference</a>
 								</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">Object data structure</h2>
@@ -1130,6 +1162,11 @@
 									You would see a message box popup containing the string "Fred Smith".
 									
 								</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">Compound data structures</h2>
@@ -1176,7 +1213,12 @@
 								</p>
 							<p>
 								<script type="text/javascript">
-									g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
 								</script>
 							</p>
 						</div>
@@ -1305,7 +1347,7 @@
 											let nVal = 10;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal %= 3;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is short hand for nVal = nVal % 3
-							</p>
+										</p>
 									</li><br/>
 									<li>
 										<b>Exponentiation shorthand: </b>**=<br/><br/>
@@ -1383,9 +1425,9 @@
 										</p>
 									</li><br/>
 									<li>
-										<b>
+										<b>Left value greater than or equal to right value?: </b>
 										<p class="Code">
-											Left value greater than or equal to right value?: </b>&gt;=<br/><br/>
+											&gt;=<br/><br/>
 											E.G. let nVal = 10;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 9; // true<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nVal &gt;= 10; // true<br/>
@@ -1485,7 +1527,8 @@
 								<h3>Bitwise</h3>
 								<p>
 									These operators always return a numeric value and operate on individual bits of the opearands. To 
-									understand that you must first understand how to <a href="BinaryNumbers.html">count in binary</a>. 
+									understand that you must first understand how to 
+									<a href="../BinaryNumbers.html">count in binary</a>. 
 									So bitwise logic operators treat each corresponding bit of the left and right operands as boolean 
 									values (0 = false and 1 = true). With these operator you can test whether each bit in an integer is 
 									1 or 0. As well as set or unset individual bits without effecting the other bits in the integer.
@@ -2116,7 +2159,12 @@
 											</tr>
 										</table>
 									</li>								
-								</ul>								
+								</ul>							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">Conditional statements</h2>
@@ -2384,9 +2432,14 @@
 								<label for="switch_day_num">Day number: </label>&nbsp;<input type="number" value="0" id="switch_day_num"/><input type="button" value="Run example code" onclick="RunSwitchExample(document.getElementById('switch_day_num').value)"/>
 								<p>
 									<script type="text/javascript">
-										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
+										g_nStageNum = DrawMidStageButtons(g_nStageNum);
 									</script>
 								</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -2664,11 +2717,11 @@
 									}<br/>
 									while (true); // Infinite loop
 								</p>
-								<p>
-									<script type="text/javascript">
-										g_nStageNum = DrawLastStageButtons("web_course_build.html", g_nStageNum);
-									</script>
-								</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -2790,6 +2843,11 @@
 										<a href="https://www.w3schools.com/jsref/jsref_obj_math.asp">W3Schools maths reference</a> for 
 										the full list of functions.
 									</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -2898,6 +2956,11 @@
 										</p>
 									</li><br/>	
 							</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -2986,6 +3049,11 @@
 										console.log(setCarBrands.size);
 									</p>
 								</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -3195,6 +3263,11 @@
 										</p>
 									</li>
 							</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 						
@@ -3203,7 +3276,8 @@
 								<p>
 									DOM is an acronym for <b>D</b>ocument <b>O</b>bject <b>M</b>odel. DOM forms a heirarchy tree of 
 									objects or HTML elements.<br/><br/>
-									<a href="images/DOM.jpg"><img src="images/DOM.jpg" width="" /></a><br/><br/>
+									<a href="../images/DOM.jpg">
+									<img src="../images/DOM.jpg" width="" /></a><br/><br/>
 									Central tp DOM is the JavaScript global object <b>document</b>. With this object you have access to 
 									every part web page:
 									<ul>
@@ -3257,6 +3331,11 @@
 										change the value of these in your JavaScript then the appearance of your web page will change 
 										accordingly. Lets now have a look at a selection of these fields or attributes.
 									</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The document object</h2>
@@ -3345,7 +3424,8 @@
 							<ul>
 								<li>
 									<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document. 
-									See the list of <a href="javascript_event_names.html">JavaScript event names.</a><br/><br/>
+									See the list of 
+									<a href="../javascript_event_names.html">JavaScript event names.</a><br/><br/>
 									<ul>
 										<li><b>strEvent: </b>this parameter is required.<br/><br/>
 
@@ -3395,7 +3475,7 @@
 									<ul>
 										<li>
 											<b>strEventName: </b>the name of the event. See the list of 
-											<a href="javascript_event_names.html">JavaScript event names.</a>
+											<a href="../javascript_event_names.html">JavaScript event names.</a>
 										</li>
 									</ul>
 									<br/>
@@ -3436,7 +3516,6 @@
 											<td><b>DESCRIPTION</b></td>
 										</tr>
 										<tr><td colspan="3" style="background-color:#CCCC00;"><b>A</b></td></tr>
-										<tr>
 										<tr><td>"a"</td><td>&lt;a&gt;</td><td>It is termed as anchor tag and it creates a hyperlink or link.</td></tr>
 										<tr><td>"abbr"</td><td>&lt;abbr&gt;</td><td>It defines an abbreviation for a phrase or longer word.</td></tr>
 										<tr><td>"acronym"</td><td>&lt;acronym&gt;</td><td>It defines acronym for a word. (Not supported in HTML5)</td></tr>
@@ -3623,7 +3702,7 @@
 								</li><br/>
 								<li>
 									<b>write(...): </b>writes HTML expressions or JavaScript code to a document. Takes 1 parameters 
-									of any data type.<br/><br>
+									of any data type.<br/><br/>
 									E.G.
 									<p class="Code">
 										&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type=text/javascript&gt;<br/>
@@ -3642,6 +3721,11 @@
 									</p>
 								</li>
 							</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">Element styles</h2>
@@ -4305,6 +4389,11 @@
 									<li><b>wordWrap: </b>allows long, unbreakable words to be broken and wrap to the next line.</li><br/>
 								</ul>
 							-->
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The window object</h2>
@@ -4603,7 +4692,8 @@
 									<ul>
 										<li>
 											<b>addEventListener(strEvent, Function(), bCapture): </b>attaches an event handler to the document. 
-											See the list of <a href="javascript_event_names.html">JavaScript event names.</a><br/><br/>
+											See the list of 
+											<a href="../javascript_event_names.html">JavaScript event names.</a><br/><br/>
 											<ul>
 												<li><b>strEvent: </b>this parameter is required.<br/><br/>
 		
@@ -5009,11 +5099,17 @@
 											</p>
 										</li><br/>
 									</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The console object</h2>								
 								The console object corresponds to the 'console' tab of the web browser debugging tools:<br/>
-								<a href="images/FirefoxDeveloperTools.jpg"><img src="images/FirefoxDeveloperTools.jpg" width="1200" alt="images/FirefoxDeveloperTools.jpg" /></a>
+								<a href="../images/FirefoxDeveloperTools.jpg">
+							<img src="../images/FirefoxDeveloperTools.jpg" width="1200" alt="images/FirefoxDeveloperTools.jpg" /></a>
 								<h3>Methods</h3>
 									<ul>
 										<li>
@@ -5187,6 +5283,11 @@
 											</p>
 										</li>
 								</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The history object</h2>
@@ -5229,92 +5330,480 @@
 											</p>
 										</li>
 									</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
-							<h2 class="StageHeading">The localStorage object</h2>
+							<h2 class="StageHeading"> objects</h2>
 								
+								<h3>Types or storage</h3>
+									There are two types of data stroage in modern web browsers:
+									<ul>
+										<li>
+											<b>localStorage: </b>The localStorage object stores the data with no expiration date. 
+											The data will not be deleted when the web browser or the tab is closed, and will be 
+											available the next day, week, or year.
+										</li><br/>
+										<li>
+											<b>sessionStorage: </b>The sessionStorage object is equal to the localStorage object, 
+											except that it stores the data for only one session. The data is deleted when the 
+											user closes the specific browser tab.
+										</li>
+									</ul>
+								<h3>Attributes</h3>
+									<ul>
+										<li>
+											<b>window.localStorage: </b>Allows to save key/value pairs in a web browser. Stores the 
+											data with no expiration date.
+										</li><br/>
+										<li>
+											<b>window.sessionStorage: </b>Allows to save key/value pairs in a web browser. Stores 
+											the data for one session.
+										</li>
+									</ul>
+								<h3>Methods</h3>
+									<ul>
+										<li>
+											<b>clear(): </b>Empty all key out of the storage.
 											<br/>
 											E.G.
 											<p class="Code">
 												&lt;script type="text/javascript"&gt;<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;localStorage.clear();<br/>
 												&lt;/script&gt;
 											</p>
-								<h3>Attributes</h3>
-								
-								
-								<h3>Methods</h3>
+										</li><br/>
+										<li>
+											<b>getItem(strKey): </b>Returns the value of the specified key name. It takes 1 string 
+											parameter that specifies the key who value you want to retreive.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var x = localStorage.getItem("mytime");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>key(nIndex): </b>Returns the value stored at the key number specified by its integer 
+											parameter specified by its parameter nIndex. If key number specified by nIndex does not 
+											exist then the function returns 'undefined'.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var x = localStorage.key(0);<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>length: </b>Returns the number of data items stored in the Storage object.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;var x = localStorage.length;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>setItem(strKey, Data): </b>Adds a key to the storage, or updates a key's value if it 
+												already exists. It takes two parameters as follows:<br/>
+												<ul>
+													<li><b>strKey: </b>A string specifying the name of the key.</li><br/>
+													<li><b>Data: </b>Any data type that is to be stored at the specified key.</li>
+												</ul>
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;localStorage.setItem("mytime", Date.now());<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>removeItem(strKey): </b>Removes a key from the storage. It takes 1 string parameter 
+											specifying the key to be deleted.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;localStorage.removeItem("mytime");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+console.log("*****g_nStageNum = " + g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The location object</h2>
 								
+								<h3>Attributes</h3>
+									<ul>
+										<li>
+											<b>hash: </b>Sets or returns the anchor part (#) of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;a href="/js/js_strings.asp#part2"&gt;JavaScript Strings&lt;/a&gt;<br/>
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;location.hash = "part5";<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>host: </b>Sets or returns the hostname and port number of a URL.
 											<br/>
 											E.G.
 											<p class="Code">
 												&lt;script type="text/javascript"&gt;<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;let host = location.host;<br/>
 												&lt;/script&gt;
 											</p>
-								<h3>Attributes</h3>
-								
-								
+										</li><br/>
+										<li>
+											<b>hostname: </b>Sets or returns the hostname of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let hostname = location.hostname;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>href: </b>Sets or returns the entire URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let url = location.href;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;location.href = "https://www.w3schools.com";<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>origin: </b>Returns the protocol, hostname and port number of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let origin = location.origin;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>pathname: </b>Sets or returns the path name of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let path x = location.pathname;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>port: </b>Sets or returns the port number of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let port = location.port;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>protocol: </b>Sets or returns the protocol of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let protocol = location.protocol; <br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>search: </b>Sets or returns the querystring part of a URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let query = location.search;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
+
 								<h3>Methods</h3>
+									<ul>
+										<li>
+											<b>assign(): </b>Loads a new document. It takes 1 string parameter specifying the URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;location.assign("https://www.w3schools.com");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>reload(): </b>Reloads the current document.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;location.reload();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>replace(): </b>Replaces the current document with a new one. It takes 1 string 
+											parameter specifying the URL.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;location.replace("https://www.w3schools.com");<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The navigator object</h2>
 								
+								<h3>Attributes</h3>
+									<ul>
+										<li>
+											<b>appCodeName: </b>Returns browser code name.
 											<br/>
 											E.G.
 											<p class="Code">
 												&lt;script type="text/javascript"&gt;<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;let browser = navigator.appCodeName;<br/>
 												&lt;/script&gt;
 											</p>
-								<h3>Attributes</h3>
-								
+										</li><br/>
+										<li>
+											<b>appName: </b>Returns browser name.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let browser = navigator.appName;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>appVersion: </b>Returns browser version.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let version = navigator.appVersion;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>cookieEnabled: </b>Returns true if browser cookies are enabled.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let cookies = navigator.cookieEnabled;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>geolocation: </b>Returns a geolocation object for the user's location.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;function showPosition(position)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;if (navigator.geolocation)<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigator.geolocation.getCurrentPosition(showPosition);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>language: </b>Returns browser language.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let language = navigator.language;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>onLine: </b>Returns true if the browser is online.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let online = navigator.onLine;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>platform: </b>Returns browser platform.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let platform = navigator.platform;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>product: </b>Returns browser engine name.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let product = navigator.product;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>userAgent: </b>Returns browser user-agent header.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let agent = navigator.userAgent;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
 								
 								<h3>Methods</h3>
+									<ul>
+										<li>
+											<b>javaEnabled(): </b>Returns true if the browser has Java enabled.
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let java = navigator.javaEnabled();<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 						<div style="display:none;">
 							<h2 class="StageHeading">The screen object</h2>
 								
+								<h3>Attributes</h3>
+									<ul>
+										<li>
+											<b>availHeight: </b>Returns the height of the screen (excluding the Windows Taskbar)
 											<br/>
 											E.G.
 											<p class="Code">
 												&lt;script type="text/javascript"&gt;<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;let height = screen.availHeight; <br/>
 												&lt;/script&gt;
 											</p>
-								<h3>Attributes</h3>
-								
-								
-								<h3>Methods</h3>
-						</div>
-						<div style="display:none;">
-							<h2 class="StageHeading">Global functions</h2>
-								
+										</li><br/>
+										<li>
+											<b>availWidth: </b>Returns the width of the screen (excluding the Windows Taskbar)
 											<br/>
 											E.G.
 											<p class="Code">
 												&lt;script type="text/javascript"&gt;<br/>
-													&nbsp;&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;let width = screen.availWidth; <br/>
 												&lt;/script&gt;
 											</p>
-								<h3>Attributes</h3>
-								
-								
-								<h3>Methods</h3>
-						</div>
-						
+										</li><br/>
+										<li>
+											<b>colorDepth: </b>Returns the bit depth of the color palette for displaying images
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let depth = screen.colorDepth;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>height: </b>Returns the total height of the screen
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let height = screen.height;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+										<li>
+											<b>pixelDepth: </b>Returns the color resolution (in bits per pixel) of the screen
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let depth = screen.pixelDepth;<br/>
+												&lt;/script&gt;
+											</p>
+										<li>
+										</li><br/>
+											<b>width: </b>Returns the total width of the screen
+											<br/>
+											E.G.
+											<p class="Code">
+												&lt;script type="text/javascript"&gt;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;let width = screen.width;<br/>
+												&lt;/script&gt;
+											</p>
+										</li><br/>
+									</ul>
+
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawLastStageButtons("web_course_page.html", g_nStageNum);
+								</script>
+							</p>
+						</div>						
 						<script type="text/javascript">
-						
 							g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
 							g_arrayStageBookmarks.push("<a href=\"web_course_css.html\" class=\"StageLink\"><b>CSS</b></a>");
-							g_arrayStageBookmarks.push("<a href=\"web_course_build.html\" class=\"StageLink\"><b>Build a web site</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_page.html\" class=\"StageLink\"><b>Build a web page</b></a>");
+							g_arrayStageBookmarks.push("<a href=\"web_course_site.html\" class=\"StageLink\"><b>Build a web site</b></a>");
 							g_arrayStageBookmarks.push("<a href=\"web_course_php.html\" class=\"StageLink\"><b>PHP</b></a>");
 							g_arrayStageBookmarks.push("<hr>");
-	
+							console.log("g_nStageNum == " + g_nStageNum)
 						</script>
+
+					<!-- #EndEditable --></div>
 					</div>
 					<script type="text/javascript">SetStageDivIDs();</script>
 				<!-- End Content --></div>
@@ -5338,8 +5827,6 @@
 			<!-- End Footer --></div>
 		<!-- End Container -->
 	
-					<!-- #EndEditable -->
-												
 	</body>
 	
 <!-- #EndTemplate -->
