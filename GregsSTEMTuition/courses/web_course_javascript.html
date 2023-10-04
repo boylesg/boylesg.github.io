@@ -382,7 +382,7 @@
 									<ul>
 										<li><b>Single quote: </b>\', e.g. "\'"</li>
 										<li><b>Double quote: </b>\", e.g. "\""</li>
-										<li><b>Ampersand: </b>\&amp;, e.g. "\&"</li>
+										<li><b>Ampersand: </b>\&amp;, e.g. &amp;"</li>
 										<li><b>Newline: </b>\n, e.g. ""</li>
 										<li><b>Tab: </b>\t, e.g. "\t"</li>
 										<li><b>Backslash: </b>\\, e.g. "\\"</li>
@@ -1211,11 +1211,6 @@
 									}<br/>
 									arrayStudents[0] = new Student("Jones", "Susan", 100);
 								</p>
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -2430,11 +2425,6 @@
 									
 								</script>
 								<label for="switch_day_num">Day number: </label>&nbsp;<input type="number" value="0" id="switch_day_num"/><input type="button" value="Run example code" onclick="RunSwitchExample(document.getElementById('switch_day_num').value)"/>
-								<p>
-									<script type="text/javascript">
-										g_nStageNum = DrawMidStageButtons(g_nStageNum);
-									</script>
-								</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -5337,7 +5327,7 @@
 							</p>
 						</div>
 						<div style="display:none;">
-							<h2 class="StageHeading"> objects</h2>
+							<h2 class="StageHeading">The storage objects</h2>
 								
 								<h3>Types or storage</h3>
 									There are two types of data stroage in modern web browsers:
@@ -5439,7 +5429,6 @@
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-console.log("*****g_nStageNum = " + g_nStageNum);
 								</script>
 							</p>
 						</div>
@@ -5789,10 +5778,19 @@ console.log("*****g_nStageNum = " + g_nStageNum);
 
 							<p>
 								<script type="text/javascript">
-									g_nStageNum = DrawLastStageButtons("web_course_page.html", g_nStageNum);
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
 								</script>
 							</p>
 						</div>						
+						<div style="display:none;">
+							<h2 class="StageHeading">Test yourself</h2>
+							
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawLastStageButtons("web_course_page.html", g_nStageNum);
+								</script>
+							</p>
+						</div>
 						<script type="text/javascript">
 							g_arrayStageBookmarks.push("<a href=\"web_course_html.html\" class=\"StageLink\"><b>HTML</b></a>");
 							g_arrayStageBookmarks.push("<a href=\"web_course_css.html\" class=\"StageLink\"><b>CSS</b></a>");
@@ -5800,7 +5798,6 @@ console.log("*****g_nStageNum = " + g_nStageNum);
 							g_arrayStageBookmarks.push("<a href=\"web_course_site.html\" class=\"StageLink\"><b>Build a web site</b></a>");
 							g_arrayStageBookmarks.push("<a href=\"web_course_php.html\" class=\"StageLink\"><b>PHP</b></a>");
 							g_arrayStageBookmarks.push("<hr>");
-							console.log("g_nStageNum == " + g_nStageNum)
 						</script>
 
 					<!-- #EndEditable --></div>

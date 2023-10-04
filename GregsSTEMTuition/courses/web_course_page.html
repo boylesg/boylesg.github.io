@@ -162,27 +162,75 @@
 						
 							<h2 class="StageHeading">Page structure</h2>
 							<p>
-								To begin with we are going to create the following page structure. It is just one example of how you can structure your web 
-								pages and they way you can do so is limited only by your imagination. There is no right or wrong way to structure them.<br/><br/>
+								To begin with we are going to create the following page structure. It is just one example of how 
+								you can structure your web pages and they way you can do so is limited only by your imagination. 
+								There is no right or wrong way to structure them.<br/><br/>
 								<a href="images/PageStructure.jpg"><img src="images/PageStructure.jpg" alt="images/PageStructure.jpg" width="800"/></a>
+							</p>
+							<p>
+								You will quickly get to know the CSS attributes I am using in the video, as these ones are very 
+								frequently used. You can jump back to my CSS page to refresh your memory as to the values available 
+								for those CSS attributes. Just follow along in MS Expression Web as I play around with different  
+								CSS attributes and values to make the page appear like the in the image above. 
 							</p>
 							<p>
 								<video width="1000"controls>
 									<source src="images/PageStructure.webm" type="video/mp4">
 									Your browser does not support the video tag.
 								</video><br/><br/>
-								So you can see from that video it is just a matter of playing around with various CSS attributes and 
-								value until you get the elements to arrange how you want them. Those CSS attribute I was using, you will 
-								use frequently and you get to know them quite well in time. You can jump back to my CSS page to refresh your 
-								memory as to the values available for those CSS attributes and that you will most likely use.
 							</p>
 							<p>
-								In fact why don't you play around with the different values for 'float' and 'display' and see what effect they have 
-								on the layout for your page. Try some different values for the 'height' and 'width' atttributes. Try some different 
-								back ground colours. This is by far the best way to memorise them and to get to understand what they do.
-							</p>
+								In fact why don't you play around with the different values for 'float' and 'display' etc., and see what 
+								effect they have on the layout for your page. Try some different values for the 'height' and 'width' 
+								atttributes. Try some different back ground colours. This is by far the best way to memorise them 
+								and to get to understand what they do. You can do in the following ways:
+								<ul>
+									<li>
+										Use comments in you CSS code:
+										<p class="Code">
+											.navigation<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;float:/*left;*/right<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;height:85%;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;width:15%;<br/>
+											}
+										</p>
+										OR
+										<p class="Code">
+											.navigation<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;/*float:left;*/<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;float:right<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;height:85%;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;width:15%;<br/>
+											}
+										</p>
+									</li><br/>
+									<li>
+										Just override CSS attributes:
+										<p class="Code">
+											.navigation<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;height:85%;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;width:15%;<br/>
+												<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;float:right;<br/>
+											}
+										</p>
+										In this case the last value ('right') set for 'float' overrides the first value ('left').
+									</li>
+								</ul>
+							</p><br/>
 							<p>
-								In the next part we will continue with this page and refine it structure some more.
+								In the next part we will continue with this page and refine it structure some more by adding a web 
+								site title, a logo, some footer details, a page title and set up scroll regions etc. 
 							</p>
 							<p>
 								<script type="text/javascript">
@@ -195,8 +243,350 @@
 						
 							<h2 class="StageHeading">Refining the page structure</h2>
 							
-							<p>&nbsp;</p>
+							<h3>Company logo and name</h3>
+								<p>
+									In this next video we will add a company logo image and company name to the banner section of the 
+									web page. We will get them to sit side by side and align at the vertical center of the banner.
+								</p>
+								<p>
+									<video width="1000"controls>
+										<source src="images/LogoAndTitle.webp" type="video/mp4">
+										Your browser does not support the video tag.
+									</video><br/><br/>
+								</p>
+								<p> You will have noticed that the 'title' element was not responding to the margin-bottom attribute 
+									that I applied to the parent 'banner' element. That is because 'display:inline-block' elements do 
+									not quite work the same with margins as do elements using 'display:block'. I therefore had to force 
+									it to move up to the vertical center by using the combination of the 'top' and 'position' 
+									attributes.
+								</p>
+								<p class="Code"> 
+									.title<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;font-size:5em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;background-color:aqua;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;margin-left:0.1em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">position:relative;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">top:-22px;</span><br/>
+									}
+								</p>
+								<p>
+									By setting 'position' to 'relative', any value you then apply to the 'top' attribute moves
+									the element up or down by that length rather than moving the top edge of the element literally to 
+									that position. A negative value means that the element will be moved up by that length while a 
+									positive value means that the element will be moved down by that length. This is what I mean when I 
+									say you just have to experiment with different combinations of CSS attributes and values until you 
+									get the elements to behave as you want them to.						
+								</p>
+							<h3>Make the web page exactly fill the web browsers content area</h3>
 							
+							<p>
+								The content area of a web browser is the dark area in the following image. It is where all the web 
+								page content is displayed.<br/><br/>
+								<a href="images/ClientArea.jpg"><img src="images/ClientArea.jpg" alt="images/ClientArea.jpg" width="800"/></a><br/><br/>
+								And this is what our web page looks like in Firefox.<br/><br/>
+								<a href="images/WebPageInBrowser.jpg"><img src="images/WebPageInBrowser.jpg" alt="images/WebPageInBrowser.jpg" width="800"/></a><br/><br/>
+								As you can see it is a mess in the web browser, because the WYSWYG tab in MS Expression Web only 
+								show you roughly what your web page will look like. So we need to make some more adjustments to the 
+								CSS attributes.
+							</p>
+							<p>
+								By default the &lt;body&gt; element exactly fills the web browser's content area and we can confirm 
+								that by giving the body element a background colour and commenting out all the other elements.We 
+								can also get rid of the width and height attributes - they were only necessary when viewing the 
+								page in the WYSIWYG tab in MS Expression Web.
+							</p><br/>
+							<p class="Code">
+								&lt;style&gt;
+								
+									&nbsp;&nbsp;&nbsp;&nbsp;body<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:lime;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+								&lt;/style&gt;<br/>
+								.<br/>
+								.<br/>
+								.<br/>
+								&lt;body&gt;<br/>
+								&lt;!--<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="banner" id="banner"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img id="logo" class="logo" src="Logo.jpg" alt="Logo.jpg" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title" class="title"&gt;COMPANY NAME&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iv class="navigation" id="navigation"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;NAV&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="page_content" id="page_content"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;PAGE CONTENT&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer" id="footer"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+								--&gt;<br/>
+								&lt;/body&gt;<br/>
+							</p>
+							<p>
+								<a href="images/WebPageInBrowser1.jpg"><img src="images/WebPageInBrowser1.jpg" alt="images/WebPageInBrowser1.jpg" width="800"/></a><br/><br/>
+								Now we are going to maximise the web browsers and get the 'banner' element to appear at the top of the 
+								content window and fill the entire width. So will will uncomment just the 'banner' element and 
+								concentrate on getting that right. I have given the banner a fixed height of 160 pixels and a fixed 
+								width of 1424 pixels so that it will appear the same height and width for everyone. 
+							</p>	
+							<p class="Code">
+								&lt;style&gt;
+								
+									&nbsp;&nbsp;&nbsp;&nbsp;body<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:lime;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.banner<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:teal;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:160px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+								&lt;/style&gt;<br/>
+								.<br/>
+								.<br/>
+								.<br/>
+								&lt;body&gt;<br/>
+								&lt;body&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="banner" id="banner"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img id="logo" class="logo" src="Logo.jpg" alt="Logo.jpg" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title" class="title"&gt;COMPANY NAME&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+								&lt;!--<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iv class="navigation" id="navigation"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;NAV&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="page_content" id="page_content"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;PAGE CONTENT&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer" id="footer"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+								--&gt;<br/>
+								&lt;/body&gt;<br/>
+							</p>
+							<p>
+								If you get it right then you should see this when the web browser is maximised.<br/><br/>
+								<a href="images/WebPageInBrowser2.jpg"><img src="images/WebPageInBrowser2.jpg" alt="images/WebPageInBrowser2.jpg" width="800"/></a><br/><br/>
+								Now let's uncomment the 'footer' element, set a fixed height for it and the same width as the 
+								banner.<br/><br/>
+							</p>
+							<p class="Code">
+								&lt;style&gt;
+								
+									&nbsp;&nbsp;&nbsp;&nbsp;body<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:lime;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.banner<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:teal;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:160px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									.footer<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:maroon;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:80px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								.<br/>
+								.<br/>
+								.<br/>
+								&lt;body&gt;<br/>
+								&lt;body&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="banner" id="banner"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img id="logo" class="logo" src="Logo.jpg" alt="Logo.jpg" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title" class="title"&gt;COMPANY NAME&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+								&lt;!--<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iv class="navigation" id="navigation"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;NAV&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="page_content" id="page_content"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;PAGE CONTENT&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+								--&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer" id="footer"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+								&lt;/body&gt;<br/>
+							</p>
+							<p>
+								So now we have the following.<br/><br/>
+								<a href="images/WebPageInBrowser3.jpg"><img src="images/WebPageInBrowser3.jpg" alt="images/WebPageInBrowser3.jpg" width="800"/></a><br/><br/>
+								Now lets add in the 'navigation' element and give it a fixed width and a fixed height that makes it fit exactly between the 
+								'banner' and 'footer' elements.
+							</p>
+							<p class="Code">
+								&lt;style&gt;
+								
+									&nbsp;&nbsp;&nbsp;&nbsp;body<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:lime;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.banner<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:teal;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:160px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1440px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.navigation<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:150px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+									.footer<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:maroon;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:80px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								.<br/>
+								.<br/>
+								.<br/>
+								&lt;body&gt;<br/>
+								&lt;body&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="banner" id="banner"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img id="logo" class="logo" src="Logo.jpg" alt="Logo.jpg" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title" class="title"&gt;COMPANY NAME&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;iv class="navigation" id="navigation"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;NAV&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+								&lt;!--<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="page_content" id="page_content"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;PAGE CONTENT&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+									<br/>
+								--&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer" id="footer"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>
+								&lt;/body&gt;<br/>
+							</p>
+							<p>
+								So now we have the following: <br/><br/>
+								<a href="images/WebPageInBrowser4.jpg"><img src="images/WebPageInBrowser4.jpg" alt="images/WebPageInBrowser4.jpg" width="800"/></a><br/><br/>
+								So now if the unmaximise the browser then you will find the page retains the same dimensions even 
+								though it is scrollable. 
+							</p>
+
+							<h3>Adding a scroll region</h3>
+							
+								<p>
+									So now we are going to make the 'page_content' element scrollable by adding the 'overflow' 
+									attribute to its class.<br/>
+								</p>
+							<p class="Code">
+							
+								&lt;style&gt;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;body<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*background-color:lime;*/<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;.banner<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:teal;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:160px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.navigation<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:150px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.page_content<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1274px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overflow: auto;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.footer<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:maroon;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:80px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.logo<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:110px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-left:1em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: relative;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top: 7.7px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.title<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:5em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*background-color:aqua;*/<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-left:0.1em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top:-20px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+								&lt;/style&gt;
+								
+								<p>
+									We will now need to add a bunch of content to the 'page_content' element to see the effects 
+									of the above code change. And we will need to set a width for it. Clearly that should be the
+									width of the 'banner' e;ement minus the width of the 'navigation element'.<br/><br/>
+									<a href="images/WebPageInBrowser5.jpg"><img src="images/WebPageInBrowser5.jpg" alt="images/WebPageInBrowser5.jpg" width="800"/></a><br/><br/>
+								</p>
+							
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
