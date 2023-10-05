@@ -649,8 +649,23 @@
 								</p>
 								<p>
 									There is no right or wrong way, just the way that works best for you. Here is the source code for 
-									this stage <a href="my_web_page1.html">my_web_page.html</a>
+									this stage <a href="my_web_page1.html">my_web_page.html</a>. One last thing we will do is to add 
+									a page title that matches the document title &lt;title&gt;. Let's remember that this element is 
+									not visible on the web page but rather in the web browser tab. You could just manually create a 
+									page title for each web page you build, but that is a pain. If you change the title of your web 
+									page, or copy it to create a new page, then you would also have to manually change the page title 
+									to match. Why bother? Just do this instead at the top of the 'page_content' element.
 								</p>
+								<p class="Code">
+									&lt;script type="text/javascript"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;document.write("&lt;h1&gt;&lt;b&gt;" + document.title + "&lt;/b&gt;&lt;/h1&gt;");<br/>
+									&lt;/script&gt;<br/>
+								</p>
+								Or alternatively:<br/><br/>
+								<p class="Code">
+									&lt;h1&gt;&lt;b&gt;&lt;script type="text/javascript"&gt;document.write(document.title);&lt;/script&gt;&lt;/b&gt;&lt;/h1&gt;
+								</p>
+								<p><a href="images/WebPageInBrowser9.jpg"><img src="images/WebPageInBrowser9.jpg" alt="images/WebPageInBrowser9.jpg" width="800"/></a><br/><br/></p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -663,7 +678,9 @@
 						
 							<h2 class="StageHeading">Navigation structure</h2>
 							
-							<p>&nbsp;</p>
+							<p>
+								
+							</p>
 							
 							<p>
 								<script type="text/javascript">
@@ -744,7 +761,7 @@
 								<a href="images/PaypalButtonBuyItNow7.jpg"><img src="images/PaypalButtonBuyItNow7.jpg" alt="imags/PaypalButtonBuyItNow7.jpg" width="800"/></a><br/><br/>
 								And you end up here - simply copy the code and paste it into your web page.<br/><br/>
 								<a href="images/PaypalButtonBuyItNow8.jpg"><img src="images/PaypalButtonBuyItNow8.jpg" alt="imags/PaypalButtonBuyItNow8.jpg" width="800"/></a><br/><br/>
-								And here it is<br/><br/>
+								And here it is - you can click it safely as I have 'knobbled' code.<br/><br/>
 								<form action="" method="post" target="_top">
 									<input type="hidden" name="cmd" value="_s-xclick" />
 									<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
