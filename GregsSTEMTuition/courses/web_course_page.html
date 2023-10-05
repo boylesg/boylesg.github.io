@@ -513,8 +513,8 @@
 							<h3>Adding a scroll region</h3>
 							
 								<p>
-									So now we are going to make the 'page_content' element scrollable by adding the 'overflow' 
-									attribute to its class.<br/>
+									So after adding some content and fiddling around with the width of the 'page_content' element we 
+									get the following 8code:<br/>
 								</p>
 							<p class="Code">
 							
@@ -554,8 +554,9 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:maroon;<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:80px;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1424px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 1240px;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 									<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;.logo<br/>
@@ -580,13 +581,76 @@
 								&lt;/style&gt;
 								
 								<p>
-									We will now need to add a bunch of content to the 'page_content' element to see the effects 
-									of the above code change. And we will need to set a width for it. Clearly that should be the
-									width of the 'banner' e;ement minus the width of the 'navigation element'.<br/><br/>
+									And the following appearance of the page when the werb browser is maximised:<br/><br/>
 									<a href="images/WebPageInBrowser5.jpg"><img src="images/WebPageInBrowser5.jpg" alt="images/WebPageInBrowser5.jpg" width="800"/></a><br/><br/>
+									However when we unmaximise the web browser look what happens to our page:<br/><br/>
+									<a href="images/WebPageInBrowser6.jpg"><img src="images/WebPageInBrowser6.jpg" alt="images/WebPageInBrowser6.jpg" width="800"/></a><br/><br/>
+									So yet more tweaking of the CSS is required to stop this. So after some experimentation and research I  
+									added the 'overflow' and 'white-space' attributes to the &lt;body&gt; element.
 								</p>
-							
-							</p>
+								<p class="Code">
+									body<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;/*background-color:lime;*/<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;white-space:nowrap;<br/>
+									}<br/>
+								</p>
+									I also added the 'position' attribute to both the 'navigation' and 'page_content' elements, 
+									and the 'overflow' attribute to the 'page_content' element. And fiddled around with the width 
+									and height of the 'page_content' element.
+								</p>
+								<p class="Code">
+									.navigation<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;background-color:green;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;width:150px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;height:424px;<br/>
+									}<br/>
+									<br/>
+									.page_content<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;height:402px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;width:1244px;<br/>
+									}
+								</p>
+								<p>
+									And those changes work perfectly. Our page looks like this when the web browser is maximised:<br/><br/>
+									<a href="images/WebPageInBrowser7.jpg"><img src="images/WebPageInBrowser7.jpg" alt="images/WebPageInBrowser7.jpg" width="800"/></a><br/><br/>
+									And like this when the web browser is unmaximised:<br/><br/>
+									<a href="images/WebPageInBrowser8.jpg"><img src="images/WebPageInBrowser8.jpg" alt="images/WebPageInBrowser8.jpg" width="800"/></a><br/><br/>
+									Nice! So it is just a matter of perservering until you disocver the right combination of CSS attributes in the 
+									right elements.
+								</p>
+								<p>
+									Another way you could choose to structure your pages is with a table with 3 rows like so:
+								</p>
+								<p class="Code">
+									&lt;table cellspacing="0" cellpadding="2"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td colspan="2"&gt;BANNER&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;NAVIGATION&lt;/td&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;PAGE CONTENT&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td colspan="2"&gt;FOOTER&lt;/td&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
+									&lt;/table&gt;
+								</p>
+								<p>
+									There is no right or wrong way, just the way that works best for you. Here is the source code for 
+									this stage <a href="my_web_page1.html">my_web_page.html</a>
+								</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -611,7 +675,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">111111</h2>
+							<h2 class="StageHeading">Menus &amp; popups</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -625,7 +689,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">222222</h2>
+							<h2 class="StageHeading">Sidebars</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -639,7 +703,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">333333</h2>
+							<h2 class="StageHeading">Forms</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -653,7 +717,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">444444</h2>
+							<h2 class="StageHeading">Paypal Buttons</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -667,7 +731,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">555555</h2>
+							<h2 class="StageHeading">Tables</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -681,7 +745,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">666666</h2>
+							<h2 class="StageHeading">Animation</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -695,7 +759,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">777777</h2>
+							<h2 class="StageHeading">Drawing</h2>
 							
 							<p>&nbsp;</p>
 							
@@ -709,35 +773,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">888888</h2>
-							
-							<p>&nbsp;</p>
-							
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">999999</h2>
-							
-							<p>&nbsp;</p>
-							
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Popup menu</h2>
+							<h2 class="StageHeading">Games</h2>
 							
 							<p>
 								<script type="text/javascript">
