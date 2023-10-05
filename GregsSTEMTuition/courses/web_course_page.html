@@ -246,21 +246,32 @@
 							<h3>Company logo and name</h3>
 								<p>
 									In this next video we will add a company logo image and company name to the banner section of the 
-									web page. We will get them to sit side by side and align at the vertical center of the banner.
+									web page. We will get them to sit side by side and align at the vertical center of the banner. 
+									First we will add and &lt;img&gt; and a &lt;h1&gt; tag inside the 'banner' element like this:
+								</p>
+								<p class="Code">
+									&lt;div class="banner" id="banner"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;img id="logo" class="logo" src="Logo.jpg" alt="Logo.jpg" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title" class="title"&gt;COMPANY NAME&lt;/h1&gt;<br/>
+									&lt;/div&gt;<br/>
 								</p>
 								<p>
-									<video width="1000"controls>
-										<source src="images/LogoAndTitle.webp" type="video/mp4">
-										Your browser does not support the video tag.
-									</video><br/><br/>
-								</p>
-								<p> You will have noticed that the 'title' element was not responding to the margin-bottom attribute 
-									that I applied to the parent 'banner' element. That is because 'display:inline-block' elements do 
-									not quite work the same with margins as do elements using 'display:block'. I therefore had to force 
-									it to move up to the vertical center by using the combination of the 'top' and 'position' 
-									attributes.
+									Now we need to play around with the CSS attributes of these two new elements to get them nicely spaced and positioned 
+									along the center line of the banner, and adjust the size of the font for the web site title. The 
+									easiest way to vertically center elements is to use the 'position' attribute with 'relative' and the 'top' 
+									attribute with a negative value to make it move up or a positive value to move it down. For both 
+									elements we use the 'display' attribute with 'inline-block' to get them to line up side by side.
 								</p>
 								<p class="Code"> 
+									.logo<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;width:110px;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;margin-left:1em;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">position: relative;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">top:7.7px;</span><br/>
+									}<br/>
+									<br/>
 									.title<br/>
 									{<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
@@ -271,6 +282,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">top:-22px;</span><br/>
 									}
 								</p>
+								<p><a href="images/LogoAndTitle.jpg"><img src="images/LogoAndTitle.jpg" alt="images/LogoAndTitle.jpg" width="800"/></a></p>
 								<p>
 									By setting 'position' to 'relative', any value you then apply to the 'top' attribute moves
 									the element up or down by that length rather than moving the top edge of the element literally to 
