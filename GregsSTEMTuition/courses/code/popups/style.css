@@ -1,0 +1,94 @@
+﻿body
+{
+	/*background-color:lime;*/
+	overflow:auto;
+	white-space:nowrap;
+}
+
+.banner
+{
+	background-color:teal;
+	height:160px;
+	width: 1414px;
+}
+			
+.navigation
+{
+	background-color:green;
+	display:inline-block;
+	position:relative;
+	float:left;
+	width:150px;
+	height:424px;
+}
+
+.page_content
+{
+	background-color:silver;
+	display:inline-block;
+	padding:10px;
+	position:relative;
+	overflow:auto;
+	height:402px;
+	width:1244px;
+}
+		
+.footer
+{
+	background-color:maroon;
+	display:inline-block;
+	height:80px;
+	width: 1414px;
+	float:left;
+}
+
+.logo
+{
+	width:110px;
+	display:inline-block;
+	margin-left:1em;
+	position: relative;
+	top: 7.7px;
+}
+
+.title
+{
+	display:inline-block;
+	font-size:5em;
+	/*background-color:aqua;*/
+	margin-left:0.1em;
+	position:relative;
+	top:-20px;
+}
+
+.nav
+{
+	margin:10px;
+}
+
+.nav_link
+{
+	display:block;
+	color:white;
+	margin-bottom:10px;
+}
+
+.popup
+{
+	padding:5px;
+	width:120px;
+	background-color:#00B900;
+}
+
+.popup_link
+{
+	display:block;
+	color:white;
+	margin-bottom:10px;
+}
+
+#nav a:hover
+{
+	color:red;
+}
+
