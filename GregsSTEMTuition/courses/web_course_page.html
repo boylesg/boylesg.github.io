@@ -815,7 +815,7 @@
 								parts of page behave differently.
 							</p>
 							<p>
-								If we make a copy of 'index.html' and rename it to 'products.html' with the same page and navogation 
+								If we make a copy of 'index.html' and rename it to 'products.html' with the same page and navigation 
 								structures, but with different page titles, then that means we will have two copies of the navigation 
 								link. Repeat that for the 'services.html' and 'contact.html'. Now you would have 4 separate copies of 
 								the navigation structure. What if you want to add a fifth page to your web site? You would have to edit 
@@ -826,10 +826,43 @@
 							<p>
 								What we really need to do is to just store one copy of the navigation structure that each of the .html 
 								web pages include. Unforunately there is no practical way to do this with HTML. You can do it with either 
-								Document Web Templates (.dwt files) or you can include .html files via the PHP include directive. But we 
-								will not cover those here. The only other way you can do it is with Javascript. So what we will do is 
-								create a new file called 'common.js'. And in this file we will code a javascript function that writes the 
-								HTML code for our navigation structure.
+								Document Web Templates (.dwt files), and we will discuss these in the 'Build a web site' section of this 
+								course.
+							</p> 
+							<p>
+								You can also include .html files via the PHP include directive, and in fact it is REALLY easy. All you 
+								would need is the following code:
+							</p>
+							</p>
+							<h4>navigation.html</h4>
+							<p class="Code">
+								&lt;nav id="nav" class="nav"&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="nav_link" href="index.html"&gt;Home&lt;/a&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="nav_link" onclick="DoShowHidePopupMenu('products_popup')"&gt;Products&lt;/a&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id="products_popup" class="popup" style="display:none"&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="popup_link" href="televisions.html"&gt;Televisions&lt;/a&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="popup_link" href="DVDplayers.html"&gt;DVD Players&lt;/a&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="popup_link" href="surround.html"&gt;Surround sound&lt;/a&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="popup_link" href="games.html"&gt;Game consoles&lt;/a&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&lt;br/&gt;<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="nav_link" href="services.html"&gt;Services&lt;/a&gt;"<br/>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;a class="nav_link" href="contact.html"&gt;Contact&lt;/a&gt;<br/>
+								&lt;/nav&gt;
+							</p>
+							<h4>index.html</h4>
+							<p class="Code">
+								&lt;div class="navigation" id="navigation"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;?php include "navigation.html"; ?&gt;<br/>
+								&lt;/div&gt;
+							</p>
+								The disadvantage of the PHP method is that your web page or site must be hosted on a web server, 
+								with a PHP back end, for it to work. You cannot use this method if you are simply editing your 
+								web pages on a laptop or desktop.
+							</p>
+							<p>
+								So short of using the DWT method that leave the javascript method that WILL work with web pages on 
+								a desktop or laptop. So what we will do is create a new file called 'common.js'. And in this file 
+								we will code a javascript function that writes the HTML code for our navigation structure.
 							</p>
 							<p class="Code">
 							
@@ -1192,7 +1225,24 @@
 								So this is the results of clicking on the 'Products' hyperlink - nice!.<br/><br/>
 								<a href="images/index8.jpg"><img src="images/index8.jpg" alt="images/index8.jpg" width="800"/></a><br/><br/>
 								Now all that is left to do is to create the new web pages for the popup menu the same way we created the 
-								web pages 'products.html', 'services.html' and 'contact.html'.
+								web pages 'products.html', 'services.html' and 'contact.html'. There is just one other small annoyance - 
+								when you hover the mouse over the 'Products' link the mouse cursor displays as a text cursor rather than a 
+								pointing finger (that indicates a clickable hyperlink). That is because we removed the 'href' property 
+								from this particular hyperlink. So we will need to make one further addition to the CSS attributes for 
+								the 'nav_link' class:
+							</p>
+							<p class="Code">
+								.nav_link<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;color:white;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">cursor: pointer;</span><br/>
+								}
+							</p>
+							<p>
+								This forces the browser to display a pointing finger when the mouse hovers over the 'Products' hyperlink 
+								even though there is no 'href' property.
 							</p>
 							<p>
 								Here is the source code:
