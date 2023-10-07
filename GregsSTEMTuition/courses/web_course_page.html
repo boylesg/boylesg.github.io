@@ -177,7 +177,7 @@
 								<video width="1000"controls>
 									<source src="images/PageStructure.webm" type="video/mp4">
 									Your browser does not support the video tag.
-								</video><br/><br/>
+								</video>
 							</p>
 							<p>
 								In fact why don't you play around with the different values for 'float' and 'display' etc., and see what 
@@ -1269,10 +1269,103 @@
 
 						<div style="display:none;">
 					
-							<h2 class="StageHeading">Sidebars</h2>
+							<h2 class="StageHeading">Sliding menu</h2>
 							
-							<p>&nbsp;</p>
-							
+							<p>
+								Here is an example of a sliding menu, and this is what we are going to create in this stage.<br/><br/>
+								<video width="1000"controls>
+									<source src="images/slide.webm" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							</p>
+							<p>
+								So first we need at add a few CSS attributes to the 'footer' class:
+							</p>
+							<p class="Code">
+								.footer<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background-color:maroon;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">position:relative;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:80px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width: 1414px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;float:left;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;text-align:center;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">transition: 0.3s;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">z-index:1;</span><br/>
+								}
+							</p>
+							<ul>
+								<li>
+									<b>'position' attribute: </b>allows us to move the 'footer' element up by a length from where 
+									it is located at present, rather than moving the element up to a specific position.
+								</li><br/>
+								<li>
+									<b>'transition' attribute: </b>is what causes the slide effect when we increase the height of 
+									the 'footer' element. The value specifies the delay in seconds between each change in 
+									dimensions, until the full with ot height is attained. You can speed it up by increasing the 
+									number seconds and slow it down by decreasing the number of seconds.
+								</li><br/>
+								<li>
+									<b>'z-index' attribute: </b> with the value 1 means that the 'footer' element will slide over 
+									the top of the 'page_content' element. The z-position of all other elements defaults to 0. So 
+									you can use this attribute to create layers in your web page.
+								</li><br/>
+								<li>
+									<b>text-align:center: </b>this just causes all elements and text to be horizontally centered in 
+									the 'footer' element.
+								</li>
+							</ul>
+							<p>Next we need to add some HTML code inside the 'footer' element in 'index.html':</p>
+							<p class="Code">
+								&lt;div class="footer" id="footer"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;a id="activator" class="activator" onclick="DoOpenFooter()"&gt;▲&lt;/a&gt;&lt;br/&gt;</span>&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+								&lt;/div&gt;
+							</p>
+							<p>
+								I have added simply added an empty hyperlink element that cab be clicked to either hide or show the 
+								slider. When it is clicked the function <span class="HighlightCode">DoOpenFooter()</span> is called. 
+								Then there is a line break <span class="HighlightCode">&lt;br/&gt;</span> so that both the 'activator' 
+								and whatever else is in the footer are both centered. I have used a special character ▲ to indicate 
+								that the footer can be opened. And the opposite ▼ toi indicate that it can be closed. You can obtain 
+								these characters from 'Character Map' in MS Windows, that you will find in 'accesories' in the 'start' 
+								menu. Now we need to impelemnt the <span class="HighlightCode">DoOpenFooter()</span> function in 
+								'common.js'. The code comments explain what is going on and you should use them liberally to assist your 
+								learning.
+							</p>
+							<p class="Code">
+								function DoOpenFooter()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let divFooter = document.getElementById("footer"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divActivator = document.getElementById("activator");<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Make sure the div IDs are valid and that we have valid div objects.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (divFooter &amp;&amp; divActivator)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// If the slider is open then...<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (divFooter.clientHeight == 400)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Return the footer to its original height.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divFooter.style.height = "80px";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Move it back down to its original position.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divFooter.style.top = "0px";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Change the arrow character to the open indicator.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divActivator.innerText = "▲";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// If the slider is closed then...<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Increase the height of the footer.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divFooter.style.height = "400px";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Move it up so that all of it is visible.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divFooter.style.top = "-320px";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Change the arrow character to the close indicator.<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divActivator.innerText = "▼";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}
+							</p>
+
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
