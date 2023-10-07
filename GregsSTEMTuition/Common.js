@@ -6,7 +6,6 @@
 
 var g_arrayTOC = [];
 var g_bCoursesPopupMenu = false;
-var g_nStageNum = 1;
 
 
 

@@ -1,5 +1,610 @@
 ﻿//**********************************************************************************************************************
 //**********************************************************************************************************************
+//** CSS ATTRIBUTES 
+//**********************************************************************************************************************
+//**********************************************************************************************************************
+
+const g_arrayColorOptions = ["&lt;color&gt;", "Color name",  "HEX color", "HSL color", "RGB color"],
+	  g_arrayImageOptions = ["&lt;image&gt;", "url(\"image.jpg\")", "url(\"image.png\")"],
+	  g_arrayRepeatOptions = ["[repeat]", "repeat", "repeat-x", "repeat-y", "no-repeat"],
+	  g_arratAttachmentOptions = ["[attachment]", "scroll", "fixed", "local"],
+	  g_arrayPositionOptions = ["[position]", "top left", "top center", "top right", "center left", "center center", "center right", "bottom left", "bottom center", "bottom right"],
+	  g_arraySizeOptions = ["[size]", "auto", "200px 100px", "10em 5em", "cover", "contain"],
+	  g_arrayOriginOptions = ["[origin]", "padding-box", "border-box", "content-box"],
+	  g_arrayClipOptions = ["[clip]", "padding-box", "border-box", "content-box"],
+	  g_arrayBorderThicknessOptions = ["[width]", "thin", "medium", "thick", "#px", "#em", "#%"], 
+	  g_arrayBorderStyleOptions = ["&lt;style&gt;", "none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"];
+
+
+function GetBorderStyleCSS(strAttrib)
+{
+	if (strAttrib == "borderStyle")
+	{
+		strAttrib = "border-style";
+	}
+	else if (strAttrib == "borderLeftStyle")
+	{
+		strAttrib = "border-left-style";
+	}
+	else if (strAttrib == "borderRightStyle")
+	{
+		strAttrib = "border-right-style";
+	}
+	else if (strAttrib == "borderTopStyle")
+	{
+		strAttrib = "border-top-style";
+	}
+	else if (strAttrib == "borderBottomStyle")
+	{
+		strAttrib = "border-bottom-style";
+	}
+	return strAttrib;
+}
+
+function CreateCursorList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li style=\"cursor:alias;\"><b>alias: </b>the cursor indicates an alias of something is to be created.");
+	document.write("<li style=\"cursor:all-scroll;\"><b>all-scroll: </b>the cursor indicates that something can be scrolled in any direction.");
+	document.write("<li style=\"cursor:auto;\"><b>auto: </b>default - the browser sets a cursor.");
+	document.write("<li style=\"cursor:cell;\"><b>cell: </b>the cursor indicates that a cell (or set of cells) may be selected.");
+	document.write("<li style=\"cursor:context-menu;\"><b>context-menu: </b>the cursor indicates that a context-menu is available.");
+	document.write("<li style=\"cursor:col-resize;\"><b>col-resize: </b>the cursor indicates that the column can be resized horizontally.");
+	document.write("<li style=\"cursor:copy;\"><b>copy: </b>the cursor indicates something is to be copied.");
+	document.write("<li style=\"cursor:crosshair;\"><b>crosshair: </b>the cursor render as a crosshair.");
+	document.write("<li style=\"cursor:default;\"><b>default: </b>the default cursor.");
+	document.write("<li style=\"cursor:e-resize;\"><b>e-resize: </b>the cursor indicates that an edge of a box is to be moved right (east).");
+	document.write("<li style=\"cursor:ew-resize;\"><b>ew-resize: </b>indicates a bidirectional resize cursor.");
+	document.write("<li style=\"cursor:help;\"><b>help: </b>the cursor indicates that help is available.");
+	document.write("<li style=\"cursor:move;\"><b>move: </b>the cursor indicates something is to be moved.");
+	document.write("<li style=\"cursor:n-resize;\"><b>n-resize: </b>the cursor indicates that an edge of a box is to be moved up (north).");
+	document.write("<li style=\"cursor:ne-resize;\"><b>ne-resize: </b>the cursor indicates that an edge of a box is to be moved up and right (north/east).");
+	document.write("<li style=\"cursor:nesw-resize;\"><b>nesw-resize: </b>indicates a bidirectional resize cursor.");
+	document.write("<li style=\"cursor:ns-resize;\"><b>ns-resize: </b>indicates a bidirectional resize cursor.");
+	document.write("<li style=\"cursor:nw-resize;\"><b>nw-resize: </b>the cursor indicates that an edge of a box is to be moved up and left (north/west).");
+	document.write("<li style=\"cursor:nwse-resize;\"><b>nwse-resize: </b>indicates a bidirectional resize cursor.");
+	document.write("<li style=\"cursor:no-drop;\"><b>no-drop: </b>the cursor indicates that the dragged item cannot be dropped here.");
+	document.write("<li style=\"cursor:none;\"><b>none: </b>no cursor is rendered for the element.");
+	document.write("<li style=\"cursor:not-allowed;\"><b>not-allowed: </b>the cursor indicates that the requested action will not be executed.");
+	document.write("<li style=\"cursor:pointer;\"><b>pointer: </b>the cursor is a pointer and indicates a link.");
+	document.write("<li style=\"cursor:progress;\"><b>progress: </b>the cursor indicates that the program is busy (in progress).");
+	document.write("<li style=\"cursor:row-resize;\"><b>row-resize: </b>the cursor indicates that the row can be resized vertically.");
+	document.write("<li style=\"cursor:s-resize;\"><b>s-resize: </b>the cursor indicates that an edge of a box is to be moved down (south).");
+	document.write("<li style=\"cursor:se-resize;\"><b>se-resize: </b>the cursor indicates that an edge of a box is to be moved down and right (south/east).");
+	document.write("<li style=\"cursor:sw-resize;\"><b>sw-resize: </b>the cursor indicates that an edge of a box is to be moved down and left (south/west).");
+	document.write("<li style=\"cursor:text;\"><b>text: </b>the cursor indicates text that may be selected.");
+	document.write("<li style=\"cursor:URL;\"><b>URL: </b>a comma separated list of URLs to custom cursors. Note: Always specify a generic cursor at the end of the list, in case none of the URL-defined cursors can be used.");
+	document.write("<li style=\"cursor:vertical-text;\"><b>vertical-text: </b>the cursor indicates vertical-text that may be selected.");
+	document.write("<li style=\"cursor:w-resize;\"><b>w-resize: </b>the cursor indicates that an edge of a box is to be moved left (west).");
+	document.write("<li style=\"cursor:wait;\"><b>wait: </b>the cursor indicates that the program is busy.");
+	document.write("<li style=\"cursor:zoom-in;\"><b>zoom-in: </b>the cursor indicates that something can be zoomed in.");
+	document.write("<li style=\"cursor:zoom-out;\"><b>zoom-out: </b>the cursor indicates that something can be zoomed out.</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"move\";<br/></p>");
+		document.write("E.G.<p class=\"Code\">console.log(document.body.style." + strAttrib + ");");
+	}
+}
+
+function CreateClearList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>none: </b>allows floating objects on both sides of the element. This is default.");
+	document.write("<li><b>left: </b>no floating objects allowed on the left side of the element.");
+	document.write("<li><b>right: </b>no floating objects allowed on the right side of the element.");
+	document.write("<li><b>both: </b>no floating objects allowed on either the left or right side of the element.");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"left\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateDirectionList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>ltr: </b>Text flows from left to right. This is default.");
+	document.write("<li><b>rtl: </b>Text flows from right to left.");	
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"ltr\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateDisplayList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>block: </b>element is rendered as a block-level element.</li>");
+	document.write("<li><b>compact: </b>element is rendered as a block-level or inline element. Depends on context.</li>");
+	document.write("<li><b>flex: </b>element is rendered as a block-level flex box. New in CSS3.</li>");
+	document.write("<li><b>inline: </b>element is rendered as an inline element. This is default.</li>");
+	document.write("<li><b>inline-block: </b>element is rendered as a block box inside an inline box.</li>");
+	document.write("<li><b>inline-flex: </b>element is rendered as a inline-level flex box. New in CSS3.</li>");
+	document.write("<li><b>inline-table: </b>element is rendered as an inline table (like &lt;table&gt;), with no line break before or after the table.</li>");
+	document.write("<li><b>list-item: </b>element is rendered as a list.</li>");
+	document.write("<li><b>marker: </b>this value sets content before or after a box to be a marker (used with :before and :after pseudo-elements. Otherwise this value is identical to \"inline\").</li>");
+	document.write("<li><b>none: </b>element will not be displayed.</li>");
+	document.write("<li><b>run-in: </b>element is rendered as block-level or inline element. Depends on context.</li>");
+	document.write("<li><b>table: </b>element is rendered as a block table (like &lt;table&gt;), with a line break before and after the table.</li>");
+	document.write("<li><b>table-caption: </b>element is rendered as a table caption (like &lt;caption&gt;).</li>");
+	document.write("<li><b>table-cell: </b>element is rendered as a table cell (like &lt;td&gt; and &lt;th&gt;).</li>");
+	document.write("<li><b>table-column: </b>element is rendered as a column of cells (like &lt;col&gt;).</li>");
+	document.write("<li><b>table-column-group: </b>element is rendered as a group of one or more columns (like &lt;colgroup&gt;).</li>");
+	document.write("<li><b>table-footer-group: </b>element is rendered as a table footer row (like &lt;tfoot&gt;).</li>");
+	document.write("<li><b>table-header-group: </b>element is rendered as a table header row (like &lt;thead>).</li>");
+	document.write("<li><b>table-row: </b>element is rendered as a table row (like &lt;tr&gt;).</li>");
+	document.write("<li><b>table-row-group: </b>element is rendered as a group of one or more rows (like &lt;tbody&gt;).</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"block\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateCollapseList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>separate: </b>Separate borders are drawn for all table cell elements. This is default.</li>");
+	document.write("<li><b>collapse: </b>Borders are not drawn between table cell elements.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"collapse\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateOverflowList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>visible: </b>content is NOT clipped and may be shown outside the element box. This is default.</li>");
+	document.write("<li><b>hidden: </b>content outside the element box is not shown.</li>");
+	document.write("<li><b>scroll: </b>scroll bars are added, and content is clipped when necessary.</li>");
+	document.write("<li><b>auto: </b>content is clipped and scroll bars are added when necessary.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"scroll\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateBorderStyleList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>none: </b>defines no border. This is default.<br/>E.G.<p class=\"Code\">" + strAttrib + " = \"none\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":none;\"></div></li><br/>");
+	document.write("<li><b>hidden: </b>same as 'none', except in border conflict resolution for table elements.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"hidden\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":hidden;\"></div></li><br/>");
+	document.write("<li><b>dotted: </b>defines a dotted border.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"dotted\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":dotted;\"></div></li><br/>");
+	document.write("<li><b>dashed: </b>defines a dashed border.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"dashed\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":dashed;\"></div></li><br/>");
+	document.write("<li><b>solid: </b>defines a solid border.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"solid\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":solid;\"></div></li><br/>");
+	document.write("<li><b>double: </b>defines two borders. The width of the two borders are the same as the border-width value.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"double\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":double;\"></div></li><br/>");
+	document.write("<li><b>groove: </b>defines a 3D grooved border. The effect depends on the border-color value.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"groove\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":groove;\"></div></li><br/>");
+	document.write("<li><b>ridge: </b>defines a 3D ridged border. The effect depends on the border-color value.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"ridge\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":ridge;\"></div></li><br/>");
+	document.write("<li><b>inset: </b>Defines a 3D inset border. The effect depends on the border-color value.</li><br/>E.G.<p class=\"Code\">" + strAttrib + " = \"inset\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":inset;\"></div></li><br/>");
+	document.write("<li><b>outset: </b>defines a 3D outset border. The effect depends on the border-color value.</li>E.G.<p class=\"Code\">" + strAttrib + " = \"outset\";</p><div style=\"background-color:silver;width:10em;height:4em;" + GetBorderStyleCSS(strAttrib) + ":outset;\"></div></li><br/>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"double\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateRepeatList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>repeat: </b>the background image is repeated both vertically and horizontally. This is default.</li>");
+	document.write("<li><b>repeat-x: </b>the background image is only repeated horizontally.</li>");	document.write("<li><b>repeat-y: </b>the background image is only repeated vertically.</li>");
+	document.write("<li><b>no-repeat: </b>the background-image is not repeated.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"no-repeat\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateLengthList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li>");
+	document.write("<b>em: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + " = \"10em\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("<li>");
+	document.write("<b>px: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + "= \"200px\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("<li>");
+	document.write("<b>%: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + "= \"10%\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("</ul>");
+}
+
+function CreateVertAlignList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>length: </b>raises or lower an element by the specified length. Negative values are allowed");
+	document.write("<li><b>%: </b>raises or lower an element in a percent of the 'line-height' property. Negative values are allowed");
+	document.write("<li><b>baseline: </b>align the baseline of the element with the baseline of the parent element. This is default");
+	document.write("<li><b>sub: </b>aligns the element as it was subscript");
+	document.write("<li><b>super: </b>aligns the element as it was superscript");
+	document.write("<li><b>top: </b>the top of the element is aligned with the top of the tallest element on the line");
+	document.write("<li><b>text-top: </b>the top of the element is aligned with the top of the parent element's font");
+	document.write("<li><b>middle: </b>the element is placed in the middle of the parent element");
+	document.write("<li><b>bottom: </b>the bottom of the element is aligned with the lowest element on the line");
+	document.write("<li><b>text-bottom: </b>the bottom of the element is aligned with the bottom of the parent element's font");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"absolute\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateVisibilityList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>visible: </b>the element is visible. This is default.");
+	document.write("<li><b>hidden: </b>the element is not visible, but still affects layout.");
+	document.write("<li><b>collapse: </b>when used on a table row or cell, the element is not visible (same as 'hidden').");	
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"visible\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreatePositionList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>static: </b>elements renders in order, as they appear in the document flow. This is default.</li>");
+	document.write("<li><b>absolute: </b>the element is positioned relative to its first positioned (not static) ancestor element.</li>");
+	document.write("<li><b>fixed: </b>the element is positioned relative to the browser window.</li>");
+	document.write("<li><b>relative: </b>the element is positioned relative to its normal position, so 'left:20' adds 20 pixels to the element's LEFT position.</li>");
+	document.write("<li><b>sticky: </b>the element is positioned based on the user's scroll position. A sticky element toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it 'sticks' in place (like position:fixed).<br/><b>Note: <b/>Not supported in IE/Edge 15 or earlier. Supported in Safari from version 6.1 with a Webkit prefix.</li>");	
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"absolute\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateResizeList(strAttrib)
+{
+	document.write("<ul>");
+		
+	document.write("<li><b>none: </b>tDefault value. The user cannot resize the element.</li>");
+	document.write("<li><b>both: </b>tThe user can adjust both the height and the width of the element.</li>");
+	document.write("<li><b>horizontal: </b>tThe user can adjust the width of the element.</li>");
+	document.write("<li><b>vertical: </b>tThe user can adjust the height of the element.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"content-box\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateSizeList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li>");
+	document.write("<b>em: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + " = \"10em 5em\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("<li>");
+	document.write("<b>px: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + " = \"200px 100px\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("<li>");
+	document.write("<b>%: </b><br/>");
+	document.write("E.G.");
+	document.write("<p class=\"Code\">");
+	document.write("document.body.style." + strAttrib + " = \"10% 10%\";<br/>");
+	document.write("console.log(document.body.style." + strAttrib + ");");
+	document.write("</p>");
+	document.write("</li>");
+	document.write("</ul>");
+}
+
+function CreateClipOriginList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>border-box: </b>default value. The background is clipped to the border box.</li>");
+	document.write("<li><b>padding-box: </b>the background is clipped to the padding box.</li>");
+	document.write("<li><b>content-box: </b>the background is clipped to the content box.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"border-box\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreatePositionList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>: top left</b></li>");
+	document.write("<li><b>: top center</b></li>");
+	document.write("<li><b>: top right</b></li>");
+	document.write("<li><b>: center left</b></li>");
+	document.write("<li><b>: center center</b></li>");
+	document.write("<li><b>: center right</b></li>");
+	document.write("<li><b>: bottom left</b></li>");
+	document.write("<li><b>: bottom center</b></li>");
+	document.write("<li><b>: bottom right</b></li>");									
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"top right\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateImageList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>url(\"image.jpg\")</b></li>");
+	document.write("<li><b>url(\"image.png\")</b></li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"url('image.png')\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateAttachmentList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>scroll: </b>the background scrolls along with the element. This is default.</li>");
+	document.write("<li><b>fixed: </b>the background is fixed with regard to the viewport.</li>");
+	document.write("<li><b>local: </b>the background scrolls along with the element's contents.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"scroll\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateColorList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>Color name: </b>e.g. \"teal\"</li>");
+	document.write("<li><b>HEX color: </b>e.g. #4502C3</li>");
+	document.write("<li><b>HSL color: </b>e.g. hsl(30, 50%, 50%)</li>");
+	document.write("<li><b>RGB color: </b>e.g. rgb(255, 50, 1)</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"teal\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateFontVariantList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>normal: </b>font is normal. This is default.</li>");
+	document.write("<li><b>small-caps: </b>font is displayed in small capital letters.</li>");
+	document.write("<ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"small-caps\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateListStyleTypeList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>armenian: </b>the marker is traditional Armenian numbering.</li>");
+	document.write("<li><b>circle: </b>the marker is a circle.</li>");
+	document.write("<li><b>cjk-ideographic: </b>the marker is plain ideographic numbers.</li>");
+	document.write("<li><b>decimal: </b>the marker is a number. This is default for &ltol&gt;.</li>");
+	document.write("<li><b>decimal-leading-zero: </b>the marker is a number with leading zeros (01, 02, 03, etc.).</li>");
+	document.write("<li><b>disc: </b>the marker is a filled circle. This is default for &lt;ul&gt;.</li>");
+	document.write("<li><b>georgian: </b>the marker is traditional Georgian numbering.</li>");
+	document.write("<li><b>hebrew: </b>the marker is traditional Hebrew numbering.</li>");
+	document.write("<li><b>hiragana: </b>the marker is traditional Hiragana numbering.</li>");
+	document.write("<li><b>hiragana-iroha: </b>the marker is traditional Hiragana iroha numbering.</li>");
+	document.write("<li><b>katakana: </b>the marker is traditional Katakana numbering.</li>");
+	document.write("<li><b>katakana-iroha: </b>the marker is traditional Katakana iroha numbering.</li>");
+	document.write("<li><b>lower-alpha: </b>the marker is lower-alpha (a, b, c, d, e, etc.).</li>");
+	document.write("<li><b>lower-greek: </b>the marker is lower-greek.</li>");
+	document.write("<li><b>lower-latin: </b>the marker is lower-latin (a, b, c, d, e, etc.).</li>");
+	document.write("<li><b>lower-roman: </b>the marker is lower-roman (i, ii, iii, iv, v, etc.).</li>");
+	document.write("<li><b>none: </b>no marker is shown.</li>");
+	document.write("<li><b>square: </b>the marker is a square.</li>");
+	document.write("<li><b>upper-alpha: </b>the marker is upper-alpha (A, B, C, D, E, etc.).</li>");
+	document.write("<li><b>upper-latin: </b>the marker is upper-latin (A, B, C, D, E, etc.).</li>");
+	document.write("<li><b>upper-roman: </b>the marker is upper-roman (I, II, III, IV, V, etc.).</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"square\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateListStylePositionList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>outside: </b>the list-item marker will be rendered before any text content. This is default.</li>");
+	document.write("<li><b>inside: </b>indents the list-item marker marker.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"italic\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateFontStyleList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>normal: </b>font is normal. This is default.</li>");
+	document.write("<li><b>italic: </b>font is in italic.</li>");
+	document.write("<li><b>oblique: </b>font is in oblique.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"oblique\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateOrientationList(strAttrib)
+{
+	document.write("<ul>");
+
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"x-small\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateFontStretchList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>ultra-condensed: </b>makes the text as narrow as it gets.</li>");
+	document.write("<li><b>extra-condensed: </b>makes the text narrower than condensed, but not as narrow as ultra-condensed.</li>");
+	document.write("<li><b>condensed: </b>makes the text narrower than semi-condensed, but not as narrow as extra-condensed.</li>");
+	document.write("<li><b>semi-condensed: </b>makes the text narrower than normal, but not as narrow as condensed.</li>");
+	document.write("<li><b>normal: </b>the default value. No font stretching.</li>");
+	document.write("<li><b>semi-expanded: </b>makes the text wider than normal, but not as wide as expanded.</li>");
+	document.write("<li><b>expanded: </b>makes the text wider than semi-expanded, but not as wide as extra-expanded.</li>");
+	document.write("<li><b>extra-expanded: </b>makes the text wider than expanded, but not as wide as ultra-expanded.</li>");
+	document.write("<li><b>ultra-expanded: </b>makes the text as wide as it gets.</li>");	
+	document.write("<li><b>lighter: </b>font is lighter.</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"expanded\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateFontWeightList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>lighter: </b>font is lighter.</li>");
+	document.write("<li><b>bold: </b>font is bold.</li>");
+	document.write("<li><b>bolder: </b>font is bolder.</li>");
+	document.write("<li><b>100</b></li>");
+	document.write("<li><b>200</b></li>");
+	document.write("<li><b>300</b></li>");
+	document.write("<li><b>400: </b>same as 'normal'.</li>");
+	document.write("<li><b>500</b></li>");
+	document.write("<li><b>600</b></li>");
+	document.write("<li><b>700: </b>same as 'bold'.</li>");
+	document.write("<li><b>800</b></li>");
+	document.write("<li><b>900</b></li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"100\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function CreateFontSizeList(strAttrib)
+{
+	document.write("<ul>");
+	document.write("<li><b>xx-small</b></li>");
+	document.write("<li><b>x-small</b></li>");
+	document.write("<li><b>small</b></li>");
+	document.write("<li><b>medium</b></li>");
+	document.write("<li><b>large</b></li>");
+	document.write("<li><b>x-large</b></li>");
+	document.write("<li><b>xx-large: </b>Sets the size of the font to different fixed sizes, from xx-small to xx-large.</li>");
+	document.write("<li><b>smaller: </b>Decreases the font-size by one relative unit.</li>");
+	document.write("<li><b>larger: </b>Increases the font-size by one relative unit.</li>");
+	document.write("<li><b>Explicit size: </b>");
+	CreateLengthList(strAttrib);
+	document.write("</li>");
+	document.write("</ul>");
+	if (strAttrib)
+	{
+		document.write("E.G.<p class=\"Code\">document.body.style." + strAttrib + " = \"large\";<br/>");
+		document.write("console.log(document.body.style." + strAttrib + ");</p>");
+	}
+}
+
+function MakeAttributeOptionsRow(arrayStyleAttributes)
+{
+	document.write("<td><select>");
+	for (let nI = 1; nI < arrayStyleAttributes.length; nI++)
+	{
+		if (nI == 1)
+			document.write("<option selected>");
+		else
+			document.write("<option>");
+		document.write(arrayStyleAttributes[nI]);
+		document.write("</option>");
+	}
+	document.write("</select></td>");
+}
+
+function MakeAttributeOptions()
+{
+	let strText = "";
+	
+	if (arguments.length > 0)
+	{
+		//document.write("<table border=\"1\" cellspacing=\"0\" style=\"display:inline;\"><tr><td><b>\"</b></td>");
+		document.write("<table style=\"display:inline;\"><tr><td><b>\"</b></td>");
+	
+		for (let nI = 0; nI < arguments.length; nI++) 
+		{
+		    if (Array.isArray(arguments[nI]))
+		    {
+		    	document.write("<td style=\"padding-right:5px;\">" + arguments[nI][0] + "</td>");
+		    	MakeAttributeOptionsRow(arguments[nI]);
+		    }
+		    else
+		    {
+		    	document.write(arguments[nI]);
+		    }
+		}
+		document.write("<td><b>\";</b></td></tr>");
+		document.write("</tr></table><br/<br/>");
+	}
+}
+
+//**********************************************************************************************************************
+//**********************************************************************************************************************
 //** INFO POPUPS 
 //**********************************************************************************************************************
 //**********************************************************************************************************************
@@ -54,6 +659,7 @@ function DoCloseInfoPopup(dialogPopupContainer)
 //**********************************************************************************************************************
 
 let g_arrayQuestions = [];
+let g_nStageNum = 0;
 
 function OnClickSubmitAnswers(g_arrayQuestions)
 {
@@ -406,26 +1012,61 @@ function DoLogin(strTargetPassword, strCourseName)
 				let divStage = document.getElementById(sessionStorage["current_stage"]);
 				if (!divStage)
 				{
-					sessionStorage["current_stage"] = "Stage1";
+					sessionStorage["current_stage"] = "Stage0";
 					divStage = document.getElementById(sessionStorage["current_stage"]);
 				}
 				if (divStage)
 					divStage.style.display = "block";
 					
 			}
-			else if (document.getElementById('Stage1'))
+			else if (document.getElementById('Stage0'))
 			{
 				//console.log("document.getElementById('Stage1') = " + document.getElementById("Stage1"));
-				document.getElementById("Stage1").style.display = "block";
+				document.getElementById("Stage0").style.display = "block";
 			}
 			divContentHeader.style.display = "block";
 			
 			if (!sessionStorage["current_stage"] || (sessionStorage["current_stage"].length == 0))
-				sessionStorage["current_stage"] = "Stage1";
+				sessionStorage["current_stage"] = "Stage0";
 								
 			DoHighlightCurrentStageLink(sessionStorage["current_stage"] + "Heading", "");
 		}
 	}
+}
+
+function DoNext(nStageNum)
+{
+	let nNextStageNum = nStageNum + 1;
+	
+	console.group("Next");
+	console.log("nStageNum = " + nStageNum);
+	console.log("nNextStageNum = " + nNextStageNum);
+	DoShowHide("Stage" + nNextStageNum, "Stage" + nStageNum);
+	console.groupEnd();
+}
+
+function DoPrevious(nStageNum)
+{
+	let nPrevStageNum = nStageNum - 1;
+	
+	console.group("Previous");
+	console.log("nStageNum = " + nStageNum);
+	console.log("nPrevStageNum = " + nPrevStageNum);
+	DoShowHide("Stage" + nPrevStageNum, "Stage" + nStageNum);
+	console.groupEnd();
+}
+
+function DoNextPage(strPage)
+{
+	sessionStorage["current_stage"] = 0;
+	document.location = strPage;
+}
+
+
+function DoNextPage(strPage)
+{
+	sessionStorage["current_stage"] = 0;
+	document.location = strPage;
 }
 
 function DoShowHide(strIDDiv2Show, strIDDiv2Hide)
@@ -434,6 +1075,9 @@ function DoShowHide(strIDDiv2Show, strIDDiv2Hide)
 		div2Show = document.getElementById(strIDDiv2Show),
 		strIDLink2Highlight = "", 
 		strIDLink2Unhighlight = "";
+		
+	console.log("strIDDiv2Show = " + strIDDiv2Show);
+	console.log("strIDDiv2Hide = " + strIDDiv2Hide);
 
 	if (div2Hide)
 	{
@@ -458,28 +1102,31 @@ function DoShowHide(strIDDiv2Show, strIDDiv2Hide)
 function DrawFirstStageButtons(strStartPage, nStageNum)
 {
 	g_nStageNum++;
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"document.location='" + strStartPage + "'\">&lt; PREVIOUS</button>&nbsp;");
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage2', 'Stage1')\">NEXT &gt;</button>");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoPreviousPage('" + strStartPage + "')\">&lt; PREVIOUS</button>&nbsp;");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoNext(" + nStageNum + ")\">NEXT &gt;</button>");
 	
 	return nStageNum + 1;
 }
 
 function DrawLastStageButtons(strNextPage, nStageNum)
 {	
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + (nStageNum - 1).toString() + "', 'Stage" + nStageNum.toString() + "')\">&lt; PREVIOUS</button>");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoPrevious(" + nStageNum + ")\">&lt; PREVIOUS</button>");
 	if (strNextPage.length > 0)
-		document.write("&nbsp;<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"document.location='" + strNextPage+ "'\">NEXT &gt;</button>&nbsp;");
-	
+		document.write("&nbsp;<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoNextPage('" + strNextPage + "')\">NEXT &gt;</button>&nbsp;");
+console.log("***************");
+console.log(nStageNum);	
+console.log("***************");
+
 	return nStageNum + 1;
 }
 
 function DrawMidStageButtons(nStageNum)
 {
-	let nNextStageNum = nStageNum + 1;
-	let nPrevStageNum = nStageNum - 1;
-
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + nPrevStageNum.toString() + "', 'Stage" + nStageNum.toString() + "')\">&lt; PREVIOUS</button>&nbsp;");
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoShowHide('Stage" + nNextStageNum.toString() + "', 'Stage" + nStageNum.toString() + "')\">NEXT &gt;</button>");
+	let nNextStageNum = nStageNum;
+	let nPrevStageNum = nStageNum - 2;
+	
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoPrevious(" + nStageNum + ")\">&lt; PREVIOUS</button>&nbsp;");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoNext(" + nStageNum + ")\">NEXT &gt;</button>");
 	
 	return nStageNum + 1;
 }
@@ -512,21 +1159,23 @@ function SetStageDivIDs(strStageLinkID)
 	if (divCourseContent)
 	{
 		let strTagName = "";
-		//g_arrayStageBookmarks = [];
 		
+		console.group("STAGE IDs");
 		for (let nI = 0; nI < divCourseContent.children.length; nI++)
 		{
 			strTagName = divCourseContent.children[nI].tagName;
 			if (strTagName == "DIV")
 			{
-				divCourseContent.children[nI].id = "Stage" + (nI + 1).toString();
+				divCourseContent.children[nI].id = "Stage" + nI.toString();
+				console.log(divCourseContent.children[nI].id);
 				
 				for (let nJ = 0; nJ < divCourseContent.children[nI].children.length; nJ++)
 				{
 					strTagName = divCourseContent.children[nI].children[nJ].tagName;
 					if (strTagName == "H2")
 					{
-						divCourseContent.children[nI].children[nJ].id = "Stage" + (nI + 1).toString() + "Heading";
+						divCourseContent.children[nI].children[nJ].id = "Stage" + nI.toString() + "Heading";
+						console.log(nI + ") " + divCourseContent.children[nI].children[nJ].innerText);
 						g_arrayStageBookmarks.push("<a href=\"#\" class=\"StageLink\" id=\"" + 
 																	divCourseContent.children[nI].children[nJ].innerText +
 																	"\" onclick=\"OnClickStageLink('" +
@@ -537,6 +1186,7 @@ function SetStageDivIDs(strStageLinkID)
 				}
 			}
 		}
+		console.groupEnd();
 		GenerateStageMenu();
 	}
 }
