@@ -1061,6 +1061,7 @@
 								Here is the source code:
 								<ul>
 									<li><a href="code/navigation/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
 									<li><a href="code/navigation/products.html" type="text/rtf" download>products.html</a>. </li>
 									<li><a href="code/navigation/services.html" type="text/rtf" download>services.html</a>. </li>
 									<li><a href="code/navigation/contact.html" type="text/rtf" download>contact.html</a>. </li>
@@ -1248,6 +1249,7 @@
 								Here is the source code:
 								<ul>
 									<li><a href="code/popups/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
 									<li><a href="code/popups/products.html" type="text/rtf" download>products.html</a>. </li>
 									<li><a href="code/popups/services.html" type="text/rtf" download>services.html</a>. </li>
 									<li><a href="code/popups/contact.html" type="text/rtf" download>contact.html</a>. </li>
@@ -1293,6 +1295,7 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;text-align:center;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">transition: 0.3s;</span><br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">z-index:1;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">overflow:hidden;</span><br/>
 								}
 							</p>
 							<ul>
@@ -1366,6 +1369,51 @@
 								}
 							</p>
 							<p>
+								Okay, so this footer will most likely contain at least some static content that you will never want 
+								to change. Hence just making copies of 'index.html' (and therefore the slider code) and renaming 
+								the copy would be adequate. However you may also want to include some content in the footer that 
+								does change, e.g. highlighting new products or customer testimonials etc. In that case you would be 
+								back to manually editing several .html to update that oart of the footer content. So let's add the 
+								following:
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div class="footer" id="footer"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;a id="activator" class="activator" onclick="DoOpenFooter()"&gt;▲&lt;/a&gt;&lt;br/&gt;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;script type="text/javascript"&gt;GenerateFooterContent();&lt;/script&gt;</span><br/>
+								&lt;/div&gt;
+							</p>
+							<h3>common.js</h3>
+							<p class="Code">
+								function GenerateFooterContent()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("Great company with great products - Fred Smith&lt;br/&gt;&lt;br/&gt;");<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("Terrific customer service - Joe Bloggs&lt;br/&gt;&lt;br/&gt;");<br/>
+								}
+							</p>
+							<p>
+								And here are the results:<br/><br/>
+								<a href="images/index9.jpg"><img src="images/index9.jpg" alt="images/index9.jpg" width="800"/></a><br/><br/>
+								So from here on you could update those testimonials by simply change the code in that function and all the 
+								.html web pages will see the changed footer contents.
+							</p>
+							<p>
+								Here is the source code:
+								<ul>
+									<li><a href="code/slider/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
+									<li><a href="code/slider/products.html" type="text/rtf" download>products.html</a>. </li>
+									<li><a href="code/slider/services.html" type="text/rtf" download>services.html</a>. </li>
+									<li><a href="code/slider/contact.html" type="text/rtf" download>contact.html</a>. </li>
+									<li><a href="code/slider/televisions.html" type="text/rtf" download>televisions.html</a>. </li>
+									<li><a href="code/slider/DVDplayers.html" type="text/rtf" download>DVDplayers.html</a>. </li>
+									<li><a href="code/slider/surround.html" type="text/rtf" download>surround.html</a>. </li>
+									<li><a href="code/slider/games.html" type="text/rtf" download>games.html</a>. </li>
+									<li><a href="code/slider/style.css" type="text/rtf" download>style.css</a>. </li>
+									<li><a href="code/slider/common.js" type="text/rtf" download>common.js</a>. </li>
+								</ul>
+							</p>
+							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
 								</script>
@@ -1377,7 +1425,150 @@
 						
 							<h2 class="StageHeading">Forms</h2>
 							
-							<p>&nbsp;</p>
+							<p>
+								Forms contain a bunch of inputs with which the user can enter assorted data that is to be processed 
+								by the web page to produce an out come. Among the simplest examples is a login form where the user 
+								enters a password in a text field and then clicks a 'login' button. Web page code then checks that 
+								the password is valid and, if it is, then hidden page content is revealed to the user.
+							</p>
+							<p>
+								This is password checking is normally done within the secure environment of the web server, and with 
+								PHP code. However it is also possible to do it with Javascript, albeit not all that securely. The 
+								server aspects of HTML forms will be discussed briefly here, however the data processing of forms 
+								will be done with javascript. You start a form like this:
+							</p>
+							<p class="Code">
+								&lt;form target="..." action="..." method="..."&gt;<br/>
+								<br/>
+								&lt;/form&gt;
+							</p>
+							<p>
+								Now if you can remember form the HTML part of the course those tage properties have the following 
+								purposes:
+							</p>
+							<ul>
+								<li>
+									<b>target: </b>there are 4 valid values for this property:
+									<ul>
+										<li>
+											<b>_blank: </b>this will cause the results for form submission and data processesing to  
+											be displayed in a new 'child' web browser tab.
+										</li><br/>
+										<li>
+											<b>self: </b>this will cause the results for form submission and data processesing to  
+											be displayed in the same web browser tab as the form. This is the default if you do not 
+											specify the 'target' property.
+										</li><br/>
+										<li>
+											<b>parent_: </b>for all intents and purposes this has the same effect as '_self'. You are 
+											unlikely to be coding a form in a way that this is not the case.
+										</li><br/>
+										<li>
+											<b>_top: </b>for all intents and purposes this has the same effect as '_self'. You are 
+											unlikely to be coding a form in a way that this is not the case.
+										</li>
+									</ul>
+									You are unlikely to need to use '_top' and '_parent'.
+								</li><br/>
+								<li>
+									<b>action: </b>this is usually a local file name. It can be the same .html file name as the one 
+									the form is contained in, or it can be a different .html file name. It can also be the URL of an 
+									external .html web page.
+								</li><br/>
+								<li>
+									<b>method: </b> there are 2 valid values:
+									<ul>
+										<li>
+											<b>get: </b>this results in the form data being visible, appended to the URL of the web 
+											page. It is good for debugging purposes, but not all that secure.
+										</li><br/>
+										<li>
+											<b>post: </b>this results in the form data being hidden, and is the more secure method for 
+											data transfer to the web server.
+										</li>
+									</ul><br/>
+									<b>NOTE: </b>this is only useful if the web page is being accessed from a web server and the form data 
+									can be accessed through one of the server languages, e.g. PHP. It is not relevent if you are processing 
+									the form data via javascript.
+								</li>
+							</ul>
+							<p>
+								The first thing we will do is to make our 'page_contents' &lt;div&gt; invisible - it will only 
+								become visible if the user successfully logs in with the correct password. We will implement this 
+								functionality in the next stage.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.page_content
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">display:/*inline-block*/none;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:402px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1244px;<br/>
+								}
+							</p>
+							<p>
+								Next we need to create a visible &lt;div&gt; for our login form:
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div class="navigation" id="navigation"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript"&gt;CreateNavigationStructure();&lt;/script&gt;<br/>
+								&lt;/div&gt;<br/>
+								<br/>
+								<span class="HighlightCode">&lt;div id="login" class="login"&gt;</span><br/>
+								<span class="HighlightCode">&nbsp;</span><br/>
+								<span class="HighlightCode">&lt;/div&gt;</span><br/>
+								<br/>
+								&lt;div class="page_content" id="page_content"&gt;<br/>
+								<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;&lt;b&gt;&lt;script type="text/javascript"&gt;document.write(document.title);&lt;/script&gt;&lt;/b&gt;&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	<br/>		
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br/>
+							</p>
+							<p>
+								Next we need to create the new class in 'style.css'.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.page_content<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:none;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:402px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1244px;<br/>
+								}<br/>
+								<br/>
+								.login<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1414px;<br/>
+								}
+							</p>
+							<p>
+								Here are the results of those code changes.<br/><br/>
+								<a href="images/index10.jpg"><img src="images/index10.jpg" alt="images/index10.jpg" width="800"/></a><br/><br/>
+							</p>
+							<p>
+								So what will do now is setup a login form for the next stage. I will do so with MS Expression Web.<br/><br/>
+								<video width="1000"controls>
+									<source src="images/form.webm" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+
+							</p>
 							
 							<p>
 								<script type="text/javascript">
