@@ -1786,6 +1786,41 @@
 								</video>
 							</p>
 							<p>
+								The way this is setup now means that the user will have to login to every page, every single time 
+								he or she visits that page, and that is a really nuiscance. We need a way to store the password,  
+								once the user logs in with a correct password, and there after do the login process automatically. 
+								We can store the correct password in one of two javascript storage objects:
+								<ul>
+									<li>
+										<b>localStorage: </b>this is permanent storage until you explicitly remove the stored data. 
+										So the user can close the tab or the web browser, come back to the page later and the correct 
+										password that was stored last time they logged in will still be there.
+									</li><br/>
+									<li>
+										<b>sessionStorage: </b>this storage lasts only as long as the tab, and the web browser, 
+										remains open. Once the tab or web browser is closed the password you have stored in this 
+										object will be deleted.
+									</li>
+								</ul>
+							</p>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<p>
 								All that then remains is top copy this new login div to the other .html pages. Or you could create 
 								another javascript function, e.g. GenerateLoginForm(), to generate the HTML tags for the login form, 
 								like we did with the navigation structure. That way you could make any further changes you want to 
@@ -1853,22 +1888,8 @@
 									<input type="hidden" name="hosted_button_id0" value="AJ472KN2R9VG2" />
 									<input type="hidden" name="currency_code0" value="AUD" />
 									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit0" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-							</form>														
+								</form>														
 							</p>
-							
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Tables</h2>
-							
-							<p>&nbsp;</p>
 							
 							<p>
 								<script type="text/javascript">
@@ -1882,8 +1903,109 @@
 						
 							<h2 class="StageHeading">Products page</h2>
 							
-							<p>&nbsp;</p>
+							<p>
+								You could just code the details of all your products manually in HTML, and that might be just fine 
+								if you had only half a dozen products. But what if you had a few hundred products? Coding the 
+								details of hundreds of products individually would take you a VERY long time and is a very 
+								inefficent way of doing the coding. So instead let's code a javascript data structure to store the 
+								details of all your products so they can be added much more quickly and efficiently. Then we can 
+								code a javascript function to read the text details from it and generate the necessary HTML tags 
+								using that text.
+							</p>
 							
+							<p>
+								So what sort of data structure do we need? Well what sort of details do we need to store for each 
+								product? They would include the following surely:<br/><br/>
+								<ul>
+									<li>Product name / text</li>
+									<li>Price / decimal number</li>
+									<li>Product code / text or integer</li>
+									<li>Image name / text</li>
+									<li>Postage cost / decimal number</li>
+									<li>Product features / text &amp; integers</li>
+									<li>User manual PDF filename / text</li>
+									<li>Paypal button / HTML text</li>
+								</ul><br/>
+								So we are going to need a data structure that is capable of storing different data types, and 
+								clearly a javascript 'object' is clearly going to be the best choice. In C these are refered to as 
+								'structs' or structures, in Pascal they are called 'records' and in Python they are referred to as 
+								'collections'. In contrast arrays are used to store identical data types.
+							</p>
+							<p>
+								One object will store the details of one product, so how do we store a bunch of products? Well we 
+								could create an array of the above objects. All the elements of an array must be the same data type 
+								but there is no rule that says that arrays can only contain strings or integers etc. They can also 
+								contain identical objects. 
+							</p>
+							<p>
+								However just keep in mind that the rules with javascript are some what more loose than they are in 
+								C. In C the elements in an array must of strictly identical data types, but in Javascript they can 
+								vary. But it is still a good idea to assume the C rules, otherwise your code can potentially get very 
+								complicated and hard to debug. Remember we created a series of product pages when we built the popup 
+								menu - TVs, DVDs, gaming consoles and surround sound systems. So we will create a seperate data 
+								structure specifically  for each of those pages to keep product lists manageable.
+							</p>
+							<p>	
+								So here is how we might design our data product data structure for TVs, and we will build it in a 
+								new file called 'products.js' Now let's recall that an array is declared with square brackets [], 
+								while an object is declared with braces {}. So the following is the basic 'layout' of our array of 
+								objects.
+							</p>
+							<h3>products.js</h3>
+							<p class="Code">
+								let g_arrayProducts = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{}<br/>
+								];
+							</p>
+							<p>
+								So continuing we could do it this way, but there is a lot of unnecessary typing in having to repeat 
+								the object field names (strBrand, strName, fPrice and strImage) over and over again.
+							</p>
+							<p class="Code">
+								let g_arrayProducts = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"TLC", strName:"TCL 55\" C845 4K UHD Mini LED QLED Google TV", fPrice:1695, strImage:"tv1.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Sony", strName:"Sony 85\" X90L Bravia XR Full Array LED 4K Google TV", fPrice:3995, strImage:"tv2.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"LG", strName:"LG 75\" UR8050 4K UHD LED Smart TV", fPrice:1795, strImage:"tv3.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Hisense", strName:"Hisense 40\" A4KAU Full HD Smart TV", fPrice:395, strImage:"tv4.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"FFalcon", strName:"FFalcon 40\” S53 FHD Smart TV", fPrice:329, strImage:"tv5.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Samsung", strName:"Samsung 75\" Q70C QLED 4K Smart TV", fPrice:2995, strImage:"tv6.jpg"}<br/>
+								];
+							</p>
+							<p>
+								 Here is a better way involving less typing. The function 'NewTV(...)' creates the object for us 
+								 abd returns it as the next element in our array.
+							</p>
+							<p class="Code">
+								function NewTV(strCategory, strName, fPrice, strImageFilename)<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strCategory = strCategory;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strName = strName;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.fPrice = fPrice;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strImageFilename = strImageFilename;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
+								}<br/>
+								<br/>
+								let g_arrayProducts = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("TLC", "TCL 55\" C845 4K UHD Mini LED QLED Google TV", 1695, "tv1.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("Sony", "Sony 85\" X90L Bravia XR Full Array LED 4K Google TV", 3995, "tv2.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("LG", "LG 75\" UR8050 4K UHD LED Smart TV", 1795, "tv3.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("Hisense", "Hisense 40\" A4KAU Full HD Smart TV", 395, "tv4.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("FFalcon", "FFalcon 40\” S53 FHD Smart TV", 329, "tv5.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;NewTV("Samsung", "Samsung 75\" Q70C QLED 4K Smart TV", 2995, "tv6.jpg")<br/>
+								];
+							</p>
+							<p>
+								Next we need to code a function to generate the HTML code for these products, and we will call this 
+								function on'televisions.jpg'.
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
