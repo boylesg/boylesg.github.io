@@ -1,17 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
-
+	
 	<!-- #BeginTemplate "courses.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Build a web page</title>
-		<!-- #EndEditable -->
-		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
-		<!-- #BeginEditable "page_styles" -->
 			<style>
 			</style>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page" -->
+			<style>
+			</style>
+			
+			<script type="text/javascript">
+				
+				let g_strTargetPassword = "U3VYZWVTUEJFNUhG",
+					g_strTargetCourse = "web_course";
+				
+			</script>
+			
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -69,11 +79,11 @@
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="c_course.html">C</a></li>
+									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="web_course.html">Web Sites</a></li>
+									<a href="../courses/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="python_course.html">Python</a></li>
+									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -127,7 +137,7 @@
 						<br/><br/>
 						<label for="password">Password&nbsp;</label>
 						<input type="password" id="password" value=""/>&nbsp;
-						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+						<input type="button" value="LOG IN" onclick="DoLogin(g_strTargetPassword, g_strTargetCourse)"/>
 					</div>
 					<!-- #BeginEditable "pre-content" -->
 					
@@ -175,7 +185,7 @@
 							</p>
 							<p>
 								<video width="1000"controls>
-									<source src="images/PageStructure.webm" type="video/mp4">
+									<source src="images/PageStructure.webm" type="video/webm">
 									Your browser does not support the video tag.
 								</video>
 							</p>
@@ -1061,6 +1071,7 @@
 								Here is the source code:
 								<ul>
 									<li><a href="code/navigation/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
 									<li><a href="code/navigation/products.html" type="text/rtf" download>products.html</a>. </li>
 									<li><a href="code/navigation/services.html" type="text/rtf" download>services.html</a>. </li>
 									<li><a href="code/navigation/contact.html" type="text/rtf" download>contact.html</a>. </li>
@@ -1248,6 +1259,7 @@
 								Here is the source code:
 								<ul>
 									<li><a href="code/popups/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
 									<li><a href="code/popups/products.html" type="text/rtf" download>products.html</a>. </li>
 									<li><a href="code/popups/services.html" type="text/rtf" download>services.html</a>. </li>
 									<li><a href="code/popups/contact.html" type="text/rtf" download>contact.html</a>. </li>
@@ -1274,7 +1286,7 @@
 							<p>
 								Here is an example of a sliding menu, and this is what we are going to create in this stage.<br/><br/>
 								<video width="1000"controls>
-									<source src="images/slide.webm" type="video/mp4">
+									<source src="images/slide.webm" type="video/webm">
 									Your browser does not support the video tag.
 								</video>
 							</p>
@@ -1293,6 +1305,7 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;text-align:center;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">transition: 0.3s;</span><br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">z-index:1;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">overflow:hidden;</span><br/>
 								}
 							</p>
 							<ul>
@@ -1366,19 +1379,50 @@
 								}
 							</p>
 							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
+								Okay, so this footer will most likely contain at least some static content that you will never want 
+								to change. Hence just making copies of 'index.html' (and therefore the slider code) and renaming 
+								the copy would be adequate. However you may also want to include some content in the footer that 
+								does change, e.g. highlighting new products or customer testimonials etc. In that case you would be 
+								back to manually editing several .html to update that oart of the footer content. So let's add the 
+								following:
 							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Forms</h2>
-							
-							<p>&nbsp;</p>
-							
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div class="footer" id="footer"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;a id="activator" class="activator" onclick="DoOpenFooter()"&gt;▲&lt;/a&gt;&lt;br/&gt;&lt;h1&gt;FOOTER&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;script type="text/javascript"&gt;GenerateFooterContent();&lt;/script&gt;</span><br/>
+								&lt;/div&gt;
+							</p>
+							<h3>common.js</h3>
+							<p class="Code">
+								function GenerateFooterContent()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("Great company with great products - Fred Smith&lt;br/&gt;&lt;br/&gt;");<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("Terrific customer service - Joe Bloggs&lt;br/&gt;&lt;br/&gt;");<br/>
+								}
+							</p>
+							<p>
+								And here are the results:<br/><br/>
+								<a href="images/index9.jpg"><img src="images/index9.jpg" alt="images/index9.jpg" width="800"/></a><br/><br/>
+								So from here on you could update those testimonials by simply change the code in that function and all the 
+								.html web pages will see the changed footer contents.
+							</p>
+							<p>
+								Here is the source code:
+								<ul>
+									<li><a href="code/slider/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
+									<li><a href="code/slider/products.html" type="text/rtf" download>products.html</a>. </li>
+									<li><a href="code/slider/services.html" type="text/rtf" download>services.html</a>. </li>
+									<li><a href="code/slider/contact.html" type="text/rtf" download>contact.html</a>. </li>
+									<li><a href="code/slider/televisions.html" type="text/rtf" download>televisions.html</a>. </li>
+									<li><a href="code/slider/DVDplayers.html" type="text/rtf" download>DVDplayers.html</a>. </li>
+									<li><a href="code/slider/surround.html" type="text/rtf" download>surround.html</a>. </li>
+									<li><a href="code/slider/games.html" type="text/rtf" download>games.html</a>. </li>
+									<li><a href="code/slider/style.css" type="text/rtf" download>style.css</a>. </li>
+									<li><a href="code/slider/common.js" type="text/rtf" download>common.js</a>. </li>
+								</ul>
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -1389,10 +1433,383 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Login forms</h2>
+							<h2 class="StageHeading">Login form</h2>
 							
-							<p>&nbsp;</p>
-							
+							<p>
+								Forms contain a bunch of inputs with which the user can enter assorted data that is to be processed 
+								by the web page to produce an out come. Among the simplest examples is a login form where the user 
+								enters a password in a text field and then clicks a 'login' button. Web page code then checks that 
+								the password is valid and, if it is, then hidden page content is revealed to the user.
+							</p>
+							<p>
+								This is password checking is normally done within the secure environment of the web server, and with 
+								PHP code. However it is also possible to do it with Javascript, albeit not all that securely. The 
+								server aspects of HTML forms will be discussed briefly here, however the data processing of forms 
+								will be done with javascript. You start a form like this:
+							</p>
+							<p class="Code">
+								&lt;form target="..." action="..." method="..."&gt;<br/>
+								<br/>
+								&lt;/form&gt;
+							</p>
+							<p>
+								Now if you can remember form the HTML part of the course those tage properties have the following 
+								purposes:
+							</p>
+							<ul>
+								<li>
+									<b>target: </b>there are 4 valid values for this property:
+									<ul>
+										<li>
+											<b>_blank: </b>this will cause the results for form submission and data processesing to  
+											be displayed in a new 'child' web browser tab.
+										</li><br/>
+										<li>
+											<b>self: </b>this will cause the results for form submission and data processesing to  
+											be displayed in the same web browser tab as the form. This is the default if you do not 
+											specify the 'target' property.
+										</li><br/>
+										<li>
+											<b>parent_: </b>for all intents and purposes this has the same effect as '_self'. You are 
+											unlikely to be coding a form in a way that this is not the case.
+										</li><br/>
+										<li>
+											<b>_top: </b>for all intents and purposes this has the same effect as '_self'. You are 
+											unlikely to be coding a form in a way that this is not the case.
+										</li>
+									</ul>
+									You are unlikely to need to use '_top' and '_parent'.
+								</li><br/>
+								<li>
+									<b>action: </b>this is usually a local file name. It can be the same .html file name as the one 
+									the form is contained in, or it can be a different .html file name. It can also be the URL of an 
+									external .html web page.
+								</li><br/>
+								<li>
+									<b>method: </b> there are 2 valid values:
+									<ul>
+										<li>
+											<b>get: </b>this results in the form data being visible, appended to the URL of the web 
+											page. It is good for debugging purposes, but not all that secure.
+										</li><br/>
+										<li>
+											<b>post: </b>this results in the form data being hidden, and is the more secure method for 
+											data transfer to the web server.
+										</li>
+									</ul><br/>
+									<b>NOTE: </b>this is only useful if the web page is being accessed from a web server and the form data 
+									can be accessed through one of the server languages, e.g. PHP. It is not relevent if you are processing 
+									the form data via javascript.
+								</li>
+							</ul>
+							<p>
+								The first thing we will do is to make our 'page_contents' &lt;div&gt; invisible - it will only 
+								become visible if the user successfully logs in with the correct password. We will implement this 
+								functionality in the next stage.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.page_content
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">display:/*inline-block*/none;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:402px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1244px;<br/>
+								}
+							</p>
+							<p>
+								Next we need to create a visible &lt;div&gt; for our login form:
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div class="navigation" id="navigation"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;script type="text/javascript"&gt;CreateNavigationStructure();&lt;/script&gt;<br/>
+								&lt;/div&gt;<br/>
+								<br/>
+								<span class="HighlightCode">&lt;div id="login" class="login"&gt;</span><br/>
+								<span class="HighlightCode">&nbsp;</span><br/>
+								<span class="HighlightCode">&lt;/div&gt;</span><br/>
+								<br/>
+								&lt;div class="page_content" id="page_content"&gt;<br/>
+								<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;&lt;b&gt;&lt;script type="text/javascript"&gt;document.write(document.title);&lt;/script&gt;&lt;/b&gt;&lt;/h1&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	<br/>		
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br/>
+							</p>
+							<p>
+								Next we need to create the new class in 'style.css'.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.page_content<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:none;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background-color:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;overflow:auto;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:402px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1244px;<br/>
+								}<br/>
+								<br/>
+								.login<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:424px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:1414px;<br/>
+								}
+							</p>
+							<p>
+								So what will do now is setup a login form for the next stage. I will do so with MS Expression Web to 
+								show how convenient the WYSIWYG editor is for such tasks.<br/><br/>
+								<video width="1000"controls>
+									<source src="images/LoginForm.webm" type="video/webm">
+									Your browser does not support the video tag.
+								</video>
+							</p>
+							<p>
+								So here is the code I have added:
+							</p>
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;form action="" method="post" id="login_form" class="login_form"&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;label id="Label"&gt;Password: &lt;/label&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;input name="password" id="text_password" tabindex="1" type="password" /&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;input name="submit" id="button_submit" tabindex="2" type="submit" value="Login" /&gt;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;/form&gt;</span><br/>
+								&lt;f/div&gt;
+							</p>
+							<p>
+								I have added the following to the &lt;form&gt; tag.
+							</p>
+							<ul>
+								<li>
+									<b>class: </b>so we can format this forms with CSS individually from any forms we might want 
+									to add in future.
+								</li><br/>
+								<li>
+									<b>id: </b>so we can access this specific form individually with <span class="HighlightCode">
+									document.getElementById("...")</span>, if we need to. We also need this property for the 
+									individual &lt;input&gt; in order to get at the data entered by the user.
+								</li>
+							</ul>
+							<p>
+								So now we will do a bit of CSS styling on our form and the inputs to make it look nicer. So here is 
+								what I have added:
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;form method="get" id="login_form" class="login_form"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Please login&lt;/h2&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label id="Label"&gt;Password: &lt;/label&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="password" id="text_password" tabindex="1" type="password" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="login" id="button_login" tabindex="2" type="button" value="Login" onclick="DoLogin()" /&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>
+								&lt;/div&gt;
+							</p>
+							<p>
+								So here I made the following changes:
+							</p>
+							<ul>
+								<li>
+									<b>Added 'tabindex' properties to &lt;input&gt; tags: </b>this allows the user to use the tab key 
+									to move from one input to the next. It works by a simple numerical order of the inputs.
+								</li><br/>
+								<li><b>&lt;form&gt; tag: </b>
+									<ul>
+										<li>
+											<b>action: </b>I removed this property because any form submission results will be sent to the 
+											same .html file (index.html in this case) by default.
+										</li><br/>
+										<li>
+											<b>method: </b>I changed the value of this to 'get' because it i easier to debug. However we  
+											will be processing the form data in javascript and technically we don't need it at all. However 
+											I will leave it there because it will be used in the PHP section of this course.
+										</li>
+									</ul>
+								</li><br/>
+								<li>
+									<b>Submit button: </b>
+									<ul>
+										<li>
+											<b>Changed this to a ordinary button: </b> &lt;input type="submit"...&gt; =&gt; 
+											&lt;input type="button"...&gt;, because, again, we do not need to submit the form to 
+											any web server.
+										</li><br/>
+										<li>
+											<b>Added 'onclick' property: </b>the function 'DoLogin()' will do the form data processing 
+											instead of a web server. When we re-use this form in the PHP section of this course we can 
+											simply call the javascript function <span class="HighlightCode">document.submit()</span>, 
+											and that has the same effect as clicking a submit type button.
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h3>style.css</h3>
+							<p class="Code">
+								.login_form<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:outset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;margin:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:290px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:115px;<br/>
+								}
+								
+							</p>
+							<p>
+								So this is what our login form looks like so far:<br/><br/>
+								<a href="images/index11.jpg"><img src="images/index11.jpg" alt="images/index11.jpg" width="800"/></a><br/><br/>
+								If you are struggling to remember what each of those properties does then I suggest you comment them out, one by one 
+								(e.g. /*margin:10px;*/). Or change some of the values, when you type the : after the CSS attribute MS Expression Web 
+								will popup up a small menu with the list of value you can use with that attribute. See what effect doing this has on 
+								the appearance of the form and the page. This is the easiest way to get to know them well.
+							</p>
+							<p>
+								To my eyes the borders do not quite look right to produce the 3D effect. The shadowed borders at 
+								the right and bottom edges look too dark. So we will modify those and see of we can get it to look 
+								more relastic.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.login_form<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:outset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;margin:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:290px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:115px;<br/>
+								}
+								
+							</p>
+							<p>
+								So this looks nicer - I have added individual attributes to control the color of each of the left, 
+								right, top and bottom edges of the form. And here are the results:<br/><br/>
+								<a href="images/index12.jpg"><img src="images/index12.jpg" alt="images/index12.jpg" width="800"/></a><br/><br/>
+								So now we are going to re-use those border colors on the 'password' field, but in reverse, and on the login 
+								button.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.password<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:inset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:3px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#F0F0F0;<br/>
+								}<br/>
+								<br/>
+								.button<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:ouset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:3px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#F0F0F0;<br/>
+								}
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;form action="index.html" method="get" id="login_form" class="login_form"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Please login&lt;/h2&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label id="Label"&gt;Password: &lt;/label&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="password" id="text_password" tabindex="1" type="password" <span class="HighlightCode">class="password"</span> /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="login" id="button_login" tabindex="2" type="button" value="Login" <span class="HighlightCode">class="button"</span> onclick="DoLogin()" /&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>
+								&lt;/div&gt;<br/>
+							</p>
+							<p>
+								And here are the results:<br/><br/>
+								<a href="images/index13.jpg"><img src="images/index13.jpg" alt="images/index13.jpg" width="800"/></a><br/><br/>
+								So now we need to make this login form actually work by implementing that 'DoLogin()' function. I 
+								have add comments in the code below to explain what each line does. As you can see from the code, 
+								the correct password is 'password'.
+							</p>
+							<h3>common.js</h3>
+							<p class="Code">
+								function DoLogin()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let inputPassword = document.getElementById("text_password"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin = document.getElementById("login"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent = document.getElementById("page_content");<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Check if the id were valid and that we have a valid objects<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (inputPassword &amp;&amp; divLogin &amp;&amp; divContent)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// If the password is correct - all text and password input objects<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// have the property 'value' which contains the text typed by the<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// user<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (inputPassword.value == "password")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Hide the div containing the login form<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin.style.display = "none";// The javascript 'display' property corresponds to the CSS attribute 'display'<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Show the div containing the page contents<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent.style.display = "inline-block";<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}<br/>
+							</p>
+							<p>
+								Here are the results:<br/><br/>
+								<video width="1000" controls muted>
+									<source src="images/Login.webm" type="video/webm">
+									Your browser does not support the video tag.
+								</video>
+							</p>
+							<p>
+								All that then remains is top copy this new login div to the other .html pages. Or you could create 
+								another javascript function, e.g. GenerateLoginForm(), to generate the HTML tags for the login form, 
+								like we did with the navigation structure. That way you could make any further changes you want to 
+								the login form in only one place rather than every single .html file. This is still a fairly 
+								cumbersome way to deal with common parts of a web page, but we will have another look at .dwt files 
+								at a later stage. DWT is a much more convenoent way to deal with parts of web pages you want to be 
+								constant and editable only in one place.							
+							</p>
+							<p>
+								Here is the source code:
+								<ul>
+									<li><a href="code/login/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
+									<li><a href="code/login/products.html" type="text/rtf" download>products.html</a>. </li>
+									<li><a href="code/login/services.html" type="text/rtf" download>services.html</a>. </li>
+									<li><a href="code/login/contact.html" type="text/rtf" download>contact.html</a>. </li>
+									<li><a href="code/login/televisions.html" type="text/rtf" download>televisions.html</a>. </li>
+									<li><a href="code/login/DVDplayers.html" type="text/rtf" download>DVDplayers.html</a>. </li>
+									<li><a href="code/login/surround.html" type="text/rtf" download>surround.html</a>. </li>
+									<li><a href="code/login/games.html" type="text/rtf" download>games.html</a>. </li>
+									<li><a href="code/login/style.css" type="text/rtf" download>style.css</a>. </li>
+									<li><a href="code/login/common.js" type="text/rtf" download>common.js</a>. </li>
+								</ul>
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -1400,21 +1817,7 @@
 							</p>
 
 						</div>
-
-						<div style="display:none;">
 						
-							<h2 class="StageHeading">Contact forms</h2>
-							
-							<p>&nbsp;</p>
-							
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
-
-						</div>
-
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">Paypal Buttons</h2>
@@ -1446,10 +1849,10 @@
 								<a href="images/PaypalButtonBuyItNow8.jpg"><img src="images/PaypalButtonBuyItNow8.jpg" alt="imags/PaypalButtonBuyItNow8.jpg" width="800"/></a><br/><br/>
 								And here it is - you can click it safely as I have 'knobbled' code.<br/><br/>
 								<form action="" method="post" target="_top">
-									<input type="hidden" name="cmd" value="_s-xclick" />
-									<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
-									<input type="hidden" name="currency_code" value="AUD" />
-									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									<input type="hidden" name="cmd0" value="_s-xclick" />
+									<input type="hidden" name="hosted_button_id0" value="AJ472KN2R9VG2" />
+									<input type="hidden" name="currency_code0" value="AUD" />
+									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit0" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 							</form>														
 							</p>
 							
@@ -1537,6 +1940,10 @@
 							g_arrayStageBookmarks.push("<hr>");
 							console.log("g_nStageNum == " + g_nStageNum)
 						</script>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 					</div>

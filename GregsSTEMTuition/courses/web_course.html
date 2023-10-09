@@ -1,17 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
-
+	
 	<!-- #BeginTemplate "courses.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Web Programming Course</title>
+			<style>
+</style>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
-		<!-- #BeginEditable "page_styles" -->
+		<!-- #BeginEditable "page" -->
 			<style>
-			</style>
+</style>
+			
+			<script type="text/javascript">
+				
+				let g_strTargetPassword = "VTNWWVpXVlRVRUpGTlVoRw==", /*U3VYZWVTUEJFNUhG*/
+					g_strTargetCourse = "web_course";
+				
+			</script>
+			
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -127,7 +137,7 @@
 						<br/><br/>
 						<label for="password">Password&nbsp;</label>
 						<input type="password" id="password" value=""/>&nbsp;
-						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+						<input type="button" value="LOG IN" onclick="DoLogin(g_strTargetPassword, g_strTargetCourse)"/>
 					</div>
 					<!-- #BeginEditable "pre-content" -->
 					
@@ -283,9 +293,17 @@
 					<div style="display:none;" id="course_content">
 					<!-- #BeginEditable "content" -->
 
+
+
+
+
 					<p>
 						<button class="PreviousNextButtons" onclick="document.location = 'web_course_html.html';">NEXT &gt;</button>
 					</p>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 					</div>
