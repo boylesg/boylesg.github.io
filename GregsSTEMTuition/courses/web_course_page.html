@@ -1,17 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
-
+	
 	<!-- #BeginTemplate "courses.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Build a web page</title>
-		<!-- #EndEditable -->
-		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
-		<!-- #BeginEditable "page_styles" -->
 			<style>
 			</style>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page" -->
+			<style>
+			</style>
+			
+			<script type="text/javascript">
+				
+				let g_strTargetPassword = "U3VYZWVTUEJFNUhG",
+					g_strTargetCourse = "web_course";
+				
+			</script>
+			
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -69,11 +79,11 @@
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="c_course.html">C</a></li>
+									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="web_course.html">Web Sites</a></li>
+									<a href="../courses/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="python_course.html">Python</a></li>
+									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -127,7 +137,7 @@
 						<br/><br/>
 						<label for="password">Password&nbsp;</label>
 						<input type="password" id="password" value=""/>&nbsp;
-						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+						<input type="button" value="LOG IN" onclick="DoLogin(g_strTargetPassword, g_strTargetCourse)"/>
 					</div>
 					<!-- #BeginEditable "pre-content" -->
 					
@@ -175,7 +185,7 @@
 							</p>
 							<p>
 								<video width="1000"controls>
-									<source src="images/PageStructure.webm" type="video/mp4">
+									<source src="images/PageStructure.webm" type="video/webm">
 									Your browser does not support the video tag.
 								</video>
 							</p>
@@ -1276,7 +1286,7 @@
 							<p>
 								Here is an example of a sliding menu, and this is what we are going to create in this stage.<br/><br/>
 								<video width="1000"controls>
-									<source src="images/slide.webm" type="video/mp4">
+									<source src="images/slide.webm" type="video/webm">
 									Your browser does not support the video tag.
 								</video>
 							</p>
@@ -1423,7 +1433,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Forms</h2>
+							<h2 class="StageHeading">Login form</h2>
 							
 							<p>
 								Forms contain a bunch of inputs with which the user can enter assorted data that is to be processed 
@@ -1558,32 +1568,185 @@
 								}
 							</p>
 							<p>
-								Here are the results of those code changes.<br/><br/>
-								<a href="images/index10.jpg"><img src="images/index10.jpg" alt="images/index10.jpg" width="800"/></a><br/><br/>
-							</p>
-							<p>
-								So what will do now is setup a login form for the next stage. I will do so with MS Expression Web.<br/><br/>
+								So what will do now is setup a login form for the next stage. I will do so with MS Expression Web to 
+								show how convenient the WYSIWYG editor is for such tasks.<br/><br/>
 								<video width="1000"controls>
-									<source src="images/form.webm" type="video/mp4">
+									<source src="images/LoginForm.webm" type="video/webm">
 									Your browser does not support the video tag.
 								</video>
-
 							</p>
-							
 							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
+								So here is the code I have added:
 							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Login forms</h2>
-							
-							<p>&nbsp;</p>
-							
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;form action="" method="post" id="login_form" class="login_form"&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;label id="Label1"&gt;Password: &lt;/label&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;input name="password" id="text_password" tabindex="1" type="password" /&gt;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;input name="submit" id="button_submit" tabindex="2" type="submit" value="Login" /&gt;</span><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">&lt;/form&gt;</span><br/>
+								&lt;f/div&gt;
+							</p>
+							<p>
+								I have added the following to the &lt;form&gt; tag.
+							</p>
+							<ul>
+								<li>
+									<b>class: </b>so we can format this forms with CSS individually from any forms we might want 
+									to add in future.
+								</li><br/>
+								<li>
+									<b>id: </b>so we can access this specific form individually with <span class="HighlightCode">
+									document.getElementById("...")</span>, if we need to. We also need this property for the 
+									individual &lt;input&gt; in order to get at the data entered by the user.
+								</li>
+							</ul>
+							<p>
+								So now we will do a bit of CSS styling on our form and the inputs to make it look nicer. So here is 
+								what I have added:
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;form method="get" id="login_form" class="login_form"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Please login&lt;/h2&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label id="Label1"&gt;Password: &lt;/label&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="password" id="text_password" tabindex="1" type="password" /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="login" id="button_login" tabindex="2" type="button" value="Login" /&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>
+								&lt;/div&gt;
+							</p>
+							<p>
+								So here I made the following changes:
+							</p>
+							<ul>
+								<li>
+									<b>Added 'tabindex' properties to &lt;input&gt; tags: </b>this allows the user to use the tab key 
+									to move from one input to the next. It works by a simple numerical order of the inputs.
+								</li><br/>
+								<li><b>&lt;form&gt; tag: </b>
+									<ul>
+										<li>
+											<b>action: </b>I removed this property because any form submission results will be sent to the 
+											same .html file (index.html in this case) by default.
+										</li><br/>
+										<li>
+											<b>method: </b>I changed the value of thos to 'get' because it i easier to debug. However we  
+											will be processing the form data in javascript and technically we don't need it at all. However 
+											I will leave it there because it will be used in the PHP section of this course.
+										</li>
+									</ul>
+								</li><br/>
+								<li>
+									<b>Submit button: </b>
+									<ul>
+										<li>
+											<b>Changed this to a ordinary button: </b> &lt;input type="submit"...&gt; =&gt; 
+											&lt;input type="button"...&gt;, because, again, we do not need to submit the form to 
+											any web server.
+										</li><br/>
+										<li>
+											<b>Added 'onclick' property: </b>the function 'DoLogin()' will do the form data processing 
+											instead of a web server. When we re-use this form in the PHP section of this course we can 
+											simply call the javascript function <span class="HighlightCode">document.submit()</span>, 
+											and that has the same effect as clicking a submit type button.
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h3>style.css</h3>
+							<p class="Code">
+								.login_form<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:outset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;margin:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:290px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:115px;<br/>
+								}
+								
+							</p>
+							<p>
+								So this is what our login form looks like so far:<br/><br/>
+								<a href="images/index11.jpg"><img src="images/index11.jpg" alt="images/index11.jpg" width="800"/></a><br/><br/>
+								If you are struggling to remember what each of those properties does then I suggest you comment them out, one by one 
+								(e.g. /*margin:10px;*/). Or change some of the values, when you type the : after the CSS attribute MS Expression Web 
+								will popup up a small menu with the list of value you can use with that attribute. See what effect doing this has on 
+								the appearance of the form and the page. This is the easiest way to get to know them well.
+							</p>
+							<p>
+								To my eyes the borders do not quite look right to produce the 3D effect. The shadowed borders at 
+								the right and bottom edges look too dark. So we will modify those and see of we can get it to look 
+								more relastic.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.login_form<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;display:inline-block;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;position:relative;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:outset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:medium;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;background:silver;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;margin:10px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;padding:5px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;width:290px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;height:115px;<br/>
+								}
+								
+							</p>
+							<p>
+								So this looks nicer - I have added individual attributes to control the color of each of the left, 
+								right, top and bottom edges of the form. And here are the results:<br/><br/>
+								<a href="images/index12.jpg"><img src="images/index12.jpg" alt="images/index12.jpg" width="800"/></a><br/><br/>
+								So now we are going to re-use those border colors on the 'password' field, but in reverse, and on the login 
+								button.
+							</p>
+							<h3>style.css</h3>
+							<p class="Code">
+								.password<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:inset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:thin;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:3px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#F0F0F0;<br/>
+								}<br/>
+								<br/>
+								.button<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-style:ouset;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-width:thin;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-radius:3px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-top-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-left-color:#CACACA;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-right-color:#F0F0F0;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;border-bottom-color:#F0F0F0;<br/>
+								}
+							</p>
+							<h3>index.html</h3>
+							<p class="Code">
+								&lt;div id="login" class="login"&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;form action="index.html" method="get" id="login_form" class="login_form"&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Please login&lt;/h2&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label id="Label1"&gt;Password: &lt;/label&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="password" id="text_password" tabindex="1" type="password" <span class="HighlightCode">class="password"</span> /&gt;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="submit" id="button_submit" tabindex="2" type="submit" value="Login" <span class="HighlightCode">class="button"</span> /&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>
+								&lt;/div&gt;<br/>
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -1637,10 +1800,10 @@
 								<a href="images/PaypalButtonBuyItNow8.jpg"><img src="images/PaypalButtonBuyItNow8.jpg" alt="imags/PaypalButtonBuyItNow8.jpg" width="800"/></a><br/><br/>
 								And here it is - you can click it safely as I have 'knobbled' code.<br/><br/>
 								<form action="" method="post" target="_top">
-									<input type="hidden" name="cmd" value="_s-xclick" />
-									<input type="hidden" name="hosted_button_id" value="AJ472KN2R9VG2" />
-									<input type="hidden" name="currency_code" value="AUD" />
-									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									<input type="hidden" name="cmd0" value="_s-xclick" />
+									<input type="hidden" name="hosted_button_id0" value="AJ472KN2R9VG2" />
+									<input type="hidden" name="currency_code0" value="AUD" />
+									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit0" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 							</form>														
 							</p>
 							
@@ -1728,6 +1891,10 @@
 							g_arrayStageBookmarks.push("<hr>");
 							console.log("g_nStageNum == " + g_nStageNum)
 						</script>
+
+
+
+
 
 					<!-- #EndEditable --></div>
 					</div>

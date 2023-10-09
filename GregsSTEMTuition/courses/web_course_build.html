@@ -1,17 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
-
+	
 	<!-- #BeginTemplate "courses.dwt" -->
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Build a web site</title>
+			<style>
+</style>
 		<!-- #EndEditable -->
 		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
-		<!-- #BeginEditable "page_styles" -->
+		<!-- #BeginEditable "page" -->
 			<style>
-			</style>
+</style>
+			
+			<script type="text/javascript">
+				
+				let g_strTargetPassword = "VTNWWVpXVlRVRUpGTlVoRw==", /*U3VYZWVTUEJFNUhG*/
+					g_strTargetCourse = "web_course";
+				
+			</script>
+			
 		<!-- #EndEditable -->
 		
 		<script type="text/javascript" src="../Common.js"></script>
@@ -59,27 +69,21 @@
 				<!-- Begin Sidebar -->
 				<div id="sidebar">
 					<ul>
-						<li>
-						<a href="../index.html">Home</a></li>
-						<li>
-						<a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
-						<li>
-						<a href="../testimonials/testimonials.html">Testimonials</a></li>
-						<li>
-						<a href="../education/education.html">Education</a></li>
-						<li>
-						<a href="../teaching/teaching.html">Teaching Experience</a></li>
-						<li>
-						<a href="../work/work.html">Work History</a></li>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../pedogogy/pedogogy.html">Pedogogy</a></li>
+						<li><a href="../testimonials/testimonials.html">Testimonials</a></li>
+						<li><a href="../education/education.html">Education</a></li>
+						<li><a href="../teaching/teaching.html">Teaching Experience</a></li>
+						<li><a href="../work/work.html">Work History</a></li>
 						<li onclick="DoToggleCoursesPopupMenu()"><a href="#top">Courses</a></li>
 							<div class="MenuPopup" id="MenuPopup" name="Courses">
 								<ul>
 									<li class="MenuPopupItem">
-									<a href="c_course.html">C</a></li>
+									<a href="../courses/c_course.html">C</a></li>
 									<li class="MenuPopupItem">
-									<a href="web_course.html">Web Sites</a></li>
+									<a href="../courses/web_course.html">Web Sites</a></li>
 									<li class="MenuPopupItem">
-									<a href="python_course.html">Python</a></li>
+									<a href="../courses/python_course.html">Python</a></li>
 								</ul>
 							</div>
 					</ul>
@@ -133,7 +137,7 @@
 						<br/><br/>
 						<label for="password">Password&nbsp;</label>
 						<input type="password" id="password" value=""/>&nbsp;
-						<input type="button" value="LOG IN" onclick="DoLogin('U3VYZWVTUEJFNUhG', 'web_course')"/>
+						<input type="button" value="LOG IN" onclick="DoLogin(g_strTargetPassword, g_strTargetCourse)"/>
 					</div>
 					<!-- #BeginEditable "pre-content" -->
 					
