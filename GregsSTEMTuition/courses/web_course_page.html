@@ -2269,10 +2269,278 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Animation</h2>
+							<h2 class="StageHeading">CSS animation</h2>
 							
-							<p>&nbsp;</p>
+							<h3>Color change animation</h3>
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div1 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example1;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example1<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from {background-color: red;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to {background-color: yellow;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-iteration-count: infinite;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div1"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div1
+								{
+									width: 100px;
+									height: 100px;
+									background-color: red;
+									animation-name: example1;
+									animation-duration: 4s;
+									animation-iteration-count: infinite;
+								}
+								
+								@keyframes example1 
+								{
+								  from {background-color: red;}
+								  to {background-color: yellow;}
+								}
+							</style>
+							<div class="color_change_div1"></div>
 							
+							<h3>Delayed color change animation</h3>						
+							
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div2 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example2;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example2<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from {background-color: red;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to {background-color: yellow;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-iteration-count: infinite;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-delay: 2s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div2"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div2
+								{
+									width: 100px;
+									height: 100px;
+									background-color: red;
+									animation-name: example2;
+									animation-duration: 4s;
+									animation-iteration-count: infinite;
+									animation-delay: 2s;
+								}
+								
+								@keyframes example2
+								{
+								  from {background-color: red;}
+								  to {background-color: yellow;}
+								}
+							</style>
+							<div class="color_change_div2"></div>
+
+							<h3>Reverse delay color change animation</h3>						
+
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div3 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example3;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example3<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from {background-color: red;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to {background-color: yellow;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-iteration-count: infinite;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-delay: -2s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div3"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div3
+								{
+									width: 100px;
+									height: 100px;
+									background-color: red;
+									animation-name: example3;
+									animation-duration: 4s;
+									animation-iteration-count: infinite;
+									animation-delay: 2s;
+								}
+								
+								@keyframes example3 
+								{
+								  from {background-color: red;}
+								  to {background-color: yellow;}
+								}
+							</style>
+							<div class="color_change_div3"></div>
+
+							<h3>Color change animation in reverse</h3>
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div4 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example4;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-direction: reverse;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example4<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from {background-color: red;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to {background-color: yellow;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-iteration-count: infinite;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div4"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div4
+								{
+									width: 100px;
+								 	height: 100px;
+								 	background-color: red;
+								 	animation-name: example4;
+									animation-duration: 4s;
+									animation-iteration-count: infinite;
+									animation-direction: reverse;
+								}
+								
+								@keyframes example4 
+								{
+								  from {background-color: red;}
+								  to {background-color: yellow;}
+								}
+							</style>
+							<div class="color_change_div4"></div>
+							
+							<h3>Color change animation alternate reverse</h3>
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div5 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example5;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-direction: alternate-reverse;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example5<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from {background-color: red;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to {background-color: yellow;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-iteration-count: infinite;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div5"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div5
+								{
+									width: 100px;
+									height: 100px;
+									background-color: red;
+									animation-name: example5;
+									animation-duration: 4s;
+									animation-iteration-count: infinite;
+									animation-direction: alternate-reverse;
+								}
+								
+								@keyframes example5 
+								{
+								  from {background-color: red;}
+								  to {background-color: yellow;}
+								}
+							</style>
+							<div class="color_change_div5"></div>
+							
+							<h3>Color change animation with movement</h3>
+							<p class="Code">
+								&lt;style&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;.color_change_div6 <br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100px;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: red;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-name: example6;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 4s;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animation-direction: forward;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;@keyframes example6<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0%   {background-color:red; left:0px;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25%  {background-color:yellow; left:200px;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50%  {background-color:blue; left:0px;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;75%  {background-color:green; left:200px;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100% {background-color:red; left:0px;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								&lt;/style&gt;<br/>
+								<br/>
+								&lt;div class="color_change_div6"&gt;&lt;/div&gt;
+							</p>
+							<style> 
+								.color_change_div6
+								{
+								 	position: relative;
+									width: 100px;
+								 	height: 100px;
+									background-color: red;
+								 	animation-name: example6;
+								 	animation-duration: 4s;
+								 	animation-iteration-count: infinite;
+								 	animation-direction: forward;
+								}
+								
+								@keyframes example6 
+								{
+								  0%   {background-color:red; left:0px;}
+								  25%  {background-color:yellow; left:200px;}
+								  50%  {background-color:blue; left:0px;}
+								  75%  {background-color:green; left:200px;}
+								  100% {background-color:red; left:0px;}
+								}
+							</style>
+							<div class="color_change_div6"></div>
+							
+							<p>
+								These are just a few simple animations you can create with CSS, but you can create far more 
+								sophisticated ones. For more details please refer to 
+								<a href="https://www.w3schools.com/css/css3_animations.asp">"W3Schools animation reference</a>.
+							</p>
+
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
