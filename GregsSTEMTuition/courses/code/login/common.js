@@ -66,20 +66,26 @@ function DoLogin()
 {
 	let inputPassword = document.getElementById("text_password"),
 		divLogin = document.getElementById("login"),
-		divContent = document.getElementById("page_content");
+		divContent = document.getElementById("page_content"),
+		strCorrectPassword = "password";
 	
 	// Check if the id were valid and that we have a valid objects
 	if (inputPassword && divLogin && divContent)
 	{
-		// If the password is correct - all text and password input objects 
-		// have the property 'value' which contains the text typed by the 
-		// user
-		if (inputPassword.value == "password")
+		/*
+			All text and password input objects have the property 'value' which contains the text typed by the user.
+		*/
+		if ((inputPassword.value == strCorrectPassword) || // If the password typed by the user is correct or
+			(sessionStorage["password"] && (sessionStorage["password"] == strCorrectPassword))) // If the stored password is correct
+
 		{
 			// Hide the div containing the login form
 			divLogin.style.display = "none";// The javascript 'display' property corresponds to the CSS attribute 'display' 
 			// Show the div containing the page contents
 			divContent.style.display = "inline-block";
+			
+			// Store the password
+			sessionStorage["password"] = inputPassword.value;
 		}
 	}
 }

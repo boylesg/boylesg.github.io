@@ -1786,13 +1786,108 @@
 								</video>
 							</p>
 							<p>
-								All that then remains is top copy this new login div to the other .html pages. Or you could create 
-								another javascript function, e.g. GenerateLoginForm(), to generate the HTML tags for the login form, 
-								like we did with the navigation structure. That way you could make any further changes you want to 
-								the login form in only one place rather than every single .html file. This is still a fairly 
-								cumbersome way to deal with common parts of a web page, but we will have another look at .dwt files 
-								at a later stage. DWT is a much more convenoent way to deal with parts of web pages you want to be 
-								constant and editable only in one place.							
+								The way this is setup now means that the user will have to login to every page, every single time 
+								he or she visits that page, and that is a really nuiscance. We need a way to store the password,  
+								once the user logs in with a correct password, and there after do the login process automatically. 
+								We can store the correct password in one of two javascript storage objects:
+								<ul>
+									<li>
+										<b>localStorage: </b>this is permanent storage until you explicitly remove the stored data. 
+										So the user can close the tab or the web browser, come back to the page later and the correct 
+										password that was stored last time they logged in will still be there.
+									</li><br/>
+									<li>
+										<b>sessionStorage: </b>this storage lasts only as long as the tab, and the web browser, 
+										remains open. Once the tab or web browser is closed the password you have stored in this 
+										object will be deleted.
+									</li>
+								</ul>
+								Let's select 'sessionStorage' so that the user has to manually login once, and stay logged in so long 
+								as they have web site open. So we will need to modify the 'DoLogin()' function. The first modification 
+								is to store the password typed by the user if it is correct.
+							</p>
+							<p class="Code">
+								function DoLogin()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let inputPassword = document.getElementById("text_password"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin = document.getElementById("login"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent = document.getElementById("page_content"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strCorrectPassword = "password";<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Check if the id were valid and that we have a valid objects<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (inputPassword &amp;&amp; divLogin &amp;&amp; divContent)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All text and password input objects have the property 'value' which contains the text typed by the user.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (inputPassword.value == strCorrectPassword) // If the password typed by the user is correct or<br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Hide the div containing the login form<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin.style.display = "none";// The javascript 'display' property corresponds to the CSS attribute 'display' <br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Show the div containing the page contents<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent.style.display = "inline-block";<br/>
+											<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">// Store the password</span><br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">sessionStorage["password"] = inputPassword.value;</span><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}
+							</p>
+							<p>
+								Next we need to check if we have stored the correct password already and, if we have, then we need to check 
+								the stored password to see if it is correct. So what will happen is that, if the user has left the password 
+								text field blank, then the stored password will be used to log the user in instead. Another small change I 
+								have added is the variable 'strCorrectPassword'. This is to avoid having multiple copies of the literal 
+								string 'password' in the code. If we want to change the password then we need only change the this line of 
+								code, in one place.
+							</p>
+							
+							<p class="Code">
+								function DoLogin()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let inputPassword = document.getElementById("text_password"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin = document.getElementById("login"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent = document.getElementById("page_content"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">strCorrectPassword = "password";</span><br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Check if the id were valid and that we have a valid objects<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (inputPassword &amp;&amp; divLogin &amp;&amp; divContent)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All text and password input objects have the property 'value' which contains the text typed by the user.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ((inputPassword.value == strCorrectPassword) <span class="HighlightCode">||</span> // If the password typed by the user is correct or<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">(sessionStorage["password"] &amp;&amp; (sessionStorage["password"] == strCorrectPassword))) // If the stored password is correct</span><br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Hide the div containing the login form<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divLogin.style.display = "none";// The javascript 'display' property corresponds to the CSS attribute 'display' <br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Show the div containing the page contents<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;divContent.style.display = "inline-block";<br/>
+											<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Store the password<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sessionStorage["password"] = inputPassword.value;<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}
+							</p>
+							<p>
+								All that then remains is top copy this new login form to the login div and add the following property to the 
+								&lt;body&gt; tag of all our .html files 
+								(index.html, contact.html, services.html, products.html, televisions.html, DVDPlayers.html, 
+								televisions.html, games.html and surround.html). When the page is loaded or refreshed this causes 
+								the 'DoLogin()' function to be called, which will now result in automatic login with the above 
+								code changes. That is after you login the first time.
+							</p>
+							<p class="Code">
+								&lt;body <span class="HighlightCode">onload="DoLogin()"</span>&gt;
+							</p>
+							<p>
+								It is hard to avoid completely copying code to multiple pages as you build your web site without 
+								using <b>D</b>yanmic <b>W</b>eb <b>T</b>emplates. DWTs make it so much easier to manage changes to 
+								common parts of your web pages.	We have looked at these previously but we will look at them again 
+								in the next section.						
 							</p>
 							<p>
 								Here is the source code:
@@ -1853,22 +1948,8 @@
 									<input type="hidden" name="hosted_button_id0" value="AJ472KN2R9VG2" />
 									<input type="hidden" name="currency_code0" value="AUD" />
 									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit0" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-							</form>														
+								</form>														
 							</p>
-							
-							<p>
-								<script type="text/javascript">
-									g_nStageNum = DrawMidStageButtons(g_nStageNum);
-								</script>
-							</p>
-
-						</div>
-
-						<div style="display:none;">
-						
-							<h2 class="StageHeading">Tables</h2>
-							
-							<p>&nbsp;</p>
 							
 							<p>
 								<script type="text/javascript">
@@ -1882,8 +1963,267 @@
 						
 							<h2 class="StageHeading">Products page</h2>
 							
-							<p>&nbsp;</p>
+							<p>
+								You could just code the details of all your products manually in HTML, and that might be just fine 
+								if you had only half a dozen products. But what if you had a few hundred products? Coding the 
+								details of hundreds of products individually would take you a VERY long time and is a very 
+								inefficent way of doing the coding. So instead let's code a javascript data structure to store the 
+								details of all your products so they can be added much more quickly and efficiently. Then we can 
+								code a javascript function to read the text details from it and generate the necessary HTML tags 
+								using that text.
+							</p>
 							
+							<p>
+								So what sort of data structure do we need? Well what sort of details do we need to store for each 
+								product? They would include the following surely:<br/><br/>
+								<ul>
+									<li>Product name / text</li>
+									<li>Price / decimal number</li>
+									<li>Product code / text or integer</li>
+									<li>Image name / text</li>
+									<li>Postage cost / decimal number</li>
+									<li>Product features / text &amp; integers</li>
+									<li>User manual PDF filename / text</li>
+									<li>Paypal button / HTML text</li>
+								</ul><br/>
+								So we are going to need a data structure that is capable of storing different data types, and 
+								clearly a javascript 'object' is clearly going to be the best choice. In C these are refered to as 
+								'structs' or structures, in Pascal they are called 'records' and in Python they are referred to as 
+								'collections'. In contrast arrays are used to store identical data types.
+							</p>
+							<p>
+								One object will store the details of one product, so how do we store a bunch of products? Well we 
+								could create an array of the above objects. All the elements of an array must be the same data type 
+								but there is no rule that says that arrays can only contain strings or integers etc. They can also 
+								contain identical objects. 
+							</p>
+							<p>
+								However just keep in mind that the rules with javascript are some what more loose than they are in 
+								C. In C the elements in an array must of strictly identical data types, but in Javascript they can 
+								vary. But it is still a good idea to assume the C rules, otherwise your code can potentially get very 
+								complicated and hard to debug. Remember we created a series of product pages when we built the popup 
+								menu - TVs, DVDs, gaming consoles and surround sound systems. So we will create a seperate data 
+								structure specifically for each of those pages to keep product lists manageable.
+							</p>
+							<p>	
+								So here is how we might design our data product data structure for TVs, and we will build it in a 
+								new file called 'products.js' Now let's recall that an array is declared with square brackets [], 
+								while an object is declared with braces {}. So the following is the basic 'layout' of our array of 
+								objects.
+							</p>
+							<h3>products.js</h3>
+							<p class="Code">
+								let g_arrayTVs = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{}<br/>
+								];
+							</p>
+							<p>
+								So continuing we could do it this way, but there is a lot of unnecessary typing in having to repeat 
+								the object field names (strBrand, strName, fPrice and strImage) over and over again.
+							</p>
+							<p class="Code">
+								let g_arrayTVs = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"TLC", strName:"TCL 55\" C845 4K UHD Mini LED QLED Google TV", fPrice:1695, strImage:"tv1.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Sony", strName:"Sony 85\" X90L Bravia XR Full Array LED 4K Google TV", fPrice:3995, strImage:"tv2.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"LG", strName:"LG 75\" UR8050 4K UHD LED Smart TV", fPrice:1795, strImage:"tv3.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Hisense", strName:"Hisense 40\" A4KAU Full HD Smart TV", fPrice:395, strImage:"tv4.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"FFalcon", strName:"FFalcon 40\” S53 FHD Smart TV", fPrice:329, strImage:"tv5.jpg"},<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{strBrand:"Samsung", strName:"Samsung 75\" Q70C QLED 4K Smart TV", fPrice:2995, strImage:"tv6.jpg"}<br/>
+								];
+							</p>
+							<p>
+								 Here is a better way involving less typing. The function 'Product(...)' creates the object for us 
+								 abd returns it as the next element in our array. We will use this function for all our products 
+								 (TVs, DVDs, surround sound systems and game consoles) - all will have the same 4 fields.
+							</p>
+							<p class="Code">
+								function Product(strBrand, strName, fPrice, strImageFilename)<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strBrand = strBrand;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strName = strName;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.fPrice = fPrice;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strImageFilename = strImageFilename;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
+								}<br/>
+								<br/>
+								let g_arrayTVs = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("TLC", "TCL 55\" C845 4K UHD Mini LED QLED Google TV", 1695, "tv1.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Sony", "Sony 85\" X90L Bravia XR Full Array LED 4K Google TV", 3995, "tv2.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("LG", "LG 75\" UR8050 4K UHD LED Smart TV", 1795, "tv3.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Hisense", "Hisense 40\" A4KAU Full HD Smart TV", 395, "tv4.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("FFalcon", "FFalcon 40\” S53 FHD Smart TV", 329, "tv5.jpg"),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Samsung", "Samsung 75\" Q70C QLED 4K Smart TV", 2995, "tv6.jpg")<br/>
+								];
+							</p>
+							<p>
+								Next we need to code a function to generate the HTML code for these products, and we will call this 
+								function on'televisions.jpg'. So here is a diagramatic representation of this data structure:<br/><br/>
+								<a href="images/TVsDS.jpg"><img src="images/TVsDS.jpg" alt="imags/TVsDS.jpg" width="800"/></a><br/><br/>
+								So g_arrayTVs[0] refers to the first TV in the list, with the index or row number 0, while 
+								g_arrayTVs[5] refers to the last TV in the list, with the index or row number 5.
+							</p>
+							<p>
+								Now g_arrayTVs[0].strName rfefers to the string "TCL 55\" C845 4K UHD Mini LED QLED Google TV". While 
+								g_arrayTVs[3].fPrice refers to the number 395. And g_arrayTVs[2].strBrand refers to "LG". So 
+								arrays have elements that you access with the square brackets and an integer, e.g. 'g_arrayTVs[0]'. 
+								While objects have field names or attributes that you access via the dot operator, e.g. '.strName'. 
+								Remember our data structure is an array of objects so we combine the two in order to access an object 
+								field in a particular array element, e.g. 'g_arrayTVs[3].fPrice'. 'g_arrayTVs[3]' refers to an 
+								array element/object, while 'g_arrayTVs[3].fPrice' refers to the 'fPrice' field/attribute in that 
+								object.
+							</p>
+							<p>
+								So we have a data structure with the details of our products, so now we need to code a function in order 
+								to display our products on the TV page. We'll call it 'GenerateProductsList(arrayProducts)', and again 
+								we will re-use this function for all our products. All we need to do is to pass it the array of products 
+								that we want to display as a parameter or argument to the function, e.g. g_arrayTVs in the case of the TV 
+								page.
+							</p>
+							<p class="Code">
+								function DoDisplayProducts(arrayProducts)<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Output the conten ts of the products array to the console tab.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;console.log(arrayProducts);<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Start the table.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;table cellspacing=\"0\" cellpadding=\"20\" border=\"1\"&gt;");<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Set up the column headings.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;tr&gt;&lt;th&gt;PRODUCT&lt;/th&gt;&lt;th&gt;PRICE&lt;/th&gt;&lt;th&gt;IMAGE&lt;/th&gt;&lt;/tr&gt;");<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Loop through our products array<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;for (let nI = 0; nI &lt; arrayProducts.length; nI++)<br/><br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// For each product start a table row.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;tr&gt;");<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product name.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td&gt;" + arrayProducts[nI].strName + "&lt;/td&gt;");<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product price.<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td&gt;$" + arrayProducts[nI].fPrice.toFixed(2) + "&lt;/td&gt;");<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product image.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td&gt;&lt;img src=\"" + arrayProducts[nI].strImageFilename + "\" alt=\"" + arrayProducts[nI].strImageFilename + "\" width=\"200\"/&lt;/td&gt;");<br/><br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// For each product finish the table row.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;/tr&gt;");<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Finish the table.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;/table&gt;");<br/>
+								}							
+							</p>
+							<p>
+								So I have elected to use a HTML table to arrange the product details, and I have included a border 
+								(border=\"1\") so that you can more easily see how things are working. However you can remove that 
+								property if you don't want to see the borders around the table and the cells. Play around with the 
+								values table properties (cellspacing=\"0\" cellpadding=\"20\" border=\"1\") and see what effect 
+								they have on the appearance of the table.
+							</p>
+							<p>	
+								You can use this to check the contents of the web page matches the contents of the products array. 
+								The code comments explain what each line of code is doing. Remember we are using document.write(...) 
+								to generate our HTML code. So the whole line of HTML code has to be enclosed in double quotes "...". 
+								And any double quotes used to enclose the values of tag properties must be escaped with a back 
+								slash, e.g. "...border=\"1\"...
+							</p>
+							<p>
+								I have also included a debugging output statement 'console.log(arrayProducts);' that outputs the 
+								contents of our products array. And you can see the results of this in the 'console' tab of the ,
+								developer tools in Firefox Developer Edition or Chrome.<br/><br/>
+								<a href="images/ProductsArrayConsole.jpg"><img src="images/ProductsArrayConsole.jpg" alt="imags/ProductsArrayConsole.jpg" width="1200"/></a><br/><br/>
+								And here are the results of this code:<br/><br/>
+								<a href="images/Products.jpg"><img src="images/Products.jpg" alt="imags/Products.jpg" width="1200"/></a><br/><br/>
+								So far so good, now let's add Paypal button to each product - we will need to add an additional 
+								field to our function 'Product(...)'.
+							</p>
+							<p class="Code">
+								function Product(strBrand, strName, fPrice, strImageFilename<span class="HighlightCode">, strPaypal</span>)<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strBrand = strBrand;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strName = strName;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.fPrice = fPrice;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;this.strImageFilename = strImageFilename;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="HighlightCode">this.strPaypal = strPaypal;</span><br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;return this;<br/>
+								}<br/>
+								<br/>
+								let g_strPaypal = "&lt;form action=\"\" method=\"post\" target=\"_self\"&gt;&lt;input type=\"hidden\" name=\"cmd0\" value=\"_s-xclick\" /&gt;&lt;input type=\"hidden\" name=\"hosted_button_id0\" value=\"AJ472KN2R9VG2\" /&gt;&lt;input type=\"hidden\" name=\"currency_code0\" value=\"AUD\" /&gt;&lt;input type=\"image\" src=\"https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif\" border=\"0\" name=\"submit0\" title=\"PayPal - The safer, easier way to pay online!\" alt=\"Buy Now\" /&gt;&lt;/form&gt;";<br/><br/>
+								let g_arrayTVs = <br/>
+								[<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("TLC", "TCL 55\" C845 4K UHD Mini LED QLED Google TV", 1695, "tv1.jpg"<span class="HighlightCode">, g_strPaypal</span>),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Sony", "Sony 85\" X90L Bravia XR Full Array LED 4K Google TV", 3995, "tv2.jpg"<span class="HighlightCode">, g_strPaypal</span>),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("LG", "LG 75\" UR8050 4K UHD LED Smart TV", 1795, "tv3.jpg"<span class="HighlightCode">, g_strPaypal</span>),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Hisense", "Hisense 40\" A4KAU Full HD Smart TV", 395, "tv4.jpg"<span class="HighlightCode">, g_strPaypal</span>),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("FFalcon", "FFalcon 40\” S53 FHD Smart TV", 329, "tv5.jpg"<span class="HighlightCode">, g_strPaypal</span>),<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;new Product("Samsung", "Samsung 75\" Q70C QLED 4K Smart TV", 2995, "tv6.jpg"<span class="HighlightCode">, g_strPaypal</span>)<br/>
+								 ];<br/>
+							</p>
+							<p>
+								I have created a non-functional dummy Paypal button with the variable declaration, 
+								let g_strPaypal = "&lt;form..., and then used that for all the products. But if you were doing it 
+								for real you would create individual Paypal buttons for each product and past the individual 
+								HTML code for each between double quotes "..." in place of <span class="HighlightCode">g_strPaypal</span>. 
+								But always remember to escape the double quotes in the HTML code, e.g. "...method=\"post\"...". Next 
+								we need to add the new field to our 'DoDisplayProducts(...)' function.
+							</p>
+							<p class="Code">
+								function DoDisplayProducts(arrayProducts)<br/>
+								{<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;// Output the conten ts of the products array to the console tab.<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;console.log(arrayProducts);<br/>
+									<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;// Start the table.<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;table cellspacing=\"0\" cellpadding=\"20\" border=\"1\"&gt;");<br/>
+									<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;// Set up the column headings.<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;tr&gt;&lt;th&gt;PRODUCT&lt;/th&gt;&lt;th&gt;PRICE&lt;/th&gt;&lt;th&gt;IMAGE&lt;/th&gt;&lt;/tr&gt;");<br/>
+									<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;// Loop through our products array<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;for (let nI = 0; nI &lt; arrayProducts.length; nI++)<br/>
+									<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// For each product start a table row.<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;tr&gt;");<br/>
+										<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product name.<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td&gt;" + arrayProducts[nI].strName + "&lt;/td&gt;");<br/>
+										<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product price.<br/>
+										<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td style=\"text-align:center;\"&gt;$" + arrayProducts[nI].fPrice.toFixed(2) <span class="HighlightCode">+ "&lt;br/&gt;&lt;br/&gt;" + arrayProducts[nI].strPaypal</span> + "&lt;/td&gt;");<br/>
+										<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a cell on the current product row for the product image.<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;td&gt;&lt;img src=\"" + arrayProducts[nI].strImageFilename + "\" alt=\"" + arrayProducts[nI].strImageFilename + "\" width=\"200\"/&lt;/td&gt;");<br/>
+										<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// For each product finish the table row.<br/>
+								        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;/tr&gt;");<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;// Finish the table.<br/>
+								    &nbsp;&nbsp;&nbsp;&nbsp;document.write("&lt;/table&gt;");
+								}
+							</p>
+							<p>
+								And here are the results:<br/><br/>
+								<a href="images/ProductsPaypal.jpg"><img src="images/ProductsPaypal.jpg" alt="imags/ProductsPaypal.jpg" width="1200"/></a><br/><br/>
+								And here is the source code:
+								<ul>
+									<li><a href="code/products/index.html" type="text/rtf" download>index.html</a>. </li>
+									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
+									<li><a href="code/products/products.html" type="text/rtf" download>products.html</a>. </li>
+									<li><a href="code/products/services.html" type="text/rtf" download>services.html</a>. </li>
+									<li><a href="code/products/contact.html" type="text/rtf" download>contact.html</a>. </li>
+									<li><a href="code/products/televisions.html" type="text/rtf" download>televisions.html</a>. </li>
+									<li><a href="code/products/DVDplayers.html" type="text/rtf" download>DVDplayers.html</a>. </li>
+									<li><a href="code/products/surround.html" type="text/rtf" download>surround.html</a>. </li>
+									<li><a href="code/products/games.html" type="text/rtf" download>games.html</a>. </li>
+									<li><a href="code/products/style.css" type="text/rtf" download>style.css</a>. </li>
+									<li><a href="code/products/common.js" type="text/rtf" download>common.js</a>. </li>
+									<li><a href="code/products/products.js" type="text/rtf" download>products.js</a>. </li>
+								</ul>
+							</p>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
