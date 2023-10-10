@@ -1433,7 +1433,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Login form</h2>
+							<h2 class="StageHeading">Javascript login form</h2>
 							
 							<p>
 								Forms contain a bunch of inputs with which the user can enter assorted data that is to be processed 
@@ -1915,6 +1915,41 @@
 						
 						<div style="display:none;">
 						
+							<h2 class="StageHeading">Email hyperlink</h2>
+							
+							<p>
+								This is a method of generating a formatted email that the user can then send off to you. You will 
+								be familiar with using a HYML hyperlink like this: 
+							</p>
+							<p class="Code">
+								&lt;a href="http://www.google.com.au"&gt;Google&lt;/a&gt;
+							</p>
+							<p>
+								But you can also create hyperlinks like this:
+							</p>
+							<p class="Code">
+								&lt;a href="mailto:JoeBloggs@gmail.com"&gt;Send email&lt;/a&gt;
+							</p>
+							<p>
+								In this case it will invoke the user's email client program rather than their web browser and popup 
+								a new email address with the 'to' field filled in with "JoeBloggs@gmail.com". But you can fill in 
+								more that just the 'to' field. You can also fill in the 'subject', 'cc' and 'bcc' fields as well. 
+								You can even fill in the body of the email. So here is an example of how to add all of them into a 
+								mailto hyperlink. 
+							</p>
+							<p class="Code">
+								&lt;a href="mailto:JoeBloggs@gmail.com?cc=Joe.Smith@gmail.com&amp;bcc=Jane.Doe@gmail.com&amp;subject=Hello!&amp;body=How%20are%20you?%0D%0AGreetings%20from%20my%20web%20site!"&gt;Send email&lt;/a&gt;
+							</p>
+							<p>
+								Try it: <a href="mailto:JoeBloggs@gmail.com?cc=Joe.Smith@gmail.com&amp;bcc=Jane.Doe@gmail.com&amp;subject=Hello!&amp;body=How%20are%20you?%0D%0AGreetings%20from%20my%20web%20site!">Send email</a>. 
+								You can also put HTML tags in the email body assuming the email client at the other end has HTML 
+								emails enabled.
+							</p>
+						
+						</div>
+						
+						<div style="display:none;">
+						
 							<h2 class="StageHeading">Paypal Buttons</h2>
 							
 							<p>
@@ -2208,7 +2243,7 @@
 							<p>
 								And here are the results:<br/><br/>
 								<a href="images/ProductsPaypal.jpg"><img src="images/ProductsPaypal.jpg" alt="imags/ProductsPaypal.jpg" width="1200"/></a><br/><br/>
-								And here is the source code:
+								And here is the source code for this stage:
 								<ul>
 									<li><a href="code/products/index.html" type="text/rtf" download>index.html</a>. </li>
 									<li><a href="code/Logo.jpg" type="text/rtf" download>Logo.jpg</a>. </li>
