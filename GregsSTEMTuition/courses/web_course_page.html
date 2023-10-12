@@ -1920,6 +1920,7 @@
 							<p>
 								I used MS Expression Web to construct the following contact form:	
 							</p>
+							<h3>In contact.html</h3>
 							<p class="Code">
 							
 								&lt;form action="contatc.html" method="get" class="contact_form"&gt;<br/>
@@ -1966,7 +1967,7 @@
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="postcode" id="postcode" size="6" type="number" class="text" maxlength="4" pattern="[0-9]{4}" /&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;select name="postcode" id="postcode" class="text"&gt;&lt;/select&gt;&lt;/td&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;<br/>
@@ -1983,7 +1984,7 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="email" id="email" size="38" type="text" class="text" pattern="^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}+$)[A-Z0-9._%+-]{1,64}+@(?:(?=[A-Z0-9-]{1,63}+\.)[A-Z0-9]++(?:-[A-Z0-9]++)*+\.){1,8}+[A-Z]{2,63}+$" /&gt;&lt;/td&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="mobile" id="mobile" size="13" type="text" class="text" pattern="[0-9]{10}"v/&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="mobile" id="mobile" size="13" type="text" class="text" pattern="[0-9]{10}" /&gt;&lt;/td&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br/>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;select name="state" id="state" style="width:6em;" class="text"&gt;<br/>
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option selected&gt;02&lt;/option&gt;<br/>
@@ -2011,9 +2012,222 @@
 								Here is what it looks like:<br/><br/>
 								<a href="images/ContactForm1.jpg"><img src="images/ContactForm1.jpg" alt="imags/ContactForm1.jpg" width="800"/></a><br/><br/>
 								<a href="images/ContactForm2.jpg"><img src="images/ContactForm2.jpg" alt="imags/ContactForm2.jpg" width="800"/></a><br/><br/>
-								So what we will do
+								For the telephone number, email and postcode inputs I have used the 'pattern' property with 
+								'regular expressions'. I am not going to try and explain the syntax of regular expressions here 
+								but you can read about them in the <a href="https://www.w3schools.com/jsref/jsref_obj_regexp.asp">
+								W3Schools Regular Expressions Reference</a>. Just do what I tend to do and Google "regular 
+								expression digits" (or whatever) and just copy and paste. Suffice to to say that:
+								<ul>
+									<li>
+										<b>Work and home phone number text inputs: </b>are restricted to 8 digits, which is a valid phone 
+										number in Australia, pattern="[0-9]{10}".
+									</li>
+									<li>
+										<b>Mobile number text input: </b>is restricted to 10 digits, which is a valid phone 
+										mobile number in Australia, pattern="[0-9]{8}".
+									</li>
+									<li>
+										<b>Email address text input: </b>is restricted to a valid email address, 
+										pattern="^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}+$)[A-Z0-9._%+-]{1,64}+@(?:(?=[A-Z0-9-]{1,63}+\.)[A-Z0-9]++(?:-[A-Z0-9]++)*+\.){1,8}+[A-Z]{2,63}+$".
+									</li>
+								</ul>
 							</p>
-
+							<p>
+								What happens if you enter letters or too many digits in a phone number text input? You can do so but as soon as 
+								you try and submit the form and popup error message will appear, stating that your text does not match the correct 
+								pattern, and you will be taken back to that text input to correct the error. You will get no details 
+								as to what the correct pattern should be. If you want your form to display more details then you 
+								will need to add custom JavaScript validation of your form.
+							</p>
+							<p>
+								Now the next thing we will do is get the postode select field to fill with the correct list of 
+								postcodes given the selected state. In Australia all Victorian postcode begin with 3 while those for 
+								NSW begin with 2. So we will need to add the 'onchange' property to the 'state' select input.
+							</p>
+							<h3>In contact.html</h3>
+							<p class="Code">
+								&lt;select name="state" id="state" class="text" <span class="HighlightCode">onclick="OnChangeState()"</span>&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option selected&gt;ACT&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NSW&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;NT&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;QLD&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;SA&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;TAS&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;VIC&lt;/option&gt;<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;WA&lt;/option&gt;<br/>
+								&lt;/select&gt;<br/>
+							</p>
+							<p>
+								And now we need to implment the 'OnChangeState()' function in 'common.js'. Conveniently Wikpedia has this 
+								<a href="https://en.wikipedia.org/wiki/Postcodes_in_Australia">page</a> listing Australia's 
+								postcode ranges by state. So here is the function and the comments in the code explain how it all works.
+							</p>
+							<h3>In common.js</h3>
+							<p class="Code">
+								// We could just repeat this loop for each post code range in function OnChangeState().<br/>
+								// But that amounts to a lot more typing and a lot more code that we will have to debug.<br/>
+								// Instead let's create this function, with a single loop, that can be re-used for all the postcode ranges regardless of the state.<br/>
+								function AddPostcodeRange(selectPostCode, nStartPostcode, nEndPostcode)<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;let option = null;<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Loop from the start postcode integer to the last postcode integer<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;for (nI = nStartPostcode; nI &lt;= nEndPostcode; nI++)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a new option object.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option = document.createElement("option");<br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Set the option display text to the postcode - pad the left with 0's to 4 characters if the postcode is less than 1000.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;option.text = nI.toString().padStart(4, "0");<br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the option to the postcode select input<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectPostCode.add(option);<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}<br/>
+								
+								function OnChangeState()<br/>
+								{
+									&nbsp;&nbsp;&nbsp;&nbsp;let selectState = document.getElementById("state"),<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectPostcode = document.getElementById("postcode");<br/>
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Make sure the id's were valid and we have valid select objects.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;if (selectState &amp;&amp; selectPostcode)<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+								   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// While the number of options in the postcode select input is greater than 0.<br/>
+								   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (selectPostcode.options.length &gt; 0)<br/>
+								   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Remove the first option from the postcode select input.<br/>
+								      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectPostcode.remove(0);<br/>
+								      	<br/>
+								   		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Get the index of the selected item.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let nSelectedIndex = selectState.selectedIndex;<br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Get the selected state using the index.<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let strState = selectState.options[nSelectedIndex].text;<br/>
+										<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (strState == "ACT")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Australian Capital Territory 	ACT<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0200—0299 (LVRs and PO Boxes only)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2600—2618<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2900—2920<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 200, 299);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 2600, 2618);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 2900, 2920);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "NSW")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New South Wales 	NSW<br/>	
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000—1999 (LVRs and PO Boxes only)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2000—2599<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2619—2899<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2921—2999<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 1000, 1999);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 2000, 2599);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 2619, 2899);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 2921, 2999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "NT")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Northern Territory 	NT<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0800—0899<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0900—0999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 800, 899);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 900, 999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "QLD")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Queensland 	QLD<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4000—4999<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9000—9999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 4000, 4999);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 9000, 9999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "SA")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;South Australia 	SA <br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000—5799<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5800—5999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 5000, 5799);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 5800, 5999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "TAS")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tasmania 	TAS 	7000—7799<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7800—7999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 7000, 7799);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 7800, 7999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "VIC")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Victoria 	VIC<br/>	
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3000—3999<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8000—8999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 3000, 3999);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 8000, 8999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (strState == "WA")<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Western Australia 	WA 	6000—6797<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6800—6999 (LVRs and PO Boxes only)<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Add the valid post code ranges<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 6000, 6797);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddPostcodeRange(selectPostcode , 6800, 6999);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+								}	
+							</p>
+							<p>
+								Now we need to make the state select input load up with postcodes when the contact page first loads, so we need to 
+								change the following.
+							</p>
+							<h3>In contact.html</h3>
+							<p class="Code">
+								&lt;body onload="DoLogin()"&gt;<br><br/>
+								TO<br/><br/>
+								&lt;body onload="DoContactLoad()"&gt;
+							</p>
+							<p>
+								And we need to implment the new function DoContactLoad(). Again the code comments explain what is going on.
+							</p>
+							<h3>In common.js</h3>
+							<p class="Code">
+								function DoContactLoad()<br/>
+								{<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Do the automatic login things<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;DoLogin();<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// Call this function to load the post code select input with postcodes<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;// for the currently selected state in the state select input.<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;OnChangeState();<br/>
+								}
+							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
 						</div>
 								
 						<div style="display:none;">
@@ -2029,7 +2243,7 @@
 								<a href="images/PaypalButtonTypes.jpg"><img src="images/PaypalButtonTypes.jpg" alt="images/PaypalButtonTypes.jpg" width="800"/></a><br/><br/>
 								We will create a 'buy it now' button.<br/><br/>
 								<a href="images/PaypalButtonBuyItNow1.jpg"><img src="images/PaypalButtonBuyItNow1.jpg" alt="images/PaypalButtonBuyItNow1.jpg" width="800"/></a><br/><br/>
-								So here you enter a product name, a price as a decimal number and select the currency from the drop 
+								So here you enter a product name, a price as a decimal number and select the currency from thedrop 
 								down box. You don't need to enter anything into the product ID field.<br/><br/>
 								<a href="images/PaypalButtonBuyItNow2.jpg"><img src="images/PaypalButtonBuyItNow2.jpg" alt="imags/PaypalButtonBuyItNow2.jpg" width="800"/></a><br/><br/>
 								Here you can elect tp create a small or large button, you can change the text that appears with the 
