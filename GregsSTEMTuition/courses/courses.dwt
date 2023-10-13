@@ -37,7 +37,7 @@
 		
 	</head>
 	
-	<body onload="OnBodyLoad()">
+	<body onload="OnBodyCoursesLoad()">
 	
 		<!-- Begin Container -->
 		<div id="container">

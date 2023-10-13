@@ -40,7 +40,7 @@
 		
 	</head>
 	
-	<body onload="OnBodyLoad()">
+	<body onload="OnBodyCoursesLoad()">
 	
 		<!-- Begin Container -->
 		<div id="container">
@@ -1934,9 +1934,9 @@
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Last name&lt;/td&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="first_name" id="first_name" size="32" type="text" class="text"/&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="first_name" id="first_name" size="32" type="text" class="text" pattern="^\S+$" /&gt;&lt;/td&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="middle_name" id="middle_name" size="32" type="text" class="text"/&gt;&lt;/td&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="last_name" id="last_name" size="32" type="text" class="text"/&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="last_name" id="last_name" size="32" type="text" class="text" pattern="^\S+$" /&gt;&lt;/td&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fieldset&gt;<br/>
@@ -1953,8 +1953,8 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br/>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="unit" id="unit" size="12" type="text" class="text"/&gt;&lt;/td&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="street" id="street" size="47" type="text" class="text"/&gt;&lt;/td&gt;<br/>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="suburb" id="suburb" size="16" type="text" class="text"/&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="street" id="street" size="47" type="text" class="text" pattern="^\S+$" /&gt;&lt;/td&gt;<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;input name="suburb" id="suburb" size="16" type="text" class="text" pattern="^\S+$" /&gt;&lt;/td&gt;<br/>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br/>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;select name="state" id="state" class="text"&gt;<br/>
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option selected&gt;ACT&lt;/option&gt;<br/>
@@ -2029,6 +2029,9 @@
 									<li>
 										<b>Email address text input: </b>is restricted to a valid email address, 
 										pattern="^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}+$)[A-Z0-9._%+-]{1,64}+@(?:(?=[A-Z0-9-]{1,63}+\.)[A-Z0-9]++(?:-[A-Z0-9]++)*+\.){1,8}+[A-Z]{2,63}+$".
+									</li>
+									<li>
+										<b>First name, last name, street and suburb:</b> cannot be blank, pattern="^\S+$".
 									</li>
 								</ul>
 							</p>
@@ -2222,6 +2225,93 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;// for the currently selected state in the state select input.<br/>
 									&nbsp;&nbsp;&nbsp;&nbsp;OnChangeState();<br/>
 								}
+							</p>
+							<p>
+								Here is the form if you want to try it without loading up the mini web site we are buidling.<br/></br/>
+								<form action="contatc.html" method="get" class="contact_form">
+								
+									<fieldset id="your_name" class="fieldset">
+										<legend>Your name</legend>
+										<table cellspacing="10" cellpadding="0">
+											<tr>
+												<td>First name</td>
+												<td>Middle name</td>
+												<td>Last name</td>
+											</tr>
+											<tr>
+												<td><input name="first_name" id="first_name" size="32" type="text" class="text" pattern="^\S+$" /></td>
+												<td><input name="middle_name" id="middle_name" size="32" type="text" class="text"/></td>
+												<td><input name="last_name" id="last_name" size="32" type="text" class="text" pattern="^\S+$" /></td>
+											</tr>
+										</table>
+									</fieldset>
+								
+									<fieldset id="your_name0" class="fieldset">
+										<legend>Your address</legend>
+										<table cellspacing="10" cellpadding="0">
+											<tr>
+												<td>Unit</td>
+												<td>Street</td>
+												<td>Suburb or town</td>
+												<td>State</td>
+												<td>Postcode</td>
+											</tr>
+											<tr>
+												<td><input name="unit" id="unit" size="12" type="text" class="text"/></td>
+												<td><input name="street" id="street" size="47" type="text" class="text" pattern="^\S+$" /></td>
+												<td><input name="suburb" id="suburb" size="16" type="text" class="text" pattern="^\S+$" /></td>
+												<td>
+													<select name="state" id="state" class="text" onchange="OnChangeState()">
+														<option selected>ACT</option>
+														<option>NSW</option>
+														<option>NT</option>
+														<option>QLD</option>
+														<option>SA</option>
+														<option>TAS</option>
+														<option>VIC</option>
+														<option>WA</option>
+													</select>
+												</td>
+												<td><select name="postcode" id="postcode" class="text"></select></td>
+											</tr>
+										</table>
+									</fieldset>
+								
+									<fieldset id="your_contact_detailes" class="fieldset">
+										<legend>Your contact details</legend>
+										<table cellspacing="10" cellpadding="0" border="1">
+											<tr>
+												<td>Email</td>
+												<td>Mobile number</td>
+												<td>Area code</td>
+												<td>Work number</td>
+												<td>Home number</td>
+											</tr>
+											<tr>
+												<td><input name="email" id="email" size="38" type="text" class="text" pattern="^(?=[A-Z0-9][A-Z0-9@._%+-]{5,253}+$)[A-Z0-9._%+-]{1,64}+@(?:(?=[A-Z0-9-]{1,63}+\.)[A-Z0-9]++(?:-[A-Z0-9]++)*+\.){1,8}+[A-Z]{2,63}+$" /></td>
+												<td><input name="mobile" id="mobile" size="13" type="text" class="text" pattern="[0-9]{10}" /></td>
+												<td>
+													<select name="area_code" id="area_code" style="width:6em;" class="text">
+														<option selected>02</option>
+														<option>03</option>
+														<option>07</option>
+														<option>08</option>
+													</select>
+												</td>
+												<td><input name="work" id="work" size="13" type="text" maxlength="8" class="text" pattern="[0-9]{8}" /></td>
+												<td><input name="home" id="home" size="13" type="text" class="text" pattern="[0-9]{8}" /></td>
+											</tr>
+										</table>
+									</fieldset>
+									
+									<fieldset id="your_message" class="fieldset">
+										<legend>Your message</legend>
+										<textarea id="your_message0" name="your_message" cols="106" rows="8" class="text"></textarea>
+									</fieldset>
+									<br/>
+									<input type="submit" name="submit_contact" id="submit_contact" value="Submit my details" class="button" />
+								
+								</form>
 							</p>
 							<p>
 								<script type="text/javascript">
@@ -2575,7 +2665,8 @@
 								<br/>
 								&lt;div class="color_change_div1"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div1
 								{
 									width: 100px;
@@ -2618,7 +2709,8 @@
 								<br/>
 								&lt;div class="color_change_div2"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div2
 								{
 									width: 100px;
@@ -2662,7 +2754,8 @@
 								<br/>
 								&lt;div class="color_change_div3"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div3
 								{
 									width: 100px;
@@ -2705,7 +2798,8 @@
 								<br/>
 								&lt;div class="color_change_div4"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div4
 								{
 									width: 100px;
@@ -2748,7 +2842,8 @@
 								<br/>
 								&lt;div class="color_change_div5"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div5
 								{
 									width: 100px;
@@ -2793,7 +2888,8 @@
 								<br/>
 								&lt;div class="color_change_div6"&gt;&lt;/div&gt;
 							</p>
-							<style> 
+							<style>
+ 
 								.color_change_div6
 								{
 								 	position: relative;
@@ -2844,7 +2940,256 @@
 								OR<br/><br/>
 								&lt;canvas id="my_canvas" /&gt;
 							</p>
+							<p>
+								Then you need to setup a drawing context for canvas as in the following code:
+							</p>
+							<p class="Code">
+								let canvasDrawing = document.getElementById("my_canvas");
+								let context2dCanvas = canvasDrawing.getContext("2d");
+							</p>
+							<p>
+								So here is a list of all the drawing functions you have available to you.
+							</p>
 							
+							<h3>Drawing methods</h3>
+								<ul>
+									<li><b>fillRect(nLeft, nTop, nWidth, nHeight): </b>Draws a "filled" rectangle.</li>
+									<li><b>strokeRect(nLeft, nTop, nWidth, nHeight): </b>Draws a rectangle (with no fill).</li>
+									<li><b>clearRect(nLeft, nTop, nWidth, nHeight): </b>Clears specified pixels within a rectangle.</li>
+								</ul>
+								<h4>Parameters</h4>
+								<ul>
+									<li><b>nLeft: </b>the horizontal position of the top left corner of the rectangle.</li>
+									<li><b>nTop: </b>the vertical position of the top left corner of the rectangle.</li>
+									<li><b>nWidth: </b>the width of the rectangle.</li>
+									<li><b>nHeight: </b>the height of the rectangle.</li>
+								</ul>
+								<h4>Examples</h4>
+								<p class="Code">
+									let canvas1 = document.getElementById("canvas1");<br/>
+									if (canvas1)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let ctx1 = canvas1.getContext("2d");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;if (ctx1)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx1.fillRect(10, 40, 80, 80);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx1.strokeRect(100, 40, 80, 80);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx1.fillRect(190, 40, 80, 80);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx1.clearRect(200, 50, 20, 20);<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									}
+								</p>
+								<canvas id="canvas1" class="canvas"></canvas>
+								<script type="text/javascript">
+									let canvas1 = document.getElementById("canvas1");
+									if (canvas1)
+									{
+										let ctx1 = canvas1.getContext("2d");
+										if (ctx1)
+										{
+											ctx1.fillRect(10, 40, 80, 80);
+											ctx1.strokeRect(100, 40, 80, 80);
+											ctx1.fillRect(190, 40, 80, 80);
+											ctx1.clearRect(200, 50, 20, 20)
+										}
+									}
+								</script>
+							<h3>Path methods</h3>
+								<ul>
+									<li><b>beginPath(): </b>Begins a new path or resets the current path.</li>
+									<li><b>closePath(): </b>Adds a line to the path from the current point to the start.</li>
+									<li><b>isPointInPath(): </b>Returns true if the specified point is in the current path.</li>
+									<li><b>moveTo(nX, nY): </b>Moves the path to a point in the canvas (without drawing).</li>
+									<li><b>lineTo(nX, nY): </b>Adds a line to the the path.</li>
+									<li><b>fill(): </b>Fills the current path.</li>
+									<li><b>rect(): </b>Adds a rectangle to the path.</li>
+									<li><b>stroke(): </b>Draws the current path.</li>
+								</ul>
+								<h4>Parameters</h4>
+								<ul>
+									<li><b>nX: </b>the horizontal position of the point.</li>
+									<li><b>nY: </b>the vertical position of the point.</li>
+								</ul>
+								<h4>Examples</h4>
+								<p class="Code">
+									let canvas2 = document.getElementById("canvas2");<br/>
+									if (canvas2)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let ctx2 = canvas2.getContext("2d");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;if (ctx2)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.moveTo(10, 10);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.lineTo(30, 20);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.lineTo(50, 50);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.lineTo(80, 120);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.lineTo(30, 125);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.lineTo(10, 10);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.stroke();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.closePath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.rect(90, 40, 60, 40);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.stroke();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.fillStyle = "red";<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx2.fill();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									}
+								</p>
+								<canvas id="canvas2" class="canvas"></canvas>
+								<script type="text/javascript">
+									let canvas2 = document.getElementById("canvas2");
+									if (canvas2)
+									{
+										let ctx2 = canvas2.getContext("2d");
+										if (ctx2)
+										{
+											ctx2.beginPath();
+											ctx2.moveTo(10, 10);
+											ctx2.lineTo(30, 20);
+											ctx2.lineTo(50, 50);
+											ctx2.lineTo(80, 120);
+											ctx2.lineTo(30, 125);
+											ctx2.lineTo(10, 10);
+											ctx2.stroke();
+											ctx2.closePath();
+											ctx2.beginPath();
+											ctx2.rect(90, 40, 60, 40);
+											ctx2.stroke();
+											ctx2.fillStyle = "red";
+											ctx2.fill();
+										}
+									}
+								</script>
+							<h3>Circles and curves</h3>
+								<ul>
+									<li>
+										<b>bezierCurveTo(nStartX, nStartY, nMidX, nMidY, nEndX, nEndY): </b>Adds a cubic Bézier curve to the path.
+									</li>
+									<li>
+										<b>arc(nX, nY, nRadius, nStartAngle, nEndAngle, bCounterClockwise): </b>Adds an arc/curve 
+										(circle, or parts of a circle) to the path.
+									</li>
+									<li>
+										<b>arcTo(nStartX, nStartY, nEndX, nEndY, nRadius): </b>Adds an arc/curve between two tangents to the 
+										path.
+									</li>
+									<li>
+										<b>quadraticCurveTo(nCtrlX, nCtrlY, nEndX, nEndY): </b>Adds a quadratic Bézier curve to 
+										the path.
+									</li>
+								</ul>
+								<h4>Parameters</h4>
+								<ul>
+									<li><b>nStartX: </b>Start x coordinate of the curve.</li><br/>
+									<li><b>nStartY: </b>Start y coordinate of the curve.</li><br/>
+									<li><b>nMidX: </b>Mid x coordinate of the curve.</li><br/>
+									<li><b>nMidY: </b>Mid y coordinate of the curve.</li><br/>
+									<li><b>nEndX: </b>End x coordinate of the curve.</li><br/>
+									<li><b>nEndY: </b>End y coordinate of the curve.</li><br/>
+									<li><b>nX: </b>x coordinate of the circle center.</li><br/>
+									<li><b>nY: </b>y coordinate of the circle center.</li><br/>
+									<li><b>nCtrlX: </b>x coordinate of the quadratic curve control point.</li><br/>
+									<li><b>nCtrlY: </b>y coordinate of the quadratic curve control point.</li><br/>
+									<li><b>nRadius: </b>radius of the circle.</li><br/>
+									<li>
+										<b>bCounterClockwise: </b>Optional and the default is false. Draws the curve clockwise if 
+										false and anticlockwise if true.
+									</li>
+								</ul>
+							<h3>Text</h3>
+								<ul>
+									<li>
+										<b>direction: </b>Sets or returns the direction used to draw text.<br/><br/>
+										Values: context.direction = "text-direction", either left to right / "ltr" or right to left / "rtl".<br/>
+										Please refer to the CSS section for details about this CSS attribute.<br/>
+										E.G. context.direction = "ltr";<br/><br/>
+									</li><br/>
+									<li>
+										<b>fillText(strText, nStartX, nStartY, nMaxWidth): </b>Draws "filled" text on the canvas.
+									</li><br/>
+									<li>
+										<b>font: </b>Sets or returns the font properties for text content.<br/><br/>
+										Values: context.font = "font-style font-variant font-weight font-size font-face"<br/>
+										Please refer to the CSS section for details about these CSS attributes.<br/><br/>
+									</li><br/>
+									<li>
+										<b>measureText(strText): </b>Returns an object that contains the width of the specified text.<br/><br/>
+										Parameter: strText, contains the text that is to be measured given the currently set  
+										font...measureText(strText).width and measureText(strText).height.<br/><br/>
+									</li><br/>
+									<li>
+										<b>strokeText(strText, nStartX, nStartY, nMaxWidth): </b>Draws text on the canvas.
+									</li><br/>
+									<li>
+										<b>textAlign: </b>Sets or returns the alignment for text content.<br/><br/>
+										Values: context.textAlign = "text-align"<br/>
+										Please refer to the CSS section for details about the CSS 'text-align' attribute.<br/><br/>
+									</li><br/>
+									<li>
+										<b>textBaseline: </b>Sets or returns the text baseline used when drawing text.
+										Values: context.textBaseline = "text-baseline"<br/>
+										Please refer to the CSS section for details about the CSS 'text-baseline' attribute.<br/><br/>
+									</li>
+								</ul>
+								<h4>Parameters</h4>
+								<ul>
+									<li><b>strText: </b>the text to dsiplay.</li><br/>
+									<li><b>nStartX: </b>the x coordinate of the start position of the text.</li><br/>
+									<li><b>nStartY: </b>the y coordinate of the start position of the text.</li><br/>
+									<li>
+										<b>nMaxWidth: </b>the maximum width that the text can occupy. Optional and the 
+										default is the full width of the text.
+									</li>
+								</ul>
+							<h3>Colors, styles and shadows</h3>
+								<ul>
+									<li><b>addColorStop(): </b>Specifies the colors and stop positions in a gradient object.</li><br/>
+									<li><b>createLinearGradient(): </b>Creates a linear gradient (to use on canvas content).</li><br/>
+									<li><b>createPattern(): </b>Repeats a specified element in the specified direction.</li><br/>
+									<li><b>createRadialGradient(): </b>Creates a radial/circular gradient (to use on canvas content).</li><br/>
+									<li><b>fillStyle: </b>Sets or returns the color, gradient, or pattern used to fill the drawing.</li><br/>
+									<li><b>lineCap: </b>Sets or returns the style of the end caps for a line.</li><br/>
+									<li><b>lineJoin: </b>Sets or returns the type of corner created, when two lines meet.</li><br/>
+									<li><b>lineWidth: </b>Sets or returns the current line width.</li><br/>
+									<li><b>miterLimit: </b>Sets or returns the maximum miter length.</li><br/>
+									<li><b>shadowBlur: </b>Sets or returns the blur level for shadows.</li><br/>
+									<li><b>shadowColor: </b>Sets or returns the color to use for shadows.</li><br/>
+									<li><b>shadowOffsetX: </b>Sets or returns the horizontal distance of the shadow from the shape.</li><br/>
+									<li><b>shadowOffsetY: </b>Sets or returns the vertical distance of the shadow from the shape.</li><br/>
+									<li><b>strokeStyle: </b>Sets or returns the color, gradient, or pattern used for strokes.</li>
+								</ul>
+							<h3>Transformations</h3>
+								<ul>
+									<li><b>scale(): </b>Scales the current drawing bigger or smaller.</li><br/>
+									<li><b>rotate(): </b>Rotates the current drawing.</li><br/>
+									<li><b>translate(): </b>Remaps the (0,0) position on the canvas.</li><br/>
+									<li><b>transform(): </b>Replaces the current transformation matrix for the drawing.</li><br/>
+									<li><b>setTransform(): </b>Resets the current transform to the identity matrix. Then runs transform().</li>
+								</ul>
+							<h3>Image drawing</h3>
+								<ul>
+									<li><b>drawImage(): </b>Draws an image, canvas, or video onto the canvas.</li>
+								</ul>
+							<h3>Image information &amp; pixel manipulation</h3>
+								<ul>
+									<li><b>createImageData(): </b>Creates a new, blank ImageData object.</li>
+									<li><b>getImageData(): </b>Returns an ImageData object that copies the pixel data for the specified rectangle on a canvas.</li><br/>
+									<li><b>ImageData.data: </b>Returns an object that contains image data of a specified ImageData object.</li><br/>
+									<li><b>ImageData.height: </b>Returns the height of an ImageData object.</li><br/>
+									<li><b>ImageData.width: </b>Returns the width of an ImageData object.</li><br/>
+									<li><b>putImageData(): </b>Puts the image data (from a specified ImageData object) back onto the canvas.</li>
+								</ul>
+							<h3>Compositing</h3>
+								<ul>
+									<li><b>globalAlpha: </b>Sets or returns the current alpha or transparency value of the drawing.</li><br/>
+									<li><b>globalCompositeOperation: </b>Sets or returns how a new image are drawn onto an existing image.</li>
+								</ul>
+							<h3>Other methods</h3>
+								<ul>
+									<li><b>clip(): </b>Clips a region of any shape and size from the original canvas.</li><br/>
+									<li><b>save(): </b>Saves the state of the current drawing context and all its atributes.</li><br/>
+									<li><b>restore(): </b>Restores the previously saved state and attributes.</li>
+								</ul>
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
@@ -2856,6 +3201,14 @@
 						<div style="display:none;">
 						
 							<h2 class="StageHeading">A simple game</h2>
+							
+							<h3>A simple game without &lt;canvas&gt;</h3>
+							
+							<p>&nbsp;</p>
+							
+							<h3>A simple game with &lt;canvas&gt;</h3>
+							
+							<p>&nbsp;</p>
 							
 							<p>
 								<script type="text/javascript">

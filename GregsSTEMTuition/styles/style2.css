@@ -605,3 +605,73 @@ a:hover
 	border-radius: 10px;
 	padding: 20px;
 }
+
+/*********************************************************************/
+/*********************************************************************/
+/**
+/** CONTACT FORM
+/**
+/*********************************************************************/
+/*********************************************************************/
+
+.contact_form
+{
+	display:inline-block;
+	position:relative;
+	border-style:outset;
+	border-width:medium;
+	border-radius:5px;
+	border-top-color:#CACACA;
+	border-left-color:#CACACA;
+	border-right-color:#F0F0F0;
+	border-bottom-color:#F0F0F0;
+	background:silver;
+	margin:10px;
+	padding:3px;
+	/*
+	width:290px;
+	height:115px;
+	*/
+}
+
+.password
+{
+	border-style:inset;
+	border-width:medium;
+	border-radius:3px;
+	border-bottom-color:#CACACA;
+	border-right-color:#CACACA;
+	border-top-color:#F0F0F0;
+	border-left-color:#F0F0F0;
+}
+
+.text
+{
+	border-style:inset;
+	border-width:medium;
+	border-radius:3px;
+	border-bottom-color:#CACACA;
+	border-right-color:#CACACA;
+	border-top-color:#F0F0F0;
+	border-left-color:#F0F0F0;
+}
+
+.button
+{
+	border-style:ouset;
+	border-width:medium;
+	border-radius:3px;
+	border-top-color:#CACACA;
+	border-left-color:#CACACA;
+	border-right-color:#F0F0F0;
+	border-bottom-color:#F0F0F0;
+}
+
+.canvas
+{
+	border-style:solid;
+	border-color:black;
+	border-width:medium;
+	width:1200px;
+	height:200px;
+}

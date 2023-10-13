@@ -1938,3 +1938,151 @@ function OnChangePositionY(inputNumberPositionY, divPosDemo)
 	}
 }
 
+/*********************************************************************/
+/*********************************************************************/
+/**
+/** CONTACT FORM
+/**
+/*********************************************************************/
+/*********************************************************************/
+
+// We could just repeat this loop for each post code range in function OnChangeState().
+// But that amounts to a lot more typing and a lot more code that we will have to debug.
+// Instead let's create this function, with a single loop, that can be re-used for all the postcode ranges regardless of the state.
+function AddPostcodeRange(selectPostCode, nStartPostcode, nEndPostcode)
+{
+	let option = null;
+	
+	// Loop from the start postcode integer to the last postcode integer
+	for (nI = nStartPostcode; nI <= nEndPostcode; nI++)
+	{
+		// Create a new option object.
+		option = document.createElement("option");
+		
+		// Set the option display text to the postcode - pad the left with 0's to 4 characters if the postcode is less than 1000.
+		option.text = nI.toString().padStart(4, "0");
+		
+		// Add the option to the postcode select input
+		selectPostCode.add(option);
+	}
+}
+
+function OnChangeState()
+{
+	let selectState = document.getElementById("state"),
+		selectPostcode = document.getElementById("postcode");
+		
+	// Make sure the id's were valid and we have valid select objects.
+	if (selectState && selectPostcode)
+	{
+   		// While the number of options in the postcode select input is greater than 0.
+   		while (selectPostcode.options.length > 0)
+   			// Remove the first option from the postcode select input.
+      		selectPostcode.remove(0);
+      		
+   		// Get the index of the selected item.
+		let nSelectedIndex = selectState.selectedIndex;
+		
+		// Get the selected state using the index.
+		let strState = selectState.options[nSelectedIndex].text;
+		
+		if (strState == "ACT")
+		{
+			/*
+				Australian Capital Territory 	ACT 	
+				0200—0299 (LVRs and PO Boxes only)
+				2600—2618
+				2900—2920
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 200, 299);
+			AddPostcodeRange(selectPostcode , 2600, 2618);
+			AddPostcodeRange(selectPostcode , 2900, 2920);
+		}
+		else if (strState == "NSW")
+		{
+			/*
+				New South Wales 	NSW 	
+				1000—1999 (LVRs and PO Boxes only)
+				2000—2599
+				2619—2899
+				2921—2999
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 1000, 1999);
+			AddPostcodeRange(selectPostcode , 2000, 2599);
+			AddPostcodeRange(selectPostcode , 2619, 2899);
+			AddPostcodeRange(selectPostcode , 2921, 2999);
+		}
+		else if (strState == "NT")
+		{
+			/*
+				Northern Territory 	NT 	
+				0800—0899
+				0900—0999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 800, 899);
+			AddPostcodeRange(selectPostcode , 900, 999);
+		}
+		else if (strState == "QLD")
+		{
+			/*
+				Queensland 	QLD 	
+				4000—4999
+				9000—9999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 4000, 4999);
+			AddPostcodeRange(selectPostcode , 9000, 9999);
+		}
+		else if (strState == "SA")
+		{
+			/*
+				South Australia 	SA 	
+				5000—5799
+				5800—5999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 5000, 5799);
+			AddPostcodeRange(selectPostcode , 5800, 5999);
+		}
+		else if (strState == "TAS")
+		{
+			/*
+				Tasmania 	TAS 	7000—7799
+				7800—7999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 7000, 7799);
+			AddPostcodeRange(selectPostcode , 7800, 7999);
+		}
+		else if (strState == "VIC")
+		{
+			/*
+				Victoria 	VIC 	
+				3000—3999
+				8000—8999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 3000, 3999);
+			AddPostcodeRange(selectPostcode , 8000, 8999);
+		}
+		else if (strState == "WA")
+		{
+			/*
+				Western Australia 	WA 	6000—6797
+				6800—6999 (LVRs and PO Boxes only)
+			*/
+			// Add the valid post code ranges
+			AddPostcodeRange(selectPostcode , 6000, 6797);
+			AddPostcodeRange(selectPostcode , 6800, 6999);
+		}
+	}
+}
+
+function OnBodyCoursesLoad()
+{
+	OnBodyLoad();
+	OnChangeState();
+}
