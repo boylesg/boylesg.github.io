@@ -3236,6 +3236,10 @@
 											ctx4.stroke();
 											ctx4.direction = "ltr";
 											ctx4.fillText("width of \"Hello world!\" = " + ctx4.measureText("Hello world!").width, 5, 50);
+											ctx4.textAlign = "left";
+											ctx4.fillText("Hello world!", 200, 10);
+											ctx4.textAlign = "right";
+											ctx4.fillText("Hello world!", 200, 30);
 										}
 									}
 								</script>
@@ -3264,7 +3268,7 @@
 									<li><b>translate(): </b>Remaps the (0,0) position on the canvas.</li><br/>
 									<li><b>transform(): </b>Replaces the current transformation matrix for the drawing.</li><br/>
 									<li><b>setTransform(): </b>Resets the current transform to the identity matrix. Then runs transform().</li>
-								</ul>
+								</ul>4
 							<h3>Image drawing</h3>
 								<ul>
 									<li><b>drawImage(): </b>Draws an image, canvas, or video onto the canvas.</li>
