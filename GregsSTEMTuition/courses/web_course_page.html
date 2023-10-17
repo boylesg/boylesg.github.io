@@ -3066,7 +3066,7 @@
 										<b>bezierCurveTo(nStartX, nStartY, nMidX, nMidY, nEndX, nEndY): </b>Adds a cubic Bézier curve to the path.
 									</li>
 									<li>
-										<b>arc(nX, nY, nRadius, nStartAngle, nEndAngle, bCounterClockwise): </b>Adds an arc/curve 
+										<b>arc(nCenterX, nCenterY, nRadius, nStartAngle, nEndAngle, bCounterClockwise): </b>Adds an arc/curve 
 										(circle, or parts of a circle) to the path.
 									</li>
 									<li>
@@ -3074,7 +3074,7 @@
 										path.
 									</li>
 									<li>
-										<b>quadraticCurveTo(nCtrlX, nCtrlY, nEndX, nEndY): </b>Adds a quadratic Bézier curve to 
+										<b>quadraticCurveTo(nStartX, nStartY, nCtrlX, nCtrlY, nEndX, nEndY): </b>Adds a quadratic Bézier curve to 
 										the path.
 									</li>
 								</ul>
@@ -3086,8 +3086,8 @@
 									<li><b>nMidY: </b>Mid y coordinate of the curve.</li><br/>
 									<li><b>nEndX: </b>End x coordinate of the curve.</li><br/>
 									<li><b>nEndY: </b>End y coordinate of the curve.</li><br/>
-									<li><b>nX: </b>x coordinate of the circle center.</li><br/>
-									<li><b>nY: </b>y coordinate of the circle center.</li><br/>
+									<li><b>nCenterX: </b>x coordinate of the circle center.</li><br/>
+									<li><b>nCenterY: </b>y coordinate of the circle center.</li><br/>
 									<li><b>nCtrlX: </b>x coordinate of the quadratic curve control point.</li><br/>
 									<li><b>nCtrlY: </b>y coordinate of the quadratic curve control point.</li><br/>
 									<li><b>nRadius: </b>radius of the circle.</li><br/>
@@ -3096,6 +3096,82 @@
 										false and anticlockwise if true.
 									</li>
 								</ul>
+								<h4>Examples</h4>
+								<p class="Code">
+									let canvas3 = document.getElementById("canvas3");<br/>
+									if (canvas3)<br/>
+									{<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;let ctx3 = canvas3.getContext("2d");<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;if (ctx3)<br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.moveTo(5, 10);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.bezierCurveTo(20, 100, 30, 150, 50, 40);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.stroke();<br/>							
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.arc(70, 75, 20, 0, 2 * Math.PI);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.stroke();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.arc(115, 75, 20, 0, 1.7 * Math.PI);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.stroke();<br/>
+											<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Start a path<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.moveTo(150, 10);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a horizontal line<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.lineTo(180, 10);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create an arc<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.arcTo(220, 10, 200, 80, 30);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create a vertical line<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.lineTo(210, 100);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Draw the path<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.stroke();<br/>
+											<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.beginPath();<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.moveTo(220, 20);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.quadraticCurveTo(240, 200, 280, 20);<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx3.stroke(); <br/>
+										&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+									}
+								</p>
+								<canvas id="canvas3" class="canvas"></canvas>
+								<script type="text/javascript">
+									let canvas3 = document.getElementById("canvas3");
+									if (canvas3)
+									{
+										let ctx3 = canvas3.getContext("2d");
+										if (ctx3)
+										{
+											ctx3.beginPath();
+											ctx3.moveTo(5, 10);
+											ctx3.bezierCurveTo(20, 100, 30, 150, 50, 40);
+											ctx3.stroke();								
+											ctx3.beginPath();
+											ctx3.arc(70, 75, 20, 0, 2 * Math.PI);
+											ctx3.stroke();
+											ctx3.beginPath();
+											ctx3.arc(115, 75, 20, 0, 1.7 * Math.PI);
+											ctx3.stroke();
+											
+											// Start a path
+											ctx3.beginPath();
+											ctx3.moveTo(150, 10);
+											// Create a horizontal line
+											ctx3.lineTo(180, 10);
+											// Create an arc
+											ctx3.arcTo(220, 10, 200, 80, 30);
+											// Create a vertical line
+											ctx3.lineTo(210, 100);
+											// Draw the path
+											ctx3.stroke();
+
+											ctx3.beginPath();
+											ctx3.moveTo(220, 20);
+											ctx3.quadraticCurveTo(240, 200, 280, 20);
+											ctx3.stroke(); 
+										}
+									}
+								</script>
 							<h3>Text</h3>
 								<ul>
 									<li>
@@ -3141,6 +3217,29 @@
 										default is the full width of the text.
 									</li>
 								</ul>
+								<h4>Examples</h4>
+								<p class="Code">
+								</p>
+								
+								<canvas id="canvas4" class="canvas"></canvas>
+								<script type="text/javascript">
+									let canvas4 = document.getElementById("canvas4");
+									if (canvas4)
+									{
+										let ctx4 = canvas4.getContext("2d");
+										if (ctx4)
+										{
+											ctx4.direction = "ltr";
+											ctx4.fillText("Hello world!", 5, 10);
+											ctx4.direction = "rtl";
+											ctx4.fillText("Hello world!", 58, 30);
+											ctx4.stroke();
+											ctx4.direction = "ltr";
+											ctx4.fillText("width of \"Hello world!\" = " + ctx4.measureText("Hello world!").width, 5, 50);
+										}
+									}
+								</script>
+
 							<h3>Colors, styles and shadows</h3>
 								<ul>
 									<li><b>addColorStop(): </b>Specifies the colors and stop positions in a gradient object.</li><br/>
