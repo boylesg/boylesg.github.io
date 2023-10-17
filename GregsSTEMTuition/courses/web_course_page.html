@@ -3179,87 +3179,360 @@
 										Values: context.direction = "text-direction", either left to right / "ltr" or right to left / "rtl".<br/>
 										Please refer to the CSS section for details about this CSS attribute.<br/>
 										E.G. context.direction = "ltr";<br/><br/>
+										<p class="Code">
+											let canvas4 = document.getElementById("canvas4");<br/>
+											if (canvas4)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx4 = canvas4.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx4)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx4.direction = "ltr";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx4.fillText("Hello world!", 58, 10);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx4.direction = "rtl";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx4.fillText("Hello world!", 58, 30);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas4" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas4 = document.getElementById("canvas4");
+											if (canvas4)
+											{
+												let ctx4 = canvas4.getContext("2d");
+												if (ctx4)
+												{
+													ctx4.direction = "ltr";
+													ctx4.fillText("Hello world!", 58, 10);
+													ctx4.direction = "rtl";
+													ctx4.fillText("Hello world!", 58, 30);
+												}
+											}
+										</script>
+
 									</li><br/>
 									<li>
-										<b>fillText(strText, nStartX, nStartY, nMaxWidth): </b>Draws "filled" text on the canvas.
+										<b>fillText(strText, nStartX, nStartY, nMaxWidth): </b>Draws "filled" text on the canvas.<br/><br/>
+										<h4>Parameters</h4>
+										<ul>
+											<li><b>strText: </b>a string specifying the text to be drawn.</li>
+											<li><b>nStartX: </b>a number specifying the left edge of where the text is drawn.</li>
+											<li><b>nStartY: </b>a number specifying the top edge of where the text is drawn.</li>
+											<li><b>nMaxWidth: </b>the maximum width the text can occupy, with the default being the full width of the text.</li>
+										</ul>
+										<p class="Code">
+											let canvas5 = document.getElementById("canvas5");<br/>
+											if (canvas5)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx5 = canvas5.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx5)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx5.fillText("Hello world!", 58, 10);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas5" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas5 = document.getElementById("canvas5");
+											if (canvas5)
+											{
+												let ctx5 = canvas5.getContext("2d");
+												if (ctx5)
+												{
+													ctx5.fillText("Hello world!", 20, 20);
+												}
+											}
+										</script>
+
 									</li><br/>
 									<li>
 										<b>font: </b>Sets or returns the font properties for text content.<br/><br/>
 										Values: context.font = "font-style font-variant font-weight font-size font-face"<br/>
 										Please refer to the CSS section for details about these CSS attributes.<br/><br/>
+										<p class="Code">
+											let canvas6 = document.getElementById("canvas6");<br/>
+											if (canvas6)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx6 = canvas6.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx6)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx6.font = "30px Impact";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx6.fillText("Hello world!", 58, 10);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas6" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas6 = document.getElementById("canvas6");
+											if (canvas6)
+											{
+												let ctx6 = canvas6.getContext("2d");
+												if (ctx6)
+												{
+													ctx6.font = "30px Impact";
+													ctx6.fillText("Hello world!", 10, 50);
+													ctx6.stroke();
+												}
+											}
+										</script>
 									</li><br/>
 									<li>
 										<b>measureText(strText): </b>Returns an object that contains the width of the specified text.<br/><br/>
-										Parameter: strText, contains the text that is to be measured given the currently set  
-										font...measureText(strText).width and measureText(strText).height.<br/><br/>
+										<h4>Parameters</h4>
+										<ul>
+											<li>
+												<b>strText: </b>contains the text that is to be measured given the currently set  
+												font...measureText(strText).width and measureText(strText).height.
+											</li>
+										</ul><br/><br/>
+										<p class="Code">
+											let canvas7 = document.getElementById("canvas7");<br/>
+											if (canvas7)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx7 = canvas7.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx7)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx7.fillText("Width of \"Hello world!\" = " + ctx7.measureText("Hello world!").width, 10, 10);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas7" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas7 = document.getElementById("canvas7");
+											if (canvas7)
+											{
+												let ctx7 = canvas7.getContext("2d");
+												if (ctx7)
+												{
+													ctx7.fillText("Width of \"Hello world!\" = " + ctx7.measureText("Hello world!").width, 10, 10);
+												}
+											}
+										</script>
 									</li><br/>
 									<li>
-										<b>strokeText(strText, nStartX, nStartY, nMaxWidth): </b>Draws text on the canvas.
+										<b>strokeText(strText, nStartX, nStartY, nMaxWidth): </b>Draws text only on the canvas.
+										
+										<h4>Parameters</h4>
+										<ul>
+											<li><b>strText: </b>a string specifying the text to be drawn.</li>
+											<li><b>nStartX: </b>a number specifying the left edge of where the text is drawn.</li>
+											<li><b>nStartY: </b>a number specifying the top edge of where the text is drawn.</li>
+											<li><b>nMaxWidth: </b>the maximum width the text can occupy, with the default being the full width of the text.</li>
+										</ul>
+										<p class="Code">
+											let canvas8 = document.getElementById("canvas8");<br/>
+											if (canvas8)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx8 = canvas8.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx8)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;ctx8.font = "40px Arial";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx8.strokeText("Hello world!", 30, 30);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas8" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas8 = document.getElementById("canvas8");
+											if (canvas8)
+											{
+												let ctx8 = canvas8.getContext("2d");
+												if (ctx8)
+												{
+													ctx8.font = "40px Arial";
+													ctx8.strokeText("Hello world!", 30, 50);
+												}
+											}
+										</script>
+		
 									</li><br/>
 									<li>
 										<b>textAlign: </b>Sets or returns the alignment for text content.<br/><br/>
 										Values: context.textAlign = "text-align"<br/>
 										Please refer to the CSS section for details about the CSS 'text-align' attribute.<br/><br/>
+										<p class="Code">
+											let canvas9 = document.getElementById("canvas9");<br/>
+											if (canvas9)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx9 = canvas9.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx9)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx9.textAlign = "left";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx9.fillText("Hello world!", 70, 20);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx9.textAlign = "right";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx9.fillText("Hello world!", 70, 40);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										
+										<canvas id="canvas9" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas9 = document.getElementById("canvas9");
+											if (canvas9)
+											{
+												let ctx9 = canvas9.getContext("2d");
+												if (ctx9)
+												{
+													ctx9.font = "12px Arial";
+													ctx9.textAlign = "left";
+													ctx9.fillText("Hello world!", 70, 20);
+													ctx9.textAlign = "right";
+													ctx9.fillText("Hello world!", 70, 40);
+												}
+											}
+										</script>
+		
 									</li><br/>
 									<li>
-										<b>textBaseline: </b>Sets or returns the text baseline used when drawing text.
-										Values: context.textBaseline = "text-baseline"<br/>
-										Please refer to the CSS section for details about the CSS 'text-baseline' attribute.<br/><br/>
-									</li>
-								</ul>
-								<h4>Parameters</h4>
-								<ul>
-									<li><b>strText: </b>the text to dsiplay.</li><br/>
-									<li><b>nStartX: </b>the x coordinate of the start position of the text.</li><br/>
-									<li><b>nStartY: </b>the y coordinate of the start position of the text.</li><br/>
-									<li>
-										<b>nMaxWidth: </b>the maximum width that the text can occupy. Optional and the 
-										default is the full width of the text.
-									</li>
-								</ul>
-								<h4>Examples</h4>
-								<p class="Code">
-								</p>
-								
-								<canvas id="canvas4" class="canvas"></canvas>
-								<script type="text/javascript">
-									let canvas4 = document.getElementById("canvas4");
-									if (canvas4)
-									{
-										let ctx4 = canvas4.getContext("2d");
-										if (ctx4)
-										{
-											ctx4.direction = "ltr";
-											ctx4.fillText("Hello world!", 5, 10);
-											ctx4.direction = "rtl";
-											ctx4.fillText("Hello world!", 58, 30);
-											ctx4.stroke();
-											ctx4.direction = "ltr";
-											ctx4.fillText("width of \"Hello world!\" = " + ctx4.measureText("Hello world!").width, 5, 50);
-											ctx4.textAlign = "left";
-											ctx4.fillText("Hello world!", 200, 10);
-											ctx4.textAlign = "right";
-											ctx4.fillText("Hello world!", 200, 30);
-										}
-									}
-								</script>
+										<b>textBaseline: </b>Sets or returns the text baseline used when drawing text.<br/>
+										<h4>Values</h4>
+										<ul>
+											<li><b>alphabetic: </b>The normal alphabetic baseline.</li>
+											<li><b>top: </b>The top of the em square.</li><br/>
+											<li><b>hanging: </b>The hanging baseline.</li><br/>
+											<li><b>middle: </b>The middle of the em square.</li><br/>
+											<li><b>ideographic: </b>The ideographic baseline.</li><br/>
+											<li><b>bottom: </b>The bottom of the bounding box.</li>
+										</ul><br/><br/>
+										
+										<canvas id="canvas10" class="canvas"></canvas>
+										<script type="text/javascript">
+											let canvas10 = document.getElementById("canvas10");
+											if (canvas10)
+											{
+												let ctx10 = canvas10.getContext("2d");
+												if (ctx10)
+												{
+													ctx10.font = "10px Arial";
+													
+													//Draw a red line at y=100
+													ctx10.strokeStyle = "red";
+													ctx10.moveTo(5, 80);
+													ctx10.lineTo(200, 80);
+													ctx10.stroke();
+																										
+													//Place each word at y=100 with different textBaseline values
+													ctx10.textBaseline = "top";
+													ctx10.fillText("Top", 5, 80);
+													ctx10.textBaseline = "bottom";
+													ctx10.fillText("Bottom", 25, 80);
+													ctx10.textBaseline = "middle";
+													ctx10.fillText("Middle", 60, 80);
+													ctx10.textBaseline = "alphabetic";
+													ctx10.fillText("Alphabetic", 95, 80);
+													ctx10.textBaseline = "hanging";
+													ctx10.fillText("Hanging", 150, 80);												}
+											}
+										</script>
 
+									</li>
+								</ul>
 							<h3>Colors, styles and shadows</h3>
 								<ul>
-									<li><b>addColorStop(): </b>Specifies the colors and stop positions in a gradient object.</li><br/>
-									<li><b>createLinearGradient(): </b>Creates a linear gradient (to use on canvas content).</li><br/>
-									<li><b>createPattern(): </b>Repeats a specified element in the specified direction.</li><br/>
-									<li><b>createRadialGradient(): </b>Creates a radial/circular gradient (to use on canvas content).</li><br/>
-									<li><b>fillStyle: </b>Sets or returns the color, gradient, or pattern used to fill the drawing.</li><br/>
-									<li><b>lineCap: </b>Sets or returns the style of the end caps for a line.</li><br/>
-									<li><b>lineJoin: </b>Sets or returns the type of corner created, when two lines meet.</li><br/>
-									<li><b>lineWidth: </b>Sets or returns the current line width.</li><br/>
-									<li><b>miterLimit: </b>Sets or returns the maximum miter length.</li><br/>
-									<li><b>shadowBlur: </b>Sets or returns the blur level for shadows.</li><br/>
-									<li><b>shadowColor: </b>Sets or returns the color to use for shadows.</li><br/>
-									<li><b>shadowOffsetX: </b>Sets or returns the horizontal distance of the shadow from the shape.</li><br/>
-									<li><b>shadowOffsetY: </b>Sets or returns the vertical distance of the shadow from the shape.</li><br/>
-									<li><b>strokeStyle: </b>Sets or returns the color, gradient, or pattern used for strokes.</li>
+									<li>
+										<b>addColorStop(fStop, Color): </b>Specifies the colors and stop 
+										positions in a gradient object.
+										<h4>Paremeters</h4>
+										<ul>
+											<li>
+												<b>fStop: </b>a decimal value between 0 and 1 representing the distance over 
+												which the starting color transisitons to this color.
+											</li>
+											<li><b>Color: </b>a valid color name, HEX color, RGB color or HSL color.</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>createLinearGradient(nStartX, nStartY, nEndX, nEndY): </b>Creates a linear rectangular 
+										gradient that transistions in color through the specified 'color stops' from left to right 
+										and in a rectangular areas. At least two color stops are required to show any gradient.
+										<h4>Paremeters</h4>
+										<ul>
+											<li><b>nStartX: </b>left side of the color graident.</li>
+											<li><b>nStartY: </b>top edge of the color gradient.</li>
+											<li><b>nEndX: </b>right side of the color gradient.</li>
+											<li><b>nEndY: </b>bottom edge of the color gradient.</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>createPattern(Image, RepeatPattern): </b>Repeats a specified element in the specified 
+										direction.
+										<h4>RepeatPattern</h4>
+										<ul>
+											<li>
+												<b>Image: </b>specifies the image, canvas or video element of the pattern to use.
+											</li>
+											<li>
+												<b>RepeatType: </b>how the image, canvas or video is to be repeated or not across 
+												the element. Allowed values are: 
+												<ul>
+													<li><b>repeat: </b></li>The pattern repeats both horizontally and vertically. This is the default.
+													<li><b>repeat-x: </b></li>The pattern repeats only horizontally
+													<li><b>repeat-y: </b></li>The pattern repeats only vertically
+													<li><b>no-repeat: </b></li>The pattern will be displayed only once only.
+												</ul>
+											</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>createRadialGradient(nStartX, nStartY, nRadiusStart, nEndX, nEndY, nRadiusEnd): </b>
+										This creates a circular gradiant that transistions in color through the specified 'color 
+										stops' in a circular pattern. The color gardient is still over a rectangular area. At 
+										least two color stops are required to show any gradient.
+
+										<h4>Paremeters</h4>
+										<ul>
+											<li>
+												<b>nStartX: </b>the left side of the color gradient.
+											</li>
+											<li>
+												<b>nStartY: </b>the top edge of the color gradient.
+											</li>
+											<li>
+												<b>nRadiusStart: </b>The radial distance over which the first color stop 
+												is displayed.
+											</li>
+											<li><b>nEndX: </b>the right edge of the color gradient.</li>
+											<li><b>nEndY: </b>the bottom edge of the color gradient.</li>
+											<li>
+												<b>nEndRadius: </b>the radial distance over which the first color stop transistions 
+												to the last color stop.
+											</li>
+										</ul>
+									</li><br/>
+									<li>
+										<b>fillStyle: </b>Sets or returns the color, gradient, or pattern used to fill the drawing.</li><br/>
+									<li>
+										<b>lineCap: </b>Sets or returns the style of the end caps for a line.
+									</li><br/>
+									<li>
+										<b>lineJoin: </b>Sets or returns the type of corner created, when two lines meet.
+									</li><br/>
+									<li>
+										<b>lineWidth: </b>Sets or returns the current line width.
+									</li><br/>
+									<li>
+										<b>miterLimit: </b>Sets or returns the maximum miter length.
+									</li><br/>
+									<li>
+										<b>shadowBlur: </b>Sets or returns the blur level for shadows.
+									</li><br/>
+									<li>
+										<b>shadowColor: </b>Sets or returns the color to use for shadows.
+									</li><br/>
+									<li>
+										<b>shadowOffsetX: </b>Sets or returns the horizontal distance of the shadow from the 
+										shape.
+									</li><br/>
+									<li>
+										<b>shadowOffsetY: </b>Sets or returns the vertical distance of the shadow from the shape.
+									</li><br/>
+									<li>
+										<b>strokeStyle: </b>Sets or returns the color, gradient, or pattern used for strokes.
+									</li>
 								</ul>
 							<h3>Transformations</h3>
 								<ul>
