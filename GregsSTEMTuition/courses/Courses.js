@@ -1056,14 +1056,7 @@ function DoPrevious(nStageNum)
 	console.groupEnd();
 }
 
-function DoNextPage(strPage)
-{
-	sessionStorage["current_stage"] = 0;
-	document.location = strPage;
-}
-
-
-function DoNextPage(strPage)
+function DoChangePage(strPage)
 {
 	sessionStorage["current_stage"] = 0;
 	document.location = strPage;
@@ -1102,7 +1095,7 @@ function DoShowHide(strIDDiv2Show, strIDDiv2Hide)
 function DrawFirstStageButtons(strStartPage, nStageNum)
 {
 	g_nStageNum++;
-	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoPreviousPage('" + strStartPage + "')\">&lt; PREVIOUS</button>&nbsp;");
+	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoChangePage('" + strStartPage + "')\">&lt; PREVIOUS</button>&nbsp;");
 	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoNext(" + nStageNum + ")\">NEXT &gt;</button>");
 	
 	return nStageNum + 1;
@@ -1112,10 +1105,7 @@ function DrawLastStageButtons(strNextPage, nStageNum)
 {	
 	document.write("<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoPrevious(" + nStageNum + ")\">&lt; PREVIOUS</button>");
 	if (strNextPage.length > 0)
-		document.write("&nbsp;<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoNextPage('" + strNextPage + "')\">NEXT &gt;</button>&nbsp;");
-console.log("***************");
-console.log(nStageNum);	
-console.log("***************");
+		document.write("&nbsp;<button type=\"button\" class=\"PreviousNextButtons\" onclick=\"DoChangePage('" + strNextPage + "')\">NEXT &gt;</button>&nbsp;");
 
 	return nStageNum + 1;
 }
