@@ -149,16 +149,24 @@
 						
 							<h2 class="StageHeading">Introduction</h2>
 							
-							<p>In this section I will teach you to build a basic web page using a variety of common constructs, 
-							such as popup menus and navigation structures etc. I will do this in a series of screen capture videos 
-							but I will provide minimal ongoing commentary as I do it. Just watch as I edit the code and view the 
-							results in the web browser and should should get the idea.</p>
+							<p>
+								In this section I will teach you to build a simple game using HTML &lt;canvas&gt; and javascript 
+								drawing functions. Bare in mind that the javascript drawing functions are very low level and 
+								rudimentary, so your game must be coded from the foundations up. Unlike with software like Unity 
+								that has substantial architecture that makes coding a complex dynamic game quite easy. Unity 
+								takes care of all the low level drawing and object motion under gravity etc. taken care of 
+								through a rich behind the scenes library of functions.
+							</p>
 							
-							<p>It would be best if you open <a href="https://www.majorgeeks.com/mg/getmirror/microsoft_expression_web,1.html">
-							MS Expression Web</a> and do the same file editing as I am doing in my source file. You can pause the 
-							video as you repeat each of the editing steps that I do. By the end of it you should reasonably 
-							confident about the coding techniques.<br/><br/>
-							<a href="images/CodeTab.jpg"><img src="images/CodeTab.jpg" alt="images/CodeTab.jpg" width="1200"/></a>
+							<p>
+								We will code a very simple arcade style game where you move a token left and right so as to avoid 
+								oncoming obstacles moving from the top of the playing area to the bottom. If your token gets hit 
+								by an obstacle then you loose a life. It will be remiscent of the 1980s game 'Frogger'.<br/><br/>
+								<a href="images/Frogger.jpg"><img src="images/Frogger.jpg" alt="images/Frogger.jpg" width="800" />
+								</a><br/><br/>
+								Although 'Frogger' seems like a simple game by the standards of modern games, it is still quite 
+								complex for a beginner to code, with many moving parts to control. So our game will be very much 
+								simpler and with essentially just two moving parts.
 							</p>
 							
 							<p>
@@ -170,7 +178,7 @@
 
 						<div style="display:none;">
 						
-							<h2 class="StageHeading">Drawing</h2>
+							<h2 class="StageHeading">Drawing functions</h2>
 							
 							<p>
 								To create drawings you must first add a canvas element, with the 'id' property, to your page.
@@ -189,14 +197,30 @@
 								let context2dCanvas = canvasDrawing.getContext("2d");
 							</p>
 							<p>
-								So here is a list of all the drawing functions you have available to you.
+								So we will now look at all the drawing functions you have available to you.
 							</p>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
 							
-							<h3>Drawing methods</h3>
+							<h2>Rectangles</h2>
 								<ul>
-									<li><b>fillRect(nLeft, nTop, nWidth, nHeight): </b>Draws a "filled" rectangle.</li>
-									<li><b>strokeRect(nLeft, nTop, nWidth, nHeight): </b>Draws a rectangle (with no fill).</li>
-									<li><b>clearRect(nLeft, nTop, nWidth, nHeight): </b>Clears specified pixels within a rectangle.</li>
+									<li
+										><b>fillRect(nLeft, nTop, nWidth, nHeight): </b>Draws a "filled" rectangle.
+									</li>
+									<li>
+										<b>strokeRect(nLeft, nTop, nWidth, nHeight): </b>Draws a rectangle (with no fill).
+									</li>
+									<li>
+										<b>clearRect(nLeft, nTop, nWidth, nHeight): </b>Clears specified pixels within a 
+										rectangle.
+									</li>
 								</ul>
 								<h4>Parameters</h4>
 								<ul>
@@ -235,7 +259,17 @@
 										}
 									}
 								</script>
-							<h3>Path methods</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Lines</h2>
 								<ul>
 									<li><b>beginPath(): </b>Begins a new path or resets the current path.</li>
 									<li><b>closePath(): </b>Adds a line to the path from the current point to the start.</li>
@@ -243,13 +277,17 @@
 									<li><b>moveTo(nX, nY): </b>Moves the path to a point in the canvas (without drawing).</li>
 									<li><b>lineTo(nX, nY): </b>Adds a line to the the path.</li>
 									<li><b>fill(): </b>Fills the current path.</li>
-									<li><b>rect(): </b>Adds a rectangle to the path.</li>
+									<li><b>rect(nLeft, nTop, nWidth, nHeight): </b>Adds a rectangle to the path.</li>
 									<li><b>stroke(): </b>Draws the current path.</li>
 								</ul>
 								<h4>Parameters</h4>
 								<ul>
 									<li><b>nX: </b>the horizontal position of the point.</li>
 									<li><b>nY: </b>the vertical position of the point.</li>
+									<li><b>nLeft: </b>the horizontal position of the top left corner of the rectangle.</li>
+									<li><b>nTop: </b>the vertical position of the top left corner of the rectangle.</li>
+									<li><b>nWidth: </b>the width of the rectangle.</li>
+									<li><b>nHeight: </b>the height of the rectangle.</li>
 								</ul>
 								<h4>Examples</h4>
 								<p class="Code">
@@ -301,7 +339,17 @@
 										}
 									}
 								</script>
-							<h3>Circles and curves</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Circles and curves</h2>
 								<ul>
 									<li>
 										<b>bezierCurveTo(nStartX, nStartY, nMidX, nMidY, nEndX, nEndY): </b>Adds a cubic Bézier curve to the path.
@@ -413,7 +461,17 @@
 										}
 									}
 								</script>
-							<h3>Text</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Text</h2>
 								<ul>
 									<li>
 										<b>direction: </b>Sets or returns the direction used to draw text.<br/><br/>
@@ -672,7 +730,17 @@
 
 									</li>
 								</ul>
-							<h3>Colors, styles and shadows</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Colors, styles and shadows</h2>
 								<ul>
 									<li>
 										<b>addColorStop(fStop, Color): </b>Specifies the colors and stop 
@@ -775,7 +843,17 @@
 										<b>strokeStyle: </b>Sets or returns the color, gradient, or pattern used for strokes.
 									</li>
 								</ul>
-							<h3>Transformations</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Transformations</h2>
 								<ul>
 									<li><b>scale(): </b>Scales the current drawing bigger or smaller.</li><br/>
 									<li><b>rotate(): </b>Rotates the current drawing.</li><br/>
@@ -783,12 +861,19 @@
 									<li><b>transform(): </b>Replaces the current transformation matrix for the drawing.</li><br/>
 									<li><b>setTransform(): </b>Resets the current transform to the identity matrix. Then runs transform().</li>
 								</ul>4
-							<h3>Image drawing</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Image drawing &amp; manipulation</h2>
 								<ul>
 									<li><b>drawImage(): </b>Draws an image, canvas, or video onto the canvas.</li>
-								</ul>
-							<h3>Image information &amp; pixel manipulation</h3>
-								<ul>
 									<li><b>createImageData(): </b>Creates a new, blank ImageData object.</li>
 									<li><b>getImageData(): </b>Returns an ImageData object that copies the pixel data for the specified rectangle on a canvas.</li><br/>
 									<li><b>ImageData.data: </b>Returns an object that contains image data of a specified ImageData object.</li><br/>
@@ -796,12 +881,32 @@
 									<li><b>ImageData.width: </b>Returns the width of an ImageData object.</li><br/>
 									<li><b>putImageData(): </b>Puts the image data (from a specified ImageData object) back onto the canvas.</li>
 								</ul>
-							<h3>Compositing</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Compositing</h2>
 								<ul>
 									<li><b>globalAlpha: </b>Sets or returns the current alpha or transparency value of the drawing.</li><br/>
 									<li><b>globalCompositeOperation: </b>Sets or returns how a new image are drawn onto an existing image.</li>
 								</ul>
-							<h3>Other methods</h3>
+							<p>
+								<script type="text/javascript">
+									g_nStageNum = DrawMidStageButtons(g_nStageNum);
+								</script>
+							</p>
+
+						</div>
+						
+						<div style="display:none;">
+							
+							<h2>Other methods</h2>
 								<ul>
 									<li><b>clip(): </b>Clips a region of any shape and size from the original canvas.</li><br/>
 									<li><b>save(): </b>Saves the state of the current drawing context and all its atributes.</li><br/>
