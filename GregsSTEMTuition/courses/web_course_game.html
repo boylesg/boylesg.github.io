@@ -157,7 +157,13 @@
 								takes care of all the low level drawing and object motion under gravity etc. taken care of 
 								through a rich behind the scenes library of functions.
 							</p>
-							
+							<p>
+								Why do you need &lt;canvas&gt; to code a game on a web page? Because you can draw any obkect in 
+								any place within the canvas and not have to worry about objects pushing each other aside and wrapping 
+								to the next line etc. as you do with regular HTML elements. HTML &lt;canvas&gt; gives you unfettered 
+								control over the positions of game objects. They can overlap each other and be aligned any way you 
+								need them to.
+							</p>
 							<p>
 								We will code a very simple arcade style game where you move a token left and right so as to avoid 
 								oncoming obstacles moving from the top of the playing area to the bottom. If your token gets hit 
@@ -168,7 +174,6 @@
 								complex for a beginner to code, with many moving parts to control. So our game will be very much 
 								simpler and with essentially just two moving parts.
 							</p>
-							
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawFirstStageButtons("web_course_page.html", g_nStageNum);
@@ -745,75 +750,86 @@
 									<li>
 										<b>addColorStop(fStop, Color): </b>Specifies the colors and stop 
 										positions in a gradient object.
-										<h4>Paremeters</h4>
-										<ul>
-											<li>
-												<b>fStop: </b>a decimal value between 0 and 1 representing the distance over 
-												which the starting color transisitons to this color.
-											</li>
-											<li><b>Color: </b>a valid color name, HEX color, RGB color or HSL color.</li>
-										</ul>
 									</li><br/>
 									<li>
 										<b>createLinearGradient(nStartX, nStartY, nEndX, nEndY): </b>Creates a linear rectangular 
 										gradient that transistions in color through the specified 'color stops' from left to right 
 										and in a rectangular areas. At least two color stops are required to show any gradient.
-										<h4>Paremeters</h4>
-										<ul>
-											<li><b>nStartX: </b>left side of the color graident.</li>
-											<li><b>nStartY: </b>top edge of the color gradient.</li>
-											<li><b>nEndX: </b>right side of the color gradient.</li>
-											<li><b>nEndY: </b>bottom edge of the color gradient.</li>
-										</ul>
 									</li><br/>
 									<li>
 										<b>createPattern(Image, RepeatPattern): </b>Repeats a specified element in the specified 
 										direction.
-										<h4>RepeatPattern</h4>
-										<ul>
-											<li>
-												<b>Image: </b>specifies the image, canvas or video element of the pattern to use.
-											</li>
-											<li>
-												<b>RepeatType: </b>how the image, canvas or video is to be repeated or not across 
-												the element. Allowed values are: 
-												<ul>
-													<li><b>repeat: </b></li>The pattern repeats both horizontally and vertically. This is the default.
-													<li><b>repeat-x: </b></li>The pattern repeats only horizontally
-													<li><b>repeat-y: </b></li>The pattern repeats only vertically
-													<li><b>no-repeat: </b></li>The pattern will be displayed only once only.
-												</ul>
-											</li>
-										</ul>
 									</li><br/>
 									<li>
 										<b>createRadialGradient(nStartX, nStartY, nRadiusStart, nEndX, nEndY, nRadiusEnd): </b>
 										This creates a circular gradiant that transistions in color through the specified 'color 
 										stops' in a circular pattern. The color gardient is still over a rectangular area. At 
 										least two color stops are required to show any gradient.
-
-										<h4>Paremeters</h4>
-										<ul>
-											<li>
-												<b>nStartX: </b>the left side of the color gradient.
-											</li>
-											<li>
-												<b>nStartY: </b>the top edge of the color gradient.
-											</li>
-											<li>
-												<b>nRadiusStart: </b>The radial distance over which the first color stop 
-												is displayed.
-											</li>
-											<li><b>nEndX: </b>the right edge of the color gradient.</li>
-											<li><b>nEndY: </b>the bottom edge of the color gradient.</li>
-											<li>
-												<b>nEndRadius: </b>the radial distance over which the first color stop transistions 
-												to the last color stop.
-											</li>
-										</ul>
 									</li><br/>
 									<li>
-										<b>fillStyle: </b>Sets or returns the color, gradient, or pattern used to fill the drawing.</li><br/>
+										<b>fillStyle: </b>Sets or returns the color, gradient, or pattern used to fill the drawing.<br/><br/>
+										<p class="Code">
+											let canvas = document.getElementById("canvas11");<br/>
+											if (canvas)<br/>
+											{<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;let ctx = canvas.getContext("2d");<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;if (ctx)<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillStyle = "navy";<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillRect(5, 20, 60, 100);<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let gradient = ctx.createLinearGradient(0, 0, 180, 0);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(0, "navy");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(1, "white");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillStyle = gradient;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillRect(70, 20, 60, 100);<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient = ctx.createLinearGradient(0, 0, 180, 100);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(0, "navy");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(1, "white");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillStyle = gradient;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillRect(135, 20, 60, 100);<br/>
+													<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient = ctx.createRadialGradient(450, 50, 5, 90, 60, 120);<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(0, "navy");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gradient .addColorStop(1, "white");<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillStyle = gradient;<br/>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ctx.fillRect(200, 20, 60, 100);<br/>
+												&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+											}
+										</p>
+										<canvas class="canvas" id="canvas11"></canvas>
+										<script type="text/javascript">
+											let canvas = document.getElementById("canvas11");
+											if (canvas)
+											{
+												let ctx = canvas.getContext("2d");
+												if (ctx)
+												{
+													ctx.fillStyle = "navy";
+													ctx.fillRect(5, 20, 60, 100);
+													
+													let gradient = ctx.createLinearGradient(0, 0, 180, 0);
+													gradient .addColorStop(0, "navy");
+													gradient .addColorStop(1, "white");
+													ctx.fillStyle = gradient;
+													ctx.fillRect(70, 20, 60, 100);
+
+													gradient = ctx.createLinearGradient(0, 0, 180, 100);
+													gradient .addColorStop(0, "navy");
+													gradient .addColorStop(1, "white");
+													ctx.fillStyle = gradient;
+													ctx.fillRect(135, 20, 60, 100);
+
+													gradient = ctx.createRadialGradient(450, 50, 5, 90, 60, 120);
+													gradient .addColorStop(0, "navy");
+													gradient .addColorStop(1, "white");
+													ctx.fillStyle = gradient;
+													ctx.fillRect(200, 20, 60, 100);
+												}
+											}
+										</script>
+									</li><br/>
 									<li>
 										<b>lineCap: </b>Sets or returns the style of the end caps for a line.
 									</li><br/>
@@ -843,6 +859,37 @@
 										<b>strokeStyle: </b>Sets or returns the color, gradient, or pattern used for strokes.
 									</li>
 								</ul>
+								<h4>Parameters</h4>
+										<ul>
+											<li><b>nStartX: </b>left side of the color graident.</li>
+											<li><b>nStartY: </b>top edge of the color gradient.</li>
+											<li><b>nEndX: </b>right side of the color gradient.</li>
+											<li><b>nEndY: </b>bottom edge of the color gradient.</li>
+											<li>
+												<b>nRadiusStart: </b>The radial distance over which the first color stop 
+												is displayed.
+											</li>
+											<li>
+												<b>nEndRadius: </b>the radial distance over which the first color stop transistions 
+												to the last color stop.
+											</li>
+											<li>
+												<b>RepeatPattern: </b>is the pattern displayed once or does it repeat across the 
+												area? If it repeats then how? Allowed values are:
+												<ul>
+													<li><b>repeat: </b></li>The pattern repeats both horizontally and vertically. This is the default.
+													<li><b>repeat-x: </b></li>The pattern repeats only horizontally
+													<li><b>repeat-y: </b></li>The pattern repeats only vertically
+													<li><b>no-repeat: </b></li>The pattern will be displayed only once only.
+												</ul>
+											</li>
+											<li>
+												<b>fStop: </b>a decimal value between 0 and 1 representing the distance over 
+												which the starting color transisitons to this color.
+											</li>
+											<li><b>Color: </b>a valid color name, HEX color, RGB color or HSL color.</li>
+										</ul>
+
 							<p>
 								<script type="text/javascript">
 									g_nStageNum = DrawMidStageButtons(g_nStageNum);
