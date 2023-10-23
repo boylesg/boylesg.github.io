@@ -110,6 +110,22 @@ body
 	line-height:100px;
 }
 
+.faq_question
+{
+	list-style-type:none;
+	font-size:medium;
+	font-weight:bold;
+	color:red;
+}
+
+.faq_answer
+{
+	list-style-type:none;
+	font-size:medium;
+	font-weight:bold;
+	color:black;
+}
+
 .form
 {
 	border-style:solid;
