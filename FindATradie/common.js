@@ -67,7 +67,6 @@ let g_arrayTrades = [
 						"landscaping",
 						"landscape construction",
 						"locksmith",
-						"mowing (domestic)",
 						"mowing & slashing (commercial)",
 						"painter",
 						"paver",
