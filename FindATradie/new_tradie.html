@@ -10,6 +10,7 @@
 		<!-- #EndEditable -->
 		<link href="styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
+		<script src="AustraliaPost.js"></script>
 	</head>
 	
 	<body>
@@ -47,14 +48,21 @@
 			<div class="page_content">
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
-					
+
+
+
+
+
+
+
+
 					<div id="trade" style="display:none;">
 						<h2>What is your primary trade?</h2>
 						<form id="form_select_trade" class="form" style="width:66em;">
 							<table>
 								<script type="text/javascript">DoGenerateTradesRadioButtons();</script>
 								<tr>
-									<td colspan="4" style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
+									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
 								</tr>
 							</table>
 						</form>
@@ -62,7 +70,7 @@
 					
 					<div id="business_details" style="display:none;">
 						<h2>Details about your business</h2>
-						<form id="form_business_details" class="form" style="width:46em;">
+						<form id="form_business_details" class="form" style="width:55em;">
 							<table>
 								<tr>
 									<td colspan="2"><b><u>Business ID</u></b></td>
@@ -76,51 +84,11 @@
 									<td><input type="text" id="abn" size="32" name="ABN" pattern="^[1-9]{2}\s[0-9]{3}\s[0-9]{3}\s[0-9]{3}$"/>&nbsp;&nbsp;<label>e.g. 51 824 753 556</label></td>
 								</tr>
 								<tr>
-									<td colspan="2"><b><u>Services offered (optional)</u></b></td>
+									<td colspan="2"><b><u>Description of services offered (optional)</u></b></td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Service 1</b></td>
-									<td style="text-align:left;"><input type="text" id="service1" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 1</b></td>
-									<td style="text-align:left;"><input type="text" id="service1" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 2</b></td>
-									<td style="text-align:left;"><input type="text" id="service2" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 3</b></td>
-									<td style="text-align:left;"><input type="text" id="service3" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 4</b></td>
-									<td style="text-align:left;"><input type="text" id="service4" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 5</b></td>
-									<td style="text-align:left;"><input type="text" id="service5" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 6</b></td>
-									<td style="text-align:left;"><input type="text" id="service6" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 7</b></td>
-									<td style="text-align:left;"><input type="text" id="service7" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 8</b></td>
-									<td style="text-align:left;"><input type="text" id="service8" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 9</b></td>
-									<td style="text-align:left;"><input type="text" id="service9" size="32" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Service 10</b></td>
-									<td style="text-align:left;"><input type="text" id="service10" size="32" /></td>
+									<td style="text-align:right;"><b>Description</b></td>
+									<td style="text-align:left;"><textarea id="description" cols="64" rows="16"></textarea></td>
 								</tr>
 								<tr>
 									<td colspan="2"><b><u>Job preferences</u></b></td>
@@ -147,8 +115,58 @@
 
 					<div id="business_contact" style="display:none;">
 						<h2>Business contact details</h2>
-						<form id="form_business_contact" class="form" style="width:25em;">
+						<form id="form_business_contact" class="form" style="width:30em;">
 							<table>
+								<tr>
+									<td><b>Unit</b></td>
+									<td><input type="text" id="unit" name="unit" /></td>
+								</tr>
+								<tr>
+									<td><b>Street</b></td>
+									<td><textarea id="street" name="street" cols="32" rows="2"></textarea></td>
+								</tr>
+								<tr>
+									<td><b>City, suburb or town</b></td>
+									<td>
+										<select id="suburb" name="city/suburb/town" style="width:18em;" onchange="OnChangeSuburb(this, document.getElementById('postcode'), document.getElementById('state'))">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><b>State</b></td>
+									<td>
+										<select id="state" name="state" onchange="OnChangeState(this, document.getElementById('suburb'), document.getElementById('postcode'))">
+											<option selected=>ACT</option>
+											<option>NSW</option>
+											<option>NT</option>
+											<option>QLD</option>
+											<option>SA</option>
+											<option>TAS</option>
+											<option>VIC</option>
+											<option>WA</option>
+										</select>
+									
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<select id="postcode" name="postcode" onchange="OnChangePostcode(this, document.getElementById('suburb'), document.getElementById('state'))">
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Office phone number</td>
+									<td><input type="text"  id="office" name="office phone number" pattern="^[0-9]{8}$" /></td>
+								</tr>
+								<tr>
+									<td>Mobile number</td>
+									<td><input type="text"  id="mobile" name="mobile number" pattern="^[0-9]{10}$" /></td>
+								</tr>
+								<tr>
+									<td>Email address</td>
+									<td><input type="text"  id="email" name="email address" pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" /></td>
+								</tr>
 								<tr>
 									<td style="text-align:left;"><input type="button" value="Previous" class="next_button" onclick="DoNext('business_contact', 'business_details')"/></td>
 									<td style="text-align:right;"><input type="button" value="Next" class="next_button" onclick="DoNext('business_details', '')"/></td>
@@ -157,14 +175,9 @@
 						</form>					
 					</div>
 
-
-
-
-
-
-
-
-
+					<script type="text/javascript">
+						DoFillSuburbsAndPostcodeSelects(document.getElementById("suburb"), document.getElementById("postcode"), document.getElementById("state"));
+					</script>
 
 					<form method="post" id="hidden" style="visibility:hidden;" name="new_tradie">
 						<input type="hidden" id="hidden_trade" name="hidden_trade" value=""/>
@@ -194,17 +207,17 @@
 						<input type="hidden" id="hidden_email" name="hidden_email" value=""/>
 						
 						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_0" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_1" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_2" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_3" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_4" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_5" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_6" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_7" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_8" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_9" name="hidden_" value=""/>
+						<input type="hidden" id="hidden_10" name="hidden_" value=""/>
 					</form>
 					
 					<script type="text/javascript">
@@ -219,6 +232,13 @@
 							div2Show.style.display = "block";
 						
 					</script>
+
+
+
+
+
+
+
 
 					<!-- #EndEditable -->
 			<!-- End Page Content -->

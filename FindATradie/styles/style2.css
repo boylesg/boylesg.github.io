@@ -126,21 +126,6 @@ body
 	color:black;
 }
 
-.form
-{
-	border-style:solid;
-	border-width:thin;
-	border-color:black;
-	background-color:white;
-	padding:20px;
-	margin:20px;
-}
-
-.next_button
-{
-	width:80px;
-}
-
 .footer 
 {
 	background-color: #dfcfbf;
@@ -251,12 +236,23 @@ a:hover
 	text-decoration: underline;
 }
 
-.style_bold 
+textarea
 {
-	font-weight: bold;
+	resize:none;
 }
 
-.style_italic 
+.form
 {
-	font-style: italic;
+	border-style:solid;
+	border-width:thin;
+	border-color:black;
+	background-color:white;
+	padding:20px;
+	margin:20px;
 }
+
+.next_button
+{
+	width:80px;
+}
+
