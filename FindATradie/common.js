@@ -45,8 +45,8 @@ let g_arrayTrades = [
 						"carpenter",
 						"carpeter",
 						"cabinet maker",
-						"cleaner (domestic)"
-						"cleaner (commercial)"
+						"cleaner (domestic)",
+						"cleaner (commercial)",
 						"computer technician",
 						"concreter",
 						"conservation & land management",
@@ -85,8 +85,7 @@ let g_arrayTrades = [
 						"tiler",
 						"underpinner",
 						"upholsterer",
-						"window cleaner",
-						"other"
+						"window cleaner"
 				   ];
 				  
 function DoGenerateTradesRadioButtons()
@@ -99,9 +98,7 @@ function DoGenerateTradesRadioButtons()
 		if ((nI % nNumCols) == 0)
 			document.write("<tr>");
 		document.write("<td style=\"text-align:right;width:16em;\"><label>" + DoCapitalise(g_arrayTrades[nI]) + "</label></td>");
-		document.write("<td style=\"width:16em;\"><input type=\"radio\" name=\"trade\" id=\"" + g_arrayTrades[nI] + "\" " + strChecked + " onclick=\"OnClickTRadesRadio(" + g_arrayTrades[nI] + ")\" />");
-		if (g_arrayTrades[nI] == "other")
-			document.write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" id=\"text_other\" name=\"other trade\" pattern=\"[A-Za-z]+\" disabled />");
+		document.write("<td style=\"width:16em;\"><input type=\"radio\" name=\"trade\" id=\"" + g_arrayTrades[nI] + "\" " + strChecked + " onclick=\"OnClickTRadesRadio('" + g_arrayTrades[nI] + "')\" />");
 		document.write("</td>");
 			
 		if (nI == 0)
@@ -110,6 +107,9 @@ function DoGenerateTradesRadioButtons()
 		if ((((nI + 1) % nNumCols) == 0) && (nI > 0))
 			document.write("</tr>");		
 	}
+	document.write("<td style=\"text-align:right;width:16em;\"><label>Other</label></td>");
+	document.write("<td style=\"width:16em;\"><input type=\"radio\" name=\"trade\" id=\"other\" onclick=\"OnClickTRadesRadio('other')\" />");
+	document.write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" id=\"text_other\" name=\"other trade\" pattern=\"[A-Za-z]+\" disabled />");
 }
 
 function OnClickTRadesRadio(strRadioID)
