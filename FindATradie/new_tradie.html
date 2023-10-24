@@ -118,23 +118,23 @@
 						<form id="form_business_contact" class="form" style="width:30em;">
 							<table>
 								<tr>
-									<td><b>Unit</b></td>
-									<td><input type="text" id="unit" name="unit" /></td>
+									<td style="text-align:right;"><b>Unit</b></td>
+									<td style="text-align:left;"><input type="text" id="unit" name="unit" /></td>
 								</tr>
 								<tr>
-									<td><b>Street</b></td>
+									<td style="text-align:right;"><b>Street</b></td>
 									<td><textarea id="street" name="street" cols="32" rows="2"></textarea></td>
 								</tr>
 								<tr>
-									<td><b>City, suburb or town</b></td>
-									<td>
+									<td style="text-align:right;"><b>City, suburb or town</b></td>
+									<td style="text-align:left;">
 										<select id="suburb" name="city/suburb/town" style="width:18em;" onchange="OnChangeSuburb(this, document.getElementById('postcode'), document.getElementById('state'))">
 										</select>
 									</td>
 								</tr>
 								<tr>
-									<td><b>State</b></td>
-									<td>
+									<td style="text-align:right;"><b>State</b></td>
+									<td style="text-align:left;">
 										<select id="state" name="state" onchange="OnChangeState(this, document.getElementById('suburb'), document.getElementById('postcode'))">
 											<option selected=>ACT</option>
 											<option>NSW</option>
@@ -149,23 +149,23 @@
 									</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td>
+									<td style="text-align:right;"><b>Postcode</b></td>
+									<td style="text-align:left;">
 										<select id="postcode" name="postcode" onchange="OnChangePostcode(this, document.getElementById('suburb'), document.getElementById('state'))">
 										</select>
 									</td>
 								</tr>
 								<tr>
-									<td>Office phone number</td>
-									<td><input type="text"  id="office" name="office phone number" pattern="^[0-9]{8}$" /></td>
+									<td style="text-align:right;"><b>Office phone number</b></td>
+									<td style="text-align:left;"><input type="text"  id="office" name="office phone number" pattern="^[0-9]{8}$" /></td>
 								</tr>
 								<tr>
-									<td>Mobile number</td>
-									<td><input type="text"  id="mobile" name="mobile number" pattern="^[0-9]{10}$" /></td>
+									<td style="text-align:right;"><b>Mobile number</b></td>
+									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="^[0-9]{10}$" /></td>
 								</tr>
 								<tr>
-									<td>Email address</td>
-									<td><input type="text"  id="email" name="email address" pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" /></td>
+									<td style="text-align:right;"><b>Email address</b></td>
+									<td style="text-align:left;"><input type="text"  id="email" name="email address" pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:left;"><input type="button" value="Previous" class="next_button" onclick="DoNext('business_contact', 'business_details')"/></td>
@@ -183,16 +183,7 @@
 						<input type="hidden" id="hidden_trade" name="hidden_trade" value=""/>
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" value=""/>
 						<input type="hidden" id="hidden_abn" name="hidden_abn" value=""/>
-						<input type="hidden" id="hidden_service1" name="hidden_service1" value=""/>
-						<input type="hidden" id="hidden_service2" name="hidden_service2" value=""/>
-						<input type="hidden" id="hidden_service3" name="hidden_service3" value=""/>
-						<input type="hidden" id="hidden_service4" name="hidden_service4" value=""/>
-						<input type="hidden" id="hidden_service5" name="hidden_service5" value=""/>
-						<input type="hidden" id="hidden_service6" name="hidden_service6" value=""/>
-						<input type="hidden" id="hidden_service7" name="hidden_service7" value=""/>
-						<input type="hidden" id="hidden_service8" name="hidden_service8" value=""/>
-						<input type="hidden" id="hidden_service9" name="hidden_service9" value=""/>
-						<input type="hidden" id="hidden_service10" name="hidden_service10" value=""/>
+						<input type="hidden" id="hidden_description" name="hidden_description" value=""/>
 						<input type="hidden" id="hidden_minimum_charge" name="hidden_minimum_charge" value=""/>
 						<input type="hidden" id="hidden_maximum_budget" name="hidden_maximum_budget" value=""/>
 						<input type="hidden" id="hidden_maximum_distance" name="hidden_maximum_distance" value=""/>
