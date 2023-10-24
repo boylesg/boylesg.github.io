@@ -160,6 +160,10 @@ function DoSetHiddenFieldValue(input)
 		{
 			inputHidden.value = document.querySelector('input[name="trade"]:checked').value;
 		}
+		else if (input.type == "select")
+		{
+			inputHidden.value = input.options[input.selectedIndex].text;
+		}
 	}
 }
 
@@ -206,6 +210,20 @@ function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormId)
 	
 	if (DoValidateForm(form) && div2Hide && div2Show)
 	{
+		if (strIDDiv2Hide == "trade") 
+		{
+			let radioOther = document.getElementById("other"),
+				textOther = document.getElementById("text_other"),
+				hiddenOther = document.getElementById("hidden_other");
+			
+			if (radioOther && textOther  && hiddenOther)
+			{
+				if (radioOther.checked)
+					hiddenOther.value = textOther.value;
+				else
+					hiddenOther.value = "";
+			}
+		}
 		div2Hide.style.display = "none";
 		div2Show.style.display = "block";
 		sessionStorage["new_tradie_stage"] = strIDDiv2Show;

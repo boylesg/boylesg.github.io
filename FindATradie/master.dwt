@@ -73,8 +73,8 @@
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
-					<a href="contact.html">Contact</a> |
-					<span>Copyright &copy; 2023 Find a Tradie. All Rights Reserved.</span>
+					<a href="contact.html">Contact</a>
+					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
 				</p>
 			</div>
 			<!-- End Footer --></div>

@@ -13,7 +13,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -67,6 +67,9 @@
 							<table>
 								<script type="text/javascript">DoGenerateTradesRadioButtons();</script>
 								<tr>
+									<td style="text-align:left;">&nbsp;</td>
+									<td style="text-align:left;">&nbsp;</td>
+									<td style="text-align:left;">&nbsp;</td>
 									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
 								</tr>
 							</table>
@@ -78,37 +81,64 @@
 						<form id="form_business_details" class="form" style="width:55em;">
 							<table>
 								<tr>
-									<td colspan="2"><b><u>Business ID</u></b></td>
+									<td colspan="2"><b><u>Business details</u></b></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Business name</b></td>
-									<td><input type="text" id="name" size="32" name="business name" pattern="[0-9,a-z,A-Z,-,',&]+" /></td>
+									<td><input type="text" id="name" size="32" name="business name" pattern="[0-9,a-z,A-Z,-,',&]{5}" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>ABN</b></td>
 									<td><input type="text" id="abn" size="32" name="ABN" pattern="^[1-9]{2}\s[0-9]{3}\s[0-9]{3}\s[0-9]{3}$"/>&nbsp;&nbsp;<label>e.g. 51 824 753 556</label></td>
 								</tr>
 								<tr>
-									<td colspan="2"><b><u>Description of services offered (optional)</u></b></td>
+									<td style="text-align:right;"><b>Business structure</b></td>
+									<td>
+										<select id="structure" name="structure">
+											<option selected>Sole trader</option>
+											<option>Company</option>
+											<option>Cooperative</option>
+											<option>Partnership</option>
+											<option>Indigenous corporation</option>
+											<option></option>
+										</select>
+									</td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Description</b></td>
-									<td style="text-align:left;"><textarea id="description" cols="64" rows="16"></textarea></td>
+									<td style="text-align:right;"><b>Trade license &amp; professional membership details</b></td>
+									<td style="text-align:left;"><textarea id="license" name="Description of business & services" cols="64" rows="4" pattern="[0-9,a-z,A-Z,-,',&]{20}"></textarea></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;"><b>Description of business &amp; services</b></td>
+									<td style="text-align:left;"><textarea id="Trade license & professional membership details" name="Description of business & services" cols="64" rows="16" pattern="[0-9,a-z,A-Z,-,',&]{20}"></textarea></td>
 								</tr>
 								<tr>
 									<td colspan="2"><b><u>Job preferences</u></b></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Minimum charge $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" pattern="^[1-9]\d*(\.\d+)?$" /></td>
+									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" pattern="^[1-9]\d*(\.\d+)?$" value="100"/></td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Maxiumum job budget (and size) $</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_budget" size="8" name="maximum budget" pattern="^[1-9]\d*(\.\d+)?$" /></td>
+									<td style="text-align:right;"><b>Maxiumum job budget $</b></td>
+									<td style="text-align:left;"><input type="text" id="maximum_budget" size="8" name="maximum budget" pattern="^[1-9]\d*(\.\d+)?$" value="5000"/></td>
+								</tr>
+								<tr>
+									<td style="text-align:right;"><b>Maxiumum job size</b></td>
+									<td style="text-align:left;">
+										<select id="maximum_size" name="maximum size">
+											<option selected>Up to 50</option>
+											<option>50 - 100</option>
+											<option>100 - 250</option>
+											<option>250 - 500</option>
+											<option>More than 500</option>
+										</select>
+										<b>m<sup>2</sup></b>
+									</td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Maximum distance you will travel</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" pattern="^[0-9]\d*(\.\d+)?$" style="text-align:right" />km</td>
+									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" pattern="^[0-9]\d*(\.\d+)?$" value="20" style="text-align:right" />&nbsp;<b>km</b></td>
 								</tr>
 								<tr>
 									<td style="text-align:left;"><br/><input type="button" value="Previous" class="next_button" onclick="DoNext('business_details', 'trade', '')"/></td>
@@ -185,12 +215,16 @@
 					</script>
 
 					<form method="post" id="hidden" style="visibility:hidden;" name="new_tradie">
+						<input type="hidden" id="hidden_other" name="hidden_other" value=""/>
+
 						<input type="hidden" id="hidden_trade" name="hidden_trade" value=""/>
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" value=""/>
 						<input type="hidden" id="hidden_abn" name="hidden_abn" value=""/>
+						<input type="hidden" id="hidden_license" name="hidden_license" value=""/>
 						<input type="hidden" id="hidden_description" name="hidden_description" value=""/>
 						<input type="hidden" id="hidden_minimum_charge" name="hidden_minimum_charge" value=""/>
 						<input type="hidden" id="hidden_maximum_budget" name="hidden_maximum_budget" value=""/>
+						<input type="hidden" id="hidden_maximum_size" name="hidden_maximum_size" value=""/>
 						<input type="hidden" id="hidden_maximum_distance" name="hidden_maximum_distance" value=""/>
 
 						<input type="hidden" id="hidden_unit" name="hidden_unit" value=""/>
@@ -201,19 +235,6 @@
 						<input type="hidden" id="hidden_mobile" name="hidden_mobile" value=""/>
 						<input type="hidden" id="hidden_office" name="hidden_office" value=""/>
 						<input type="hidden" id="hidden_email" name="hidden_email" value=""/>
-						
-						<input type="hidden" id="hidden_" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_0" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_1" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_2" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_3" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_4" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_5" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_6" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_7" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_8" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_9" name="hidden_" value=""/>
-						<input type="hidden" id="hidden_10" name="hidden_" value=""/>
 					</form>
 					
 					<script type="text/javascript">
@@ -249,8 +270,8 @@
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
-					<a href="contact.html">Contact</a> |
-					<span>Copyright &copy; 2023 Find a Tradie. All Rights Reserved.</span>
+					<a href="contact.html">Contact</a>
+					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
 				</p>
 			</div>
 			<!-- End Footer --></div>
