@@ -11,7 +11,22 @@ function DoCapitalise(strText)
 	let strLetter = strText[0].toUpperCase();
 	strText = strLetter + strText.substr(1);
 	return strText;
-}				  
+}	
+
+function GetNumYearsSince(nYear, nMonth)
+{
+	let dateNow = new Date();
+	let nNum = (dateNow.getFullYear() - nYear);
+	let strTime = " years";
+	
+	if ((nNum == 0) && (nMonth !== undefined))
+	{
+		nNum = nMonth;
+		strTime = " months";
+	}
+		
+	return nNum + strTime;
+}			  
 
 //******************************************************************************
 //******************************************************************************
