@@ -120,13 +120,13 @@
 									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" pattern="^[1-9]\d*(\.\d+)?$" value="100"/></td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Maxiumum job budget $</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_budget" size="8" name="maximum budget" pattern="^[1-9]\d*(\.\d+)?$" value="5000"/></td>
+									<td style="text-align:right;"><b>Minimum preferred budget $</b></td>
+									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" pattern="^[1-9]\d*(\.\d+)?$" value="5000"/></td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Maxiumum job size</b></td>
+									<td style="text-align:right;"><b>Minimum preferred job size</b></td>
 									<td style="text-align:left;">
-										<select id="maximum_size" name="maximum size">
+										<select id="minimum_size" name="minimum_size">
 											<option selected>Up to 50</option>
 											<option>50 - 100</option>
 											<option>100 - 250</option>
@@ -192,7 +192,7 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Office phone number</b></td>
-									<td style="text-align:left;"><input type="text"  id="office" name="office phone number" pattern="^[0-9]{8}$" /></td>
+									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="^[0-9]{8}$" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Mobile number</b></td>
@@ -223,8 +223,8 @@
 						<input type="hidden" id="hidden_license" name="hidden_license" value=""/>
 						<input type="hidden" id="hidden_description" name="hidden_description" value=""/>
 						<input type="hidden" id="hidden_minimum_charge" name="hidden_minimum_charge" value=""/>
-						<input type="hidden" id="hidden_maximum_budget" name="hidden_maximum_budget" value=""/>
-						<input type="hidden" id="hidden_maximum_size" name="hidden_maximum_size" value=""/>
+						<input type="hidden" id="hidden_minimum_budget" name="hidden_minimum_budget" value=""/>
+						<input type="hidden" id="hidden_minimum_size" name="hidden_minimum_size" value=""/>
 						<input type="hidden" id="hidden_maximum_distance" name="hidden_maximum_distance" value=""/>
 
 						<input type="hidden" id="hidden_unit" name="hidden_unit" value=""/>
@@ -233,7 +233,7 @@
 						<input type="hidden" id="hidden_state" name="hidden_state" value=""/>
 						<input type="hidden" id="hidden_postcode" name="hidden_postcode" value=""/>
 						<input type="hidden" id="hidden_mobile" name="hidden_mobile" value=""/>
-						<input type="hidden" id="hidden_office" name="hidden_office" value=""/>
+						<input type="hidden" id="hidden_phone" name="hidden_phone" value=""/>
 						<input type="hidden" id="hidden_email" name="hidden_email" value=""/>
 					</form>
 					
