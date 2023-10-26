@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 	
 	<!-- #BeginTemplate "master.dwt" -->
@@ -13,8 +13,26 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+			
+				.trade_table_cell
+				{
+					line-height:2em;
+					height:2em;
+					vertical-align:middle;
+					padding-left:1em;
+					padding-right:1em;
+				}
+				
+				.form_trade
+				{
+					width:80em;
+				}
+												
 			</style>
 		<!-- #EndEditable -->
+		
+		<?php include "database.php"; ?>
+		
 	</head>
 	
 	<body>
@@ -40,7 +58,7 @@
 				<ul>
 					<li><a href="home.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
-					<li><a href="new_tradie.html">New Tradie</a></li>
+					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<li><a href="login.html">Log In</a></li>
 					<li><a href="compare.html">Compare</a></li>
@@ -63,9 +81,40 @@
 
 					<div id="trade" style="display:none;">
 						<h2>What is your primary trade?</h2>
-						<form id="form_select_trade" class="form" style="width:66em;">
-							<table>
-								<script type="text/javascript">DoGenerateTradesRadioButtons();</script>
+						<form id="form_select_trade" class="form form_trade">
+							<table border="0" style="width:100%;">
+								<!--<script type="text/javascript">DoGenerateTradesRadioButtons();</script>-->
+			
+								<?php DoGenerateTradesRadioButtons(); ?>
+
+								<tr>
+									<td style="text-align:right;" class="trade_table_cell">
+										<input type="radio" name="trade" id="other" onclick="OnClickTradesRadio(this)" />
+									</td>
+									<td style="text-align:left;" class="trade_table_cell">
+										Other trade
+									</td>
+									<td class="trade_table_cell">
+										Name:<br/>
+										<input type="text" id="text_other_trade_name" name="other trade name" size="32" pattern="[A-Za-z]+" disabled onblur="OnChangeOtherText(this)" />
+									</td>
+									<td class="trade_table_cell">
+										Description:<br/>
+										<textarea id="text_other_trade_description" name="other trade description" cols="56" rows="3" pattern="[A-Za-z]+" disabled  onblur="OnChangeOtherText(this)"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4"><b><u>Any sdditional trades your are qualified in.</u></b></td>
+								</tr>
+								<tr>
+									<td colspan="4" style="text-align::left;">
+										<table border="0" style="width:100%;">
+											<tr>
+												<?php DoGenerateAdditionalTradesCheckBoxes(); ?>
+											</tr>
+										</table>
+									</td>
+								</tr>
 								<tr>
 									<td style="text-align:left;">&nbsp;</td>
 									<td style="text-align:left;">&nbsp;</td>
@@ -78,7 +127,7 @@
 					
 					<div id="business_details" style="display:none;">
 						<h2>Details about your business</h2>
-						<form id="form_business_details" class="form" style="width:55em;">
+						<form id="form_business_details" class="form form_trade" style="width:55em;">
 							<table>
 								<tr>
 									<td colspan="2"><b><u>Business details</u></b></td>
@@ -215,9 +264,11 @@
 					</script>
 
 					<form method="post" id="hidden" style="visibility:hidden;" name="new_tradie">
-						<input type="hidden" id="hidden_other" name="hidden_other" value=""/>
+						<input type="hidden" id="hidden_other_trade_name" name="hidden_other_trade_name" value=""/>
+						<input type="hidden" id="hidden_other_trade_description" name="hidden_other_trade_description" value=""/>
 
 						<input type="hidden" id="hidden_trade" name="hidden_trade" value=""/>
+						<input type="hidden" id="hidden_additional_trades" name="hidden_additional_trades" value=""/>
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" value=""/>
 						<input type="hidden" id="hidden_abn" name="hidden_abn" value=""/>
 						<input type="hidden" id="hidden_license" name="hidden_license" value=""/>
@@ -239,7 +290,6 @@
 					
 					<script type="text/javascript">
 					
-						OnClickTRadesRadio(g_arrayTrades[0]);
 						if (sessionStorage["new_tradie_stage"] === undefined)
 							sessionStorage["new_tradie_stage"] = "trade";
 							
@@ -264,7 +314,7 @@
 			<div class="footer">
 				<p>
 					<a href="home.html">Home</a> | 
-					<a href="new_tradie.html">New Tradie</a> | 
+					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
 					<a href="login.html">Log In</a> | 
 					<a href="about.html">About</a> | 

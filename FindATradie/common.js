@@ -5,14 +5,6 @@
 //** 
 //******************************************************************************
 //******************************************************************************
-function DoCapitalise(strText)
-{
-	
-	let strLetter = strText[0].toUpperCase();
-	strText = strLetter + strText.substr(1);
-	return strText;
-}	
-
 function GetNumYearsSince(nYear, nMonth)
 {
 	let dateNow = new Date();
@@ -36,7 +28,7 @@ function GetNumYearsSince(nYear, nMonth)
 //******************************************************************************
 //******************************************************************************
 
-let g_fYearCost = 300;
+let g_fYearCost = 240;
 let g_fCustomerJobPostCost = 2;
 
 //******************************************************************************
@@ -47,97 +39,50 @@ let g_fCustomerJobPostCost = 2;
 //******************************************************************************
 //******************************************************************************
 
-let g_arrayTrades = [
-						"air condioner installer",
-						"antennas & commincations",
-						"appliance repairer",
-						"arborist",
-						"architect",
-						"blind installer",
-						"brick layer",
-						"builder",
-						"buikding inspector",
-						"carpenter",
-						"carpeter",
-						"cabinet maker",
-						"cleaner (domestic)",
-						"cleaner (commercial)",
-						"computer technician",
-						"concreter",
-						"conservation & land management",
-						"deck builder",
-						"decorator",
-						"drafter",
-						"electrician",
-						"EV charge station installer",
-						"excavator",
-						"farm manager",
-						"fencing (domestic)",
-						"fencing (commercial and/or rural)",
-						"gardening & lawn mowing",
-						"glazier",
-						"handyman",
-						"interior designer",
-						"land management",
-						"landscaping",
-						"landscape construction",
-						"locksmith",
-						"mowing & slashing (commercial)",
-						"painter",
-						"paver",
-						"pest controller",
-						"pet grooming",
-						"plasterer",
-						"plumber",
-						"pool builder",
-						"removalist",
-						"roofer",
-						"shop fitter",
-						"solar panel installer",
-						"stone mason",
-						"surveyer",
-						"tiler",
-						"underpinner",
-						"upholsterer",
-						"window cleaner"
-				   ];
-				  
-function DoGenerateTradesRadioButtons()
+function OnClickTradesCheck(inputCheckbox)
 {
-	let	strChecked = "checked";
-	const nNumCols = 2;
-					  
-	for (let nI = 0; nI < g_arrayTrades.length; nI++)
+	let hiddenAdditionalTrades = document.getElementById("hidden_additional_trades");
+	
+	if (hiddenAdditionalTrades)
 	{
-		if ((nI % nNumCols) == 0)
-			document.write("<tr>");
-		document.write("<td style=\"text-align:right;width:16em;\"><label>" + DoCapitalise(g_arrayTrades[nI]) + "</label></td>");
-		document.write("<td style=\"width:16em;\"><input type=\"radio\" name=\"trade\" id=\"" + g_arrayTrades[nI] + "\" " + strChecked + " onclick=\"OnClickTRadesRadio('" + g_arrayTrades[nI] + "')\" />");
-		document.write("</td>");
-			
-		if (nI == 0)
-			strChecked = "";
-			
-		if ((((nI + 1) % nNumCols) == 0) && (nI > 0))
-			document.write("</tr>");		
+		if (inputCheckbox.checked)
+		{
+			let nPos = hiddenAdditionalTrades.value.search(inputCheckbox.name);
+			if (nPos == -1)
+				hiddenAdditionalTrades.value += inputCheckbox.name;
+		}
+		else
+		{
+			hiddenAdditionalTrades.value.replace(inputCheckbox.name, "");
+		}
 	}
-	document.write("<td style=\"text-align:right;width:16em;\"><label>Other</label></td>");
-	document.write("<td style=\"width:16em;\"><input type=\"radio\" name=\"trade\" id=\"other\" onclick=\"OnClickTRadesRadio('other')\" />");
-	document.write("&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" id=\"text_other\" name=\"other trade\" pattern=\"[A-Za-z]+\" disabled />");
 }
 
-function OnClickTRadesRadio(strRadioID)
+function OnClickTradesRadio(inputRadio)
 {
-	let textOther = document.getElementById("text_other");
-	let hiddenTrade = document.getElementById("trade");
-	
-	if (textOther)
+	let hiddenTrade = document.getElementById("hidden_trade"),
+		textOtherTradeName = document.getElementById("text_other_trade_name"),
+		textOtherTradeDescription = document.getElementById("text_other_trade_description");
+			
+	if (textOtherTradeName && textOtherTradeDescription)
 	{
-		textOther.disabled = strRadioID != "other";
+		textOtherTradeName.disabled = inputRadio.id != "other";
+		textOtherTradeDescription.disabled = inputRadio.id != "other";
 	}
 	if (hiddenTrade)
 	{
-		hiddenTrade.value = strRadioID;
+		hiddenTrade.value = inputRadio.id;
+	}
+}
+
+function OnChangeOtherText(inputOtherText)
+{
+	let strID = inputOtherText.id.replace("text", "hidden"),
+		inputHiddenOther = document.getElementById(strID);
+		
+	if (inputHiddenOther)
+	{
+		inputHiddenOther.value = inputOtherText.value;
 	}
 }
 
