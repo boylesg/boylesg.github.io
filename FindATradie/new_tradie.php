@@ -31,7 +31,7 @@
 			</style>
 		<!-- #EndEditable -->
 		
-		<?php include "database.php"; ?>
+		<?php include "common.php"; ?>
 		
 	</head>
 	
@@ -72,13 +72,75 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
+					<?php
+						
+						//*******************************************************************************************
+						//*******************************************************************************************
+						//* 
+						//* HTML gneration functions
+						//* 
+						//*******************************************************************************************
+						//*******************************************************************************************
+						
+						function DoGenerateTradesRadioButtons()
+						{	
+							global $g_dbFindATradie;
+							$strChecked = "checked"; 
+							 
+							$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+							
+							while ($row = $queryResult->fetch_assoc())
+						    {
+								echo "<tr>";
+								echo "<td style=\"text-align:right;width:1px;\" class=\"trade_table_cell\"><input type=\"radio\" name=\"trade\" id=\"" . $row["id"] . "\" " . $strChecked . "\" onblur=\"OnClickTradesRadio(this)\" /></td>";
+								echo "<td style=\"text-align:left;width:20em;\" class=\"trade_table_cell\">" . strtoupper($row["name"][0]) . substr($row["name"], 1) ."</td>";
+								echo "<td colspan=\"2\" style=\"text-align:left;\" class=\"trade_table_cell\"><label>" . $row["description"] . "</label></td>";
+								$strChecked = "";		
+						    }
+						    $queryResult->free_result();
+						}
+					
+					
+					
+					
+						function DoGenerateAdditionalTradesCheckBoxes()
+						{	
+							global $g_dbFindATradie;
+							$nCount = 0;
+							$nNumCols = 20;
+							 
+							$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+							
+							while ($row = $queryResult->fetch_assoc())
+						    {
+						    	if (($nCount == 0) || (($nCount % $nNumCols) == 0))
+						    		echo "<td>";
+								echo "<input type=\"checkbox\" id=\"check_" . $row["name"] . "\" name=\"" . $row["name"] . "(" . $row["id"] . ")\" onclick=\"OnClickTradesCheck(this)\" />";
+								echo "<label>" . $row["name"] . "</label><br/>";	
+					    		$nCount++;
+						    	if (($nCount % $nNumCols) == 0)
+						    	{
+						    		echo "<td>";
+						    		$nCount = 0;
+						    	}
+						    }
+						    $queryResult->free_result();
+						}
+						
+						
+						
+						
+						//*******************************************************************************************
+						//*******************************************************************************************
+						//* 
+						//* Form data processing functions
+						//* 
+						//*******************************************************************************************
+						//*******************************************************************************************
+						
+						echo $_POST;
+						
+					?>
 					<div id="trade" style="display:none;">
 						<h2>What is your primary trade?</h2>
 						<form id="form_select_trade" class="form form_trade">
@@ -88,26 +150,23 @@
 								<?php DoGenerateTradesRadioButtons(); ?>
 
 								<tr>
-									<td style="text-align:right;" class="trade_table_cell">
-										<input type="radio" name="trade" id="other" onclick="OnClickTradesRadio(this)" />
-									</td>
-									<td style="text-align:left;" class="trade_table_cell">
-										Other trade
-									</td>
-									<td class="trade_table_cell">
-										Name:<br/>
-										<input type="text" id="text_other_trade_name" name="other trade name" size="32" pattern="[A-Za-z]+" disabled onblur="OnChangeOtherText(this)" />
-									</td>
-									<td class="trade_table_cell">
-										Description:<br/>
-										<textarea id="text_other_trade_description" name="other trade description" cols="56" rows="3" pattern="[A-Za-z]+" disabled  onblur="OnChangeOtherText(this)"></textarea>
+									<td style="text-align:left;" colspan="3">
+										<hr/>
+										Request another trade<br/><br/>
+										<label>Name</label><br/>
+										<input type="text" id="text_trade_name" name="trade name" size="64" /><br/><br/>
+										<label>Description</label><br/>
+										<textarea id="text_trade_description" name="trade description" cols="64" rows="3"></textarea><br/><br/>
+										<input type="button" id="button_new_trade" onclick="OnclickButtonNewTrade()" value="Finished Editing"/>&nbsp;&nbsp;
+										<a style="visibility:hidden;" id="email_new_trade" href="">Email new trade request</a>
+										<hr/>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="4"><b><u>Any sdditional trades your are qualified in.</u></b></td>
+									<td colspan="3"><b><u>Any sdditional trades your are qualified in.</u></b></td>
 								</tr>
 								<tr>
-									<td colspan="4" style="text-align::left;">
+									<td colspan="3" style="text-align::left;">
 										<table border="0" style="width:100%;">
 											<tr>
 												<?php DoGenerateAdditionalTradesCheckBoxes(); ?>
@@ -116,10 +175,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="text-align:left;">&nbsp;</td>
-									<td style="text-align:left;">&nbsp;</td>
-									<td style="text-align:left;">&nbsp;</td>
-									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
+									<td colspan="3" style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
 								</tr>
 							</table>
 						</form>
@@ -155,7 +211,7 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Trade license &amp; professional membership details</b></td>
-									<td style="text-align:left;"><textarea id="license" name="Description of business & services" cols="64" rows="4" pattern="[0-9,a-z,A-Z,-,',&]{20}"></textarea></td>
+									<td style="text-align:left;"><textarea id="license" name="Trade licenses & professional memberships" cols="64" rows="4"></textarea></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Description of business &amp; services</b></td>

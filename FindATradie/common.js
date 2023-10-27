@@ -60,29 +60,11 @@ function OnClickTradesCheck(inputCheckbox)
 
 function OnClickTradesRadio(inputRadio)
 {
-	let hiddenTrade = document.getElementById("hidden_trade"),
-		textOtherTradeName = document.getElementById("text_other_trade_name"),
-		textOtherTradeDescription = document.getElementById("text_other_trade_description");
+	let hiddenTrade = document.getElementById("hidden_trade");
 			
-	if (textOtherTradeName && textOtherTradeDescription)
-	{
-		textOtherTradeName.disabled = inputRadio.id != "other";
-		textOtherTradeDescription.disabled = inputRadio.id != "other";
-	}
 	if (hiddenTrade)
 	{
 		hiddenTrade.value = inputRadio.id;
-	}
-}
-
-function OnChangeOtherText(inputOtherText)
-{
-	let strID = inputOtherText.id.replace("text", "hidden"),
-		inputHiddenOther = document.getElementById(strID);
-		
-	if (inputHiddenOther)
-	{
-		inputHiddenOther.value = inputOtherText.value;
 	}
 }
 
@@ -90,24 +72,27 @@ function DoSetHiddenFieldValue(input)
 {
 	let inputHidden = null;
 	
-	if (input.type == "radio")
-		inputHidden = document.getElementById("hidden_" + input.name);
-	else
-		inputHidden = document.getElementById("hidden_" + input.id);
-	
-	if (inputHidden)
+	if (input)
 	{
-		if ((input.type == "text") || (input.type == "password") || (input.type == "textarea"))
+		if (input.type == "radio")
+			inputHidden = document.getElementById("hidden_" + input.name);
+		else
+			inputHidden = document.getElementById("hidden_" + input.id);
+		
+		if (inputHidden)
 		{
-			inputHidden.value = input.value;
-		}
-		else if (input.type == "radio")
-		{
-			inputHidden.value = document.querySelector('input[name="trade"]:checked').value;
-		}
-		else if (input.type == "select")
-		{
-			inputHidden.value = input.options[input.selectedIndex].text;
+			if ((input.type == "text") || (input.type == "password") || (input.type == "textarea"))
+			{
+				inputHidden.value = input.value;
+			}
+			else if (input.type == "radio")
+			{
+				inputHidden.value = document.querySelector('input[name="trade"]:checked').value;
+			}
+			else if (input.type == "select")
+			{
+				inputHidden.value = input.options[input.selectedIndex].text;
+			}
 		}
 	}
 }
@@ -146,29 +131,37 @@ function DoValidateForm(form)
 	return bFormValid;
 }
 
+function OnclickButtonNewTrade()
+{
+	let textName = document.getElementById("text_trade_name"),
+		textDesc = document.getElementById("text_trade_description"),
+		aEmail = document.getElementById("email_new_trade");
+	
+	if (textName && textDesc && aEmail)
+	{
+		if (textName.value.length < 6)
+			alert("You must enter a descriptive name for the new trade!");
+		else if (textDesc.value.length < 24)
+			alert("You must enter a reasonable description for the new trade!");
+		else
+		{
+			aEmail.href = "mailto:gregplants" + "@" + "bigpond" + 
+			"com?subject=Request for new trade in FindATradie&body=Trade name: " + 
+			textName.value + "%0A%0DTrade description%0A%0D-----------------------%0A%0D" + 
+			textDesc.value;
+			aEmail.style.visibility = "visible";
+		}
+	}
+}
+
 function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormId)
 {
 	let div2Hide = document.getElementById(strIDDiv2Hide),
 		div2Show = document.getElementById(strIDDiv2Show),
-		form = document.getElementById(strFormId),
-		RegularExpression = null;
+		form = document.getElementById(strFormId);
 	
 	if (DoValidateForm(form) && div2Hide && div2Show)
 	{
-		if (strIDDiv2Hide == "trade") 
-		{
-			let radioOther = document.getElementById("other"),
-				textOther = document.getElementById("text_other"),
-				hiddenOther = document.getElementById("hidden_other");
-			
-			if (radioOther && textOther  && hiddenOther)
-			{
-				if (radioOther.checked)
-					hiddenOther.value = textOther.value;
-				else
-					hiddenOther.value = "";
-			}
-		}
 		div2Hide.style.display = "none";
 		div2Show.style.display = "block";
 		sessionStorage["new_tradie_stage"] = strIDDiv2Show;
