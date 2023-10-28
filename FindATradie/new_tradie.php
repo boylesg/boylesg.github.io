@@ -13,6 +13,8 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
+
 			
 				.trade_table_cell
 				{
@@ -25,7 +27,7 @@
 				
 				.form_trade
 				{
-					width:80em;
+					width:100em;
 				}
 												
 			</style>
@@ -72,110 +74,121 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
-					<?php
-						
-						//*******************************************************************************************
-						//*******************************************************************************************
-						//* 
-						//* HTML gneration functions
-						//* 
-						//*******************************************************************************************
-						//*******************************************************************************************
-						
-						function DoGenerateTradesRadioButtons()
-						{	
-							global $g_dbFindATradie;
-							$strChecked = "checked"; 
-							 
-							$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-							
-							while ($row = $queryResult->fetch_assoc())
-						    {
-								echo "<tr>";
-								echo "<td style=\"text-align:right;width:1px;\" class=\"trade_table_cell\"><input type=\"radio\" name=\"trade\" id=\"" . $row["id"] . "\" " . $strChecked . "\" onblur=\"OnClickTradesRadio(this)\" /></td>";
-								echo "<td style=\"text-align:left;width:20em;\" class=\"trade_table_cell\">" . strtoupper($row["name"][0]) . substr($row["name"], 1) ."</td>";
-								echo "<td colspan=\"2\" style=\"text-align:left;\" class=\"trade_table_cell\"><label>" . $row["description"] . "</label></td>";
-								$strChecked = "";		
-						    }
-						    $queryResult->free_result();
-						}
-					
-					
-					
-					
-						function DoGenerateAdditionalTradesCheckBoxes()
-						{	
-							global $g_dbFindATradie;
-							$nCount = 0;
-							$nNumCols = 20;
-							 
-							$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-							
-							while ($row = $queryResult->fetch_assoc())
-						    {
-						    	if (($nCount == 0) || (($nCount % $nNumCols) == 0))
-						    		echo "<td>";
-								echo "<input type=\"checkbox\" id=\"check_" . $row["name"] . "\" name=\"" . $row["name"] . "(" . $row["id"] . ")\" onclick=\"OnClickTradesCheck(this)\" />";
-								echo "<label>" . $row["name"] . "</label><br/>";	
-					    		$nCount++;
-						    	if (($nCount % $nNumCols) == 0)
-						    	{
-						    		echo "<td>";
-						    		$nCount = 0;
-						    	}
-						    }
-						    $queryResult->free_result();
-						}
-						
-						
-						
-						
-						//*******************************************************************************************
-						//*******************************************************************************************
-						//* 
-						//* Form data processing functions
-						//* 
-						//*******************************************************************************************
-						//*******************************************************************************************
-						
-						echo $_POST;
-						
-					?>
+
+
+
+
+
+
+
+<?php
+	
+	//*******************************************************************************************
+	//*******************************************************************************************
+	//* 
+	//* HTML gneration functions
+	//* 
+	//*******************************************************************************************
+	//*******************************************************************************************
+	
+	function DoGenerateTradesRadioButtons()
+	{	
+		global $g_dbFindATradie;
+		$strChecked = "checked"; 
+		 
+		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+		
+		while ($row = $queryResult->fetch_assoc())
+	    {
+	    	PrintSpaces(8);
+			echo "<tr>\n";
+			PrintSpaces(9);
+			echo "<td style=\"text-align:right;width:1em;\" class=\"trade_table_cell\"><input type=\"radio\" name=\"trade\" id=\"" . $row["id"] . "\" " . $strChecked . " onblur=\"OnClickTradesRadio(this)\" /></td>\n";
+			PrintSpaces(9);
+			echo "<td style=\"text-align:left;width:20em;\" class=\"trade_table_cell\">" . strtoupper($row["name"][0]) . substr($row["name"], 1) ."</td>\n";
+			PrintSpaces(9);
+			echo "<td colspan=\"2\" style=\"text-align:left;\" class=\"trade_table_cell\"><label>" . $row["description"] . "</label></td>\n";
+			$strChecked = "";		
+			PrintSpaces(8);
+			echo "</tr>\n";
+	    }
+	    $queryResult->free_result();
+	}
+
+
+
+
+	function DoGenerateAdditionalTradesCheckBoxes()
+	{	
+		global $g_dbFindATradie;
+		$nCount = 0;
+		$nNumCols = 20;
+		 
+		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+		
+		while ($row = $queryResult->fetch_assoc())
+	    {
+	    	if (($nCount == 0) || (($nCount % $nNumCols) == 0))
+	    	{
+	    		PrintSpaces(12);
+	    		echo "<td>\n";
+	    	}
+	    	PrintSpaces(13);
+			echo "<input type=\"checkbox\" id=\"additional_trades\" name=\"" . $row["name"] . "(" . $row["id"] . ")\" />";
+			echo "<label>" . $row["name"] . "</label><br/>\n";	
+    		$nCount++;
+	    	if (($nCount % $nNumCols) == 0)
+	    	{
+	    		PrintSpaces(12);
+	    		echo "</td>\n";
+	    		$nCount = 0;
+	    	}
+	    }
+	    $queryResult->free_result();
+	}
+
+
+
+
+	//*******************************************************************************************
+	//*******************************************************************************************
+	//* 
+	//* Form data processing functions
+	//* 
+	//*******************************************************************************************
+	//*******************************************************************************************
+	
+	echo $_POST;
+
+?>
 					<div id="trade" style="display:none;">
 						<h2>What is your primary trade?</h2>
-						<form id="form_select_trade" class="form form_trade">
-							<table border="0" style="width:100%;">
-								<!--<script type="text/javascript">DoGenerateTradesRadioButtons();</script>-->
-			
-								<?php DoGenerateTradesRadioButtons(); ?>
+						<form id="form_select_trade" class="form_trade">
+							<table border="0" style="width:100%;table-layout: fixed;">
+
+<?php DoGenerateTradesRadioButtons(); ?>
 
 								<tr>
-									<td style="text-align:left;" colspan="3">
-										<hr/>
-										Request another trade<br/><br/>
-										<label>Name</label><br/>
-										<input type="text" id="text_trade_name" name="trade name" size="64" /><br/><br/>
-										<label>Description</label><br/>
-										<textarea id="text_trade_description" name="trade description" cols="64" rows="3"></textarea><br/><br/>
-										<input type="button" id="button_new_trade" onclick="OnclickButtonNewTrade()" value="Finished Editing"/>&nbsp;&nbsp;
-										<a style="visibility:hidden;" id="email_new_trade" href="">Email new trade request</a>
-										<hr/>
+									<td style="text-align:left;" colspan="4">
+										<?php
+											echo "<a href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\"><h4>Request addition of a new trade.<h4></a>";
+										?>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="3"><b><u>Any sdditional trades your are qualified in.</u></b></td>
+									<td colspan="4"><b><u>Any sdditional trades your are qualified in.</u></b></td>
 								</tr>
 								<tr>
-									<td colspan="3" style="text-align::left;">
-										<table border="0" style="width:100%;">
+									<td style="text-align::left;" colspan="4">
+										<table border="0" style="width:100%;table-layout:fixed;">
 											<tr>
-												<?php DoGenerateAdditionalTradesCheckBoxes(); ?>
+<?php DoGenerateAdditionalTradesCheckBoxes(); ?>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="3" style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
+									<td style="text-align:right;" colspan="4"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
 								</tr>
 							</table>
 						</form>
@@ -183,18 +196,18 @@
 					
 					<div id="business_details" style="display:none;">
 						<h2>Details about your business</h2>
-						<form id="form_business_details" class="form form_trade" style="width:55em;">
+						<form id="form_business_details" class="form_trade" style="width:55em;">
 							<table>
 								<tr>
 									<td colspan="2"><b><u>Business details</u></b></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Business name</b></td>
-									<td><input type="text" id="name" size="32" name="business name" pattern="[0-9,a-z,A-Z,-,',&]{5}" /></td>
+									<td><input type="text" id="name" size="32" name="business name" pattern="!blank" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>ABN</b></td>
-									<td><input type="text" id="abn" size="32" name="ABN" pattern="^[1-9]{2}\s[0-9]{3}\s[0-9]{3}\s[0-9]{3}$"/>&nbsp;&nbsp;<label>e.g. 51 824 753 556</label></td>
+									<td><input type="text" id="abn" size="32" name="ABN" pattern="!blank digits11" />&nbsp;&nbsp;<label>e.g. 51 824 753 556</label></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Business structure</b></td>
@@ -211,27 +224,27 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Trade license &amp; professional membership details</b></td>
-									<td style="text-align:left;"><textarea id="license" name="Trade licenses & professional memberships" cols="64" rows="4"></textarea></td>
+									<td style="text-align:left;"><textarea id="license" name="Trade licenses & professional memberships" cols="64" rows="4" pattern=""></textarea></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Description of business &amp; services</b></td>
-									<td style="text-align:left;"><textarea id="Trade license & professional membership details" name="Description of business & services" cols="64" rows="16" pattern="[0-9,a-z,A-Z,-,',&]{20}"></textarea></td>
+									<td style="text-align:left;"><textarea id="description" name="Description of business & services" cols="64" rows="16" pattern="!blank"></textarea></td>
 								</tr>
 								<tr>
 									<td colspan="2"><b><u>Job preferences</u></b></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Minimum charge $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" pattern="^[1-9]\d*(\.\d+)?$" value="100"/></td>
+									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" value="100" onkeydown="OnKeyPressNumberInput(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Minimum preferred budget $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" pattern="^[1-9]\d*(\.\d+)?$" value="5000"/></td>
+									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" value="5000" onkeydown="OnKeyPressNumberInput(event)" /></td>
 								</tr>
 								<tr>
-									<td style="text-align:right;"><b>Minimum preferred job size</b></td>
-									<td style="text-align:left;">
-										<select id="minimum_size" name="minimum_size">
+									<td style="text-align:right;"><b>Maximum preferred job size</b></td>
+									<td style="text-align:left;">on
+										<select id="maximum_size" name="maximum_size">
 											<option selected>Up to 50</option>
 											<option>50 - 100</option>
 											<option>100 - 250</option>
@@ -243,7 +256,7 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Maximum distance you will travel</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" pattern="^[0-9]\d*(\.\d+)?$" value="20" style="text-align:right" />&nbsp;<b>km</b></td>
+									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" value="20" style="text-align:right" onkeydown="OnKeyPressNumberInput(event)" />&nbsp;<b>km</b></td>
 								</tr>
 								<tr>
 									<td style="text-align:left;"><br/><input type="button" value="Previous" class="next_button" onclick="DoNext('business_details', 'trade', '')"/></td>
@@ -255,7 +268,7 @@
 
 					<div id="business_contact" style="display:none;">
 						<h2>Business contact details</h2>
-						<form id="form_business_contact" class="form" style="width:30em;">
+						<form id="form_contact_details" class="form_trade">
 							<table>
 								<tr>
 									<td style="text-align:right;"><b>Unit</b></td>
@@ -263,7 +276,7 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Street</b></td>
-									<td><textarea id="street" name="street" cols="32" rows="2"></textarea></td>
+									<td><textarea id="street" name="street" cols="32" rows="2" pattern="!blank"></textarea></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>City, suburb or town</b></td>
@@ -297,19 +310,19 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Office phone number</b></td>
-									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="^[0-9]{8}$" /></td>
+									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="!blank digits8" onkeydown="OnKeyPressNumberInput(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Mobile number</b></td>
-									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="^[0-9]{10}$" /></td>
+									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="!blank digits10" onkeydown="OnKeyPressNumberInput(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Email address</b></td>
-									<td style="text-align:left;"><input type="text"  id="email" name="email address" pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" /></td>
+									<td style="text-align:left;"><input type="text"  id="email" name="email address" pattern="!blank email" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:left;"><input type="button" value="Previous" class="next_button" onclick="DoNext('business_contact', 'business_details')"/></td>
-									<td style="text-align:right;"><input type="button" value="Next" class="next_button" onclick="DoNext('business_details', '')"/></td>
+									<td style="text-align:right;"><input type="button" value="Next" class="next_button" onclick="DoNext('business_details', '', 'form_contact_details')"/></td>
 								</tr>
 							</table>
 						</form>					
@@ -319,19 +332,17 @@
 						DoFillSuburbsAndPostcodeSelects(document.getElementById("suburb"), document.getElementById("postcode"), document.getElementById("state"));
 					</script>
 
-					<form method="post" id="hidden" style="visibility:hidden;" name="new_tradie">
-						<input type="hidden" id="hidden_other_trade_name" name="hidden_other_trade_name" value=""/>
-						<input type="hidden" id="hidden_other_trade_description" name="hidden_other_trade_description" value=""/>
-
+					<form method="post" id="hidden" style="visibility:hidden;" name="new_tradie" action="new_tradie.php">
 						<input type="hidden" id="hidden_trade" name="hidden_trade" value=""/>
 						<input type="hidden" id="hidden_additional_trades" name="hidden_additional_trades" value=""/>
-						<input type="hidden" id="hidden_business_name" name="hidden_business_name" value=""/>
+						<input type="hidden" id="hidden_name" name="hidden_name" value=""/>
 						<input type="hidden" id="hidden_abn" name="hidden_abn" value=""/>
+						<input type="hidden" id="hidden_structure" name="hidden_structure" value=""/>
 						<input type="hidden" id="hidden_license" name="hidden_license" value=""/>
 						<input type="hidden" id="hidden_description" name="hidden_description" value=""/>
 						<input type="hidden" id="hidden_minimum_charge" name="hidden_minimum_charge" value=""/>
 						<input type="hidden" id="hidden_minimum_budget" name="hidden_minimum_budget" value=""/>
-						<input type="hidden" id="hidden_minimum_size" name="hidden_minimum_size" value=""/>
+						<input type="hidden" id="hidden_maximum_size" name="hidden_maximum_size" value=""/>
 						<input type="hidden" id="hidden_maximum_distance" name="hidden_maximum_distance" value=""/>
 
 						<input type="hidden" id="hidden_unit" name="hidden_unit" value=""/>
@@ -354,6 +365,11 @@
 						if (div2Show)
 							div2Show.style.display = "block";
 						
+						PreloadForm(document.getElementById("form_select_trade"));
+						PreloadForm(document.getElementById("form_business_details"));
+						PreloadForm(document.getElementById("form_contact_details"));
+						
+						document.getElementById("hidden_additional_trades").value = "";
 					</script>
 
 

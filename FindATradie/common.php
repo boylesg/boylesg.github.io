@@ -13,12 +13,18 @@
 		}
 		else if ($dbFindATradie)
 		{
-			echo "Successfully connected to '". $strNameDB . "'!";
+			//echo "Successfully connected to '". $strNameDB . "'!";
 		}
 		return $dbFindATradie;
 	}
 	$g_dbFindATradie = ConnectToDatabase();
 
+
+	function PrintSpaces($nNum)
+	{
+		for ($nI = 0; $nI < $nNum; $nI++)
+			echo "\t";
+	}
 ?>
 
 
