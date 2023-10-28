@@ -96,7 +96,8 @@ function DoSetHiddenFieldValue(input)
 							inputHidden.value = inputHidden.value.substring(0, inputHidden.value.length - 2);
 					}
 				}
-				sessionStorage[inputHidden.id] = inputHidden.value;
+				let strID = inputHidden.id.substring(7);
+				sessionStorage[strID] = inputHidden.value;
 			}
 		}
 	}
@@ -228,18 +229,18 @@ function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormId)
 function PreloadForm(form)
 {
 	let strName = "",
-		id = "";
+		strID = "";
 	
 	if (form)
 	{
 		for (let nI = 0; nI < form.length; nI++)
 		{		
-			if (sessionStorage[form[nI].id])
+			if (sessionStorage[form[nI].id] || sessionStorage[form[nI].name])
 			{
 				if (form[nI].type == "radio")
 				{
 					strName = form[nI].name;
-					id = sessionStorage[strName];
+					strID = sessionStorage[strName];
 					
 					do
 					{
@@ -249,7 +250,7 @@ function PreloadForm(form)
 					while (strName == form[nI].name);
 					nI--;
 					
-					document.getElementById(id).checked = true;
+					document.getElementById(strID).checked = true;
 				}
 				else if (form[nI].type.includes("select"))
 				{
