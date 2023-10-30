@@ -18,7 +18,7 @@ function GetNumYearsSince(nYear, nMonth)
 	}
 		
 	return nNum + strTime;
-}	  
+}			  
 
 //******************************************************************************
 //******************************************************************************
@@ -28,14 +28,14 @@ function GetNumYearsSince(nYear, nMonth)
 //******************************************************************************
 //******************************************************************************
 
-let g_fYearCost = 100;
+let g_fYearCost = 240;
 let g_fCustomerJobPostCost = 2;
 
 
 //******************************************************************************
 //******************************************************************************
 //** 
-//** COMMON FORM FUNCTIONS
+//** COMMON BUSINESS DETAILS FUNCTIONS
 //** 
 //******************************************************************************
 //******************************************************************************
@@ -46,7 +46,10 @@ function DoSetHiddenFieldValue(input)
 	
 	if (input)
 	{
-		inputHidden = document.getElementById("hidden_" + input.id);
+		if (input.type == "radio")
+			inputHidden = document.getElementById("hidden_" + input.name);
+		else
+			inputHidden = document.getElementById("hidden_" + input.id);
 		
 		if (inputHidden)
 		{
@@ -55,15 +58,46 @@ function DoSetHiddenFieldValue(input)
 				inputHidden.value = input.value;
 				sessionStorage[input.id] = input.value;
 			}
-			else if ((input.type == "radio") || (input.type == "checkbox"))
+			else if (input.type == "radio")
 			{
-				inputHidden.checked = input.checked;
-				sessionStorage[input.id] = input.checked;
+				if (input.checked)
+				{
+					inputHidden.value = input.id;
+					sessionStorage[input.name] = input.id;
+				}
 			}
 			else if (input.type.includes("select"))
 			{
 				inputHidden.value = input.options[input.selectedIndex].text;
 				sessionStorage[input.id] = input.selectedIndex;
+			}
+			else if (input.type == "checkbox")
+			{
+				
+				if (input.checked)
+				{
+					if (!inputHidden.value.includes(input.name))
+					{
+						let strDelim = "";
+						if (inputHidden.value != "")
+							strDelim = ",";
+						inputHidden.value += strDelim + input.name;
+					}
+				}
+				else
+				{
+					if (inputHidden.value.includes(input.name))
+					{
+						inputHidden.value = inputHidden.value.replace(input.name, ",");
+						inputHidden.value = inputHidden.value.replace(",,", ",");
+						if (inputHidden.value[0] == ",")
+							inputHidden.value = inputHidden.value.substring(1);
+						else if (inputHidden.value[inputHidden.value.length - 1] == ",")
+							inputHidden.value = inputHidden.value.substring(0, inputHidden.value.length - 2);
+					}
+				}
+				let strID = inputHidden.id.substring(7);
+				sessionStorage[strID] = inputHidden.value;
 			}
 		}
 	}
@@ -171,11 +205,11 @@ function OnKeyPressNumberInput(eventKey)
     }
 }
 
-function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormID)
+function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormId)
 {
 	let div2Hide = document.getElementById(strIDDiv2Hide),
 		div2Show = document.getElementById(strIDDiv2Show),
-		form = document.getElementById(strFormID);
+		form = document.getElementById(strFormId);
 	
 	if (DoValidateForm(form))
 	{
@@ -185,62 +219,77 @@ function DoNext(strIDDiv2Hide, strIDDiv2Show, strFormID)
 			div2Show.style.display = "block";
 			sessionStorage["new_tradie_stage"] = strIDDiv2Show;
 		}
-	}
-}
-
-function DoSubmit(strFormToValidateID, strFormToSubmitID)
-{
-	let formToValidate = document.getElementById(strFormToValidateID),
-		formToSubmit = document.getElementById(strFormToSubmitID);
-	
-	if (formToValidate && DoValidateForm(formToValidate))
-	{
-		formToSubmit.submit();
+		else if (!div2Show)
+		{
+			form.submit();
+		}
 	}
 }
 
 function PreloadForm(form)
 {
-	let inputHidden = null;
+	let strName = "",
+		strID = "";
 	
 	if (form)
 	{
 		for (let nI = 0; nI < form.length; nI++)
 		{		
-			inputHidden = document.getElementById("hidden_" + form[nI].id);
-			
 			if (sessionStorage[form[nI].id] || sessionStorage[form[nI].name])
 			{
-				if ((form[nI].type == "radio") || (form[nI].type == "checkbox"))
+				if (form[nI].type == "radio")
 				{
-					form[nI].checked = sessionStorage[form[nI].id] == "true";
-					if (inputHidden)
-						inputHidden.checked = sessionStorage[form[nI].id] == "true";
+					strName = form[nI].name;
+					strID = sessionStorage[strName];
+					
+					do
+					{
+						form[nI].checked = false;
+						nI++;
+					}
+					while (strName == form[nI].name);
+					nI--;
+					
+					document.getElementById(strID).checked = true;
 				}
 				else if (form[nI].type.includes("select"))
 				{
 					form[nI].selectedIndex = Number(sessionStorage[form[nI].id]);
-					if (inputHidden)
-						inputHidden.selectedIndex = Number(sessionStorage[form[nI].id]);
 				}
 				else if ((form[nI].type == "text") || (form[nI].type == "password") || (form[nI].type == "textarea"))
 				{
 					form[nI].value = sessionStorage[form[nI].id];
-					if (inputHidden)
-						inputHidden.value = sessionStorage[form[nI].id];
+				}
+				else if (form[nI].type == "checkbox")
+				{
+					if (sessionStorage[form[nI].id].includes(form[nI].name))
+					{
+						form[nI].checked = true;
+					}
 				}
 			}
 		}
 	}
 }
 
-function OnClickCheckShowPassword(inputCheckShowPassword, inputPassword)
+
+
+
+//******************************************************************************
+//******************************************************************************
+//** 
+//** SELECT PRIMARY TRADE RELATED FUNCTIONS
+//** 
+//******************************************************************************
+//******************************************************************************
+
+function OnClickTradesRadio(inputRadio)
 {
-	if (inputCheckShowPassword.checked)
-		inputPassword.type = "text";
-	else
-		inputPassword.type = "password";
+	let hiddenTrade = document.getElementById("hidden_trade");
+			
+	if (hiddenTrade)
+	{
+		hiddenTrade.value = inputRadio.id;
+	}
 }
-
-
 

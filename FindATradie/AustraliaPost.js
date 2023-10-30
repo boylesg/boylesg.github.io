@@ -6,7 +6,7 @@
 //******************************************************************************
 //******************************************************************************
 
-let g_mapSuburbsAndPostcodesACT = new Map([
+let g_mapSuburbsByPostcodesACT = new Map([
 											["AINSLIE", "2602"],
 											["AMAROO", "2914"],
 											["ARANDA", "2614"],
@@ -156,7 +156,7 @@ let g_mapSuburbsAndPostcodesACT = new Map([
 											["YARRALUMLA", "2600"]
 										 ]);
 										 
-let g_mapSuburbsAndPostcodesNSW = new Map([
+let g_mapSuburbsByPostcodesNSW = new Map([
 											["AARONS PASS", "2850"],
 											["ABBOTSBURY", "2176"],
 											["ABBOTSFORD", "2046"],
@@ -4933,7 +4933,7 @@ let g_mapSuburbsAndPostcodesNSW = new Map([
 											["ZETLAND", "2017"]
 										 ]);
 										 
-let g_mapSuburbsAndPostcodesNT = new Map([
+let g_mapSuburbsByPostcodesNT = new Map([
 											["ACACIA HILLS", "0822"],
 											["ADELAIDE RIVER", "0846"],
 											["ADELAIDE RIVER", "0846"],
@@ -5306,7 +5306,7 @@ let g_mapSuburbsAndPostcodesNT = new Map([
 											["ZUCCOLI", "0832"],
 										]);
 										
-let g_mapSuburbsAndPostcodesQLD = new Map([
+let g_mapSuburbsByPostcodesQLD = new Map([
 											["ABBEYWOOD", "4613"],
 											["ABBEYWOOD", "4613"],
 											["ABBOTSFORD", "4670"],
@@ -8695,7 +8695,7 @@ let g_mapSuburbsAndPostcodesQLD = new Map([
 											["ZILZIE", "4710"]
 										 ]);
 
-let g_mapSuburbsAndPostcodesSA = new Map([
+let g_mapSuburbsByPostcodesSA = new Map([
 											["ABERFOYLE PARK", "5159"],
 											["ABERFOYLE PARK", "5159"],
 											["ABMINGA STATION", "5440"],
@@ -10708,7 +10708,7 @@ let g_mapSuburbsAndPostcodesSA = new Map([
 											["ZADOWS LANDING", "5254"]
 										]);
 										
-let g_mapSuburbsAndPostcodesTAS = new Map([
+let g_mapSuburbsByPostcodesTAS = new Map([
 											["ABBOTSHAM", "7315"],
 											["ABELS BAY", "7112"],
 											["ABERDEEN", "7310"],
@@ -11520,7 +11520,7 @@ let g_mapSuburbsAndPostcodesTAS = new Map([
 											["ZEEHAN", "7469"]
 										 ]);
 										 
-let g_mapSuburbsAndPostcodesVIC = new Map([
+let g_mapSuburbsByPostcodesVIC = new Map([
 											["ABBEYARD", "3737"],
 											["ABBEYARD", "3737"],
 											["ABBOTSFORD", "3067"],
@@ -14875,7 +14875,7 @@ let g_mapSuburbsAndPostcodesVIC = new Map([
 											["ZUMSTEINS", "3401"]
 										 ]);
 										 
-let g_mapSuburbsAndPostcodesWA = new Map([
+let g_mapSuburbsByPostcodesWA = new Map([
 											["ABBA RIVER", "6280"],
 											["ABBEY", "6280"],
 											["ACTON PARK", "6280"],
@@ -16792,15 +16792,15 @@ let g_mapSuburbsAndPostcodesWA = new Map([
 //******************************************************************************
 //******************************************************************************
 
-let g_mapSuburbsAndPostcodes = new Map([
-										["ACT", g_mapSuburbsAndPostcodesACT],
-										["NSW", g_mapSuburbsAndPostcodesNSW],
-										["NT", g_mapSuburbsAndPostcodesNT],
-										["QLD", g_mapSuburbsAndPostcodesQLD],
-										["SA", g_mapSuburbsAndPostcodesSA],
-										["TAS", g_mapSuburbsAndPostcodesTAS],
-										["VIC", g_mapSuburbsAndPostcodesVIC],
-										["WA", g_mapSuburbsAndPostcodesWA]
+let g_mapSuburbsByPostcodes = new Map([
+										["ACT", g_mapSuburbsByPostcodesACT],
+										["NSW", g_mapSuburbsByPostcodesNSW],
+										["NT", g_mapSuburbsByPostcodesNT],
+										["QLD", g_mapSuburbsByPostcodesQLD],
+										["SA", g_mapSuburbsByPostcodesSA],
+										["TAS", g_mapSuburbsByPostcodesTAS],
+										["VIC", g_mapSuburbsByPostcodesVIC],
+										["WA", g_mapSuburbsByPostcodesWA]
 									  ]);
 							
 
@@ -16810,7 +16810,7 @@ function OnChangeSuburb(selectSuburb, selectPostcode, selectState)
 {
 	if (selectSuburb && selectPostcode)
 	{
-		let mapState = g_mapSuburbsAndPostcodes.get(selectState.options[selectState.selectedIndex].text);
+		let mapState = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text);
 		
 		if (mapState)
 		{
@@ -16823,11 +16823,22 @@ function OnChangePostcode(selectPostcode, selectSuburb, selectState)
 {
 	if (selectPostcode && selectSuburb)
 	{
-		let mapState = g_mapSuburbsAndPostcodes.get(selectState.options[selectState.selectedIndex].text);
+		let mapSuburbsPostcode4State = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text);
 		
-		if (mapState)
+		if (mapSuburbsPostcode4State)
 		{
-			selectSuburb.selectedIndex = selectPostcode.selectedIndex;
+			/*selectSuburb.selectedIndex = selectPostcode.selectedIndex;*/
+			let nI = 0,
+				strPostCode2Find = selectPostcode.options[selectPostcode.selectedIndex].text;
+			for (const [strKey, strValue] of mapSuburbsPostcode4State.entries())
+			{
+				if (strPostCode2Find === strValue)
+				{
+					selectSuburb.selectedIndex = nI;
+					break;
+				}
+				nI++;
+			}
 		}
 	}
 }
@@ -16836,7 +16847,7 @@ function OnChangeState(selectState, selectSuburb, selectPostcode)
 {
 	if (selectState && selectSuburb && selectPostcode)
 	{
-		let mapState = g_mapSuburbsAndPostcodes.get(selectState.options[selectState.selectedIndex].text);
+		let mapState = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text);
 		
 		if (mapState)
 		{
@@ -16856,7 +16867,9 @@ function DoFillSuburbsAndPostcodeSelects(selectSuburb, selectPostcode, selectSta
 {
 	if (selectSuburb && selectPostcode && selectState)
 	{
-		let mapState = g_mapSuburbsAndPostcodes.get(selectState.options[selectState.selectedIndex].text);
+		let mapState = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text),
+			arrayPostCodes = [],
+			strArray = "";
 		
 		if (mapState)
 		{
@@ -16870,10 +16883,24 @@ function DoFillSuburbsAndPostcodeSelects(selectSuburb, selectPostcode, selectSta
 			}		
 			for (const strVal of mapState.values())
 			{
+				/*
 				option = document.createElement("option");
   				option.text = strVal;
   				selectPostcode.add(option);
-			}		
+  				*/
+  				strArray = arrayPostCodes.toString();
+  				if ((!strArray.includes(strVal) && (strVal != undefined)))
+  				{
+  					arrayPostCodes.push(strVal);
+  				}
+			}
+			arrayPostCodes.sort();
+			for (let nI = 0; nI < arrayPostCodes.length; nI++)
+			{
+				option = document.createElement("option");
+  				option.text = arrayPostCodes[nI];
+  				selectPostcode.add(option);
+			}
 		}
 	}
 }
