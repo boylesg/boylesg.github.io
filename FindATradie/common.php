@@ -1,5 +1,56 @@
 <?php
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** ERROR STRINGS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	$g_strEmailAdmin = "Email admin at gregplants@bigpond.com with this error message.";
 
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** QUERY STRING FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function EscapeSingleQuote($strText)
+	{
+		return str_replace("'", "''", $strText);
+	}
+	
+	
+	
+	
+	function AppendSQLValues(...$param) 
+	{
+		global $g_dbFindATradie;
+		$strQuery = "";
+
+		foreach ($param as $strDataItem)
+		{
+			$strQuery = $strQuery . "'" . EscapeSingleQuote($strDataItem) . "', ";
+		}
+		$strQuery = substr_replace($strQuery, "", -2);
+		
+		return $strQuery;
+	}
+	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** QUERY FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
 	function ConnectToDatabase()
 	{
 		$strNameDB = "find_a_tradie";
@@ -19,47 +70,82 @@
 	}
 	$g_dbFindATradie = ConnectToDatabase();
 	
-	function DoFindOneQuery($strQuery, $strColumnNane, $strValue)
-	{
-		global $g_dbFindATradie;
-		
-		$result = $g_dbFindATradie->query($strQuery);
-		if ($result->num_rows > 1)
+	
+	
+	
+	function DoFindQuery($dbConnection, $strTableName, $strColumnNane, $strValue)
+	{	
+		global $g_strEmailAdmin;
+		try
 		{
-			echo "<h1>ERROR: more than one row found for '" . $strColumnNane. "==" . $strValue . "'!";
-			$result == null;
+			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnNane . "='" . EscapeSingleQuote($strValue) . "'";
+			$result = $dbConnection->query($strQuery);
 		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
+		}		
 		return $result;
 	}
 	
-	function DoInsertQuery($strQuery, $strTableName, $strKeyCol, $strKeyColVal)
+	
+	
+	
+	function DoQuery($dbConnection, $strQuery)
 	{
-		global $g_dbFindATradie;
-		$result = null;
-		$strFindQuery = "SELECT " . $strKeyCol . " FROM " . $strTableName . " WHERE " . $strKeyCol . "='" . $strKeyColVal . "'";
+		global $g_strEmailAdmin;
+		$result = "";
 		
-		$result = $g_dbFindATradie->query($strFindQuery);
-		if ($result->num_rows > 0)
+		try
 		{
+			$result = $dbConnection->query($strQuery);		
 		}
-		else
+		catch(Exception $e) 
 		{
-			$result = $g_dbFindATradie->query($strQuery);
-			if (!$result)
-			{
-				echo "<h1>ERROR: new row '" . $strID . "' was not added successfully!";
-				$result = null;
-			}
-		}
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+		}		
 		return $result;
 	}
+
+
+
+
+	function DoInsertQuery($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
+	{
+		global $g_strEmailAdmin;
+		$result = "";
+		
+		try
+		{
+			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue);
+			if ($result->num_rows == 0)
+			{
+				try
+				{
+					$result = $dbConnection->query($strQuery);
+				}
+				catch(Exception $e) 
+				{
+		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+				}		
+			}	
+		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+		}		
+		return $result;
+	}
+
+
+
 
 	function PrintSpaces($nNum)
 	{
 		for ($nI = 0; $nI < $nNum; $nI++)
 			echo "\t";
 	}
-	
+
 ?>
 
 

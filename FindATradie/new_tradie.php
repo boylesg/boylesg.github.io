@@ -72,14 +72,8 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
 <?php
+
 	
 	//*******************************************************************************************
 	//*******************************************************************************************
@@ -172,9 +166,38 @@
 	    }
 	    $queryResult->free_result();
 	}
-
-
-
+	
+	function DoDebugPostData()
+	{
+		$_POST["SUBMIT"] = "new_tradie";
+		$_POST["hidden_business_name"] = "Greg's Native Landscapes"; 
+		$_POST["hidden_first_name"] = "Greg";
+		$_POST["hidden_surname"] = "Boyles"; 
+		$_POST["hidden_abn"] = "51 824 753 556"; 
+		$_POST["hidden_structure"] = "Sole trader"; 
+		$_POST["hidden_license"] = "";
+		$_POST["hidden_description"] = "Ecological weed control\nLow maintenance\nDrought tolerant\nIrrigation systems\nSmall retaining walls\nSmall tree removal\nGeneral pruning\nBush tucker gardens\nSmall ornamental billabongs\nNative lawns"; 
+		$_POST["hidden_minimum_charge"] = "100"; 
+		$_POST["hidden_minimum_budget"] = "5000";  
+		$_POST["hidden_maximum_size"] = "Up to 50"; 
+		$_POST["hidden_maximum_distance"] = "20"; 
+		$_POST["hidden_unit"] = ""; 
+		$_POST["hidden_street"] = "56 Derby Drive"; 
+		$_POST["hidden_suburb"] = "Epping"; 
+		$_POST["hidden_state"] = "VIC"; 
+		$_POST["hidden_postcode"] = "3076"; 
+		$_POST["hidden_phone"] = "94013696"; 
+		$_POST["hidden_mobile"] = "0455328886"; 
+		$_POST["hidden_email"] = "gregplants@bigpond.com";
+ 		$_POST["hidden_radio_52"] = "52"; 
+ 		$_POST["hidden_checkbox_21"] = "21"; 
+ 		$_POST["hidden_checkbox_24"] = "24"; 
+ 		$_POST["hidden_checkbox_29"] = "29";
+ 		$_POST["hidden_checkbox_30"] = "30";
+ 		$_POST["hidden_checkbox_52"] = "52";
+ 		$_POST["hidden_checkbox_54"] = "54";
+ 		$_POST["hidden_checkbox_35"] = "35";	
+ 	}
 
 	//*******************************************************************************************
 	//*******************************************************************************************
@@ -217,65 +240,62 @@
 				[hidden_checkbox_35] => 35 
 			) 
 	*/
-$_POST["SUBMIT"] = "new_tradie";
-	if ($_POST["SUBMIT"] === "new_tradie")
+//	DoDebugPostData();
+	if (count($_POST) > 0)
 	{
-		$arrayAdditionalTrades = array();
-		$strTrade = -1;
-		$strMemberID = "";
-	
-		foreach( $_POST as $strKey => $strValue)
+		if ($_POST["SUBMIT"] === "new_tradie")
 		{
-			if (strpos($strKey, "hidden_radio_") !== false)
-			{
-				$strTrade = $strValue;
-			}
-			else if (strpos($strKey, "hidden_checkbox_") !== false)
-			{
-				array_push($arrayAdditionalTrades, (int)$strValue);
-			}
-		}
-		$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, structure, license description minimum_charge " . 
-						"minimum_budget maximum_size maximum_distance unit street suburb state postcode phone, mobile email) VALUES (" .
-						(int)$strTrade . ", " . $_POST["hidden_business_name"] . ", " . 
-						$_POST["hidden_first_name"] . "," . $_POST["hidden_surname"] . ", " . $_POST["hidden_abn"] . ", " . 
-						$_POST["hidden_structure"] . ", " . $_POST["hidden_license"] . "," . $_POST["hidden_description"] . ", " . 
-						$_POST["hidden_minimum_charge"] . ", " . $_POST["hidden_minimum_budget"] . ", " .  
-						$_POST["hidden_maximum_size"] . ", " . $_POST["hidden_maximum_distance"] . ", " . 
-						$_POST["hidden_unit"] . ", " . $_POST["hidden_street"] . ", " . $_POST["hidden_suburb"] . ", " . 
-						$_POST["hidden_state"] . ", " . $_POST["hidden_postcode"] . ", " . $_POST["hidden_phone"] . ", " . 
-						$_POST["hidden_mobile"] . ", " . $_POST["hidden_email"] . ")";
-
-		//print_r($_POST);
-
-		$result = DoInsertQuery($strQuery, "members", "business_name", $_POST["hidden_business_name"]);
-		if ($result)
-		{
-			echo "XXXXXXXXXXXXXXX<br>";
-		/*
-			$strQuery = "SELECT id FROM members WHERE business_name=" . $_POST["hidden_business_name"];
+			$arrayAdditionalTrades = array();
+			$strTrade = -1;
+			$strMemberID = "";
 	
-			$result = DoFindOneQuery($strQuery, "business_name", $_POST["hidden_business_name"]);
-			if ($result)
+			foreach( $_POST as $strKey => $strValue)
+			{
+				if (strpos($strKey, "hidden_radio_") !== false)
+				{
+					$strTrade = $strValue;
+				}
+				else if (strpos($strKey, "hidden_checkbox_") !== false)
+				{
+					array_push($arrayAdditionalTrades, (int)$strValue);
+				}
+			}
+			$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, abn, structure, license, description, " . 
+							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
+							"phone, mobile, email, expiry_date) VALUES (" .
+							AppendSQLValues($strTrade, $_POST["hidden_business_name"], 
+							$_POST["hidden_first_name"], $_POST["hidden_surname"],  $_POST["hidden_abn"],  $_POST["hidden_structure"],  
+							$_POST["hidden_license"], $_POST["hidden_description"],  $_POST["hidden_minimum_charge"],  
+							$_POST["hidden_minimum_budget"],   $_POST["hidden_maximum_size"],  $_POST["hidden_maximum_distance"],  
+							$_POST["hidden_unit"],  $_POST["hidden_street"],  $_POST["hidden_suburb"],  $_POST["hidden_state"],  
+							$_POST["hidden_postcode"],  $_POST["hidden_phone"],  $_POST["hidden_mobile"],  $_POST["hidden_email"], 
+							date("Y-m-d") ) . ")";
+	
+			$result = DoInsertQuery($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"]);
+			if ($result->num_rows == 1)
 			{
 				$row = $result->fetch_assoc();
 				$strMemberID = $row["id"];
-			}
-			foreach ($arrayAdditionalTrades as $strValue)
-			{
-				$strQuery = "INSERT INTO additional_trades (member_id, trade_id) VALUES (" . $strMemberID . ", " . $strValue . ")";
-				$result = DoInsertQuery($strQuery, "Additional trade '" . $strValue . "'");
-			}
-		*/
-		}
-		
-	}
-	else
-	{
-		//print_r($_POST);
-	}
 
+				foreach ($arrayAdditionalTrades as $strValue)
+				{
+					$strQuery = "SELECT * FROM additional_trades WHERE member_id='" . $strMemberID . "' AND trade_id='" . $strValue . "'";
+					$result = DoQuery($g_dbFindATradie, $strQuery);
+					if ($result->num_rows == 0)
+					{
+						$strQuery = "INSERT INTO additional_trades (member_id, trade_id) VALUES (" . AppendSQLValues($strMemberID, $strValue) . ")";
+						$result = DoQuery($g_dbFindATradie, $strQuery);
+					}
+				}
+			}
+		}
+		else
+		{
+			print_r($_POST);
+		}
+	}
 ?>
+
 					<div id="trade" style="display:none;">
 						<h2>What is your primary trade?</h2>
 						<form id="form_select_trade" class="form_trade">
@@ -500,8 +520,10 @@ $_POST["SUBMIT"] = "new_tradie";
 						
 						<input type="hidden" id="hidden_username" name="hidden_username" />
 						<input type="hidden" id="hidden_password" name="hidden_password" />
-<?php DoGenerateHiddenTradesRadioButtons(); ?>
-<?php DoGenerateHiddenAdditionalTradesCheckBoxes(); ?>
+<?php
+	DoGenerateHiddenTradesRadioButtons();
+	DoGenerateHiddenAdditionalTradesCheckBoxes();
+?>
 					</form>
 					
 					<script type="text/javascript">
