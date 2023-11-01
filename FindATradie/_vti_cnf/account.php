@@ -1,20 +1,21 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|01 Nov 2023 14:01:15 -0000
+vti_timelastmodified:TR|01 Nov 2023 14:22:00 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|01 Nov 2023 14:01:15 -0000
-vti_cacheddtm:TX|01 Nov 2023 14:01:15 -0000
-vti_filesize:IR|3436
+vti_title:SR|Account
+vti_backlinkinfo:VX|
+vti_nexttolasttimemodified:TW|01 Nov 2023 14:15:21 -0000
+vti_cacheddtm:TX|01 Nov 2023 14:22:00 -0000
+vti_filesize:IR|3424
 vti_cachedtitle:SR|Account
 vti_cachedbodystyle:SR|<body>
-vti_cachedlinkinfo:VX|G|../../../../inetpub/wwwroot/master.dwt Q|../../../../inetpub/wwwroot/styles/style2.css S|../../../../inetpub/wwwroot/common.js S|../../../../inetpub/wwwroot/AustraliaPost.js S|../../../../inetpub/wwwroot/images/Tradie.png S|../../../../inetpub/wwwroot/images/Tools.png H|../../../../inetpub/wwwroot/home.html H|../../../../inetpub/wwwroot/about.html H|../../../../inetpub/wwwroot/new_tradie.php H|../../../../inetpub/wwwroot/new_customer.html H|../../../../inetpub/wwwroot/login.php H|../../../../inetpub/wwwroot/compare.html H|../../../../inetpub/wwwroot/contact.html H|../../../../inetpub/wwwroot/contact.html H|../../../../inetpub/wwwroot/home.html H|../../../../inetpub/wwwroot/new_tradie.php H|../../../../inetpub/wwwroot/new_customer.html H|../../../../inetpub/wwwroot/login.php H|../../../../inetpub/wwwroot/about.html H|../../../../inetpub/wwwroot/compare.html H|../../../../inetpub/wwwroot/faq.html H|../../../../inetpub/wwwroot/contact.html
-vti_cachedsvcrellinks:VX|NGUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/master.dwt NQUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/styles/style2.css NSUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/common.js NSUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/AustraliaPost.js NSUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/images/Tradie.png NSUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/images/Tools.png NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/home.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/about.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/new_tradie.php NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/new_customer.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/login.php NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/compare.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/contact.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/contact.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/home.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/new_tradie.php NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/new_customer.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/login.php NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/about.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/compare.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/faq.html NHUS|file:///C:/Users/boyle/OneDrive/inetpub/wwwroot/contact.html
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style2.css S|common.js S|AustraliaPost.js S|images/Tradie.png S|images/Tools.png H|home.html H|about.html H|new_tradie.php H|new_customer.html H|compare.html H|contact.html H|contact.html D|login.php H|home.html H|new_tradie.php H|new_customer.html H|login.php H|about.html H|compare.html H|faq.html H|contact.html
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style2.css FSUS|common.js FSUS|AustraliaPost.js FSUS|images/Tradie.png FSUS|images/Tools.png FHUS|home.html FHUS|about.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|compare.html FHUS|contact.html FHUS|contact.html FDUS|login.php FHUS|home.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|login.php FHUS|about.html FHUS|compare.html FHUS|faq.html FHUS|contact.html
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false
 vti_cachedhasborder:BR|false
 vti_metatags:VR|HTTP-EQUIV=Content-Type text/html;\\ charset=utf-8
 vti_charset:SR|utf-8
-vti_title:SR|Account
-vti_backlinkinfo:VX|

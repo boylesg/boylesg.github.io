@@ -15,6 +15,7 @@
 			<style>
 
 
+
 				.trade_table_cell
 				{
 					line-height:2em;
