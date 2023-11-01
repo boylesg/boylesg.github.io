@@ -80,7 +80,7 @@
 							</tr>
 							<tr>
 								<td style="text-align:right;"><label for="text_password" id="label_password" >Remember login details: </label></td>
-								<td><input name="text_password" id="check_remember" type="checkbox" disabled onclick="OnClickCheckboxRemeber(this)"/></td>
+								<td><input name="text_password" id="check_remember" type="checkbox" onclick="OnClickCheckboxRemeber(this)"/></td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="Log in"/></td>
@@ -96,8 +96,8 @@
 							{
 								if (checkRemeber.checked)
 								{
-									localStorage["login_username"] = "<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>";
-									localStorage["login_password"] = "<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>";
+									localStorage["login_username"] = document.getElementById("text_username").value;
+									localStorage["login_password"] = document.getElementById("text_password").value;
 								}
 								else
 								{
@@ -123,16 +123,7 @@
 								}
 							}
 						}
-						
-						let checkRemember = document.getElementById("check_remember"),
-							textUsername = document.getElementById("text_password"),
-							textPassword = document.getElementById("text_username");
-							
-						if (checkRemember && textUsername && textPassword)
-						{
-							checkRemember.disabled = (textUsername.value.length == 0) && (textPassword.value.length == 0);
-						}
-						
+												
 					</script>					
 
 
