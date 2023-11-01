@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+	
+	<!-- #BeginTemplate "../../../../inetpub/wwwroot/master.dwt" -->
+	
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Account</title>
+		<!-- #EndEditable -->
+		<link href="../../../../inetpub/wwwroot/styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<script src="../../../../inetpub/wwwroot/common.js"></script>
+		<script src="../../../../inetpub/wwwroot/AustraliaPost.js"></script>
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+			</style>
+		<!-- #EndEditable -->
+		
+		<?php include "common.php"; ?>
+		
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div class="container" id="container">
+			<!-- Begin Masthead -->
+			<div class="masthead" id="masthead">
+				<img class="logo" alt="" src="../../../../inetpub/wwwroot/images/Tradie.png" width="90" />
+				<div class="web_title_container" id="web_title_container">
+					<div class="web_name" id="web_name">
+						Find a Tradie<br/>
+					</div>
+					<div class="web_tag_line">
+						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
+					</div>
+				</div>
+				<img class="trades_image" src="../../../../inetpub/wwwroot/images/Tools.png" alt="images/Tools.png"/>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Navigation -->
+			<nav class="navigation" id="navigation">
+				<ul>
+					<li><a href="../../../../inetpub/wwwroot/home.html">Home</a></li>
+					<li><a href="../../../../inetpub/wwwroot/about.html">About</a></li>
+					<li><a href="../../../../inetpub/wwwroot/new_tradie.php">New Tradie</a></li>
+					<li><a href="../../../../inetpub/wwwroot/new_customer.html">New Customer</a></li>
+					<li><a href="../../../../inetpub/wwwroot/login.php">Log In</a></li>
+					<li><a href="../../../../inetpub/wwwroot/compare.html">Compare</a></li>
+					<li><a href="../../../../inetpub/wwwroot/contact.html">FAQ</a></li>
+					<li><a href="../../../../inetpub/wwwroot/contact.html">Contact</a></li>
+				</ul>
+			</nav>
+			<!-- End Navigation -->
+			<!-- Begin Page Content -->
+			<div class="page_content">
+				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
+					<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!-- #EndEditable -->
+			<!-- End Page Content -->
+			</div>
+			<!-- Begin Footer -->
+			<div class="footer">
+				<p>
+					<a href="../../../../inetpub/wwwroot/home.html">Home</a> | 
+					<a href="../../../../inetpub/wwwroot/new_tradie.php">New Tradie</a> | 
+					<a href="../../../../inetpub/wwwroot/new_customer.html">New Customer</a> | 
+					<a href="../../../../inetpub/wwwroot/login.php">Log In</a> | 
+					<a href="../../../../inetpub/wwwroot/about.html">About</a> | 
+					<a href="../../../../inetpub/wwwroot/compare.html">Compare</a> | 
+					<a href="../../../../inetpub/wwwroot/faq.html">FAQ</a> | 
+					<a href="../../../../inetpub/wwwroot/contact.html">Contact</a>
+					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
+				</p>
+			</div>
+			<!-- End Footer --></div>
+		<!-- End Container -->
+	
+	</body>
+	
+<!-- #EndTemplate -->
+	
+</html>

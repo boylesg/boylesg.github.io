@@ -13,7 +13,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		
 		<?php include "common.php"; ?>
@@ -45,7 +45,12 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<li><a href="login.php">Log In</a></li>
+					<script type="text/javascript">
+						if (sessionStorage['account_type'] !== "")
+							document.write("<li><a href=\"account.php\">Account</a></li>");
+						else
+							document.write("<li><a href=\"login.php\">Login</a></li>");
+					</script>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -57,35 +62,82 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
+					<script type="text/javascript">		
 <?php
 	
-	// Array ( [hidden_username] => boylesg [hidden_password] => password [SUBMIT] => tradie_login ) 
-	if (isset($_POST["SUBMIT"]) && ($_POST["SUBMIT"] === "tradie_login"))
+	function DoDebugPostData()
 	{
+		$_POST["hidden_new_tradie"] = "new_tradie";
+		$_POST["hidden_username"] = "boylesg";
+		$_POST["hidden_password"] = "password";
+	}
+	if (!isset($_POST["submit_login"]))
+	{
+		DoDebugPostData();
+	}
+	$_POST["hidden_new_tradie"] = "XXXXX";
+	
+	$g_strUsername = "";
+	$g_strPassword = "";
+		
+	// Array ( [hidden_username] => boylesg [hidden_password] => password [SUBMIT] => tradie_login ) 
+	if (isset($_POST["hidden_new_tradie"]) && ($_POST["hidden_new_tradie"] === "new_tradie"))
+	{
+		$g_strUsername = $_POST["hidden_username"];
+		$g_strPassword = $_POST["hidden_password"];
+	}
+	else if (isset($_POST["submit_login"]))
+	{
+		$result = DoFindQuery2($g_dbFindATradie, "members", "username", $_POST["text_username"], "password", $_POST["text_password"]);
+		if ($result->num_rows == 1)
+		{
+			$row = $result->fetch_assoc();
+			PrintSpaces(6);
+			echo "sessionStorage['account_type'] = '" . $_POST["hidden_account_type"] . "';\n";
+			PrintSpaces(6);
+			echo "sessionStorage['account_username'] = '" . $_POST["text_username"] . "';\n";
+			PrintSpaces(6);
+			echo "sessionStorage['account_password'] = '" . $_POST["text_password"] . "';\n";
+			PrintSpaces(6);
+			echo  "document.location = 'account.php';";
+		}
 	}
 ?>
 
+					</script>
+			
 					<form method="post" id="form_login" class="form" style="width:570px;">
 						<table>
 							<tr>
 								<td><label style="text-align:right;" for="text_username"id="label_username">Username or email address: </label></td>
-								<td><input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/></td>
+								<td>
+									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php echo $g_strUsername; ?>"/>
+								</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;"><label for="text_password" id="label_password" >Password: </label></td>
 								<td>
-									<input name="text_password" id="text_password" style="width: 20em" type="password"  value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
+									<input name="text_password" id="text_password" style="width: 20em" type="password"  value="<?php echo $g_strPassword; ?>"/>
 									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;"><label for="text_password" id="label_password" >Remember login details: </label></td>
+								<td style="text-align:right;">
+								<label for="text_password" id="label_password0" >Remember login details: </label></td>
 								<td><input name="text_password" id="check_remember" type="checkbox" onclick="OnClickCheckboxRemeber(this)"/></td>
 							</tr>
 							<tr>
-								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="Log in"/></td>
+								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
 							</tr>
 						</table>
+						<input type="hidden" id="hidden_account_type" name="hidden_account_type" value="<?php if (isset($_POST["hidden_new_tradie"])) echo "tradie"; ?>"/>
 					</form>
 					
 					<script type="text/javascript">
@@ -123,6 +175,21 @@
 								}
 							}
 						}
+						
+						function SetUsernamePassword()
+						{
+							let inputUsername = document.getElementById("text_username"),
+								inputPassword = document.getElementById("text_password");
+								
+							if (inputUsername && inputUsername)
+							{
+								if (inputUsername.value.length == 0)
+									inputUsername.value = localStorage["login_username"];
+								if (inputPassword.value.length == 0)
+									inputPassword.value = localStorage["login_password"];
+							}
+						}
+						SetUsernamePassword();
 												
 					</script>					
 

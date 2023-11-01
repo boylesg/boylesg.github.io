@@ -14,6 +14,7 @@
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 
+
 				.trade_table_cell
 				{
 					line-height:2em;
@@ -60,7 +61,12 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<li><a href="login.php">Log In</a></li>
+					<script type="text/javascript">
+						if (sessionStorage['account_type'] !== "")
+							document.write("<li><a href=\"account.php\">Account</a></li>");
+						else
+							document.write("<li><a href=\"login.php\">Login</a></li>");
+					</script>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -197,6 +203,8 @@
 		$_POST["hidden_phone"] = "94013696"; 
 		$_POST["hidden_mobile"] = "0455328886"; 
 		$_POST["hidden_email"] = "gregplants@bigpond.com";
+		$_POST["hidden_username"] = "boylesg";
+		$_POST["hidden_password"] = "password";
  		$_POST["hidden_radio_52"] = "52"; 
  		$_POST["hidden_checkbox_21"] = "21"; 
  		$_POST["hidden_checkbox_24"] = "24"; 
@@ -270,14 +278,14 @@
 			}
 			$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
-							"phone, mobile, email, expiry_date) VALUES (" .
+							"phone, mobile, email, username password expiry_date) VALUES (" .
 							AppendSQLValues($strTrade, $_POST["hidden_business_name"], 
 							$_POST["hidden_first_name"], $_POST["hidden_surname"],  $_POST["hidden_abn"],  $_POST["hidden_structure"],  
 							$_POST["hidden_license"], $_POST["hidden_description"],  $_POST["hidden_minimum_charge"],  
 							$_POST["hidden_minimum_budget"],   $_POST["hidden_maximum_size"],  $_POST["hidden_maximum_distance"],  
 							$_POST["hidden_unit"],  $_POST["hidden_street"],  $_POST["hidden_suburb"],  $_POST["hidden_state"],  
 							$_POST["hidden_postcode"],  $_POST["hidden_phone"],  $_POST["hidden_mobile"],  $_POST["hidden_email"], 
-							date("Y-m-d") ) . ")";
+							$_POST["hidden_username"], $_POST["hidden_password"], date("Y-m-d") ) . ")";
 	
 			$result = DoInsertQuery1($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"]);
 			if ($result->num_rows == 1)
@@ -500,7 +508,7 @@
 					</script>
 
 					<form method="post" id="form_new_tradie" style="visibility:hidden;" action="new_tradie.php">
-						<input type="hidden" name="SUBMIT" value="new_tradie" />
+						<input type="hidden" name="hidden_new_tradie" value="new_tradie" />
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" />
 						<input type="hidden" id="hidden_first_name" name="hidden_first_name" />
 						<input type="hidden" id="hidden_surname" name="hidden_surname" />
@@ -531,8 +539,8 @@
 					</form>
 					
 					<form method="post" id="form_tradie_login" style="visibility:hidden;" action="login.php">
-						<input type="hidden" id="hidden_username" name="hidden_username" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/>
-						<input type="hidden" id="hidden_password" name="hidden_password" value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
+						<input type="hidden" id="hidden_username0" name="hidden_username" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/>
+						<input type="hidden" id="hidden_password0" name="hidden_password" value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
 						<input type="hidden" name="SUBMIT" value="tradie_login" />
 					</form>
 					
@@ -561,6 +569,13 @@
 						OnClickCheckShowPassword(document.getElementById("check_show_password"), document.getElementById("password"));
 						
 					</script>
+
+
+
+
+
+
+
 
 					<!-- #EndEditable -->
 			<!-- End Page Content -->

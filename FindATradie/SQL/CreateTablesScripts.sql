@@ -29,6 +29,8 @@ CREATE TABLE `members` (
   `phone` varchar(8) NOT NULL,
   `mobile` varchar(10) NOT NULL,
   `email` varchar(64) NOT NULL,
+  `username` varchar(64) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `expiry_date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),

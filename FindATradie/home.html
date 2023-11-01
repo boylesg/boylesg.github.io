@@ -20,6 +20,7 @@
 
 
 
+
 				p
 				{
 					color:black;
@@ -91,7 +92,12 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<li><a href="login.php">Log In</a></li>
+					<script type="text/javascript">
+						if (sessionStorage['account_type'] !== "")
+							document.write("<li><a href=\"account.php\">Account</a></li>");
+						else
+							document.write("<li><a href=\"login.php\">Login</a></li>");
+					</script>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
