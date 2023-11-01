@@ -1,15 +1,15 @@
 vti_encoding:SR|utf8-nl
+vti_timelastmodified:TR|01 Nov 2023 10:19:34 -0000
+vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|01 Nov 2023 08:51:56 -0000
-vti_timecreated:TR|22 Oct 2023 07:38:19 -0000
-vti_title:SR|Frequently Asked Questions
-vti_extenderversion:SR|12.0.0.0
-vti_backlinkinfo:VX|contact.html login.php about.html master.dwt home.html faq.html new_customer.html new_tradie\\ -\\ Copy.php compare.html new_tradie.php login.html
-vti_nexttolasttimemodified:TR|28 Oct 2023 08:32:20 -0000
-vti_cacheddtm:TX|01 Nov 2023 08:51:56 -0000
-vti_filesize:IR|5701
-vti_cachedtitle:SR|Frequently Asked Questions
+vti_timecreated:TR|28 Oct 2023 08:32:20 -0000
+vti_title:SR|LOG IN
+vti_backlinkinfo:VX|contact.html login.php master.dwt about.html faq.html home.html new_customer.html compare.html new_tradie.php
+vti_nexttolasttimemodified:TW|01 Nov 2023 10:18:29 -0000
+vti_cacheddtm:TX|01 Nov 2023 10:19:34 -0000
+vti_filesize:IR|5817
+vti_cachedtitle:SR|LOG IN
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style2.css S|common.js S|AustraliaPost.js S|images/Tradie.png S|images/Tools.png H|home.html H|about.html H|new_tradie.php H|new_customer.html H|login.php H|compare.html H|contact.html H|contact.html H|home.html H|new_tradie.php H|new_customer.html H|login.php H|about.html H|compare.html H|faq.html H|contact.html
 vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style2.css FSUS|common.js FSUS|AustraliaPost.js FSUS|images/Tradie.png FSUS|images/Tools.png FHUS|home.html FHUS|about.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|login.php FHUS|compare.html FHUS|contact.html FHUS|contact.html FHUS|home.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|login.php FHUS|about.html FHUS|compare.html FHUS|faq.html FHUS|contact.html

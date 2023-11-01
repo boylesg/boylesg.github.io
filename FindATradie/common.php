@@ -10,6 +10,26 @@
 	
 	$g_strEmailAdmin = "Email admin at gregplants@bigpond.com with this error message.";
 
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** GENERAL FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function PrintSpaces($nNum)
+	{
+		for ($nI = 0; $nI < $nNum; $nI++)
+			echo "\t";
+	}
+
+	
+	
+	
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -73,12 +93,30 @@
 	
 	
 	
-	function DoFindQuery($dbConnection, $strTableName, $strColumnNane, $strValue)
+	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{	
 		global $g_strEmailAdmin;
 		try
 		{
-			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnNane . "='" . EscapeSingleQuote($strValue) . "'";
+			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
+			$result = $dbConnection->query($strQuery);
+		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
+		}		
+		return $result;
+	}
+	
+	
+	
+	
+	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
+	{	
+		global $g_strEmailAdmin;
+		try
+		{
+			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
 			$result = $dbConnection->query($strQuery);
 		}
 		catch(Exception $e) 
@@ -110,14 +148,14 @@
 
 
 
-	function DoInsertQuery($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
+	function DoInsertQuery1($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strEmailAdmin;
 		$result = "";
 		
 		try
 		{
-			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue);
+			$result = DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue);
 			if ($result->num_rows == 0)
 			{
 				try
@@ -140,11 +178,34 @@
 
 
 
-	function PrintSpaces($nNum)
+	function DoInsertQuery2($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
 	{
-		for ($nI = 0; $nI < $nNum; $nI++)
-			echo "\t";
+		global $g_strEmailAdmin;
+		$result = "";
+		
+		try
+		{
+			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2);
+			if ($result->num_rows == 0)
+			{
+				try
+				{
+					$result = $dbConnection->query($strQuery);
+				}
+				catch(Exception $e) 
+				{
+		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+				}		
+			}	
+		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+		}		
+		return $result;
 	}
+
+
 
 ?>
 

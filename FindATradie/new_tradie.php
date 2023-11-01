@@ -60,7 +60,7 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<li><a href="login.html">Log In</a></li>
+					<li><a href="login.php">Log In</a></li>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -72,9 +72,17 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 <?php
 
-	
+	$g_bDoRedirectToLogin = false;
+
 	//*******************************************************************************************
 	//*******************************************************************************************
 	//* 
@@ -271,21 +279,17 @@
 							$_POST["hidden_postcode"],  $_POST["hidden_phone"],  $_POST["hidden_mobile"],  $_POST["hidden_email"], 
 							date("Y-m-d") ) . ")";
 	
-			$result = DoInsertQuery($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"]);
+			$result = DoInsertQuery1($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"]);
 			if ($result->num_rows == 1)
 			{
 				$row = $result->fetch_assoc();
 				$strMemberID = $row["id"];
+				$g_bDoRedirectToLogin = true;
 
 				foreach ($arrayAdditionalTrades as $strValue)
 				{
-					$strQuery = "SELECT * FROM additional_trades WHERE member_id='" . $strMemberID . "' AND trade_id='" . $strValue . "'";
-					$result = DoQuery($g_dbFindATradie, $strQuery);
-					if ($result->num_rows == 0)
-					{
-						$strQuery = "INSERT INTO additional_trades (member_id, trade_id) VALUES (" . AppendSQLValues($strMemberID, $strValue) . ")";
-						$result = DoQuery($g_dbFindATradie, $strQuery);
-					}
+					$strQuery = "INSERT INTO additional_trades (member_id, trade_id) VALUES (" . AppendSQLValues($strMemberID, $strValue) . ")";
+					$result = DoInsertQuery1($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"], "user_name", $_POST["hidden_username"]);
 				}
 			}
 		}
@@ -304,17 +308,17 @@
 <?php DoGenerateTradesRadioButtons(); ?>
 
 								<tr>
-									<td style="text-align:left;" colspan="4">
+									<td style="text-align:left;">
 										<?php
 											echo "<a href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\"><h4>Request addition of a new trade.<h4></a>";
 										?>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="4"><b><u>Any sdditional trades your are qualified in.</u></b></td>
+									<td><b><u>Any sdditional trades your are qualified in.</u></b></td>
 								</tr>
 								<tr>
-									<td style="text-align::left;" colspan="4">
+									<td style="text-align::left;">
 										<table border="0" style="width:100%;table-layout:fixed;">
 											<tr>
 <?php DoGenerateAdditionalTradesCheckBoxes(); ?>
@@ -323,7 +327,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="text-align:right;" colspan="4"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
+									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
 								</tr>
 							</table>
 						</form>
@@ -495,7 +499,7 @@
 						DoFillSuburbsAndPostcodeSelects(document.getElementById("suburb"), document.getElementById("postcode"), document.getElementById("state"));
 					</script>
 
-					<form method="post" id="form_new_tradie" style="visibility:hidden;" name="new_tradie" action="new_tradie.php">
+					<form method="post" id="form_new_tradie" style="visibility:hidden;" action="new_tradie.php">
 						<input type="hidden" name="SUBMIT" value="new_tradie" />
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" />
 						<input type="hidden" id="hidden_first_name" name="hidden_first_name" />
@@ -526,8 +530,21 @@
 ?>
 					</form>
 					
+					<form method="post" id="form_tradie_login" style="visibility:hidden;" action="login.php">
+						<input type="hidden" id="hidden_username" name="hidden_username" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/>
+						<input type="hidden" id="hidden_password" name="hidden_password" value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
+						<input type="hidden" name="SUBMIT" value="tradie_login" />
+					</form>
+					
 					<script type="text/javascript">
 					
+						<?php
+							if ($g_bDoRedirectToLogin)
+							{
+								echo "document.getElementById('form_tradie_login').submit()";
+							}
+						?>
+						
 						if (sessionStorage["new_tradie_stage"] === undefined)
 							sessionStorage["new_tradie_stage"] = "trade";
 							
@@ -545,13 +562,6 @@
 						
 					</script>
 
-
-
-
-
-
-
-
 					<!-- #EndEditable -->
 			<!-- End Page Content -->
 			</div>
@@ -561,7 +571,7 @@
 					<a href="home.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.html">Log In</a> | 
+					<a href="login.php">Log In</a> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 

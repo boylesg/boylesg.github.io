@@ -13,7 +13,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		
 		<?php include "common.php"; ?>
@@ -45,7 +45,7 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<li><a href="login.html">Log In</a></li>
+					<li><a href="login.php">Log In</a></li>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -57,28 +57,83 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
+<?php
+	
+	// Array ( [hidden_username] => boylesg [hidden_password] => password [SUBMIT] => tradie_login ) 
+	if (isset($_POST["SUBMIT"]) && ($_POST["SUBMIT"] === "tradie_login"))
+	{
+	}
+?>
 
-
-
-
-
-
-
-					<form method="post" id="form_login" class="form" style="width:460px;">
+					<form method="post" id="form_login" class="form" style="width:570px;">
 						<table>
 							<tr>
 								<td><label style="text-align:right;" for="text_username"id="label_username">Username or email address: </label></td>
-								<td><input name="text_username" id="text_username" style="width: 20em" type="text" /></td>
+								<td><input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/></td>
 							</tr>
 							<tr>
 								<td style="text-align:right;"><label for="text_password" id="label_password" >Password: </label></td>
-								<td><input name="text_password" id="text_password" style="width: 20em" type="password" /></td>
+								<td>
+									<input name="text_password" id="text_password" style="width: 20em" type="password"  value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
+									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;"><label for="text_password" id="label_password" >Remember login details: </label></td>
+								<td><input name="text_password" id="check_remember" type="checkbox" disabled onclick="OnClickCheckboxRemeber(this)"/></td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="Log in"/></td>
 							</tr>
 						</table>
 					</form>
+					
+					<script type="text/javascript">
+						
+						function OnClickCheckboxRemeber(checkRemeber)
+						{
+							if (checkRemeber)
+							{
+								if (checkRemeber.checked)
+								{
+									localStorage["login_username"] = "<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>";
+									localStorage["login_password"] = "<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>";
+								}
+								else
+								{
+									localStorage["login_username"] = "";
+									localStorage["login_password"] = "";
+								}
+							}
+						}
+						
+						function OnClickCheckboxShow(checkShow)
+						{
+							let textPassword = document.getElementById("text_password");
+							
+							if (checkShow && textPassword)
+							{
+								if (checkShow.checked)
+								{
+									textPassword.type = "text";
+								}
+								else
+								{
+									textPassword.type = "password";
+								}
+							}
+						}
+						
+						let checkRemember = document.getElementById("check_remember"),
+							textUsername = document.getElementById("text_password"),
+							textPassword = document.getElementById("text_username");
+							
+						if (checkRemember && textUsername && textPassword)
+						{
+							checkRemember.disabled = (textUsername.value.length == 0) && (textPassword.value.length == 0);
+						}
+						
+					</script>					
 
 
 
@@ -96,7 +151,7 @@
 					<a href="home.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.html">Log In</a> | 
+					<a href="login.php">Log In</a> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
