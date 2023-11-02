@@ -16,6 +16,8 @@
 
 
 
+
+
 				.trade_table_cell
 				{
 					line-height:2em;
@@ -63,7 +65,7 @@
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (sessionStorage['account_type'] !== "")
+						if (localStorage['account_username'] !== "")
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");

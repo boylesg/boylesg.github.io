@@ -13,7 +13,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		
 		<?php include "common.php"; ?>
@@ -46,7 +46,7 @@
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (sessionStorage['account_type'] !== "")
+						if (localStorage['account_username'] !== "")
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -62,6 +62,13 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 						<script type="text/javascript">
 						
 							function OnClickButtonLogout()
@@ -74,10 +81,13 @@
 							
 						</script>
 						
-						<input type="button" value="LOG OUT" onclick="OnClickButtonLogout()" />
+						<input type="button" class="next_button" value="LOG OUT" onclick="OnClickButtonLogout()" />
 
 
 
+
+
+					
 
 
 					<!-- #EndEditable -->

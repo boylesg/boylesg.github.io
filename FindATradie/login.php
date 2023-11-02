@@ -46,7 +46,7 @@
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (sessionStorage['account_type'] !== "")
+						if (localStorage['account_username'] !== "")
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -130,14 +130,14 @@
 							</tr>
 							<tr>
 								<td style="text-align:right;">
-								<label for="text_password" id="label_password0" >Remember login details: </label></td>
+								<label for="text_password" id="label_password0" >Stay pogged in: </label></td>
 								<td><input name="text_password" id="check_remember" type="checkbox" onclick="OnClickCheckboxRemeber(this)"/></td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
 							</tr>
 						</table>
-						<input type="hidden" id="hidden_account_type" name="hidden_account_type" value="<?php if (isset($_POST["hidden_new_tradie"])) echo "tradie"; ?>"/>
+						<input type="hidden" id="hidden_account_type" name="hidden_account_type" value="<?php if (isset($_POST["hidden_new_tradie"])) echo "Tradie"; ?>"/>
 					</form>
 					
 					<script type="text/javascript">
@@ -148,13 +148,15 @@
 							{
 								if (checkRemeber.checked)
 								{
-									localStorage["login_username"] = document.getElementById("text_username").value;
-									localStorage["login_password"] = document.getElementById("text_password").value;
+									localStorage["account_type"] = sessionStorage["account_type"];
+									localStorage["account_username"] = sessionStorage["account_username"];
+									localStorage["account_password"] = sessionStorage["account_password"];
 								}
 								else
 								{
-									localStorage["login_username"] = "";
-									localStorage["login_password"] = "";
+									localStorage["account_type"] = "";
+									localStorage["account_username"] = "";
+									localStorage["account_password"] = "";
 								}
 							}
 						}
