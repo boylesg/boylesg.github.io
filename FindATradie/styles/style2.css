@@ -1,11 +1,50 @@
 ﻿@import url(layout.css);
+
+:root 
+{
+	--strColorMastheadBG: #C5D5E5;
+	--strColorBodyBG: white;
+	--strColorWebName: black;
+	
+	--strColorNavBG: #CCAA77;
+	--strColorNavAT: black;
+	--strColorNavABG: #DDCC88;
+	
+	--strColorNavAHoverT: black;
+	--strColorNavAHoverBG: #EEDD99;
+	--strColorNavAHoverT: black;
+	--strColorNavAHoverBorder: #EEDD99;
+	
+	
+	--strColorMainButtonGB: #DDCC88;
+	--strColorMainButtonT: black;
+	
+	--strColorFAQQuestionT: red;
+	--strColorFAQAnswerT: black;
+	
+	--strColorFooterBG: #CCAA77;
+	--strColorFooterPT: #393939;
+	--strColorFooterAT: #393939;
+	--strColorFooterAHoverT: black;
+  
+	--strColorH1T: #393939;
+	--strColorH2T: #446699;
+	--strColorH3T: #446699;
+	--strColorH4T: #446699;
+	--strColorH5T: #446699;
+	--strColorH6T: #446699;
+	
+	--strColorAT: #446699;
+	--strColorAHoverT: black;
+}
+
 body 
 {
 	color: #000;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: small;
 	font-style: normal;
-	background-color: #fff;
+	background-color: /*white*/var(--strColorBodyBG);
 }
 
 .container 
@@ -23,7 +62,7 @@ body
 {
 	text-align: right;
 	width: 100%;
-	background-color: #c5d5e5;
+	background-color: /*#c5d5e5*/var(--strColorMastheadBG);
 }
 
 /* Styles for Masthead */
@@ -50,6 +89,7 @@ body
 	text-align:left;
 	font-size:5em;
 	font-weight:900;
+	color:var(--strColorWebName);
 	/*font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif*/
 	font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	/*background-color:red;*/
@@ -75,7 +115,7 @@ body
 
 .navigation 
 {
-	background-color: #CCAA77;
+	background-color: var(--strColorNavBG);
 	overflow: hidden;
 }
 
@@ -96,14 +136,14 @@ body
 	border-radius:15px;
 	border-style:solid;
 	border-color:#CCAA77;
-	background-color:#DDCC88;
+	background-color:var(--strColorMainButtonGB);
 	cursor:pointer;
 	text-align:center;
 	vertical-align:middle;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	font-size:large;
-	color:black;
+	color:var(--strColorMainButtonT);
 	margin:20px;
 	width:400px;
 	height:50px;
@@ -115,7 +155,7 @@ body
 	list-style-type:none;
 	font-size:medium;
 	font-weight:bold;
-	color:red;
+	color:var(--strColorFAQQuestionT);
 }
 
 .faq_answer
@@ -123,13 +163,13 @@ body
 	list-style-type:none;
 	font-size:medium;
 	font-weight:bold;
-	color:black;
+	color:var(--strColorFAQAnswerT);
 }
 
 .footer 
 {
-	background-color: /*#dfcfbf*/#CCAA77;
-	padding: 5px;
+	background-color:var(strColorFooterBG);
+	padding:5px;
 	
 }
 
@@ -144,61 +184,62 @@ body
 
 #navigation li 
 {
-	float: left;
+	float:left;
 }
 
 #navigation a 
 {
-	color: #000;
+	color:var(--strColorNavAT);
 	text-decoration: none;
-	display: block;
-	padding: 5px;
-	border: 1px solid #ca7;
-	background-color: #dc8;
+	display:block;
+	padding:5px;
+	border:1px solid #ca7;
+	background-color:var(--strColorNavABG);
 	padding-right:10px;
 	padding-left:10px;
 }
-#navigation a:hover {
-	color: #000;
-	text-decoration: none;
-	border: 1px solid #ed9;
-	background-color: #ed9;
+#navigation a:hover 
+{
+	color:var(--strColorNavAHoverT);
+	text-decoration:none;
+	border: 1px solid var(--strColorNavAHoverBorder);
+	background-color:var(--strColorNavAHoverBG);
 }
 /* Styles for Content */
 h1 
 {
 	font-size: 2em;
-	color: #393939;
-}
+	color: var(--strColorH1T);
+} 
 
 h2 
 {
 	font-size: 1.75em;
-	color: #469;
+	color: var(--strColorH2T);
 }
 
 h3 
 {
 	font-size: 1.5em;
-	color: #469;
+	color: var(--strColorH3T);
 }
 
 h4 
 {
 	font-size: 1.25em;
-	color: #469;
+	color: var(--strColorH4T);
 }
 
 h5 
 {
 	font-size: 0.75em;
-	color: #469;
+	color: var(--strColorH5T);
 }
 
 h6 
 {
 	font-size: 0.5em;
-	color: #469;
+	color: var(--strColorH6T);
 }
 
 /* Styles for Footer */
@@ -206,20 +247,20 @@ h6
 {
 	font-size: x-small;
 	text-align: center;
-	color: #393939;
+	color: var(--strColorFooterPT);
 	margin: 10px;
 	padding: 1px;
 }
 
 #footer a 
 {
-	color: #393939;
+	color: var(--strColorFooterAT);
 	text-decoration: underline;
 }
 
 #footer a:hover 
 {
-	color: #000;
+	color:var(--strColorFooterAHoverT);
 	text-decoration: none;
 }
 
@@ -255,4 +296,5 @@ textarea
 {
 	width:80px;
 }
+
 

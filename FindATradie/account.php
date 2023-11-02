@@ -8,16 +8,127 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>Account</title>
 		<!-- #EndEditable -->
+		<?php include "common.php"; ?>
 		<link href="styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+
+			
+				 :root 
+				{
+					--strWidth: 96%;
+					--strBorderRadius: 10px;
+					--strBorderWidth: thin;
+					--strBorderStyle: solid;
+					--strBorderColor: var(--strColorInactiveBG);
+					--strColorInactiveBG: #B0C0D0;
+					--strColorHoverBG: var(--strColorMastheadBG);
+					--strColorActiveBG: var(--strColorMastheadBG);
+				}
+				
+				
+				/* Style the buttons that are used to open the tab content */
+				.tab_button 
+				{
+					display: inline-block;
+					height: 40px;
+					float: left;
+
+					background-color: var(--strColorInactiveBG);
+					border-color: var(--strBorderColor);
+					border-top-left-radius: var(--strBorderRadius);
+					border-top-right-radius:  var(--strBorderRadius);
+					border-left-style: var(--strBorderStyle);
+					border-top-style: var(--strBorderStyle);
+					border-right-style: var(--strBorderStyle);
+					border-bottom-style: none;
+					border-left-width: var(--strBorderWidth);
+					border-top-width: var(--strBorderWidth);
+					border-right-width: var(--strBorderWidth);
+					
+					cursor: pointer;
+					padding: 14px 16px;
+					transition: 0.3s;
+				}
+				
+				/* Change background color of buttons on hover */
+				.tab_button:hover 
+				{
+				 	background-color: var(--strColorHoverBG);
+				}
+				
+				.tab_button:active
+				{
+					background-color: var(--strColorActiveBG);
+				}
+				
+				/* Style the tab content */
+				.tab_content 
+				{
+					display: block;
+					padding: 6px 12px;
+					border-top: none;
+					width: var(--strWidth);
+					border-style: var(--strBorderStyle);
+					border-width: var(--strBorderWidth);
+					border-color: var(--strBorderColor);
+					background-color: var(--strColorActiveBG);
+					border-bottom-left-radius: var(--strBorderRadius);
+					border-bottom-right-radius: var(--strBorderRadius);
+					border-top-right-radius:  var(--strBorderRadius);
+					
+					overflow: hidden;
+					height: 200px;
+				}
+										
+			</style>
+			
+			<script type="text/javascript">
+			
+				function OnClickButtonLogout()
+				{	
+					sessionStorage["account_type"] = "";
+					sessionStorage["account_username"] = "";
+					sessionStorage["account_password"] = "";
+					document.location = "login.php";
+				}
+				
+				let g_buttonTabLastActive = null;
+				
+				function  DoOpenTab(strTabButtonID, strTab2ShowID) 
+				{
+					let divPageContent = document.getElementById("page_content");
+					
+					if (divPageContent)
+					{
+						for (let nI = 0; nI < divPageContent.children.length; nI++)
+						{
+							if (divPageContent.children[nI].className == "tab_content")
+							{
+								divPageContent.children[nI].style.display = "none";
+							}
+						}
+						let divTab2Show = document.getElementById(strTab2ShowID);
+						if (divTab2Show)
+						{
+							divTab2Show.style.display = "block";
+						}
+						let divTabButton = document.getElementById(strTabButtonID);
+						if (divTabButton)
+						{
+							if (g_buttonTabLastActive)
+								g_buttonTabLastActive.style.backgroundColor = GetCSSVariable("--strColorBG");
+							divTabButton.style.backgroundColor = GetCSSVariable("--strColorActiveBG");
+							g_buttonTabLastActive = divTabButton;
+						}
+					}
+				}
+								
+			</script>
+
 		<!-- #EndEditable -->
-		
-		<?php include "common.php"; ?>
-		
 	</head>
 	
 	<body>
@@ -58,37 +169,38 @@
 			</nav>
 			<!-- End Navigation -->
 			<!-- Begin Page Content -->
-			<div class="page_content">
+			<div class="page_content" id="page_content">
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
-
-
-
-
-
-
-
-
-						<script type="text/javascript">
 						
-							function OnClickButtonLogout()
-							{	
-								sessionStorage["account_type"] = "";
-								sessionStorage["account_username"] = "";
-								sessionStorage["account_password"] = "";
-								document.location = "login.php";
-							}
-							
-						</script>
+						<br/><br/><br/>
+						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">London</button>
+						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Paris</button>
+						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Tokyo</button>
+						<!-- Tab content -->
+						<div id="tab_contents1" class="tab_content">
+							<h3>London</h3>
+							<p>London is the capital city of England.</p>
+						</div>
 						
+						<div id="tab_contents2" class="tab_content" style="display:none;">
+							<h3>Paris</h3>
+							<p>Paris is the capital of France.</p>
+						</div>
+						
+						<div id="tab_contents3" class="tab_content" style="display:none;">
+							<h3>Tokyo</h3>
+							<p>Tokyo is the capital of Japan.</p>
+						</div>
+
+
+					
+						<br/>
 						<input type="button" class="next_button" value="LOG OUT" onclick="OnClickButtonLogout()" />
 
 
 
-
-
-					
-
+						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
 
 					<!-- #EndEditable -->
 			<!-- End Page Content -->

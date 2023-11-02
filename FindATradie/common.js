@@ -19,7 +19,25 @@ function GetNumYearsSince(nYear, nMonth)
 	}
 		
 	return nNum + strTime;
-}	  
+}
+
+function GetCSSVariable(strVarName)
+{
+	let Val = 0;
+	
+	let Root = document.querySelector(':root');
+	if (Root)
+	{
+		let Styles = getComputedStyle(Root);
+		if (Styles)
+		{
+			 Val = Styles.getPropertyValue(strVarName);
+			 Val = Val;
+		}
+	}
+	return Val;
+}
+  
 
 //******************************************************************************
 //******************************************************************************

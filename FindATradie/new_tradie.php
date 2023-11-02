@@ -8,11 +8,15 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>NEW TRADIE</title>
 		<!-- #EndEditable -->
+		<?php include "common.php"; ?>
 		<link href="styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
+
+
 
 
 
@@ -34,9 +38,6 @@
 												
 			</style>
 		<!-- #EndEditable -->
-		
-		<?php include "common.php"; ?>
-		
 	</head>
 	
 	<body>
@@ -77,7 +78,7 @@
 			</nav>
 			<!-- End Navigation -->
 			<!-- Begin Page Content -->
-			<div class="page_content">
+			<div class="page_content" id="page_content">
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
