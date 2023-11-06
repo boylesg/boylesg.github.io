@@ -10,3 +10,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?/$1 [L] 
 
+#Alternate default index pages
+DirectoryIndex first.html first.htm first.php first.asp home.html home.htm home.php home.asp index.html index.htm index.php index.asp default.html default.htm default.php default.asp
+
+
