@@ -1,4 +1,7 @@
 <?php
+
+	session_save_path("c:/users/boyle/temp");
+	session_start();
 	
 	//******************************************************************************
 	//******************************************************************************
@@ -140,6 +143,24 @@
 	
 	
 	
+	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	{	
+		global $g_strEmailAdmin;
+		try
+		{
+			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
+			$result = $dbConnection->query($strQuery);
+		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
+		}		
+		return $result;
+	}
+	
+	
+	
+	
 	function DoQuery($dbConnection, $strQuery)
 	{
 		global $g_strEmailAdmin;
@@ -217,6 +238,34 @@
 	}
 
 
+
+
+	function DoInsertQuery3($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	{
+		global $g_strEmailAdmin;
+		$result = "";
+		
+		try
+		{
+			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3);
+			if ($result->num_rows == 0)
+			{
+				try
+				{
+					$result = $dbConnection->query($strQuery);
+				}
+				catch(Exception $e) 
+				{
+		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+				}		
+			}	
+		}
+		catch(Exception $e) 
+		{
+  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+		}		
+		return $result;
+	}
 
 ?>
 

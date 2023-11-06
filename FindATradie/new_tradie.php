@@ -14,28 +14,6 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-
-
-
-
-
-
-
-
-				.trade_table_cell
-				{
-					line-height:2em;
-					height:2em;
-					vertical-align:middle;
-					padding-left:1em;
-					padding-right:1em;
-				}
-				
-				.form_trade
-				{
-					width:100em;
-				}
-												
 			</style>
 		<!-- #EndEditable -->
 	</head>
@@ -61,12 +39,12 @@
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (localStorage['account_username'] !== "")
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -96,7 +74,7 @@
 	//*******************************************************************************************
 	//*******************************************************************************************
 	//* 
-	//* HTML gneration functions
+	//* Trade related HTML generation functions
 	//* 
 	//*******************************************************************************************
 	//*******************************************************************************************
@@ -512,7 +490,7 @@
 					</script>
 
 					<form method="post" id="form_new_tradie" style="visibility:hidden;" action="new_tradie.php">
-						<input type="hidden" name="hidden_new_tradie" value="new_tradie" />
+						<input type="hidden" name="hidden_new_member" value="new_member" />
 						<input type="hidden" id="hidden_business_name" name="hidden_business_name" />
 						<input type="hidden" id="hidden_first_name" name="hidden_first_name" />
 						<input type="hidden" id="hidden_surname" name="hidden_surname" />
@@ -587,10 +565,15 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<p>
-					<a href="home.html">Home</a> | 
+					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.php">Log In</a> | 
+					<script type="text/javascript">
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
+							document.write("<a href=\"account.php\">Account</a>");
+						else
+							document.write("<a href=\"login.php\">Login</a>");
+					</script> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 

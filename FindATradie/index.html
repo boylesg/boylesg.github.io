@@ -28,6 +28,9 @@
 
 
 
+
+
+
 				p
 				{
 					color:black;
@@ -92,12 +95,12 @@
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (localStorage['account_username'] !== "")
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -191,10 +194,15 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<p>
-					<a href="home.html">Home</a> | 
+					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.php">Log In</a> | 
+					<script type="text/javascript">
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
+							document.write("<a href=\"account.php\">Account</a>");
+						else
+							document.write("<a href=\"login.php\">Login</a>");
+					</script> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 

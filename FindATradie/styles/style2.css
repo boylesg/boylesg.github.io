@@ -297,4 +297,17 @@ textarea
 	width:80px;
 }
 
+.trade_table_cell
+{
+	line-height:2em;
+	height:2em;
+	vertical-align:middle;
+	padding-left:1em;
+	padding-right:1em;
+}
+
+.form_trade
+{
+	width:100em;
+}
 

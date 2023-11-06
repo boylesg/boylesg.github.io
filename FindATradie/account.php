@@ -15,6 +15,7 @@
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 
+
 			
 				 :root 
 				{
@@ -22,7 +23,8 @@
 					--strBorderRadius: 10px;
 					--strBorderWidth: thin;
 					--strBorderStyle: solid;
-					--strBorderColor: var(--strColorInactiveBG);
+					--strBorderColor: var(--strColorH4T);
+					--strTextColor: var(--strColorH4T);
 					--strColorInactiveBG: #B0C0D0;
 					--strColorHoverBG: var(--strColorMastheadBG);
 					--strColorActiveBG: var(--strColorMastheadBG);
@@ -37,7 +39,7 @@
 					float: left;
 
 					background-color: var(--strColorInactiveBG);
-					border-color: var(--strBorderColor);
+					border-color: var(--strColorH4T);
 					border-top-left-radius: var(--strBorderRadius);
 					border-top-right-radius:  var(--strBorderRadius);
 					border-left-style: var(--strBorderStyle);
@@ -47,6 +49,8 @@
 					border-left-width: var(--strBorderWidth);
 					border-top-width: var(--strBorderWidth);
 					border-right-width: var(--strBorderWidth);
+					color: var(--strTextColor);
+					font-weight: bold;
 					
 					cursor: pointer;
 					padding: 14px 16px;
@@ -152,12 +156,12 @@
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (localStorage['account_username'] !== "")
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -172,35 +176,79 @@
 			<div class="page_content" id="page_content">
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
-						
-						<br/><br/><br/>
-						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">London</button>
-						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Paris</button>
-						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Tokyo</button>
-						<!-- Tab content -->
+
+<?php 
+
+/*	
+	$_SESSION["account_type"]
+	$_SESSION["account_username"]
+	$_SESSION["account_password"]
+*/
+	$bExpired = false;
+	
+	if ($_SESSION["account_expiry_date"])
+	{
+		$dateNow = new DateTime();
+		$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
+		//$dateExpiry = getDate(strtotime($_SESSION["account_expiry_date"]));
+	}
+
+
+
+
+
+
+
+?>
+
+					<div id="paypal" style="display:none;">
+					</div>
+					
+					<div id="account">
+					
+						<input type="button" class="next_button" value="LOG OUT" onclick="OnClickButtonLogout()" />
+						<br/><br/>
+						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Trade details</button>
+						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Account details</button>
+						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Browse matching jobs</button>
+						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Create your own job</button>
+
 						<div id="tab_contents1" class="tab_content">
-							<h3>London</h3>
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 							<p>London is the capital city of England.</p>
 						</div>
 						
-						<div id="tab_contents2" class="tab_content" style="display:none;">
-							<h3>Paris</h3>
-							<p>Paris is the capital of France.</p>
+						<div id="tab_contents2" class="tab_content">
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
+							<p>London is the capital city of England.</p>
 						</div>
 						
 						<div id="tab_contents3" class="tab_content" style="display:none;">
-							<h3>Tokyo</h3>
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
+							<p>Paris is the capital of France.</p>
+						</div>
+						
+						<div id="tab_contents4" class="tab_content" style="display:none;">
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 							<p>Tokyo is the capital of Japan.</p>
 						</div>
 
-
-					
-						<br/>
-						<input type="button" class="next_button" value="LOG OUT" onclick="OnClickButtonLogout()" />
-
-
-
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
+					</div>
+					
+					<script type="text/javascript">
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</script>
 
 					<!-- #EndEditable -->
 			<!-- End Page Content -->
@@ -208,10 +256,15 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<p>
-					<a href="home.html">Home</a> | 
+					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.php">Log In</a> | 
+					<script type="text/javascript">
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
+							document.write("<a href=\"account.php\">Account</a>");
+						else
+							document.write("<a href=\"login.php\">Login</a>");
+					</script> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 

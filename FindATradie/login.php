@@ -14,7 +14,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -39,12 +39,12 @@
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul>
-					<li><a href="home.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
 					<script type="text/javascript">
-						if (localStorage['account_username'] !== "")
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
 							document.write("<li><a href=\"account.php\">Account</a></li>");
 						else
 							document.write("<li><a href=\"login.php\">Login</a></li>");
@@ -67,9 +67,8 @@
 
 
 
-					<script type="text/javascript">		
 <?php
-	
+
 	function DoDebugPostData()
 	{
 		$_POST["hidden_new_tradie"] = "new_tradie";
@@ -80,23 +79,44 @@
 	{
 		DoDebugPostData();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	$_POST["hidden_new_tradie"] = "XXXXX";
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	$g_strUsername = "";
 	$g_strPassword = "";
+	$g_strLogin = "block";
+	$g_strRecover = "none";
 		
 	// Array ( [hidden_username] => boylesg [hidden_password] => password [SUBMIT] => tradie_login ) 
-	if (isset($_POST["hidden_new_tradie"]) && ($_POST["hidden_new_tradie"] === "new_tradie"))
+	if (isset($_POST["hidden_new_member"]) && ($_POST["hidden_new_member"] === "new_member"))
 	{
 		$g_strUsername = $_POST["hidden_username"];
 		$g_strPassword = $_POST["hidden_password"];
 	}
 	else if (isset($_POST["submit_login"]))
 	{
-		$result = DoFindQuery2($g_dbFindATradie, "members", "username", $_POST["text_username"], "password", $_POST["text_password"]);
+		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
+		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result->num_rows == 1)
 		{
 			$row = $result->fetch_assoc();
+			PrintSpaces(3);
+			echo "<script type=\"text/javascript\">";
 			PrintSpaces(6);
 			echo "sessionStorage['account_type'] = '" . $_POST["hidden_account_type"] . "';\n";
 			PrintSpaces(6);
@@ -105,18 +125,105 @@
 			echo "sessionStorage['account_password'] = '" . $_POST["text_password"] . "';\n";
 			PrintSpaces(6);
 			echo  "document.location = 'account.php';";
+			PrintSpaces(3);
+			echo "</script>";
+						
+			$_SESSION["account_id"] = $row["id"];
+			$_SESSION["account_trade"] = $row["trade"];
+			$_SESSION["account_business_name"] = $row["business_name"];
+			$_SESSION["account_first_name"] = $row["first_name"];
+			$_SESSION["account_surname"] = $row["surname"];
+			$_SESSION["account_abn"] = $row["abn"];
+			$_SESSION["account_structure"] = $row["structure"];
+			$_SESSION["account_license"] = $row["license"];
+			$_SESSION["account_description"] = $row["description"];
+			$_SESSION["account_minimum_charge"] = $row["minimum_charge"];
+			$_SESSION["account_minimum_budget"] = $row["minimum_budget"];
+			$_SESSION["account_maximum_size"] = $row["maximum_size"];
+			$_SESSION["account_maximum_distance"] = $row["maximum_distance"];
+			$_SESSION["account_unit"] = $row["unit"];
+			$_SESSION["account_street"] = $row["street"];
+			$_SESSION["account_suburb"] = $row["suburb"];
+			$_SESSION["account_state"] = $row["state"];
+			$_SESSION["account_postcode"] = $row["postcode"];
+			$_SESSION["account_phone"] = $row["phone"];
+			$_SESSION["account_mobile"] = $row["mobile"];
+			$_SESSION["account_email"] = $row["email"];
+			$_SESSION["account_expiry_date"] = $row["expiry_date"];
+			$_SESSION["account_username"] = $row["username"];
+			$_SESSION["account_password"] = $row["password"];
+		}
+		else
+		{
+			PrintSpaces(4);
+			echo "<script type=\"text/javascript\">";
+			PrintSpaces(6);
+			echo "alert('ERROR: incorrect password!');\n";
+			PrintSpaces(4);
+			echo "</script>";
 		}
 	}
-?>
+	else if (isset($_POST["submit_recover"]))
+	{
+		$result = DoFindQuery3($g_dbFindATradie, "members", "username", $_POST["text_username"], "business_name", $_POST["text_business_name"], "mobile", $_POST["text_mobile"]);
+		if ($result->num_rows == 1)
+		{
+			$row = $result->fetch_assoc();
+			mail($row["email"], "Username and pass word recovery at FindATradie", "Username: " . $row["username"] . "%0D%0APassword: " . $row["password"] . "%0D%0A");			
+			PrintSpaces(3);
+			echo "<script type=\"text/javascript\">";
+			PrintSpaces(6);
+			echo "alert('Your username and password have been emailed to " . $row["email"] . "');\n";
+			PrintSpaces(3);
+			echo "</script>";
+		}
+		else
+		{
+			PrintSpaces(3);
+			echo "<script type=\"text/javascript\">\n";
+			PrintSpaces(6);
+			echo "alert(\"Account with username '" . $_POST["text_username"] . "', business name '" . $_POST["text_business_name"] . "' and mobile '" . $_POST["text_mobile"] . "' was not found!\");\n";
+			PrintSpaces(3);
+			echo "</script>";
+			$g_strLogin = "none";
+			$g_strRecover = "block";
+		}
+	}
 
-					</script>
-			
-					<form method="post" id="form_login" class="form" style="width:570px;">
+?>
+					<form method="post" id="form_recover" class="form" style="width:380px;display:<?php echo $g_strRecover; ?>;">
 						<table>
 							<tr>
-								<td><label style="text-align:right;" for="text_username"id="label_username">Username or email address: </label></td>
+								<td style="text-align:right;" ><label for="text_surname" id="label_surname">Username: </label></td>
 								<td>
-									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php echo $g_strUsername; ?>"/>
+									<input name="text_username" id="text_username" style="width: 20em" type="text" value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;"><label for="text_business_name" id="label_business_name" >Business name: </label></td>
+								<td>
+									<input name="text_business_name" id="text_business_name" style="width: 20em" type="text"  value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;"><label for="text_mobile" id="label_mobile" >Mobile: </label></td>
+								<td>
+									<input name="text_mobile" id="text_mobile" style="width: 20em" type="text"  value=""/>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:left;"><br/><input type="button" id="button_login" value="GO TO LOGIN" onclick="OnShowForm('form_login', 'form_recover')"/></td>
+								<td style="text-align:right;"><br/><input type="submit" id="submit_recover" name="submit_recover" value="EMAIL REMINDER"/></td>
+							</tr>
+						</table>
+					</form>
+					
+					<form method="post" id="form_login" class="form" style="width:570px;display:<?php echo $g_strLogin; ?>;">
+						<table>
+							<tr>
+								<td style="text-align:right;"><label for="text_username"id="label_username">Username or email address: </label></td>
+								<td>
+									<input name="text_username" id="text_username0" style="width: 20em" type="text" value="<?php echo $g_strUsername; ?>"/>
 								</td>
 							</tr>
 							<tr>
@@ -128,17 +235,29 @@
 							</tr>
 							<tr>
 								<td style="text-align:right;">
-								<label for="text_password" id="label_password0" >Stay pogged in: </label></td>
+								<label for="text_password" id="label_stay" >Stay pogged in: </label></td>
 								<td><input name="text_password" id="check_remember" type="checkbox" onclick="OnClickCheckboxRemeber(this)"/></td>
 							</tr>
 							<tr>
-								<td style="text-align:right;" colspan="2"><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
+								<td style="text-align:left;"><br/><input type="button" id="button_recover" value="I FORGET MY PASSWORD" onclick="OnShowForm('form_recover', 'form_login')"/></td>
+								<td style="text-align:right;"><br/><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
 							</tr>
 						</table>
-						<input type="hidden" id="hidden_account_type" name="hidden_account_type" value="<?php if (isset($_POST["hidden_new_tradie"])) echo "Tradie"; ?>"/>
 					</form>
 					
 					<script type="text/javascript">
+						
+						function OnShowForm(strShowFormID, strHideFormID)
+						{
+							let formShow = document.getElementById(strShowFormID),
+								formHide = document.getElementById(strHideFormID);
+								
+							if (formShow && formHide)
+							{
+								formHide.style.display = "none";
+								formShow.style.display = "block";
+							}
+						}
 						
 						function OnClickCheckboxRemeber(checkRemeber)
 						{
@@ -206,10 +325,15 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<p>
-					<a href="home.html">Home</a> | 
+					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<a href="login.php">Log In</a> | 
+					<script type="text/javascript">
+						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
+							document.write("<a href=\"account.php\">Account</a>");
+						else
+							document.write("<a href=\"login.php\">Login</a>");
+					</script> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
