@@ -1,22 +1,7 @@
 <?php
 	
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);	
-	//session_save_path("c:/users/boyle/temp");
 	session_start();
 	
-	//******************************************************************************
-	//******************************************************************************
-	//** 
-	//** Colors
-	//** 
-	//******************************************************************************
-	//******************************************************************************
-	
-	$g_strColorBannerBG = "#C5D5E5";
-	$g_strColorBodyBG = "white";
-
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -38,13 +23,37 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function PrintSpaces($nNum)
+	function PrintIndents($nNum)
 	{
 		for ($nI = 0; $nI < $nNum; $nI++)
 			echo "\t";
 	}
-
 	
+	function DebugPrint($strField, $strValue)
+	{
+		echo "<h1><b>" . $strField . " = </b>" . $strValue . "</h1><br>";
+	}
+	
+	function PrintJavascriptLine($strCode, $nNumIndents)
+	{
+		PrintIndents($nNumIndents);
+		echo "<script type=\"text/javascript\">\n";
+		PrintIndents($nNumIndents + 1);
+		echo $strCode . "\n";
+		PrintIndents($nNumIndents);
+		echo "</script>\n";
+	}
+
+	function PrintJavascriptLines($arrayStrCode, $nNumIndents)
+	{
+		echo "<script type=\"text/javascript\">\n";
+		for ($nI = 0; $nI < count($arrayStrCode); $nI++)
+		{
+			PrintIndents($nNumIndents + 1);
+			echo $arrayStrCode[$nI] . "\n";
+		}
+		echo "</script>\n";
+	}	
 	
 	
 	//******************************************************************************
@@ -90,18 +99,17 @@
 	
 	function ConnectToDatabase()
 	{
-		$strNameDB = "find_a_tradie";
-		$dbFindATradie = new mysqli("localhost", "root", "Pulsar112358#", $strNameDB);
-	
-		// Check connection
-		if ($dbFindATradie->connect_errno) 
-		{
-		  echo "<h1>Failed to connect to MySQL: " . $dbFindATradie->connect_errno . "!</h1>";
-		  exit();
+		$dbFindATradie = null;
+		global $g_strEmailAdmin;
+		
+		try
+		{		
+			$dbFindATradie = new mysqli("127.0.0.1", "debian-sys-maint", "wCN5zhYx5R6004zg", "find_a_tradie");
+			//$dbFindATradie = new mysqli("127.0.0.1", "greg", "Pulsar112358#", "find_a_tradie");
 		}
-		else if ($dbFindATradie)
+		catch(Exception $e)
 		{
-			//echo "Successfully connected to '". $strNameDB . "'!";
+			echo "ERROR: '". $e->getMessage() . "'<br><br>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;
 	}

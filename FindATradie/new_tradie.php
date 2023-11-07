@@ -43,12 +43,14 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<script type="text/javascript">
-						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
-							document.write("<li><a href=\"account.php\">Account</a></li>");
+					<?php
+
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<li><a href=\"account.php\">Account</a></li>\n";
 						else
-							document.write("<li><a href=\"login.php\">Login</a></li>");
-					</script>
+							echo "<li><a href=\"login.php\">Login</a></li>\n";
+							
+					?>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -88,16 +90,16 @@
 		
 		while ($row = $queryResult->fetch_assoc())
 	    {
-	    	PrintSpaces(8);
+	    	PrintIndents(8);
 			echo "<tr>\n";
-			PrintSpaces(9);
+			PrintIndents(9);
 			echo "<td style=\"text-align:right;width:1em;\" class=\"trade_table_cell\"><input type=\"radio\" name=\"radio_trade\" id=\"radio_" . $row["id"] . "\" " . $strChecked . "value=\"" . $row["id"] . "\" /></td>\n";
-			PrintSpaces(9);
+			PrintIndents(9);
 			echo "<td style=\"text-align:left;width:20em;\" class=\"trade_table_cell\">" . strtoupper($row["name"][0]) . substr($row["name"], 1) ."</td>\n";
-			PrintSpaces(9);
+			PrintIndents(9);
 			echo "<td colspan=\"2\" style=\"text-align:left;\" class=\"trade_table_cell\"><label>" . $row["description"] . "</label></td>\n";
 			$strChecked = "";		
-			PrintSpaces(8);
+			PrintIndents(8);
 			echo "</tr>\n";
 			$strChecked = "";
 	    }
@@ -113,7 +115,7 @@
 		
 		while ($row = $queryResult->fetch_assoc())
 	    {
-	    	PrintSpaces(6);
+	    	PrintIndents(6);
 			echo "<input type=\"radio\" name=\"hidden_radio_" . $row["id"] . "\" id=\"hidden_radio_" . $row["id"] . "\" " . $strChecked . "value=\"" . $row["id"] . " \"/>\n";
 	    	$strChecked = "";
 	    }
@@ -132,16 +134,16 @@
 	    {
 	    	if (($nCount == 0) || (($nCount % $nNumCols) == 0))
 	    	{
-	    		PrintSpaces(12);
+	    		PrintIndents(12);
 	    		echo "<td>\n";
 	    	}
-	    	PrintSpaces(13);
+	    	PrintIndents(13);
 			echo "<input type=\"checkbox\" id=\"checkbox_" . $row["id"] . "\" name=\"hidden_checkbox_" . $row["id"] . "\" value=\"" . $row["id"] . "\" />";
 			echo "<label>" . $row["name"] . "</label><br/>\n";	
     		$nCount++;
 	    	if (($nCount % $nNumCols) == 0)
 	    	{
-	    		PrintSpaces(12);
+	    		PrintIndents(12);
 	    		echo "</td>\n";
 	    		$nCount = 0;
 	    	}
@@ -157,7 +159,7 @@
 		
 		while ($row = $queryResult->fetch_assoc())
 	    {
-	    	PrintSpaces(6);
+	    	PrintIndents(6);
 			echo "<input type=\"checkbox\" id=\"hidden_checkbox_" . $row["id"]  . "\" name=\"hidden_checkbox_" . $row["id"] . "\" value=\"" . $row["id"] . "\" />\n";
 	    }
 	    $queryResult->free_result();
@@ -568,12 +570,12 @@
 					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<script type="text/javascript">
-						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
-							document.write("<a href=\"account.php\">Account</a>");
+					<?php
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<a href=\"account.php\">Account</a>";
 						else
-							document.write("<a href=\"login.php\">Login</a>");
-					</script> | 
+							echo "<a href=\"login.php\">Login</a>";
+					?> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 

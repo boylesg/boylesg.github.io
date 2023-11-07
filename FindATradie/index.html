@@ -31,6 +31,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				p
 				{
 					color:black;
@@ -99,12 +116,14 @@
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
-					<script type="text/javascript">
-						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
-							document.write("<li><a href=\"account.php\">Account</a></li>");
+					<?php
+
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<li><a href=\"account.php\">Account</a></li>\n";
 						else
-							document.write("<li><a href=\"login.php\">Login</a></li>");
-					</script>
+							echo "<li><a href=\"login.php\">Login</a></li>\n";
+							
+					?>
 					<li><a href="compare.html">Compare</a></li>
 					<li><a href="contact.html">FAQ</a></li>
 					<li><a href="contact.html">Contact</a></li>
@@ -197,12 +216,12 @@
 					<a href="index.html">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
-					<script type="text/javascript">
-						if ((localStorage['account_username'] !== "") || (sessionStorage['account_username'] !== ""))
-							document.write("<a href=\"account.php\">Account</a>");
+					<?php
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<a href=\"account.php\">Account</a>";
 						else
-							document.write("<a href=\"login.php\">Login</a>");
-					</script> | 
+							echo "<a href=\"login.php\">Login</a>";
+					?> | 
 					<a href="about.html">About</a> | 
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
