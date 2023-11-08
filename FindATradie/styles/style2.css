@@ -1,313 +1,113 @@
 ﻿@import url(layout.css);
-
-:root 
-{
-	--ColorMastheadBG: #C5D5E5;
-	--ColorBodyBG: white;
-	--ColorWebName: black;
-	
-	--ColorNavBG: #CCAA77;
-	--ColorNavAT: black;
-	--ColorNavABG: #DDCC88;
-	
-	--ColorNavAHoverT: black;
-	--ColorNavAHoverBG: #EEDD99;
-	--ColorNavAHoverT: black;
-	--ColorNavAHoverBorder: #EEDD99;
-	
-	
-	--ColorMainButtonGB: #DDCC88;
-	--ColorMainButtonT: black;
-	
-	--ColorFAQQuestionT: red;
-	--ColorFAQAnswerT: black;
-	
-	--ColorFooterBG: #CCAA77;
-	--ColorFooterPT: #393939;
-	--ColorFooterAT: #393939;
-	--ColorFooterAHoverT: black;
-  
-	--ColorH1T: #393939;
-	--ColorH2T: #446699;
-	--ColorH3T: #446699;
-	--ColorH4T: #446699;
-	--ColorH5T: #446699;
-	--ColorH6T: #446699;
-	
-	--ColorAT: #446699;
-	--ColorAHoverT: black; 
+body {
+	color: black;
+	font-size: 13px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color: #d3d9d6;
 }
-
-body 
-{
-	color: #000;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: small;
-	font-style: normal;
-	background-color: /*white*/var(--ColorBodyBG);
-}
-
-.container 
-{
-	width: 100%;
-	height:680px;
-	margin: 0;
+#container {
 	background-color: #fff;
-	position: relative;
-	overflow:hidden;
-	/*background-color:aqua;*/
+	width: 620px;
+	margin: 0 auto;
+	border-top: 0;
+	border-right: 1px solid #b7b7b7;
+	border-bottom: 0;
+	border-left: 1px solid #b7b7b7;
 }
-
-.masthead 
-{
+#masthead {
 	text-align: right;
-	width: 100%;
-	background-color: /*#c5d5e5*/var(--ColorMastheadBG);
+	background-color: #036;
+	width: 620px;
 }
-
-/* Styles for Masthead */
-.logo 
-{
-	display:inline-block;
-	float: left;
-	margin: 10px;
-	width: 105px;
-}
-
-.web_title_container
-{
-	display:inline-block;
-	margin: 10px;
-	float:left;
-	margin-left:20px;
-	/*background-color:blue;*/
-}
-
-.web_name
-{
-	display:block;
-	text-align:left;
-	font-size:5em;
-	font-weight:900;
-	color:var(--ColorWebName);
-	/*font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif*/
-	font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	/*background-color:red;*/
-}
-
-.web_tag_line
-{
-	display:block;
-	float:left;
-	font-size:medium;
-	font-weight:bold;
-	/*font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif*/
-	font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	/*background-color:green;*/
-}
-
-.trades_image
-{
-	display:inline-block;	
-	width:420px;
-	margin:10px;
-}
-
-.navigation 
-{
-	background-color: var(--ColorNavBG);
+#navigation {
+	background-color: #545454;
 	overflow: hidden;
 }
-
-.page_content 
-{
+#column_l {
+	width: 385px;
+	margin: 0;
+	padding: 0 15px;
+	background-color: #fff;
+}
+#column_r {
+	width: 192px;
+	margin: 0;
+	float: right;
+	padding: 4px;
+	background-color: #a9a9a9;
 	position: relative;
-	width: 100%;
-	height:450px;
-	overflow:auto;
-	padding:10px;
-	/*background-color:lime;*/
 }
-
-.main_button
-{
-	display:inline-block;
-	position:relative;
-	border-radius:15px;
-	border-style:solid;
-	border-color:#CCAA77;
-	background-color:var(--ColorMainButtonGB);
-	cursor:pointer;
-	text-align:center;
-	vertical-align:middle;
-	font-family:Arial, Helvetica, sans-serif;
-	font-weight:bold;
-	font-size:large;
-	color:var(--ColorMainButtonT);
-	margin:20px;
-	width:400px;
-	height:50px;
-	line-height:50px;
+#footer {
+	width: 620px;
+	text-align: center;
+	background-color: #113962;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
-
-.faq_question
-{
-	list-style-type:none;
-	font-size:medium;
-	font-weight:bold;
-	color:var(--ColorFAQQuestionT);
+/* Styles for Masthead */
+#masthead img { 
+	float: left; 
 }
-
-.faq_answer
-{
-	list-style-type:none;
-	font-size:medium;
-	font-weight:bold;
-	color:var(--ColorFAQAnswerT);
+#masthead p {
+	font-size: 11px;
+	color: #fff;
+	margin: 10px 10px 0;
 }
-
-/* Styles for Footer */
-.footer 
-{
-	padding: 10px;
-	height: 50px;
-	background-color: var(--ColorFooterBG);
+#column_r p {
+	font-size: 11px;
+	margin: 7px;
 }
-
-.footer_links
-{
-	font-size: medium;
-	text-align: left;
-	color: var(--ColorFooterPT);
-	/*margin-left: 10px;
-	padding-bottom: 5px;*/
-}
-
-#footer_links a 
-{
-	color: var(--ColorFooterAT);
-	text-decoration: underline;
-}
-
-#footer_links a:hover 
-{
-	color:var(--ColorFooterAHoverT);
-	text-decoration: none;
-}
-
 /* Styles for Navigation */
-#navigation ul 
-{
+#navigation ul {
 	list-style-type: none;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 }
-
-#navigation li 
-{
-	float:left;
+#navigation li {
+	float: left;
 }
-
-#navigation a 
-{
-	color:var(--ColorNavAT);
+#navigation a {
+	color: #fff;
 	text-decoration: none;
-	display:block;
-	padding:5px;
-	border:1px solid #ca7;
-	background-color:var(--ColorNavABG);
-	padding-right:10px;
-	padding-left:10px;
+	display: block;
+	padding: 5px;
+	border: 1px solid #c9c9c9;
 }
-#navigation a:hover 
-{
-	color:var(--ColorNavAHoverT);
-	text-decoration:none;
-	border: 1px solid var(--ColorNavAHoverBorder);
-	background-color:var(--ColorNavAHoverBG);
-}
-/* Styles for Content */
-h1 
-{
-	font-size: 2em;
-	color: var(--ColorH1T);
-} 
-
-h2 
-{
-	font-size: 1.75em;
-	color: var(--ColorH2T);
-}
-
-h3 
-{
-	font-size: 1.5em;
-	color: var(--ColorH3T);
-}
-
-h4 
-{
-	font-size: 1.25em;
-	color: var(--ColorH4T);
-}
-
-h5 
-{
-	font-size: 0.75em;
-	color: var(--ColorH5T);
-}
-
-h6 
-{
-	font-size: 0.5em;
-	color: var(--ColorH6T);
-}
-
-/* Styles for Links */
-a 
-{
-	color: #469;
-	text-decoration: underline;
-}
-
-a:hover 
-{
+#navigation a:hover {
 	color: #000;
+	text-decoration: none;
+	border: 1px solid #a9a9a9;
+	background-color: #a9a9a9;
+}
+/* Styles for Footer */
+#footer p {
+	font-size: 11px;
+	line-height: 14px;
+	color: #fff;
+	margin: 1px;
+	padding: 1px;
+}
+#footer a {
+	color: #fff;
 	text-decoration: underline;
 }
-
-textarea
-{
-	resize:none;
+#footer a:hover {
+	color: #fff;
+	text-decoration: none;
 }
-
-.form
-{
-	border-style: solid;
-	border-width: thin;
-	border-color: black;
-	background-color: white;
-	padding: 20px;
-	margin: 20px;
+/* Styles for Links */
+a {
+	color: #036;
+	text-decoration: underline;
 }
-
-.next_button
-{
-	width:80px;
+a:hover {
+	color: #808080;
+	text-decoration: underline;
 }
-
-.trade_table_cell
-{
-	line-height:2em;
-	height:2em;
-	vertical-align:middle;
-	padding-left:1em;
-	padding-right:1em;
+.style_bold {
+	font-weight: bold;
 }
-
-.form_trade
-{
-	width:100em;
+.style_italic {
+	font-style: italic;
 }
-

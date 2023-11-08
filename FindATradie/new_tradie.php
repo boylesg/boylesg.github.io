@@ -9,12 +9,12 @@
 		<title>NEW TRADIE</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
-		<link href="styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -606,6 +606,7 @@
 					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
 					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
 					divPageContent.style.height = nAvailableHeight + "px";
+					divPageContent.style.width = document.documentElement.offsetWidth;
 				}
 			}
 			SetPageContetHeight();

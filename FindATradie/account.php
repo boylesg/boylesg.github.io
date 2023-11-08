@@ -9,7 +9,7 @@
 		<title>Account</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
-		<link href="styles/style2.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
@@ -21,7 +21,7 @@
 			
 				:root 
 				{
-					--Width: 96%;
+					--Width: 98%;
 					--BorderRadius: 10px;
 					--BorderWidth: thin;
 					--BorderStyle: solid;
@@ -86,7 +86,7 @@
 					border-top-right-radius:  var(--BorderRadius);
 					
 					overflow: auto;
-					height: 50%;
+					/*height: 1000px;*/
 				}
 				
 				.paypal_table
@@ -430,6 +430,13 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">
 						<form method="post" id="form_logout" action="login.php">
 							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
@@ -587,7 +594,7 @@
 											<tr>
 												<td>Additional trades<br/>(multiple selection)</td>
 												<td>
-													<select id="select_trade" name="select_additional_trades[]" multiple="multiple" size="10">
+													<select id="select_trade0" name="select_additional_trades[]" multiple="multiple" size="10">
 														<?php DoGenerateAdditionalTradeOptions(); ?>
 													</select>
 												</td>
@@ -693,6 +700,7 @@
 					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
 					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
 					divPageContent.style.height = nAvailableHeight + "px";
+					divPageContent.style.width = document.documentElement.offsetWidth;
 				}
 			}
 			SetPageContetHeight();
