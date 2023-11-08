@@ -17,6 +17,7 @@
 			<style>
 
 
+
 			
 				:root 
 				{
@@ -84,8 +85,8 @@
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
 					
-					overflow: hidden;
-					height: 200px;
+					overflow: auto;
+					height: 50%;
 				}
 				
 				.paypal_table
@@ -108,6 +109,47 @@
 					border-top-style: solid;
 					border-top-width: thin;
 					border-top-color: black;
+				}
+				
+				fieldset
+				{
+					border-color: var(--TextColor);
+					border-style: solid;
+					border-width: thin;
+				}
+				
+				input[type=text], input[type=password]
+				{
+					border-color: var(--TextColor);
+					border-style: solid;
+					border-width: thin;
+				}
+				
+				input[type=button], input[type=submit]
+				{
+					border-color: var(--TextColor);
+					border-style: solid;
+					border-width: thin;
+					background-color: var(--ColorInactiveBG);
+					color: var(--TextColor);
+					border-radius: 5px;
+					padding: 1em;
+					font-weight: bold;
+					cursor: pointer;
+				}
+				
+				input[type=button],input[type=submit]:hover
+				{
+					background-color: var(--ColorActiveBG);
+
+				}
+				
+				input[type=checkbox], input[type=radio]
+				{
+					border-color: var(--TextColor);
+					border-style: solid;
+					border-width: thin;
+				
 				}
 				
 			</style>
@@ -149,7 +191,7 @@
 
 <?php 
 
-	$strPayPalDisplay = "none";
+	$strPaypalDisplay = "none";
 	$strAccountDisplay = "block";
 	
 	if (isset($_GET["paypal"]))
@@ -162,7 +204,7 @@
 		$result = DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]);
 		if ($result->num_rows == 1)
 		{
-			PrintJavascriptLine("alert(\"SUCCESS: your new renewal date has been updated to " . $dateExpiry->format("d/m/Y") . "\");", 4);
+			PrintJSAlertError("your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5);
 		}
 	}
 	else if (isset($_POST["submit_login"]))
@@ -199,7 +241,16 @@
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
 			$_SESSION["account_password"] = $row["password"];
-
+			$_SESSION["account_additional_trades"] = [];
+			
+			$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
+			if ($result->num_rows > 0)
+			{
+				while ($row = $result->fetch_assoc())
+				{
+					$_SESSION["account_additional_trades"][] = $row["trade_id"];
+				}
+			}
 			if ($_SESSION["account_trade"] != "customer")
 			{
 				$dateNow = new DateTime();
@@ -207,25 +258,111 @@
 				$dateExpiry = getDate(strtotime($_SESSION["account_expiry_date"]));
 				if ($dateNow > $dateExpiry)
 				{
-					$strPayPalDisplay = "block";
+					$strPaypalDisplay= "block";
 					$strAccountDisplay = "none";
 				}
 			}
 		}
 		else
 		{
-			PrintJavascriptLines(
-				array(
-						"document.location = \"login.php\";", 
-						"alert('ERROR: incorrect password!');"
-					 ), 
-				5);
+			PrintJavascriptLine("document.location = \"login.php\";", 5);
+			PrintJSAlertError("incorrect password", 5);
+		}
+	}
+	else if (isset($_POST["submit_trade_details"]))
+	{
+		/*
+			print_r($_POST);
+			Array ( 
+					[select_trade] => 1 
+					[select_additional_trades] => Array ( [0] => 2 [1] => 3 [2] => 4 [3] => 5 [4] => 6 ) 
+					[submit_trade_details] => UPDATE 
+				  ) 		
+		*/
+		$bSuccess = true;
+		
+		$result = DoUpdateQuery1($g_dbFindATradie, "members", "trade", $_POST["select_trade"], "id", $_SESSION["account_id"]);
+		if ($result->num_rows > 0)
+		{
+			$result = DoDeleteQuery($dbConnection, "additional_trades", "id", $_SESSION["account_id"]);
+			$bSuccess = $result->num_rows > 0;
+			
+			for ($nI = 0; $nI < count($_POST["select_additional_trade"]); $nI++)
+			{
+				$result = DoInsertQuery2($dbConnection, "additional_trades", "trade_id", $_POST["select_additional_trade"][$nI]);
+				$bSuccess &= $result->num_rows > 0;
+				if (!$bSuccess)
+					break;
+			}
+			if ($bSuccess)
+				PrintJSAlertSuccess("trade details updated", 4);
 		}
 	}
 
-	$nCostPerMonth = 10;
-	$strLive = "none";
-	$strDebug = "block";
+?>
+
+<?php
+
+	$strPaypalLive = "none";
+	$strPaypaTest = "block";
+
+	function DoGeneratePrimaryTradeOptions()
+	{
+		global $g_dbFindATradie;
+		 
+		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+		
+		while ($row = $queryResult->fetch_assoc())
+	    {
+	    	PrintIndents(8);
+			echo "<option value=\"" . $row["id"] . "\"";
+			
+			if ($_SESSION["account_trade"] == $row["id"])
+				echo " selected";
+			
+			">";
+			echo $row["name"];
+			echo "</option>\n";
+			$strSelected = "";
+	    }
+	    $queryResult->free_result();
+	}
+	
+	function FindAdditionalTrade($strTradeID)
+	{
+		$bFound = false;
+		
+		for ($nI = 0; $nI < count($_SESSION["additional_trades"]); $nI++)
+		{
+			$bFound = $_SESSION["additional_trades"] == $strTradeID;
+			if ($bFound)
+				break;
+		}
+		return $bFound;
+	}
+	
+	function DoGenerateAdditionalTradeOptions()
+	{
+		global $g_dbFindATradie;
+		 
+		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
+		
+		while ($row = $queryResult->fetch_assoc())
+	    {
+	    	PrintIndents(8);
+			echo "<option value=\"" . $row["id"] . "\"";
+			
+			if (FindAdditionalTrade($row["id"]))
+				echo " selected";
+			
+			">";
+			echo $row["name"];
+			echo "</option>\n";
+			$strSelected = "";
+	    }
+	    $queryResult->free_result();
+	}
+	
 ?>
 
 		<!-- #EndEditable -->
@@ -275,13 +412,6 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
 					<div id="paypal" style="display:<?php echo 	$strPayPalDisplay; ?>;">
 						<form method="post" id="form_logout" action="login.php">
 							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
@@ -291,16 +421,16 @@
 						<table class="paypal_table">
 							<tr>
 								<td class="paypal_cell paypal_first_cell">1 month</td>
-								<td class="paypal_cell paypal_first_cell">$<?php printf("%0.2f", $nCostPerMonth); ?></td>
+								<td class="paypal_cell paypal_first_cell">$<?php printf("%0.2f", $g_nCostPerMonth); ?></td>
 								<td class="paypal_cell paypal_first_cell">
-									<div id="live" style="display: <?php echo $strLive; ?>;">
+									<div id="live" style="display: <?php echo $strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="UYVQLYZVXKVHN" />
 										  <input type="hidden" name="currency_code" value="AUD" />
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>									</div>
-									<div id="debug" style="display: <?php echo $strDebug; ?>;">
+									<div id="debug" style="display: <?php echo $strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="PVESVMVV6SGR4" />
@@ -312,9 +442,9 @@
 							</tr>
 							<tr>
 								<td class="paypal_cell">6 month</td>
-								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 6); ?></td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 6); ?></td>
 								<td class="paypal_cell">
-									<div id="live0" style="display: <?php echo $strLive; ?>;">
+									<div id="live0" style="display: <?php echo $strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="3HA4WCZAD3DZE" />
@@ -322,7 +452,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>					
 									</div>
-									<div id="debug0" style="display: <?php echo $strDebug; ?>;">
+									<div id="debug0" style="display: <?php echo $strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="4EZXNLPSZ7T4W" />
@@ -334,9 +464,9 @@
 							</tr>
 							<tr>
 								<td class="paypal_cell">12 month</td>
-								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 12); ?></td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 12); ?></td>
 								<td class="paypal_cell">
-									<div id="live1" style="display: <?php echo $strLive; ?>;">
+									<div id="live1" style="display: <?php echo $strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="LVG5EVU9Y9SM4" />
@@ -344,7 +474,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>
 									</div>
-									<div id="debug1" style="display: <?php echo $strDebug; ?>;">
+									<div id="debug1" style="display: <?php echo $strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
@@ -356,9 +486,9 @@
 							</tr>
 							<tr>
 								<td class="paypal_cell">18 month</td>
-								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 18); ?></td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 18); ?></td>
 								<td class="paypal_cell">
-									<div id="live2" style="display: <?php echo $strLive; ?>;">
+									<div id="live2" style="display: <?php echo $strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="V6JERUCM52TGN" />
@@ -366,7 +496,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>	
 									</div>
-									<div id="debug2" style="display: <?php echo $strDebug; ?>;">
+									<div id="debug2" style="display: <?php echo $strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
@@ -378,9 +508,9 @@
 							</tr>
 							<tr>
 								<td class="paypal_cell">24 month</td>
-								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 24); ?></td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 24); ?></td>
 								<td class="paypal_cell">
-									<div id="live3" style="display: <?php echo $strLive; ?>;">
+									<div id="live3" style="display: <?php echo $strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="KS2BA9S5L8TMG" />
@@ -388,7 +518,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>										
 									</div>
-									<div id="debug3" style="display: <?php echo $strDebug; ?>;">
+									<div id="debug3" style="display: <?php echo $strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="5MEDPTLFQF3JU" />
@@ -405,10 +535,11 @@
 					<div id="account" style="display:<?php echo $strAccountDisplay; ?>;">
 					
 						<br/><br/>
-						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Trade details</button>
-						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Account details</button>
-						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Browse matching jobs</button>
-						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Create your own job</button>
+						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Browse your jobs</button>
+						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Post your own job</button>
+						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
+						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
+						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've left</button>
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
@@ -422,7 +553,66 @@
 						
 						<div id="tab_contents3" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
-							<p>Paris is the capital of France.</p>
+							
+ 							<form method="post" id="form_trade_details" action="account.php">
+ 								<fieldset>
+  									<legend>Trade details</legend>
+										<table>
+											<tr>
+												<td>Primary trade</td>
+												<td>
+													<select id="select_trade" name="select_trade">
+														<?php DoGeneratePrimaryTradeOptions(); ?>
+													</select>
+												</td>
+											</tr>
+											<tr>
+												<td>Additional trades<br/>(multiple selection)</td>
+												<td>
+													<select id="select_trade" name="select_additional_trades[]" multiple="multiple" size="10">
+														<?php DoGenerateAdditionalTradeOptions(); ?>
+													</select>
+												</td>
+											</tr>
+										</table>
+							
+									<br/><input type="submit" name="submit_trade_details" value="UPDATE" /><br/>
+								</fieldset>
+							</form>
+							<br/><br/>
+ 							<form method="post" id="form_business_details" action="account.php">
+ 								<fieldset>
+  									<legend>Business details:</legend>
+							
+							
+							
+							
+									<br/><input type="submit" name="submit_business_details" value="UPDATE" /><br/>
+								</fieldset>
+							</form>
+							<br/><br/>
+ 							<form method="post" id="form_business_contact" action="account.php">
+ 								<fieldset>
+  									<legend>Business contact details:</legend>
+							
+							
+							
+							
+									<br/><input type="submit" name="submit_contact_details" value="UPDATE" /><br/>
+								</fieldset>
+							</form>
+							<br/><br/>
+ 							<form method="post" id="form_user_details" action="account.php">
+ 								<fieldset>
+  									<legend>User details:</legend>
+							
+							
+							
+							
+									<br/><input type="submit" name="submit_user_details" value="UPDATE" /><br/>
+								</fieldset>
+							</form>
+
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">

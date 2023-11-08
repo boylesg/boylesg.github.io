@@ -15,7 +15,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 			
 			<script type="text/javascript">
 			</script>
@@ -50,6 +50,7 @@
 		$_SESSION["account_mobile"] = "";
 		$_SESSION["account_email"] = "";
 		$_SESSION["account_expiry_date"] = "";
+		$_SESSION["account_additional_trades"] = [];
 	}
 	else if (isset($_POST["hidden_new_member"]) && ($_POST["hidden_new_member"] === "new_member"))
 	{

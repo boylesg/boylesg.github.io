@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|08 Nov 2023 09:42:16 -0000
+vti_timelastmodified:TR|08 Nov 2023 13:57:05 -0000
 vti_timecreated:TR|22 Oct 2023 12:14:53 -0000
 vti_title:SR|NEW TRADIE
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|contact.html login.php index.php master.dwt about.html faq.html account.php new_customer.html compare.html new_tradie.php
-vti_nexttolasttimemodified:TR|08 Nov 2023 09:39:34 -0000
-vti_cacheddtm:TX|08 Nov 2023 09:42:16 -0000
-vti_filesize:IR|25800
+vti_nexttolasttimemodified:TW|08 Nov 2023 13:55:51 -0000
+vti_cacheddtm:TX|08 Nov 2023 13:57:05 -0000
+vti_filesize:IR|25803
 vti_cachedtitle:SR|NEW TRADIE
 vti_cachedbodystyle:SR|<body onresize="SetPageContetHeight()">
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style2.css S|common.js S|AustraliaPost.js S|images/Tradie.png S|images/Tools.png H|index.php H|about.html H|new_tradie.php H|new_customer.html H|compare.html H|contact.html H|contact.html A|new_tradie.php A|login.php H|index.php H|new_tradie.php H|new_customer.html H|about.html H|compare.html H|faq.html H|contact.html

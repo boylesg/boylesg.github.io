@@ -5,12 +5,14 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** ERROR STRINGS
+	//** CONSTANTS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
 	
 	$g_strEmailAdmin = "Email admin at gregplants@bigpond.com with this error message.";
+	$g_nCostPerMonth = 10;
+
 
 	
 	
@@ -47,6 +49,16 @@
 	}
 
 
+	function PrintJSAlertSuccess($strMsg, $nNumIndents)
+	{
+		PrintJavascriptLine("SUCCESS: " . $strMsg . ".", $nNumIndents);
+	}
+	
+	function PrintJSAlertError($strMsg, $nNumIndents)
+	{
+		PrintJavascriptLine("ERROR: " . $strMsg . ".", $nNumIndents);
+	}
+	
 	function PrintJavascriptLine($strCode, $nNumIndents)
 	{
 		PrintIndents($nNumIndents);
@@ -134,60 +146,6 @@
 	
 	
 	
-	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
-	{	
-		global $g_strEmailAdmin;
-		try
-		{
-			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
-			$result = $dbConnection->query($strQuery);
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
-		}		
-		return $result;
-	}
-	
-	
-	
-	
-	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
-	{	
-		global $g_strEmailAdmin;
-		try
-		{
-			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
-			$result = $dbConnection->query($strQuery);
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
-		}		
-		return $result;
-	}
-	
-	
-	
-	
-	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
-	{	
-		global $g_strEmailAdmin;
-		try
-		{
-			$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
-			$result = $dbConnection->query($strQuery);
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'<br><br>" . $g_strEmailAdmin;
-		}		
-		return $result;
-	}
-	
-	
-	
-	
 	function DoQuery($dbConnection, $strQuery)
 	{
 		global $g_strEmailAdmin;
@@ -207,90 +165,66 @@
 
 
 
-	function DoInsertQuery1($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
-	{
-		global $g_strEmailAdmin;
-		$result = "";
+	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
+	{	
+		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
 		
-		try
-		{
-			$result = DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue);
-			if ($result->num_rows == 0)
-			{
-				try
-				{
-					$result = $dbConnection->query($strQuery);
-				}
-				catch(Exception $e) 
-				{
-		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-				}		
-			}	
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-		}		
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	
+	
+	
+	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
+	{	
+		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
+	
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	
+	
+	
+	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	{	
+		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
+	
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	
+	
+	
+	function DoInsertFindQuery1($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
+	{
+		$result = DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue);
+		if ($result->num_rows == 0)
+			$result = $dbConnection->query($strQuery);	
+		
 		return $result;
 	}
 
 
 
 
-	function DoInsertQuery2($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
+	function DoInsertFindQuery2($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
 	{
-		global $g_strEmailAdmin;
-		$result = "";
+		$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2);
+		if ($result->num_rows == 0)
+			$result = $dbConnection->query($strQuery);
 		
-		try
-		{
-			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2);
-			if ($result->num_rows == 0)
-			{
-				try
-				{
-					$result = $dbConnection->query($strQuery);
-				}
-				catch(Exception $e) 
-				{
-		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-				}		
-			}	
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-		}		
 		return $result;
 	}
 
 
 
 
-	function DoInsertQuery3($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
-	{
-		global $g_strEmailAdmin;
-		$result = "";
+	function DoInsertFindQuery3($dbConnection, $strQuery, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	{		
+		$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3);
+		if ($result->num_rows == 0)
+			$result = $dbConnection->query($strQuery);
 		
-		try
-		{
-			$result = DoFindQuery($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3);
-			if ($result->num_rows == 0)
-			{
-				try
-				{
-					$result = $dbConnection->query($strQuery);
-				}
-				catch(Exception $e) 
-				{
-		  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-				}		
-			}	
-		}
-		catch(Exception $e) 
-		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
-		}		
 		return $result;
 	}
 	
@@ -326,6 +260,45 @@
 			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . "' WHERE " . 
 			$strFindColumnName . "='" . $strFindColumnName . "'";
 
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	
+	
+	
+	function DoDeleteQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue)
+	{
+		$strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	
+	
+	function DoInsertQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
+	{
+		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES(" . $strColumnValue . ")";
+		
+		return DoQuery($dbConnection, $strQuery);
+	}
+
+
+
+
+	function DoInsertQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
+	{
+		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . ")";
+		
+		return DoQuery($dbConnection, $strQuery);
+	}
+
+
+
+
+	function DoInsertQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	{
+		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . ")";
+		
 		return DoQuery($dbConnection, $strQuery);
 	}
 	

@@ -49,6 +49,7 @@
 
 
 
+
 				p
 				{
 					color:black;
@@ -157,8 +158,13 @@
 
 					<h2>Benefits for tradies</h2>
 					<p>
-						'Find a Tradie' is programmed &amp; administered by a <b>
-						<a href="https://boylesg.github.io/GregsNativeLandscapes/">tradie</a></b> for tradies!
+						'Find a Tradie' is programmed &amp; administered by an australian tradie for Australian tradies!
+						<br/><br/>
+						Why?
+						<br/><br/>
+						Because the competition is seriously gouging Australian tradies and charging them around $20 to access 
+						customer contact details. And as a tradie, I know that $20 each time can add up really quickly, and cost 
+						you a lot of money if your quotes don't translate into paid jobs.
 					</p>
 					<p>
 						<ul>
@@ -172,22 +178,34 @@
 										<th>FEE</th>
 									</thead>
 									<tr>
-										<td><b>Yearly</b></td>
-										<td>$<script type="text/javascript">document.write(g_fYearCost.toFixed(2));</script></td>
+										<td><b>24 montly</b></td>
+										<td>$<?php printf("0.2%f", g_nCostPerMonth * 24); ?></td>
 									</tr>
 									<tr>
-										<td><b>Quarterly</b></td>
-										<td>$<script type="text/javascript">document.write((g_fYearCost / 4).toFixed(2));</script></td>
+										<td><b>18 montly</b></td>
+										<td>$<?php printf("0.2%f", g_nCostPerMonth * 18); ?></td>
+									</tr>
+									<tr>
+										<td><b>12 montly</b></td>
+										<td>$<?php printf("0.2%f", g_nCostPerMonth * 12); ?></td>
+									</tr>
+									<tr>
+										<td><b>6 Monthly</b></td>
+										<td>$<?php printf("0.2%f", g_nCostPerMonth * 6); ?></td>
 									</tr>
 									<tr>
 										<td><b>Monthly</b></td>
-										<td>$<script type="text/javascript">document.write((g_fYearCost / 12).toFixed(2));</script></td>
+										<td>$<?php printf("0.2%f", g_nCostPerMonth); ?></td>
 									</tr>
 								</table>
 							</li><br/>	
-							
-							<li>That is around <sup>1</sup>/<sub>3</sub> of the mebership fees charged by OneFlare and HiPages!</li><br/>
-							<li>You can leave a positive rating for customers who pay you promptly and in full, or a negative rating if they don't.</li>
+							<li>
+								Both customers and tradies can leave each other positive or negative feedback, with comments;
+							</li>
+							<li>
+							 	Feedback is editable at any time, e.g. you can change negative feedback to positive feedback subject 
+								to private negotiations between a tradie and their client.
+							</li>
 						</ul>
 					</p>
 					
