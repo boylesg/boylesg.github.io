@@ -13,20 +13,22 @@
 		<script src="common.js"></script>
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
+						
 			<style>
+
 
 			
 				:root 
 				{
-					--strWidth: 96%;
-					--strBorderRadius: 10px;
-					--strBorderWidth: thin;
-					--strBorderStyle: solid;
-					--strBorderColor: var(--strColorH4T);
-					--strTextColor: var(--strColorH4T);
-					--strColorInactiveBG: #B0C0D0;
-					--strColorHoverBG: var(--strColorMastheadBG);
-					--strColorActiveBG: var(--strColorMastheadBG);
+					--Width: 96%;
+					--BorderRadius: 10px;
+					--BorderWidth: thin;
+					--BorderStyle: solid;
+					--BorderColor: var(--ColorH4T);
+					--TextColor: var(--ColorH4T);
+					--ColorInactiveBG: #B0C0D0;
+					--ColorHoverBG: var(--ColorMastheadBG);
+					--ColorActiveBG: var(--ColorMastheadBG);
 				}
 				
 				
@@ -37,18 +39,18 @@
 					height: 40px;
 					float: left;
 
-					background-color: var(--strColorInactiveBG);
-					border-color: var(--strColorH4T);
-					border-top-left-radius: var(--strBorderRadius);
-					border-top-right-radius:  var(--strBorderRadius);
-					border-left-style: var(--strBorderStyle);
-					border-top-style: var(--strBorderStyle);
-					border-right-style: var(--strBorderStyle);
+					background-color: var(--ColorInactiveBG);
+					border-color: var(--ColorH4T);
+					border-top-left-radius: var(--BorderRadius);
+					border-top-right-radius:  var(--BorderRadius);
+					border-left-style: var(--BorderStyle);
+					border-top-style: var(--BorderStyle);
+					border-right-style: var(--BorderStyle);
 					border-bottom-style: none;
-					border-left-width: var(--strBorderWidth);
-					border-top-width: var(--strBorderWidth);
-					border-right-width: var(--strBorderWidth);
-					color: var(--strTextColor);
+					border-left-width: var(--BorderWidth);
+					border-top-width: var(--BorderWidth);
+					border-right-width: var(--BorderWidth);
+					color: var(--TextColor);
 					font-weight: bold;
 					
 					cursor: pointer;
@@ -59,12 +61,12 @@
 				/* Change background color of buttons on hover */
 				.tab_button:hover 
 				{
-				 	background-color: var(--strColorHoverBG);
+				 	background-color: var(--ColorHoverBG);
 				}
 				
 				.tab_button:active
 				{
-					background-color: var(--strColorActiveBG);
+					background-color: var(--ColorActiveBG);
 				}
 				
 				/* Style the tab content */
@@ -73,14 +75,14 @@
 					display: none;
 					padding: 6px 12px;
 					border-top: none;
-					width: var(--strWidth);
-					border-style: var(--strBorderStyle);
-					border-width: var(--strBorderWidth);
-					border-color: var(--strBorderColor);
-					background-color: var(--strColorActiveBG);
-					border-bottom-left-radius: var(--strBorderRadius);
-					border-bottom-right-radius: var(--strBorderRadius);
-					border-top-right-radius:  var(--strBorderRadius);
+					width: var(--Width);
+					border-style: var(--BorderStyle);
+					border-width: var(--BorderWidth);
+					border-color: var(--BorderColor);
+					background-color: var(--ColorActiveBG);
+					border-bottom-left-radius: var(--BorderRadius);
+					border-bottom-right-radius: var(--BorderRadius);
+					border-top-right-radius:  var(--BorderRadius);
 					
 					overflow: hidden;
 					height: 200px;
@@ -89,9 +91,25 @@
 				.paypal_table
 				{
 					font-size: x-large;
+					border-collapse: collapse;
 					/*font-weight: bold;*/
 				}
+				
+				.paypal_cell
+				{
+					border-bottom-style: solid;
+					border-bottom-width: thin;
+					border-bottom-color: black;
+					padding: 30px;
+				}
 														
+				.paypal_first_cell
+				{
+					border-top-style: solid;
+					border-top-width: thin;
+					border-top-color: black;
+				}
+				
 			</style>
 			
 			<script type="text/javascript">
@@ -120,8 +138,8 @@
 						if (divTabButton)
 						{
 							if (g_buttonTabLastActive)
-								g_buttonTabLastActive.style.backgroundColor = GetCSSVariable("--strColorBG");
-							divTabButton.style.backgroundColor = GetCSSVariable("--strColorActiveBG");
+								g_buttonTabLastActive.style.backgroundColor = GetCSSVariable("--ColorBG");
+							divTabButton.style.backgroundColor = GetCSSVariable("--ColorActiveBG");
 							g_buttonTabLastActive = divTabButton;
 						}
 					}
@@ -129,66 +147,25 @@
 								
 			</script>
 
-		<!-- #EndEditable -->
-	</head>
-	
-	<body>
-	
-		<!-- Begin Container -->
-		<div class="container" id="container">
-			<!-- Begin Masthead -->
-			<div class="masthead" id="masthead">
-				<img class="logo" alt="" src="images/Tradie.png" width="90" />
-				<div class="web_title_container" id="web_title_container">
-					<div class="web_name" id="web_name">
-						Find a Tradie<br/>
-					</div>
-					<div class="web_tag_line">
-						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
-					</div>
-				</div>
-				<img class="trades_image" src="images/Tools.png" alt="images/Tools.png"/>
-			</div>
-			<!-- End Masthead -->
-			<!-- Begin Navigation -->
-			<nav class="navigation" id="navigation">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="new_tradie.php">New Tradie</a></li>
-					<li><a href="new_customer.html">New Customer</a></li>
-					<?php
-
-						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<li><a href=\"account.php\">Account</a></li>\n";
-						else
-							echo "<li><a href=\"login.php\">Login</a></li>\n";
-							
-					?>
-					<li><a href="compare.html">Compare</a></li>
-					<li><a href="contact.html">FAQ</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-			<!-- End Navigation -->
-			<!-- Begin Page Content -->
-			<div class="page_content" id="page_content">
-				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
-					<!-- #BeginEditable "content" -->
-
-
-
-
-
-
-
-
 <?php 
 
 	$strPayPalDisplay = "none";
 	$strAccountDisplay = "block";
 	
-	if (isset($_POST["submit_login"]))
+	if (isset($_GET["paypal"]))
+	{
+		$nNumMonths = (int)$_GET["paypal"];
+		$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
+		$interval = DateInterval::createFromDateString($nNumMonths . " month");
+		$dateExpiry = $dateExpiry->add($interval);
+		$_SESSION["account_expiry_date"] = $dateExpiry->format("Y-m-d");
+		$result = DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]);
+		if ($result->num_rows == 1)
+		{
+			PrintJavascriptLine("alert(\"SUCCESS: your new renewal date has been updated to " . $dateExpiry->format("d/m/Y") . "\");", 4);
+		}
+	}
+	else if (isset($_POST["submit_login"]))
 	{
 		$_SESSION["username"] = $_POST["text_username"];
 		$_SESSION["password"] = $_POST["text_password"];
@@ -251,66 +228,173 @@
 	$strDebug = "block";
 ?>
 
+		<!-- #EndEditable -->
+	</head>
+	
+	<body onresize="SetPageContetHeight()">
+	
+		<!-- Begin Container -->
+		<div class="container" id="container">
+			<!-- Begin Masthead -->
+			<div class="masthead" id="masthead">
+				<img class="logo" alt="" src="images/Tradie.png" width="90" />
+				<div class="web_title_container" id="web_title_container">
+					<div class="web_name" id="web_name">
+						Find a Tradie<br/>
+					</div>
+					<div class="web_tag_line">
+						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
+					</div>
+				</div>
+				<img class="trades_image" src="images/Tools.png" alt="images/Tools.png"/>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Navigation -->
+			<nav class="navigation" id="navigation">
+				<ul>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="new_tradie.php">New Tradie</a></li>
+					<li><a href="new_customer.html">New Customer</a></li>
+					<?php
+
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<li><a href=\"account.php\">Account</a></li>\n";
+						else
+							echo "<li><a href=\"login.php\">Login</a></li>\n";
+							
+					?>
+					<li><a href="compare.html">Compare</a></li>
+					<li><a href="contact.html">FAQ</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+			<!-- End Navigation -->
+			<!-- Begin Page Content -->
+			<div class="page_content" id="page_content">
+				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
+					<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
+
 					<div id="paypal" style="display:<?php echo 	$strPayPalDisplay; ?>;">
+						<form method="post" id="form_logout" action="login.php">
+							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
+						</form>
+						
 						<h2>It is time to renew your membership...</h2><br/>
-						<table class="paypal_table" cellpadding="20" cellspacing="0" border="1">
+						<table class="paypal_table">
 							<tr>
-								<td>1 month</td>
-								<td>$<?php printf("%0.2f", $nCostPerMonth); ?></td>
-								<td>
+								<td class="paypal_cell paypal_first_cell">1 month</td>
+								<td class="paypal_cell paypal_first_cell">$<?php printf("%0.2f", $nCostPerMonth); ?></td>
+								<td class="paypal_cell paypal_first_cell">
 									<div id="live" style="display: <?php echo $strLive; ?>;">
-										<h3>LIVE</h3>
-									</div>
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="UYVQLYZVXKVHN" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>									</div>
 									<div id="debug" style="display: <?php echo $strDebug; ?>;">
-										<h3>DEBUG</h3>
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="PVESVMVV6SGR4" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>								
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td>6 month</td>
-								<td>$<?php printf("%0.2f", $nCostPerMonth * 6); ?></td>
-								<td>
-									<div id="live" style="display: <?php echo $strLive; ?>;">
-										<h3>LIVE</h3>
+								<td class="paypal_cell">6 month</td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 6); ?></td>
+								<td class="paypal_cell">
+									<div id="live0" style="display: <?php echo $strLive; ?>;">
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="3HA4WCZAD3DZE" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>					
 									</div>
-									<div id="debug" style="display: <?php echo $strDebug; ?>;">
-										<h3>DEBUG</h3>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>12 month</td>
-								<td>$<?php printf("%0.2f", $nCostPerMonth * 12); ?></td>
-								<td>
-									<div id="live" style="display: <?php echo $strLive; ?>;">
-										<h3>LIVE</h3>
-									</div>
-									<div id="debug" style="display: <?php echo $strDebug; ?>;">
-										<h3>DEBUG</h3>
+									<div id="debug0" style="display: <?php echo $strDebug; ?>;">
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="4EZXNLPSZ7T4W" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>				
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td>18 month</td>
-								<td>$<?php printf("%0.2f", $nCostPerMonth * 18); ?></td>
-								<td>
-									<div id="live" style="display: <?php echo $strLive; ?>;">
-										<h3>LIVE</h3>
+								<td class="paypal_cell">12 month</td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 12); ?></td>
+								<td class="paypal_cell">
+									<div id="live1" style="display: <?php echo $strLive; ?>;">
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="LVG5EVU9Y9SM4" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>
 									</div>
-									<div id="debug" style="display: <?php echo $strDebug; ?>;">
-										<h3>DEBUG</h3>
+									<div id="debug1" style="display: <?php echo $strDebug; ?>;">
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>								
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td>24 month</td>
-								<td>$<?php printf("%0.2f", $nCostPerMonth * 24); ?></td>
-								<td>
-									<div id="live" style="display: <?php echo $strLive; ?>;">
-										<h3>LIVE</h3>
+								<td class="paypal_cell">18 month</td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 18); ?></td>
+								<td class="paypal_cell">
+									<div id="live2" style="display: <?php echo $strLive; ?>;">
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="V6JERUCM52TGN" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>	
 									</div>
-									<div id="debug" style="display: <?php echo $strDebug; ?>;">
-										<h3>DEBUG</h3>
+									<div id="debug2" style="display: <?php echo $strDebug; ?>;">
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>									
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="paypal_cell">24 month</td>
+								<td class="paypal_cell">$<?php printf("%0.2f", $nCostPerMonth * 24); ?></td>
+								<td class="paypal_cell">
+									<div id="live3" style="display: <?php echo $strLive; ?>;">
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="KS2BA9S5L8TMG" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>										
+									</div>
+									<div id="debug3" style="display: <?php echo $strDebug; ?>;">
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										  <input type="hidden" name="cmd" value="_s-xclick" />
+										  <input type="hidden" name="hosted_button_id" value="5MEDPTLFQF3JU" />
+										  <input type="hidden" name="currency_code" value="AUD" />
+										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										</form>									
 									</div>
 								</td>
 							</tr>
@@ -320,10 +404,6 @@
 					
 					<div id="account" style="display:<?php echo $strAccountDisplay; ?>;">
 					
-						<form method="post" id="form_logout" action="login.php">
-							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
-						</form>
-						
 						<br/><br/>
 						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Trade details</button>
 						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Account details</button>
@@ -364,9 +444,9 @@
 			<!-- End Page Content -->
 			</div>
 			<!-- Begin Footer -->
-			<div class="footer">
-				<p>
-					<a href="index.html">Home</a> | 
+			<div class="footer" id="footer">
+				<span class="footer_links" id="footer_links">
+					<a href="index.php">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
 					<?php
@@ -379,13 +459,39 @@
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
 					<a href="contact.html">Contact</a>
-					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
-				</p>
+				</span>
+				<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
 			</div>
-			<!-- End Footer --></div>
+			<!-- End Footer -->
+		</div>
 		<!-- End Container -->
 	
 	</body>
+	
+	<footer>
+		
+		<script type="text/javascript">
+		
+			function SetPageContetHeight()
+			{
+				let divMasthead = document.getElementById("masthead"),
+					navNavigation = document.getElementById("navigation"),
+					divFooter = document.getElementById("footer"),
+					divPageContent = document.getElementById("page_content"),
+					nTotalOccupiedHeight = 0, nAvailableHeight = 680;
+					
+				if (divMasthead && divFooter && navNavigation && divPageContent)
+				{
+					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
+					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
+					divPageContent.style.height = nAvailableHeight + "px";
+				}
+			}
+			SetPageContetHeight();
+			
+		</script>
+	
+	</footer>
 	
 <!-- #EndTemplate -->
 	

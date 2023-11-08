@@ -29,11 +29,24 @@
 			echo "\t";
 	}
 	
-	function DebugPrint($strField, $strValue)
+	function DebugPrint($strVarName, $strVarValue, $nHeadingLevel)
 	{
-		echo "<h1><b>" . $strField . " = </b>" . $strValue . "</h1><br>";
+		$strOpening = "<p>";
+		$strClosing = "</p>";
+		
+		switch ($nHeadingLevel)
+		{
+			case 1: $strOpening = "<h1>"; $strClosing = "</h1>";break;
+			case 2: $strOpening = "<h2>"; $strClosing = "</h2>";break;
+			case 3: $strOpening = "<h3>"; $strClosing = "</h3>";break;
+			case 4: $strOpening = "<h4>"; $strClosing = "</h4>";break;
+			case 5: $strOpening = "<h5>"; $strClosing = "</h5>";break;
+			case 6: $strOpening = "<h6>"; $strClosing = "</h6>";break;
+		}
+		echo $strOpening . $strVarName . " = " . $strVarValue . $strClosing . "<br>";
 	}
-	
+
+
 	function PrintJavascriptLine($strCode, $nNumIndents)
 	{
 		PrintIndents($nNumIndents);
@@ -43,6 +56,9 @@
 		PrintIndents($nNumIndents);
 		echo "</script>\n";
 	}
+
+
+
 
 	function PrintJavascriptLines($arrayStrCode, $nNumIndents)
 	{
@@ -277,7 +293,42 @@
 		}		
 		return $result;
 	}
+	
+	
+	
+	
+	function DoUpdateQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strFindColumnName, $strFindColumnValue)
+	{
+		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName . "='" . $strColumnValue . "' WHERE " . 
+			$strFindColumnName . "='" . $strFindColumnValue . "'";
+	
+		return DoQuery($dbConnection, $strQuery);
+	}
 
+
+
+
+	function DoUpdateQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strFindColumnName, $strFindColumnValue)
+	{
+		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+			$strColumnName2 . "='" .  $strColumnValue2 . "' WHERE " . 
+			$strFindColumnName . "='" . $strFindColumnName . "'";
+
+		return DoQuery($dbConnection, $strQuery);
+	}
+
+
+
+
+	function DoUpdateQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strFindColumnName, $strFindColumnValue)
+	{
+		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . "' WHERE " . 
+			$strFindColumnName . "='" . $strFindColumnName . "'";
+
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
 ?>
 
 

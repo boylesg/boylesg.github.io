@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 	
 <!-- #BeginTemplate "master.dwt" -->
@@ -14,6 +14,7 @@
 		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 
 
 
@@ -91,7 +92,7 @@
 		<!-- #EndEditable -->
 	</head>
 	
-	<body>
+	<body onresize="SetPageContetHeight()">
 	
 		<!-- Begin Container -->
 		<div class="container" id="container">
@@ -112,7 +113,7 @@
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="new_tradie.php">New Tradie</a></li>
 					<li><a href="new_customer.html">New Customer</a></li>
@@ -211,9 +212,9 @@
 			<!-- End Page Content -->
 			</div>
 			<!-- Begin Footer -->
-			<div class="footer">
-				<p>
-					<a href="index.html">Home</a> | 
+			<div class="footer" id="footer">
+				<span class="footer_links" id="footer_links">
+					<a href="index.php">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
 					<?php
@@ -226,13 +227,39 @@
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
 					<a href="contact.html">Contact</a>
-					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
-				</p>
+				</span>
+				<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
 			</div>
-			<!-- End Footer --></div>
+			<!-- End Footer -->
+		</div>
 		<!-- End Container -->
 	
 	</body>
+	
+	<footer>
+		
+		<script type="text/javascript">
+		
+			function SetPageContetHeight()
+			{
+				let divMasthead = document.getElementById("masthead"),
+					navNavigation = document.getElementById("navigation"),
+					divFooter = document.getElementById("footer"),
+					divPageContent = document.getElementById("page_content"),
+					nTotalOccupiedHeight = 0, nAvailableHeight = 680;
+					
+				if (divMasthead && divFooter && navNavigation && divPageContent)
+				{
+					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
+					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
+					divPageContent.style.height = nAvailableHeight + "px";
+				}
+			}
+			SetPageContetHeight();
+			
+		</script>
+	
+	</footer>
 	
 <!-- #EndTemplate -->
 	

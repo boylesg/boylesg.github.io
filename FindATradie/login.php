@@ -15,65 +15,11 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 			
 			<script type="text/javascript">
 			</script>
 			
-		<!-- #EndEditable -->
-	</head>
-	
-	<body>
-	
-		<!-- Begin Container -->
-		<div class="container" id="container">
-			<!-- Begin Masthead -->
-			<div class="masthead" id="masthead">
-				<img class="logo" alt="" src="images/Tradie.png" width="90" />
-				<div class="web_title_container" id="web_title_container">
-					<div class="web_name" id="web_name">
-						Find a Tradie<br/>
-					</div>
-					<div class="web_tag_line">
-						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
-					</div>
-				</div>
-				<img class="trades_image" src="images/Tools.png" alt="images/Tools.png"/>
-			</div>
-			<!-- End Masthead -->
-			<!-- Begin Navigation -->
-			<nav class="navigation" id="navigation">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="new_tradie.php">New Tradie</a></li>
-					<li><a href="new_customer.html">New Customer</a></li>
-					<?php
-
-						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<li><a href=\"account.php\">Account</a></li>\n";
-						else
-							echo "<li><a href=\"login.php\">Login</a></li>\n";
-							
-					?>
-					<li><a href="compare.html">Compare</a></li>
-					<li><a href="contact.html">FAQ</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</nav>
-			<!-- End Navigation -->
-			<!-- Begin Page Content -->
-			<div class="page_content" id="page_content">
-				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
-					<!-- #BeginEditable "content" -->
-
-
-
-
-
-
-
-
 <?php
 
 	$g_strLogin = "block";
@@ -128,6 +74,61 @@
 	}
 
 ?>
+
+		<!-- #EndEditable -->
+	</head>
+	
+	<body onresize="SetPageContetHeight()">
+	
+		<!-- Begin Container -->
+		<div class="container" id="container">
+			<!-- Begin Masthead -->
+			<div class="masthead" id="masthead">
+				<img class="logo" alt="" src="images/Tradie.png" width="90" />
+				<div class="web_title_container" id="web_title_container">
+					<div class="web_name" id="web_name">
+						Find a Tradie<br/>
+					</div>
+					<div class="web_tag_line">
+						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
+					</div>
+				</div>
+				<img class="trades_image" src="images/Tools.png" alt="images/Tools.png"/>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Navigation -->
+			<nav class="navigation" id="navigation">
+				<ul>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="new_tradie.php">New Tradie</a></li>
+					<li><a href="new_customer.html">New Customer</a></li>
+					<?php
+
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<li><a href=\"account.php\">Account</a></li>\n";
+						else
+							echo "<li><a href=\"login.php\">Login</a></li>\n";
+							
+					?>
+					<li><a href="compare.html">Compare</a></li>
+					<li><a href="contact.html">FAQ</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+			<!-- End Navigation -->
+			<!-- Begin Page Content -->
+			<div class="page_content" id="page_content">
+				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
+					<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
+
 					<form method="post" id="form_recover" class="form" style="width:380px;display:<?php echo $g_strRecover; ?>;">
 						<table>
 							<tr>
@@ -160,7 +161,7 @@
 							<tr>
 								<td style="text-align:right;"><label for="text_username" id="label_username">Username or email address: </label></td>
 								<td>
-									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value=""/>
+									<input name="text_username" id="text_recover_username0" style="width: 20em" type="text" value=""/>
 								</td>
 							</tr>
 							<tr>
@@ -221,9 +222,9 @@
 			<!-- End Page Content -->
 			</div>
 			<!-- Begin Footer -->
-			<div class="footer">
-				<p>
-					<a href="index.html">Home</a> | 
+			<div class="footer" id="footer">
+				<span class="footer_links" id="footer_links">
+					<a href="index.php">Home</a> | 
 					<a href="new_tradie.php">New Tradie</a> | 
 					<a href="new_customer.html">New Customer</a> | 
 					<?php
@@ -236,13 +237,39 @@
 					<a href="compare.html">Compare</a> | 
 					<a href="faq.html">FAQ</a> | 
 					<a href="contact.html">Contact</a>
-					<span style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
-				</p>
+				</span>
+				<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
 			</div>
-			<!-- End Footer --></div>
+			<!-- End Footer -->
+		</div>
 		<!-- End Container -->
 	
 	</body>
+	
+	<footer>
+		
+		<script type="text/javascript">
+		
+			function SetPageContetHeight()
+			{
+				let divMasthead = document.getElementById("masthead"),
+					navNavigation = document.getElementById("navigation"),
+					divFooter = document.getElementById("footer"),
+					divPageContent = document.getElementById("page_content"),
+					nTotalOccupiedHeight = 0, nAvailableHeight = 680;
+					
+				if (divMasthead && divFooter && navNavigation && divPageContent)
+				{
+					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
+					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
+					divPageContent.style.height = nAvailableHeight + "px";
+				}
+			}
+			SetPageContetHeight();
+			
+		</script>
+	
+	</footer>
 	
 <!-- #EndTemplate -->
 	

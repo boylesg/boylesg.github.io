@@ -2,40 +2,40 @@
 
 :root 
 {
-	--strColorMastheadBG: #C5D5E5;
-	--strColorBodyBG: white;
-	--strColorWebName: black;
+	--ColorMastheadBG: #C5D5E5;
+	--ColorBodyBG: white;
+	--ColorWebName: black;
 	
-	--strColorNavBG: #CCAA77;
-	--strColorNavAT: black;
-	--strColorNavABG: #DDCC88;
+	--ColorNavBG: #CCAA77;
+	--ColorNavAT: black;
+	--ColorNavABG: #DDCC88;
 	
-	--strColorNavAHoverT: black;
-	--strColorNavAHoverBG: #EEDD99;
-	--strColorNavAHoverT: black;
-	--strColorNavAHoverBorder: #EEDD99;
+	--ColorNavAHoverT: black;
+	--ColorNavAHoverBG: #EEDD99;
+	--ColorNavAHoverT: black;
+	--ColorNavAHoverBorder: #EEDD99;
 	
 	
-	--strColorMainButtonGB: #DDCC88;
-	--strColorMainButtonT: black;
+	--ColorMainButtonGB: #DDCC88;
+	--ColorMainButtonT: black;
 	
-	--strColorFAQQuestionT: red;
-	--strColorFAQAnswerT: black;
+	--ColorFAQQuestionT: red;
+	--ColorFAQAnswerT: black;
 	
-	--strColorFooterBG: #CCAA77;
-	--strColorFooterPT: #393939;
-	--strColorFooterAT: #393939;
-	--strColorFooterAHoverT: black;
+	--ColorFooterBG: #CCAA77;
+	--ColorFooterPT: #393939;
+	--ColorFooterAT: #393939;
+	--ColorFooterAHoverT: black;
   
-	--strColorH1T: #393939;
-	--strColorH2T: #446699;
-	--strColorH3T: #446699;
-	--strColorH4T: #446699;
-	--strColorH5T: #446699;
-	--strColorH6T: #446699;
+	--ColorH1T: #393939;
+	--ColorH2T: #446699;
+	--ColorH3T: #446699;
+	--ColorH4T: #446699;
+	--ColorH5T: #446699;
+	--ColorH6T: #446699;
 	
-	--strColorAT: #446699;
-	--strColorAHoverT: black;
+	--ColorAT: #446699;
+	--ColorAHoverT: black; 
 }
 
 body 
@@ -44,7 +44,7 @@ body
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: small;
 	font-style: normal;
-	background-color: /*white*/var(--strColorBodyBG);
+	background-color: /*white*/var(--ColorBodyBG);
 }
 
 .container 
@@ -62,7 +62,7 @@ body
 {
 	text-align: right;
 	width: 100%;
-	background-color: /*#c5d5e5*/var(--strColorMastheadBG);
+	background-color: /*#c5d5e5*/var(--ColorMastheadBG);
 }
 
 /* Styles for Masthead */
@@ -89,7 +89,7 @@ body
 	text-align:left;
 	font-size:5em;
 	font-weight:900;
-	color:var(--strColorWebName);
+	color:var(--ColorWebName);
 	/*font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif*/
 	font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	/*background-color:red;*/
@@ -115,7 +115,7 @@ body
 
 .navigation 
 {
-	background-color: var(--strColorNavBG);
+	background-color: var(--ColorNavBG);
 	overflow: hidden;
 }
 
@@ -136,14 +136,14 @@ body
 	border-radius:15px;
 	border-style:solid;
 	border-color:#CCAA77;
-	background-color:var(--strColorMainButtonGB);
+	background-color:var(--ColorMainButtonGB);
 	cursor:pointer;
 	text-align:center;
 	vertical-align:middle;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	font-size:large;
-	color:var(--strColorMainButtonT);
+	color:var(--ColorMainButtonT);
 	margin:20px;
 	width:400px;
 	height:50px;
@@ -155,7 +155,7 @@ body
 	list-style-type:none;
 	font-size:medium;
 	font-weight:bold;
-	color:var(--strColorFAQQuestionT);
+	color:var(--ColorFAQQuestionT);
 }
 
 .faq_answer
@@ -163,14 +163,36 @@ body
 	list-style-type:none;
 	font-size:medium;
 	font-weight:bold;
-	color:var(--strColorFAQAnswerT);
+	color:var(--ColorFAQAnswerT);
 }
 
+/* Styles for Footer */
 .footer 
 {
-	background-color:var(strColorFooterBG);
-	padding:5px;
-	
+	padding: 10px;
+	height: 50px;
+	background-color: var(--ColorFooterBG);
+}
+
+.footer_links
+{
+	font-size: medium;
+	text-align: left;
+	color: var(--ColorFooterPT);
+	/*margin-left: 10px;
+	padding-bottom: 5px;*/
+}
+
+#footer_links a 
+{
+	color: var(--ColorFooterAT);
+	text-decoration: underline;
+}
+
+#footer_links a:hover 
+{
+	color:var(--ColorFooterAHoverT);
+	text-decoration: none;
 }
 
 /* Styles for Navigation */
@@ -189,79 +211,57 @@ body
 
 #navigation a 
 {
-	color:var(--strColorNavAT);
+	color:var(--ColorNavAT);
 	text-decoration: none;
 	display:block;
 	padding:5px;
 	border:1px solid #ca7;
-	background-color:var(--strColorNavABG);
+	background-color:var(--ColorNavABG);
 	padding-right:10px;
 	padding-left:10px;
 }
 #navigation a:hover 
 {
-	color:var(--strColorNavAHoverT);
+	color:var(--ColorNavAHoverT);
 	text-decoration:none;
-	border: 1px solid var(--strColorNavAHoverBorder);
-	background-color:var(--strColorNavAHoverBG);
+	border: 1px solid var(--ColorNavAHoverBorder);
+	background-color:var(--ColorNavAHoverBG);
 }
 /* Styles for Content */
 h1 
 {
 	font-size: 2em;
-	color: var(--strColorH1T);
+	color: var(--ColorH1T);
 } 
 
 h2 
 {
 	font-size: 1.75em;
-	color: var(--strColorH2T);
+	color: var(--ColorH2T);
 }
 
 h3 
 {
 	font-size: 1.5em;
-	color: var(--strColorH3T);
+	color: var(--ColorH3T);
 }
 
 h4 
 {
 	font-size: 1.25em;
-	color: var(--strColorH4T);
+	color: var(--ColorH4T);
 }
 
 h5 
 {
 	font-size: 0.75em;
-	color: var(--strColorH5T);
+	color: var(--ColorH5T);
 }
 
 h6 
 {
 	font-size: 0.5em;
-	color: var(--strColorH6T);
-}
-
-/* Styles for Footer */
-#footer p
-{
-	font-size: x-small;
-	text-align: center;
-	color: var(--strColorFooterPT);
-	margin: 10px;
-	padding: 1px;
-}
-
-#footer a 
-{
-	color: var(--strColorFooterAT);
-	text-decoration: underline;
-}
-
-#footer a:hover 
-{
-	color:var(--strColorFooterAHoverT);
-	text-decoration: none;
+	color: var(--ColorH6T);
 }
 
 /* Styles for Links */
@@ -284,12 +284,12 @@ textarea
 
 .form
 {
-	border-style:solid;
-	border-width:thin;
-	border-color:black;
-	background-color:white;
-	padding:20px;
-	margin:20px;
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+	background-color: white;
+	padding: 20px;
+	margin: 20px;
 }
 
 .next_button
