@@ -137,7 +137,7 @@
 		}
 		catch(Exception $e)
 		{
-			echo "ERROR: '". $e->getMessage() . "'<br><br>" . $g_strEmailAdmin;
+			echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;
 	}

@@ -193,7 +193,15 @@
 
 	$strPaypalDisplay = "none";
 	$strAccountDisplay = "block";
+/*	
+	DEBUG PAYPAAL RESPONSE
 	
+	$_GET["paypal"] = 12;
+	DebugPrint("_SESSION[\"username\"]", $_SESSION["username"], 2);
+	DebugPrint("_SESSION[\"password\"]", $_SESSION["password"], 2);
+	DebugPrint("_SESSION[\"accountid\"]", $_SESSION["account_id"], 2);
+	echo "<br><br>";
+*/	
 	if (isset($_GET["paypal"]))
 	{
 		$nNumMonths = (int)$_GET["paypal"];
@@ -201,8 +209,7 @@
 		$interval = DateInterval::createFromDateString($nNumMonths . " month");
 		$dateExpiry = $dateExpiry->add($interval);
 		$_SESSION["account_expiry_date"] = $dateExpiry->format("Y-m-d");
-		$result = DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]);
-		if ($result->num_rows == 1)
+		if (DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]))
 		{
 			PrintJSAlertError("your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5);
 		}
@@ -241,27 +248,6 @@
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
 			$_SESSION["account_password"] = $row["password"];
-			$_SESSION["account_additional_trades"] = [];
-			
-			$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
-			if ($result->num_rows > 0)
-			{
-				while ($row = $result->fetch_assoc())
-				{
-					$_SESSION["account_additional_trades"][] = $row["trade_id"];
-				}
-			}
-			if ($_SESSION["account_trade"] != "customer")
-			{
-				$dateNow = new DateTime();
-				$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
-				$dateExpiry = getDate(strtotime($_SESSION["account_expiry_date"]));
-				if ($dateNow > $dateExpiry)
-				{
-					$strPaypalDisplay= "block";
-					$strAccountDisplay = "none";
-				}
-			}
 		}
 		else
 		{
@@ -298,13 +284,45 @@
 				PrintJSAlertSuccess("trade details updated", 4);
 		}
 	}
+	// If a tradie account then...
+	if ($_SESSION["account_trade"] != "customer")
+	{
+		// We need to check the expity date of their account agiants the current date...
+		$dateNow = new DateTime();
+		$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
+
+		// If the account has expired...
+		if ($dateNow > $dateExpiry)
+		{
+			// Display the Paypal div
+			$strPaypalDisplay= "block";
+			$strAccountDisplay = "none";
+		}
+		else
+		{
+			// Display the account div
+			$strPaypalDisplay= "none";
+			$strAccountDisplay = "block";
+		}
+		// Next we need to get the listb of additional trades.
+		$_SESSION["account_additional_trades"] = [];
+		
+		$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
+		if ($result->num_rows > 0)
+		{
+			while ($row = $result->fetch_assoc())
+			{
+				$_SESSION["account_additional_trades"][] = $row["trade_id"];
+			}
+		}
+	}
 
 ?>
 
 <?php
 
 	$strPaypalLive = "none";
-	$strPaypaTest = "block";
+	$strPaypalTest = "block";
 
 	function DoGeneratePrimaryTradeOptions()
 	{
@@ -320,7 +338,7 @@
 			if ($_SESSION["account_trade"] == $row["id"])
 				echo " selected";
 			
-			">";
+			echo ">";
 			echo $row["name"];
 			echo "</option>\n";
 			$strSelected = "";
@@ -328,13 +346,13 @@
 	    $queryResult->free_result();
 	}
 	
-	function FindAdditionalTrade($strTradeID)
+	function FindAdditionalTrade($arrayAdditionalTrades, $strTradeID)
 	{
 		$bFound = false;
 		
-		for ($nI = 0; $nI < count($_SESSION["additional_trades"]); $nI++)
+		for ($nI = 0; $nI < count($arrayAdditionalTrades); $nI++)
 		{
-			$bFound = $_SESSION["additional_trades"] == $strTradeID;
+			$bFound = $arrayAdditionalTrades[$nI] == $strTradeID;
 			if ($bFound)
 				break;
 		}
@@ -352,10 +370,10 @@
 	    	PrintIndents(8);
 			echo "<option value=\"" . $row["id"] . "\"";
 			
-			if (FindAdditionalTrade($row["id"]))
+			if (FindAdditionalTrade($_SESSION["account_additional_trades"], $row["id"]))
 				echo " selected";
 			
-			">";
+			echo ">";
 			echo $row["name"];
 			echo "</option>\n";
 			$strSelected = "";
@@ -412,7 +430,7 @@
 				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
 					<!-- #BeginEditable "content" -->
 
-					<div id="paypal" style="display:<?php echo 	$strPayPalDisplay; ?>;">
+					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">
 						<form method="post" id="form_logout" action="login.php">
 							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
 						</form>
