@@ -11,15 +11,11 @@
 		<?php include "common.php"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
-		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
 </style>
-			
-			<script type="text/javascript">
-			</script>
-			
+						
 <?php
 
 	$g_strLogin = "block";
@@ -169,7 +165,7 @@
 								<td style="text-align:right;"><label for="text_password" id="label_password" >Password: </label></td>
 								<td>
 									<input type="password" name="text_password" id="text_password" style="width: 20em" value=""/>
-									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
+									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="check_show">Show password</label>
 								</td>
 							</tr>
 							<tr>

@@ -11,9 +11,9 @@
 		<?php include "common.php"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
-		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 
 
 

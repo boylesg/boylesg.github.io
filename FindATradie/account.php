@@ -11,7 +11,6 @@
 		<?php include "common.php"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
-		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
@@ -130,7 +129,7 @@
 					border-color: var(--TextColor);
 					border-style: solid;
 					border-width: thin;
-					background-color: var(--ColorInactiveBG);
+					background-color: /*var(--ColorInactiveBG)*/red;
 					color: var(--TextColor);
 					border-radius: 5px;
 					padding: 1em;
@@ -138,7 +137,7 @@
 					cursor: pointer;
 				}
 				
-				input[type=button],input[type=submit]:hover
+				input[type=button], input[type=submit]:hover
 				{
 					background-color: var(--ColorActiveBG);
 
@@ -186,6 +185,14 @@
 						}
 					}
 				}
+				
+				function OnChangeTrade(selectTrade, labelDesc)
+				{
+					if (selectTrade && labelDesc)
+					{
+						labelDesc.innerText = g_mapTrades[selectTrade.options[selectTrade.selectedIndex].text];
+					}
+				}
 								
 			</script>
 
@@ -211,7 +218,7 @@
 		$_SESSION["account_expiry_date"] = $dateExpiry->format("Y-m-d");
 		if (DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]))
 		{
-			PrintJSAlertError("your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5);
+			PrintJSAlertError("your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5, true);
 		}
 	}
 	else if (isset($_POST["submit_login"]))
@@ -248,11 +255,23 @@
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
 			$_SESSION["account_password"] = $row["password"];
+			
+			// Next we need to get the listb of additional trades.
+			$_SESSION["account_additional_trades"] = [];
+			
+			$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
+			if ($result->num_rows > 0)
+			{
+				while ($row = $result->fetch_assoc())
+				{
+					$_SESSION["account_additional_trades"][] = $row["trade_id"];
+				}
+			}
 		}
 		else
 		{
-			PrintJavascriptLine("document.location = \"login.php\";", 5);
-			PrintJSAlertError("incorrect password", 5);
+			PrintJavascriptLine("document.location = \"login.php\";", 5, true);
+			AlertError("incorrect password!");
 		}
 	}
 	else if (isset($_POST["submit_trade_details"]))
@@ -268,51 +287,146 @@
 		$bSuccess = true;
 		
 		$result = DoUpdateQuery1($g_dbFindATradie, "members", "trade", $_POST["select_trade"], "id", $_SESSION["account_id"]);
-		if ($result->num_rows > 0)
+		if ($result)
 		{
-			$result = DoDeleteQuery($dbConnection, "additional_trades", "id", $_SESSION["account_id"]);
-			$bSuccess = $result->num_rows > 0;
-			
-			for ($nI = 0; $nI < count($_POST["select_additional_trade"]); $nI++)
+			$result = DoDeleteQuery($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
+			if ($result)
 			{
-				$result = DoInsertQuery2($dbConnection, "additional_trades", "trade_id", $_POST["select_additional_trade"][$nI]);
-				$bSuccess &= $result->num_rows > 0;
-				if (!$bSuccess)
-					break;
+				$_SESSION["account_additional_trades"] = [];
+				for ($nI = 0; $nI < count($_POST["select_additional_trades"]); $nI++)
+				{
+					$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"], "trade_id", $_POST["select_additional_trades"][$nI]);
+					$_SESSION["account_additional_trades"][] = $_POST["select_additional_trades"][$nI];
+					if (!$result)
+						break;
+				}
+				if ($result)
+					PrintJavascriptLine("AlertSuccess(\"trade details were updated!\");");
 			}
-			if ($bSuccess)
-				PrintJSAlertSuccess("trade details updated", 4);
 		}
 	}
-	// If a tradie account then...
-	if ($_SESSION["account_trade"] != "customer")
+	else if (isset($_POST["submit_business_details"]))
 	{
-		// We need to check the expity date of their account agiants the current date...
-		$dateNow = new DateTime();
-		$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
-
-		// If the account has expired...
-		if ($dateNow > $dateExpiry)
+		$bError = false;
+		
+		// Business name has changed
+		if ($_SESSION["account_business_name"] != $_POST["text_business_name"])
 		{
-			// Display the Paypal div
-			$strPaypalDisplay= "block";
-			$strAccountDisplay = "none";
+			// Check that the new business name is not being used by some one else.
+			$result = DoFindQuery1($g_dbFindATradie, "members", "business_name", $_POST["text_business_name"]);
+			if ($result->num_rows > 0)
+			{
+				PrintJavascriptLines(
+					["AlertError(\"business name '" . $_POST["text_business_name"] . "' is already in use!\");\n",
+					 "document.getElementById(\"text_business_name\").focus();\n"], 2, true);
+				$bError = true;
+			}
+		}
+		if (!bError)
+		{
+			$strQuery = "UPDATE members SET business_name='" . $_POST["text_business_name"] .
+											"abn='" . $_POST["text_abn"] .
+											"structure='" . $_POST["text_structure"] .
+											"license='" . $_POST["text_license"] .
+											"description='" . $_POST["text_description"] .
+											"minimum_charge='" . $_POST["text_minimum_charge"] .
+											"minimum_budget='" . $_POST["text_minimum_budget"] .
+											"maximum_size='" . $_POST["text_maximum_size"] .
+											"maximum_distance='" . $_POST["text_maximum_distance"] .
+						" WHERE id='" . $_SESSION["account_id"] . "'";
+			$result = DoQuery1($g_dbFindATradie, $strQuery);
+			if ($result->num_rows > 0)
+			{
+				PrintJavascriptLine("AlertSuccess(\"business details updated!\");\n", 2, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"business details could not be updated!\");\n", 2, true);
+			}
+		}
+	}
+	else if (isset($_POST["submit_contact_details"]))
+	{
+		$strQuery = "UPDATE members SET first_name='" . $_POST["text_first_name"] .
+										"surname='" . $_POST["text_surname"] .
+										"unit='" . $_POST["text_unit"] .
+										"street='" . $_POST["text_street"] .
+										"suburb='" . $_POST["text_suburb"] .
+										"state='" . $_POST["text_state"] .
+										"postode='" . $_POST["text_postcode"] .
+										"phone='" . $_POST["text_phone"] .
+										"mobile='" . $_POST["text_mobile"] .
+										"email='" . $_POST["text_email"] .
+					" WHERE id='" . $_SESSION["account_id"] . "'";
+		$result = DoQuery1($g_dbFindATradie, $strQuery);
+		if ($result->num_rows > 0)
+		{
+			PrintJavascriptLine("AlertSuccess(\"contact details updated!\");\n", 2, true);
 		}
 		else
 		{
-			// Display the account div
-			$strPaypalDisplay= "none";
-			$strAccountDisplay = "block";
+			PrintJavascriptLine("AlertError(\"contact details could not be updated!\");\n", 2, true);
 		}
-		// Next we need to get the listb of additional trades.
-		$_SESSION["account_additional_trades"] = [];
+	}
+	else if (isset($_POST["submit_user_details"]))
+	{
+		$bError = false;
 		
-		$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
-		if ($result->num_rows > 0)
+		// Business name has changed
+		if ($_SESSION["account_username"] != $_POST["text_username"])
 		{
-			while ($row = $result->fetch_assoc())
+			// Check that the new business name is not being used by some one else.
+			$result = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
+			if ($result->num_rows > 0)
 			{
-				$_SESSION["account_additional_trades"][] = $row["trade_id"];
+				PrintJavascriptLines(
+					["AlertError(\"username '" . $_POST["text_username"] . "' is already in use!\");\n",
+					 "document.getElementById(\"text_username\").focus();\n"], 2, true);
+				$bError = true;
+			}
+		}
+		if (!bError)
+		{
+			$strQuery = "UPDATE members SET username='" . $_POST["text_username"] .
+											"password='" . $_POST["text_password"] .
+						" WHERE id='" . $_SESSION["account_id"] . "'";
+			$result = DoQuery1($g_dbFindATradie, $strQuery);
+			if ($result->num_rows > 0)
+			{
+				PrintJavascriptLine("AlertSuccess(\"user details updated!\");\n", 2, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"user details could not be updated!\");\n", 2, true);
+			}
+		}
+	}
+	// If the session has expired
+	if (!isset($_SESSION["account_id"]))
+	{
+		PrintJavascriptLine("document.location = \"login.php\";", 1, true);
+	}
+	else
+	{
+		// If a tradie account then...
+		if ($_SESSION["account_trade"] != "customer")
+		{
+			// We need to check the expity date of their account agiants the current date...
+			$dateNow = new DateTime();
+			$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
+	
+			// If the account has expired...
+			if ($dateNow > $dateExpiry)
+			{
+				// Display the Paypal div
+				$strPaypalDisplay= "block";
+				$strAccountDisplay = "none";
+			}
+			else
+			{
+				// Display the account div
+				$strPaypalDisplay= "none";
+				$strAccountDisplay = "block";
 			}
 		}
 	}
@@ -324,63 +438,6 @@
 	$strPaypalLive = "none";
 	$strPaypalTest = "block";
 
-	function DoGeneratePrimaryTradeOptions()
-	{
-		global $g_dbFindATradie;
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	PrintIndents(8);
-			echo "<option value=\"" . $row["id"] . "\"";
-			
-			if ($_SESSION["account_trade"] == $row["id"])
-				echo " selected";
-			
-			echo ">";
-			echo $row["name"];
-			echo "</option>\n";
-			$strSelected = "";
-	    }
-	    $queryResult->free_result();
-	}
-	
-	function FindAdditionalTrade($arrayAdditionalTrades, $strTradeID)
-	{
-		$bFound = false;
-		
-		for ($nI = 0; $nI < count($arrayAdditionalTrades); $nI++)
-		{
-			$bFound = $arrayAdditionalTrades[$nI] == $strTradeID;
-			if ($bFound)
-				break;
-		}
-		return $bFound;
-	}
-	
-	function DoGenerateAdditionalTradeOptions()
-	{
-		global $g_dbFindATradie;
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	PrintIndents(8);
-			echo "<option value=\"" . $row["id"] . "\"";
-			
-			if (FindAdditionalTrade($_SESSION["account_additional_trades"], $row["id"]))
-				echo " selected";
-			
-			echo ">";
-			echo $row["name"];
-			echo "</option>\n";
-			$strSelected = "";
-	    }
-	    $queryResult->free_result();
-	}
-	
 ?>
 
 		<!-- #EndEditable -->
@@ -579,64 +636,7 @@
 						<div id="tab_contents3" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							
- 							<form method="post" id="form_trade_details" action="account.php">
- 								<fieldset>
-  									<legend>Trade details</legend>
-										<table>
-											<tr>
-												<td>Primary trade</td>
-												<td>
-													<select id="select_trade" name="select_trade">
-														<?php DoGeneratePrimaryTradeOptions(); ?>
-													</select>
-												</td>
-											</tr>
-											<tr>
-												<td>Additional trades<br/>(multiple selection)</td>
-												<td>
-													<select id="select_trade0" name="select_additional_trades[]" multiple="multiple" size="10">
-														<?php DoGenerateAdditionalTradeOptions(); ?>
-													</select>
-												</td>
-											</tr>
-										</table>
-							
-									<br/><input type="submit" name="submit_trade_details" value="UPDATE" /><br/>
-								</fieldset>
-							</form>
-							<br/><br/>
- 							<form method="post" id="form_business_details" action="account.php">
- 								<fieldset>
-  									<legend>Business details:</legend>
-							
-							
-							
-							
-									<br/><input type="submit" name="submit_business_details" value="UPDATE" /><br/>
-								</fieldset>
-							</form>
-							<br/><br/>
- 							<form method="post" id="form_business_contact" action="account.php">
- 								<fieldset>
-  									<legend>Business contact details:</legend>
-							
-							
-							
-							
-									<br/><input type="submit" name="submit_contact_details" value="UPDATE" /><br/>
-								</fieldset>
-							</form>
-							<br/><br/>
- 							<form method="post" id="form_user_details" action="account.php">
- 								<fieldset>
-  									<legend>User details:</legend>
-							
-							
-							
-							
-									<br/><input type="submit" name="submit_user_details" value="UPDATE" /><br/>
-								</fieldset>
-							</form>
+							<?php include "member_details_forms.html"; ?>
 
 						</div>
 						
@@ -647,6 +647,10 @@
 
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
 					</div>
+
+					<script type="text/javascript">
+						OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
+					</script>
 
 
 

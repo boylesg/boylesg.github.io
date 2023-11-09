@@ -11,7 +11,6 @@
 		<?php include "common.php"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<script src="common.js"></script>
-		<script src="AustraliaPost.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 </style>
@@ -374,11 +373,11 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Minimum charge $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" value="100" onkeydown="OnKeyPressNumberInput(event)" /></td>
+									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" value="100" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Minimum preferred budget $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" value="5000" onkeydown="OnKeyPressNumberInput(event)" /></td>
+									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" value="5000" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Maximum preferred job size</b></td>
@@ -395,7 +394,7 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Maximum distance you will travel</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" value="20" style="text-align:right" onkeydown="OnKeyPressNumberInput(event)" />&nbsp;<b>km</b></td>
+									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" value="20" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
 								</tr>
 								<tr>
 									<td style="text-align:left;"><br/><input type="button" value="Previous" class="next_button" onclick="DoNext('business_details', 'trade', '')"/></td>
@@ -449,11 +448,11 @@
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Office phone number</b></td>
-									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="!blank digits8" onkeydown="OnKeyPressNumberInput(event)" /></td>
+									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="!blank digits8" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Mobile number</b></td>
-									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="!blank digits10" onkeydown="OnKeyPressNumberInput(event)" /></td>
+									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="!blank digits10" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 								</tr>
 								<tr>
 									<td style="text-align:right;"><b>Email address</b></td>

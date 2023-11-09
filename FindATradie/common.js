@@ -38,6 +38,31 @@ function GetCSSVariable(strVarName)
 	return Val;
 }
   
+function DoGetInput(strID, strDesc)
+{
+	let input = document.getElementById(strID);
+	if (!input)
+	{
+		AlertIDError(strID, strDesc);
+	}
+	return input;
+}
+
+function AlertSuccess(strMsg)
+{
+	alert("SUCCESS: " + strMsg + ".");
+}
+
+function AlertError(strMsg)
+{
+	alert("ERROR: " + strMsg + ".");
+}
+
+function AlertIDError(strID, strDescription)
+{
+	alert("ERROR: " + strDescription + " with ID '" + strID + "' does not exist!");
+}
+
 
 //******************************************************************************
 //******************************************************************************
@@ -88,101 +113,7 @@ function DoSetHiddenFieldValue(input)
 	}
 }
 
-function VaildateExclude(strText, strExclude)
-{
-	let bValid = true;
-	
-	for (let nI = 0; nI < strExclude.length; nI++)
-	{
-		if (strText.includes(strExclude[nI]))
-		{
-			bValid = false;
-			break;
-		}
-	}
-	return bValid;
-}
-
-function ValidateField(input)
-{
-	let bValid = true;
-	
-	if (input && input.pattern && (input.pattern.length > 0))
-	{
-		if ((input.pattern.search("!blank") > -1) && (input.value.length == 0))
-			bValid = false;
-		else if (input.pattern.search("digits") > -1)
-		{
-			if (VaildateExclude(input.value, "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-			{
-				let nPos = input.pattern.indexOf("digits") + 6,
-					strNum = input.pattern.substring(nPos),
-					nNum = Number(strNum),
-					nDigitCount = 0;
-					
-				if ((nNum != NaN) && (nNum > 0))
-				{
-					for (let nI = 0; nI < input.value.length; nI++)
-					{
-						if ("0123456789".includes(input.value[nI]))
-							nDigitCount++;
-					}
-					bValid = nDigitCount == nNum;
-				}
-			}
-		}
-		else if (input.pattern.search("email") > -1)
-		{
-			const iteratorMatches = input.value.matchAll("@"),
-				arrayMatches = Array.from(iteratorMatches),
-				strMatches = arrayMatches.toString();
-				
-			bValid &= strMatches == "@";
-			
-			let nPosAt = input.value.indexOf("@");
-			nPosDot = input.value.indexOf(".", nPosAt);
-
-			bValid &= nPosDot > nPosAt;
-		}
-
-	}
-	return bValid;
-}
-
-function DoValidateForm(form)
-{
-	let bFormValid = true;
-	
-	if (form) 
-	{
-		for (let nI = 0; nI < form.length; nI++)
-		{
-			if ((form[nI].pattern != undefined) && (form[nI].pattern.length > 0))
-			{
-				if (!form[nI].disabled)
-				{
-					if ((form[nI].type == "text") || (form[nI].type == "password") || (form[nI].type == "textarea"))
-					{
-						if (!ValidateField(form[nI]))
-						{
-							if (form[nI].value.length == 0)
-								alert("The " + form[nI].name + " cannot be blank!");
-							else
-								alert("'" + form[nI].value + "' is not a valid " + form[nI].name + "!");
-							form[nI].focus();
-							bFormValid = false;
-							break;
-						}
-					}
-				}
-			}
-			DoSetHiddenFieldValue(form[nI]);
-		}
-	}
-	return bFormValid;
-}
-
-function OnKeyPressNumberInput(eventKey)
+function OnKeyPressDigitsOnly(eventKey)
 {
 	if (((eventKey.which < 48) || (eventKey.which > 57)) && (eventKey.which != 8))
     {
@@ -260,6 +191,5 @@ function OnClickCheckShowPassword(inputCheckShowPassword, inputPassword)
 	else
 		inputPassword.type = "password";
 }
-
 
 
