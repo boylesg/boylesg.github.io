@@ -122,6 +122,31 @@
 		}
 		else
 		{
+			$_SESSION["account_id"] = $_POST["text_id"];
+			$_SESSION["account_trade"] = $_POST["select_trade"];
+			$_SESSION["account_additional_trades"] = $_POST["select_additional_trades"];
+			$_SESSION["account_business_name"] = $_POST["text_business_name"];
+			$_SESSION["account_first_name"] = $_POST["text_first_name"];
+			$_SESSION["account_surname"] = $_POST["text_surname"];
+			$_SESSION["account_abn"] = $_POST["text_abn"];
+			$_SESSION["account_structure"] = $_POST["select_structure"];
+			$_SESSION["account_license"] = $_POST["text_license"];
+			$_SESSION["account_description"] = $_POST["text_description"];
+			$_SESSION["account_minimum_charge"] = $_POST["text_minimum_charge"];
+			$_SESSION["account_minimum_budget"] = $_POST["text_minimum_budget"];
+			$_SESSION["account_maximum_size"] = $_POST["select_maximum_size"];
+			$_SESSION["account_maximum_distance"] = $_POST["text_maximum_distance"];
+			$_SESSION["account_unit"] = $_POST["text_unit"];
+			$_SESSION["account_street"] = $_POST["text_street"];
+			$_SESSION["account_suburb"] = $_POST["text_suburb"];
+			$_SESSION["account_state"] = $_POST["select_state"];
+			$_SESSION["account_postcode"] = $_POST["text_postcode"];
+			$_SESSION["account_phone"] = $_POST["text_phone"];
+			$_SESSION["account_mobile"] = $_POST["text_mobile"];				
+			$_SESSION["account_email"] = $_POST["text_email"];
+			$_SESSION["account_username"] = $_POST["text_username"];
+			$_SESSION["account_password"] = $_POST["text_password"];
+
 			$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username password expiry_date) VALUES (" .
