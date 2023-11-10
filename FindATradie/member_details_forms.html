@@ -1,7 +1,99 @@
-﻿<script src="AustraliaPost.js"></script>
-<script src="Common.js"></script>
+﻿<style>
+	
+	:root 
+	{
+		--TextColor: var(--ColorH4T);
+		--BorderRadius: 5px;
+	}
+	
+	form 
+	{
+		background-color: var(--ColorMastheadBG);
+		padding: 10px;
+		border-radius: var(--BorderRadius);
+	}
 
-<form method="post" id="form_trade_details" action="account.php">
+	fieldset
+	{
+		border-color: var(--TextColor);
+		border-style: solid;
+		border-width: thin;
+	}
+
+	input[type=text], input[type=password]
+	{
+		border-color: var(--TextColor);
+		border-style: solid;
+		border-width: thin;
+	}
+
+	input[type=button], input[type=submit]
+	{
+		border-color: var(--TextColor);
+		border-style: solid;
+		border-width: thin;
+		background-color: #B0C0D0;
+		color: var(--TextColor);
+		border-radius: var(--BorderRadius);
+		padding: 1em;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	input[type=button]:hover, input[type=submit]:hover
+	{
+		background-color: var(--ColorMastheadBG);
+
+	}
+
+	input[type=checkbox], input[type=radio]
+	{
+		border-color: var(--TextColor);
+		border-style: solid;
+		border-width: thin;
+
+	}
+
+</style>	
+<form method="post" id="form_user_details" action="account.php">
+	<fieldset>
+		<legend>User details:</legend>
+		<table>
+			<tr>
+				<td style="text-align:right;"><b>Username or email</b></td>
+				<td>
+					<input type="text" id="text_username" name="text_username" required pattern="^[a-zA-Z0-9@$!%*#?&\-]{8,}$" value="<?php if (isset($_SESSION['account_username'])) echo $_SESSION['account_username']; ?>" />
+				</td>				
+				<td>Letters, digits, @ $ ! % * # ? &amp;, 8 chracters minimum.</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;"><b>Password</b></td>
+				<td>
+					<input type="password" id="text_password" name="text_password" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
+					&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow('check_show', 'text_password', 'text_password_again')" /><label for="check_show">Show password</label>
+				</td>
+				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;"><b>Password again</b></td>
+				<td>
+					<input type="password" id="text_password_again" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
+				</td>
+				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">&nbsp;</td>
+				<td style="text-align:right;">&nbsp;</td>
+			</tr>
+			<tr>
+				<td><input type="button" name="button_user_details" id="button_user_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoUserDetailsFormSubmit('form_user_details')" /></td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>		
+	</fieldset>
+</form>
+<br/><br/>
+<form method="post" id="form_trade_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
 	<fieldset>
 		<legend>Trade details</legend>
 			<table>
@@ -25,14 +117,26 @@
 						<b><i>Hold down the CTRL key and click the left mouse button to select multiple items...</i></b>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="2">
+					<?php
+						echo "<a href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\"><h4>Request addition of a new trade.<h4></a>";
+					?>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">&nbsp;</td>
+					<td style="text-align:right;">&nbsp;</td>
+				</tr>
+				<tr>
+					<td><input type="button" name="button_trade_details" id="button_trade_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_trade_details')" /></td>
+					<td>&nbsp;</td>
+				</tr>
 			</table>
-
-		<br/><input type="button" class="button" name="button_trade_details" id="button_trade_details" value="UPDATE"  onclick="DoFormSubmit('form_trade_details')" /><br/>
-		
 	</fieldset>
 </form>
 <br/><br/>		
-<form method="post" id="form_business_details" action="account.php">
+<form method="post" id="form_business_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
 	<fieldset>
 		<legend>Business details:</legend>
 		<table>
@@ -44,7 +148,7 @@
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>ABN</b></td>
-				<td><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php if (isset($_SESSION['account_abn'])) echo $_SESSION['account_abn']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+				<td><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php if (isset($_SESSION['account_abn'])) echo $_SESSION['account_abn']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" /> e.g. 51 824 753 556</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Business structure</b></td>
@@ -72,11 +176,11 @@
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Minimum charge</b></td>
-				<td><b>$</b><input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+				<td><b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Minimum budget</b></td>
-				<td><b>$</b><input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php if (isset($_SESSION['account_minimum_budget'])) printf("%d", $_SESSION['account_minimum_budget']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+				<td><b>$</b>&nbsp;<input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php if (isset($_SESSION['account_minimum_budget'])) printf("%d", $_SESSION['account_minimum_budget']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Maximum size</b></td>
@@ -87,7 +191,7 @@
 						<option>100 - 250</option>
 						<option>250 - 500</option>
 						<option>More than 500</option>
-					</select>
+					</select>&nbsp;<b>m<sup>2</sup></b>
 				</td>
 			</tr>
 			<tr>
@@ -96,14 +200,19 @@
 					<input type="text" id="text_maximum_distance" name="text_maximum distance" size="8" required value="<?php if (isset($_SESSION['account_maximum_distance'])) printf("%d", $_SESSION['account_maximum_distance']); ?>" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
 				</td>
 			</tr>
-		</table>	
-					
-		<br/><input type="button" class="button" name="button_business_details" id="button_business_details" value="UPDATE" onclick="DoFormSubmit('form_business_details')" /><br/>
-		
+			<tr>
+				<td style="text-align:right;">&nbsp;</td>
+				<td style="text-align:right;">&nbsp;</td>
+			</tr>
+			<tr>
+				<td><input type="button" name="button_business_details" id="button_business_details" value="<?php echo $g_strButtonText; ?>" onclick="DoFormSubmit('form_business_details')" /></td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>			
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_contact_details" action="account.php">
+<form method="post" id="form_contact_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
 	<fieldset>
 		<legend>Contact details:</legend>
 		<table>
@@ -122,7 +231,7 @@
 			<tr>
 				<td style="text-align:right;"><b>Unit</b></td>
 				<td>
-					<input type="text" id="text_unit" name="text_unit" size="32" required pattern="^(\b\D+\b)?\s*(\b.*?\d.*?\b)\s*(\b\D+\b)?$" value="<?php if (isset($_SESSION['account_unit'])) echo $_SESSION['account_unit']; ?>" />
+					<input type="text" id="text_unit" name="text_unit" size="32" required pattern="^^[A-Za-z0-9]{1,}(\s{1}[A-Za-z0-9\-,:\(\)\s]{1,}){1}$" value="<?php if (isset($_SESSION['account_unit'])) echo $_SESSION['account_unit']; ?>" />
 				</td>
 			</tr>
 			<tr>
@@ -134,14 +243,13 @@
 			<tr>
 				<td style="text-align:right;"><b>City/suburb/town</b></td>
 				<td>
-					<select id="select_suburb" name="select_suburb" style="width:18em;" onchange="OnChangeSuburb(this, DoGetInput('select_postcode', 'select'), DoGetInput('select_state', 'select'))">
-					</select>
+					<input type="text" id="text_suburb" name="text_suburb" size="32" required pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$" value="<?php if (isset($_SESSION["account_suburb"])) echo $_SESSION["account_suburb"]; ?>" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>State</b></td>
 				<td>
-					<select id="select_state" name="select_state" onchange="OnChangeState(this, DoGetInput('select_suburb', 'select'), DoGetInput('select_postcode', 'select'))">
+					<select id="select_state" name="select_state">
 						<option selected=>ACT</option>
 						<option>NSW</option>
 						<option>NT</option>
@@ -156,61 +264,42 @@
 			<tr>
 				<td style="text-align:right;"><b>Postcode</b></td>
 				<td>
-					<select id="select_postcode" name="select_postcode" onchange="OnChangePostcode(this, DoGetInput('select_suburb', 'select'), DoGetInput('select_state', 'select'))">
-					</select>
+					<input type="text" id="text_postcode" name="text_postcode" size="6" length="4" required pattern="^[0-9]{4}$" value="<?php if (isset($_SESSION["account_postcode"])) echo $_SESSION["account_postcode"]; ?>" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Phone</b></td>
 				<td>
-					<input type="text"  id="text_phone" name="text_phone" pattern="^[0-9]{8}$" value="<?php if (isset($_SESSION['account_phone'])) echo $_SESSION['account_phone']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_phone" name="text_phone" required pattern="^[0-9]{8}$" value="<?php if (isset($_SESSION['account_phone'])) echo $_SESSION['account_phone']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Mobile</b></td>
 				<td>
-					<input type="text"  id="text_mobile" name="text_mobile" pattern="^[0-9]{10}$" value="<?php if (isset($_SESSION['account_mobile'])) echo $_SESSION['account_mobile']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_mobile" name="text_mobile" required pattern="^[0-9]{10}$" value="<?php if (isset($_SESSION['account_mobile'])) echo $_SESSION['account_mobile']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Email</b></td>
 				<td>
-					<input type="text"  id="text_email" name="text_email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" value="<?php if (isset($_SESSION['account_email'])) echo $_SESSION['account_email']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_email" name="text_email" required pattern="^^[A-Za-z]{1,}[A-Za-z0-9\.\-_]{1,}@[A-Za-z0-9\-_]{1,}\.[A-Za-z]{3,}(\.*[A-Za-z]{2}){0,1}$" value="<?php if (isset($_SESSION['account_email'])) echo $_SESSION['account_email']; ?>" />
 				</td>
 			</tr>
-		</table>				
-		<br/><input type="button" class="button" name="button_contact_details" value="UPDATE"  onclick="DoFormSubmit('form_contact_details')" /><br/>
-	</fieldset>
-</form>
-<br/><br/>
-<form method="post" id="form_user_details" action="account.php">
-	<fieldset>
-		<legend>User details:</legend>
-		<table>
 			<tr>
-				<td style="text-align:right;"><b>Username or email</b></td>
-				<td>
-					<input type="text" id="text_username" name="text_username" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" value="<?php if (isset($_SESSION['account_username'])) echo $_SESSION['account_username']; ?>" />
-				</td>				
-				<td>At least 1 letter and 1 digit, 8 chracters minimum.</td>
+				<td style="text-align:right;">&nbsp;</td>
+				<td style="text-align:right;">&nbsp;</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Password</b></td>
+				<td><input type="button" name="button_contact_details" id="button_contact_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_contact_details')" /></td>
 				<td>
-					<input type="password" id="text_password" name="text_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
-					&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow('check_show', 'text_password', 'text_password_again')" /><label for="check_show">Show password</label>
+<?php 
+	if ($g_bIsStaged)
+		echo "<input type=\"button\" name=\"button_save\" id=\"button_save\" value=\"SAVE\"  onclick=\"\" />";
+?>
+
 				</td>
-				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, 1 of @ $ ! % * ? &amp;, 8 chracters minimum.</td>
 			</tr>
-			<tr>
-				<td style="text-align:right;"><b>Password again</b></td>
-				<td>
-					<input type="password" id="text_password_again" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
-				</td>
-				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, 1 of @ $ ! % * ? &amp;, 8 chracters minimum.</td>
-			</tr>
-		</table>				
-		<br/><input type="button" class="button" name="button_user_details" value="UPDATE"  onclick="DoUserDetailsFormSubmit(DoGetInput('form_user_details', 'form'))" /><br/>
+		</table>			
 	</fieldset>
 </form>
 
@@ -233,10 +322,20 @@
 									"text_description", "text_minimum_charge", "text_minimum_budget", "select_maximum_size", 
 									"text_maximum_distance"]],
 								["form_contact_details", ["text_first_name", "text_surname",  "text_unit",  "text_street",  
-									"select_suburb",  "select_state",  "select_postcode",  "text_phone",  "text_mobile",  
+									"text_suburb",  "select_state",  "text_postcode",  "text_phone",  "text_mobile",  
 									"text_email"]],
 								["form_user_details", [ "text_username",  "text_password",  "text_password_again"]]
 									]);
+
+	function OnChangeTrade(selectTrade, labelDesc)
+	{
+		if (selectTrade && labelDesc)
+		{
+			labelDesc.innerText = g_mapTrades[selectTrade.options[selectTrade.selectedIndex].text];
+		}
+	}
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
+
 
 	function OnClickCheckboxShow(strCheckID, strPasswordID, strPasswordAgainID)
 	{
@@ -277,14 +376,14 @@
 	
 	function DoChangeButtonFunction(strButtonID, NewFunction)
 	{
-		let button = DoGetInput(strID, "button");
+		let button = DoGetInput(strButtonID, "button");
 		if (button)
 		{
 			button.onclick  = NewFunction;
 		}
 	}
 	
-	function DoFormSubmit(strFormID)
+	function DoFormValidate(strFormID)
 	{
 		let arrayInputIDs = null,
 			input = null,
@@ -313,10 +412,6 @@
 	        		break;
 	        	}
 			}	
-			if (bResult)
-			{	
-				form.submit();
-			}
 		}
 		else
 		{
@@ -325,9 +420,15 @@
 		return bResult;
 	}
 	
+	function DoFormSubmit(strFormID)
+	{
+		if (DoFormValidate(strFormID))
+			document.getElementById(strFormID).submit();
+	}
+	
 	function DoUserDetailsFormSubmit(strFormID)
 	{
-		if (DoFormSubmit(strFormID))
+		if (DoFormValidate(strFormID))
 		{
 			let textPassword = DoGetInput("text_password"),
 				textPasswordAgain = DoGetInput("text_password_again");
@@ -340,10 +441,14 @@
 			{
 				AlertIDError("text_password_again", "password input");
 			}
-			else if (textPassword.value != textPasswordAgain)
+			else if (textPassword.value != textPasswordAgain.value)
 			{
 				AlertError("the two passwords do not match!");
 				textPassword.focus();
+			}
+			else
+			{
+				document.getElementById(strFormID).submit();
 			}
 		}
 	}
@@ -363,43 +468,17 @@
 		DoChangeButtonFunction("button_contact_details", NewFunction)
 	}
 	
-	function DoChangeButtonAccountDetailsFunction(NewFunction)
+	function DoChangeButtonUserDetailsFunction(NewFunction)
 	{
-		DoChangeButtonFunction("button_account_details", NewFunction)
+		DoChangeButtonFunction("button_user_details", NewFunction)
 	}
 	
-	function SetSelection(strSelectID, strOptionText)
+	function DoChangeButtonSaveFunction(NewFunction)
 	{
-		let select = DoGetInput(strSelectID, "selection");
-		
-		if (select)
-		{
-			select.selectedIndex = 0;
-			for (let nI = 0; nI < select.options.length; nI++)
-			{
-				if (strOptionText == select.options[nI].text)
-				{
-					select.selectedIndex = nI;
-					break;
-				}
-			}
-		}
+		DoChangeButtonFunction("button_save", NewFunction)
 	}
 	
-	SetSelection("select_structure", "<?php echo $_SESSION["account_structure"]; ?>");
-	SetSelection("select_maximum_size", "<?php echo $_SESSION["account_maximum_size"]; ?>");
-	SetSelection("select_state", "<?php echo $_SESSION["account_state"]; ?>");
-	OnChangeState(DoGetInput('select_state', 'select'), DoGetInput('select_suburb', 'select'), DoGetInput('select_postcode', 'select'))
-	SetSelection("select_suburb", "<?php echo $_SESSION["account_suburb"]; ?>");
-	OnChangeSuburb(DoGetInput('select_suburb', 'select'), DoGetInput('select_postcode', 'select'), DoGetInput('select_state', 'select'))
-	/*
-	SetSelection("select_structure", "");
-	SetSelection("select_maximum_size", "");
-	SetSelection("select_state", "VIC");
-	OnChangeState(DoGetInput('select_state', 'select'), DoGetInput('select_suburb', 'select'), DoGetInput('select_postcode', 'select'))
-	SetSelection("select_suburb", "DOREEN");
-	OnChangeSuburb(DoGetInput('select_suburb', 'select'), DoGetInput('select_postcode', 'select'), DoGetInput('select_state', 'select'))
-	*/
+	OnClickCheckboxShow('check_show', 'text_password', 'text_password_again');
 	
 </script>	
 	

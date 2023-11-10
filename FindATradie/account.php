@@ -9,15 +9,14 @@
 		<title>Account</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
+		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-		<script src="common.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
 
 
 
-			
 				:root 
 				{
 					--Width: 98%;
@@ -30,7 +29,6 @@
 					--ColorHoverBG: var(--ColorMastheadBG);
 					--ColorActiveBG: var(--ColorMastheadBG);
 				}
-				
 				
 				/* Style the buttons that are used to open the tab content */
 				.tab_button 
@@ -110,47 +108,11 @@
 					border-top-color: black;
 				}
 				
-				fieldset
+				.form
 				{
-					border-color: var(--TextColor);
-					border-style: solid;
-					border-width: thin;
+					background-color: white;
 				}
-				
-				input[type=text], input[type=password]
-				{
-					border-color: var(--TextColor);
-					border-style: solid;
-					border-width: thin;
-				}
-				
-				input[type=button], input[type=submit]
-				{
-					border-color: var(--TextColor);
-					border-style: solid;
-					border-width: thin;
-					background-color: /*var(--ColorInactiveBG)*/red;
-					color: var(--TextColor);
-					border-radius: 5px;
-					padding: 1em;
-					font-weight: bold;
-					cursor: pointer;
-				}
-				
-				input[type=button], input[type=submit]:hover
-				{
-					background-color: var(--ColorActiveBG);
-
-				}
-				
-				input[type=checkbox], input[type=radio]
-				{
-					border-color: var(--TextColor);
-					border-style: solid;
-					border-width: thin;
-				
-				}
-				
+												
 			</style>
 			
 			<script type="text/javascript">
@@ -185,15 +147,7 @@
 						}
 					}
 				}
-				
-				function OnChangeTrade(selectTrade, labelDesc)
-				{
-					if (selectTrade && labelDesc)
-					{
-						labelDesc.innerText = g_mapTrades[selectTrade.options[selectTrade.selectedIndex].text];
-					}
-				}
-								
+												
 			</script>
 
 <?php 
@@ -270,8 +224,7 @@
 		}
 		else
 		{
-			PrintJavascriptLine("document.location = \"login.php\";", 5, true);
-			AlertError("incorrect password!");
+			PrintJavascriptLines(["AlertError('username and/or password is incorrect!')", "document.location = \"login.php\";"], 5, true);
 		}
 	}
 	else if (isset($_POST["submit_trade_details"]))
@@ -305,10 +258,10 @@
 			}
 		}
 	}
-	else if (isset($_POST["submit_business_details"]))
+	else if (isset($_POST["text_business_name"]))
 	{
 		$bError = false;
-		
+
 		// Business name has changed
 		if ($_SESSION["account_business_name"] != $_POST["text_business_name"])
 		{
@@ -322,22 +275,32 @@
 				$bError = true;
 			}
 		}
-		if (!bError)
+		if (!$bError)
 		{
-			$strQuery = "UPDATE members SET business_name='" . $_POST["text_business_name"] .
-											"abn='" . $_POST["text_abn"] .
-											"structure='" . $_POST["text_structure"] .
-											"license='" . $_POST["text_license"] .
-											"description='" . $_POST["text_description"] .
-											"minimum_charge='" . $_POST["text_minimum_charge"] .
-											"minimum_budget='" . $_POST["text_minimum_budget"] .
-											"maximum_size='" . $_POST["text_maximum_size"] .
-											"maximum_distance='" . $_POST["text_maximum_distance"] .
+			$strQuery = "UPDATE members SET " .
+						AppendSQLUpdateValues("business_name", $_POST["text_business_name"],
+												"abn", $_POST["text_abn"],
+												"structure", $_POST["select_structure"],
+												"license", $_POST["text_license"],
+												"description", $_POST["text_description"],
+												"minimum_charge", $_POST["text_minimum_charge"],
+												"minimum_budget", $_POST["text_minimum_budget"],
+												"maximum_size", $_POST["select_maximum_size"],
+												"maximum_distance", $_POST["text_maximum_distance"]) . 
 						" WHERE id='" . $_SESSION["account_id"] . "'";
-			$result = DoQuery1($g_dbFindATradie, $strQuery);
-			if ($result->num_rows > 0)
+			$result = DoQuery($g_dbFindATradie, $strQuery);
+			if ($result)
 			{
 				PrintJavascriptLine("AlertSuccess(\"business details updated!\");\n", 2, true);
+				$_SESSION["account_business_name"] = $_POST["text_business_name"];
+				$_SESSION["account_abn"] = $_POST["text_abn"];
+				$_SESSION["account_structure"] = $_POST["select_structure"];
+				$_SESSION["account_icense"] = $_POST["text_license"];
+				$_SESSION["account_description"] = $_POST["text_description"];
+				$_SESSION["account_minimum_charge"] = $_POST["text_minimum_charge"];
+				$_SESSION["account_minimum_budget"] = $_POST["text_minimum_budget"];
+				$_SESSION["account_maximum_size"] = $_POST["select_maximum_size"];
+				$_SESSION["account_maximum_distance"] = $_POST["text_maximum_distance"];
 			}
 			else
 			{
@@ -345,33 +308,44 @@
 			}
 		}
 	}
-	else if (isset($_POST["submit_contact_details"]))
+	else if (isset($_POST["text_first_name"]))
 	{
-		$strQuery = "UPDATE members SET first_name='" . $_POST["text_first_name"] .
-										"surname='" . $_POST["text_surname"] .
-										"unit='" . $_POST["text_unit"] .
-										"street='" . $_POST["text_street"] .
-										"suburb='" . $_POST["text_suburb"] .
-										"state='" . $_POST["text_state"] .
-										"postode='" . $_POST["text_postcode"] .
-										"phone='" . $_POST["text_phone"] .
-										"mobile='" . $_POST["text_mobile"] .
-										"email='" . $_POST["text_email"] .
+		$strQuery = "UPDATE members SET " . 
+					AppendSQLUpdateValues("first_name", $_POST["text_first_name"], 
+										"surname", $_POST["text_surname"], 
+										"unit", $_POST["text_unit"], 
+										"street", $_POST["text_street"], 
+										"suburb", $_POST["text_suburb"], 
+										"state", $_POST["select_state"], 
+										"postcode", $_POST["text_postcode"], 
+										"phone", $_POST["text_phone"], 
+										"mobile", $_POST["text_mobile"], 
+										"email", $_POST["text_email"]) .
 					" WHERE id='" . $_SESSION["account_id"] . "'";
-		$result = DoQuery1($g_dbFindATradie, $strQuery);
-		if ($result->num_rows > 0)
+		$result = DoQuery($g_dbFindATradie, $strQuery);
+		if ($result)
 		{
 			PrintJavascriptLine("AlertSuccess(\"contact details updated!\");\n", 2, true);
+			$_SESSION["account_first_name"] = $_POST["text_first_name"];
+			$_SESSION["account_surname"] = $_POST["text_surname"];
+			$_SESSION["account_unit"] = $_POST["text_unit"];
+			$_SESSION["account_street"] = $_POST["text_street"];
+			$_SESSION["account_suburb"] = $_POST["text_suburb"];
+			$_SESSION["account_state"] = $_POST["select_state"];
+			$_SESSION["account_postcode"] = $_POST["text_postcode"];
+			$_SESSION["account_phone"] = $_POST["text_phone"];			
+			$_SESSION["account_mobile"] = $_POST["text_mobile"];
+			$_SESSION["account_email"] = $_POST["text_email"];
 		}
 		else
 		{
 			PrintJavascriptLine("AlertError(\"contact details could not be updated!\");\n", 2, true);
 		}
 	}
-	else if (isset($_POST["submit_user_details"]))
+	else if (isset($_POST["text_username"]))
 	{
 		$bError = false;
-		
+	
 		// Business name has changed
 		if ($_SESSION["account_username"] != $_POST["text_username"])
 		{
@@ -385,15 +359,19 @@
 				$bError = true;
 			}
 		}
-		if (!bError)
+		if (!$bError)
 		{
-			$strQuery = "UPDATE members SET username='" . $_POST["text_username"] .
-											"password='" . $_POST["text_password"] .
+			$strQuery = "UPDATE members SET " .
+						AppendSQLUpdateValues("username", $_POST["text_username"], 
+												"password", $_POST["text_password"]) .
 						" WHERE id='" . $_SESSION["account_id"] . "'";
-			$result = DoQuery1($g_dbFindATradie, $strQuery);
-			if ($result->num_rows > 0)
+			
+			$result = DoQuery($g_dbFindATradie, $strQuery);
+			if ($result)
 			{
 				PrintJavascriptLine("AlertSuccess(\"user details updated!\");\n", 2, true);
+				$_SESSION["account_username"] = $_POST["text_username"];
+				$_SESSION["account_password"] = $_POST["text_password"];
 			}
 			else
 			{
@@ -430,10 +408,6 @@
 			}
 		}
 	}
-
-?>
-
-<?php
 
 	$strPaypalLive = "none";
 	$strPaypalTest = "block";
@@ -494,11 +468,11 @@
 
 
 
-					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">
-						<form method="post" id="form_logout" action="login.php">
-							<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
-						</form>
-						
+					<form method="post" id="form_logout" class="form" action="login.php">
+						<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
+					</form>
+
+					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
 						<h2>It is time to renew your membership...</h2><br/>
 						<table class="paypal_table">
 							<tr>
@@ -636,7 +610,11 @@
 						<div id="tab_contents3" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							
-							<?php include "member_details_forms.html"; ?>
+<?php 
+	$g_strButtonText = "UPDATE";
+	$g_bIsStaged = false;
+	include "member_details_forms.html"; 
+?>
 
 						</div>
 						
@@ -648,12 +626,144 @@
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
 					</div>
 
-					<script type="text/javascript">
-						OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
-					</script>
+<script type="text/javascript">
+
+	function DoNextForm(strForm2HideID, strForm2ShowID)
+	{
+		let form2Hide = DoGetInput(strForm2HideID),
+			form2Show = DoGetInput(strForm2ShowID);
+		
+		if (form2Hide && form2Show)
+		{
+			form2Hide.style.display = "none";
+			form2Show.style.display = "block";
+		}
+	}
+
+
+	function OnClickButtonUserDetails()
+	{
+		if (DoFormValidate("form_user_details"))
+		{
+			let textPassword = DoGetInput("text_password"),
+				textPasswordAgain = DoGetInput("text_password_again");
+
+			if (!textPassword)
+			{
+				AlertIDError("text_password", "password input");
+			}
+			else if (!textPasswordAgain)
+			{
+				AlertIDError("text_password_again", "password input");
+			}
+			else if (textPassword.value != textPasswordAgain.value)
+			{
+				AlertError("the two passwords do not match!");
+				textPassword.focus();
+			}
+			else
+			{
+				DoNextForm("form_user_details", "form_trade_details");
+			}
+		}
+
+	}
+				
+	DoChangeButtonUserDetailsFunction(OnClickButtonUserDetails);
+	
+	
+	
+	
+	function OnClickButtonTradeDetails()
+	{
+		if (DoFormValidate("form_trade_details"))
+		{
+			DoNextForm("form_trade_details", "form_business_details");
+		}
+	}
+
+	DoChangeButtonTradeDetailsFunction(OnClickButtonTradeDetails);
 
 
 
+	
+
+	function OnClickButtonBusinessDetails()
+	{
+		if (DoFormValidate("form_business_details"))
+		{
+			DoNextForm("form_business_details", "form_contact_details");
+		}
+	}
+
+	DoChangeButtonBusinessDetailsFunction(OnClickButtonBusinessDetails);
+
+
+
+	
+
+	function OnClickButtonContactDetails()
+	{
+		if (DoFormValidate("form_contact_details"))
+		{
+			DoNextForm("form_contact_details", "form_user_details");
+		}
+	}
+
+	DoChangeButtonContactDetailsFunction(OnClickButtonContactDetails);
+
+	
+	
+	
+	function OnClickButtonSave()
+	{
+		let formHidden = DoGetInput("form_hidden_tradie_details");
+		
+		if (formHidden)
+		{
+			DoGetInput("htext_username").value = DoGetInput("text_username").value;
+			DoGetInput("htext_password").value = DoGetInput("text_password").value;
+			DoGetInput("hselect_trade").selectedIndex = DoGetInput("select_trade").selectedIndex;
+
+			let selectAdditionalTrades = DoGetInput("select_additional_trades"),
+				hselectAdditionalTrades = DoGetInput("hselect_additional_trades");
+
+			if (selectAdditionalTrades && hselectAdditionalTrades)
+			{
+				for (let nI = 0; nI < selectAdditionalTrades.options.length; nI++)
+				{
+					hselectAdditionalTrades.options[nI].selected = selectAdditionalTrades.options[nI].selected;
+				}
+			}
+			DoGetInput("htext_business_name").value = DoGetInput("text_business_name").value;
+			DoGetInput("hselect_structure").selectedIndex = DoGetInput("select_structure").selectedIndex;
+			DoGetInput("htext_license").value = DoGetInput("text_license").value;
+			DoGetInput("htext_description").value = DoGetInput("text_description").value;
+			DoGetInput("htext_minimum_charge").value = DoGetInput("text_minimum_charge").value;
+			DoGetInput("htext_minimum_budget").value = DoGetInput("text_minimum_budget").value;
+			DoGetInput("hselect_maximum_size").selectedIndex = DoGetInput("select_maximum_size").selectedIndex;
+			DoGetInput("htext_maximum_distance").value = DoGetInput("text_maximum_distance").value;
+			DoGetInput("htext_first_name").value = DoGetInput("text_first_name").value;
+			DoGetInput("htext_surname").value = DoGetInput("text_surname").value;
+			DoGetInput("htext_unit").value = DoGetInput("text_unit").value;
+			DoGetInput("htext_street").value = DoGetInput("text_street").value;
+			DoGetInput("htext_suburb").value = DoGetInput("text_suburb").value;
+			DoGetInput("htext_postcode").value = DoGetInput("text_postcode").value;
+			DoGetInput("hselect_state").selectedIndex = DoGetInput("select_state").selectedIndex;
+			DoGetInput("htext_phone").value = DoGetInput("text_phone").value;
+			DoGetInput("htext_mobile").value = DoGetInput("text_mobile").value;
+			DoGetInput("htext_email").value = DoGetInput("text_email").value;
+
+			formHidden.submit();
+		}
+	}
+	
+	DoChangeButtonSaveFunction(OnClickButtonSave);
+	SetSelection("select_structure", "<?php echo $_SESSION["account_structure"]; ?>");
+	SetSelection("select_maximum_size", "<?php echo $_SESSION["account_maximum_size"]; ?>");
+	SetSelection("select_state", "<?php echo $_SESSION["account_state"]; ?>");
+			
+</script>
 
 
 

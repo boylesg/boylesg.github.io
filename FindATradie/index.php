@@ -9,10 +9,11 @@
 		<title>Home</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
+		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-		<script src="common.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 
 
 

@@ -9,11 +9,11 @@
 		<title>NEW TRADIE</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
+		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-		<script src="common.js"></script>
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -69,134 +69,8 @@
 
 
 <?php
-
-	$g_bDoRedirectToLogin = false;
-
-	//*******************************************************************************************
-	//*******************************************************************************************
-	//* 
-	//* Trade related HTML generation functions
-	//* 
-	//*******************************************************************************************
-	//*******************************************************************************************
-
-	function DoGenerateTradesRadioButtons()
-	{	
-		global $g_dbFindATradie;
-		$strChecked = "checked "; 
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	PrintIndents(8);
-			echo "<tr>\n";
-			PrintIndents(9);
-			echo "<td style=\"text-align:right;width:1em;\" class=\"trade_table_cell\"><input type=\"radio\" name=\"radio_trade\" id=\"radio_" . $row["id"] . "\" " . $strChecked . "value=\"" . $row["id"] . "\" /></td>\n";
-			PrintIndents(9);
-			echo "<td style=\"text-align:left;width:20em;\" class=\"trade_table_cell\">" . strtoupper($row["name"][0]) . substr($row["name"], 1) ."</td>\n";
-			PrintIndents(9);
-			echo "<td colspan=\"2\" style=\"text-align:left;\" class=\"trade_table_cell\"><label>" . $row["description"] . "</label></td>\n";
-			$strChecked = "";		
-			PrintIndents(8);
-			echo "</tr>\n";
-			$strChecked = "";
-	    }
-	    $queryResult->free_result();
-	}
-
-	function DoGenerateHiddenTradesRadioButtons()
-	{	
-		global $g_dbFindATradie;
-		$strChecked = "checked "; 
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	PrintIndents(6);
-			echo "<input type=\"radio\" name=\"hidden_radio_" . $row["id"] . "\" id=\"hidden_radio_" . $row["id"] . "\" " . $strChecked . "value=\"" . $row["id"] . " \"/>\n";
-	    	$strChecked = "";
-	    }
-	    $queryResult->free_result();
-	}
-
-	function DoGenerateAdditionalTradesCheckBoxes()
-	{	
-		global $g_dbFindATradie;
-		$nCount = 0;
-		$nNumCols = 20;
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	if (($nCount == 0) || (($nCount % $nNumCols) == 0))
-	    	{
-	    		PrintIndents(12);
-	    		echo "<td>\n";
-	    	}
-	    	PrintIndents(13);
-			echo "<input type=\"checkbox\" id=\"checkbox_" . $row["id"] . "\" name=\"hidden_checkbox_" . $row["id"] . "\" value=\"" . $row["id"] . "\" />";
-			echo "<label>" . $row["name"] . "</label><br/>\n";	
-    		$nCount++;
-	    	if (($nCount % $nNumCols) == 0)
-	    	{
-	    		PrintIndents(12);
-	    		echo "</td>\n";
-	    		$nCount = 0;
-	    	}
-	    }
-	    $queryResult->free_result();
-	}
-
-	function DoGenerateHiddenAdditionalTradesCheckBoxes()
-	{	
-		global $g_dbFindATradie;
-		 
-		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
-		
-		while ($row = $queryResult->fetch_assoc())
-	    {
-	    	PrintIndents(6);
-			echo "<input type=\"checkbox\" id=\"hidden_checkbox_" . $row["id"]  . "\" name=\"hidden_checkbox_" . $row["id"] . "\" value=\"" . $row["id"] . "\" />\n";
-	    }
-	    $queryResult->free_result();
-	}
-	
-	function DoDebugPostData()
-	{
-		$_POST["SUBMIT"] = "new_tradie";
-		$_POST["hidden_business_name"] = "Greg's Native Landscapes"; 
-		$_POST["hidden_first_name"] = "Greg";
-		$_POST["hidden_surname"] = "Boyles"; 
-		$_POST["hidden_abn"] = "51 824 753 556"; 
-		$_POST["hidden_structure"] = "Sole trader"; 
-		$_POST["hidden_license"] = "";
-		$_POST["hidden_description"] = "Ecological weed control\nLow maintenance\nDrought tolerant\nIrrigation systems\nSmall retaining walls\nSmall tree removal\nGeneral pruning\nBush tucker gardens\nSmall ornamental billabongs\nNative lawns"; 
-		$_POST["hidden_minimum_charge"] = "100"; 
-		$_POST["hidden_minimum_budget"] = "5000";  
-		$_POST["hidden_maximum_size"] = "Up to 50"; 
-		$_POST["hidden_maximum_distance"] = "20"; 
-		$_POST["hidden_unit"] = ""; 
-		$_POST["hidden_street"] = "56 Derby Drive"; 
-		$_POST["hidden_suburb"] = "Epping"; 
-		$_POST["hidden_state"] = "VIC"; 
-		$_POST["hidden_postcode"] = "3076"; 
-		$_POST["hidden_phone"] = "94013696"; 
-		$_POST["hidden_mobile"] = "0455328886"; 
-		$_POST["hidden_email"] = "gregplants@bigpond.com";
-		$_POST["hidden_username"] = "boylesg";
-		$_POST["hidden_password"] = "password";
- 		$_POST["hidden_radio_52"] = "52"; 
- 		$_POST["hidden_checkbox_21"] = "21"; 
- 		$_POST["hidden_checkbox_24"] = "24"; 
- 		$_POST["hidden_checkbox_29"] = "29";
- 		$_POST["hidden_checkbox_30"] = "30";
- 		$_POST["hidden_checkbox_52"] = "52";
- 		$_POST["hidden_checkbox_54"] = "54";
- 		$_POST["hidden_checkbox_35"] = "35";	
- 	}
+				
+	$_SESSION["account_additional_trades"] = [];
 
 	//*******************************************************************************************
 	//*******************************************************************************************
@@ -205,354 +79,163 @@
 	//* 
 	//*******************************************************************************************
 	//*******************************************************************************************
-
-	/*
-		Array (
-				[SUBMIT] => new_tradie
-				[hidden_business_name] => Greg's Native Landscapes 
-				[hidden_first_name] => Greg 
-				[hidden_surname] => Boyles 
-				[hidden_abn] => 51 824 753 556 
-				[hidden_structure] => Sole trader 
-				[hidden_license] => 
-				[hidden_description] => Ecological weed control Low maintenance Drought tolerant Irrigation systems Small retaining walls Small tree removal General pruning Bush tucker gardens Small ornamental billabongs Native lawns 
-				[hidden_minimum_charge] => 100 
-				[hidden_minimum_budget] => 5000 
-				[hidden_maximum_size] => Up to 50 
-				[hidden_maximum_distance] => 20 
-				[hidden_unit] => 
-				[hidden_street] => 56 Derby Drive 
-				[hidden_suburb] => ABBEYARD 
-				[hidden_state] => VIC 
-				[hidden_postcode] => 3737 
-				[hidden_mobile] => 0455328886 
-				[hidden_phone] => 94013696 
-				[hidden_email] => gregplants@bigpond.com 
-				[hidden_username] => boylesg 
-				[hidden_password] => password 
-				[hidden_radio_52] => 52 
-				[hidden_checkbox_21] => 21 
-				[hidden_checkbox_24] => 24 
-				[hidden_checkbox_30] => 30 
-				[hidden_checkbox_52] => 52 
-				[hidden_checkbox_54] => 54 
-				[hidden_checkbox_35] => 35 
-			) 
-	*/
-//	DoDebugPostData();
-	if (count($_POST) > 0)
-	{
-		if ($_POST["SUBMIT"] === "new_tradie")
-		{
-			$arrayAdditionalTrades = array();
-			$strTrade = -1;
-			$strMemberID = "";
 	
-			foreach( $_POST as $strKey => $strValue)
-			{
-				if (strpos($strKey, "hidden_radio_") !== false)
-				{
-					$strTrade = $strValue;
-				}
-				else if (strpos($strKey, "hidden_checkbox_") !== false)
-				{
-					array_push($arrayAdditionalTrades, (int)$strValue);
-				}
-			}
+	if (isset($_POST["text_business_name"]))
+	{
+		/*
+			Array ( 
+				[text_username] => debian-sys-maint 
+				[text_password] => wCN5zhYx5R6004zg 
+				[select_trade] => 1 
+				[select_additional_trades] => Array ( [0] => 3 [1] => 4 [2] => 5 [3] => 6 ) 
+				[text_business_name] => xxxxxxxxxxxxx 
+				[text_abn] => 
+				select_structure] => Sole trader 
+				[text_license] => 
+				[text_description] => 
+				[text_minimum_charge] => 35 
+				[text_minimum_budget] => 53 
+				[select_maximum_size] => Up to 50 
+				[text_maximum_distance] => 54 
+				[text_first_name] => Fred 
+				[text_surname] => Smith 
+				[text_unit] => 23 
+				[text_street] => 56 Derby Drive 
+				[text_suburb] => Epping 
+				[select_state] => VIC 
+				[text_postcode] => 3076 
+				[text_phone] => 45678987 
+				[text_mobile] => 0456345298 
+				[text_email] => f@gmail.com)
+		*/
+		if (DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]))
+		{
+			PrintJavascriptLine("AlertError(\"username '" . $_POST["text_username"] . "' is already registered by someone else!\");", 2, true);
+		}
+		else if (DoFindQuery1($g_dbFindATradie, "members", "business_name", $_POST["text_business_name"]))
+		{
+			PrintJavascriptLine("AlertError(\"buisness name '" . $_POST["text_business_name"] . "' is already registered by some one else!\");",  2, true);
+		}
+		else if (DoFindQuery1($g_dbFindATradie, "members", "abn", $_POST["text_abn"]))
+		{
+			PrintJavascriptLine("AlertError(\"ABN '" . $_POST["text_abn"] . "' is already registered by someone else!\");",  2, true);
+		}
+		else
+		{
 			$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username password expiry_date) VALUES (" .
-							AppendSQLValues($strTrade, $_POST["hidden_business_name"], 
-							$_POST["hidden_first_name"], $_POST["hidden_surname"],  $_POST["hidden_abn"],  $_POST["hidden_structure"],  
-							$_POST["hidden_license"], $_POST["hidden_description"],  $_POST["hidden_minimum_charge"],  
-							$_POST["hidden_minimum_budget"],   $_POST["hidden_maximum_size"],  $_POST["hidden_maximum_distance"],  
-							$_POST["hidden_unit"],  $_POST["hidden_street"],  $_POST["hidden_suburb"],  $_POST["hidden_state"],  
-							$_POST["hidden_postcode"],  $_POST["hidden_phone"],  $_POST["hidden_mobile"],  $_POST["hidden_email"], 
-							$_POST["hidden_username"], $_POST["hidden_password"], date("Y-m-d") ) . ")";
+							AppendSQLValues($_POST["select_trade"], $_POST["text_business_name"], 
+							$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
+							$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
+							$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
+							$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
+							$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
+							$_POST["text_username"], $_POST["text_password"], date("Y-m-d") ) . ")";
 	
-			$result = DoInsertQuery1($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"]);
+			$result = DoQuery($g_dbFindATradie, $strQuery);
 			if ($result->num_rows == 1)
 			{
 				$row = $result->fetch_assoc();
 				$strMemberID = $row["id"];
-				$g_bDoRedirectToLogin = true;
+				$arrayAdditionalTrades = $_POST["select_additional_trades"];
+				$bResult = true;
 
-				foreach ($arrayAdditionalTrades as $strValue)
+				foreach ($arrayAdditionalTrades as $strTradeID)
 				{
-					$strQuery = "INSERT INTO additional_trades (member_id, trade_id) VALUES (" . AppendSQLValues($strMemberID, $strValue) . ")";
-					$result = DoInsertQuery1($g_dbFindATradie, $strQuery, "members", "business_name", $_POST["hidden_business_name"], "user_name", $_POST["hidden_username"]);
+					$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "client_id", $row["id"], "trade_id", $strTradeID);
+					if ($result->num_rows == 0)
+					{
+						PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'additional_trades' in new_tradie.php!\");", 4, true);
+						$bResult = false;
+						break;
+					}
+				}
+				if ($bResult)
+				{
+					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
+											"DoGetInput('form_tradie_login').submit();"], 4, true);
 				}
 			}
-		}
-		else
-		{
-			print_r($_POST);
+			else
+			{
+				PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'members' in new_tradie.php!\");", 4, true);
+			}
 		}
 	}
+	else
+	{
+		print_r($_POST);
+	}
+
+				
+				
+	$g_strButtonText = "NEXT";
+	$g_bIsStaged = true;
+	include "member_details_forms.html"; 
 ?>
-
-					<div id="trade" style="display:none;">
-						<h2>What is your primary trade?</h2>
-						<form id="form_select_trade" class="form_trade">
-							<table border="0" style="width:100%;table-layout: fixed;">
-
-<?php DoGenerateTradesRadioButtons(); ?>
-
-								<tr>
-									<td style="text-align:left;">
-										<?php
-											echo "<a href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\"><h4>Request addition of a new trade.<h4></a>";
-										?>
-									</td>
-								</tr>
-								<tr>
-									<td><b><u>Any sdditional trades your are qualified in.</u></b></td>
-								</tr>
-								<tr>
-									<td style="text-align::left;">
-										<table border="0" style="width:100%;table-layout:fixed;">
-											<tr>
-<?php DoGenerateAdditionalTradesCheckBoxes(); ?>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('trade', 'business_details', 'form_select_trade')"/></td>
-								</tr>
-							</table>
-						</form>
-					</div>
 					
-					<div id="business_details" style="display:none;">
-						<h2>Details about your business</h2>
-						<form id="form_business_details" class="form_trade" style="width:55em;">
-							<table>
-								<tr>
-									<td colspan="2"><b><u>Business details</u></b></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Business name</b></td>
-									<td><input type="text" id="business_name" size="32" name="business name" pattern="!blank" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Your first name</b></td>
-									<td><input type="text" id="first_name" size="32" name="first name" pattern="!blank" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Your surname</b></td>
-									<td><input type="text" id="surname" size="32" name="surname" pattern="!blank" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>ABN</b></td>
-									<td><input type="text" id="abn" size="32" name="ABN" pattern="!blank digits11" />&nbsp;&nbsp;<label>e.g. 51 824 753 556</label></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Business structure</b></td>
-									<td>
-										<select id="structure" name="structure">
-											<option selected>Sole trader</option>
-											<option>Company</option>
-											<option>Cooperative</option>
-											<option>Partnership</option>
-											<option>Indigenous corporation</option>
-											<option></option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Trade license &amp; professional membership details</b></td>
-									<td style="text-align:left;"><textarea id="license" name="Trade licenses & professional memberships" cols="64" rows="4" pattern=""></textarea></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Description of business &amp; services</b></td>
-									<td style="text-align:left;"><textarea id="description" name="Description of business & services" cols="64" rows="16" pattern="!blank"></textarea></td>
-								</tr>
-								<tr>
-									<td colspan="2"><b><u>Job preferences</u></b></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Minimum charge $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_charge" size="8" name="minimum charge" value="100" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Minimum preferred budget $</b></td>
-									<td style="text-align:left;"><input type="text" id="minimum_budget" size="8" name="minimum_budget" value="5000" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Maximum preferred job size</b></td>
-									<td style="text-align:left;">on
-										<select id="maximum_size" name="maximum_size">
-											<option selected>Up to 50</option>
-											<option>50 - 100</option>
-											<option>100 - 250</option>
-											<option>250 - 500</option>
-											<option>More than 500</option>
-										</select>
-										<b>m<sup>2</sup></b>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Maximum distance you will travel</b></td>
-									<td style="text-align:left;"><input type="text" id="maximum_distance" name="maximum distance" size="8" value="20" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
-								</tr>
-								<tr>
-									<td style="text-align:left;"><br/><input type="button" value="Previous" class="next_button" onclick="DoNext('business_details', 'trade', '')"/></td>
-									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoNext('business_details', 'business_contact_details', 'form_business_details')"/></td>
-								</tr>
-							</table>
-						</form>					
-					</div>
 
-					<div id="business_contact_details" style="display:none;">
-						<h2>Business contact details</h2>
-						<form id="form_contact_details" class="form_trade">
-							<table>
-								<tr>
-									<td style="text-align:right;"><b>Unit</b></td>
-									<td style="text-align:left;"><input type="text" id="unit" name="unit" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Street</b></td>
-									<td><textarea id="street" name="street" cols="64" rows="2" pattern="!blank"></textarea></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>City, suburb or town</b></td>
-									<td style="text-align:left;">
-										<select id="suburb" name="city/suburb/town" style="width:18em;" onchange="OnChangeSuburb(this, document.getElementById('postcode'), document.getElementById('state'))">
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>State</b></td>
-									<td style="text-align:left;">
-										<select id="state" name="state" onchange="OnChangeState(this, document.getElementById('suburb'), document.getElementById('postcode'))">
-											<option selected=>ACT</option>
-											<option>NSW</option>
-											<option>NT</option>
-											<option>QLD</option>
-											<option>SA</option>
-											<option>TAS</option>
-											<option>VIC</option>
-											<option>WA</option>
-										</select>
-									
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Postcode</b></td>
-									<td style="text-align:left;">
-										<select id="postcode" name="postcode" onchange="OnChangePostcode(this, document.getElementById('suburb'), document.getElementById('state'))">
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Office phone number</b></td>
-									<td style="text-align:left;"><input type="text"  id="phone" name="office phone number" pattern="!blank digits8" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Mobile number</b></td>
-									<td style="text-align:left;"><input type="text"  id="mobile" name="mobile number" pattern="!blank digits10" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Email address</b></td>
-									<td style="text-align:left;"><input type="text"  id="email" name="email address" pattern="!blank email" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:left;"><input type="button" value="Previous" class="next_button" onclick="DoNext('business_contact_details', 'business_details')"/></td>
-									<td style="text-align:right;"><input type="button" value="Next" class="next_button" onclick="DoNext('business_contact_details', 'account_details', 'form_contact_details')"/></td>
-								</tr>
-							</table>
-						</form>					
-					</div>
-
-					<div id="account_details" style="display:none;">
-						<h2>Account details</h2>
-						<form id="form_account_details" class="form_trade">
-							<table>
-								<tr>
-									<td style="text-align:right;"><b>Username or email address</b></td>
-									<td style="text-align:left;"><input type="text" id="username" name="username" pattern="!blank6" /></td>
-								</tr>
-								<tr>
-									<td style="text-align:right;"><b>Password</b></td>
-									<td><input type="password" id="password" name="password" pattern="!blank12" />&nbsp;<input type="checkbox" id="check_show_password" onclick="OnClickCheckShowPassword(this, document.getElementById('password'))"/></td>
-								</tr>
-								<tr>
-									<td style="text-align:left;"><br/><input type="button" value="Previous" class="next_button" onclick="DoNext('form_account_details', 'business_contact_details')"/></td>
-									<td style="text-align:right;"><br/><input type="button" value="Next" class="next_button" onclick="DoSubmit('form_account_details', 'form_new_tradie')"/></td>
-								</tr>
-							</table>
-						</form>					
-					</div>
-
-					<script type="text/javascript">
-						DoFillSuburbsAndPostcodeSelects(document.getElementById("suburb"), document.getElementById("postcode"), document.getElementById("state"));
-					</script>
-
-					<form method="post" id="form_new_tradie" style="visibility:hidden;" action="new_tradie.php">
-						<input type="hidden" name="hidden_new_member" value="new_member" />
-						<input type="hidden" id="hidden_business_name" name="hidden_business_name" />
-						<input type="hidden" id="hidden_first_name" name="hidden_first_name" />
-						<input type="hidden" id="hidden_surname" name="hidden_surname" />
-						<input type="hidden" id="hidden_abn" name="hidden_abn" />
-						<input type="hidden" id="hidden_structure" name="hidden_structure" />
-						<input type="hidden" id="hidden_license" name="hidden_license" />
-						<input type="hidden" id="hidden_description" name="hidden_description" />
-						<input type="hidden" id="hidden_minimum_charge" name="hidden_minimum_charge" />
-						<input type="hidden" id="hidden_minimum_budget" name="hidden_minimum_budget" />
-						<input type="hidden" id="hidden_maximum_size" name="hidden_maximum_size" />
-						<input type="hidden" id="hidden_maximum_distance" name="hidden_maximum_distance" />
-
-						<input type="hidden" id="hidden_unit" name="hidden_unit" />
-						<input type="hidden" id="hidden_street" name="hidden_street" />
-						<input type="hidden" id="hidden_suburb" name="hidden_suburb" />
-						<input type="hidden" id="hidden_state" name="hidden_state" />
-						<input type="hidden" id="hidden_postcode" name="hidden_postcode" />
-						<input type="hidden" id="hidden_mobile" name="hidden_mobile" />
-						<input type="hidden" id="hidden_phone" name="hidden_phone" />
-						<input type="hidden" id="hidden_email" name="hidden_email" />
-						
-						<input type="hidden" id="hidden_username" name="hidden_username" />
-						<input type="hidden" id="hidden_password" name="hidden_password" />
-<?php
-	DoGenerateHiddenTradesRadioButtons();
-	DoGenerateHiddenAdditionalTradesCheckBoxes();
-?>
+					<form method="post" action="new_tradie.php" id="form_hidden_tradie_details" style="visibility: hidden">
+						<input type="text" id="htext_username" name="text_username" />
+						<input type="text" id="htext_password" name="text_password" />
+						<select id="hselect_trade" name="select_trade">
+							<?php DoGeneratePrimaryTradeOptions(); ?>
+						</select>
+						<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
+							<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
+						</select>
+						<input type="text" id="htext_business_name" name="text_business_name" />
+						<input type="text" id="htext_abn" name="text_abn" />
+						<select id="hselect_structure" name="select_structure">
+							<option>Sole trader</option>
+							<option>Company</option>
+							<option>Cooperative</option>
+							<option>Partnership</option>
+							<option>Indigenous corporation</option>
+						</select>
+						<textarea id="htext_license" name="text_license"></textarea>
+						<textarea id="htext_description" name="text_description"></textarea>
+						<input type="text" id="htext_minimum_charge" name="text_minimum charge" />
+						<input type="text" id="htext_minimum_budget" name="text_minimum_budget" />
+						<select id="hselect_maximum_size" name="select_maximum_size">
+							<option selected>Up to 50</option>
+							<option>50 - 100</option>
+							<option>100 - 250</option>
+							<option>250 - 500</option>
+							<option>More than 500</option>
+						</select>
+						<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
+						<input type="text" id="htext_first_name" name="text_first_name" />
+						<input type="text" id="htext_surname" name="text_surname" />
+						<input type="text" id="htext_unit" name="text_unit" />
+						<input type="text" id="htext_street" name="text_street" />
+						<input type="text" id="htext_suburb" name="text_suburb" />
+						<select id="hselect_state" name="select_state">
+							<option selected=>ACT</option>
+							<option>NSW</option>
+							<option>NT</option>
+							<option>QLD</option>
+							<option>SA</option>
+							<option>TAS</option>
+							<option>VIC</option>
+							<option>WA</option>
+						</select>
+						<input type="text" id="htext_postcode" name="text_postcode" />
+						<input type="text" id="htext_phone" name="text_phone" />
+						<input type="text" id="htext_mobile" name="text_mobile" />
+						<input type="text" id="htext_email" name="text_email" />
 					</form>
-					
+
+				
+				
+				
 					<form method="post" id="form_tradie_login" style="visibility:hidden;" action="login.php">
-						<input type="hidden" id="hidden_username0" name="hidden_username" value="<?php if (isset($_POST["hidden_username"])) echo $_POST["hidden_username"]; ?>"/>
-						<input type="hidden" id="hidden_password0" name="hidden_password" value="<?php if (isset($_POST["hidden_password"])) echo $_POST["hidden_password"]; ?>"/>
-						<input type="hidden" name="SUBMIT" value="tradie_login" />
+						<input type="text" id="text_username" name="text_username" value="<?php if (isset($_POST["text_username"])) echo $_POST["text_username"]; ?>"/>
+						<input type="text" id="text_password" name="text_password" value="<?php if (isset($_POST["text_password"])) echo $_POST["text_password"]; ?>"/>
+						<input type="submit" name="submit_login" value="LOG IN" />
 					</form>
 					
-					<script type="text/javascript">
-					
-						<?php
-							if ($g_bDoRedirectToLogin)
-							{
-								echo "document.getElementById('form_tradie_login').submit()";
-							}
-						?>
-						
-						if (sessionStorage["new_tradie_stage"] === undefined)
-							sessionStorage["new_tradie_stage"] = "trade";
-							
-						let div2Show = document.getElementById(sessionStorage["new_tradie_stage"]);
-						
-						if (div2Show)
-							div2Show.style.display = "block";
-						
-						PreloadForm(document.getElementById("form_select_trade"));
-						PreloadForm(document.getElementById("form_business_details"));
-						PreloadForm(document.getElementById("form_contact_details"));
-						PreloadForm(document.getElementById("form_account_details"));
-						
-						OnClickCheckShowPassword(document.getElementById("check_show_password"), document.getElementById("password"));
-						
-					</script>
-
 
 
 

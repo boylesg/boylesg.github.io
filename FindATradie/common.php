@@ -104,9 +104,8 @@
 		return str_replace("'", "''", $strText);
 	}
 	
-	function AppendSQLValues(...$param) 
+	function AppendSQLInsertValues(...$param) 
 	{
-		global $g_dbFindATradie;
 		$strQuery = "";
 
 		foreach ($param as $strDataItem)
@@ -117,10 +116,33 @@
 		
 		return $strQuery;
 	}
+
+	function AppendSQLUpdateValues(...$param) 
+	{
+		$strQuery = "";
+		$nI = 0;
+
+		foreach ($param as $strItem)
+		{
+			if (($nI % 2) == 0)
+			{
+				$strQuery = $strQuery . $strItem . "='";
+			}
+			else
+			{
+				$strQuery = $strQuery . EscapeSingleQuote($strItem) . "', ";
+			}
+			$nI++;
+		}
+		$strQuery = substr_replace($strQuery, "", -2);
+		
+		return $strQuery;
+	}
 	
 	
 	
 	
+
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -288,7 +310,7 @@
 	    	PrintIndents(8);
 			echo "<option value=\"" . $row["id"] . "\"";
 			
-			if ($_SESSION["account_trade"] == $row["id"])
+			if (isset($_SESSION["account_trade"]) && ($_SESSION["account_trade"] == $row["id"]))
 				echo " selected";
 			
 			echo ">";

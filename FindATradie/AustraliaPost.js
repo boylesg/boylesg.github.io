@@ -13436,28 +13436,8 @@ let g_mapSuburbsByPostcodesVIC = new Map([
 											["MEENIYAN", "3956"],
 											["MEERING WEST", "3579"],
 											["MEERLIEU", "3862"],
-											["MELBOURNE", "8069"],
-											["MELBOURNE", "8120"],
-											["MELBOURNE", "8051"],
-											["MELBOURNE", "8111"],
-											["MELBOURNE", "8045"],
-											["MELBOURNE", "8111"],
-											["MELBOURNE", "8045"],
-											["MELBOURNE", "8066"],
-											["MELBOURNE", "8071"],
-											["MELBOURNE", "8107"],
-											["MELBOURNE", "8102"],
-											["MELBOURNE", "8066"],
-											["MELBOURNE", "8071"],
 											["MELBOURNE", "3000"],
-											["MELBOURNE", "3001"],
-											["MELBOURNE", "3004"],
-											["MELBOURNE", "8001"],
-											["MELBOURNE", "8102"],
-											["MELBOURNE", "8071"],
 											["MELBOURNE AIRPORT", "3045"],
-											["MELBOURNE AIRPORT", "3045"],
-											["MELBOURNE UNIVERSITY", "3052"],
 											["MELBOURNE UNIVERSITY", "3052"],
 											["MELTON", "3337"],
 											["MELTON SOUTH", "3338"],
@@ -16810,11 +16790,21 @@ function OnChangeSuburb(selectSuburb, selectPostcode, selectState)
 {
 	if (selectSuburb && selectPostcode)
 	{
-		let mapState = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text);
+		let mapSuburbsPostcode4State = g_mapSuburbsByPostcodes.get(selectState.options[selectState.selectedIndex].text);
 		
-		if (mapState)
+		if (mapSuburbsPostcode4State)
 		{
-			selectPostcode.selectedIndex = selectSuburb.selectedIndex;
+			let strSuburb2Find = selectSuburb.options[selectPostcode.selectedIndex].text,
+				strPostcode2Select = mapSuburbsPostcode4State.get(strSuburb2Find);
+			alert("SUBURB = " + strSuburb2Find + ", POSTOCDE = " + strPostcode2Select);
+			for (let nI = 0; nI < selectPostcode.options.length; nI++)
+			{
+				if (strPostcode2Select == selectPostcode.options[nI].text)
+				{
+					selectPostcode.selectedIndex = nI;
+					break;
+				}
+			}
 		}
 	}
 }
@@ -16827,9 +16817,9 @@ function OnChangePostcode(selectPostcode, selectSuburb, selectState)
 		
 		if (mapSuburbsPostcode4State)
 		{
-			/*selectSuburb.selectedIndex = selectPostcode.selectedIndex;*/
 			let nI = 0,
 				strPostCode2Find = selectPostcode.options[selectPostcode.selectedIndex].text;
+				
 			for (const [strKey, strValue] of mapSuburbsPostcode4State.entries())
 			{
 				if (strPostCode2Find === strValue)
