@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|10 Nov 2023 09:31:13 -0000
+vti_timelastmodified:TR|11 Nov 2023 15:37:51 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|28 Oct 2023 08:32:20 -0000
 vti_title:SR|LOG IN
 vti_backlinkinfo:VX|account.php new_tradie.php
-vti_nexttolasttimemodified:TR|10 Nov 2023 08:47:19 -0000
-vti_cacheddtm:TX|10 Nov 2023 08:47:19 -0000
-vti_filesize:IR|9879
+vti_nexttolasttimemodified:TW|11 Nov 2023 15:37:18 -0000
+vti_cacheddtm:TX|11 Nov 2023 15:37:51 -0000
+vti_filesize:IR|10053
 vti_cachedtitle:SR|LOG IN
 vti_cachedbodystyle:SR|<body onresize="SetPageContetHeight()">
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/Tradie.png S|images/Tools.png H|index.php H|about.html H|new_tradie.php H|new_customer.html H|compare.html H|contact.html H|contact.html A|account.php H|index.php H|new_tradie.php H|new_customer.html H|about.html H|compare.html H|faq.html H|contact.html

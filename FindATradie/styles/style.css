@@ -281,32 +281,75 @@ textarea
 	resize:none;
 }
 
-.form
+/**********************************************************************************************/
+/**********************************************************************************************/
+/**
+/** FORMS & INPUT STYLES
+/**
+/**********************************************************************************************/
+/**********************************************************************************************/
+:root 
 {
+	--TextColor: var(--ColorH4T);
+	--BorderRadius: 5px;
+}
+
+.form 
+{
+	background-color: var(--ColorMastheadBG);
+	padding: 10px;
+	border-radius: var(--BorderRadius);
+}
+
+.form fieldset
+{
+	border-color: var(--TextColor);
 	border-style: solid;
 	border-width: thin;
-	border-color: black;
-	background-color: white;
-	padding: 20px;
-	margin: 20px;
 }
 
-.next_button
+.form legend, label
 {
-	width:80px;
+	color: var(--TextColor);
+	font-size:small;
+	font-weight: bold;
 }
 
-.trade_table_cell
+.form input[type=text], input[type=password]
 {
-	line-height:2em;
-	height:2em;
-	vertical-align:middle;
-	padding-left:1em;
-	padding-right:1em;
+	border-color: var(--TextColor);
+	border-style: solid;
+	border-width: thin;
 }
 
-.form_trade
+.form input[type=button], input[type=submit]
 {
-	width:100em;
+	border-color: var(--TextColor);
+	border-style: solid;
+	border-width: thin;
+	background-color: #B0C0D0;
+	color: var(--TextColor);
+	border-radius: var(--BorderRadius);
+	padding: 1em;
+	font-weight: bold;
+	cursor: pointer;
 }
 
+.form input[type=button]:hover, input[type=submit]:hover
+{
+	background-color: var(--ColorMastheadBG);
+
+}
+
+.form input[type=checkbox], input[type=radio]
+{
+	border-color: var(--TextColor);
+	border-style: solid;
+	border-width: thin;
+
+}
+
+.form input: invalid
+{
+	border-color: red;
+}

@@ -14,7 +14,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 			
 			<script type="text/javascript">
 			</script>
@@ -51,10 +51,10 @@
 		$_SESSION["account_expiry_date"] = "";
 		$_SESSION["account_additional_trades"] = [];
 	}
-	else if (isset($_POST["hidden_new_member"]) && ($_POST["hidden_new_member"] === "new_member"))
+	else if (isset($_POST["text_username"]))
 	{
-		$_SESSION["username"] = $_POST["hidden_username"];
-		$_SESSION["password"] = $_POST["hidden_password"];
+		$_SESSION["account_username"] = $_POST["text_username"];
+		$_SESSION["account_password"] = $_POST["text_password"];
 	}
 	else if (isset($_POST["submit_recover"]))
 	{
@@ -134,7 +134,7 @@
 							<tr>
 								<td style="text-align:right;" ><label for="text_recover_surname" id="label_surname">Username: </label></td>
 								<td>
-									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php echo $_SESSION["username"]; ?>"/>
+									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
@@ -156,18 +156,18 @@
 						</table>
 					</form>
 					
-					<form method="post" id="form_login" class="form" action="account.php" style="width:570px;display:<?php echo $g_strLogin; ?>;">
+					<form method="post" id="form_login" class="form" action="account.php" style="width:600px;display:<?php echo $g_strLogin; ?>;">
 						<table>
 							<tr>
 								<td style="text-align:right;"><label for="text_username" id="label_username">Username or email address: </label></td>
 								<td>
-									<input name="text_username" id="text_recover_username0" style="width: 20em" type="text" value=""/>
+									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;"><label for="text_password" id="label_password" >Password: </label></td>
 								<td>
-									<input type="password" name="text_password" id="text_password" style="width: 20em" value=""/>
+									<input type="password" name="text_password" id="text_password" style="width: 20em" value="<?php if (isset($_SESSION["account_password"])) echo $_SESSION["account_password"]; ?>"/>
 									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
 								</td>
 							</tr>

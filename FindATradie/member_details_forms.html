@@ -1,61 +1,4 @@
-﻿<style>
-	
-	:root 
-	{
-		--TextColor: var(--ColorH4T);
-		--BorderRadius: 5px;
-	}
-	
-	form 
-	{
-		background-color: var(--ColorMastheadBG);
-		padding: 10px;
-		border-radius: var(--BorderRadius);
-	}
-
-	fieldset
-	{
-		border-color: var(--TextColor);
-		border-style: solid;
-		border-width: thin;
-	}
-
-	input[type=text], input[type=password]
-	{
-		border-color: var(--TextColor);
-		border-style: solid;
-		border-width: thin;
-	}
-
-	input[type=button], input[type=submit]
-	{
-		border-color: var(--TextColor);
-		border-style: solid;
-		border-width: thin;
-		background-color: #B0C0D0;
-		color: var(--TextColor);
-		border-radius: var(--BorderRadius);
-		padding: 1em;
-		font-weight: bold;
-		cursor: pointer;
-	}
-
-	input[type=button]:hover, input[type=submit]:hover
-	{
-		background-color: var(--ColorMastheadBG);
-
-	}
-
-	input[type=checkbox], input[type=radio]
-	{
-		border-color: var(--TextColor);
-		border-style: solid;
-		border-width: thin;
-
-	}
-
-</style>	
-<form method="post" id="form_user_details" action="account.php">
+﻿<form method="post" id="form_user_details" action="account.php" class="form">
 	<fieldset>
 		<legend>User details:</legend>
 		<table>
@@ -93,7 +36,7 @@
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_trade_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
+<form method="post" id="form_trade_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Trade details</legend>
 			<table>
@@ -136,7 +79,7 @@
 	</fieldset>
 </form>
 <br/><br/>		
-<form method="post" id="form_business_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
+<form method="post" id="form_business_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Business details:</legend>
 		<table>
@@ -212,7 +155,7 @@
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_contact_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>">
+<form method="post" id="form_contact_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Contact details:</legend>
 		<table>
@@ -231,7 +174,7 @@
 			<tr>
 				<td style="text-align:right;"><b>Unit</b></td>
 				<td>
-					<input type="text" id="text_unit" name="text_unit" size="32" required pattern="^^[A-Za-z0-9]{1,}(\s{1}[A-Za-z0-9\-,:\(\)\s]{1,}){1}$" value="<?php if (isset($_SESSION['account_unit'])) echo $_SESSION['account_unit']; ?>" />
+					<input type="text" id="text_unit" name="text_unit" size="32" required pattern="^[A-Za-z0-9]{1,}(\s{1}[A-Za-z0-9\-,:\(\)\s]{1,}){1}$" value="<?php if (isset($_SESSION['account_unit'])) echo $_SESSION['account_unit']; ?>" />
 				</td>
 			</tr>
 			<tr>
@@ -264,19 +207,19 @@
 			<tr>
 				<td style="text-align:right;"><b>Postcode</b></td>
 				<td>
-					<input type="text" id="text_postcode" name="text_postcode" size="6" length="4" required pattern="^[0-9]{4}$" value="<?php if (isset($_SESSION["account_postcode"])) echo $_SESSION["account_postcode"]; ?>" />
+					<input type="text" id="text_postcode" name="text_postcode" size="6" length="4" maxlength="4" required pattern="^[0-9]{4}$" value="<?php if (isset($_SESSION["account_postcode"])) echo $_SESSION["account_postcode"]; ?>" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Phone</b></td>
 				<td>
-					<input type="text"  id="text_phone" name="text_phone" required pattern="^[0-9]{8}$" value="<?php if (isset($_SESSION['account_phone'])) echo $_SESSION['account_phone']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_phone" name="text_phone" maxlength="8" required pattern="^[0-9]{8}$" value="<?php if (isset($_SESSION['account_phone'])) echo $_SESSION['account_phone']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Mobile</b></td>
 				<td>
-					<input type="text"  id="text_mobile" name="text_mobile" required pattern="^[0-9]{10}$" value="<?php if (isset($_SESSION['account_mobile'])) echo $_SESSION['account_mobile']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_mobile" name="text_mobile" maxlength="10" required pattern="^[0-9]{10}$" value="<?php if (isset($_SESSION['account_mobile'])) echo $_SESSION['account_mobile']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
