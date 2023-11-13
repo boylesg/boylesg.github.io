@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+	
+<!-- #BeginTemplate "master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Frequently Asked Questions</title>
+		<!-- #EndEditable -->
+		<?php include "common.php"; ?>
+		<?php include "common.js"; ?>
+		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+			<style>
+
+			
+				body 
+				{
+					color: #000;
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: small;
+					font-style: normal;
+					background-image: url('images/background.jpg');
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: 100%;
+				}
+				
+			</style>
+			
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+</style>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body onresize="SetPageContetHeight()">
+	
+		<!-- Begin Masthead -->
+		<div class="masthead" id="masthead">
+			<img class="logo" alt="" src="images/Tradie.png" width="90" />
+			<div class="web_title" id="web_title">
+				FIND A TRADIE
+			</div>
+			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
+			<!-- Begin Navigation -->
+			<nav class="navigation" id="navigation">
+				<a class="navigation_link" href="index.php">Home</a>
+				<a class="navigation_link" href="benefits.html">Benefits</a>
+				<a class="navigation_link" href="about.html">About</a>
+					<?php
+	
+						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+							echo "<a class=\"navigation_link\" href=\"account.php\">Account</a>\n";
+						else
+							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
+							
+					?>
+					<a class="navigation_link" href="contact.html">FAQ</a>
+					<a class="navigation_link" href="contact.html">Contact</a>
+			</nav>
+			<!-- End Navigation -->
+		</div>
+		<!-- Begin PageHeading -->
+		<div id="page_heading"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
+		<!-- End PageHeading -->
+		<!-- End Masthead -->
+		<!-- Begin Page Content -->
+		<div class="page_content" id="page_content">
+				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
+
+			<ul class="faq_question">
+				<li>
+					Q. How much will it cost me to join?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>
+					A. If you are a tradie then it will cost you $200 per year.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;If you are a customer then it will cost you $0 per year.
+				</li>
+			</ul><br/>
+			<ul class="faq_question">
+				<li>
+					Q. Do I have to pay for leads?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>A. You do not have to pay an additional fee for leads.</li>
+			</ul><br/>
+			<ul>
+				<li class="faq_question">
+					Q. How much will it cost me to list a job for tradies?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>A. It will cost you $2 for each job you list.</li>
+			</ul><br/>
+			<ul class="faq_question">
+				<li>
+					Q. Do your store bank account and credit card numbers?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>A. No. All payments are made through Paypal, who a responsible for the security of those numbers.</li>
+			</ul><br/>
+			<ul>
+				<li class="faq_question">
+					Q. Why do I have to join to find a tradie?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>
+					A. Because we want this system to work be fair for both tradies and their customers.<br/><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;If a customer pays a tradie promptly for a completed job then that tradie can leave 
+					that customer a positive rating.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;If a customer failes pays a tradie promptly for a completed job, or refuses to pay, 
+					then that tradie can leave that customer a negative rating.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;If a tradie completes job on time and on or close to budget then that customer can 
+					leave the tradie a positive rating.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;If a tradie fails to complete a job on time or close to budget then that customer can 
+					leave the tradie a negative rating.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;We don't want to allow customers to post frivalous jobs for tradies without 
+					consequences.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;All ratings are editable at any time.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;So parties in disagreement are free to negotiate and change negative ratings if an 
+					agreement is struck.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;We accept no responsibility for any negative feedback received by any party.
+				</li>
+			</ul><br/>
+			<ul>
+				<li class="faq_question">
+					Q. Does findatradie provide guarentees on workmanship or refunds?<br/>
+				</li>
+			</ul>
+			<ul class="faq_answer">
+				<li>
+					A. No. It is simply a platform to allow tradies to connect with customers or potential customers. We play no 
+					role in business relationships between tradies and their customers.
+				</li>
+			</ul><br/>
+
+
+
+
+
+
+
+
+				<!-- #EndEditable -->
+		<!-- End Page Content -->
+		</div>
+		<!-- Begin Footer -->
+		<div class="footer" id="footer">
+			<!--
+			<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
+			-->
+		</div>
+		<!-- End Footer -->
+	
+	</body>
+	
+	<footer>
+		
+		<script type="text/javascript">
+								
+		</script>
+	
+	</footer>
+	
+<!-- #EndTemplate -->
+	
+</html>

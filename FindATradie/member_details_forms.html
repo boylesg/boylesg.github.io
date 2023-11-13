@@ -119,7 +119,10 @@
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Minimum charge</b></td>
-				<td><b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+				<td>
+					<b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /><br/>
+					Be fairdinkum here - you are no more or less likely to get the job if you don't disclose this up front.
+				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Minimum budget</b></td>
