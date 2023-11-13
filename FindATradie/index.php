@@ -29,14 +29,6 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-
-				div.note form
-				{
-					border-style: solid;
-					border-width: medium;
-					border-color: var(--ColorMastheadBG);
-				}
-				
 			</style>
 		<!-- #EndEditable -->
 	</head>
@@ -46,16 +38,15 @@
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
-			<div class="web_title" id="web_title">
-				FIND A TRADIE
-			</div>
+			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<a class="navigation_link" href="index.php">Home</a>
-				<a class="navigation_link" href="benefits.html">Benefits</a>
+				<a class="navigation_link" href="benefits.php">Benefits</a>
 				<a class="navigation_link" href="about.html">About</a>
 					<?php
 	
@@ -78,113 +69,130 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+<?php
 
-
-
-
-
-
-
-				<marquee><h3 style="color: navy;"><b>Created by an Australian tradie for Australians</b></h3></marquee>
+	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
+	{
+		$nJobSize = (int)$strJobSizeIndex;
+		$nTradieMaxSizeIndex = 0;
+		
+		if ($strTradieMaxSize == "Up to 50")
+			$nTradieMaxSizeIndex = 0;
+		else if ($strTradieMaxSize == ">50 - 100")
+			$nTradieMaxSizeIndex = 1;
+		else if ($strTradieMaxSize == "100 - 250")
+			$nTradieMaxSizeIndex = 2;
+		else if ($strTradieMaxSize == "250 - 500")
+			$nTradieMaxSizeIndex = 3;
+		else if ($strTradieMaxSize == "More than 500")
+			$nTradieMaxSizeIndex = 4;
+		else if ($strTradieMaxSize == "Up to 50")
+			$nTradieMaxSizeIndex = 5;
+			
+		return $nJobSize <= $nTradieMaxSizeIndex;
+	}
 	
+	function IsDistanceMatch($strTradiePostcode, $strJobPostcode, $strTradieMaxDistance)
+	{
+		echo "<div style=\"background-color:white;\">";
+		$url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $strTradiePostcode . "&destinations=". $strJobPostcode . "&mode=driving&language=en-EN&sensor=false";
+
+		$data   = @file_get_contents($url);
+		$result = json_decode($data, true);
+		if ($result)
+		{
+			$nDistance = (int)$result["rows"][0]["elements"][0]["distance"]["value"] / 1000;
+			echo "<h1>" . $nDistance . "</h1>";
+			print_r($result);
+		}
+		else
+		{
+			print_r($result);
+		}
+		echo "</div>";
+		return $nDistance <= (int)$strTradieMaxDistance;
+	}
+	
+	IsDistanceMatch("3076", "2000", "10");
+	$strResultsDisplay = "none";
+	$arrayResults = [];
+	if (isset($_POST["select_trade"]))
+	{
+		$strResultsDisplay = "block";
+		
+		$results = DoFinQuery1($g_dbFindATradie, "members", "trade_id", $_POST["select_trade"]);
+		$row = $results->fetch_assoc();
+		if (IsMatchMaxSize($row["maximim_size"], $_POST["select_job_size"]) && 
+			((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
+			IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
+			$arrayResults[] = [$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"], $row["id"]];
+	}
+
+?>
+
 				<div class="note">
 					
-					<h4>Customers need to register and login to use this service.</h4>
-					<h5>However you can give it a try here.</h5>
-					<form method="post" action="index.php">
+					<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
+					<h5>However you can give it a test run here.</h5>
+					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h6>
+					<form method="post" action="index.php" style="width:57em;">
 						
-						<table cellpadding="0" cellspacing="0" border="0">
+						<table class="table_no_borders">
 							<tr>
-								<td style="text-align:right;">
+								<td style="text-align:right;" class="cell_no_borders">
 									<b>What type of tradie are you looking for?</b>
 								</td>
-								<td>
-									&nbsp;&nbsp;<sekect id="select_trade" name="trade">
+								<td class="cell_no_borders">
+									&nbsp;&nbsp;<select id="select_trade" name="trade">
 										<?php DoGeneratePrimaryTradeOptions(); ?>
-									</sekect>
+									</select>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;">
+								<td style="text-align:right;" class="cell_no_borders">
 									<b>What is you maximum budget?</b>
 								</td>
-								<td>
+								<td class="cell_no_borders">
 									$&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" maxlength="6" onkeydown="OnKeyPressDigitsOnly(event)" />
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;">
+								<td style="text-align:right;" class="cell_no_borders">
 									<b>What is the size of your job?</b>
 								</td>
-								<td>
+								<td class="cell_no_borders">
 									&nbsp;&nbsp;&nbsp;<select id="select_job_size" name="select_job_size">
-										<option selected>Up to 50</option>
-										<option>50 - 100</option>
-										<option>100 - 250</option>
-										<option>250 - 500</option>
-										<option>More than 500</option>
+										<option selected value="0">Up to 50</option>
+										<option value="1">50 - 100</option>
+										<option value="2">100 - 250</option>
+										<option value="3">250 - 500</option>
+										<option value="4">More than 500</option>
 									</select>&nbsp;<b>m<sup>2</sup></b>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;">
+								<td style="text-align:right;" class="cell_no_borders">
 									<b>What is your postcode?</b>
 								</td>
-								<td>
+								<td class="cell_no_borders">
 									&nbsp;&nbsp;&nbsp;<input type="text" id="text_postcode" name="text_postcode" maxlength="4" onkeydown="OnKeyPressDigitsOnly(event)" />
 								</td>
 							</tr>
 						</table>
-					
 					</form>
-				</div><br/>
-
-				<div class="note note_benefits" style="float: left; margin-left: 45px;">
-					<h5>BENEFITS</h5>
-					<ul>
-						<li>eBay style feedback accountability for both tradies and customers.</li>
-						<br/>
-						<li>Customers can browse tradies and view their feedback reputation.</li>
-						<br/>
-						<li>Tradies can browse customers and view their feedback reputation.</li>
-						<br/>
-						<li>Free membership for customers.</li>
-						<br/>
-						<li>Customers can browse tradies (based on filters like minimum charge and maximum distance) and contact them directly.</li>
-						<br/>
-						<li>Flat annual membership for tradies, with no fees to obtain contact details.</li>
-						<br/>
-						<li>No bank account or credit card numbers are stored on the web site.</li>
-						<br/>
-						<li>All payments made with Paypal.</li>
-					</ul>
-				</div>
-				
-				<div class="note note_benefits" style="float: right; margin-left: 45px; margin-right: 45px;">
-					<h5 style="">COST FOR TRADIES</h5>
-					<table border="1" cellspacing="0" cellpadding="2em">
-						<tr>
-							<td>1 month</td>
-							<td>$<?php printf("%d", $g_nCostPerMonth); ?></td>
-						</tr>
-						<tr>
-							<td>6 monts</td>
-							<td>$<?php printf("%d", ($g_nCostPerMonth * 6)); ?></td>
-						</tr>
-						<tr>
-							<td>12 months</td>
-							<td>$<?php printf("%d", ($g_nCostPerMonth * 12)); ?></td>
-						</tr>
-						<tr>
-							<td>18 months</td>
-							<td>$<?php printf("%d", ($g_nCostPerMonth * 18)); ?></td>
-						</tr>
-						<tr>
-							<td>24 months</td>
-							<td>$<?php printf("%d", ($g_nCostPerMonth * 24)); ?></td>
-						</tr>
-					</table>
-					
+					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
+						<h6><u>RESULTS</u></h6>
+						<select id="text_results" size="20" style="width:56em;border-width:medium;border-color:var(--NoteHeadingColor);">
+							<?php
+								for ($nI = 0; $nI < count($arrayResults); $nI++)
+								{
+									echo "<option value=\"" . $arrayResults[$nI][1] . "\">";
+									echo $arrayResults[$nI][0];
+									echo "</option>\n";
+								}
+							?>
+						</select>
+					</div>
 				</div>
 
 

@@ -100,16 +100,15 @@
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
-			<div class="web_title" id="web_title">
-				FIND A TRADIE
-			</div>
+			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<a class="navigation_link" href="index.php">Home</a>
-				<a class="navigation_link" href="benefits.html">Benefits</a>
+				<a class="navigation_link" href="benefits.php">Benefits</a>
 				<a class="navigation_link" href="about.html">About</a>
 					<?php
 	

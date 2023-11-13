@@ -1,9 +1,12 @@
 ﻿:root
 {
-	--ColorMastheadBG: rgb(160, 160, 190);
+	--ColorMastheadBG: LightSlateGray;
 	/*--ColorMastheadBG: rgba(100, 100, 150, 0.96);*/
-	--NoteHeadingColor: navy;
+	--NoteHeadingColor: MidnightBlue;
 	--NoteTextColor: black;
+	--BorderRadiusButton: 10px;
+	--LinkColorBG: #506171;
+	--LinkColorText: white;
 }
 
 body 
@@ -29,8 +32,7 @@ body
 	background-color: var(--ColorMastheadBG);
 	padding-left: 20px;
 	padding-right:20px;
-	padding-bottom: 0px;
-	height: 150px;
+	height: 210px;
 }
 
 .logo
@@ -46,7 +48,7 @@ body
     font-style: normal;
 }
 
-.web_title
+.title
 {
 	display: inline-block;
 	position: relative;
@@ -54,6 +56,19 @@ body
 	font-size: 6em;
 	font-weight: bold;
 	font-family: 'Concrete';
+}
+
+.tag
+{
+	display: block;
+	position: relative;
+	top: -30px;
+	font-family: 'Concrete';
+	font-size: xx-large;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: MidnightBlue;
 }
 
 .masthead_button
@@ -65,10 +80,10 @@ body
 	float: right;
 	margin-top: 3.6em;
 	margin-right: 3em;
-	font-size: 1em;
+	font-size: medium;
 	font-weight: 800;
 	font-family: Arial, Helvetica, sans-serif;
-	border-radius:  2em;
+	border-radius: var(--BorderRadiusButton);
 	padding-left: 1em;
 	padding-right: 1em;
 	padding-top: 0.6em;
@@ -92,43 +107,46 @@ a.masthead_button:hover
 {
 	display: block;
 	position: relative;
-	top: -20px;
+	top: -30px;
+	margin-left: 0px;
 }
 
 .navigation_link
 {
 	display: inline-block;
 	position: relative;
-	margin-bottom: 1em;
-	margin-left: 2em;
 	margin-right: 3em;
-	color: white;
-	font-size: large;
+	color: var(--LinkColorText);
+	font-size: x-large;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
+	background-color: var(--LinkColorBG);
+	/*#778899*/
+	padding: 0.3em;
+	border-radius: var(--BorderRadiusButton);
+	
 }
 
 .navigation_link:hover
 {
-	color: rgb(200, 200, 200);
+	background-color: #607181;
 }
 
 .page_heading
 {
-	display: block;
+	display: inline-block;
 	position: relative;
-	background-color: var(--ColorMastheadBG);
+	background-color: var(--LinkColorBG);
 	padding: 10px;
-	border-radius: 40px;
+	border-radius: var(--BorderRadiusButton);
 	margin-top: 10px;
-	margin-left: 48px;
-	color: white;
+	margin-left: 10px;
+	color: var(--LinkColorText);
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: large;
+	font-size: x-large;
 	font-weight: bold;
 	text-decoration: underline;
-	width: 10em;
 }
 
 .page_content
@@ -151,7 +169,21 @@ a.masthead_button:hover
 	box-shadow: 10px 10px rgb(0, 0, 0);
 	border-style: solid;
 	border-width: thick;
-	border-color: var(--ColorMastheadBG);
+	border-color: var(--LinkColorBG);
+}
+
+div.note form
+{
+	border-style: solid;
+	border-width: medium;
+	border-color: var(--NoteHeadingColor);
+}
+
+div.note input[type=text], input[type=password], input[type=checkbox], input[type=radio], select, textarea
+{
+	border-color: var(--NoteHeadingColor);
+	border-width: thin;
+	border-radius: 3px;
 }
 
 div.note p
@@ -160,7 +192,7 @@ div.note p
 	font-size: medium;
 }
 
-div.noteh1
+div.note h1
 {
 	color:  var(--NoteHeadingColor);
 }
@@ -191,38 +223,112 @@ div.note h6
 	color: var(--NoteHeadingColor);
 }
 
+.table_borders
+{
+	table-layout: fixed;
+	border-collapse: collapse;
+	margin: 10px;
+	border-style: solid;
+	border-color: var(--NoteHeadingColor);
+	border-width: medium;
+	width: 400px;
+}
+
+.cell_borders
+{
+	padding: 5px;
+	font-size: large;
+	color: black;
+	width: 50%;
+	border-bottom-style: solid;
+	border-color: var(--NoteHeadingColor);
+	border-width: thin;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	padding: 10px;
+}
+
+.table_no_borders
+{
+	table-layout: fixed;
+	border-collapse: collapse;
+	margin: 10px;
+	border-style: none;
+	/*width: 400px;*/
+}
+
+.cell_no_borders
+{
+	padding: 5px;
+	font-size: large;
+	color: black;
+	width: 50%;
+	border-style: none;
+	border-bottom-color: navy;
+	padding: 10px;
+}
+
 h1
 {
 	font-size: 4em;
 	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 h2
 {
 	font-size: 3.5em;
 	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 h3
 {
 	font-size: 3em;
 	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 h4
 {
 	font-size: 2.5em;
 	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 h5
 {
 	font-size: 2em;
-	font-family: Arial, Helvetica, sans-serif;}
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
 
 h6
 {
 	font-size: 1.5em;
 	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+p
+{
+	margin-bottom: 10px;
+}
+
+li
+{
+	padding-bottom: 10px;
+}
+
+textarea
+{
+	resize: none;	
 }
 
