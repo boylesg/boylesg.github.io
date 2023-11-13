@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 	
 <!-- #BeginTemplate "master.dwt" -->
@@ -11,275 +11,206 @@
 		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+			<style>
+			
+				body 
+				{
+					color: #000;
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: small;
+					font-style: normal;
+					background-image: url('images/background.jpg');
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: 100%;
+				}
+				
+			</style>
+			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				p
+				div.note form
 				{
-					color:black;
-					font-size:medium;
-				}
-				li
-				{
-					color:black;
-					font-size:medium;
-				}
-				table
-				{
-					display:inline-block;
-					border-style:solid;
-					border-width:medium;
-					border-collapse:collapse;
-					border-color:#CCAA77;
-					margin-left:auto;
-					margin-right:auto;
-					margin-top:0;
-					margin-bottom:0;
-					position:relative;
-					left:0em;
-				}
-				td, th
-				{
-					border-style:solid;
-					border-width:thin;
-					border-color:#CCAA77;
-					padding:20px;
-					font-size:large;
-					width:12em;
-					color:black;
+					border-style: solid;
+					border-width: medium;
+					border-color: var(--ColorMastheadBG);
 				}
 				
-				h2
-				{
-					color:#CCAA77;
-				}
 			</style>
 		<!-- #EndEditable -->
 	</head>
 	
 	<body onresize="SetPageContetHeight()">
 	
-		<!-- Begin Container -->
-		<div class="container" id="container">
-			<!-- Begin Masthead -->
-			<div class="masthead" id="masthead">
-				<img class="logo" alt="" src="images/Tradie.png" width="90" />
-				<div class="web_title_container" id="web_title_container">
-					<div class="web_name" id="web_name">
-						Find a Tradie<br/>
-					</div>
-					<div class="web_tag_line">
-						Gardener, landscaper, electrician, plumber, builder, carpenter, plasterer, painter &amp; more
-					</div>
-				</div>
-				<img class="trades_image" src="images/Tools.png" alt="images/Tools.png"/>
+		<!-- Begin Masthead -->
+		<div class="masthead" id="masthead">
+			<img class="logo" alt="" src="images/Tradie.png" width="90" />
+			<div class="web_title" id="web_title">
+				FIND A TRADIE
 			</div>
-			<!-- End Masthead -->
+			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<ul>
-					<li><a href="index.php">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="new_tradie.php">New Tradie</a></li>
-					<li><a href="new_customer.html">New Customer</a></li>
+				<a class="navigation_link" href="index.php">Home</a>
+				<a class="navigation_link" href="benefits.html">Benefits</a>
+				<a class="navigation_link" href="about.html">About</a>
 					<?php
-
+	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<li><a href=\"account.php\">Account</a></li>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\">Account</a>\n";
 						else
-							echo "<li><a href=\"login.php\">Login</a></li>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<li><a href="compare.html">Compare</a></li>
-					<li><a href="contact.html">FAQ</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
+					<a class="navigation_link" href="contact.html">FAQ</a>
+					<a class="navigation_link" href="contact.html">Contact</a>
 			</nav>
 			<!-- End Navigation -->
-			<!-- Begin Page Content -->
-			<div class="page_content" id="page_content">
-				<h1><u><script type="text/javascript">document.write(document.title);</script></u></h1>				
-					<!-- #BeginEditable "content" -->
-
-
-
-
-
-
-
-
-					<hr/>
-					<div class="main_button" id="div_new_tradie" onclick="document.location = 'new_tradie.html';">
-						I am a new tradie wanting to sign up
-					</div>
-					<div class="main_button" id="div_new_customer" onclick="document.location = 'new_customer.html';">
-						I am a new customer looking for a tradie
-					</div>
-					<div class="main_button" id="div_existing_account" onclick="document.location = 'login.html';">
-						I already have an account
-					</div>
-					<hr/>
-
-					<h2>Benefits for tradies</h2>
-					<p>
-						'Find a Tradie' is programmed &amp; administered by an australian tradie for Australian tradies!
-						<br/><br/>
-						Why?
-						<br/><br/>
-						Because the competition is seriously gouging Australian tradies and charging them around $20 to access 
-						customer contact details. And as a tradie, I know that $20 each time can add up really quickly, and cost 
-						you a lot of money if your quotes don't translate into paid jobs.
-					</p>
-					<p>
-						<ul>
-							<li>We don't charge commissions on your jobs.</li><br/>
-							<li>We don't charge you for accesss to customer contact details.</li><br/>
-							<li>We simply charge a flat annual membership fee, and that is all.<br/><br/>
-							
-								<table>
-									<thead>
-										<th>PERIOD</th>
-										<th>FEE</th>
-									</thead>
-									<tr>
-										<td><b>24 montly</b></td>
-										<td>$<?php printf("0.2%f", g_nCostPerMonth * 24); ?></td>
-									</tr>
-									<tr>
-										<td><b>18 montly</b></td>
-										<td>$<?php printf("0.2%f", g_nCostPerMonth * 18); ?></td>
-									</tr>
-									<tr>
-										<td><b>12 montly</b></td>
-										<td>$<?php printf("0.2%f", g_nCostPerMonth * 12); ?></td>
-									</tr>
-									<tr>
-										<td><b>6 Monthly</b></td>
-										<td>$<?php printf("0.2%f", g_nCostPerMonth * 6); ?></td>
-									</tr>
-									<tr>
-										<td><b>Monthly</b></td>
-										<td>$<?php printf("0.2%f", g_nCostPerMonth); ?></td>
-									</tr>
-								</table>
-							</li><br/>	
-							<li>
-								Both customers and tradies can leave each other positive or negative feedback, with comments;
-							</li>
-							<li>
-							 	Feedback is editable at any time, e.g. you can change negative feedback to positive feedback subject 
-								to private negotiations between a tradie and their client.
-							</li>
-						</ul>
-					</p>
-					
-					<h2>Benefits for customers</h2>
-					<p>
-						<ul>
-							<li>Memberhip is free.</li><br/>
-							<li>Tradies are encouraged to list their trade license and professional membership details so that you can peruse them, and verify them if you wish..</li><br/>
-							<li>A community forum where you can ask tradies questions.</li><br/>
-							<li>You can also leave tradies positive or negative ratings, depending on whether you are happy with their work.</li>
-						</ul>
-					</p>
-					
-
-
-
-
-
-
-
-					<!-- #EndEditable -->
-			<!-- End Page Content -->
-			</div>
-			<!-- Begin Footer -->
-			<div class="footer" id="footer">
-				<span class="footer_links" id="footer_links">
-					<a href="index.php">Home</a> | 
-					<a href="new_tradie.php">New Tradie</a> | 
-					<a href="new_customer.html">New Customer</a> | 
-					<?php
-						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a href=\"account.php\">Account</a>";
-						else
-							echo "<a href=\"login.php\">Login</a>";
-					?> | 
-					<a href="about.html">About</a> | 
-					<a href="compare.html">Compare</a> | 
-					<a href="faq.html">FAQ</a> | 
-					<a href="contact.html">Contact</a>
-				</span>
-				<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
-			</div>
-			<!-- End Footer -->
 		</div>
-		<!-- End Container -->
+		<!-- Begin PageHeading -->
+		<div id="page_heading"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
+		<!-- End PageHeading -->
+		<!-- End Masthead -->
+		<!-- Begin Page Content -->
+		<div class="page_content" id="page_content">
+				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
+
+				<marquee><h3 style="color: navy;"><b>Created by an Australian tradie for Australians</b></h3></marquee>
+	
+				<div class="note">
+					
+					<h4>Customers need to register and login to use this service.</h4>
+					<h5>However you can give it a try here.</h5>
+					<form method="post" action="index.php">
+						
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td style="text-align:right;">
+									<b>What type of tradie are you looking for?</b>
+								</td>
+								<td>
+									&nbsp;&nbsp;<sekect id="select_trade" name="trade">
+										<?php DoGeneratePrimaryTradeOptions(); ?>
+									</sekect>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;">
+									<b>What is you maximum budget?</b>
+								</td>
+								<td>
+									$&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" maxlength="6" onkeydown="OnKeyPressDigitsOnly(event)" />
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;">
+									<b>What is the size of your job?</b>
+								</td>
+								<td>
+									&nbsp;&nbsp;&nbsp;<select id="select_job_size" name="select_job_size">
+										<option selected>Up to 50</option>
+										<option>50 - 100</option>
+										<option>100 - 250</option>
+										<option>250 - 500</option>
+										<option>More than 500</option>
+									</select>&nbsp;<b>m<sup>2</sup></b>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;">
+									<b>What is your postcode?</b>
+								</td>
+								<td>
+									&nbsp;&nbsp;&nbsp;<input type="text" id="text_postcode" name="text_postcode" maxlength="4" onkeydown="OnKeyPressDigitsOnly(event)" />
+								</td>
+							</tr>
+						</table>
+					
+					</form>
+				</div><br/>
+
+				<div class="note note_benefits" style="float: left; margin-left: 45px;">
+					<h5>BENEFITS</h5>
+					<ul>
+						<li>eBay style feedback accountability for both tradies and customers.</li>
+						<br/>
+						<li>Customers can browse tradies and view their feedback reputation.</li>
+						<br/>
+						<li>Tradies can browse customers and view their feedback reputation.</li>
+						<br/>
+						<li>Free membership for customers.</li>
+						<br/>
+						<li>Customers can browse tradies (based on filters like minimum charge and maximum distance) and contact them directly.</li>
+						<br/>
+						<li>Flat annual membership for tradies, with no fees to obtain contact details.</li>
+						<br/>
+						<li>No bank account or credit card numbers are stored on the web site.</li>
+						<br/>
+						<li>All payments made with Paypal.</li>
+					</ul>
+				</div>
+				
+				<div class="note note_benefits" style="float: right; margin-left: 45px; margin-right: 45px;">
+					<h5 style="">COST FOR TRADIES</h5>
+					<table border="1" cellspacing="0" cellpadding="2em">
+						<tr>
+							<td>1 month</td>
+							<td>$<?php printf("%d", $g_nCostPerMonth); ?></td>
+						</tr>
+						<tr>
+							<td>6 monts</td>
+							<td>$<?php printf("%d", ($g_nCostPerMonth * 6)); ?></td>
+						</tr>
+						<tr>
+							<td>12 months</td>
+							<td>$<?php printf("%d", ($g_nCostPerMonth * 12)); ?></td>
+						</tr>
+						<tr>
+							<td>18 months</td>
+							<td>$<?php printf("%d", ($g_nCostPerMonth * 18)); ?></td>
+						</tr>
+						<tr>
+							<td>24 months</td>
+							<td>$<?php printf("%d", ($g_nCostPerMonth * 24)); ?></td>
+						</tr>
+					</table>
+					
+				</div>
+
+
+
+
+
+
+
+
+				<!-- #EndEditable -->
+		<!-- End Page Content -->
+		</div>
+		<!-- Begin Footer -->
+		<div class="footer" id="footer">
+			<!--
+			<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
+			-->
+		</div>
+		<!-- End Footer -->
 	
 	</body>
 	
 	<footer>
 		
 		<script type="text/javascript">
-		
-			function SetPageContetHeight()
-			{
-				let divMasthead = document.getElementById("masthead"),
-					navNavigation = document.getElementById("navigation"),
-					divFooter = document.getElementById("footer"),
-					divPageContent = document.getElementById("page_content"),
-					nTotalOccupiedHeight = 0, nAvailableHeight = 680;
-					
-				if (divMasthead && divFooter && navNavigation && divPageContent)
-				{
-					nTotalOccupiedHeight = divMasthead.offsetHeight + divFooter.offsetHeight + navNavigation.offsetHeight;
-					nAvailableHeight = document.documentElement.offsetHeight - nTotalOccupiedHeight;
-					divPageContent.style.height = nAvailableHeight + "px";
-					divPageContent.style.width = document.documentElement.offsetWidth;
-				}
-			}
-			SetPageContetHeight();
-			
+								
 		</script>
 	
 	</footer>

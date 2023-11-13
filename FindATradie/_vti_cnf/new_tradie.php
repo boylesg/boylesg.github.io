@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
+vti_timelastmodified:TR|13 Nov 2023 09:42:03 -0000
+vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|10 Nov 2023 10:36:16 -0000
-vti_timecreated:TR|22 Oct 2023 12:14:53 -0000
+vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|NEW TRADIE
-vti_extenderversion:SR|12.0.0.0
-vti_backlinkinfo:VX|contact.html login.php index.php master.dwt about.html faq.html account.php new_customer.html compare.html new_tradie.php
-vti_nexttolasttimemodified:TW|10 Nov 2023 10:09:08 -0000
-vti_cacheddtm:TX|10 Nov 2023 10:36:16 -0000
-vti_filesize:IR|13037
+vti_backlinkinfo:VX|index.php contact.html login.php benefits.php master.dwt about.html account.php faq.html new_customer.html new_tradie.php compare.html
+vti_nexttolasttimemodified:TR|13 Nov 2023 09:35:48 -0000
+vti_cacheddtm:TX|13 Nov 2023 09:42:03 -0000
+vti_filesize:IR|11865
 vti_cachedtitle:SR|NEW TRADIE
 vti_cachedbodystyle:SR|<body onresize="SetPageContetHeight()">
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/Tradie.png S|images/Tools.png H|index.php H|about.html H|new_tradie.php H|new_customer.html H|compare.html H|contact.html H|contact.html A|new_tradie.php A|login.php H|index.php H|new_tradie.php H|new_customer.html H|about.html H|compare.html H|faq.html H|contact.html
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/Tradie.png FSUS|images/Tools.png FHUS|index.php FHUS|about.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|compare.html FHUS|contact.html FHUS|contact.html FAUS|new_tradie.php FAUS|login.php FHUS|index.php FHUS|new_tradie.php FHUS|new_customer.html FHUS|about.html FHUS|compare.html FHUS|faq.html FHUS|contact.html
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.html H|about.html H|contact.html H|contact.html A|new_tradie.php A|login.php
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php NHUS|benefits.html FHUS|about.html FHUS|contact.html FHUS|contact.html FAUS|new_tradie.php FAUS|login.php
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false

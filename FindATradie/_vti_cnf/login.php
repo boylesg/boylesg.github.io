@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|11 Nov 2023 15:37:51 -0000
+vti_timelastmodified:TR|13 Nov 2023 09:42:03 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timecreated:TR|28 Oct 2023 08:32:20 -0000
+vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|LOG IN
-vti_backlinkinfo:VX|account.php new_tradie.php
-vti_nexttolasttimemodified:TW|11 Nov 2023 15:37:18 -0000
-vti_cacheddtm:TX|11 Nov 2023 15:37:51 -0000
-vti_filesize:IR|10053
+vti_backlinkinfo:VX|contact.html login.php benefits.php index.php account.php master.dwt about.html faq.html new_customer.html new_tradie.php compare.html
+vti_nexttolasttimemodified:TR|13 Nov 2023 09:35:48 -0000
+vti_cacheddtm:TX|13 Nov 2023 09:42:03 -0000
+vti_filesize:IR|8881
 vti_cachedtitle:SR|LOG IN
 vti_cachedbodystyle:SR|<body onresize="SetPageContetHeight()">
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/Tradie.png S|images/Tools.png H|index.php H|about.html H|new_tradie.php H|new_customer.html H|compare.html H|contact.html H|contact.html A|account.php H|index.php H|new_tradie.php H|new_customer.html H|about.html H|compare.html H|faq.html H|contact.html
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/Tradie.png FSUS|images/Tools.png FHUS|index.php FHUS|about.html FHUS|new_tradie.php FHUS|new_customer.html FHUS|compare.html FHUS|contact.html FHUS|contact.html FAUS|account.php FHUS|index.php FHUS|new_tradie.php FHUS|new_customer.html FHUS|about.html FHUS|compare.html FHUS|faq.html FHUS|contact.html
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.html H|about.html H|contact.html H|contact.html A|account.php
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php NHUS|benefits.html FHUS|about.html FHUS|contact.html FHUS|contact.html FAUS|account.php
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false
