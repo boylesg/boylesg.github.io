@@ -164,7 +164,7 @@
 									<b>What type of tradie are you looking for?</b>
 								</td>
 								<td class="cell_no_borders">
-									&nbsp;&nbsp;<select id="select_trade" name="select_trade">
+									&nbsp;&nbsp;&nbsp;<select id="select_trade" name="select_trade">
 										<?php DoGeneratePrimaryTradeOptions($_POST["select_trade"]); ?>
 									</select>
 								</td>

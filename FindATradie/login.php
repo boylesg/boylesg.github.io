@@ -31,10 +31,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
-			
-			<script type="text/javascript">
-			</script>
+			</style>
 			
 <?php
 
@@ -135,90 +132,91 @@
 
 
 
+				<div class="note">
 
-
-
-					<form method="post" id="form_recover" class="form" style="width:380px;display:<?php echo $g_strRecover; ?>;">
-						<table>
+					<form method="post" id="form_recover" class="form" style="width:555px;display:<?php echo $g_strRecover; ?>;">
+						<table class="table_no_borders">
 							<tr>
-								<td style="text-align:right;" ><label for="text_recover_surname" id="label_surname">Username: </label></td>
-								<td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username: </label></td>
+								<td class="cell_no_borders">
 									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;"><label for="text_recover_business_name" id="label_business_name" >Business name: </label></td>
-								<td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_business_name" id="label_business_name" >Business name: </label></td>
+								<td class="cell_no_borders">
 									<input name="text_business_name" id="text_recover_business_name" style="width: 20em" type="text"  value=""/>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;"><label for="text_recover_mobile" id="label_mobile" >Mobile: </label></td>
-								<td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_mobile" id="label_mobile" >Mobile: </label></td>
+								<td class="cell_no_borders">
 									<input name="text_mobile" id="text_recover_mobile" style="width: 20em" type="text"  value=""/>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:left;"><br/><input type="button" id="button_login" value="GO TO LOGIN" onclick="OnShowForm('form_login', 'form_recover')"/></td>
-								<td style="text-align:right;"><br/><input type="submit" id="submit_recover" name="submit_recover" value="EMAIL REMINDER"/></td>
+								<td style="text-align:left;" class="cell_no_borders"><br/><input type="button" id="button_login" value="GO TO LOGIN" onclick="OnShowForm('form_login', 'form_recover')"/></td>
+								<td style="text-align:right;" class="cell_no_borders"><br/><input type="submit" id="submit_recover" name="submit_recover" value="EMAIL REMINDER"/></td>
 							</tr>
 						</table>
 					</form>
 					
-					<form method="post" id="form_login" class="form" action="account.php" style="width:600px;display:<?php echo $g_strLogin; ?>;">
-						<table>
+					<form method="post" id="form_login" class="form" action="account.php" style="width:655px;display:<?php echo $g_strLogin; ?>;">
+						<table class="table_no_borders">
 							<tr>
-								<td style="text-align:right;"><label for="text_username" id="label_username">Username or email address: </label></td>
-								<td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email address: </label></td>
+								<td class="cell_no_borders">
 									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;"><label for="text_password" id="label_password" >Password: </label></td>
-								<td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_password" id="label_password" >Password: </label></td>
+								<td class="cell_no_borders">
 									<input type="password" name="text_password" id="text_password" style="width: 20em" value="<?php if (isset($_SESSION["account_password"])) echo $_SESSION["account_password"]; ?>"/>
-									&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
+									<br/><input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:left;"><br/><input type="button" id="button_recover" value="I FORGET MY PASSWORD" onclick="OnShowForm('form_recover', 'form_login')"/></td>
-								<td style="text-align:right;"><br/><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
+								<td style="text-align:left;" class="cell_no_borders"><br/><input type="button" id="button_recover" value="I FORGET MY PASSWORD" onclick="OnShowForm('form_recover', 'form_login')"/></td>
+								<td style="text-align:right;" class="cell_no_borders"><br/><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
 							</tr>
 						</table>
 					</form>
 					
-					<script type="text/javascript">
-						
-						function OnShowForm(strShowFormID, strHideFormID)
-						{
-							let formShow = document.getElementById(strShowFormID),
-								formHide = document.getElementById(strHideFormID);
-								
-							if (formShow && formHide)
-							{
-								formHide.style.display = "none";
-								formShow.style.display = "block";
-							}
-						}
-												
-						function OnClickCheckboxShow(checkShow)
-						{
-							let textPassword = document.getElementById("text_password");
+				</div>	
+			
+				<script type="text/javascript">
+					
+					function OnShowForm(strShowFormID, strHideFormID)
+					{
+						let formShow = document.getElementById(strShowFormID),
+							formHide = document.getElementById(strHideFormID);
 							
-							if (checkShow && textPassword)
+						if (formShow && formHide)
+						{
+							formHide.style.display = "none";
+							formShow.style.display = "block";
+						}
+					}
+											
+					function OnClickCheckboxShow(checkShow)
+					{
+						let textPassword = document.getElementById("text_password");
+						
+						if (checkShow && textPassword)
+						{
+							if (checkShow.checked)
 							{
-								if (checkShow.checked)
-								{
-									textPassword.type = "text";
-								}
-								else
-								{
-									textPassword.type = "password";
-								}
+								textPassword.type = "text";
+							}
+							else
+							{
+								textPassword.type = "password";
 							}
 						}
-																		
-					</script>					
+					}
+																	
+				</script>					
 
 
 

@@ -468,12 +468,7 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
+				<div class="note">
 
 					<form method="post" id="form_logout" class="form" action="login.php">
 						<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
@@ -631,7 +626,10 @@
 						</div>
 
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
+						
 					</div>
+					
+				</div>
 
 <script type="text/javascript">
 
