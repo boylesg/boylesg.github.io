@@ -32,60 +32,6 @@
 						
 			<style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				:root 
 				{
 					--Width: 98%;
@@ -255,7 +201,7 @@
 		{
 			$row = $result->fetch_assoc();
 			$_SESSION["account_id"] = $row["id"];
-			$_SESSION["account_trade"] = $row["trade"];
+			$_SESSION["account_trade"] = $row["trade_id"];
 			$_SESSION["account_business_name"] = $row["business_name"];
 			$_SESSION["account_first_name"] = $row["first_name"];
 			$_SESSION["account_surname"] = $row["surname"];

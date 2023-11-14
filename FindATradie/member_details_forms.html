@@ -44,7 +44,7 @@
 					<td style="text-align:right;"><b>Primary trade</b></td>
 					<td>
 						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'), 'textarea')">
-							<?php DoGeneratePrimaryTradeOptions(); ?>
+							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 						</select>
 					</td>
 					<td>
@@ -115,6 +115,8 @@
 				<td style="text-align:right;"><b>Description</b></td>
 				<td>
 					<textarea id="text_description" name="text_description" cols="64" rows="16" required><?php if (isset($_SESSION['account_description'])) echo $_SESSION['account_description']; ?></textarea>
+					<br/>
+					Enter a more detailed description of your business: services, specialties, offers and philosophy etc.
 				</td>
 			</tr>
 			<tr>
@@ -126,7 +128,11 @@
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Minimum budget</b></td>
-				<td><b>$</b>&nbsp;<input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php if (isset($_SESSION['account_minimum_budget'])) printf("%d", $_SESSION['account_minimum_budget']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+				<td>
+					<b>$</b>&nbsp;<input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php if (isset($_SESSION['account_minimum_budget'])) printf("%d", $_SESSION['account_minimum_budget']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<br/>
+					This is for tradies who are not interested in small value jobs. Enter 0 if you will accept jobs of any value.
+				</td>
 			</tr>
 			<tr>
 				<td style="text-align:right;"><b>Maximum size</b></td>
@@ -144,6 +150,8 @@
 				<td style="text-align:right;"><b>Maximum distance</b></td>
 				<td>
 					<input type="text" id="text_maximum_distance" name="text_maximum distance" size="8" required value="<?php if (isset($_SESSION['account_maximum_distance'])) printf("%d", $_SESSION['account_maximum_distance']); ?>" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
+					<br/>
+					Enter 0 if you will travel any distance.
 				</td>
 			</tr>
 			<tr>

@@ -77,55 +77,76 @@
 		$nTradieMaxSizeIndex = 0;
 		
 		if ($strTradieMaxSize == "Up to 50")
-			$nTradieMaxSizeIndex = 0;
-		else if ($strTradieMaxSize == ">50 - 100")
 			$nTradieMaxSizeIndex = 1;
-		else if ($strTradieMaxSize == "100 - 250")
+		else if ($strTradieMaxSize == ">50 - 100")
 			$nTradieMaxSizeIndex = 2;
-		else if ($strTradieMaxSize == "250 - 500")
+		else if ($strTradieMaxSize == "100 - 250")
 			$nTradieMaxSizeIndex = 3;
-		else if ($strTradieMaxSize == "More than 500")
+		else if ($strTradieMaxSize == "250 - 500")
 			$nTradieMaxSizeIndex = 4;
-		else if ($strTradieMaxSize == "Up to 50")
+		else if ($strTradieMaxSize == "More than 500")
 			$nTradieMaxSizeIndex = 5;
+		else if ($strTradieMaxSize == "Up to 50")
+			$nTradieMaxSizeIndex = 6;
 			
 		return $nJobSize <= $nTradieMaxSizeIndex;
 	}
 	
 	function IsDistanceMatch($strTradiePostcode, $strJobPostcode, $strTradieMaxDistance)
 	{
-		echo "<div style=\"background-color:white;\">";
-		$url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $strTradiePostcode . "&destinations=". $strJobPostcode . "&mode=driving&language=en-EN&sensor=false";
-
-		$data   = @file_get_contents($url);
-		$result = json_decode($data, true);
-		if ($result)
-		{
-			$nDistance = (int)$result["rows"][0]["elements"][0]["distance"]["value"] / 1000;
-			echo "<h1>" . $nDistance . "</h1>";
-			print_r($result);
-		}
-		else
-		{
-			print_r($result);
-		}
-		echo "</div>";
-		return $nDistance <= (int)$strTradieMaxDistance;
+		return true;
 	}
 	
 	IsDistanceMatch("3076", "2000", "10");
 	$strResultsDisplay = "none";
 	$arrayResults = [];
-	if (isset($_POST["select_trade"]))
+	$mapMemberIDs = [];
+	if (isset($_POST["submit_search"]))
 	{
 		$strResultsDisplay = "block";
 		
-		$results = DoFinQuery1($g_dbFindATradie, "members", "trade_id", $_POST["select_trade"]);
-		$row = $results->fetch_assoc();
-		if (IsMatchMaxSize($row["maximim_size"], $_POST["select_job_size"]) && 
-			((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
-			IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
-			$arrayResults[] = [$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"], $row["id"]];
+		$results = DoFindQuery1($g_dbFindATradie, "members", "trade_id", $_POST["select_trade"]);
+		if ($results->num_rows > 0)
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				if (IsMatchMaxSize($row["maximum_size"], $_POST["select_job_size"]) && 
+					((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
+					IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
+				{
+					$arrayResults[] = [
+										$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . ", " . sprintf("minimum charge: $%d", $row["minimum_charge"]),
+										$row["id"]
+								  	  ];
+					$mapMemberIDs[$row["id"]] = $row["id"];
+					$strResultsDisplay = "block";
+				}
+			}
+		}
+		$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "trade_id", $_POST["select_trade"]);
+		if ($results->num_rows > 0)
+		{
+			$row = $results->fetch_assoc();
+			$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
+			if ($results->num_rows > 0)
+			{
+				while ($row = $results->fetch_assoc())
+				{
+					if (IsMatchMaxSize($row["maximum_size"], $_POST["select_job_size"]) && 
+						((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
+						IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
+					{
+						if (!isset($mapMemberIDs[$row["id"]]))
+							$arrayResults[] = [$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . sprintf("minimum charge: $%d",  $row["minimum_charge"]), $row["id"]];
+						$strResultsDisplay = "block";
+					}
+				}
+			}
+		}
+		if (count($arrayResults) == 0)
+		{
+			PrintJavascriptLine("AlertError(\"No tradies matching these criteria were found!\");", 2, true);
+		}
 	}
 
 ?>
@@ -133,9 +154,9 @@
 				<div class="note">
 					
 					<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
-					<h5>However you can give it a test run here.</h5>
-					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h6>
-					<form method="post" action="index.php" style="width:57em;">
+					<h5><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h5>
+					<h6>However you can give it a test run here...</h6>
+					<form method="post" action="index.php" style="width:850px">
 						
 						<table class="table_no_borders">
 							<tr>
@@ -143,8 +164,8 @@
 									<b>What type of tradie are you looking for?</b>
 								</td>
 								<td class="cell_no_borders">
-									&nbsp;&nbsp;<select id="select_trade" name="trade">
-										<?php DoGeneratePrimaryTradeOptions(); ?>
+									&nbsp;&nbsp;<select id="select_trade" name="select_trade">
+										<?php DoGeneratePrimaryTradeOptions($_POST["select_trade"]); ?>
 									</select>
 								</td>
 							</tr>
@@ -153,7 +174,7 @@
 									<b>What is you maximum budget?</b>
 								</td>
 								<td class="cell_no_borders">
-									$&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" maxlength="6" onkeydown="OnKeyPressDigitsOnly(event)" />
+									$&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" maxlength="6" value="<?php if (isset($_POST["text_maximum_budget"])) echo $_POST["text_maximum_budget"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 								</td>
 							</tr>
 							<tr>
@@ -162,11 +183,11 @@
 								</td>
 								<td class="cell_no_borders">
 									&nbsp;&nbsp;&nbsp;<select id="select_job_size" name="select_job_size">
-										<option selected value="0">Up to 50</option>
-										<option value="1">50 - 100</option>
-										<option value="2">100 - 250</option>
-										<option value="3">250 - 500</option>
-										<option value="4">More than 500</option>
+										<option value="0" <?php if ((isset($_POST["select_trade"]) && ($_POST["select_trade"] == "0")) || !isset($_POST["select_trade"])) echo "selected"; ?>>Up to 50</option>
+										<option value="1" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "1")) echo "selected"; ?>>50 - 100</option>
+										<option value="2" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "2")) echo "selected"; ?>>100 - 250</option>
+										<option value="3" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "3")) echo "selected"; ?>>250 - 500</option>
+										<option value="4" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "4")) echo "selected"; ?>>More than 500</option>
 									</select>&nbsp;<b>m<sup>2</sup></b>
 								</td>
 							</tr>
@@ -175,23 +196,32 @@
 									<b>What is your postcode?</b>
 								</td>
 								<td class="cell_no_borders">
-									&nbsp;&nbsp;&nbsp;<input type="text" id="text_postcode" name="text_postcode" maxlength="4" onkeydown="OnKeyPressDigitsOnly(event)" />
+									&nbsp;&nbsp;&nbsp;<input type="text" id="text_postcode" name="text_postcode" maxlength="4" value="<?php if (isset($_POST["text_postcode"])) echo $_POST["text_postcode"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders" colspan="2">
+									<input type="submit" id="submit_search"  name="submit_search" value="SEARCH" />
 								</td>
 							</tr>
 						</table>
 					</form>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
-						<select id="text_results" size="20" style="width:56em;border-width:medium;border-color:var(--NoteHeadingColor);">
+						<select id="text_results" size="10" style="font-size:large;width:850px;border-width:medium;border-color:var(--NoteHeadingColor);">
 							<?php
+								$strSelected = " selected";
 								for ($nI = 0; $nI < count($arrayResults); $nI++)
 								{
-									echo "<option value=\"" . $arrayResults[$nI][1] . "\">";
+									echo "<option value=\"" . $arrayResults[$nI][1] . "\"" . $strSelected . ">";
 									echo $arrayResults[$nI][0];
 									echo "</option>\n";
+									$strSelected = "";
 								}
 							?>
 						</select>
+						<br/><br/>
+						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
 					</div>
 				</div>
 

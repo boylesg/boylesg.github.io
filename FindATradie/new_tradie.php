@@ -30,7 +30,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -156,7 +156,7 @@
 			$_SESSION["account_username"] = $_POST["text_username"];
 			$_SESSION["account_password"] = $_POST["text_password"];
 
-			$strQuery = "INSERT INTO members (trade, business_name, first_name, surname, abn, structure, license, description, " . 
+			$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username password expiry_date) VALUES (" .
 							AppendSQLValues($_POST["select_trade"], $_POST["text_business_name"], 
@@ -214,7 +214,7 @@
 						<input type="text" id="htext_username" name="text_username" />
 						<input type="text" id="htext_password" name="text_password" />
 						<select id="hselect_trade" name="select_trade">
-							<?php DoGeneratePrimaryTradeOptions(); ?>
+							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 						</select>
 						<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
 							<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>

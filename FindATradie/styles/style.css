@@ -6,6 +6,7 @@
 	--NoteTextColor: black;
 	--BorderRadiusButton: 10px;
 	--LinkColorBG: #506171;
+	--LinkColorHighlightBG: #607181;
 	--LinkColorText: white;
 }
 
@@ -122,7 +123,6 @@ a.masthead_button:hover
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	background-color: var(--LinkColorBG);
-	/*#778899*/
 	padding: 0.3em;
 	border-radius: var(--BorderRadiusButton);
 	
@@ -130,7 +130,7 @@ a.masthead_button:hover
 
 .navigation_link:hover
 {
-	background-color: #607181;
+	background-color: var(--LinkColorHighlightBG);
 }
 
 .page_heading
@@ -177,13 +177,16 @@ div.note form
 	border-style: solid;
 	border-width: medium;
 	border-color: var(--NoteHeadingColor);
+	background-color: var(--ColorMastheadBG);
+	border-radius: 5px;
 }
 
-div.note input[type=text], input[type=password], input[type=checkbox], input[type=radio], select, textarea
+div.note input[type=text], input[type=password], input[type=checkbox], input[type=radio], select, textarea, label
 {
-	border-color: var(--NoteHeadingColor);
+	/*border-color: var(--NoteHeadingColor);*/
 	border-width: thin;
 	border-radius: 3px;
+	font-size: large;
 }
 
 div.note p

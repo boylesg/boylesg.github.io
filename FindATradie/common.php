@@ -299,7 +299,7 @@
 	//******************************************************************************
 	
 	// Generate options for a primary trade 'select' input, with one selection.
-	function DoGeneratePrimaryTradeOptions()
+	function DoGeneratePrimaryTradeOptions($strTradeID)
 	{
 		global $g_dbFindATradie;
 		 
@@ -310,7 +310,7 @@
 	    	PrintIndents(8);
 			echo "<option value=\"" . $row["id"] . "\"";
 			
-			if (isset($_SESSION["account_trade"]) && ($_SESSION["account_trade"] == $row["id"]))
+			if (isset($strTradeID) && ($strTradeID == $row["id"]))
 				echo " selected";
 			
 			echo ">";
