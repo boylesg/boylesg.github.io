@@ -134,7 +134,7 @@
 
 				<div class="note">
 
-					<form method="post" id="form_recover" class="form" style="width:555px;display:<?php echo $g_strRecover; ?>;">
+					<form method="post" id="form_recover" class="form" style="width:440px;display:<?php echo $g_strRecover; ?>;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username: </label></td>
@@ -161,7 +161,7 @@
 						</table>
 					</form>
 					
-					<form method="post" id="form_login" class="form" action="account.php" style="width:655px;display:<?php echo $g_strLogin; ?>;">
+					<form method="post" id="form_login" class="form" action="account.php" style="width:560px;display:<?php echo $g_strLogin; ?>;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email address: </label></td>
@@ -182,6 +182,11 @@
 							</tr>
 						</table>
 					</form>
+					
+					<div class="advert" id="advert_login" style="height: 300px; width: 1000px;">
+						<h6>ADVERTISING SPACE</h6>
+						<p>Under construction</p>
+					</div>
 					
 				</div>	
 			

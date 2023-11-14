@@ -8,6 +8,11 @@
 	--LinkColorBG: #506171;
 	--LinkColorHighlightBG: #607181;
 	--LinkColorText: white;
+	--NoteColorBG: white;
+	--NoteColor: black;
+	--Margin: 30px;
+	--BorderRadius: 5px;
+	--Padding: 20px;
 }
 
 body 
@@ -31,8 +36,8 @@ body
 .masthead
 {
 	background-color: var(--ColorMastheadBG);
-	padding-left: 20px;
-	padding-right:20px;
+	padding-left: var(--Padding);
+	padding-right:var(--Padding);
 	height: 210px;
 }
 
@@ -157,15 +162,17 @@ a.masthead_button:hover
 
 .note
 {
-	display: block;
-	/*background-color: rgba(255, 255, 255, 0.9);*/
-	background-color: rgb(255, 255, 255);
+	/*display: block;*/
+	display: flex;
+ 	flex-wrap: nowrap;	
+ 	/*background-color: rgba(255, 255, 255, 0.9);*/
+	background-color: var(--NoteColorBG);
 	border-radius: 20px;
-	padding: 20px;
-	margin-left: 30px;
-	margin-right: 30px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	padding: var(--Padding);
+	margin-left: var(--Margin);
+	margin-right: var(--Margin);
+	margin-top: var(--Margin);
+	margin-bottom: var(--Margin);
 	/*box-shadow: 10px 10px rgba(0, 0, 0, 0.65);*/
 	box-shadow: 10px 10px rgb(0, 0, 0);
 	border-style: solid;
@@ -173,29 +180,49 @@ a.masthead_button:hover
 	border-color: var(--LinkColorBG);
 }
 
+.advert
+{
+	display: inline-block;
+	border-style: solid;
+	border-width: medium;
+	border-color: var(--NoteHeadingColor);
+	background-color: var(--NoteColorBG);
+	border-radius: var(--BorderRadius);
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: var(--Margin);
+	margin-bottom: var(--Margin);
+	padding: var(--Padding);
+}
+
 div.note form
 {
+	display: inline-block;
 	border-style: solid;
 	border-width: medium;
 	border-color: var(--NoteHeadingColor);
 	background-color: var(--ColorMastheadBG);
-	border-radius: 5px;
+	border-radius: var(--BorderRadius);
+	margin-right: var(--Margin);
+	margin-top: var(--Margin);
+	margin-bottom: var(--Margin);
 }
 
 input[type=button], input[type=submit], input[type=reset], button
 {
-	padding: 5px;
-	border-radius: 5px;
+	padding: 8px;
+	border-radius: var(--BorderRadius);
 	border-style: outset;
 	border-width: thin;
+	font-size: small;
+	font-weight: bold;
 }
 
 input[type=text], input[type=password], input[type=checkbox], input[type=radio], select, textarea
 {
-	border-radius: 5px;
+	border-radius: var(--BorderRadius);
 	border-style: inset;
 	border-width: thin;
-	font-size: large;
 }
 
 div.note p

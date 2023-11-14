@@ -151,12 +151,13 @@
 
 ?>
 
-				<div class="note">
+				<div class="note" style="flex-wrap: wrap;">
 					
 					<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
 					<h5><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h5>
 					<h6>However you can give it a test run here...</h6>
-					<form method="post" action="index.php" style="width:850px">
+
+					<form method="post" action="index.php" style="width:745px">
 						
 						<table class="table_no_borders">
 							<tr>
@@ -206,6 +207,10 @@
 							</tr>
 						</table>
 					</form>
+					<div class="advert" id="advert_index" style="height: 208px; width: 484px;">
+						<h6>ADVERTISING SPACE</h6>
+						<p>Under construction</p>
+					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
 						<select id="text_results" size="10" style="font-size:large;width:850px;border-width:medium;border-color:var(--NoteHeadingColor);">
