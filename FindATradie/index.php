@@ -153,10 +153,11 @@
 
 				<div class="note" style="flex-wrap: wrap;">
 					
-					<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
-					<h5><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h5>
-					<h6>However you can give it a test run here...</h6>
-
+					<div>
+						<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
+						<h5><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h5>
+						<h6>However you can give it a test run here...</h6>
+					</div>
 					<form method="post" action="index.php" style="width:745px">
 						
 						<table class="table_no_borders">
