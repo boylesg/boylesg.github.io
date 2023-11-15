@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 	
-<!-- #BeginTemplate "master.dwt" -->
-
+	<!-- #BeginTemplate "master.dwt" -->
+	
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Benefits</title>
+		<title>Create an advertisement</title>
 		<!-- #EndEditable -->
 		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
@@ -30,7 +30,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -70,69 +70,56 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-				<div class="note" style="float: left; margin-left: 45px;width:1200px;">
-					<p>
-						<b>Find a Tradie</b> uses a mutual trust system like <b>eBay</b>, with both tradies and customers being able 
-						to leave each other feedback. And both parties being able to peruse that feedback. It is for that reason that 
-						customers also need to register and login to use this service.
-					</p>
-					<h5>BENEFITS FOR TRADIES</h5>
-					<ul style="font-size: medium;">
-						<li>Tradies can browse customers and view their feedback reputation.</li>
-						<li>Flat annual membership for tradies, with no fees to obtain contact details.</li>
-							<table class="table_borders">
-								<tr>
-									<td class="cell_borders">1 month</td>
-									<td class="cell_borders">$<?php printf("%d", $g_nCostPerMonth); ?></td>
-								</tr>
-								<tr>
-									<td class="cell_borders">6 monts</td>
-									<td class="cell_borders">$<?php printf("%d", ($g_nCostPerMonth * 6)); ?></td>
-								</tr>
-								<tr>
-									<td class="cell_borders">12 months</td>
-									<td class="cell_borders">$<?php printf("%d", ($g_nCostPerMonth * 12)); ?></td>
-								</tr>
-								<tr>
-									<td class="cell_borders">18 months</td>
-									<td class="cell_borders">$<?php printf("%d", ($g_nCostPerMonth * 18)); ?></td>
-								</tr>
-								<tr>
-									<td class="cell_borders">24 months</td>
-									<td class="cell_borders">$<?php printf("%d", ($g_nCostPerMonth * 24)); ?></td>
-								</tr>
-							</table>
-						<li>You can filter out jobs that are of no interest to you, e.g. too small or too far away.</li>
-						<li>Tradies can post jobs for other tradies to browser and answer.</li>
-						<li>Tradies with a primary trade that matches what a customer is searching for are prioritized over tradies that have listed it as an additional trade.</li>
-						<li>No bank account or credit card numbers are stored on the web site.</li>
-						<li>All payments made with Paypal.</li>
-					</ul>
-					<h5>BENEFITS FOR CUSTOMERS</h5>
-					<ul style="font-size: medium;">
-						<li>Customers can browse tradies and view their feedback reputation.</li>
-						<li>Customers can can post jobs for local tradies to browse and answer.</li>
-						<li>Free membership for customers.</li>
-						<li>Customers can browse tradies (based on filters like minimum charge and maximum distance) and contact them directly.</li>
-						<li>No bank account or credit card numbers are stored on the web site.</li>
-						<li>All payments made with Paypal.</li>
-					</ul>
+				<?php
+					
+					function DoGetLocationName($strLocationID)
+					{
+						if ($strLocationID == "index1")
+							$strLocationID = "Home page, top";
+						else if ($strLocationID == "login1")
+							$strLocationID = "Login page, top";
+							
+						return $strLocationID;
+					}
+				?>
+				<div class="note" style="flex-wrap:wrap;">
+					<h6><b>LOCATION: </b><?php if (isset($_GET["location"])) echo DoGetLocationName($_GET["location"]); ?></h6>
+					<div style="width:500px;"></div>
+					<form class="advert_form" id="advert_form" method="post" action="advert.php" style="width: 748px;">
+						<table class="table_no_borders">
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>Select and image to display</b>
+								</td>
+								<td class="cell_no_borders">
+									<input type="file" id="file_image" name="file_image" accept=".jpg, .png, .jpeg, .gif|image/*"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>Image preview</b>
+								</td>
+								<td class="cell_no_borders">
+									<img src="" alt="IMAGE PREVIEW" id="image_review" width="600" />
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>Text to display beside image</b>
+								</td>
+								<td class="cell_no_borders">
+									<textarea cols="60" rows="10" maxlength="620"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders" colspan="2">
+									<input type="submit" id="submit_advert"  name="submit_advert" value="SUBMIT" />
+								</td>
+							</tr>
+						</table>
+					</form>
 				</div>
 				
-
-
-
-
-
-
-
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->

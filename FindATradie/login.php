@@ -12,7 +12,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -31,7 +30,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 			
 <?php
 
@@ -132,6 +131,9 @@
 
 
 
+
+
+
 				<div class="note">
 
 					<form method="post" id="form_recover" class="form" style="width:440px;display:<?php echo $g_strRecover; ?>;">
@@ -184,8 +186,7 @@
 					</form>
 					
 					<div class="advert" id="advert_login" style="height: 300px; width: 1000px;">
-						<h6>ADVERTISING SPACE</h6>
-						<p>Under construction</p>
+						<?php DoInsertAdvert("login1", 180); ?>
 					</div>
 					
 				</div>	

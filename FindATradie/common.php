@@ -12,6 +12,8 @@
 	
 	$g_strEmailAdmin = "Email admin at gregplants@bigpond.com with this error message.";
 	$g_nCostPerMonth = 10;
+	$g_strDivOpen = "<div style=\"background-color:white;\">";
+	$g_strDivClose = "</div>";
 
 
 	
@@ -188,7 +190,7 @@
 	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{	
 		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
-		
+
 		return DoQuery($dbConnection, $strQuery);
 	}	
 	
@@ -293,7 +295,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** TRADE RELATED FUNCTIONS
+	//** TRADE OPTIONS FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -387,8 +389,133 @@
 	}
 	DoGenerateJavascriptTradeArray();
 
+
+
+
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** TRADIE SEARCH FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
+	{
+		$nJobSize = (int)$strJobSizeIndex;
+		$nTradieMaxSizeIndex = 0;
+		
+		if ($strTradieMaxSize == "Up to 50")
+			$nTradieMaxSizeIndex = 1;
+		else if ($strTradieMaxSize == ">50 - 100")
+			$nTradieMaxSizeIndex = 2;
+		else if ($strTradieMaxSize == "100 - 250")
+			$nTradieMaxSizeIndex = 3;
+		else if ($strTradieMaxSize == "250 - 500")
+			$nTradieMaxSizeIndex = 4;
+		else if ($strTradieMaxSize == "More than 500")
+			$nTradieMaxSizeIndex = 5;
+		else if ($strTradieMaxSize == "Up to 50")
+			$nTradieMaxSizeIndex = 6;
+			
+		return $nJobSize <= $nTradieMaxSizeIndex;
+	}
+	
+	function IsDistanceMatch($strTradiePostcode, $strJobPostcode, $strTradieMaxDistance)
+	{
+		return true;
+	}
+	
+	function DoSearchTradies($strTrade, $strJobSize, $strMaxBudget, $strPostcode)
+	{
+		global $g_dbFindATradie;
+		global $g_strDivOpen;
+		global $g_strDivClose;
+		
+		$arrayResults = [];
+		$mapMemberIDs = [];
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "trade_id", $strTrade);
+		if ($results->num_rows > 0)
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				if (IsMatchMaxSize($row["maximum_size"], $strJobSize) && 
+					((int)$strMaxBudget >= $row["minimum_budget"]) &&
+					IsDistanceMatch($row["postcode"], $strPostcode, $row["maximum_distance"]))
+				{
+						$arrayResults[] = [
+											$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . ", " . sprintf("minimum charge: $%d", $row["minimum_charge"]),
+											$row["id"]
+									  	  ];
+						$mapMemberIDs[$row["id"]] = $row["id"];
+				}
+			}
+			$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "trade_id", $strTrade);
+			if ($results->num_rows > 0)
+			{
+				$row = $results->fetch_assoc();
+				$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
+				if ($results->num_rows > 0)
+				{
+					while ($row = $results->fetch_assoc())
+					{
+						if (IsMatchMaxSize($row["maximum_size"], $strJobSize) && 
+							((int)$strMaxBudget >= $row["minimum_budget"]) &&
+							IsDistanceMatch($row["postcode"], $strPostcode, $row["maximum_distance"]))
+						{
+							if (!isset($mapMemberIDs[$row["id"]]))
+								$arrayResults[] = [$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . sprintf("minimum charge: $%d",  $row["minimum_charge"]), $row["id"]];
+							$strResultsDisplay = "block";
+						}
+					}
+				}
+			}
+			if (count($arrayResults) == 0)
+			{
+				PrintJavascriptLine("AlertError(\"No tradies matching these criteria were found!\");", 2, true);
+			}
+		}
+		return $arrayResults;
+	}
 	
 	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** ADVERT RELATED FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoInsertAdvert($strSpaceName, $nImageHeight)
+	{
+		global $g_dbFindATradie;
+		
+		$result = DoFindQuery1($g_dbFindATradie, "adverts", "space_name", $strSpaceName);
+		if ($result->num_rows > 0)
+		{
+			$row = $results->fetch_assoc();
+			echo "<a class=\"advert_image\" href=\"images/" . $row["image_name"] . "\"><img src=\"images/" . $row["image_name"] . "\" alt=\"" . $row["image_name"] . "\" /></a>\n";
+			echo $row["text"];
+			echo "<div class=\"advert_text\">" . "</div>\n";
+		}
+		else
+		{
+			echo "<button class=\"advert_button\" type=\"button\"><img src=\"images/AdvertiseHere.png\" alt=\"images/AdvertiseHere.png\" height=\"" . $nImageHeight . "\" onclick=\"";
+			
+			if (!isset($_SESSION["account_id"]))
+				echo "alert('Please login first...')";
+			else
+				echo "OpenAdvertEditor('index1')";
+				
+			echo "\"></button>\n";
+		}
+	}
+
 ?>
 
 

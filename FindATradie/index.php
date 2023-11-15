@@ -12,6 +12,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -66,87 +67,32 @@
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
-		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-<?php
 
-	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
-	{
-		$nJobSize = (int)$strJobSizeIndex;
-		$nTradieMaxSizeIndex = 0;
-		
-		if ($strTradieMaxSize == "Up to 50")
-			$nTradieMaxSizeIndex = 1;
-		else if ($strTradieMaxSize == ">50 - 100")
-			$nTradieMaxSizeIndex = 2;
-		else if ($strTradieMaxSize == "100 - 250")
-			$nTradieMaxSizeIndex = 3;
-		else if ($strTradieMaxSize == "250 - 500")
-			$nTradieMaxSizeIndex = 4;
-		else if ($strTradieMaxSize == "More than 500")
-			$nTradieMaxSizeIndex = 5;
-		else if ($strTradieMaxSize == "Up to 50")
-			$nTradieMaxSizeIndex = 6;
-			
-		return $nJobSize <= $nTradieMaxSizeIndex;
-	}
-	
-	function IsDistanceMatch($strTradiePostcode, $strJobPostcode, $strTradieMaxDistance)
-	{
-		return true;
-	}
-	
-	IsDistanceMatch("3076", "2000", "10");
+
+
+
+
+
+
+		<div class="page_content" id="page_content">
+
+
+
+
+
+
+
+
+<?php
 	$strResultsDisplay = "none";
-	$arrayResults = [];
-	$mapMemberIDs = [];
+
 	if (isset($_POST["submit_search"]))
 	{
-		$strResultsDisplay = "block";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "members", "trade_id", $_POST["select_trade"]);
-		if ($results->num_rows > 0)
-		{
-			while ($row = $results->fetch_assoc())
-			{
-				if (IsMatchMaxSize($row["maximum_size"], $_POST["select_job_size"]) && 
-					((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
-					IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
-				{
-					$arrayResults[] = [
-										$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . ", " . sprintf("minimum charge: $%d", $row["minimum_charge"]),
-										$row["id"]
-								  	  ];
-					$mapMemberIDs[$row["id"]] = $row["id"];
-					$strResultsDisplay = "block";
-				}
-			}
-		}
-		$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "trade_id", $_POST["select_trade"]);
-		if ($results->num_rows > 0)
-		{
-			$row = $results->fetch_assoc();
-			$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
-			if ($results->num_rows > 0)
-			{
-				while ($row = $results->fetch_assoc())
-				{
-					if (IsMatchMaxSize($row["maximum_size"], $_POST["select_job_size"]) && 
-						((int)$_POST["text_maximum_budget"] >= $row["minimum_budget"]) &&
-						IsDistanceMatch($row["postcode"], $_POST["text_postcode"], $row["maximum_distance"]))
-					{
-						if (!isset($mapMemberIDs[$row["id"]]))
-							$arrayResults[] = [$row["business_name"] . ", " . $row["suburb"] . ", " . $row["postcode"] . sprintf("minimum charge: $%d",  $row["minimum_charge"]), $row["id"]];
-						$strResultsDisplay = "block";
-					}
-				}
-			}
-		}
-		if (count($arrayResults) == 0)
-		{
-			PrintJavascriptLine("AlertError(\"No tradies matching these criteria were found!\");", 2, true);
-		}
+		$arrayResults = DoSearchTradies($_POST["select_trade"], $_POST["select_job_size"], $_POST["text_maximum_budget"], $_POST["text_postcode"]);
+		if (count($arrayResults) > 0)
+			$strResultsDisplay = "block";
 	}
 
 ?>
@@ -209,8 +155,7 @@
 						</table>
 					</form>
 					<div class="advert" id="advert_index" style="height: 208px; width: 484px;">
-						<h6>ADVERTISING SPACE</h6>
-						<p>Under construction</p>
+						<?php DoInsertAdvert("index1", 180); ?>
 					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
@@ -238,7 +183,25 @@
 
 
 
+		</div>
+
+
+
+
+
+
+
+
 				<!-- #EndEditable -->
+		<div class="page_content" id="page_content">
+
+
+
+
+
+
+
+
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->

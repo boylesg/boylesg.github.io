@@ -1,4 +1,4 @@
-"id","trade","business_name","first_name","surname","abn","structure","license","description","minimum_charge","minimum_budget","maximum_size","maximum_distance","unit","street","suburb","state","postcode","phone","mobile","email","username","password","expiry_date","date_joined"
+"id","trade_id","business_name","first_name","surname","abn","structure","license","description","minimum_charge","minimum_budget","maximum_size","maximum_distance","unit","street","suburb","state","postcode","phone","mobile","email","username","password","expiry_date","date_joined"
 "1","52","Greg's Native Landscapes","Greg","Boyles","51 824 753 556","Sole trader",,"Ecological weed control
 Low maintenance
 Drought tolerant
