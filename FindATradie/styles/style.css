@@ -205,18 +205,6 @@ a.masthead_button:hover
 	width: 400px;
 }
 
-.advert_form
-{
-	display: block;
-	background-color: var(--ColorMastheadBG);
-	width: 600px;
-	height: 400px;
-	border-radius: var(--BorderRadius);
-	border-style: solid;
-	border-width: medium;
-	border-color: var(--NoteHeadingColor);
-}
-
 .advert_image
 {
 	display: inline-block;
@@ -231,6 +219,9 @@ a.masthead_button:hover
 	margin-top: var(--Margin);
 	margin-bottom: var(--Margin);
 	padding: 10px;
+	background-color: var(--ColorMastheadBG);
+	border-radius: var(--BorderRadius);
+
 }
 
 form.form fieldset
@@ -258,7 +249,13 @@ form.form input[type=button], form.form input[type=submit], form.form input[type
 	font-size: small;
 	font-weight: bold;
 	color: black;
+}
+
+form.form input[type=file]
+{
 	font-size: small;
+	font-weight: bold;
+	color: black;
 }
 
 form.form input[type=text], form.form input[type=password], form.form input[type=checkbox], form.form input[type=radio], form.form select, form.form textarea

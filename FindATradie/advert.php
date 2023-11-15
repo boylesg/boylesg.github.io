@@ -31,7 +31,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 			<script type="text/javascript">
 			
@@ -96,42 +96,50 @@
 
 				<?php
 					
-					function DoGetLocationName()
+					$g_strLocationID = "";
+
+					function DoGetLocationName($strLocationID)
 					{
 						$strLocationName = "";
 						
-						if (isset($_GET["location"]))
+						if ($strLocationID != "")
 						{
-							if ($_GET["location"]== "index1")
+							if ($strLocationID == "index1")
 								$strLocationName = "Home page, top";
-							else if ($_GET["location"]== "login1")
+							else if ($strLocationID == "login1")
 								$strLocationName = "Login page, top";
 						}
 						return $strLocationName;
 					}
-					
-					function DoGetCost()
+										
+					function DoGetCost($strLocationID)
 					{
 						global $g_dbFindATradie;
 						$nCost = 0;
 						
-						if (isset($_GET["location"]))
+						if ($strLocationID != "")
 						{
-							$results = DoFinQuery1($g_dbFindATradie, "advert_space_name", $_GET["location"]);
+							$results = DoFinQuery1($g_dbFindATradie, "advert_space_name", $strAdvertLocationID);
 							if ($results->num_rows > 0)
-							{
+							{							
 								$row = $result->fetch_assoc();
-								$nCost = $row["cost_per_month"];
+								$nCost = (int)$row["cost_per_month"];
 							}
 						}
 						return $nCost;
 					}
+					
+					if (isset($_GET["location"]))
+					{
+						$g_strLocationID = $_GET["location"];
+					}
+
 										
 				?>
 				<div class="note" style="flex-wrap:wrap;">
-					<h6><b>LOCATION: </b><?php if (isset($_GET["location"])) echo DoGetLocationName(); ?></h6>
+					<h6><b>LOCATION: </b><?php echo DoGetLocationName($g_strLocationID); ?></h6>
 					<div style="width:500px;"></div>
-					<form class="advert_form" id="advert_form" method="post" action="advert.php" style="width: 748px;">
+					<form class="form" id="advert_form" method="post" action="advert.php" style="width: 748px;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
@@ -162,7 +170,7 @@
 									<b>How many months?</b>
 								</td>
 								<td class="cell_no_borders">
-									<input type="text" size="4" maxlength="3" id="text_months" name="text_month" onchange="OnMonthsChange(this, <?php echo DoGetCost(); ?>)" onkeypress="OnKeyPressDigitsOnly(eventKey)" />
+									<input type="text" size="4" maxlength="3" id="text_months" name="text_month" onchange="OnMonthsChange(this, <?php echo DoGetCost($g_strLocationID); ?>)" onkeypress="OnKeyPressDigitsOnly(eventKey)" />
 								</td>
 							</tr>
 							<tr>
@@ -170,7 +178,7 @@
 									<b>Cost</b>
 								</td>
 								<td class="cell_no_borders">
-									$<label id="label_cost"></label>
+									$<label id="label_cost"><?php echo DoGetCost($g_strLocationID); ?></label>
 								</td>
 							</tr>
 							<tr>
