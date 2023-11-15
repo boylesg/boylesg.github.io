@@ -12,6 +12,7 @@
 	--NoteColor: black;
 	--Margin: 30px;
 	--BorderRadius: 5px;
+	--BorderRadiusSmall: 4px;
 	--Padding: 20px;
 }
 
@@ -221,21 +222,34 @@ a.masthead_button:hover
 	display: inline-block;
 }
 
-div.note form
+.form
 {
 	display: block;
 	position: relative;
+	border-style: none;
+	margin-right: var(--Margin);
+	margin-top: var(--Margin);
+	margin-bottom: var(--Margin);
+	padding: 10px;
+}
+
+form.form fieldset
+{
 	border-style: solid;
 	border-width: medium;
 	border-color: var(--NoteHeadingColor);
 	background-color: var(--ColorMastheadBG);
 	border-radius: var(--BorderRadius);
-	margin-right: var(--Margin);
-	margin-top: var(--Margin);
-	margin-bottom: var(--Margin);
 }
 
-input[type=button], input[type=submit], input[type=reset], button
+form.form fieldset legend
+{
+	color: var(--NoteHeadingColor);
+	font-size: x-large;
+	font-weight: bold;
+}
+
+form.form input[type=button], form.form input[type=submit], form.form input[type=reset], form.form button, .button
 {
 	padding: 8px;
 	border-radius: var(--BorderRadius);
@@ -243,11 +257,13 @@ input[type=button], input[type=submit], input[type=reset], button
 	border-width: thin;
 	font-size: small;
 	font-weight: bold;
+	color: black;
+	font-size: small;
 }
 
-input[type=text], input[type=password], input[type=checkbox], input[type=radio], select, textarea
+form.form input[type=text], form.form input[type=password], form.form input[type=checkbox], form.form input[type=radio], form.form select, form.form textarea
 {
-	border-radius: var(--BorderRadius);
+	border-radius: var(--BorderRadiusSmall);
 	border-style: inset;
 	border-width: thin;
 }
@@ -287,6 +303,13 @@ div.note h5
 div.note h6
 {
 	color: var(--NoteHeadingColor);
+}
+
+.link_request
+{
+	font-size: large;
+	font-weight: bold;
+	font-color: black;
 }
 
 .table_borders
@@ -329,7 +352,7 @@ div.note h6
 	padding: 5px;
 	font-size: large;
 	color: black;
-	width: 50%;
+	/*width: 50%;*/
 	border-style: none;
 	border-bottom-color: navy;
 	padding: 10px;

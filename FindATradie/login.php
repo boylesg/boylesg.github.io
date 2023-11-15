@@ -12,6 +12,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -30,15 +31,70 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 			
 <?php
 
 	$g_strLogin = "block";
 	$g_strRecover = "none";
+	$_SESSION["account_username"] = "";
+	$_SESSION["account_password"] = "";
 		
 	// Processing post data.
-	if (isset($_POST["submit_logout"]) && (strlen($_POST["submit_logout"]) > 0))
+	if (isset($_POST["submit_login"]))
+	{
+		$_SESSION["account_username"] = $_POST["text_username"];
+		$_SESSION["account_password"] = $_POST["text_password"];
+
+		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
+		$result = DoQuery($g_dbFindATradie, $strQuery);
+		if ($result->num_rows == 1)
+		{
+			$row = $result->fetch_assoc();
+			$_SESSION["account_id"] = $row["id"];
+			$_SESSION["account_trade"] = $row["trade_id"];
+			$_SESSION["account_business_name"] = $row["business_name"];
+			$_SESSION["account_first_name"] = $row["first_name"];
+			$_SESSION["account_surname"] = $row["surname"];
+			$_SESSION["account_abn"] = $row["abn"];
+			$_SESSION["account_structure"] = $row["structure"];
+			$_SESSION["account_license"] = $row["license"];
+			$_SESSION["account_description"] = $row["description"];
+			$_SESSION["account_minimum_charge"] = $row["minimum_charge"];
+			$_SESSION["account_minimum_budget"] = $row["minimum_budget"];
+			$_SESSION["account_maximum_size"] = $row["maximum_size"];
+			$_SESSION["account_maximum_distance"] = $row["maximum_distance"];
+			$_SESSION["account_unit"] = $row["unit"];
+			$_SESSION["account_street"] = $row["street"];
+			$_SESSION["account_suburb"] = $row["suburb"];
+			$_SESSION["account_state"] = $row["state"];
+			$_SESSION["account_postcode"] = $row["postcode"];
+			$_SESSION["account_phone"] = $row["phone"];
+			$_SESSION["account_mobile"] = $row["mobile"];				
+			$_SESSION["account_email"] = $row["email"];
+			$_SESSION["account_expiry_date"] = $row["expiry_date"];
+			$_SESSION["account_username"] = $row["username"];
+			$_SESSION["account_password"] = $row["password"];
+			
+			// Next we need to get the listb of additional trades.
+			$_SESSION["account_additional_trades"] = [];
+			
+			$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
+			if ($result->num_rows > 0)
+			{
+				while ($row = $result->fetch_assoc())
+				{
+					$_SESSION["account_additional_trades"][] = $row["trade_id"];
+				}
+			}
+			PrintJavascriptLine("document.location = \"account.php?submit_login=LOG IN\";", 5, true);
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError('Username and/or password is incorrect!')", 5, true);
+		}
+	}
+	else if (isset($_POST["submit_logout"]) && (strlen($_POST["submit_logout"]) > 0))
 	{
 		$_SESSION["account_id"] = "";
 		$_SESSION["account_trade"] = "";
@@ -64,11 +120,6 @@
 		$_SESSION["account_expiry_date"] = "";
 		$_SESSION["account_additional_trades"] = [];
 	}
-	else if (isset($_POST["text_username"]))
-	{
-		$_SESSION["account_username"] = $_POST["text_username"];
-		$_SESSION["account_password"] = $_POST["text_password"];
-	}
 	else if (isset($_POST["submit_recover"]))
 	{
 		$result = DoFindQuery3($g_dbFindATradie, "members", "username", $_POST["text_recover_username"], "business_name", $_POST["text_recover_business_name"], "mobile", $_POST["text_recover_mobile"]);
@@ -91,7 +142,7 @@
 		<!-- #EndEditable -->
 	</head>
 	
-	<body onresize="SetPageContetHeight()">
+	<body>
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -136,12 +187,12 @@
 
 				<div class="note">
 
-					<form method="post" id="form_recover" class="form" style="width:440px;display:<?php echo $g_strRecover; ?>;">
+					<form method="post" id="form_recover" class="form" action="login.php" style="width:560px;display:<?php echo $g_strRecover; ?>;">
 						<table class="table_no_borders">
 							<tr>
-								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username: </label></td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username or email: </label></td>
 								<td class="cell_no_borders">
-									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
+									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
@@ -163,12 +214,12 @@
 						</table>
 					</form>
 					
-					<form method="post" id="form_login" class="form" action="account.php" style="width:560px;display:<?php echo $g_strLogin; ?>;">
+					<form method="post" id="form_login" class="form" action="login.php" style="width:560px;display:<?php echo $g_strLogin; ?>;">
 						<table class="table_no_borders">
 							<tr>
-								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email address: </label></td>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email: </label></td>
 								<td class="cell_no_borders">
-									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php if (isset($_SESSION["account_username"])) echo $_SESSION["account_username"]; ?>"/>
+									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php echo $_SESSION["account_username"]; ?>"/>
 								</td>
 							</tr>
 							<tr>
@@ -185,12 +236,29 @@
 						</table>
 					</form>
 					
-					<div class="advert" id="advert_login" style="height: 300px; width: 1000px;">
+					<div class="advert" id="advert_login" style="width:680px;">
 						<?php DoInsertAdvert("login1", 180); ?>
 					</div>
 					
 				</div>	
-			
+
+				<!-- #EndEditable -->
+		<!-- End Page Content -->
+		</div>
+		<!-- Begin Footer -->
+		<div class="footer" id="footer">
+			<!--
+			<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
+			-->
+		</div>
+		<!-- End Footer -->
+	
+	</body>
+	
+	<footer>
+		
+		<!-- #BeginEditable "footer" -->
+
 				<script type="text/javascript">
 					
 					function OnShowForm(strShowFormID, strHideFormID)
@@ -224,32 +292,8 @@
 																	
 				</script>					
 
+		<!-- #EndEditable -->
 
-
-
-
-
-
-
-				<!-- #EndEditable -->
-		<!-- End Page Content -->
-		</div>
-		<!-- Begin Footer -->
-		<div class="footer" id="footer">
-			<!--
-			<span class="footer_copyright" id="footer_copyright" style="float:right;">Copyright &copy; 2023 <i>Find a Tradie</i>. All Rights Reserved.</span>
-			-->
-		</div>
-		<!-- End Footer -->
-	
-	</body>
-	
-	<footer>
-		
-		<script type="text/javascript">
-								
-		</script>
-	
 	</footer>
 	
 <!-- #EndTemplate -->

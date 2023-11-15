@@ -121,12 +121,7 @@
 					border-top-width: thin;
 					border-top-color: black;
 				}
-				
-				.form
-				{
-					background-color: white;
-				}
-												
+																
 			</style>
 			
 			<script type="text/javascript">
@@ -177,7 +172,11 @@
 	DebugPrint("_SESSION[\"accountid\"]", $_SESSION["account_id"], 2);
 	echo "<br><br>";
 */	
-	if (isset($_GET["paypal"]))
+	if (!isset($_GET["submit_login"]))
+	{
+		PrintJavascriptLine("document.location = \"login.php\";", 5, true);
+	}
+	else if (isset($_GET["paypal"]))
 	{
 		$nNumMonths = (int)$_GET["paypal"];
 		$dateExpiry = new DateTime($_SESSION["account_expiry_date"]);
@@ -186,59 +185,7 @@
 		$_SESSION["account_expiry_date"] = $dateExpiry->format("Y-m-d");
 		if (DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $_SESSION["account_expiry_date"], "id", $_SESSION["account_id"]))
 		{
-			PrintJSAlertError("your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5, true);
-		}
-	}
-	else if (isset($_POST["submit_login"]))
-	{
-		$_SESSION["username"] = $_POST["text_username"];
-		$_SESSION["password"] = $_POST["text_password"];
-		
-		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
-		$result = DoQuery($g_dbFindATradie, $strQuery);
-		if ($result->num_rows == 1)
-		{
-			$row = $result->fetch_assoc();
-			$_SESSION["account_id"] = $row["id"];
-			$_SESSION["account_trade"] = $row["trade_id"];
-			$_SESSION["account_business_name"] = $row["business_name"];
-			$_SESSION["account_first_name"] = $row["first_name"];
-			$_SESSION["account_surname"] = $row["surname"];
-			$_SESSION["account_abn"] = $row["abn"];
-			$_SESSION["account_structure"] = $row["structure"];
-			$_SESSION["account_license"] = $row["license"];
-			$_SESSION["account_description"] = $row["description"];
-			$_SESSION["account_minimum_charge"] = $row["minimum_charge"];
-			$_SESSION["account_minimum_budget"] = $row["minimum_budget"];
-			$_SESSION["account_maximum_size"] = $row["maximum_size"];
-			$_SESSION["account_maximum_distance"] = $row["maximum_distance"];
-			$_SESSION["account_unit"] = $row["unit"];
-			$_SESSION["account_street"] = $row["street"];
-			$_SESSION["account_suburb"] = $row["suburb"];
-			$_SESSION["account_state"] = $row["state"];
-			$_SESSION["account_postcode"] = $row["postcode"];
-			$_SESSION["account_phone"] = $row["phone"];
-			$_SESSION["account_mobile"] = $row["mobile"];				
-			$_SESSION["account_email"] = $row["email"];
-			$_SESSION["account_expiry_date"] = $row["expiry_date"];
-			$_SESSION["account_username"] = $row["username"];
-			$_SESSION["account_password"] = $row["password"];
-			
-			// Next we need to get the listb of additional trades.
-			$_SESSION["account_additional_trades"] = [];
-			
-			$result = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $_SESSION["account_id"]);
-			if ($result->num_rows > 0)
-			{
-				while ($row = $result->fetch_assoc())
-				{
-					$_SESSION["account_additional_trades"][] = $row["trade_id"];
-				}
-			}
-		}
-		else
-		{
-			PrintJavascriptLines(["AlertError('username and/or password is incorrect!')", "document.location = \"login.php\";"], 5, true);
+			PrintJSAlertError("Your new renewal date has been updated to " . $dateExpiry->format("d/m/Y"), 5, true);
 		}
 	}
 	else if (isset($_POST["submit_trade_details"]))
@@ -284,7 +231,7 @@
 			if ($result->num_rows > 0)
 			{
 				PrintJavascriptLines(
-					["AlertError(\"business name '" . $_POST["text_business_name"] . "' is already in use!\");\n",
+					["AlertError(\"Business name '" . $_POST["text_business_name"] . "' is already in use!\");\n",
 					 "document.getElementById(\"text_business_name\").focus();\n"], 2, true);
 				$bError = true;
 			}
@@ -318,7 +265,7 @@
 			}
 			else
 			{
-				PrintJavascriptLine("AlertError(\"business details could not be updated!\");\n", 2, true);
+				PrintJavascriptLine("AlertError(\"Business details could not be updated!\");\n", 2, true);
 			}
 		}
 	}
@@ -353,7 +300,7 @@
 		}
 		else
 		{
-			PrintJavascriptLine("AlertError(\"contact details could not be updated!\");\n", 2, true);
+			PrintJavascriptLine("AlertError(\"Contact details could not be updated!\");\n", 2, true);
 		}
 	}
 	else if (isset($_POST["text_username"]))
@@ -368,7 +315,7 @@
 			if ($result->num_rows > 0)
 			{
 				PrintJavascriptLines(
-					["AlertError(\"username '" . $_POST["text_username"] . "' is already in use!\");\n",
+					["AlertError(\"Username '" . $_POST["text_username"] . "' is already in use!\");\n",
 					 "document.getElementById(\"text_username\").focus();\n"], 2, true);
 				$bError = true;
 			}
@@ -389,7 +336,7 @@
 			}
 			else
 			{
-				PrintJavascriptLine("AlertError(\"user details could not be updated!\");\n", 2, true);
+				PrintJavascriptLine("AlertError(\"User details could not be updated!\");\n", 2, true);
 			}
 		}
 	}
@@ -431,7 +378,7 @@
 		<!-- #EndEditable -->
 	</head>
 	
-	<body onresize="SetPageContetHeight()">
+	<body>
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -467,18 +414,13 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+				<div class="note" style="flex-wrap:wrap;">
 
-
-
-
-
-
-
-				<div class="note">
-
-					<form method="post" id="form_logout" class="form" action="login.php">
-						<input type="submit" class="next_button" id="submit_logout" name="submit_logout" value="LOG OUT" />
+					<form method="post" id="form_logout" action="login.php">
+						<input type="submit" class="button" id="submit_logout" name="submit_logout" value="LOG OUT" />
 					</form>
+					
+					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
 
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
 						<h2>It is time to renew your membership...</h2><br/>
@@ -669,7 +611,7 @@
 			}
 			else if (textPassword.value != textPasswordAgain.value)
 			{
-				AlertError("the two passwords do not match!");
+				AlertError("The two passwords do not match!");
 				textPassword.focus();
 			}
 			else
@@ -769,7 +711,7 @@
 		}
 	}
 	
-	DoChangeButtonSaveFunction(OnClickButtonSave);
+	//DoChangeButtonSaveFunction(OnClickButtonSave);
 	SetSelection("select_structure", "<?php echo $_SESSION["account_structure"]; ?>");
 	SetSelection("select_maximum_size", "<?php echo $_SESSION["account_maximum_size"]; ?>");
 	SetSelection("select_state", "<?php echo $_SESSION["account_state"]; ?>");
@@ -798,10 +740,12 @@
 	
 	<footer>
 		
-		<script type="text/javascript">
-								
-		</script>
-	
+		<!-- #BeginEditable "footer" -->
+
+
+
+		<!-- #EndEditable -->
+
 	</footer>
 	
 <!-- #EndTemplate -->

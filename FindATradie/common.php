@@ -187,24 +187,33 @@
 		return $result;
 	}
 
-	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
+	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "")
 	{	
 		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
+		
+		if (strlen($strCondition) > 0)
+			$strQuery = $strQuery . " AND " . $strCondition;
 
 		return DoQuery($dbConnection, $strQuery);
 	}	
 	
-	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
+	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strCondition = "")
 	{	
 		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
 	
+		if (strlen($strCondition) > 0)
+			$strQuery = $strQuery . " AND " . $strCondition;
+
 		return DoQuery($dbConnection, $strQuery);
 	}
 	
-	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
+	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strCondition = "")
 	{	
 		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
 	
+		if (strlen($strCondition) > 0)
+			$strQuery = $strQuery . " AND " . $strCondition;
+
 		return DoQuery($dbConnection, $strQuery);
 	}
 	
@@ -494,11 +503,11 @@
 	function DoInsertAdvert($strSpaceName, $nImageHeight)
 	{
 		global $g_dbFindATradie;
-		
-		$result = DoFindQuery1($g_dbFindATradie, "adverts", "space_name", $strSpaceName);
+		$dateNow = new DateTime();
+			
+		$result = DoFindQuery1($g_dbFindATradie, "adverts", "space_name", $strSpaceName , "expiry_date > '" . ($dateNow->format("Y-m-d")) . "'");
 		if ($result->num_rows > 0)
 		{
-			$row = $results->fetch_assoc();
 			echo "<a class=\"advert_image\" href=\"images/" . $row["image_name"] . "\"><img src=\"images/" . $row["image_name"] . "\" alt=\"" . $row["image_name"] . "\" /></a>\n";
 			echo $row["text"];
 			echo "<div class=\"advert_text\">" . "</div>\n";
@@ -508,7 +517,7 @@
 			echo "<button class=\"advert_button\" type=\"button\"><img src=\"images/AdvertiseHere.png\" alt=\"images/AdvertiseHere.png\" height=\"" . $nImageHeight . "\" onclick=\"";
 			
 			if (!isset($_SESSION["account_id"]))
-				echo "alert('Please login first...')";
+				echo "AlertError('Please login first...')";
 			else
 				echo "OpenAdvertEditor('index1')";
 				

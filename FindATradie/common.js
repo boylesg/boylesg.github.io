@@ -1,4 +1,7 @@
-﻿<script type=text/javascript>
+﻿<script src="SweetAlert.js" type="text/javascript">
+</script>
+
+<script type="text/javascript">
 
 	//******************************************************************************
 	//******************************************************************************
@@ -52,17 +55,41 @@
 
 	function AlertSuccess(strMsg)
 	{
-		alert("SUCCESS: " + strMsg + ".");
+		swal({
+		 		title: "Success",
+		  		text: strMsg,
+		  		icon: "success",
+		  		buttons: true,
+		  		dangerMode: true,
+		  		closeModal: true
+			});	
+		//alert("SUCCESS: " + strMsg + ".");
 	}
 
 	function AlertError(strMsg)
 	{
-		alert("ERROR: " + strMsg + ".");
+		swal({
+		 		title: "Error",
+		  		text: strMsg,
+		  		icon: "error",
+		  		buttons: true,
+		  		/*dangerMode: true,*/
+		  		closeModal: true
+			});	
+		//alert("ERROR: " + strMsg + ".");
 	}
 
 	function AlertIDError(strID, strDescription)
 	{
-		alert("ERROR: " + strDescription + " with ID '" + strID + "' does not exist!");
+		swal({
+		 		title: "Element ID error",
+		  		text: "The " + strDescription + " element with ID '" + strID + "' does not exist!",
+		  		icon: "error",
+		  		buttons: true,
+		  		dangerMode: true,
+		  		closeModal: true
+			});	
+		//alert("ERROR: " + strDescription + " with ID '" + strID + "' does not exist!");
 	}
 
 

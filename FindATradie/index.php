@@ -30,11 +30,11 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
-	<body onresize="SetPageContetHeight()">
+	<body>
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -67,6 +67,7 @@
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
+		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
 
@@ -76,7 +77,7 @@
 
 
 
-		<div class="page_content" id="page_content">
+		<div class="page_content" id="page_content0">
 
 
 
@@ -193,15 +194,6 @@
 
 
 				<!-- #EndEditable -->
-		<div class="page_content" id="page_content">
-
-
-
-
-
-
-
-
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->
@@ -216,10 +208,12 @@
 	
 	<footer>
 		
-		<script type="text/javascript">
-								
-		</script>
-	
+		<!-- #BeginEditable "footer" -->
+
+
+
+		<!-- #EndEditable -->
+
 	</footer>
 	
 <!-- #EndTemplate -->

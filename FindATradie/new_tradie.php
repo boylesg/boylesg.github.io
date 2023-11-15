@@ -34,7 +34,7 @@
 		<!-- #EndEditable -->
 	</head>
 	
-	<body onresize="SetPageContetHeight()">
+	<body>
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -292,10 +292,12 @@
 	
 	<footer>
 		
-		<script type="text/javascript">
-								
-		</script>
-	
+		<!-- #BeginEditable "footer" -->
+
+
+
+		<!-- #EndEditable -->
+
 	</footer>
 	
 <!-- #EndTemplate -->

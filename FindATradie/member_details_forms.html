@@ -1,36 +1,38 @@
 ﻿<form method="post" id="form_user_details" action="account.php" class="form">
 	<fieldset>
 		<legend>User details:</legend>
-		<table>
+		<table class="table_no_borders">
 			<tr>
-				<td style="text-align:right;"><b>Username or email</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;width:170px;"><b>Username or email</b></td>
+				<td class="cell_no_borders" style="">
 					<input type="text" id="text_username" name="text_username" required pattern="^[a-zA-Z0-9@$!%*#?&\-]{8,}$" value="<?php if (isset($_SESSION['account_username'])) echo $_SESSION['account_username']; ?>" />
-				</td>				
-				<td>Letters, digits, @ $ ! % * # ? &amp;, 8 chracters minimum.</td>
+					<br/><br/>
+					Letters, digits, @ $ ! % * # ? &amp;, 8 chracters minimum.
+				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Password</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password</b></td>
+				<td class="cell_no_borders">
 					<input type="password" id="text_password" name="text_password" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
-					&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow('check_show', 'text_password', 'text_password_again')" /><label for="check_show">Show password</label>
+					&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow('check_show', 'text_password', 'text_password_again')" /><label for="check_show"><b>Show password</b></label>
+					<br/><br/>
+					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.					
 				</td>
-				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Password again</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password again</b></td>
+				<td class="cell_no_borders">
 					<input type="password" id="text_password_again" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
+					<br/><br/>
+					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.
 				</td>
-				<td>At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;">&nbsp;</td>
-				<td style="text-align:right;">&nbsp;</td>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td><input type="button" name="button_user_details" id="button_user_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoUserDetailsFormSubmit('form_user_details')" /></td>
-				<td>&nbsp;</td>
+				<td class="cell_no_borders" colspan="2"><input type="button" name="button_user_details" id="button_user_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoUserDetailsFormSubmit('form_user_details')" /></td>
+
 			</tr>
 		</table>		
 	</fieldset>
@@ -39,21 +41,20 @@
 <form method="post" id="form_trade_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Trade details</legend>
-			<table>
+			<table class="table_no_borders">
 				<tr>
-					<td style="text-align:right;"><b>Primary trade</b></td>
-					<td>
+					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
+					<td class="cell_no_borders">
 						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'), 'textarea')">
 							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 						</select>
-					</td>
-					<td>
+						<br/><br/>
 						<label id="trade_description">XXXXXXXXXXXXX</label>
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align:right;"><b>Additional trades</b></td>
-					<td colspan="2">
+					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Additional trades</b></td>
+					<td class="cell_no_borders">
 						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" size="10">
 							<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
 						</select><br/>
@@ -61,19 +62,17 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td class="cell_no_borders" colspan="2">
 					<?php
-						echo "<a href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\"><h4>Request addition of a new trade.<h4></a>";
+						echo "<a style=\"color:MidnightBlue;\" href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\">Request addition of a new trade.</a>";
 					?>
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align:right;">&nbsp;</td>
-					<td style="text-align:right;">&nbsp;</td>
+					<td class="cell_no_borders" colspan="3">&nbsp;</td>
 				</tr>
 				<tr>
-					<td><input type="button" name="button_trade_details" id="button_trade_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_trade_details')" /></td>
-					<td>&nbsp;</td>
+					<td class="cell_no_borders" colspan="3"><input type="button" name="button_trade_details" id="button_trade_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_trade_details')" /></td>
 				</tr>
 			</table>
 	</fieldset>
@@ -82,20 +81,20 @@
 <form method="post" id="form_business_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Business details:</legend>
-		<table>
+		<table class="table_no_borders">
 			<tr>
-				<td style="text-align:right;"><b>Business name</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;width:338px;"><b>Business name</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_business_name" name="text_business_name" size="32" required pattern="^(?=[^A-Za-z]*[A-Za-z])[ -~]*$" value="<?php if (isset($_SESSION['account_business_name'])) echo $_SESSION['account_business_name']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>ABN</b></td>
-				<td><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php if (isset($_SESSION['account_abn'])) echo $_SESSION['account_abn']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" /> e.g. 51 824 753 556</td>
+				<td class="cell_no_borders" style="text-align:right;"><b>ABN</b></td>
+				<td class="cell_no_borders"><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php if (isset($_SESSION['account_abn'])) echo $_SESSION['account_abn']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" /> e.g. 51 824 753 556</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Business structure</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Business structure</b></td>
+				<td class="cell_no_borders">
 					<select id="select_structure" name="select_structure" required>
 						<option>Sole trader</option>
 						<option>Company</option>
@@ -106,37 +105,38 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Trade license numbers etc.</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Trade license numbers etc.</b></td>
+				<td class="cell_no_borders">
 					<textarea id="text_license" name="text_license" cols="64" rows="4"><?php if (isset($_SESSION['account_license'])) echo $_SESSION['account_license']; ?></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Description</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Business description &amp; philosophy etc.</b></td>
+				<td class="cell_no_borders">
 					<textarea id="text_description" name="text_description" cols="64" rows="16" required><?php if (isset($_SESSION['account_description'])) echo $_SESSION['account_description']; ?></textarea>
-					<br/>
+					<br/><br/>
 					Enter a more detailed description of your business: services, specialties, offers and philosophy etc.
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Minimum charge</b></td>
-				<td>
-					<b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /><br/>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Minimum charge</b></td>
+				<td class="cell_no_borders">
+					<b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php if (isset($_SESSION['account_minimum_charge'])) printf("%d", $_SESSION['account_minimum_charge']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<br/><br/>
 					Be fairdinkum here - you are no more or less likely to get the job if you don't disclose this up front.
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Minimum budget</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Minimum budget</b></td>
+				<td class="cell_no_borders">
 					<b>$</b>&nbsp;<input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php if (isset($_SESSION['account_minimum_budget'])) printf("%d", $_SESSION['account_minimum_budget']); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
-					<br/>
+					<br/><br/>
 					This is for tradies who are not interested in small value jobs. Enter 0 if you will accept jobs of any value.
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Maximum size</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Maximum size</b></td>
+				<td class="cell_no_borders">
 					<select id="select_maximum_size" name="select_maximum_size" required>
 						<option selected>Up to 50</option>
 						<option>50 - 100</option>
@@ -147,20 +147,18 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Maximum distance</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Maximum distance</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_maximum_distance" name="text_maximum distance" size="8" required value="<?php if (isset($_SESSION['account_maximum_distance'])) printf("%d", $_SESSION['account_maximum_distance']); ?>" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
-					<br/>
+					<br/><br/>
 					Enter 0 if you will travel any distance.
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;">&nbsp;</td>
-				<td style="text-align:right;">&nbsp;</td>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td><input type="button" name="button_business_details" id="button_business_details" value="<?php echo $g_strButtonText; ?>" onclick="DoFormSubmit('form_business_details')" /></td>
-				<td>&nbsp;</td>
+				<td class="cell_no_borders" colspan="2"><input type="button" name="button_business_details" id="button_business_details" value="<?php echo $g_strButtonText; ?>" onclick="DoFormSubmit('form_business_details')" /></td>
 			</tr>
 		</table>			
 	</fieldset>
@@ -169,40 +167,40 @@
 <form method="post" id="form_contact_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>" class="form">
 	<fieldset>
 		<legend>Contact details:</legend>
-		<table>
+		<table class="table_no_borders">
 			<tr>
-				<td style="text-align:right;"><b>First name</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>First name</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_first_name" name="text_first_name" size="32" required pattern="^[A-Za-z ,.'\-]+$" value="<?php if (isset($_SESSION['account_first_name'])) echo $_SESSION['account_first_name']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Surname</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Surname</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_surname" name="text_surname" size="32" required pattern="^[A-Za-z ,.'\-]+$" value="<?php if (isset($_SESSION['account_surname'])) echo $_SESSION['account_surname']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Unit</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Unit</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_unit" name="text_unit" size="32" required pattern="^[A-Za-z0-9]{1,}(\s{1}[A-Za-z0-9\-,:\(\)\s]{1,}){1}$" value="<?php if (isset($_SESSION['account_unit'])) echo $_SESSION['account_unit']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Street</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Street</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_street" name="text_street" size="32" required pattern="^(\b\D+\b)?\s*(\b.*?\d.*?\b)\s*(\b\D+\b)?$" value="<?php if (isset($_SESSION['account_street'])) echo $_SESSION['account_street']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>City/suburb/town</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>City/suburb/town</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_suburb" name="text_suburb" size="32" required pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$" value="<?php if (isset($_SESSION["account_suburb"])) echo $_SESSION["account_suburb"]; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>State</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>State</b></td>
+				<td class="cell_no_borders">
 					<select id="select_state" name="select_state">
 						<option selected=>ACT</option>
 						<option>NSW</option>
@@ -216,36 +214,35 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Postcode</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Postcode</b></td>
+				<td class="cell_no_borders">
 					<input type="text" id="text_postcode" name="text_postcode" size="6" length="4" maxlength="4" required pattern="^[0-9]{4}$" value="<?php if (isset($_SESSION["account_postcode"])) echo $_SESSION["account_postcode"]; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Phone</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Phone</b></td>
+				<td class="cell_no_borders">
 					<input type="text"  id="text_phone" name="text_phone" maxlength="8" required pattern="^[0-9]{8}$" value="<?php if (isset($_SESSION['account_phone'])) echo $_SESSION['account_phone']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Mobile</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Mobile</b></td>
+				<td class="cell_no_borders">
 					<input type="text"  id="text_mobile" name="text_mobile" maxlength="10" required pattern="^[0-9]{10}$" value="<?php if (isset($_SESSION['account_mobile'])) echo $_SESSION['account_mobile']; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;"><b>Email</b></td>
-				<td>
+				<td class="cell_no_borders" style="text-align:right;"><b>Email</b></td>
+				<td class="cell_no_borders">
 					<input type="text"  id="text_email" name="text_email" required pattern="^^[A-Za-z]{1,}[A-Za-z0-9\.\-_]{1,}@[A-Za-z0-9\-_]{1,}\.[A-Za-z]{3,}(\.*[A-Za-z]{2}){0,1}$" value="<?php if (isset($_SESSION['account_email'])) echo $_SESSION['account_email']; ?>" />
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;">&nbsp;</td>
-				<td style="text-align:right;">&nbsp;</td>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td><input type="button" name="button_contact_details" id="button_contact_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_contact_details')" /></td>
-				<td>
+				<td class="cell_no_borders"><input type="button" name="button_contact_details" id="button_contact_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_contact_details')" /></td>
+				<td class="cell_no_borders">
 <?php 
 	if ($g_bIsStaged)
 		echo "<input type=\"button\" name=\"button_save\" id=\"button_save\" value=\"SAVE\"  onclick=\"\" />";
@@ -397,7 +394,7 @@
 			}
 			else if (textPassword.value != textPasswordAgain.value)
 			{
-				AlertError("the two passwords do not match!");
+				AlertError("The two passwords do not match!");
 				textPassword.focus();
 			}
 			else

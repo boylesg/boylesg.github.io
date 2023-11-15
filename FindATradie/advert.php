@@ -29,12 +29,29 @@
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
+		
 			<style>
-			</style>
+</style>
+						
+			<script type="text/javascript">
+			
+				function OnMonthsChange(inputMonths, nCostPerMonth)
+				{
+					let labelCost = document.getElementById("label_cost");
+					
+					if (labelCost)
+					{
+						let nCost = Number(inputMonths.value) * nCostPerMonth;
+						labelCost.value = nCost.toString();
+					}
+				}
+			
+			</script>
+			
 		<!-- #EndEditable -->
 	</head>
 	
-	<body onresize="SetPageContetHeight()">
+	<body>
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -70,20 +87,49 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 				<?php
 					
-					function DoGetLocationName($strLocationID)
+					function DoGetLocationName()
 					{
-						if ($strLocationID == "index1")
-							$strLocationID = "Home page, top";
-						else if ($strLocationID == "login1")
-							$strLocationID = "Login page, top";
-							
-						return $strLocationID;
+						$strLocationName = "";
+						
+						if (isset($_GET["location"]))
+						{
+							if ($_GET["location"]== "index1")
+								$strLocationName = "Home page, top";
+							else if ($_GET["location"]== "login1")
+								$strLocationName = "Login page, top";
+						}
+						return $strLocationName;
 					}
+					
+					function DoGetCost()
+					{
+						global $g_dbFindATradie;
+						$nCost = 0;
+						
+						if (isset($_GET["location"]))
+						{
+							$results = DoFinQuery1($g_dbFindATradie, "advert_space_name", $_GET["location"]);
+							if ($results->num_rows > 0)
+							{
+								$row = $result->fetch_assoc();
+								$nCost = $row["cost_per_month"];
+							}
+						}
+						return $nCost;
+					}
+										
 				?>
 				<div class="note" style="flex-wrap:wrap;">
-					<h6><b>LOCATION: </b><?php if (isset($_GET["location"])) echo DoGetLocationName($_GET["location"]); ?></h6>
+					<h6><b>LOCATION: </b><?php if (isset($_GET["location"])) echo DoGetLocationName(); ?></h6>
 					<div style="width:500px;"></div>
 					<form class="advert_form" id="advert_form" method="post" action="advert.php" style="width: 748px;">
 						<table class="table_no_borders">
@@ -112,6 +158,22 @@
 								</td>
 							</tr>
 							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>How many months?</b>
+								</td>
+								<td class="cell_no_borders">
+									<input type="text" size="4" maxlength="3" id="text_months" name="text_month" onchange="OnMonthsChange(this, <?php echo DoGetCost(); ?>)" onkeypress="OnKeyPressDigitsOnly(eventKey)" />
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>Cost</b>
+								</td>
+								<td class="cell_no_borders">
+									$<label id="label_cost"></label>
+								</td>
+							</tr>
+							<tr>
 								<td style="text-align:right;" class="cell_no_borders" colspan="2">
 									<input type="submit" id="submit_advert"  name="submit_advert" value="SUBMIT" />
 								</td>
@@ -120,6 +182,12 @@
 					</form>
 				</div>
 				
+
+
+
+
+
+
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
@@ -136,10 +204,12 @@
 	
 	<footer>
 		
-		<script type="text/javascript">
-								
-		</script>
-	
+		<!-- #BeginEditable "footer" -->
+
+
+
+		<!-- #EndEditable -->
+
 	</footer>
 	
 <!-- #EndTemplate -->
