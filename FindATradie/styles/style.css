@@ -186,6 +186,7 @@ a.masthead_button:hover
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
+	align-items: center;
 	overflow: auto;
 	border-style: solid;
 	border-width: medium;

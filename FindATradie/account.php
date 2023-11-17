@@ -369,10 +369,6 @@
 			}
 		}
 	}
-
-	$strPaypalLive = "none";
-	$strPaypalTest = "block";
-
 ?>
 
 		<!-- #EndEditable -->
@@ -429,14 +425,14 @@
 								<td class="paypal_cell paypal_first_cell">1 month</td>
 								<td class="paypal_cell paypal_first_cell">$<?php printf("%0.2f", $g_nCostPerMonth); ?></td>
 								<td class="paypal_cell paypal_first_cell">
-									<div id="live" style="display: <?php echo $strPaypalLive; ?>;">
+									<div id="live1" style="display: <?php echo $g_strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="UYVQLYZVXKVHN" />
 										  <input type="hidden" name="currency_code" value="AUD" />
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>									</div>
-									<div id="debug" style="display: <?php echo $strPaypalTest; ?>;">
+									<div id="debug1" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="PVESVMVV6SGR4" />
@@ -450,7 +446,7 @@
 								<td class="paypal_cell">6 month</td>
 								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 6); ?></td>
 								<td class="paypal_cell">
-									<div id="live0" style="display: <?php echo $strPaypalLive; ?>;">
+									<div id="live6" style="display: <?php echo $g_strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="3HA4WCZAD3DZE" />
@@ -458,7 +454,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>					
 									</div>
-									<div id="debug0" style="display: <?php echo $strPaypalTest; ?>;">
+									<div id="debug6" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="4EZXNLPSZ7T4W" />
@@ -472,7 +468,7 @@
 								<td class="paypal_cell">12 month</td>
 								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 12); ?></td>
 								<td class="paypal_cell">
-									<div id="live1" style="display: <?php echo $strPaypalLive; ?>;">
+									<div id="live12" style="display: <?php echo $g_strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="LVG5EVU9Y9SM4" />
@@ -480,7 +476,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>
 									</div>
-									<div id="debug1" style="display: <?php echo $strPaypalTest; ?>;">
+									<div id="debug12" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
@@ -494,7 +490,7 @@
 								<td class="paypal_cell">18 month</td>
 								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 18); ?></td>
 								<td class="paypal_cell">
-									<div id="live2" style="display: <?php echo $strPaypalLive; ?>;">
+									<div id="live18" style="display: <?php echo $g_strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="V6JERUCM52TGN" />
@@ -502,7 +498,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>	
 									</div>
-									<div id="debug2" style="display: <?php echo $strPaypalTest; ?>;">
+									<div id="debug18" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
@@ -516,7 +512,7 @@
 								<td class="paypal_cell">24 month</td>
 								<td class="paypal_cell">$<?php printf("%0.2f", $g_nCostPerMonth * 24); ?></td>
 								<td class="paypal_cell">
-									<div id="live3" style="display: <?php echo $strPaypalLive; ?>;">
+									<div id="live24" style="display: <?php echo $g_strPaypalLive; ?>;">
 										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="KS2BA9S5L8TMG" />
@@ -524,7 +520,7 @@
 										  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>										
 									</div>
-									<div id="debug3" style="display: <?php echo $strPaypalTest; ?>;">
+									<div id="debug24" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										  <input type="hidden" name="cmd" value="_s-xclick" />
 										  <input type="hidden" name="hosted_button_id" value="5MEDPTLFQF3JU" />

@@ -33,19 +33,215 @@
 			<style>
 			</style>
 						
-			<script type="text/javascript">
-			
-				function OnMonthsChange(inputMonths, nCostPerMonth)
+			<?php
+
+				function DoGetLocationDisplayName($strSpaceName)
 				{
-					let labelCost = document.getElementById("label_cost");
+					$strSpaceDisplayName = "";
 					
-					if (labelCost)
+					if ($strSpaceName != "")
 					{
-						let nCost = Number(inputMonths.value) * nCostPerMonth;
-						labelCost.value = nCost.toString();
+						if ($strSpaceName == "index1")
+							$strSpaceDisplayName = "Home page, top";
+						else if ($strSpaceName == "login1")
+							$strSpaceDisplayName = "Login page, top";
+					}
+					return $strSpaceDisplayName;
+				}
+									
+				function DoGetAdvertCostPerMonth($strSpaceName)
+				{
+					global $g_dbFindATradie;
+					$nCost = 0;
+					$strID = "";
+
+					if ($strSpaceName != "")
+					{
+						$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "advert_space_name", $strSpaceName);
+						if ($results->num_rows > 0)
+						{							
+							$row = $results->fetch_assoc();
+							$nCost = (int)$row["cost_per_month"];
+							$strID = $row["id"];
+						}
+					}
+					return [$nCost, $strID];
+				}
+				
+				function DoCleanupAdvert($dbConnection, $strImageFilename, $dateExpiry)
+				{
+					global $g_dbFindATradie;
+					
+					if (file_exists($strImageFilename))
+					{
+						echo unlink($strFilePath);
+					}
+					if (isset($_SESSION["space_id"]))
+					{
+						$results = DoFindQuery3($g_dbFindATradie, "adverts", "id", $_SESSION["account_id"], "space_id", (int)$_SESSION["space_id"], "expiry_date", $dateExpiry->format("Y-m-d"));
+						if ($results->num_rows > 0)
+						{
+							$row = $results->fetch_assoc();
+							DoDeleteQuery1($dbConnection, "adverts", "id", $row["id"]);
+						}
 					}
 				}
+				
+				function DoCalculateTotalCost()
+				{
+					$nCost = 0;
+					
+					if (isset($_POST["text_months"]) && isset($_SESSION["cost_per_month"]))
+						$nCost = ((int)$_POST["text_months"] * (int)$_SESSION["cost_per_month"]);
+					else if (isset($_SESSION["total_cost"]))
+						$nCost = $_SESSION["total_cost"];
+					else
+						$nCost = "0";
+						
+					return $nCost;
+				}
+				
+				
+				
+				//********************************************************
+				//********************************************************
+				//**
+				//** START DEBUGGING & TESTING
+				//**
+				//********************************************************
+				//********************************************************
+				$_GET["location"] = "index1";
+				//$_SESSION["account_id"] = "1";
+				//$_SESSION["cost_per_month"] = "10";
+				$_GET["advert_paid"] = false;
+				$_SESSION["space_name"]  = "index1";
+				
+				//unset($_GET["advert_paid"]);
+				unset($_POST["submit_advert"]);
+				/*
+				unset($_SESSION["text_months"]);
+				unset($_SESSION["space_id"]);
+				unset($_SESSION["space_name"]);
+				unset($_SESSION["cost_per_month"]);
+				unset($_SESSION["file"]);
+				*/
+				
+				//********************************************************
+				//********************************************************
+				//**
+				//** END DEBUGGING & TESTING
+				//**
+				//********************************************************
+				//********************************************************
+				
+				
+				
+				
+				
+				$g_strPaypalRowDisplay = "none";
+				
+				if (isset($_GET["location"]) && !isset($_POST["submit_advert"]) && !isset($_GET["advert_paid"]))
+				{
+					$_SESSION["space_name"] = $_GET["location"];
+					$results = DoGetAdvertCostPerMonth($_SESSION["space_name"]);
+					$_SESSION["space_id"] = $results[1];
+					$_SESSION["cost_per_month"] = $results[0];
+				}
+				else if (isset($_POST["submit_advert"]))
+				{
+					$_SESSION["text_months"] = $_POST["text_months"];
+					$_SESSION["file"] = $_FILES["file_image_name"];
+					$_SESSION["total_cost"] = (int)$_SESSION["text_months"] * (int)$_SESSION["cost_per_month"];
+					$_SESSION["text_desc"] = $_POST["text_desc"];
+					$g_strPaypalRowDisplay = "block";
+				}
+				else if (isset($_GET["advert_paid"]))
+				{
+					$strTargetPath = "";
+					if (isset($_SESSION["file"]))
+					{
+						$strFileName = basename($_SESSION["file"]["name"]);
+						$strTargetPath = "images/" . $strFileName;
+					}
+					$dateExpiry = new DateTime();
+					if (isset($_SESSION["text_months"]))
+					{
+						$interval = DateInterval::createFromDateString($_SESSION["text_months"] . " month");
+						$dateExpiry = $dateExpiry->add($interval);
+					}			
+					if ($_GET["advert_paid"] == "true")
+					{
+						if (move_uploaded_file($_SESSION["file"]["tmp_name"], $strTargetPath))
+						{
+							$_SESSION["text_months"] = $_POST["text_months"];
+								
+							$strQuery = "INSERT INTO adverts (member_id, space_id, space_name, text, image_name, expiry_date) VALUES (" . 
+										AppendSQLInsertValues($_SESSION["account_id"], (int)$_SESSION["space_id"], $_SESSION["space_name"], $_POST["text_desc"], $strFileName, $dateExpiry->format("Y-m-d")) . 
+											")";
+	
+							$results = DoQuery($g_dbFindATradie, $strQuery);
+							if ($results)
+							{
+								PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Your advert could not be saved to the database!\");", 3, true);
+								DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);
+							}
+						}
+						else
+						{
+							PrintJavascriptLine("AlertError(\"Could not save file '" . $strFileName . "' to the server!\");", 3, true);
+							DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);			
+						}
+					}
+					else
+					{						
+						PrintJavascriptLine("AlertWarning(\"Your advert has been cancelled!\");", 3, true);
+						DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);			
+					}
+					unset($_SESSION["file"]);
+				}
+
+			?>
+				
+			<script type="text/javascript">
 			
+				function DoImagePreview()
+				{
+					let imgPreview = document.getElementById("image_preview"),
+						inputFile = document.getElementById("file_image_name");
+					
+					if (imgPreview)
+					{
+						imgPreview.src = URL.createObjectURL(inputFile.files[0]);
+					}
+				}
+				
+				function OnChangeFile(inputFile)
+				{
+					if (inputFile.files[0].size > 500000)
+					{
+						AlertError("File size cannot exceed 500 kilobytes!");
+					}
+					else
+					{							
+						DoImagePreview();
+					}
+				}
+				
+				function OnKeyUpMonths(inputMonths, eventKey)
+				{
+					let labelTotalCost = document.getElementById("label_cost_total");
+					
+					if (labelTotalCost)
+					{
+						let nCost = Number(inputMonths.value) * <?php if (isset($_SESSION["cost_per_month"])) echo $_SESSION["cost_per_month"]; else echo "0";; ?>;
+						labelTotalCost.innerText = nCost.toString();
+					}
+				}
+				
 			</script>
 			
 		<!-- #EndEditable -->
@@ -87,66 +283,17 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-				<?php
-					
-					$g_strLocationID = "";
-
-					function DoGetLocationName($strLocationID)
-					{
-						$strLocationName = "";
-						
-						if ($strLocationID != "")
-						{
-							if ($strLocationID == "index1")
-								$strLocationName = "Home page, top";
-							else if ($strLocationID == "login1")
-								$strLocationName = "Login page, top";
-						}
-						return $strLocationName;
-					}
-										
-					function DoGetCost($strLocationID)
-					{
-						global $g_dbFindATradie;
-						$nCost = 0;
-						
-						if ($strLocationID != "")
-						{
-							$results = DoFinQuery1($g_dbFindATradie, "advert_space_name", $strAdvertLocationID);
-							if ($results->num_rows > 0)
-							{							
-								$row = $result->fetch_assoc();
-								$nCost = (int)$row["cost_per_month"];
-							}
-						}
-						return $nCost;
-					}
-					
-					if (isset($_GET["location"]))
-					{
-						$g_strLocationID = $_GET["location"];
-					}
-
-										
-				?>
 				<div class="note" style="flex-wrap:wrap;">
-					<h6><b>LOCATION: </b><?php echo DoGetLocationName($g_strLocationID); ?></h6>
+					<h6><b>LOCATION: </b><?php echo DoGetLocationDisplayName($_SESSION["space_name"]); ?></h6>
 					<div style="width:500px;"></div>
-					<form class="form" id="advert_form" method="post" action="advert.php" style="width: 748px;">
+					<form class="form" id="advert_form" method="post" action="advert.php" enctype="multipart/form-data" style="width: 748px;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
 									<b>Select and image to display</b>
 								</td>
 								<td class="cell_no_borders">
-									<input type="file" id="file_image" name="file_image" accept=".jpg, .png, .jpeg, .gif|image/*"/>
+									<input type="file" required id="file_image_name" name="file_image_name" accept=".jpg, .png, .jpeg, .gif|image/*" onchange="OnChangeFile(this)"/>
 								</td>
 							</tr>
 							<tr>
@@ -154,7 +301,7 @@
 									<b>Image preview</b>
 								</td>
 								<td class="cell_no_borders">
-									<img src="" alt="IMAGE PREVIEW" id="image_review" width="600" />
+									<img src="" alt="<?php if (isset($_FILES["file_image_name"])) echo $_FILES["file_image_name"]["name"]; else echo "IMAGE PREVIEW"; ?>" id="image_preview" width="50" />
 								</td>
 							</tr>
 							<tr>
@@ -162,7 +309,7 @@
 									<b>Text to display beside image</b>
 								</td>
 								<td class="cell_no_borders">
-									<textarea cols="60" rows="10" maxlength="620"></textarea>
+									<textarea id="text_desc" name="text_desc" cols="60" rows="10" maxlength="620"><?php if (isset($_SESSION["text_desc"])) echo $_SESSION["text_desc"];?></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -170,20 +317,42 @@
 									<b>How many months?</b>
 								</td>
 								<td class="cell_no_borders">
-									<input type="text" size="4" maxlength="3" id="text_months" name="text_month" onchange="OnMonthsChange(this, <?php echo DoGetCost($g_strLocationID); ?>)" onkeypress="OnKeyPressDigitsOnly(eventKey)" />
+									<input type="text" required size="4" maxlength="3" id="text_months" name="text_months" value="<?php if (isset($_SESSION["text_months"])) echo $_SESSION["text_months"];?>" onkeypress="OnKeyPressDigitsOnly(event)" onkeyup="OnKeyUpMonths(this, event)"/>
 								</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
-									<b>Cost</b>
+									<b>Cost per month:</b><br/>
+									<b>Total cost:</b>
 								</td>
 								<td class="cell_no_borders">
-									$<label id="label_cost"><?php echo DoGetCost($g_strLocationID); ?></label>
+									$<label id="label_cost_month"><?php if (isset($_SESSION["cost_per_month"])) echo $_SESSION["cost_per_month"]; else echo "0"; ?></label>
+									<br/>
+									$<label id="label_cost_total"><?php echo DoCalculateTotalCost(); ?></label>
 								</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders" colspan="2">
 									<input type="submit" id="submit_advert"  name="submit_advert" value="SUBMIT" />
+								</td>
+							</tr>
+							<tr  style="display:<?php echo $g_strPaypalRowDisplay; ?>;" id="row_paypal_button">
+								<td class="cell_no_borders" colspan="2">
+								
+									<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display:<?php echo $g_strPaypalTest; ?>;">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="W22A5JKGRMJXY" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" id="paypal_submit" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>	
+																	
+									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display:<?php echo $g_strPaypalLive; ?>;">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="78WNB6PA7CP4A" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" id="paypal_submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>
+									
 								</td>
 							</tr>
 						</table>

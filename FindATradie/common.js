@@ -56,40 +56,45 @@
 	function AlertSuccess(strMsg)
 	{
 		swal({
-		 		title: "Success",
+		 		title: "SUCCESS",
 		  		text: strMsg,
 		  		icon: "success",
 		  		buttons: true,
-		  		dangerMode: true,
 		  		closeModal: true
 			});	
-		//alert("SUCCESS: " + strMsg + ".");
+	}
+
+	function AlertWarning(strMsg)
+	{
+		swal({
+		 		title: "WARNING",
+		  		text: strMsg,
+		  		icon: "warning",
+		  		buttons: true,
+		  		closeModal: true
+			});	
 	}
 
 	function AlertError(strMsg)
 	{
 		swal({
-		 		title: "Error",
+		 		title: "ERROR",
 		  		text: strMsg,
 		  		icon: "error",
 		  		buttons: true,
-		  		/*dangerMode: true,*/
 		  		closeModal: true
 			});	
-		//alert("ERROR: " + strMsg + ".");
 	}
 
 	function AlertIDError(strID, strDescription)
 	{
 		swal({
-		 		title: "Element ID error",
+		 		title: "ELEMENT ID ERROR",
 		  		text: "The " + strDescription + " element with ID '" + strID + "' does not exist!",
 		  		icon: "error",
 		  		buttons: true,
-		  		dangerMode: true,
 		  		closeModal: true
 			});	
-		//alert("ERROR: " + strDescription + " with ID '" + strID + "' does not exist!");
 	}
 
 
@@ -176,7 +181,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** PRICES
+	//** ADVERTS
 	//** 
 	//******************************************************************************
 	//******************************************************************************

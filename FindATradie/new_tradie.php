@@ -30,7 +30,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -159,7 +159,7 @@
 			$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username password expiry_date) VALUES (" .
-							AppendSQLValues($_POST["select_trade"], $_POST["text_business_name"], 
+							AppendSQLInsertValues($_POST["select_trade"], $_POST["text_business_name"], 
 							$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
 							$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
 							$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  

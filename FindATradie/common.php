@@ -14,6 +14,8 @@
 	$g_nCostPerMonth = 10;
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
+	$g_strPaypalLive = "none";
+	$g_strPaypalTest = "block";
 
 
 	
@@ -33,19 +35,38 @@
 			echo "\t";
 	}
 	
-	function DebugPrint($strVarName, $strVarValue, $nHeadingLevel)
+	function DebugPrintMsg($strMsg, $nHeadingLevel, $strBGColor = "white")
 	{
-		$strOpening = "<p>";
-		$strClosing = "</p>";
+		$strOpening = "<div style=\"background-color:\"" . $strBGColor . "\">";
+		$strClosing = "</div>";
+
+		switch ($nHeadingLevel)
+		{
+			case 1: $strOpening = $strOpening . "<h1>"; $strClosing = "</h1>" . $strClosing ;break;
+			case 2: $strOpening = $strOpening . "<h2>"; $strClosing = "</h2>" . $strClosing ;break;
+			case 3: $strOpening = $strOpening . "<h3>"; $strClosing = "</h3>" . $strClosing ;break;
+			case 4: $strOpening = $strOpening . "<h4>"; $strClosing = "</h4>" . $strClosing ;break;
+			case 5: $strOpening = $strOpening . "<h5>"; $strClosing = "</h5>" . $strClosing ;break;
+			case 6: $strOpening = $strOpening . "<h6>"; $strClosing = "</h6>" . $strClosing ;break;
+			default: $strOpening = $strOpening . "<p>"; $strClosing = "</p>" . $strClosing ;break;
+		}
+		echo $strOpening . $strMsg . $strClosing . "<br>";
+	}
+	
+	function DebugPrint($strVarName, $strVarValue, $nHeadingLevel, $strBGColor = "white")
+	{
+		$strOpening = "<div style=\"background-color:\"" . $strBGColor . "\">";
+		$strClosing = "</div>";
 		
 		switch ($nHeadingLevel)
 		{
-			case 1: $strOpening = "<h1>"; $strClosing = "</h1>";break;
-			case 2: $strOpening = "<h2>"; $strClosing = "</h2>";break;
-			case 3: $strOpening = "<h3>"; $strClosing = "</h3>";break;
-			case 4: $strOpening = "<h4>"; $strClosing = "</h4>";break;
-			case 5: $strOpening = "<h5>"; $strClosing = "</h5>";break;
-			case 6: $strOpening = "<h6>"; $strClosing = "</h6>";break;
+			case 1: $strOpening = $strOpening . "<h1>"; $strClosing = "</h1>" . $strClosing ;break;
+			case 2: $strOpening = $strOpening . "<h2>"; $strClosing = "</h2>" . $strClosing ;break;
+			case 3: $strOpening = $strOpening . "<h3>"; $strClosing = "</h3>" . $strClosing ;break;
+			case 4: $strOpening = $strOpening . "<h4>"; $strClosing = "</h4>" . $strClosing ;break;
+			case 5: $strOpening = $strOpening . "<h5>"; $strClosing = "</h5>" . $strClosing ;break;
+			case 6: $strOpening = $strOpening . "<h6>"; $strClosing = "</h6>" . $strClosing ;break;
+			default: $strOpening = $strOpening . "<p>"; $strClosing = "</p>" . $strClosing ;break;
 		}
 		echo $strOpening . $strVarName . " = " . $strVarValue . $strClosing . "<br>";
 	}
@@ -298,6 +319,20 @@
 		return DoQuery($dbConnection, $strQuery);
 	}
 	
+	function DoDeleteQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
+	{
+		$strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		
+		return DoQuery($dbConnection, $strQuery);
+	}
+	
+	function DoFindMaxValueQuery1($dbConnection, $strTableName, $strColumnName)
+	{
+		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "=(SELECT MAX(" . $strColumnName . ") FROM " . $strTableName . ")";
+		$result = DoQuery($dbConnection, $strQuery);
+		return $result;
+	}	
+	
 	
 	
 	
@@ -500,7 +535,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoInsertAdvert($strSpaceName, $nImageHeight)
+	function DoInsertAdvert($strSpaceName, $nImageHeight, $strIDAdvertDiv)
 	{
 		global $g_dbFindATradie;
 		$dateNow = new DateTime();
@@ -508,9 +543,14 @@
 		$result = DoFindQuery1($g_dbFindATradie, "adverts", "space_name", $strSpaceName , "expiry_date > '" . ($dateNow->format("Y-m-d")) . "'");
 		if ($result->num_rows > 0)
 		{
-			echo "<a class=\"advert_image\" href=\"images/" . $row["image_name"] . "\"><img src=\"images/" . $row["image_name"] . "\" alt=\"" . $row["image_name"] . "\" /></a>\n";
+			$row = $result->fetch_assoc();
+			echo "<a class=\"advert_image\" href=\"images/" . $row["image_name"] . "\"><img src=\"images/" . $row["image_name"] . "\" alt=\"" . $row["image_name"] . "\" height=\"" .  $nImageHeight . "\"/></a>\n";
 			echo $row["text"];
 			echo "<div class=\"advert_text\">" . "</div>\n";
+			PrintJavascriptLines(
+				["document.getElementById(\"" . $strIDAdvertDiv . "\").alignItems = \"flex-start\";", 
+				 "document.getElementById(\"" . $strIDAdvertDiv . "\").justifyContent = \"flex-start\";"], 
+				true, 4);
 		}
 		else
 		{

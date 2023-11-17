@@ -30,7 +30,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -88,6 +88,7 @@
 
 <?php
 	$strResultsDisplay = "none";
+	$arrayResults = [];
 
 	if (isset($_POST["submit_search"]))
 	{
@@ -114,7 +115,12 @@
 								</td>
 								<td class="cell_no_borders">
 									&nbsp;&nbsp;&nbsp;<select id="select_trade" name="select_trade">
-										<?php DoGeneratePrimaryTradeOptions($_POST["select_trade"]); ?>
+										<?php 
+											if (isset($_POST["select_trade"]))
+												DoGeneratePrimaryTradeOptions($_POST["select_trade"]);
+											else
+												DoGeneratePrimaryTradeOptions("");
+											?>
 									</select>
 								</td>
 							</tr>
@@ -156,7 +162,7 @@
 						</table>
 					</form>
 					<div class="advert" id="advert_index" style="height: 208px; width: 484px;">
-						<?php DoInsertAdvert("index1", 180); ?>
+						<?php DoInsertAdvert("index1", 180, "advert_index"); ?>
 					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
