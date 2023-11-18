@@ -237,7 +237,7 @@
 					</form>
 					
 					<div class="advert" id="advert_login" style="width:680px;">
-						<?php DoInsertAdvert("login1", 180); ?>
+						<?php DoInsertAdvert("login1", 180, "advert_login"); ?>
 					</div>
 					
 				</div>	

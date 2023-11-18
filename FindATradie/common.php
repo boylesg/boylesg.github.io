@@ -191,14 +191,15 @@
 		return $dbFindATradie;
 	}
 	$g_dbFindATradie = ConnectToDatabase();
+	$g_strQuery = "";
 	
 	function DoQuery($dbConnection, $strQuery)
 	{
 		global $g_strEmailAdmin;
 		$result = "";
-		
+
 		try
-		{
+		{	
 			$result = $dbConnection->query($strQuery);		
 		}
 		catch(Exception $e) 
@@ -208,34 +209,48 @@
 		return $result;
 	}
 
-	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "")
-	{	
-		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
+	function DoFindAllQuery($dbConnection, $strTableName, $strCondition = "")
+	{
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName;
 		
-		if (strlen($strCondition) > 0)
-			$strQuery = $strQuery . " AND " . $strCondition;
+		if ($strCondition != "")
+			$g_strQuery = $g_strQuery . " WHERE " . $strCondition;
+			
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "")
+	{
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
 
-		return DoQuery($dbConnection, $strQuery);
+		if (strlen($strCondition) > 0)
+			$g_strQuery = $g_strQuery . " AND " . $strCondition;
+
+		return DoQuery($dbConnection, $g_strQuery);
 	}	
 	
 	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strCondition = "")
 	{	
-		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
 	
 		if (strlen($strCondition) > 0)
-			$strQuery = $strQuery . " AND " . $strCondition;
+			$g_strQuery = $g_strQuery . " AND " . $strCondition;
 
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strCondition = "")
 	{	
-		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
 	
 		if (strlen($strCondition) > 0)
-			$strQuery = $strQuery . " AND " . $strCondition;
+			$g_strQuery = $g_strQuery . " AND " . $strCondition;
 
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoInsertFindQuery1($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
@@ -267,69 +282,78 @@
 	
 	function DoUpdateQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strFindColumnName, $strFindColumnValue)
 	{
-		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName . "='" . $strColumnValue . "' WHERE " . 
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName . "='" . $strColumnValue . "' WHERE " . 
 			$strFindColumnName . "='" . $strFindColumnValue . "'";
 	
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 
 	function DoUpdateQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strFindColumnName, $strFindColumnValue)
 	{
-		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
 			$strColumnName2 . "='" .  $strColumnValue2 . "' WHERE " . 
 			$strFindColumnName . "='" . $strFindColumnName . "'";
 
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 
 	function DoUpdateQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strFindColumnName, $strFindColumnValue)
 	{
-		$strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
 			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . "' WHERE " . 
 			$strFindColumnName . "='" . $strFindColumnName . "'";
 
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoDeleteQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
-		$strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		global $g_strQuery;
+		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
 		
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoInsertQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
-		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES(" . $strColumnValue . ")";
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES(" . $strColumnValue . ")";
 		
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 
 	function DoInsertQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
 	{
-		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . ")";
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . ")";
 		
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 
 	function DoInsertQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
 	{
-		$strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . ")";
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . ")";
 		
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoDeleteQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
-		$strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		global $g_strQuery;
+		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
 		
-		return DoQuery($dbConnection, $strQuery);
+		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
 	function DoFindMaxValueQuery1($dbConnection, $strTableName, $strColumnName)
 	{
-		$strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "=(SELECT MAX(" . $strColumnName . ") FROM " . $strTableName . ")";
-		$result = DoQuery($dbConnection, $strQuery);
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "=(SELECT MAX(" . $strColumnName . ") FROM " . $strTableName . ")";
+		$result = DoQuery($dbConnection, $g_strQuery);
 		return $result;
 	}	
 	
@@ -535,22 +559,37 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoInsertAdvert($strSpaceName, $nImageHeight, $strIDAdvertDiv)
+	function GetSpaceID($strSpaceCode)
+	{
+		global $g_dbFindATradie;
+		$strSpaceID = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "space_code", $strSpaceCode);
+		if ($results->num_rows > 0)
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strSpaceID = $row["id"];
+			}
+		}
+		return $strSpaceID;
+	}
+	
+	function DoInsertAdvert($strSpaceCode, $nImageHeight, $strIDAdvertDiv)
 	{
 		global $g_dbFindATradie;
 		$dateNow = new DateTime();
 			
-		$result = DoFindQuery1($g_dbFindATradie, "adverts", "space_name", $strSpaceName , "expiry_date > '" . ($dateNow->format("Y-m-d")) . "'");
-		if ($result->num_rows > 0)
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode) , "expiry_date > '" . $dateNow->format("Y-m-d") . "'");
+
+		if ($results->num_rows > 0)
 		{
-			$row = $result->fetch_assoc();
-			echo "<a class=\"advert_image\" href=\"images/" . $row["image_name"] . "\"><img src=\"images/" . $row["image_name"] . "\" alt=\"" . $row["image_name"] . "\" height=\"" .  $nImageHeight . "\"/></a>\n";
-			echo $row["text"];
-			echo "<div class=\"advert_text\">" . "</div>\n";
-			PrintJavascriptLines(
-				["document.getElementById(\"" . $strIDAdvertDiv . "\").alignItems = \"flex-start\";", 
-				 "document.getElementById(\"" . $strIDAdvertDiv . "\").justifyContent = \"flex-start\";"], 
-				true, 4);
+			$row = $results->fetch_assoc(); 
+			$dateExpiry = new DateTime($row["expiry_date"]);
+			echo "<img src=\"images/" . $row["image_name"] . 
+					"\" alt=\"" . $row["image_name"] . "\" class=\"advert_image\" height=\"" .  $nImageHeight . "\" />\n";
+			echo "<div class=\"advert_text\" style=\"height:" . $nImageHeight . "px;line-height:" . $nImageHeight . "px\";\">" . $row["text"] . "</div>\n";
+			echo "<div class=\"advert_expires\">Advert expires on " . $dateExpiry->format("D d M Y") . "</div>\n";
 		}
 		else
 		{

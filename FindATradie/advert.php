@@ -35,37 +35,27 @@
 						
 			<?php
 
-				function DoGetLocationDisplayName($strSpaceName)
-				{
-					$strSpaceDisplayName = "";
-					
-					if ($strSpaceName != "")
-					{
-						if ($strSpaceName == "index1")
-							$strSpaceDisplayName = "Home page, top";
-						else if ($strSpaceName == "login1")
-							$strSpaceDisplayName = "Login page, top";
-					}
-					return $strSpaceDisplayName;
-				}
-									
-				function DoGetAdvertCostPerMonth($strSpaceName)
+				function DoGetAdvertSpaceDetails($strSpaceCode)
 				{
 					global $g_dbFindATradie;
 					$nCost = 0;
 					$strID = "";
+					$strCode = "";
+					$strDesc = "";
 
-					if ($strSpaceName != "")
+					if ($strSpaceCode != "")
 					{
-						$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "advert_space_name", $strSpaceName);
+						$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "space_code", $strSpaceCode);
 						if ($results->num_rows > 0)
 						{							
 							$row = $results->fetch_assoc();
 							$nCost = (int)$row["cost_per_month"];
 							$strID = $row["id"];
+							$strCode = $row["space_code"];
+							$strDesc = $row["space_description"];
 						}
 					}
-					return [$nCost, $strID];
+					return [$strID, $strCode, $strDesc, $nCost];
 				}
 				
 				function DoCleanupAdvert($dbConnection, $strImageFilename, $dateExpiry)
@@ -76,10 +66,10 @@
 					{
 						echo unlink($strFilePath);
 					}
-					if (isset($_SESSION["space_id"]))
+					if (isset($_SESSION["space_code"]))
 					{
 						$results = DoFindQuery3($g_dbFindATradie, "adverts", "id", $_SESSION["account_id"], "space_id", (int)$_SESSION["space_id"], "expiry_date", $dateExpiry->format("Y-m-d"));
-						if ($results->num_rows > 0)
+						if ($results && ($results->num_rows > 0))
 						{
 							$row = $results->fetch_assoc();
 							DoDeleteQuery1($dbConnection, "adverts", "id", $row["id"]);
@@ -101,6 +91,54 @@
 					return $nCost;
 				}
 				
+				function DoGenerateAdvertSpaceOptions($strSpaceCode)
+				{
+					global $g_dbFindATradie;
+					$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces");
+			
+					if ($results && ($results->num_rows > 0))
+					{
+						while ($row = $results->fetch_assoc())
+						{
+							echo "<option ";
+							if ($strSpaceCode == $row["space_code"])
+								echo "selected ";
+							echo "value=\"" . $row["space_code"] . "\">" . $row["space_description"] . "</option>\n";
+						}
+					}
+				}
+				
+				function DoGenerateAdvertCostMap()
+				{
+					global $g_dbFindATradie;
+					$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces");
+			
+					if ($results && ($results->num_rows > 0))
+					{
+						$nI = 0;
+						while ($row = $results->fetch_assoc())
+						{
+							echo "[\"" . $row["space_code"] . "\", " . $row["cost_per_month"] . "]";
+							if ($nI < ($results->num_rows - 1))
+								echo ",";
+							echo "\n";
+						}
+					}
+				}
+				
+				function DoCheckForActiveAdvert($strSpaceCode)
+				{
+					global $g_dbFindATradie;
+					$bResult = false;
+					$dateNow = new DateTime();
+
+					$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", $strSpaceCode, "expiry_date>'" . $dateNow->format("Y-m-d") . "'");
+					$bResult = $results->num_rows > 0;
+
+					return $bResult;
+				}
+				
+				
 				
 				
 				//********************************************************
@@ -110,21 +148,20 @@
 				//**
 				//********************************************************
 				//********************************************************
-				$_GET["location"] = "index1";
-				//$_SESSION["account_id"] = "1";
+				$_GET["location"] = "login1";
+				$_SESSION["account_id"] = "1";
 				//$_SESSION["cost_per_month"] = "10";
-				$_GET["advert_paid"] = false;
-				$_SESSION["space_name"]  = "index1";
+				//$_GET["advert_paid"] = true;
+				//$_SESSION["space_code"]  = "index1";
+				
+				//unset($_SESSION["text_months"]);
+				//unset($_SESSION["space_id"]);
+				//unset($_SESSION["space_code"]);
+				//unset($_SESSION["cost_per_month"]);
+				//unset($_SESSION["file"]);
 				
 				//unset($_GET["advert_paid"]);
-				unset($_POST["submit_advert"]);
-				/*
-				unset($_SESSION["text_months"]);
-				unset($_SESSION["space_id"]);
-				unset($_SESSION["space_name"]);
-				unset($_SESSION["cost_per_month"]);
-				unset($_SESSION["file"]);
-				*/
+				//unset($_POST["submit_advert"]);
 				
 				//********************************************************
 				//********************************************************
@@ -137,32 +174,54 @@
 				
 				
 				
-				
 				$g_strPaypalRowDisplay = "none";
 				
 				if (isset($_GET["location"]) && !isset($_POST["submit_advert"]) && !isset($_GET["advert_paid"]))
 				{
-					$_SESSION["space_name"] = $_GET["location"];
-					$results = DoGetAdvertCostPerMonth($_SESSION["space_name"]);
-					$_SESSION["space_id"] = $results[1];
-					$_SESSION["cost_per_month"] = $results[0];
+					$results = DoGetAdvertSpaceDetails($_GET["location"]);				
+					// [$strID, $strCode, $strDesc, $nCost]
+					$_SESSION["space_id"] = $results[0];
+					$_SESSION["space_code"] = $results[1];
+					$_SESSION["space_description"] = $results[2];
+					$_SESSION["cost_per_month"] = $results[3];
 				}
 				else if (isset($_POST["submit_advert"]))
 				{
+					$results = DoGetAdvertSpaceDetails($_POST["select_space"]);
+					$_SESSION["space_id"] = $results[0];
+					$_SESSION["space_code"] = $results[1];
+					$_SESSION["space_description"] = $results[2];
+					$_SESSION["cost_per_month"] = $results[3];
 					$_SESSION["text_months"] = $_POST["text_months"];
-					$_SESSION["file"] = $_FILES["file_image_name"];
 					$_SESSION["total_cost"] = (int)$_SESSION["text_months"] * (int)$_SESSION["cost_per_month"];
 					$_SESSION["text_desc"] = $_POST["text_desc"];
-					$g_strPaypalRowDisplay = "block";
+					
+					$strSpaceID = GetSpaceID($_POST["select_space"]);
+					if ($strSpaceID != "")
+					{
+						if (DoCheckForActiveAdvert($strSpaceID))
+							PrintJavascriptLine("AlertWarning(\"There is already an active advert in the space '" . $_SESSION["space_description"] . "'!\");", 3, true);
+						else
+						{
+							$g_strPaypalRowDisplay = "block";
+							$strTargetPath = "";
+							if (isset($_FILES["file_image_name"]))
+							{
+								$strTargetPath = "images/" . basename($_FILES["file"]["name"]);
+							}
+							if (move_uploaded_file($_FILES["file_image_name"]["tmp_name"], $strTargetPath))
+							{
+								$_SESSION["image_file_name"] = basename($_FILES["file"]["name"];
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "' to the server!<br><br>" . $g_strEmailAdmin . "\");", 3, true);
+							}
+						}
+					}
 				}
 				else if (isset($_GET["advert_paid"]))
 				{
-					$strTargetPath = "";
-					if (isset($_SESSION["file"]))
-					{
-						$strFileName = basename($_SESSION["file"]["name"]);
-						$strTargetPath = "images/" . $strFileName;
-					}
 					$dateExpiry = new DateTime();
 					if (isset($_SESSION["text_months"]))
 					{
@@ -171,37 +230,42 @@
 					}			
 					if ($_GET["advert_paid"] == "true")
 					{
-						if (move_uploaded_file($_SESSION["file"]["tmp_name"], $strTargetPath))
+						$_SESSION["text_months"] = $_POST["text_months"];
+							
+						$strQuery = "INSERT INTO adverts (member_id, space_id, text, image_name, expiry_date) VALUES (" . 
+									AppendSQLInsertValues($_SESSION["account_id"], (int)$_SESSION["space_id"], $_POST["text_desc"], $_SESSION["image_file_name"], $dateExpiry->format("Y-m-d")) . 
+										")";
+
+						$results = DoQuery($g_dbFindATradie, $strQuery);
+						if ($results)
 						{
-							$_SESSION["text_months"] = $_POST["text_months"];
-								
-							$strQuery = "INSERT INTO adverts (member_id, space_id, space_name, text, image_name, expiry_date) VALUES (" . 
-										AppendSQLInsertValues($_SESSION["account_id"], (int)$_SESSION["space_id"], $_SESSION["space_name"], $_POST["text_desc"], $strFileName, $dateExpiry->format("Y-m-d")) . 
-											")";
-	
-							$results = DoQuery($g_dbFindATradie, $strQuery);
-							if ($results)
-							{
-								PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
-							}
-							else
-							{
-								PrintJavascriptLine("AlertError(\"Your advert could not be saved to the database!\");", 3, true);
-								DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);
-							}
+							PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
 						}
 						else
 						{
-							PrintJavascriptLine("AlertError(\"Could not save file '" . $strFileName . "' to the server!\");", 3, true);
-							DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);			
+							PrintJavascriptLine("AlertError(\"Your advert could not be saved to the database!\");", 3, true);
+							DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);
 						}
 					}
 					else
-					{						
+					{			
 						PrintJavascriptLine("AlertWarning(\"Your advert has been cancelled!\");", 3, true);
 						DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);			
 					}
-					unset($_SESSION["file"]);
+				}
+				
+				function GetImageAltText()
+				{
+					$strAltText = "";
+					
+					if (isset($_FILES["file_image_name"])) 
+						$strAltText = $_FILES["file_image_name"]["name"]; 
+					else if (isset($_SESSION["file_image_name"])) 
+						$strAltText = $_SESSION["file_image_name"]["name"]; 
+					else 
+						$strAltText = "IMAGE PREVIEW";
+						
+					return $strAltText;
 				}
 
 			?>
@@ -242,6 +306,24 @@
 					}
 				}
 				
+				let g_mapSpaceCosts = new Map([
+												<?php DoGenerateAdvertCostMap(); ?>
+											  ]);
+											  
+				function OnChangeSelectAdvertSpace()
+				{
+					let selectSpace = document.getElementById("select_space"),
+						labelCostMonth = document.getElementById("label_cost_month"),
+						labelTotalCost = document.getElementById("label_cost_total"),
+						textMonths = document.getElementById("text_months");
+							
+					if (selectSpace && labelCostMonth && textMonths)
+					{
+						labelCostMonth.innerText = g_mapSpaceCosts.get(selectSpace.options[selectSpace.selectedIndex].value);
+						labelTotalCost.innerText = Number(labelCostMonth.innerText) * Number(textMonths.value);
+					}
+				}
+								
 			</script>
 			
 		<!-- #EndEditable -->
@@ -284,10 +366,20 @@
 				<!-- #BeginEditable "content" -->
 
 				<div class="note" style="flex-wrap:wrap;">
-					<h6><b>LOCATION: </b><?php echo DoGetLocationDisplayName($_SESSION["space_name"]); ?></h6>
+					<h6><b>LOCATION: </b><?php echo $_SESSION["space_description"]; ?></h6>
 					<div style="width:500px;"></div>
 					<form class="form" id="advert_form" method="post" action="advert.php" enctype="multipart/form-data" style="width: 748px;">
 						<table class="table_no_borders">
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders">
+									<b>Select the advertising space</b>
+								</td>
+								<td class="cell_no_borders">
+									<select id="select_space" name="select_space" onchange="OnChangeSelectAdvertSpace()">
+										<?php DoGenerateAdvertSpaceOptions($_SESSION["space_code"]); ?>
+									</select>
+								</td>
+							</tr>
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
 									<b>Select and image to display</b>
@@ -301,7 +393,7 @@
 									<b>Image preview</b>
 								</td>
 								<td class="cell_no_borders">
-									<img src="" alt="<?php if (isset($_FILES["file_image_name"])) echo $_FILES["file_image_name"]["name"]; else echo "IMAGE PREVIEW"; ?>" id="image_preview" width="50" />
+									<img src="" alt="<?php echo GetImageAltText(); ?>" id="image_preview" width="50" />
 								</td>
 							</tr>
 							<tr>
@@ -317,7 +409,7 @@
 									<b>How many months?</b>
 								</td>
 								<td class="cell_no_borders">
-									<input type="text" required size="4" maxlength="3" id="text_months" name="text_months" value="<?php if (isset($_SESSION["text_months"])) echo $_SESSION["text_months"];?>" onkeypress="OnKeyPressDigitsOnly(event)" onkeyup="OnKeyUpMonths(this, event)"/>
+									<input type="text" required size="4" maxlength="3" id="text_months" name="text_months" value="<?php if (isset($_SESSION["text_months"])) echo $_SESSION["text_months"]; else echo "1"; ?>" onkeypress="OnKeyPressDigitsOnly(event)" onkeyup="OnKeyUpMonths(this, event)"/>
 								</td>
 							</tr>
 							<tr>
@@ -328,7 +420,7 @@
 								<td class="cell_no_borders">
 									$<label id="label_cost_month"><?php if (isset($_SESSION["cost_per_month"])) echo $_SESSION["cost_per_month"]; else echo "0"; ?></label>
 									<br/>
-									$<label id="label_cost_total"><?php echo DoCalculateTotalCost(); ?></label>
+									$<label id="label_cost_total"><script type="text/javascript">DoCalculateTotalCost();</script></label>
 								</td>
 							</tr>
 							<tr>
@@ -358,13 +450,6 @@
 						</table>
 					</form>
 				</div>
-				
-
-
-
-
-
-
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
@@ -383,6 +468,11 @@
 		
 		<!-- #BeginEditable "footer" -->
 
+		<script type="text/javascript">
+		
+			OnChangeSelectAdvertSpace();
+			
+		</script>
 
 
 		<!-- #EndEditable -->

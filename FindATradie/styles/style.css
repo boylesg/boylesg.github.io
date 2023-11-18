@@ -184,9 +184,9 @@ a.masthead_button:hover
 .advert
 {
 	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
+	justify-content: left;
+	flex-align: center;
+	flex-wrap: wrap;
 	overflow: auto;
 	border-style: solid;
 	border-width: medium;
@@ -203,12 +203,33 @@ a.masthead_button:hover
 .advert_button
 {
 	cursor: pointer;
-	width: 400px;
+	/*width: 400px;*/
+	flex-grow: 2;
 }
 
 .advert_image
 {
 	display: inline-block;
+	float: left;
+}
+
+.advert_text
+{
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+	flex-grow: 2;
+	font-size: medium;
+	font-weight: bold;
+}
+
+.advert_expires
+{
+	display: block;
+	font-size: x-small;
+	font-weight: bold;
+	margin-top: 5px;
+	width: 100%;
 }
 
 .form
