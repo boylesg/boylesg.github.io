@@ -148,17 +148,18 @@
 				//**
 				//********************************************************
 				//********************************************************
-				$_GET["location"] = "login1";
-				$_SESSION["account_id"] = "1";
+				//$_GET["location"] = "login1";
+				//$_SESSION["account_id"] = "1";
 				//$_SESSION["cost_per_month"] = "10";
 				//$_GET["advert_paid"] = true;
 				//$_SESSION["space_code"]  = "index1";
 				
+				//unset($_SESSION["account_id"]);
 				//unset($_SESSION["text_months"]);
 				//unset($_SESSION["space_id"]);
 				//unset($_SESSION["space_code"]);
 				//unset($_SESSION["cost_per_month"]);
-				//unset($_SESSION["file"]);
+				//unset($_SESSION["image_file_name"]);
 				
 				//unset($_GET["advert_paid"]);
 				//unset($_POST["submit_advert"]);
@@ -205,13 +206,14 @@
 						{
 							$g_strPaypalRowDisplay = "block";
 							$strTargetPath = "";
+							
 							if (isset($_FILES["file_image_name"]))
 							{
 								$strTargetPath = "images/" . basename($_FILES["file"]["name"]);
 							}
 							if (move_uploaded_file($_FILES["file_image_name"]["tmp_name"], $strTargetPath))
 							{
-								$_SESSION["image_file_name"] = basename($_FILES["file"]["name"];
+								$_SESSION["image_file_name"] = basename($_FILES["file"]["name"]);
 							}
 							else
 							{

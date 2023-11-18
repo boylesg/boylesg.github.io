@@ -220,6 +220,17 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
+	function DoFindQuery0($dbConnection, $strTableName, $strCondition = "")
+	{
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName;
+
+		if (strlen($strCondition) > 0)
+			$g_strQuery = $g_strQuery . " WHERE " . $strCondition;
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
 	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "")
 	{
 		global $g_strQuery;
@@ -565,7 +576,7 @@
 		$strSpaceID = "";
 		
 		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "space_code", $strSpaceCode);
-		if ($results->num_rows > 0)
+		if ($results && ($results->num_rows > 0))
 		{
 			if ($row = $results->fetch_assoc())
 			{
@@ -579,16 +590,15 @@
 	{
 		global $g_dbFindATradie;
 		$dateNow = new DateTime();
-			
-		$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode) , "expiry_date > '" . $dateNow->format("Y-m-d") . "'");
-
-		if ($results->num_rows > 0)
+		
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode) , "expiry_date > '" . $dateNow->format("Y-m-d") . "'");		
+		if ($results && ($results->num_rows > 0))
 		{
 			$row = $results->fetch_assoc(); 
 			$dateExpiry = new DateTime($row["expiry_date"]);
-			echo "<img src=\"images/" . $row["image_name"] . 
+			echo "<a href=\"tradie.php?member_id=" . $row["member_id"] . "\"><img src=\"images/" . $row["image_name"] . 
 					"\" alt=\"" . $row["image_name"] . "\" class=\"advert_image\" height=\"" .  $nImageHeight . "\" />\n";
-			echo "<div class=\"advert_text\" style=\"height:" . $nImageHeight . "px;line-height:" . $nImageHeight . "px\";\">" . $row["text"] . "</div>\n";
+			echo "<div class=\"advert_text\" style=\"height:" . $nImageHeight . "px;line-height:" . $nImageHeight . "px\";\">" . $row["text"] . "</div></a>\n";
 			echo "<div class=\"advert_expires\">Advert expires on " . $dateExpiry->format("D d M Y") . "</div>\n";
 		}
 		else
@@ -604,6 +614,29 @@
 		}
 	}
 
+	function DoCleanupAdvertImages()
+	{
+		global $g_dbFindATradie;
+		$dateStart = new DateTime();
+		$dateEnd = new DateTime();
+		$interval = DateInterval::createFromDateString("-6 month");
+		$dateStart = $dateStart->add($interval);
+
+		$results = DoFindQuery0($g_dbFindATradie, "adverts", "expiry_date>'" . $dateStart->format("Y-m-d") . "' AND expiry_date<='" . $dateEnd->format("Y-m-d") . "'");
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				$strImageFileName = "images/" . $row["image_name"];
+				if (file_exists($strImageFileName))
+				{
+					unlink($strImageFileName);
+					//DebugPrint("deleting image file", $strImageFileName, 6);
+				}
+			}
+		}
+	}
+	
 ?>
 
 

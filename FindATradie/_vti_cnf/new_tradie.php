@@ -5,7 +5,7 @@ vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|NEW TRADIE
-vti_backlinkinfo:VX|index.php contact.html login.php benefits.php master.dwt about.html account.php faq.html new_customer.html new_tradie.php compare.html advert.php
+vti_backlinkinfo:VX|index.php contact.html login.php benefits.php master.dwt about.html account.php faq.html new_customer.html new_tradie.php compare.html advert.php tradie.php
 vti_nexttolasttimemodified:TW|15 Nov 2023 14:40:28 -0000
 vti_cacheddtm:TX|16 Nov 2023 11:09:19 -0000
 vti_filesize:IR|11942

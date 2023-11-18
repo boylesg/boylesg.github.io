@@ -209,7 +209,7 @@
 		
 		<!-- #BeginEditable "footer" -->
 
-
+		<?php DoCleanupAdvertImages(); ?>
 
 		<!-- #EndEditable -->
 
