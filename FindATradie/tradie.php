@@ -115,7 +115,7 @@
 						echo "<p><b>Email: </b>" . $row["email"] . "</p>\n";
 					echo "<p><b>Location: </b>" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</p>\n";
 					echo "</div>\n";
-					echo "<div style=\"display:inline-block;font-size:small;border-style:solid;border-width:thin;border-color:black;padding:10px;margin:10px;overflow:auto;flex-grow:2;\">\n";
+					echo "<div class=\"tradie_about\">\n";
 					if ($row["license"] && ($row["license"] != ""))
 					{
 						echo "<b><u>Business Licenses & Professional Memberships</u></b><br/>\n";
@@ -127,6 +127,59 @@
 						echo "<b><u>About the Business</u></b><br/>\n";
 						echo RelaceCRLF($row["description"]);
 						echo "<br/>";
+					}
+					echo "</div>\n";
+					echo "<div class=\"tradie_feedback\">\n";
+					echo "<b><u>FEEDBACK</u></b>\n";
+					$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $row["id"]);
+					if ($queryResult && ($queryResult->num_rows > 0))
+					{
+						$arrayFeedback = [];
+						$nTotal = 0;
+						$nPositive = 0;
+						$nNegative = 0;
+						
+						while ($rowFeedback = $queryResult->fetch_assoc())
+						{
+							if ($rowFeedback["positive"])
+								$nPositive++;
+							else
+								$nNegative++;
+
+							$nTotal++;
+							$arrayFeedback[] = [$rowFeedback["positive"], $rowFeedback["description"]];
+						}
+						
+						echo "<table cellspacing=\"0\" cellpadding=\"50\">\n";
+						echo "<tr>\n";
+						echo "<td class=\"feedback_row\">\n";
+						echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" />\n";
+						echo "</td>\n";
+						echo "<td class=\"feedback_row\">\n";
+						printf("%d", ($nPositive * 100) / $nTotal);
+						echo "</td>\n";
+						echo "<td class=\"feedback_row\">\n";
+						echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" />\n";
+						echo "</td>\n";
+						echo "<td class=\"feedback_row\">\n";
+						printf("%d", ($nNegative * 100) / $nTotal);
+						echo "</td>\n";
+						echo "</tr>\n";
+						for ($nI = 0; $nI < count($arrayFeedback); $nI++)
+						{
+							echo "<tr>\n";
+							echo "<td class=\"feedback_row\">\n";
+							if ($arrayFeedback[$nI][0])
+								echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" />\n";
+							else
+								echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" />\n";								
+							echo "</td>\n";
+							echo "<td class=\"feedback_row\">\n";
+							echo $arrayFeedback[$nI][1];
+							echo "</td>\n";
+							echo "</tr>\n";
+						}
+						echo "</table>\n";
 					}
 					echo "</div>\n";
 				?>

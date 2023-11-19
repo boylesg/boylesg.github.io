@@ -232,6 +232,39 @@ a.masthead_button:hover
 	width: 100%;
 }
 
+.tradie_about
+{
+	display:inline-block;
+	font-size:small;
+	border-style:solid;
+	border-width:thin;
+	border-color:black;
+	padding:10px;
+	margin:10px;
+	overflow:auto;
+	flex-grow:2;
+}
+
+.tradie_feedback
+{
+	display:block;
+	font-size:small;
+	border-style:solid;
+	border-width:thin;
+	border-color:black;
+	padding:10px;
+	margin:10px;
+	overflow:auto;
+	width: 100%;
+}
+
+.feedback_row
+{
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: black;
+}
+
 .form
 {
 	display: inline-block;
