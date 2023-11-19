@@ -165,7 +165,7 @@ a.masthead_button:hover
 {
 	/*display: block;*/
 	display: flex;
- 	flex-wrap: nowrap;	
+ 	flex-wrap: wrap;	
  	/*background-color: rgba(255, 255, 255, 0.9);*/
 	background-color: var(--NoteColorBG);
 	border-radius: 20px;
@@ -184,8 +184,9 @@ a.masthead_button:hover
 .advert
 {
 	display: flex;
+	/*position: relative;*/
 	justify-content: left;
-	flex-align: center;
+	flex-align: left;
 	flex-wrap: wrap;
 	overflow: auto;
 	border-style: solid;
@@ -203,7 +204,6 @@ a.masthead_button:hover
 .advert_button
 {
 	cursor: pointer;
-	/*width: 400px;*/
 	flex-grow: 2;
 }
 
@@ -234,7 +234,7 @@ a.masthead_button:hover
 
 .form
 {
-	display: block;
+	display: inline-block;
 	position: relative;
 	border-style: none;
 	margin-right: var(--Margin);

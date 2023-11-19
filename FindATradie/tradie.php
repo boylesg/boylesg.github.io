@@ -96,15 +96,41 @@
 
 		<div class="page_content" id="page_content">
 
-					<div class="note">
-						<?php 
-						
-							echo "<h6><b>ABN: </b>" . $row["abn"] . "</h6>";
-						
-						
-						?>
-					</div>
-
+			<div class="note" style="overflow-x:auto;overflow-y:visible;">
+				<?php 
+				
+					if ($row["logo_file_name"] && ($row["logo_file_name"] != ""))
+					{
+						echo "<img class=\"advert_image\" width=\"250\" src=\"images/" . $row["logo_file_name"] . "\" alt=\"images/" . $row["logo_file_name"] . "\" />\n";
+					}
+					echo "<div style=\"display:inline-block;font-size:medium;\">\n";
+					echo "<p><b>ABN: </b>" . $row["abn"] . "</p>\n";
+					echo "<p><b>Structure: </b>" . $row["structure"] . "</p>\n";
+					echo "<p><b>Name: </b>" . $row["first_name"] . " " . $row["surname"] . "</p>\n";
+					if ($row["phone"] && ($row["phone"] != ""))
+						echo "<p><b>Phone: </b>" . $row["phone"] . "</p>\n";
+					if ($row["mobile"] && ($row["mobile"] != ""))
+						echo "<p><b>Mobile: </b>" . $row["mobile"] . "</p>\n";
+					if ($row["email"] && ($row["email"] != ""))
+						echo "<p><b>Email: </b>" . $row["email"] . "</p>\n";
+					echo "<p><b>Location: </b>" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</p>\n";
+					echo "</div>\n";
+					echo "<div style=\"display:inline-block;font-size:small;border-style:solid;border-width:thin;border-color:black;padding:10px;margin:10px;overflow:auto;flex-grow:2;\">\n";
+					if ($row["license"] && ($row["license"] != ""))
+					{
+						echo "<b><u>Business Licenses & Professional Memberships</u></b><br/>\n";
+						echo RelaceCRLF($row["license"]);
+						echo "<br/><br/>";
+					}
+					if ($row["description"] && ($row["description"] != ""))
+					{
+						echo "<b><u>About the Business</u></b><br/>\n";
+						echo RelaceCRLF($row["description"]);
+						echo "<br/>";
+					}
+					echo "</div>\n";
+				?>
+			</div>
 		</div>
 
 				<!-- #EndEditable -->

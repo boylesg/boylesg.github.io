@@ -39,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 			
 <?php
 
@@ -244,7 +244,7 @@
 						</table>
 					</form>
 					
-					<div class="advert" id="advert_login" style="width:680px;">
+					<div class="advert" id="advert_login" style="width:656px;">
 						<?php DoInsertAdvert("login1", 180, "advert_login"); ?>
 					</div>
 					

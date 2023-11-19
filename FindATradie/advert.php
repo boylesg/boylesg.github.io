@@ -39,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 			<?php
 
@@ -249,7 +249,16 @@
 						$results = DoQuery($g_dbFindATradie, $strQuery);
 						if ($results)
 						{
+						
 							PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
+							$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_file_name", $_SESSION["image_file_name"], "id", $_SESSION["account_id"]);
+							if ($results && ($results->num_rows > 0))
+							{
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Could not update logo file name!\");", 3, true);
+							}
 						}
 						else
 						{

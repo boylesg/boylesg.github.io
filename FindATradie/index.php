@@ -38,7 +38,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -219,7 +219,7 @@
 
 
 
-		<?php DoCleanupAdvertImages(); ?>
+		<?php //DoCleanupAdvertImages(); ?>
 
 
 

@@ -29,6 +29,23 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function RelaceCRLF($strText)
+	{
+		while (strpos($strText, "\r\n"))
+			$strText = str_replace("\r\n", "<br/>", $strText);
+		
+		while (strpos($strText, "\n\r"))
+			$strText = str_replace("\n\r", "<br/>", $strText);
+		
+		while (strpos($strText, "\n"))
+			$strText = str_replace("\n", "<br/>", $strText);
+		
+		while (strpos($strText, "\r"))
+			$strText = str_replace("\r", "<br/>", $strText);
+		
+		return $strText;
+	}
+	
 	function PrintIndents($nNum)
 	{
 		for ($nI = 0; $nI < $nNum; $nI++)
