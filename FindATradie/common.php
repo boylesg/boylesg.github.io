@@ -182,11 +182,11 @@
 		try
 		{		
 			$dbFindATradie = new mysqli("127.0.0.1", "debian-sys-maint", "wCN5zhYx5R6004zg", "find_a_tradie");
-			//$dbFindATradie = new mysqli("127.0.0.1", "greg", "Pulsar112358#", "find_a_tradie");
 		}
 		catch(Exception $e)
 		{
-			echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
+			PrintJavascriptLine("AlertError(\"" . $e->getMessage() . "<br/><br/>" . $g_strEmailAdmin . "\");", 2, true);
+			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;
 	}

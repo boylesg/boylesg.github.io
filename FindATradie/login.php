@@ -3,16 +3,24 @@
 	
 	<!-- #BeginTemplate "master.dwt" -->
 	
+	<?php include "common.php"; ?>
+	
+	<!-- #BeginEditable "server" -->
+	
+		<?php
+		
+		?>
+	
+	<!-- #EndEditable -->
+	
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>LOG IN</title>
 		<!-- #EndEditable -->
-		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -31,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 			
 <?php
 
@@ -242,6 +250,13 @@
 					
 				</div>	
 
+
+
+
+
+
+
+
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>
@@ -258,6 +273,8 @@
 	<footer>
 		
 		<!-- #BeginEditable "footer" -->
+
+
 
 				<script type="text/javascript">
 					
@@ -291,6 +308,8 @@
 					}
 																	
 				</script>					
+
+
 
 		<!-- #EndEditable -->
 

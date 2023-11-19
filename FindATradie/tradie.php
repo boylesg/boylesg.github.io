@@ -3,15 +3,41 @@
 	
 	<!-- #BeginTemplate "master.dwt" -->
 	
+	<?php include "common.php"; ?>
+	
+	<!-- #BeginEditable "server" -->
+	
+		<?php
+			
+			$row = null;
+			
+			if (isset($_GET["member_id"]))
+			{
+				$queryResult = DoFindQuery1($g_dbFindATradie, "members", "id", $_GET["member_id"]);
+		
+				if ($row = $queryResult->fetch_assoc())
+				{
+					
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Could not find member id '" . $_GET["member_id"] . "<br><br>" . $g_strEmailAdmin . "\");", 2, true);
+				}
+			}
+			
+		?>
+	
+	<!-- #EndEditable -->
+	
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Tradie Details</title>
+		<title><?php echo $row["business_name"]; ?></title>
 		<!-- #EndEditable -->
-		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -66,17 +92,24 @@
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
-		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+		<div class="page_content" id="page_content">
 
+					<div class="note">
+						<?php 
+						
+							echo "<h6><b>ABN: </b>" . $row["abn"] . "</h6>";
+						
+						
+						?>
+					</div>
 
-
-
-
-
+		</div>
 
 				<!-- #EndEditable -->
+		<div class="page_content" id="page_content">
+
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->

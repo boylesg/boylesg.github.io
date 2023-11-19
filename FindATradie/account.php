@@ -3,12 +3,21 @@
 	
 	<!-- #BeginTemplate "master.dwt" -->
 	
+	<?php include "common.php"; ?>
+	
+	<!-- #BeginEditable "server" -->
+	
+		<?php
+		
+		?>
+	
+	<!-- #EndEditable -->
+	
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Account</title>
 		<!-- #EndEditable -->
-		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
@@ -409,6 +418,13 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 				<div class="note" style="flex-wrap:wrap;">
 

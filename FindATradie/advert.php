@@ -3,16 +3,24 @@
 	
 	<!-- #BeginTemplate "master.dwt" -->
 	
+	<?php include "common.php"; ?>
+	
+	<!-- #BeginEditable "server" -->
+	
+		<?php
+		
+		?>
+	
+	<!-- #EndEditable -->
+	
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Create an advertisement</title>
 		<!-- #EndEditable -->
-		<?php include "common.php"; ?>
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -31,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 						
 			<?php
 
@@ -367,6 +375,13 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 				<div class="note" style="flex-wrap:wrap;">
 					<h6><b>LOCATION: </b><?php echo $_SESSION["space_description"]; ?></h6>
 					<div style="width:500px;"></div>
@@ -444,7 +459,7 @@
 										<input type="hidden" name="cmd" value="_s-xclick" />
 										<input type="hidden" name="hosted_button_id" value="78WNB6PA7CP4A" />
 										<input type="hidden" name="currency_code" value="AUD" />
-										<input type="image" id="paypal_submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+										<input type="image" id="paypal_submit0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 									</form>
 									
 								</td>
@@ -452,6 +467,13 @@
 						</table>
 					</form>
 				</div>
+
+
+
+
+
+
+
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
@@ -470,11 +492,14 @@
 		
 		<!-- #BeginEditable "footer" -->
 
+
+
 		<script type="text/javascript">
 		
 			OnChangeSelectAdvertSpace();
 			
 		</script>
+
 
 
 		<!-- #EndEditable -->
