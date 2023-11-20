@@ -104,7 +104,8 @@
 					border-bottom-left-radius: var(--BorderRadius);
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
-					
+					min-height: 400px;
+					min-width: 1000px;
 					overflow: auto;
 					/*height: 1000px;*/
 				}
@@ -557,7 +558,7 @@
 						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Post your own job</button>
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
 						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
-						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've left</button>
+						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've given</button>
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
@@ -566,7 +567,6 @@
 						
 						<div id="tab_contents2" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
-							<p>London is the capital city of England.</p>
 						</div>
 						
 						<div id="tab_contents3" class="tab_content">
@@ -581,8 +581,19 @@
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
-							<p>Tokyo is the capital of Japan.</p>
+							<table cellspacing="0" cellpadding="10">
+<?php
+	DoDisplayFeedback($_SESSION["account_id"], "", true);
+?>
+							</table>
+						</div>
+
+						<div id="tab_contents5" class="tab_content">
+							<table cellspacing="0" cellpadding="10">
+<?php
+	DoDisplayFeedback("", $_SESSION["account_id"], true);
+?>
+							</table>
 						</div>
 
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>

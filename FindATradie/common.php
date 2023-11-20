@@ -487,7 +487,29 @@
 
 
 
-
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** GENERAL MEMBER LOKUP FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function GetMember($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$row = null;
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+			$row = $results->fetch_assoc();
+			
+		return $row;
+	}
+	
+	
+	
 	
 	//******************************************************************************
 	//******************************************************************************
@@ -651,6 +673,102 @@
 					//DebugPrint("deleting image file", $strImageFileName, 6);
 				}
 			}
+		}
+	}
+	
+
+
+
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** ADVERT RELATED FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoDisplayFeedback($strRecipientID, $strProviderID)
+	{
+		global $g_dbFindATradie;
+		$bDisplayNames = $strRecipientID != "";
+		$bDisplayEdit = $strProviderID != "";
+	
+		if (($strProviderID != "") && ($strRecipientID != ""))
+			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
+		else if ($strRecipientID != "")
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
+		else if ($strProviderID != "")
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
+
+		if ($queryResult && ($queryResult->num_rows > 0))
+		{
+			$arrayFeedback = [];
+			$nTotal = 0;
+			$nPositive = 0;
+			$nNegative = 0;
+			
+			while ($rowFeedback = $queryResult->fetch_assoc())
+			{
+				if ($rowFeedback["positive"])
+					$nPositive++;
+				else
+					$nNegative++;
+
+				$nTotal++;
+				$rowMember = GetMember($rowFeedback["provider_id"]);
+				if ($rowFeedback)
+					$arrayFeedback[] = [$rowFeedback["positive"], $rowFeedback["description"], $rowMember["first_name"] . " " . $rowMember["surname"], $rowFeedback["recipient_id"]];
+				else
+					$arrayFeedback[] = [$rowFeedback["positive"], $rowFeedback["description"], "XXXXXX YYYYYY", $rowFeedback["recipient_id"]];
+
+			}
+			$nThumbsWidth = 20;
+			echo "<br/><br/><hr>\n";
+			echo "<table cellspacing=\"0\" cellpadding=\"10\">\n";
+			echo "<tr>\n";
+			echo "<td>\n";
+			echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" width=\"" . $nThumbsWidth . "\" />\n";
+			echo "</td>\n";
+			echo "<td>\n";
+			printf("%d%%", ($nPositive * 100) / $nTotal);
+			echo "</td>\n";
+			echo "<td>\n";
+			echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" width=\"" . $nThumbsWidth . "\" />\n";
+			echo "</td>\n";
+			echo "<td>\n";
+			printf("%d%%", ($nNegative * 100) / $nTotal);
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "</table>\n";
+			echo "<hr><br/><br/>";
+			echo "<table cellspacing=\"0\" cellpadding=\"10\" style=\"width:100%;layout:fixed;\">\n";
+			for ($nI = 0; $nI < count($arrayFeedback); $nI++)
+			{
+				echo "<tr>\n";
+				echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
+				if ($arrayFeedback[$nI][0])
+					echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" width=\"" . $nThumbsWidth . "\" />\n";
+				else
+					echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" width=\"" . $nThumbsWidth . "\" />\n";								
+				echo "</td>\n";
+				echo "<td class=\"feedback_row\">\n";
+				echo $arrayFeedback[$nI][1];
+				echo "</td>\n";
+				if ($bDisplayNames)
+				{
+					echo "<td class=\"feedback_row\" style=\"width:250px;\">\n";
+					echo "<a href=\"member.php?" . $arrayFeedback[$nI][3] . "\">" . $arrayFeedback[$nI][2] . "</a>\n";
+					echo "</td>\n";
+				}
+				else if ($bDisplayEdit)
+				{
+					echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
+					echo "<button type=\"button\" id=\"button_edit\" onclick=\"OnClickEditComment('" . $arrayFeedback[$nI][3] . "', '" . $arrayFeedback[$nI][0] . "', '" . $arrayFeedback[$nI][1] . "') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
+					echo "</td>\n";
+				}
+				echo "</tr>\n";
+			}
+			echo "</table>\n";
 		}
 	}
 	
