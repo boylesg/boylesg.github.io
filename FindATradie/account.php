@@ -132,6 +132,31 @@
 					border-top-color: black;
 				}
 																
+				
+				.pm_menu
+				{
+					display: block;
+					position: relative;
+					margin-top: 30px;
+				}
+				
+				.pm_button
+				{
+					display: inline-block;
+					position: relative;
+					margin: 5px;
+					border-radius: 10px;
+					padding: 8px;
+					width: 100px;
+				}
+				
+				.pm_list
+				{
+					display: block;
+					position: relative;
+					border-radius: 10px;
+				}
+
 			</style>
 			
 			<?php
@@ -189,7 +214,7 @@
 						}
 					}
 				}
-												
+																
 			</script>
 
 <?php 
@@ -582,6 +607,7 @@
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
 						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
 						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've given</button>
+						<button class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Personal Messages</button>
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
@@ -636,7 +662,6 @@
 			form2Show.style.display = "block";
 		}
 	}
-
 
 	function OnClickButtonUserDetails()
 	{

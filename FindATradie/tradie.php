@@ -132,7 +132,7 @@
 					echo "</div>\n";
 					echo "<div class=\"tradie_feedback\">\n";
 					echo "<b><u>FEEDBACK</u></b>\n";
-					DoDisplayFeedback($row["id"], "");
+					DoDisplayFeedback($row["id"], "", false);
 					echo "</div>\n";
 				?>
 			</div>

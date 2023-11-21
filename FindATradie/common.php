@@ -496,7 +496,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function GetMember($strMemberID)
+	function DoGetMember($strMemberID)
 	{
 		global $g_dbFindATradie;
 		$row = null;
@@ -687,13 +687,12 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoDisplayFeedback($strRecipientID, $strProviderID)
+	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayNames)
 	{
 		global $g_dbFindATradie;
-		$bDisplayNames = $strRecipientID != "";
 		$bDisplayEdit = $strProviderID != "";
 		$queryResult = NULL;
-	
+
 		if (($strProviderID != "") && ($strRecipientID != ""))
 			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
 		else if ($strRecipientID != "")
@@ -736,13 +735,13 @@
 			echo "</tr>\n";
 			echo "</table>\n";
 			echo "<hr><br/><br/>";
-			if (!$bDisplayNames)
+			if ($bDisplayEdit)
 				include "feedback_form.html";
 			echo "<table cellspacing=\"0\" cellpadding=\"10\" style=\"width:100%;layout:fixed;\">\n";
 			$queryResult->data_seek(0);
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
-				$rowMember = GetMember($rowFeedback["provider_id"]);
+				$rowMember = DoGetMember($rowFeedback["provider_id"]);
 				
 				echo "<tr>\n";
 				echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
@@ -758,13 +757,22 @@
 				echo "<td class=\"feedback_row\">\n";
 				echo $rowFeedback["description"];
 				echo "</td>\n";
-				if ($bDisplayNames)
+					echo "<td class=\"feedback_row\" style=\"width:150px;\">\n";
+					echo $rowMember["first_name"] . " " . $rowMember["surname"];
+					echo "</td>\n";
+				if ($bDisplayNames && !$bDisplayEdit && !$rowFeedback["positive"])
 				{
-					echo "<td class=\"feedback_row\" style=\"width:250px;\">\n";
-					echo "<a href=\"member.php?" . $rowMember["first_name"] . "\">" . $rowMember["surname"] . "</a>\n";
+					echo "<td class=\"feedback_row\" style=\"width:20px;\">\n";
+					echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"25\"/></a>\n";
 					echo "</td>\n";
 				}
-				else if ($bDisplayEdit)
+				else
+				{
+					echo "<td class=\"feedback_row\" style=\"width:20px;\">\n";
+					echo "&nbsp;\n";
+					echo "</td>\n";
+				}
+				if ($bDisplayEdit)
 				{
 					echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
 					echo "<button type=\"button\" id=\"button_edit\" onclick=\"OnClickEditFeedback(this, '" . $rowFeedback["id"] . 
