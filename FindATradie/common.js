@@ -202,9 +202,34 @@
 	//******************************************************************************
 	//******************************************************************************
 
-	function OnClickEditComment(strID, bPositive, strDescription)
+	function OnClickEditFeedback(buttonEdit, strID, bPositive, strDescription)
 	{
-		alert("strID = '" + strID + "', bPositive = '" + bPositive.toString() + "', strDescription = '" + strDescription + "'");
+		//alert("strID = '" + strID + "', bPositive = '" + bPositive.toString() + "', strDescription = '" + strDescription + "'");
+		let formFeedback = DoGetInput("feedback_form"),
+			radioPositive = DoGetInput("radio_feedback_positive"),
+			radioNegative = DoGetInput("radio_feedback_negative"),
+			textareaComments = DoGetInput("textarea_comments"),
+			hiddenID = DoGetInput("hidden_feedback_id");
+		
+		if (formFeedback && buttonEdit && radioPositive && radioNegative && textareaComments && hiddenID)
+		{
+			let rectButton = buttonEdit.getBoundingClientRect();
+			
+			formFeedback.style.display = "block";
+
+			if (bPositive == "1")
+			{
+				radioPositive.checked = true;
+				radioNegative.checked = false;
+			}
+			else if (bPositive == "0")
+			{
+				radioPositive.checked = false;
+				radioNegative.checked = true;
+			}
+			textareaComments.innerText = strDescription;
+			hiddenID.value = strID;
+		}
 	}
 	
 	

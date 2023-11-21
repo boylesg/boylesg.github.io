@@ -134,6 +134,29 @@
 																
 			</style>
 			
+			<?php
+				
+				if (isset($_POST["submit_feedback_edit"]))
+				{
+					$bPositive = true;
+					
+					if ($_POST["feedback"] == "true")
+						$bPositive = true;
+					else if ($_POST["feedback"] == "false")
+						$bPositive = false;
+
+					$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
+						"positive", $bPositive, "id", $_POST["hidden_feedback_id"]);
+					if ($results)
+					{
+					}
+					else
+					{
+						PrintJavascriptLine("AlertError(\"Could not update feedback!\")", 4, true);
+					}
+				}
+			?>
+			
 			<script type="text/javascript">
 			
 				let g_buttonTabLastActive = null;
@@ -589,11 +612,9 @@
 						</div>
 
 						<div id="tab_contents5" class="tab_content">
-							<table cellspacing="0" cellpadding="10">
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
 ?>
-							</table>
 						</div>
 
 						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>

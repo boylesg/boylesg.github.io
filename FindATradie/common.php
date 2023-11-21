@@ -322,7 +322,7 @@
 		global $g_strQuery;
 		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
 			$strColumnName2 . "='" .  $strColumnValue2 . "' WHERE " . 
-			$strFindColumnName . "='" . $strFindColumnName . "'";
+			$strFindColumnName . "='" . $strFindColumnValue . "'";
 
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -332,7 +332,7 @@
 		global $g_strQuery;
 		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
 			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . "' WHERE " . 
-			$strFindColumnName . "='" . $strFindColumnName . "'";
+			$strFindColumnName . "='" . $strFindColumnValue . "'";
 
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -692,6 +692,7 @@
 		global $g_dbFindATradie;
 		$bDisplayNames = $strRecipientID != "";
 		$bDisplayEdit = $strProviderID != "";
+		$queryResult = NULL;
 	
 		if (($strProviderID != "") && ($strRecipientID != ""))
 			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
@@ -715,12 +716,6 @@
 					$nNegative++;
 
 				$nTotal++;
-				$rowMember = GetMember($rowFeedback["provider_id"]);
-				if ($rowFeedback)
-					$arrayFeedback[] = [$rowFeedback["positive"], $rowFeedback["description"], $rowMember["first_name"] . " " . $rowMember["surname"], $rowFeedback["recipient_id"]];
-				else
-					$arrayFeedback[] = [$rowFeedback["positive"], $rowFeedback["description"], "XXXXXX YYYYYY", $rowFeedback["recipient_id"]];
-
 			}
 			$nThumbsWidth = 20;
 			echo "<br/><br/><hr>\n";
@@ -741,29 +736,40 @@
 			echo "</tr>\n";
 			echo "</table>\n";
 			echo "<hr><br/><br/>";
+			if (!$bDisplayNames)
+				include "feedback_form.html";
 			echo "<table cellspacing=\"0\" cellpadding=\"10\" style=\"width:100%;layout:fixed;\">\n";
-			for ($nI = 0; $nI < count($arrayFeedback); $nI++)
+			$queryResult->data_seek(0);
+			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
+				$rowMember = GetMember($rowFeedback["provider_id"]);
+				
 				echo "<tr>\n";
 				echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
-				if ($arrayFeedback[$nI][0])
+				if ($rowFeedback["positive"])
 					echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" width=\"" . $nThumbsWidth . "\" />\n";
 				else
 					echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" width=\"" . $nThumbsWidth . "\" />\n";								
 				echo "</td>\n";
 				echo "<td class=\"feedback_row\">\n";
-				echo $arrayFeedback[$nI][1];
+				$dateAdded = new DateTime($rowFeedback["date_added"]);
+				echo $dateAdded->format("d/m/Y");
+				echo "</td>\n";
+				echo "<td class=\"feedback_row\">\n";
+				echo $rowFeedback["description"];
 				echo "</td>\n";
 				if ($bDisplayNames)
 				{
 					echo "<td class=\"feedback_row\" style=\"width:250px;\">\n";
-					echo "<a href=\"member.php?" . $arrayFeedback[$nI][3] . "\">" . $arrayFeedback[$nI][2] . "</a>\n";
+					echo "<a href=\"member.php?" . $rowMember["first_name"] . "\">" . $rowMember["surname"] . "</a>\n";
 					echo "</td>\n";
 				}
 				else if ($bDisplayEdit)
 				{
 					echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
-					echo "<button type=\"button\" id=\"button_edit\" onclick=\"OnClickEditComment('" . $arrayFeedback[$nI][3] . "', '" . $arrayFeedback[$nI][0] . "', '" . $arrayFeedback[$nI][1] . "') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
+					echo "<button type=\"button\" id=\"button_edit\" onclick=\"OnClickEditFeedback(this, '" . $rowFeedback["id"] . 
+						"', '" . $rowFeedback["positive"] . "', '" . $rowFeedback["description"] . 
+						"') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
 					echo "</td>\n";
 				}
 				echo "</tr>\n";

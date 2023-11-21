@@ -55,7 +55,6 @@
 		$_SESSION["account_password"] = $_POST["text_password"];
 
 		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
-DebugPrint("QUERY", $strQuery, 1);
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result->num_rows == 1)
 		{
