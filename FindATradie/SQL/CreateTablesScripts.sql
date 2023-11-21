@@ -95,3 +95,17 @@ CREATE TABLE `adverts`
   KEY `member_id` (`member_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+CREATE TABLE `jobs` 
+(
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `member_id` int unsigned NOT NULL,
+  `trade_id` int unsigned NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `maximum_budget` int NOT NULL,
+  `urgent` tinyint unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `date_added` (`date_added`),
+  KEY `member_id` (`member_id`),
+  KEY `trade_id` (`trade_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

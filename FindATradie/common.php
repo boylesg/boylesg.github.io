@@ -508,6 +508,23 @@
 		return $row;
 	}
 	
+	function IsTradie()
+	{
+		global $g_dbFindATradie;
+		$bResult = false;
+		
+		if (isset($_SESSION["account_trade"]))
+		{
+			$result = DoFindQuery1($g_dbFindATradie, "trades", "id", $_SESSION["account_trade"]);
+			if ($result && ($result->num_rows > 0))
+			{
+				$row = $result->fetch_assoc();
+				$bResult = $row["name"] != "Customer";
+			}
+		}
+		return $bResult;
+	}
+	
 	
 	
 	

@@ -156,6 +156,16 @@
 					position: relative;
 					border-radius: 10px;
 				}
+				
+				.search_form
+				{
+					background-color: var(--ColorInactiveBG);
+					border-style: solid;
+					border-width: thin;
+					border-radius: var(--BorderRadius);
+					border-color: var(--TextColor);
+					margin-top: 0px;
+				}
 
 			</style>
 			
@@ -427,6 +437,10 @@
 			}
 		}
 	}
+	
+	function DoGetJobs()
+	{
+	}
 ?>
 
 		<!-- #EndEditable -->
@@ -602,16 +616,46 @@
 					<div id="account" style="display:<?php echo $strAccountDisplay; ?>;">
 					
 						<br/><br/>
-						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Browse your jobs</button>
+						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')"><?php if (IsTradie()) echo "Browse your jobs"; else echo "Browse tradies";?></button>
 						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Post your own job</button>
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
 						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
 						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've given</button>
-						<button class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Personal Messages</button>
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-							<p>London is the capital city of England.</p>
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none";?>">
+									<table  cellspacing="0" cellpadding="3" border="0" style="table-layout:fixed;width:1100px;">
+										<tr>
+											<td style="text-align:right;width:125px;"><b>Maximum distance</b></td>
+											<td style="text-align:left;width:140px;"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_SESSION["account_maximum_distance"])) printf("%d", $_SESSION["account_maximum_distance"]); ?>" onclick="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
+											<td style="text-align:right;width:110px;"><b>Minimum budget</b></td>
+											<td style="text-align:left;width:130px"><b>$</b>&nbsp;<input type="text" id="text_minimum_budget" name="text_minimum_budget" maxlength="7" size="15" value="<?php if (isset($_SESSION["account_minimum_budget"])) printf("%d",  $_SESSION["account_minimum_budget"]);?>" onclick="OnKeyPressDigitsOnly(event)" /></td>
+											<td style="text-align:right;width:115px;"><b>Jobs added since</b></td>
+											<td style="text-align:left;width:115px;"><input type="date" id="date_since" name="date_since" /></td>
+											<td style="text-align:right;width:110px;"><b>Urgent jobs only</b></td>
+											<td style="text-align:left;width:20px;"><input type="checkbox" id="checkbox_urgent" name="checkbox_urgent" /></td>
+											<td style="width:100px;text-align:center;"><input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" /></td>
+										</tr>
+									</table>
+								</form>
+								<form method="post" action="" id="form_tradie_search" class="form search_form" style="display:<?php if (!IsTradie()) echo "block"; else echo "none";?>">
+								
+								
+								
+								
+								
+								
+								
+								</form>
+								
+								<table cellspacing="0" cellpadding="3" border="0" style="table-layout:fixed;width:100%;">
+									<?php
+										
+										if (IsTradie())
+											DoGetJobs();										
+									?>
+								</table>
 						</div>
 						
 						<div id="tab_contents2" class="tab_content">
