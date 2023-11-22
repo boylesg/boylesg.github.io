@@ -52,6 +52,26 @@
 			echo "\t";
 	}
 	
+	function DoLeftPad($strText, $nLength, $strPad)
+	{
+		$nNum = $nLength - strlen($strText);
+		
+		for ($nI = 0; $nI < $nNum; $nI++)
+			$strText = $strPad . $strText;
+			
+		return $strText;
+	}
+	
+	function DoRightPad($strText, $nLength, $strPad)
+	{
+		$nNum = $nLength - strlen($strText);
+		
+		for ($nI = 0; $nI < $nNum; $nI++)
+			$strText = $strText . $strPad;
+			
+		return $strText;
+	}
+	
 	function DebugPrintMsg($strMsg, $nHeadingLevel, $strBGColor = "white")
 	{
 		$strOpening = "<div style=\"background-color:\"" . $strBGColor . "\">";
@@ -72,7 +92,7 @@
 	
 	function DebugPrint($strVarName, $strVarValue, $nHeadingLevel, $strBGColor = "white")
 	{
-		$strOpening = "<div style=\"background-color:\"" . $strBGColor . "\">";
+		$strOpening = "<div style=\"background-color:" . $strBGColor . "\">";
 		$strClosing = "</div>";
 		
 		switch ($nHeadingLevel)
@@ -557,9 +577,84 @@
 		return $nJobSize <= $nTradieMaxSizeIndex;
 	}
 	
-	function IsDistanceMatch($strTradiePostcode, $strJobPostcode, $strTradieMaxDistance)
+	function DoCalculateDistance($fLat1, $fLong1, $fLat2, $fLong2) 
 	{
-		return true;
+		$nDistance = 0;
+		
+  		if (($fLat1 != $fLat2) || ($fLong1 != $fLong2))
+  		{
+			$fTheta = $fLong1 - $fLong2;
+			$nDistance = sin(deg2rad($fLat1)) * sin(deg2rad($fLat2)) +  cos(deg2rad($fLat1)) * cos(deg2rad($fLat2)) * cos(deg2rad($fTheta));
+			$nDistance = acos($nDistance);
+			$nDistance = rad2deg($nDistance);
+			$nDistance = $nDistance * 60 * 1.1515 * 1.609344/*km conversion*/;
+  		}
+  		return $nDistance;
+	}
+	
+	function IsDistanceMatch($strPostcode1, $strPostcode2, $strTradieMaxDistance)
+	{
+		global $g_dbFindATradie;
+		$bResult = false;
+	
+		$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode1);
+		if ($results && ($results->num_rows > 0))
+		{	
+			$row = $results->fetch_assoc();
+			if ($row)
+			{		
+				$fLat1 = $row["latitude"];
+				$fLong1 = $row["longitude"];
+				
+				$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode2);
+				if ($results && ($results->num_rows > 0))
+				{	
+					$row = $results->fetch_assoc();
+					if ($row)
+					{		
+						$fLat2 = $row["latitude"];
+						$fLong2 = $row["longitude"];
+						$fDistance = DoCalculateDistance($fLat1, $fLong1, $fLat2, $fLong2);
+						$bResult = round($fDistance) <= ((int)$strTradieMaxDistance + 5);
+					}
+					else
+					{
+						PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for second postcode '" . $strPostcode1 . "'\")", 3, true);
+					}
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find second postcode '" . $strPostcode2 . "'\")", 3, true);
+				}
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for first postcode '" . $strPostcode1 . "'\")", 3, true);
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find first postcode '" . $strPostcode1 . "'\")", 3, true);
+		}
+		return $bResult;
+	}
+	
+	function DoGetSizeIndex($strJobSize)
+	{
+		$nIndex = 0;
+		
+		if ($strJobSize == "Up to 50")
+			$index = 0;
+		else if ($strJobSize == "50 - 100")
+			$index = 1;
+		else if ($strJobSize == "100 - 250")
+			$index = 2;
+		else if ($strJobSize == "250 - 500")
+			$index = 3;
+		else if ($strJobSize == "More than 500")
+			$index = 4;
+		
+		return $nIndex;
 	}
 	
 	function DoSearchTradies($strTrade, $strJobSize, $strMaxBudget, $strPostcode)

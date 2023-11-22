@@ -45,7 +45,7 @@
 				<tr>
 					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
 					<td class="cell_no_borders">
-						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'), 'textarea')">
+						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
 							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 						</select>
 						<br/><br/>
@@ -278,13 +278,6 @@
 								["form_user_details", [ "text_username",  "text_password",  "text_password_again"]]
 									]);
 
-	function OnChangeTrade(selectTrade, labelDesc)
-	{
-		if (selectTrade && labelDesc)
-		{
-			labelDesc.innerText = g_mapTrades[selectTrade.options[selectTrade.selectedIndex].text];
-		}
-	}
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
 
 

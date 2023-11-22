@@ -9,7 +9,7 @@
 	//** GENERAL PURPOSE FUNCTIONS
 	//** 
 	//******************************************************************************
-	//******************************************************************************
+	//******************************************************************************			
 
 	function GetNumYearsSince(nYear, nMonth)
 	{
@@ -53,6 +53,17 @@
 		return input;
 	}
 
+	function AlertInformation(strTitle, strMsg)
+	{
+		swal({
+		 		title: strTitle,
+		  		text: strMsg,
+		  		icon: "info",
+		  		buttons: true,
+		  		closeModal: true
+			});	
+	}
+	
 	function AlertSuccess(strMsg)
 	{
 		swal({
@@ -235,5 +246,24 @@
 	
 	
 	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** TRADES
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+
+	function OnChangeTrade(selectTrade, labelDesc)
+	{
+		if (selectTrade && labelDesc)
+		{
+			labelDesc.innerText = g_mapTrades[selectTrade.options[selectTrade.selectedIndex].text];
+		}
+	}
+
+
+
+
 </script>
 
