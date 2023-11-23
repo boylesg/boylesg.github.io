@@ -1000,6 +1000,7 @@
 			textJobID.value = strJobID;
 			formAcceptJob.submmit();
 		}
+		return false;
 	}
 	
 	function OnClickComplete(strJobID)

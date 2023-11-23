@@ -1044,6 +1044,12 @@
 		return $strResult;
 	}
 	
+	function DoGetDate($strDate)
+	{
+		$date = new DateTime($strDate);
+		return $date->format("d/m/Y");
+	}
+	
 	function DoGetJobs()
 	{
 		global $g_dbFindATradie;
@@ -1077,6 +1083,7 @@
 			{
 				$strQuery = $strQuery . "1";
 			}
+			$strQuery = $strQuery . " ORDER BY accepted_by_member_id DESC";
 		}
 		else
 		{
@@ -1093,7 +1100,7 @@
 			echo "<td class=\"cell_no_borders search_cell\"><b>Maximum budget<b></td>\n";
 			echo "<td class=\"cell_no_borders search_cell\"><b>Size<b></td>\n";
 			echo "<td class=\"cell_no_borders search_cell\"><b>Urgent?<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Description<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Functions<b></td>\n";
 			echo "</tr>\n";
 			while ($rowJob = $results->fetch_assoc())
 			{
@@ -1101,7 +1108,7 @@
 
 				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]) && 
 					(DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"])) &&
-					($rowJob["accepted_by_member_id"] == -1))
+					(($rowJob["accepted_by_member_id"] == -1) || ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])))
 				{
 					echo "<tr>\n";
 					$date = new DateTime($rowJob["date_added"]);
@@ -1117,7 +1124,12 @@
 						echo "<td class=\"cell_no_borders search_cell\">NO</td>";
 					echo "<td class=\"cell_no_borders search_cell\">";
 					echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
-					echo "<button type=\"button\" title=\"Accept this job\" onclick=\"return OnClickAcceptJob('" . $_SESSION["account_id"] . "', '" . $rowJob["id"] . "')\"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+					if ($rowJob["accepted_by_member_id"] == -1)
+						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"return OnClickAcceptJob('" . $_SESSION["account_id"] . "', '" . $rowJob["id"] . "')\"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+					else
+						echo "<button type=\"button\" title=\"Job has been accepted - email the client\" onclick=\"return false;\"><a href=\"mailto:" . 
+							$rowJob["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", date: " . 
+							DoGetDate($rowJob["date_added"]) . " on 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"20px;\" /></a></button>&nbsp;";
 					echo "</td>\n";
 					echo "</tr>\n";
 				}
