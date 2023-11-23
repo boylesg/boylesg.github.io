@@ -1093,14 +1093,14 @@
 		if ($results && ($results->num_rows > 0))
 		{
 			echo "<tr>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Date<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Maximum budget<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Size<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Urgent?<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Functions<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:3em;\"><b>ID</b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:6em;\"><b>Date<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:25em;\"><b>Name<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:30em;\"><b>Email<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\"><b>Maximum budget<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:5em;\"><b>Size<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:5em;\"><b>Urgent?<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\" style=\"width:px\"><b>Functions<b></td>\n";
 			echo "</tr>\n";
 			while ($rowJob = $results->fetch_assoc())
 			{
@@ -1115,7 +1115,7 @@
 					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
 					echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
 					echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
+					echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
 					echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
 					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
 					if ($rowJob["urgent"])
