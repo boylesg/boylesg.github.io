@@ -53,23 +53,6 @@
 					--ColorActiveBG: var(--ColorMastheadBG);
 				}
 				
-				.search_table
-				{
-					width: 98%;
-					background-color: white;
-					border-style: inset;
-					border-width: medium;
-					border-color: var(--ColorInactiveBG);
-				}
-				
-				.search_cell
-				{
-					font-size: small;
-					border-bottom-style: solid;
-					border-width: thin;
-					border-color: black;
-					padding: 5px;
-				}
 				/* Style the buttons that are used to open the tab content */
 				.tab_button 
 				{
@@ -182,32 +165,44 @@
 					border-radius: var(--BorderRadius);
 					border-color: var(--TextColor);
 					margin-top: 0px;
+					width: 96.5%;
+				}
+				
+				.search_table
+				{
+					width: 98%;
+					background-color: white;
+					border-style: inset;
+					border-width: medium;
+					border-color: var(--ColorInactiveBG);
+				}
+				
+				.search_cell
+				{
+					font-size: small;
+					border-bottom-style: solid;
+					border-width: thin;
+					border-color: black;
+					padding: 5px;
+					vertical-align: middle;
+					text-align: left;
+				}
+
+				.form_table
+				{
+					table-layout: fixed;
+					width: 100%;
+				}
+				
+				.form_table_cell
+				{
+					font-size: small;
+					padding: 5px;
+					vertical-align: middle;
+					text-align: left;
 				}
 
 			</style>
-			
-			<?php
-				
-				if (isset($_POST["submit_feedback_edit"]))
-				{
-					$bPositive = true;
-					
-					if ($_POST["feedback"] == "true")
-						$bPositive = true;
-					else if ($_POST["feedback"] == "false")
-						$bPositive = false;
-
-					$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
-						"positive", $bPositive, "id", $_POST["hidden_feedback_id"]);
-					if ($results)
-					{
-					}
-					else
-					{
-						PrintJavascriptLine("AlertError(\"Could not update feedback!\")", 4, true);
-					}
-				}
-			?>
 			
 			<script type="text/javascript">
 			
@@ -258,9 +253,143 @@
 	DebugPrint("_SESSION[\"accountid\"]", $_SESSION["account_id"], 2);
 	echo "<br><br>";
 */	
-	if (!isset($_GET["submit_login"]))
+
+	if (isset($_POST["submit_accept_job"]))
 	{
-		PrintJavascriptLine("document.location = \"login.php\";", 5, true);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", $_POST["text_member_id"], "id", $_POST["text_job_id"]);
+		if ($resultsJob)
+		{
+			PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be accepted!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_feedback_add"]))
+	{
+		$bPositive = true;
+		
+		if ($_POST["radio_feedback"] == "true")
+			$bPositive = true;
+		else if ($_POST["radio_feedback"] == "false")
+			$bPositive = false;
+
+		//$resultsFeedback = DoInsertQuery4($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
+		//	"positive", $bPositive, "recipient", $_POST["hidden_recipient_id"], "provider_id", $_SESSION["account_id"]);
+			
+		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "completed", true, "id", $_POST["hidden_job_id"]);
+		if ($results)
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["hidden_job_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					$resultsFeedback = DoInsertQuery4($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
+						"positive", $bPositive, "recipient", $rowT["accepted_by_member_id"], "provider_id", $_SESSION["account_id"]);
+					if ($results && ($results->num_rows > 0))
+					{
+						PrintJavascriptLine("AlertSuccess(\"Job was completed with feedback!\")", 4, true);
+					}
+					else
+					{
+						PrintJavascriptLine("AlertSuccess(\"Job was completed without feedback!\")", 4, true);
+					}
+				}
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be completed!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_feedback_edit"]))
+	{
+		$bPositive = true;
+		
+		if ($_POST["radio_feedback"] == "true")
+			$bPositive = true;
+		else if ($_POST["radio_feedback"] == "false")
+			$bPositive = false;
+
+		$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
+			"positive", $bPositive, "id", $_POST["hidden_feedback_id"]);
+		if ($results)
+		{
+			PrintJavascriptLine("AlertSuccess(\"Feedback was updated!\")", 4, true);
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Feedback could not be updated!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_job_edit"]))
+	{
+		// See below the edit job form.
+	}
+	else if (isset($_POST["submit_job_delete"]))
+	{
+		if (isset($_POST["hidden_job_id"]))
+		{
+			$results = DoDeleteQuery1($g_dbFindATradie, "jobs", "id", $_POST["hidden_job_id"]);
+			if ($results && ($results->num_rows > 0))
+			{	
+				PrintJavascriptLine("AlertSuccess(\"Job has been deleted!\");", 5, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Job could not be deleted!\");", 5, true);
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("Hidden input 'hidden_job_id' value was not found!", 5, true);
+		}
+	}
+	else if (isset($_POST["submit_job"]))
+	{
+		/*
+			id="select_trade_job"
+			id="text_maximum_budget"
+			id="select_job_size"
+			id="check_urgent"
+			id="text_description"
+			
+			id="hidden_member_id"
+			id="hidden_job_id"
+		*/
+		// New job
+		if (isset($_POST["hidden_job_id"]) && ($_POST["hidden_job_id"] == ""))
+		{
+			$results = DoInsertQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_job"], 
+										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
+										"urgent", $_POST["check_urgent"] == "on", "description", $_POST["text_description"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				PrintJavascriptLine("AlertSuccess(\"Job has been added!\");", 2, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Job could not be added!\");", 2, true);
+			}
+		}
+		// Editing existing job
+		else
+		{
+			$results = DoUpdateQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_job"], 
+										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
+										"urgent", $_POST["check_urgent"] == "on", "description", $_POST["text_description"], 				
+										"id", $_POST["hidden_job_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				PrintJavascriptLine("AlertSuccess(\"Job has been updated!\");", 2, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Job could not be updated!\");", 2, true);
+			}
+		}
 	}
 	else if (isset($_GET["paypal"]))
 	{
@@ -456,185 +585,6 @@
 		}
 	}
 	
-	function DoGetMaxDistance()
-	{
-		$strResult = "";
-		
-		if (isset($_POST["text_maximum_distance"]))
-			$strResult = $_POST["text_maximum_distance"];
-		else if (isset($_SESSION["account_maximum_distance"]))
-			$strResult = sprintf("%d", (int)$_SESSION["account_maximum_distance"]);
-		
-		return $strResult;
-	}
-	
-	function DoGetMinBudget()
-	{
-		$strResult = "";
-
-		if (isset($_POST["text_minimum_budget"]))
-			$strResult = $_POST["text_minimum_budget"];
-		else if (isset($_SESSION["account_minimum_budget"]))
-			$strResult = sprintf("%d", (int)$_SESSION["account_minimum_budget"]);
-
-		return $strResult;
-	}
-	
-	function DoGetMaxSize()
-	{
-		$strResult = "";
-
-		if (isset($_POST["select_maximum_size"]))
-			$strResult = $_POST["select_maximum_size"];
-		else if (isset($_SESSION["account_maximum_size"]))
-			$strResult = sprintf("%d", (int)$_SESSION["account_maximum_size"]);
-
-		return $strResult;
-	}
-	
-	function GetDateSince()
-	{
-		$strResult = "";
-
-		if (isset($_POST["date_since"]))
-			$strResult = $_POST["date_since"];
-		else
-			$strResult = "";
-
-		return $strResult;
-	}
-	
-	function DoGetTradies()
-	{
-		/*
-		"select_trade"
-		"text_maximum_distance"
-		*/
-		global $g_dbFindATradie;
-		$row = null;
-
-		if (isset($_POST["submit_tradie_search"]))
-		{
-			$strQuery = "SELECT * FROM members WHERE ";
-			if (isset($_POST["select_trade"]) && ($_POST["select_trade"] != ""))
-			{
-				$strQuery = $strQuery . "trade_id='" . $_POST["select_trade"] . "'";
-			}
-			else
-			{
-				$strQuery = $strQuery . "1";
-			}
-			$results = DoQuery($g_dbFindATradie, $strQuery);
-			if ($results && ($results->num_rows > 0))
-			{
-				echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Phone<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Mobile<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Postcode<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>View<b></td>\n";
-				echo "</tr>\n";
-				while ($rowMember = $results->fetch_assoc())
-				{
-					if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_POST["text_maximum_distance"]))
-					{
-						echo "<tr>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\"><a href=\"tradie.php?member_id=" . $rowMember["id"] . "\">VIEW</a></td>";
-						echo "</tr>\n";
-					}
-				}
-			}
-		}
-	}
-	
-	function DoGetJobs()
-	{
-		global $g_dbFindATradie;
-		$row = null;
-		
-		if (isset($_POST["submit_job_search"]))
-		{
-			/*
-				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH )
-				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => 2023-11-01 [checkbox_urgent] => on [submit_job_search] => SEARCH ) 
-				Array ( [text_maximum_distance] => [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH ) 
-			*/
-			$strAND = "";
-			
-			$strQuery = "SELECT * FROM jobs WHERE ";
-			if (isset($_POST["text_minimum_budget"]) && ($_POST["text_minimum_budget"] != ""))
-			{
-				$strQuery = $strQuery . "maximum_budget>='" . $_POST["text_minimum_budget"] . "'";
-				$strAND = " AND ";
-			}
-			if (isset($_POST["date_since"]) && ($_POST["date_since"] != ""))
-			{
-				$strQuery = $strQuery . $strAND . "date_added>='" . $_POST["date_since"] . "'";
-				$strAND = " AND ";
-			}
-			if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on"))
-			{
-				$strQuery = $strQuery . $strAND . "urgent=1";
-			}
-			if (strrpos($strQuery, "WHERE") == 19)
-			{
-				$strQuery = $strQuery . "1";
-			}
-		}
-		else
-		{
-			$strQuery = "SELECT * FROM jobs WHERE maximum_budget>='" . $_SESSION["account_minimum_budget"] . "'";
-		}
-		$results = DoQuery($g_dbFindATradie, $strQuery);
-		if ($results && ($results->num_rows > 0))
-		{
-			echo "<tr>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Date<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Maximum budget<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Size<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Urgent?<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\"><b>Description<b></td>\n";
-			echo "</tr>\n";
-			while ($rowJob = $results->fetch_assoc())
-			{
-				$rowMember = DoGetMember($rowJob["member_id"]);
-
-				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]) && 
-					(DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"])))
-				{
-					echo "<tr>\n";
-					$date = new DateTime($rowJob["date_added"]);
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
-					echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
-					if ($rowJob["urgent"])
-						echo "<td class=\"cell_no_borders search_cell\">YES</td>";
-					else
-						echo "<td class=\"cell_no_borders search_cell\">NO</td>";
-					echo "<td class=\"cell_no_borders search_cell\"><button type=\"button\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "')\">View job description</button></td>\n";
-					echo "</tr>\n";
-				}
-			}
-			echo "<tr><td class=\"cell_no_borders search_cell\" colspan=\"8\">&nbsp;</td></tr>\n";
-		}
-		else
-		{
-			echo "<tr><td style=\"height:30px;\">No jobs found based on your account job preferences. Try searching with different job preferences.</td></tr>\n";
-		}
-	}
 ?>
 
 		<!-- #EndEditable -->
@@ -819,50 +769,58 @@
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none";?>;width:800px;">
-									<table  cellspacing="0" cellpadding="3" border="0" style="table-layout:fixed;">
+									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
-											<td style="width:150px;"><b>Maximum distance</b></td>
-											<td style="width:140px;"><b>Minimum budget</b></td>
-											<td style="width:140px;"><b>Maximum size</b></td>
-											<td style="width:125px;"><b>Jobs added since</b></td>
-											<td style="width:110px;"><b>Urgent jobs only</b></td>
-											<td style="width:100px;text-align:center;" rowspan="2"><input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" /></td>
+											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
+											<td class="form_table_cell" style="width:140px;"><b>Minimum budget</b></td>
+											<td class="form_table_cell" style="width:140px;"><b>Maximum size</b></td>
+											<td class="form_table_cell" style="width:125px;"><b>Jobs added since</b></td>
+											<td class="form_table_cell" style="width:110px;"><b>Urgent jobs only</b></td>
+											<td class="form_table_cell" style="width:100px;text-align:center;" rowspan="2">
+												<input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" style="width:5em;margin:5px;" /><br/>
+												<input type="reset" id="reset_job_search" name="reset_job_search" value="RESET" style="width:5em;;margin:5px;" />
+											</td>
 										</tr>
 										<tr>	
-											<td><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php echo DoGetMaxDistance() ?>" onclick="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
-											<td><b>$</b>&nbsp;<input type="text" id="text_minimum_budget" name="text_minimum_budget" maxlength="7" size="15" value="<?php echo DoGetMinBudget(); ?>" onclick="OnKeyPressDigitsOnly(event)" /></td>
-											<td>
+											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php echo DoGetMaxDistance() ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
+											<td class="form_table_cell"><b>$</b>&nbsp;<input type="text" id="text_minimum_budget" name="text_minimum_budget" maxlength="7" size="15" value="<?php echo DoGetMinBudget(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" /></td>
+											<td class="form_table_cell">
 												<select id="select_maximum_size" name="select_maximum_size">
-													<option <?php if (DoGetSizeIndex($_SESSION["account_maximum_size"]) == 0) echo "selected"; ?>>Up to 50</option>
-													<option<?php if (DoGetSizeIndex($_SESSION["account_maximum_size"]) == 1) echo "selected"; ?>>50 - 100</option>
-													<option<?php if (DoGetSizeIndex($_SESSION["account_maximum_size"]) == 2) echo "selected"; ?>>100 - 250</option>
-													<option<?php if (DoGetSizeIndex($_SESSION["account_maximum_size"]) == 3) echo "selected"; ?>>250 - 500</option>
-													<option<?php if (DoGetSizeIndex($_SESSION["account_maximum_size"]) == 4) echo "selected"; ?>>More than 500</option>
+													<?php include "job_size.html"; ?>
 												</select>&nbsp;<b>m<sup>2</sup></b>
-											</td>											
-											<td><input type="date" id="date_since" name="date_since" value="\<?php echo GetDateSince(); ?>\"/></td>
-											<td><input type="checkbox" id="checkbox_urgent" name="checkbox_urgent" <?php if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on")) echo "checked"; ?>/></td>
+											</td>
+											<?php
+																							
+												PrintJavascriptLine("SetSelection(\"select_maximum_size\", \"" . $_SESSION["account_maximum_size"] . "\");", 12, true);
+											?>										
+											<td class="form_table_cell"><input type="date" id="date_since" name="date_since" value="\<?php echo GetDateSince(); ?>\"/></td>
+											<td class="form_table_cell"><input type="checkbox" id="checkbox_urgent" name="checkbox_urgent" <?php if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on")) echo "checked"; ?>/></td>
 										</tr>
 									</table>
 								</form>
-								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:98%;display:<?php if (!IsTradie()) echo "block"; else echo "none"; ?>">
-									<table  cellspacing="0" cellpadding="3" border="0" style="table-layout:fixed;">
+								<form method="post" action="" id="form_tradie_search" class="form search_form" style="display:<?php if (!IsTradie()) echo "block"; else echo "none"; ?>">
+									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
-											<td style="width:950px;"><b>Trade type</b></td>
-											<td style="width:185px;"><b>Maximum distance from you</b></td>
-											<td style="width:100px;text-align:center;" rowspan="2"><input type="submit" id="submit_tradie_search" name="submit_tradie_search" value="SEARCH" /></td>
+											<td class="form_table_cell" style="width:950px;"><b>Trade type</b></td>
+											<td class="form_table_cell" style="width:185px;"><b>Maximum distance from you</b></td>
+											<td class="form_table_cell" style="width:100px;text-align:center;" rowspan="2"><input type="submit" id="submit_tradie_search" name="submit_tradie_search" value="SEARCH" /></td>
 										</tr>
 										<tr>	
-											<td>
-												<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
+											<td class="form_table_cell">
+												<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description_search'))">
 													<?php if (isset($_POST["select_trade"])) DoGeneratePrimaryTradeOptions($_POST["select_trade"]); else DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 												</select>
 												<br/><br/>
-												<label id="trade_description">XXXXXXXXXXXXX</label>
+												<label id="trade_description_search">XXXXXXXXXXXXX</label>
 											</td>											
-											<td><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; ?>" onclick="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
+											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
 										</tr>
 									</table>
+								</form>
+								<form method="post" action="" id="form_accept_job" style="display:none">
+									<input type="text" id="text_member_id" name="text_member_id" />
+									<input type="text" id="text_job_id" name="text_job_id" />
+									<input type="hidden" name="submit_accept_job" value="ACCEPT" />
 								</form>
 								
 								<table class="table_no_borders search_table">
@@ -883,6 +841,117 @@
 						
 						<div id="tab_contents2" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
+							<form method="post" action="" id="form_add_job" class="form search_form">
+								<table cellspacing="0" cellpadding="3" border="0" class="forrm_table">
+									<tr>
+										<td class="form_table_cell" style="width:800px;"><b>Trade type</b></td>
+										<td class="form_table_cell" style="width:160px;"><b>Maximum budget</b></td>
+										<td class="form_table_cell" style="width:70px;"><b>Size</b></td>
+										<td class="form_table_cell" style="width:75px;"><b>Urgent</b></td>
+										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
+										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
+											<input id="submit_job" name="submit_job" type="submit" value="SUBMIT" />
+										</td>
+									</tr>
+									<tr>
+										<td class="form_table_cell">
+											<select id="select_trade_job" name="select_trade_job" onchange="OnChangeTrade(this, DoGetInput('trade_description_job'))">
+												<?php DoGeneratePrimaryTradeOptions(""); ?>
+											</select><br/><br/>
+											<label id="trade_description_job">XXXXXXXXXXXXX</label>
+										</td>
+										<td class="form_table_cell">
+											<b>$</b>&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" size="8" maxlength="7" onkeydown="OnKeyPressDigitsOnly(event)" />
+										</td class="form_table_cell">
+										<td class="form_table_cell">
+											<select id="select_job_size" name="select_job_size">
+												<?php include "job_size.html"; ?>
+											</select>
+											<?php
+												PrintJavascriptLine("SetSelection(\"select_job_size\", \"" . $_SESSION["account_maximum_size"] . "\")", 12, true);
+											?>										
+										</td>
+										<td class="form_table_cell">
+											<input type="checkbox" id="check_urgent" name="check_urgent" />
+										</td class="form_table_cell">
+										<td class="form_table_cell" >
+											<textarea id="text_description" name="text_description" maxlength="512" cols="48" rows="3"></textarea>
+										</td>
+									</tr>
+								</table>
+								<input type="hidden" id="hidden_member_id" name="hidden_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
+								<input type="hidden" id="hidden_job_id" name="hidden_job_id" value="" />
+							</form>
+<?php
+	
+	$bFeedbackEdit = false;
+	include "feedback_form.html";
+
+	if (isset($_POST["submit_job_edit"]))
+	{
+		if (isset($_POST["hidden_job_edit_id"]))
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["hidden_job_edit_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					$strChecked = "false";
+					if ($row["urgent"])
+						$strChecked = "true";
+	
+					/*
+						id="select_trade_job"
+						id="text_maximum_budget"
+						id="select_job_size"
+						id="check_urgent"
+						id="text_description"
+						id="hidden_member_id"
+						id="hidden_job_id"
+					*/
+					PrintJavascriptLines([
+											"let selectTrade = DoGetInput(\"select_trade\"),",
+											"	textMaxBudget = DoGetInput(\"text_maximum_budget\"),",
+											"	selectJobSize = DoGetInput(\"select_job_size\"),",
+											"	textDesc = DoGetInput(\"text_description\"),",
+											"	checkboxUrgent = DoGetInput(\"check_urgent\"),",
+											"	hiddenJobID = DoGetInput(\"hidden_job_id\");",
+											"",
+											"if (selectTrade && textMaxBudget && selectJobSize && checkboxUrgent && hiddenJobID && textDesc)",
+											"{",
+											"	hiddenJobID.value = \"" . $_POST["hidden_job_edit_id"] . "\";",
+											"	textMaxBudget.value = \"" . $row["maximum_budget"] . "\";",
+											"	textDesc.value = \"" . $row["description"] . "\";",
+											"	checkboxUrgent.checked = " . $strChecked . ";",
+											"	SetSelectionValue(\"select_trade_job\", " . $row["trade_id"] . ");",
+											"	SetSelection(\"select_job_size\", \"" . $row["size"] . "\");",
+											"}"
+										 ], 10, true);
+				}
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("Hidden input 'hidden_job_id' value was not found!", 5, true);
+		}
+	}
+
+?>
+							<br/><br/>
+							<table  cellspacing="0" cellpadding="3" border="1" class="search_table">
+								<tr>
+									<td class="search_cell" style="width:9em;"><b>Date</b></td>
+									<td class="search_cell" style="width:6em;"><b>Size</b></td>
+									<td class="search_cell" style="width:9em;"><b>Maximum budget</b></td>
+									<td class="search_cell" style="width:3em;"><b>Urgent</b></td>
+									<td class="search_cell" style=""><b>Description</b></td>
+									<td class="search_cell" style="width:110px;"><b>Functions</b></td>
+								</tr>
+								<?php
+									DoGetJobsPosted();
+								?>
+							</table>
+
 						</div>
 						
 						<div id="tab_contents3" class="tab_content">
@@ -909,8 +978,6 @@
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
 ?>
 						</div>
-
-						<script type="text/javascript">DoOpenTab("tab_button1", "tab_contents1");</script>
 						
 					</div>
 					
@@ -918,6 +985,30 @@
 
 <script type="text/javascript">
 
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));
+	
+	function OnClickAcceptJob(strMemberId, strJobID)
+	{
+		let formAcceptJob = DoGetInput("form_accept_job"),
+			textMemberID = DoGetInput("text_member_id"),
+			textJobID = DoGetInput("text_job_id");
+			
+		if (formAcceptJob && textMemberID && textJobID)
+		{
+			textMemberID.value = strMemberId;
+			textJobID.value = strJobID;
+			formAcceptJob.submmit();
+		}
+	}
+	
+	function OnClickComplete(strJobID)
+	{
+		DoGetInput("feedback_form").style.display = "block";
+		DoGetInput("hidden_job_id").value = strJobID);
+		return false;
+	}
+	
 	function DoNextForm(strForm2HideID, strForm2ShowID)
 	{
 		let form2Hide = DoGetInput(strForm2HideID),
@@ -1054,7 +1145,26 @@
 			
 </script>
 
+<?php
+	if (isset($_POST["submit_job_edit"]) || isset($_POST["submit_job_delete"]) || isset($_POST["submit_job"]))
+	{
+		PrintJavascriptLine("DoOpenTab(\"tab_button2\", \"tab_contents2\");", 1, true);
+	}
+	else if (isset($_POST["submit_trade_details"]) || isset($_POST["text_business_name"]) || isset($_POST["text_first_name"]) || 
+				isset($_POST["text_username"]))
+	{
+		PrintJavascriptLine("DoOpenTab(\"tab_button3\", \"tab_contents3\");", 1, true);
+	}
+	else if (isset($_POST["submit_feedback_edit"]))
+	{
+		PrintJavascriptLine("DoOpenTab(\"tab_button5\", \"tab_contents5\");", 1, true);
+	}
+	else
+	{
+		PrintJavascriptLine("DoOpenTab(\"tab_button1\", \"tab_contents1\");", 1, true);
+	}
 
+?>
 
 
 

@@ -168,6 +168,24 @@
 			inputPassword.type = "password";
 	}
 
+	function SetSelectionValue(strSelectID, strValue)
+	{
+		let select = DoGetInput(strSelectID, "selection");
+		
+		if (select)
+		{
+			select.selectedIndex = 0;
+			for (let nI = 0; nI < select.options.length; nI++)
+			{
+				if (strValue == select.options[nI].value)
+				{
+					select.selectedIndex = nI;
+					break;
+				}
+			}
+		}
+	}
+
 	function SetSelection(strSelectID, strOptionText)
 	{
 		let select = DoGetInput(strSelectID, "selection");

@@ -13,15 +13,17 @@
 			<td style="text-align:left;">&nbsp;</td>
 			<td style="text-align:left;width:600px;">
 				<img alt="images/thumbs_up.png" src="images/thumbs_up.png" width="20">
-				<input checked="checked" name="feedback" id="radio_feedback_positive" tabindex="1" type="radio" value="true">
+				<input checked="checked" name="radio_feedback" id="radio_feedback_positive" tabindex="1" type="radio" value="true">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<img alt="images/thumbs_down.png" src="images/thumbs_down.png" width="20">
-				<input name="feedback" id="radio_feedback_negative" tabindex="2" type="radio" value="false">
-				<td style="text-align:left;">
-					<input name="submit_feedback_edit" type="submit" value="SAVE">
-				</td>
+				<input name="radio_feedback" id="radio_feedback_negative" tabindex="2" type="radio" value="false">
+			</td>
+			<td style="text-align:left;">
+				<input name="submit_feedback_edit" type="submit" value="SAVE" style=display:"<?php if ($bFeedbackEdit) echo "inline"; else echo "none"; ?>">
+				<input name="submit_feedback_add" type="submit" value="SAVE" style=display:"<?php if (!$bFeedbackEdit) echo "inline"; else echo "none"; ?>">
 			</td>
 		</tr>
 	</table>
 	<input type="hidden" id="hidden_feedback_id" name="hidden_feedback_id" />
+	<input type="hidden" id="hidden_job_id" name="hidden_job_id" />
 </form>

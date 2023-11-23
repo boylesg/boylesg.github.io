@@ -318,6 +318,8 @@ form.form input[type=button], form.form input[type=submit], form.form input[type
 	font-size: small;
 	font-weight: bold;
 	color: black;
+	margin: 10px;
+	background-color: silver;
 }
 
 form.form input[type=file]

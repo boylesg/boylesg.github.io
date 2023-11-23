@@ -29,6 +29,12 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function DoGetDateNow()
+	{
+		$dateNow = new DateTime();
+		return $dateNow->format("Y-m-d");
+	}
+	
 	function RelaceCRLF($strText)
 	{
 		while (strpos($strText, "\r\n"))
@@ -347,12 +353,24 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 
-	function DoUpdateQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strFindColumnName, $strFindColumnValue)
+	function DoUpdateQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_strQuery;
 		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
-			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . "' WHERE " . 
-			$strFindColumnName . "='" . $strFindColumnValue . "'";
+			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . 
+			$strColumnName4 . "='" .  $strColumnValue4 . 
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoUpdateQuery5($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . 
+			$strColumnName4 . "='" .  $strColumnValue4 . $strColumnName5 . "='" .  $strColumnValue5 . 
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
 
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -385,6 +403,22 @@
 	{
 		global $g_strQuery;
 		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . ")";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . $strColumnValue4 . ")";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery5($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . $strColumnValue4 . "," . $strColumnValue5 . ")";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -428,7 +462,7 @@
 	    	PrintIndents(8);
 			echo "<option value=\"" . $row["id"] . "\"";
 			
-			if (isset($strTradeID) && ($strTradeID == $row["id"]))
+			if (isset($strTradeID) && ($strTradeID != "") && ($strTradeID == $row["id"]))
 				echo " selected";
 			
 			echo ">";
@@ -794,7 +828,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** ADVERT RELATED FUNCTIONS
+	//** FEEDBACK RELATED FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -848,8 +882,11 @@
 			echo "</table>\n";
 			echo "<hr><br/><br/>";
 			if ($bDisplayEdit)
+			{
+				$bFeedbackEdit = true;
 				include "feedback_form.html";
-			echo "<table cellspacing=\"0\" cellpadding=\"10\" style=\"width:100%;layout:fixed;\">\n";
+			}
+			echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders search_table\" style=\"width:99%;layout:fixed;\">\n";
 			$queryResult->data_seek(0);
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
@@ -887,7 +924,7 @@
 				if ($bDisplayEdit)
 				{
 					echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
-					echo "<button type=\"button\" id=\"button_edit\" onclick=\"OnClickEditFeedback(this, '" . $rowFeedback["id"] . 
+					echo "<button type=\"button\" id=\"button_edit\" title=\"Edit your feedback\" onclick=\"OnClickEditFeedback(this, '" . $rowFeedback["id"] . 
 						"', '" . $rowFeedback["positive"] . "', '" . $rowFeedback["description"] . 
 						"') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
 					echo "</td>\n";
@@ -898,7 +935,263 @@
 		}
 	}
 	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** POSTED JOBS FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoGetJobsPosted()
+	{
+		global $g_dbFindATradie;
+		$row = null;
+		
+		$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_SESSION["account_id"]);
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				echo "<tr>\n";
+				echo "<td class=\"search_cell\">\n";
+				echo $row["date_added"];
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
+				echo $row["size"];
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
+				echo $row["maximum_budget"];
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
+				if ($row["urgent"] == "1")
+					echo "YES\n";
+				else
+					echo "NO\n";
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
+				echo $row["description"];
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
+				echo "	<form method=\"post\" action=\"\">\n";
+				echo "		<button type=\"submit\ id=\"submit_job_edit\" name=\"submit_job_edit\" title=\"Edit your job\" value=\"EDIT\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20px\" /></button>&nbsp;\n";
+				echo "		<button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" width=\"20px\" /></button>\n";
+				echo "		<button type=\"button\ id=\"button_job_complete\" name=\"button_job_complete\" title=\"Flag your job as complete and provide feedback for your client\" value=\"COMPLETE\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/complete.png\" alt=\"images/complete.png\" width=\"20px\" /></button>\n";
+				echo "		<input type=\"hidden\" name=\"hidden_job_edit_id\" value=\"" . $row["id"] . "\">\n";
+				echo "	</form>\n";
+				echo "</td>\n"; 
+				echo "</tr>\n";
+			}
+		}
+	}
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** JOBS SEARCH FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoGetMaxDistance()
+	{
+		$strResult = "";
+		
+		if (isset($_POST["text_maximum_distance"]))
+			$strResult = $_POST["text_maximum_distance"];
+		else if (isset($_SESSION["account_maximum_distance"]))
+			$strResult = sprintf("%d", (int)$_SESSION["account_maximum_distance"]);
+		
+		return $strResult;
+	}
+	
+	function DoGetMinBudget()
+	{
+		$strResult = "";
+
+		if (isset($_POST["text_minimum_budget"]))
+			$strResult = $_POST["text_minimum_budget"];
+		else if (isset($_SESSION["account_minimum_budget"]))
+			$strResult = sprintf("%d", (int)$_SESSION["account_minimum_budget"]);
+
+		return $strResult;
+	}
+	
+	function DoGetMaxSize()
+	{
+		$strResult = "";
+
+		if (isset($_POST["select_maximum_size"]))
+			$strResult = $_POST["select_maximum_size"];
+		else if (isset($_SESSION["account_maximum_size"]))
+			$strResult = sprintf("%d", (int)$_SESSION["account_maximum_size"]);
+
+		return $strResult;
+	}
+	
+	function GetDateSince()
+	{
+		$strResult = "";
+
+		if (isset($_POST["date_since"]))
+			$strResult = $_POST["date_since"];
+		else
+			$strResult = "";
+
+		return $strResult;
+	}
+	
+	function DoGetJobs()
+	{
+		global $g_dbFindATradie;
+		$row = null;
+		
+		if (isset($_POST["submit_job_search"]))
+		{
+			/*
+				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH )
+				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => 2023-11-01 [checkbox_urgent] => on [submit_job_search] => SEARCH ) 
+				Array ( [text_maximum_distance] => [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH ) 
+			*/
+			$strAND = "";
+			
+			$strQuery = "SELECT * FROM jobs WHERE ";
+			if (isset($_POST["text_minimum_budget"]) && ($_POST["text_minimum_budget"] != ""))
+			{
+				$strQuery = $strQuery . "maximum_budget>='" . $_POST["text_minimum_budget"] . "'";
+				$strAND = " AND ";
+			}
+			if (isset($_POST["date_since"]) && ($_POST["date_since"] != ""))
+			{
+				$strQuery = $strQuery . $strAND . "date_added>='" . $_POST["date_since"] . "'";
+				$strAND = " AND ";
+			}
+			if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on"))
+			{
+				$strQuery = $strQuery . $strAND . "urgent=1";
+			}
+			if (strrpos($strQuery, "WHERE") == 19)
+			{
+				$strQuery = $strQuery . "1";
+			}
+		}
+		else
+		{
+			$strQuery = "SELECT * FROM jobs WHERE maximum_budget>='" . $_SESSION["account_minimum_budget"] . "'";
+		}
+		$results = DoQuery($g_dbFindATradie, $strQuery);
+		if ($results && ($results->num_rows > 0))
+		{
+			echo "<tr>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Date<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Maximum budget<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Size<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Urgent?<b></td>\n";
+			echo "<td class=\"cell_no_borders search_cell\"><b>Description<b></td>\n";
+			echo "</tr>\n";
+			while ($rowJob = $results->fetch_assoc())
+			{
+				$rowMember = DoGetMember($rowJob["member_id"]);
+
+				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]) && 
+					(DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"])) &&
+					($rowJob["accepted_by_member_id"] == -1))
+				{
+					echo "<tr>\n";
+					$date = new DateTime($rowJob["date_added"]);
+					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
+					echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
+					echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
+					echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
+					echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
+					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
+					if ($rowJob["urgent"])
+						echo "<td class=\"cell_no_borders search_cell\">YES</td>";
+					else
+						echo "<td class=\"cell_no_borders search_cell\">NO</td>";
+					echo "<td class=\"cell_no_borders search_cell\">";
+					echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
+					echo "<button type=\"button\" title=\"Accept this job\" onclick=\"return OnClickAcceptJob('" . $_SESSION["account_id"] . "', '" . $rowJob["id"] . "')\"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+					echo "</td>\n";
+					echo "</tr>\n";
+				}
+			}
+			echo "<tr><td class=\"cell_no_borders search_cell\" colspan=\"8\">&nbsp;</td></tr>\n";
+		}
+		else
+		{
+			echo "<tr><td style=\"height:30px;\">No jobs found based on your account job preferences. Try searching with different job preferences.</td></tr>\n";
+		}
+	}
+	
+
+
+
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** TRADIEDoGetJops SEARCH FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoGetTradies()
+	{
+		global $g_dbFindATradie;
+		$row = null;
+
+		if (isset($_POST["submit_tradie_search"]))
+		{
+			$strQuery = "SELECT * FROM members WHERE ";
+			if (isset($_POST["select_trade"]) && ($_POST["select_trade"] != ""))
+			{
+				$strQuery = $strQuery . "trade_id='" . $_POST["select_trade"] . "'";
+			}
+			else
+			{
+				$strQuery = $strQuery . "1";
+			}
+			$results = DoQuery($g_dbFindATradie, $strQuery);
+			if ($results && ($results->num_rows > 0))
+			{
+				echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>Phone<b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>Mobile<b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>Postcode<b></td>\n";
+				echo "<td class=\"cell_no_borders search_cell\"><b>View<b></td>\n";
+				echo "</tr>\n";
+				while ($rowMember = $results->fetch_assoc())
+				{
+					if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_POST["text_maximum_distance"]))
+					{
+						echo "<tr>\n";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\"><a href=\"tradie.php?member_id=" . $rowMember["id"] . "\">VIEW</a></td>";
+						echo "</tr>\n";
+					}
+				}
+			}
+		}
+	}
+	
 ?>
+
+
+
+
 
 
 
