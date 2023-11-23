@@ -1127,9 +1127,7 @@
 					if ($rowJob["accepted_by_member_id"] == -1)
 						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"return OnClickAcceptJob('" . $_SESSION["account_id"] . "', '" . $rowJob["id"] . "')\"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
 					else
-						echo "<button type=\"button\" title=\"Job has been accepted - email the client\" onclick=\"return false;\"><a href=\"mailto:" . 
-							$rowJob["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", date: " . 
-							DoGetDate($rowJob["date_added"]) . " on 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"20px;\" /></a></button>&nbsp;";
+						echo "<button type=\"button\" title=\"Job has been accepted\" onclick=\"return false;\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"20px;\" /></button>&nbsp;";
 					echo "</td>\n";
 					echo "</tr>\n";
 				}
