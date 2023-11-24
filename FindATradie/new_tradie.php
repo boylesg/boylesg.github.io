@@ -57,7 +57,7 @@
 			<nav class="navigation" id="navigation">
 				<a class="navigation_link" href="index.php">Home</a>
 				<a class="navigation_link" href="benefits.php">Benefits</a>
-				<a class="navigation_link" href="about.html">About</a>
+				<a class="navigation_link" href="about.php">About</a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
