@@ -31,7 +31,7 @@
 	
 	$g_strPassword = "DG9qD3Upfmj8JMvRF6CZ4gwKmSqmMD3V";
 	$g_strIV = "wX9yWCcxyUjw3Xf6";
-	$g_strMethod = "aes-256-cbc";
+	$g_strMethod = "aes-128-ccm";
 	/*
 	    [0] => aes-128-cbc
 	    [1] => aes-128-cbc-hmac-sha1
@@ -92,7 +92,7 @@
 		global $g_strMethod;
 
 		//$result = base64_decode($strEncryptedText);
-		//$result = openssl_decrypt($result, $g_strMethod, $g_strPassword, OPENSSL_RAW_DATA, $g_strIV);
+		//$result = openssl_decrypt($strEncryptedText, $g_strMethod, $g_strPassword, OPENSSL_RAW_DATA, $g_strIV);
 		$result = base64_decode($strEncryptedText);
 
 		return $result;
