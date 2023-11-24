@@ -110,8 +110,8 @@
 					</p>
 					<p>
 						So these are the two reason why my brother and I have created <i>www.find-a-tradie.com.au</i>. Not in small 
-						part is the satisfaction of levergaing my programming skils to undermine web advertising service companies 
-						that are clearly engage in gouging small business tradies.
+						part is the satisfaction of levergaing my programming skils to undermining web advertising service companies 
+						that are clearly engaged in gouging small business tradies.
 					</p>
 				
 				</div>

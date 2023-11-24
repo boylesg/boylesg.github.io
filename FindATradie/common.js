@@ -6,6 +6,32 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
+	//** ENCRYPTION FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	let g_Key = "DG9qD3Upfmj8JMvRF6CZ4gwKmSqmMD3V",
+		g_strIV = "wX9yWCcxyUjw3Xf6";
+			
+	function DoAESEncrypt(strPlainText)
+	{
+		//return CryptoJS.AES.encrypt(strPlainText, g_Key, g_strIV);
+		return btoa(strPlainText);
+	}
+	
+	function DoAESDecrypt(strEncryptedText)
+	{
+		//return CryptoJS.AES.decrypt(strEncryptedText, g_Key, g_strIV);
+		atob(strEncryptedText);
+	}
+	
+
+
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
 	//** GENERAL PURPOSE FUNCTIONS
 	//** 
 	//******************************************************************************

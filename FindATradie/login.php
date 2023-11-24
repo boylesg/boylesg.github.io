@@ -40,7 +40,7 @@
 		
 			<style>
 			</style>
-			
+						
 <?php
 
 	$g_strLogin = "block";
@@ -51,10 +51,9 @@
 	// Processing post data.
 	if (isset($_POST["submit_login"]))
 	{
-		$_SESSION["account_username"] = $_POST["text_username"];
-		$_SESSION["account_password"] = $_POST["text_password"];
-
-		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
+		$_SESSION["account_username"] = DoAESDecrypt($_POST["text_username"]);
+		$_SESSION["account_password"] = DoAESDecrypt($_POST["text_password"]);
+		$strQuery = "SELECT * FROM members WHERE username='" . $_SESSION["account_username"] . "' OR email='" . $_SESSION["account_username"] . "' AND password='" . $_SESSION["account_password"] . "'";
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result->num_rows == 1)
 		{
@@ -239,9 +238,10 @@
 							</tr>
 							<tr>
 								<td style="text-align:left;" class="cell_no_borders"><br/><input type="button" id="button_recover" value="I FORGET MY PASSWORD" onclick="OnShowForm('form_recover', 'form_login')"/></td>
-								<td style="text-align:right;" class="cell_no_borders"><br/><input type="submit" id="submit_login" name="submit_login" value="LOG IN"/></td>
+								<td style="text-align:right;" class="cell_no_borders"><br/><input type="button" id="submit_login" name="submit_login" value="LOG IN" onclick="OnClickButtonSubmit()"/></td>
 							</tr>
 						</table>
+						<input type="hidden" name="submit_login" value="LOG IN" />
 					</form>
 					
 					<div class="advert" id="advert_login" style="width:656px;">
@@ -274,9 +274,22 @@
 		
 		<!-- #BeginEditable "footer" -->
 
-
-
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+				
 				<script type="text/javascript">
+										
+					function OnClickButtonSubmit()
+					{
+						let textUsername = DoGetInput("text_username"),
+							textPassword = DoGetInput("text_password");
+						
+						if (textUsername && textPassword)
+						{
+							textUsername.value = DoAESEncrypt(textUsername.value);
+							textPassword.value = DoAESEncrypt(textPassword.value);
+							DoGetInput("form_login").submit();
+						}
+					}
 					
 					function OnShowForm(strShowFormID, strHideFormID)
 					{
