@@ -256,7 +256,7 @@
 
 	if (isset($_GET["submit_accept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", $_GET["text_member_id"], "id", $_GET["text_job_id"]);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_GET["text_member_id"], "id", $_GET["text_job_id"]);
 		if ($resultsJob)
 		{
 			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
@@ -291,7 +291,7 @@
 	}
 	else if (isset($_GET["submit_unaccept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", -1, "id", $_GET["text_job_id"]);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", -1, "id", $_GET["text_job_id"]);
 		if ($resultsJob)
 		{
 			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
@@ -299,12 +299,12 @@
 			{
 				if ($rowJob = $results->fetch_assoc())
 				{
-					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
+					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $rowJob["member_id"]);
 					if ($results && ($results->num_rows > 0))
 					{
 						if ($rowMember = $results->fetch_assoc())
 						{
-							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["accepted_by_member_id"]);
+							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $rowJob["accepted_by_member_id"]);
 							if ($results && ($results->num_rows > 0))
 							{
 								if ($rowTradie = $results->fetch_assoc())
@@ -317,11 +317,11 @@
 					}
 				}
 			}
-			PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
+			PrintJavascriptLine("AlertSuccess(\"Job was declined!\")", 4, true);
 		}
 		else
 		{
-			PrintJavascriptLine("AlertError(\"Job could not be accepted!\")", 4, true);
+			PrintJavascriptLine("AlertError(\"Job could not be declined!\")", 4, true);
 		}
 	}
 	else if (isset($_POST["submit_feedback_add"]))
@@ -999,6 +999,7 @@
 									<td class="search_cell" style="width:6em;"><b>Size</b></td>
 									<td class="search_cell" style="width:9em;"><b>Maximum budget</b></td>
 									<td class="search_cell" style="width:3em;"><b>Urgent</b></td>
+									<td class="search_cell" style="width:12em;"><b>Accepted by</b></td>
 									<td class="search_cell" style=""><b>Description</b></td>
 									<td class="search_cell" style="width:110px;"><b>Functions</b></td>
 								</tr>

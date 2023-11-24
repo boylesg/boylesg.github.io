@@ -973,6 +973,17 @@
 					echo "NO\n";
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
+				if ($row["accepted_by_member_id"] > -1)
+				{
+					$rowMember = DoGetMember($row["accepted_by_member_id"]);
+					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . $rowMember["business_name"] . "</a>\n";
+				}
+				else
+				{
+					echo "";
+				}
+				echo "</td>\n";
+				echo "<td class=\"search_cell\">\n";
 				echo $row["description"];
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
@@ -1130,8 +1141,10 @@
 					echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
 					if ($rowJob["accepted_by_member_id"] == -1)
 						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&text_member_id=" . $_SESSION["account_id"] . "&submit_accept_job=ACCEPT';\" \"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+					else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
+						echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=UNACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
 					else
-						echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=ACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+						echo "ERROR";
 					echo "</td>\n";
 					echo "</tr>\n";
 				}
