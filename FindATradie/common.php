@@ -1063,7 +1063,7 @@
 				Array ( [text_maximum_distance] => [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH ) 
 			*/
 			$strAND = "";
-			
+				
 			$strQuery = "SELECT * FROM jobs WHERE ";
 			if (isset($_POST["text_minimum_budget"]) && ($_POST["text_minimum_budget"] != ""))
 			{
@@ -1083,7 +1083,11 @@
 			{
 				$strQuery = $strQuery . "1";
 			}
-			$strQuery = $strQuery . " ORDER BY accepted_by_member_id DESC";
+			$strQuery = $strQuery . " ORDER BY accepted_by_member_id ";
+			if (isset($_POST["checkbox_hide_accepted"]) && ($_POST["checkbox_hide_accepted"] == "on"))
+				$strQuery = $strQuery . "ASC";
+			else
+				$strQuery = $strQuery . "DESC";
 		}
 		else
 		{
@@ -1125,9 +1129,9 @@
 					echo "<td class=\"cell_no_borders search_cell\">";
 					echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
 					if ($rowJob["accepted_by_member_id"] == -1)
-						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"return OnClickAcceptJob('" . $_SESSION["account_id"] . "', '" . $rowJob["id"] . "')\"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&text_member_id=" . $_SESSION["account_id"] . "&submit_accept_job=ACCEPT';\" \"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
 					else
-						echo "<button type=\"button\" title=\"Job has been accepted\" onclick=\"return false;\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"20px;\" /></button>&nbsp;";
+						echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=ACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
 					echo "</td>\n";
 					echo "</tr>\n";
 				}

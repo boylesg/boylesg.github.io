@@ -254,11 +254,69 @@
 	echo "<br><br>";
 */	
 
-	if (isset($_POST["submit_accept_job"]))
+	if (isset($_GET["submit_accept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", $_POST["text_member_id"], "id", $_POST["text_job_id"]);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", $_GET["text_member_id"], "id", $_GET["text_job_id"]);
 		if ($resultsJob)
 		{
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($rowJob = $results->fetch_assoc())
+				{
+					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
+					if ($results && ($results->num_rows > 0))
+					{
+						if ($rowMember = $results->fetch_assoc())
+						{
+							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["accepted_by_member_id"]);
+							if ($results && ($results->num_rows > 0))
+							{
+								if ($rowTradie = $results->fetch_assoc())
+								{
+									mail($rowMember["email"], "RE: job ID: " . $rowJob["id"] . ", date: " . 
+										$rowJob["date_added"] . " on 'FindaTradie'", "Business member '" . $rowTradie["business_name"] . " has accepted your job and will contact your shortly.");
+								}
+							}
+						}
+					}
+				}
+			}
+			PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be accepted!\")", 4, true);
+		}
+	}
+	else if (isset($_GET["submit_unaccept_job"]))
+	{
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_member_id", -1, "id", $_GET["text_job_id"]);
+		if ($resultsJob)
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($rowJob = $results->fetch_assoc())
+				{
+					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
+					if ($results && ($results->num_rows > 0))
+					{
+						if ($rowMember = $results->fetch_assoc())
+						{
+							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["accepted_by_member_id"]);
+							if ($results && ($results->num_rows > 0))
+							{
+								if ($rowTradie = $results->fetch_assoc())
+								{
+									mail($rowMember["email"], "RE: job ID: " . $rowJob["id"] . ", date: " . 
+										$rowJob["date_added"] . " on 'FindaTradie'", "Business member '" . $rowTradie["business_name"] . " has changed their mind and declined your job.");
+								}
+							}
+						}
+					}
+				}
+			}
 			PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
 		}
 		else
@@ -768,14 +826,15 @@
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none";?>;width:800px;">
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:955px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
 											<td class="form_table_cell" style="width:140px;"><b>Minimum budget</b></td>
 											<td class="form_table_cell" style="width:140px;"><b>Maximum size</b></td>
 											<td class="form_table_cell" style="width:125px;"><b>Jobs added since</b></td>
-											<td class="form_table_cell" style="width:110px;"><b>Urgent jobs only</b></td>
+											<td class="form_table_cell" style="width:115px;"><b>Urgent jobs only</b></td>
+											<td class="form_table_cell" style="width:125px;"><b>Hide accepted jobs</b></td>
 											<td class="form_table_cell" style="width:100px;text-align:center;" rowspan="2">
 												<input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" style="width:5em;margin:5px;" /><br/>
 												<input type="reset" id="reset_job_search" name="reset_job_search" value="RESET" style="width:5em;;margin:5px;" />
@@ -795,6 +854,7 @@
 											?>										
 											<td class="form_table_cell"><input type="date" id="date_since" name="date_since" value="\<?php echo GetDateSince(); ?>\"/></td>
 											<td class="form_table_cell"><input type="checkbox" id="checkbox_urgent" name="checkbox_urgent" <?php if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on")) echo "checked"; ?>/></td>
+											<td class="form_table_cell"><input type="checkbox" id="checkbox_hide_accepted" name="checkbox_hide_accepted" <?php if (isset($_POST["checkbox_hide_accepted"]) && ($_POST["checkbox_hide_accepted"] == "on")) echo "checked"; ?>/></td>
 										</tr>
 									</table>
 								</form>
@@ -816,11 +876,6 @@
 											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
 										</tr>
 									</table>
-								</form>
-								<form method="post" action="" id="form_accept_job" style="display:none">
-									<input type="text" id="text_member_id" name="text_member_id" />
-									<input type="text" id="text_job_id" name="text_job_id" />
-									<input type="hidden" name="submit_accept_job" value="ACCEPT" />
 								</form>
 								
 								<table class="table_no_borders search_table">
@@ -988,20 +1043,6 @@
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));
 	
-	function OnClickAcceptJob(strMemberId, strJobID)
-	{
-		let formAcceptJob = DoGetInput("form_accept_job"),
-			textMemberID = DoGetInput("text_member_id"),
-			textJobID = DoGetInput("text_job_id");
-			
-		if (formAcceptJob && textMemberID && textJobID)
-		{
-			textMemberID.value = strMemberId;
-			textJobID.value = strJobID;
-			formAcceptJob.submmit();
-		}
-		return false;
-	}
 	
 	function OnClickComplete(strJobID)
 	{
