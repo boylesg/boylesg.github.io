@@ -1141,7 +1141,7 @@
 		return $date->format("d/m/Y");
 	}
 	
-	function DoGetJobs()
+	function DoGetJobs($strTradeID, $mapAddedJobIDs)
 	{
 		global $g_dbFindATradie;
 		$row = null;
@@ -1152,27 +1152,19 @@
 				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH )
 				Array ( [text_maximum_distance] => 20 [text_minimum_budget] => 5000 [date_since] => 2023-11-01 [checkbox_urgent] => on [submit_job_search] => SEARCH ) 
 				Array ( [text_maximum_distance] => [text_minimum_budget] => 5000 [date_since] => [submit_job_search] => SEARCH ) 
-			*/
-			$strAND = "";
-				
-			$strQuery = "SELECT * FROM jobs WHERE ";
+			*/	
+			$strQuery = "SELECT * FROM jobs WHERE trade-id=" . $strTradeID;
 			if (isset($_POST["text_minimum_budget"]) && ($_POST["text_minimum_budget"] != ""))
 			{
-				$strQuery = $strQuery . "maximum_budget>='" . $_POST["text_minimum_budget"] . "'";
-				$strAND = " AND ";
+				$strQuery = $strQuery . " AND maximum_budget>='" . $_POST["text_minimum_budget"] . "'";
 			}
 			if (isset($_POST["date_since"]) && ($_POST["date_since"] != ""))
 			{
-				$strQuery = $strQuery . $strAND . "date_added>='" . $_POST["date_since"] . "'";
-				$strAND = " AND ";
+				$strQuery = $strQuery . " AND date_added>='" . $_POST["date_since"] . "'";
 			}
 			if (isset($_POST["checkbox_urgent"]) && ($_POST["checkbox_urgent"] == "on"))
 			{
-				$strQuery = $strQuery . $strAND . "urgent=1";
-			}
-			if (strrpos($strQuery, "WHERE") == 19)
-			{
-				$strQuery = $strQuery . "1";
+				$strQuery = $strQuery . " AND urgent=1";
 			}
 			$strQuery = $strQuery . " ORDER BY accepted_by_member_id ";
 			if (isset($_POST["checkbox_hide_accepted"]) && ($_POST["checkbox_hide_accepted"] == "on"))
@@ -1187,16 +1179,6 @@
 		$results = DoQuery($g_dbFindATradie, $strQuery);
 		if ($results && ($results->num_rows > 0))
 		{
-			echo "<tr>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:3em;\"><b>ID</b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:6em;\"><b>Date<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:25em;\"><b>Name<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:30em;\"><b>Email<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\"><b>Maximum budget<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:5em;\"><b>Size<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:5em;\"><b>Urgent?<b></td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:px\"><b>Functions<b></td>\n";
-			echo "</tr>\n";
 			while ($rowJob = $results->fetch_assoc())
 			{
 				$rowMember = DoGetMember($rowJob["member_id"]);
@@ -1205,36 +1187,40 @@
 					(DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"])) &&
 					(($rowJob["accepted_by_member_id"] == -1) || ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])))
 				{
-					echo "<tr>\n";
-					$date = new DateTime($rowJob["date_added"]);
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
-					echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
-					echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
-					if ($rowJob["urgent"])
-						echo "<td class=\"cell_no_borders search_cell\">YES</td>";
-					else
-						echo "<td class=\"cell_no_borders search_cell\">NO</td>";
-					echo "<td class=\"cell_no_borders search_cell\">";
-					echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
-					if ($rowJob["accepted_by_member_id"] == -1)
-						echo "<button type=\"button\" title=\"Accept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&text_member_id=" . $_SESSION["account_id"] . "&submit_accept_job=ACCEPT';\" \"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
-					else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
-						echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=UNACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
-					else
-						echo "ERROR";
-					echo "</td>\n";
-					echo "</tr>\n";
+					if (!array_key_exists($rowJob["id"], $mapAddedJobIDs))
+					{
+						$mapAddedJobIDs[$rowJob["id"]] = true;
+						echo "<tr>\n";
+						$date = new DateTime($rowJob["date_added"]);
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
+						echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
+						echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
+						if ($rowJob["urgent"])
+							echo "<td class=\"cell_no_borders search_cell\">YES</td>";
+						else
+							echo "<td class=\"cell_no_borders search_cell\">NO</td>";
+						echo "<td class=\"cell_no_borders search_cell\">";
+						echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
+						if ($rowJob["accepted_by_member_id"] == -1)
+							echo "<button type=\"button\" title=\"Accept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&text_member_id=" . $_SESSION["account_id"] . "&submit_accept_job=ACCEPT';\" \"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+						else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
+							echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=UNACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
+						else
+							echo "ERROR";
+						echo "</td>\n";
+						echo "</tr>\n";
+					}
 				}
 			}
-			echo "<tr><td class=\"cell_no_borders search_cell\" colspan=\"8\">&nbsp;</td></tr>\n";
 		}
 		else
 		{
 			echo "<tr><td style=\"height:30px;\">No jobs found based on your account job preferences. Try searching with different job preferences.</td></tr>\n";
 		}
+		return $mapAddedJobIDs;
 	}
 	
 
@@ -1248,46 +1234,47 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoGetTradies()
+	function DoCreateTradieRow($rowMember)
+	{
+		echo "<tr>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
+		echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
+		echo "<td class=\"cell_no_borders search_cell\"><a href=\"tradie.php?member_id=" . $rowMember["id"] . "\">VIEW</a></td>";
+		echo "</tr>\n";
+	}
+	
+	function DoGetTradies($strTradeID)
 	{
 		global $g_dbFindATradie;
-		$row = null;
+		$rowMember = null;
 
-		if (isset($_POST["submit_tradie_search"]))
+		$results = DoFindQuery1($g_dbFindATradie, "trade_id", $strTradeID);
+		if ($results && ($results->num_rows > 0))
 		{
-			$strQuery = "SELECT * FROM members WHERE ";
-			if (isset($_POST["select_trade"]) && ($_POST["select_trade"] != ""))
+			while ($rowMember = $results->fetch_assoc())
 			{
-				$strQuery = $strQuery . "trade_id='" . $_POST["select_trade"] . "'";
+				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_POST["text_maximum_distance"]))
+				{
+					DoCreateTradieRow($rowMember);
+				}
 			}
-			else
+		}
+		$strQuery = "SELECT * FROM members WHERE trade_id!='59'"; 
+		$results = DoQuery($g_dbFindATradie, $strQuery);
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($rowMember = $results->fetch_assoc())
 			{
-				$strQuery = $strQuery . "1";
-			}
-			$results = DoQuery($g_dbFindATradie, $strQuery);
-			if ($results && ($results->num_rows > 0))
-			{
-				echo "<td class=\"cell_no_borders search_cell\"><b>ID</b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Name<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Email<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Phone<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Mobile<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>Postcode<b></td>\n";
-				echo "<td class=\"cell_no_borders search_cell\"><b>View<b></td>\n";
-				echo "</tr>\n";
-				while ($rowMember = $results->fetch_assoc())
+				$results = DoFindQuery2($g_dbFindATradie, "additional_trades", "member_id", $rowMember["id"], "trade_id", $strTradeID);
+				if ($results && ($result->num_rows > 0))
 				{
 					if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_POST["text_maximum_distance"]))
 					{
-						echo "<tr>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">Email member</a></td>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\"><a href=\"tradie.php?member_id=" . $rowMember["id"] . "\">VIEW</a></td>";
-						echo "</tr>\n";
+						DoCreateTradieRow($rowMember);
 					}
 				}
 			}
@@ -1302,3 +1289,4 @@
 
 
 
+_

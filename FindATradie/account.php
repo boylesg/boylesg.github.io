@@ -880,18 +880,43 @@
 								</form>
 								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 								<table class="table_no_borders search_table">
+									<tr>
+										<td class="cell_no_borders search_cell" style="width:3em;"><b>ID</b></td>
+										<td class="cell_no_borders search_cell" style="width:6em;"><b>Date</b></td>
+										<td class="cell_no_borders search_cell" style="width:25em;"><b>Name</b></td>
+										<td class="cell_no_borders search_cell" style="width:30em;"><b>Email</b></td>
+										<td class="cell_no_borders search_cell" style="width:10em;"><b>Maximum budget</b></td>
+										<td class="cell_no_borders search_cell" style="width:5em;"><b>Size</b></td>
+										<td class="cell_no_borders search_cell" style="width:5em;"><b>Urgent?</b></td>
+										<td class="cell_no_borders search_cell" style=""><b>Functions</b></td>
+									</tr>
 									<?php
 										
 										if (IsTradie())
 										{
-											DoGetJobs();
+											$mapAddedJobIDs = [];
+											
+											$mapAddedJobIDs = DoGetJobs($_SESSION["account_trade"], $mapAddedJobIDs);
+											
+											$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "trade_id", $_SESSION["account_trade"]);
+											if ($results && ($results->num_rows > 0))
+											{
+												while ($row = $results->fetch_assoc())
+												{
+													DoGetJobs($row["trade_id"], $mapAddedJobIDs);
+												}
+											}
 										}
 										else
-										{
-											DoGetTradies();
+										{											
+											if (isset($_POST["submit_tradie_search"]) && isset($_POST["select_trade"]) && ($_POST["select_trade"] != ""))
+											{
+												DoGetTradies($_POST["select_trade"], $mapAddedJobIDs);
+											}
 										}
 																		
 									?>
+									<tr><td class="cell_no_borders search_cell" colspan="8">&nbsp;</td></tr>
 								</table>
 						</div>
 						
