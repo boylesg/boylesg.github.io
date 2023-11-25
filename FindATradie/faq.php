@@ -39,7 +39,34 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			
+				.faq_question
+				{
+					display: block;
+					font-size: medium;
+					font-weight: bold;
+					margin-top: 30px;
+					color: MidnightBlue;
+				}
+				
+				.faq_answer
+				{
+					display: block;
+					font-size: medium;
+					font-weight: bold;
+					margin-bottom: 30px;	
+					color: black;
+				}
+				
+				.table_costs
+				{
+					table-layout: fixed;
+					border-width: thin;
+					border-color: black;
+					font-size: small;
+				}
+				
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -66,7 +93,7 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
@@ -79,83 +106,79 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+				<div class="note" style="display:block;overflow-x:auto;overflow-y:visible;">
 
-
-
-
-
-
-
-			<ul class="faq_question">
-				<li>
-					Q. How much will it cost me to join?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>
-					A. If you are a tradie then it will cost you $200 per year.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;If you are a customer then it will cost you $0 per year.
-				</li>
-			</ul><br/>
-			<ul class="faq_question">
-				<li>
-					Q. Do I have to pay for leads?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>A. You do not have to pay an additional fee for leads.</li>
-			</ul><br/>
-			<ul>
-				<li class="faq_question">
-					Q. How much will it cost me to list a job for tradies?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>A. It will cost you $2 for each job you list.</li>
-			</ul><br/>
-			<ul class="faq_question">
-				<li>
-					Q. Do your store bank account and credit card numbers?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>A. No. All payments are made through Paypal, who a responsible for the security of those numbers.</li>
-			</ul><br/>
-			<ul>
-				<li class="faq_question">
-					Q. Why do I have to join to find a tradie?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>
-					A. Because we want this system to work be fair for both tradies and their customers.<br/><br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;If a customer pays a tradie promptly for a completed job then that tradie can leave 
-					that customer a positive rating.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;If a customer failes pays a tradie promptly for a completed job, or refuses to pay, 
-					then that tradie can leave that customer a negative rating.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;If a tradie completes job on time and on or close to budget then that customer can 
-					leave the tradie a positive rating.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;If a tradie fails to complete a job on time or close to budget then that customer can 
-					leave the tradie a negative rating.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;We don't want to allow customers to post frivalous jobs for tradies without 
-					consequences.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;All ratings are editable at any time.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;So parties in disagreement are free to negotiate and change negative ratings if an 
-					agreement is struck.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;We accept no responsibility for any negative feedback received by any party.
-				</li>
-			</ul><br/>
-			<ul>
-				<li class="faq_question">
-					Q. Does findatradie provide guarentees on workmanship or refunds?<br/>
-				</li>
-			</ul>
-			<ul class="faq_answer">
-				<li>
-					A. No. It is simply a platform to allow tradies to connect with customers or potential customers. We play no 
-					role in business relationships between tradies and their customers.
-				</li>
-			</ul><br/>
+					<ul>						<hr/><li class="faq_question">
+							Q. How much will it cost me to join?<br/>
+						</li>
+						<li class="faq_answer">
+							A. Here are the costs.<br/><br/>
+							<table cellpadding="10" cellpadding="1" border="1" class="table_costs">
+								<tr>
+									<td><b>Per month</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth); ?></td>
+								</tr>
+								<tr>
+									<td><b>Per month</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth); ?></td>
+								</tr>
+								<tr>
+									<td><b>Per 6 vmonths</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth * 6); ?></td>
+								</tr>
+								<tr>
+									<td><b>Per 12 months</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth * 12); ?></td>
+								</tr>
+								<tr>
+									<td><b>Per 18 months</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth * 18); ?></td>
+								</tr>
+								<tr>
+									<td><b>Per 24 months</b></td>
+									<td><?php printf("$%02d", $g_nCostPerMonth * 24); ?></td>
+								</tr>
+							</table>
+						</li>
+						<hr/><li class="faq_question">
+							Q. Do I have to pay for leads?<br/>
+						</li>
+						<li class="faq_answer">A. You do not have to pay an additional fee for leads.</li>
+						<hr/><li class="faq_question">
+							Q. How much will it cost me to list a job for tradies?<br/>
+						</li>
+						<li class="faq_answer">A. It won't cost you anything to list jobs.</li>
+						<hr/><li class="faq_question">
+							Q. Do you store bank account and credit card numbers?<br/>
+						</li>
+						<li class="faq_answer">A. No. All payments are made through Paypal, so no financial details are stored on the web site.</li>
+						<hr/><li class="faq_question">
+							Q. Why do I have to join to find a tradie?<br/>
+						</li>
+						<li class="faq_answer">
+							A. Because we want this system to be fair for both tradies and their customers. It employs a mutual 
+							trust and feedback system, similar to eBay, that allows both tradies and customers to judge each other's 
+							integrity.
+						</li>
+						<hr/><li class="faq_question">
+							Q. Does 'Find a Tradie'  provide guarentees on workmanship or refunds?<br/>
+						</li>
+						<li class="faq_answer">
+							A. No. It is simply a platform to allow tradies to connect with customers. We play no 
+							role in business relationships or financial transactions between tradies and their customers.
+						</li>
+						<hr/><li class="faq_question">
+							Q. Does 'Find a Tradie'  store any other sensitive personal data?<br/>
+						</li>
+						<li class="faq_answer">
+							A. No. The only data we store is basic contact information. In the case of tradies they routinely make 
+							that information publicly available through advertising. In the case of customers they make basic contact 
+							information public on web sites like Google and Facebook. In both cases you we do not require you to 
+							enter your street address. If you have a business address then you can include your street address if you 
+							wish.
+						</li>
+					</ul>
+				</div>
 
 
 

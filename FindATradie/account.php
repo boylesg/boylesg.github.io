@@ -671,7 +671,7 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
@@ -873,7 +873,8 @@
 												<br/><br/>
 												<label id="trade_description_search">XXXXXXXXXXXXX</label>
 											</td>											
-											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
+											<td class="form_table_cell">
+											<input type="text" id="text_maximum_distance0" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
 										</tr>
 									</table>
 								</form>
@@ -1210,6 +1211,8 @@
 	}
 
 ?>
+
+
 
 
 

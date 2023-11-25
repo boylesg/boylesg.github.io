@@ -21,6 +21,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -39,7 +40,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 						
 			<?php
 
@@ -371,7 +372,7 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->

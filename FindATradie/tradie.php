@@ -8,23 +8,7 @@
 	<!-- #BeginEditable "server" -->
 	
 		<?php
-			
-			$row = null;
-			
-			if (isset($_GET["member_id"]))
-			{
-				$queryResult = DoFindQuery1($g_dbFindATradie, "members", "id", $_GET["member_id"]);
 		
-				if ($row = $queryResult->fetch_assoc())
-				{
-					
-				}
-				else
-				{
-					PrintJavascriptLine("AlertError(\"Could not find member id '" . $_GET["member_id"] . "<br><br>" . $g_strEmailAdmin . "\");", 2, true);
-				}
-			}
-			
 		?>
 	
 	<!-- #EndEditable -->
@@ -37,7 +21,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -55,7 +38,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -82,7 +65,7 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
@@ -92,9 +75,17 @@
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
+		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-		<div class="page_content" id="page_content">
+
+
+
+
+
+
+
+		<div class="page_content" id="page_content0">
 
 			<div class="note" style="overflow-x:auto;overflow-y:visible;">
 				<?php 
@@ -138,9 +129,14 @@
 			</div>
 		</div>
 
-				<!-- #EndEditable -->
-		<div class="page_content" id="page_content">
 
+
+
+
+
+
+
+				<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->

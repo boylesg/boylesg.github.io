@@ -21,7 +21,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -66,7 +65,7 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
@@ -78,7 +77,7 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
-				
+
 				<?php
 				
 					$nYears = (int)date("Y") - 2003;
@@ -121,12 +120,46 @@
 					<p>
 						We do not charge you to obtain a customer's contact details. For a flat membership fee of $10 per month, or $120 
 						per year, you can try for as many jobs as you want. So there is little risk of you spending more money on trying for 
-						jobs than you make from actually completing jobs. I am old enough to remember when this country was built 
-						on the foundation of a 'fair go' for outdoor workers. And I believe that myself and my brother are giving 
-						small business Australian tradies a fair go through this web site.
+						jobs than you make from actually completing jobs. 
+
+					</p>
+					<p>
+						There is also the issue of customers being able to post jobs on the other web sites when they are not entirely 
+						serious about engaging the services of a tradie, and just want to get an idea of the cost do do a job for 
+						example. It still costs tradies $10 to $20 to get their contact details but it costs the customer nothing to 
+						post the job, and there are no other consequences for them. So it is for this reason that customers ALSO need 
+						to register an account and login to post jobs.
+					</p>
+					<p>
+						With <b><u>www.highpages.com.au</u></b> that poses no risk to tradies because we don't charge them to 
+						obtain their contact details. And tradies must mark a job as complete, and leave feedback, once they 
+						receive payment from the customer. If customers make a habit of posting jobs that they don't really have 
+						any intention of following through on then those pending jobs will be visible to tradies as an indication 
+						of that customer's integrity.
+					</p>
+					<p>
+						<b><u>www.highpages.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
+						leave each other feedback. If tradies complete jobs on time and on budget then customers can leave that tradie positive 
+						feedback. Or negative feedback if the tradie does a poor job. Similarly if customers delays payment or refuses to pay 
+						tradies then the tradie can leave that customer negative feedback and warn other tradies. If the customer 
+						pays in full and on time then the tradie can leave that customer positive feedback. Any feedback tradies 
+						or customers leave each other is editable at any time subject to private negotiations between them.
+						
+					</p>
+					<p>
+						I am old enough to remember when this country was built on the foundation of a 'fair go' for outdoor workers. 
+						And I believe that myself and my brother are giving small business Australian tradies a fair go through this 
+						web site.
 					</p>
 				
 				</div>
+
+
+
+
+
+
+
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
