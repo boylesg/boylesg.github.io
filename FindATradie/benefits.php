@@ -66,8 +66,8 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.html">FAQ</a>
-					<a class="navigation_link" href="contact.html">Contact</a>
+					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>

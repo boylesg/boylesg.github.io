@@ -66,8 +66,8 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.html">FAQ</a>
-					<a class="navigation_link" href="contact.html">Contact</a>
+					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -86,32 +86,44 @@
 				?>
 
 				<div class="note" style="overflow-x:auto;overflow-y:visible;">
-					<h6><b>Who created www.find-a-tradie.com.au?</b></h6>
+					<h6><b>Who created <u>www.find-a-tradie.com.au?</u></b></h6>
 					<p>
 						Find a Tradie was created by myself and my brother. I am a former medical scientist, former programmer and a 
-						small business gardener/landscaper, by choice, for the past  <?php echo $nYears; ?>years. My brother is still 
+						small business gardener/landscaper, by choice, for the past  <?php echo $nYears; ?> years. My brother is still 
 						a programmer. I still love the creativity and problem solving involved with building web sites and software, 
 						and have put my programming skils to good use building, maintaining and hosting my own landscaping business web 
 						site. Building this web site has been very enjoyable.
 					</p>
-					<h6><b>Why did we create www.find-a-tradie.com.au?</b></h6>
+					<h6><b>Why did we create <u>www.find-a-tradie.com.au?</u></b></h6>
 					<p>
-						Recently I explored advertising on <i>www.highpages.com.au</i> and was rather disgusted at the level of gouging that 
+						Recently I explored advertising on <b><u>www.highpages.com.au</u></b> and was rather disgusted at the level of gouging that 
 						this company was engaging in. I was quoted $109 PER MONTH that essentially gave me 7 or so chances to 'purchase' 
 						client contact details and gain a paying job.
 					</p>
 					<p>
-						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 2 hours or so, and pay 
-						more than $100 or there abouts. Rising interest rates, rising rents and rising electricity/water/gas bills are 
-						disuading so many people from spending on many trade services. So the client detail purchase fees, charged by 
-						Highpages etc., take a signficant chunk out of what I would likely earn from any jobs I obtained from them. And 
-						I doubt that I am the only tradie with the injustice of a bunch of 'suits' charging tradies that much to 
-						advertise, while sitting on their back sides behind desks while we work hard in the heat and the rain out doors!
+						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 1 hour or so, and pay 
+						more than $100. Combine that with 30-60 minutes drive time between jobs and you end up working for below the 
+						minimum wage. And rising interest rates, rising rents and rising electricity/water/gas bills are disuading 
+						so many people from spending on many trade services altogether. 
+					</p>
+					<p>
+						So the client detail purchase fees, charged by Highpages etc., take a signficant chunk out of what I would 
+						likely earn from any gardening jobs I obtained from them. And I doubt that I am the only tradie with the 
+						injustice about a bunch of 'suits' charging tradies THAT much to advertise while we do all the hard work hard 
+						in the heat or the rain out doors!
 					</p>
 					<p>
 						So these are the two reason why my brother and I have created <i>www.find-a-tradie.com.au</i>. Not in small 
-						part is the satisfaction of levergaing my programming skils to undermining web advertising service companies 
-						that are clearly engaged in gouging small business tradies.
+						part is the satisfaction of levergaing my programming skills to undermine these companies that are clearly 
+						engaged in gouging small business tradies. And to give Australian small business tradies a fair go.
+					</p>
+					<h6><b>Why is <u>www.find-a-tradie.com.au</u> different from Oneflare, Highpages and ServiceSeeking</b></h6>
+					<p>
+						We do not charge you to obtain a customer's contact details. For a flat membership fee of $10 per month, or $120 
+						per year, you can try for as many jobs as you want. So there is little risk of you spending more money on trying for 
+						jobs than you make from actually completing jobs. I am old enough to remember when this country was built 
+						on the foundation of a 'fair go' for outdoor workers. And I believe that myself and my brother are giving 
+						small business Australian tradies a fair go through this web site.
 					</p>
 				
 				</div>

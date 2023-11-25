@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|24 Nov 2023 09:41:08 -0000
+vti_timelastmodified:TR|25 Nov 2023 06:51:00 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|NEW TRADIE
-vti_backlinkinfo:VX|index.php contact.html login.php benefits.php master.dwt new_customer.html account.php faq.html new_tradie.php compare.html advert.php tradie.php about.php
-vti_nexttolasttimemodified:TR|19 Nov 2023 02:47:19 -0000
-vti_cacheddtm:TX|24 Nov 2023 09:41:08 -0000
-vti_filesize:IR|12027
+vti_backlinkinfo:VX|index.php benefits.php login.php master.dwt new_customer.html account.php contact.php new_tradie.php tradie.php advert.php compare.php faq.php about.php
+vti_nexttolasttimemodified:TR|24 Nov 2023 09:41:08 -0000
+vti_cacheddtm:TX|25 Nov 2023 06:51:00 -0000
+vti_filesize:IR|12025
 vti_cachedtitle:SR|NEW TRADIE
 vti_cachedbodystyle:SR|<body>
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.php H|about.php H|contact.html H|contact.html A|new_tradie.php A|login.php
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|contact.html FHUS|contact.html FAUS|new_tradie.php FAUS|login.php
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.php H|about.php H|contact.php H|contact.php A|new_tradie.php A|login.php
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|contact.php FHUS|contact.php FAUS|new_tradie.php FAUS|login.php
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false

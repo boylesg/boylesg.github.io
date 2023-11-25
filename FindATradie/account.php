@@ -671,8 +671,8 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.html">FAQ</a>
-					<a class="navigation_link" href="contact.html">Contact</a>
+					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -877,7 +877,7 @@
 										</tr>
 									</table>
 								</form>
-								
+								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 								<table class="table_no_borders search_table">
 									<?php
 										
@@ -992,7 +992,7 @@
 	}
 
 ?>
-							<br/><br/>
+							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table  cellspacing="0" cellpadding="3" border="1" class="search_table">
 								<tr>
 									<td class="search_cell" style="width:9em;"><b>Date</b></td>
@@ -1022,6 +1022,7 @@
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">
+							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table cellspacing="0" cellpadding="10">
 <?php
 	DoDisplayFeedback($_SESSION["account_id"], "", true);
@@ -1030,6 +1031,7 @@
 						</div>
 
 						<div id="tab_contents5" class="tab_content">
+							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
 ?>

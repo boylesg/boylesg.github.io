@@ -1,15 +1,15 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|25 Nov 2023 06:50:59 -0000
+vti_timelastmodified:TR|25 Nov 2023 06:57:16 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timecreated:TR|13 Nov 2023 09:48:19 -0000
-vti_title:SR|Benefits
-vti_backlinkinfo:VX|benefits.php login.php index.php master.dwt new_customer.html account.php contact.php tradie.php new_tradie.php advert.php compare.php faq.php about.php
-vti_nexttolasttimemodified:TR|24 Nov 2023 09:41:07 -0000
-vti_cacheddtm:TX|25 Nov 2023 06:50:59 -0000
-vti_filesize:IR|5735
-vti_cachedtitle:SR|Benefits
+vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
+vti_title:SR|Compare FindATradie
+vti_backlinkinfo:VX|
+vti_nexttolasttimemodified:TW|25 Nov 2023 06:50:59 -0000
+vti_cacheddtm:TX|25 Nov 2023 06:57:16 -0000
+vti_filesize:IR|6448
+vti_cachedtitle:SR|Compare FindATradie
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.php H|about.php H|contact.php H|contact.php
 vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|contact.php FHUS|contact.php

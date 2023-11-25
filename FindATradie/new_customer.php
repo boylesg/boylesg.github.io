@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 	
-<!-- #BeginTemplate "master.dwt" -->
-
+	<!-- #BeginTemplate "master.dwt" -->
+	
 	<?php include "common.php"; ?>
 	
 	<!-- #BeginEditable "server" -->
@@ -16,7 +16,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-<title>Contact Us</title>
+		<title>NEW CUSTOMER</title>
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
@@ -66,8 +66,8 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
 							
 					?>
-					<a class="navigation_link" href="contact.html">FAQ</a>
-					<a class="navigation_link" href="contact.html">Contact</a>
+					<a class="navigation_link" href="contact.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">Contact</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -86,23 +86,9 @@
 
 
 
-			<h2>Contact Us</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque 
-			ornare ipsum at erat. Quisque elementum tempus urna. Donec ornare fringilla 
-			erat. Phasellus gravida lectus vel dui. Fusce eget justo at odio posuere 
-			dignissim.</p>
-			<h3>Mailing Address</h3>
-			<img alt="" height="200" src="contact/images/map.jpg" width="200" />
-			<p>123 Main Street<br />
-			City, ST 00000</p>
-			<h3>Hours of Operation</h3>
-			<p>Monday - Friday 09:00 a.m. - 06:00 p.m.<br />
-			Closed Saturday and Sunday</p>
-			<h4>Driving Directions</h4>
-			<ol>
-				<li>Lorem ipsum dolor sit amet</li>
-				<li>consectetuer adipiscing elit.</li>
-			</ol>
+					<form method="post" id="form_new_customer" class="form">
+					
+					</form>
 
 
 
