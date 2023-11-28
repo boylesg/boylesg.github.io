@@ -1,5 +1,9 @@
-﻿<script src="SweetAlert.js" type="text/javascript">
-</script>
+﻿<script src="SweetAlert.js" type="text/javascript"></script>
+<script src="cryptojs-aes.min.js"></script>
+<script src="cryptojs-aes-format.js"></script>
+
+
+
 
 <script type="text/javascript">
 
@@ -10,20 +14,17 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
-	
-	let g_Key = "DG9qD3Upfmj8JMvRF6CZ4gwKmSqmMD3V",
-		g_strIV = "wX9yWCcxyUjw3Xf6";
 			
-	function DoAESEncrypt(strPlainText)
+	function DoEncrypt(strPlainText, strKey)
 	{
-		//return CryptoJS.AES.encrypt(strPlainText, g_Key, g_strIV);
-		return btoa(strPlainText);
+		return CryptoJSAesJson.encrypt(strPlainText, strKey);
+		//return btoa(strPlainText);
 	}
 	
-	function DoAESDecrypt(strEncryptedText)
+	function DoDecrypt(strEncryptedText, strKey)
 	{
-		//return CryptoJS.AES.decrypt(strEncryptedText, g_Key, g_strIV);
-		atob(strEncryptedText);
+		return CryptoJSAesJson.decrypt(strEncryptedText, strKey);
+		//atob(strEncryptedText);
 	}
 	
 
@@ -184,14 +185,6 @@
 				}
 			}
 		}
-	}
-
-	function OnClickCheckShowPassword(inputCheckShowPassword, inputPassword)
-	{
-		if (inputCheckShowPassword.checked)
-			inputPassword.type = "text";
-		else
-			inputPassword.type = "password";
 	}
 
 	function SetSelectionValue(strSelectID, strValue)

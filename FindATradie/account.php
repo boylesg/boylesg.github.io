@@ -655,7 +655,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->

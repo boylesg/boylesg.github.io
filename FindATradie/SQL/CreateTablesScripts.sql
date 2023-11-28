@@ -135,7 +135,7 @@ COMMIT;
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 23, 2023 at 10:29 PM
+-- Generation Time: Nov 28, 2023 at 09:57 PM
 -- Server version: 8.0.35-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -165,6 +165,8 @@ CREATE TABLE `members` (
   `business_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `first_name` varchar(64) NOT NULL,
   `surname` varchar(64) NOT NULL,
+  `profile_filename` varchar(32) DEFAULT NULL,
+  `logo_filename` varchar(32) DEFAULT NULL,
   `abn` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `structure` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `license` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -192,18 +194,18 @@ CREATE TABLE `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `logo_file_name`, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
-(1, 52, 'Greg\'s Native Landscapes', 'Greg', 'Boyles', '51 824 753 556', 'Sole trader', 'Electrical license\r\nClass A\r\nNumber: 8743895324', 'Ecological weed control\r\nLow maintenance\r\nDrought tolerant\r\nIrrigation systems\r\nSmall retaining walls\r\nSmall tree removal\r\nGeneral pruning\r\nBush tucker gardens\r\nSmall ornamental billabongs\r\nNative lawns', 0000000120, 0000005000, 'Up to 50', 0000000100, 'Logo.jpg', 'Unit 3, building 6(Cooper)', '56 Derby Drive', 'EPPING', 'VIC', '3076', '94013696', '0455328886', 'gregplants@bigpond.com', 'gregaryb', 'password', '2024-11-08', '2023-11-07 11:25:49'),
-(11, 59, NULL, 'Albus', 'Dumbledore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '38 Harris Street', 'Terip Terip', 'VIC', '3179', '94012348', '0414567980', 'albus.dumbledore@gmail.com', 'dumbledorea', 'password', NULL, '2023-11-20 06:20:23'),
-(12, 59, NULL, 'Ronald', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11 Boughtman Street', 'Notting Hill', 'VIC', '3168', '94012846', '0414284527', 'ronald.weasley@gmail.com', 'weasleyr', 'password', NULL, '2023-11-20 06:22:07'),
-(15, 59, NULL, 'Fred', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '45 Watson Street', 'Runnymede', 'VIC', '3559', '94013049', '0455482983', 'fred.weasley@gmail.com', 'weasleyf', 'password', NULL, '2023-11-20 06:26:13'),
-(16, 59, NULL, 'George', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '45 Watson Street', 'Runnymede', 'VIC', '3559', '94556737', '0455678351', 'george.weasley@gmail.com', 'weasleyg', 'password', NULL, '2023-11-20 06:31:25'),
-(17, 59, NULL, 'Harry', 'Potter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '60 Yarra Street', 'Rocklyn', 'VIC', '3364', '53501756', '0455678293', 'harry.potter@gmail.com', 'potterh', 'password', NULL, '2023-11-20 07:09:57'),
-(22, 59, NULL, 'Hermione', 'Granger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '86 Shaw Drive', 'VIC', '3465', '53666640', '0419349268', 'hermione.granger@gmail.com', 'grangerh', 'password', NULL, '2023-11-20 07:15:35'),
-(23, 59, NULL, 'Draco', 'Malfoy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '31 Larissa Court', 'Colignan', 'VIC', '3464', '53857486', '0419285723', '', 'draco.malfoy.gmail.com', 'password', NULL, '2023-11-20 07:15:35'),
-(24, 59, NULL, 'Severus', 'Snape', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '85 McLachlan Street', 'Remlaw', 'VIC', '3401', '53393767', '0456674890', 'severus.snape@gmail.com', 'snapes', 'password', NULL, '2023-11-20 07:19:19'),
-(25, 59, NULL, 'Seamus', 'Finigan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5 Fitzroy Street', 'Golden Point', 'VIC', '3350', '53269950', '0456474990', 'seamus.finigan@gmail.com', 'finigans', 'password', NULL, '2023-11-20 07:20:09'),
-(26, 59, NULL, 'Rubeus', 'Hagrid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '18 Sullivan Court', 'Curyo', 'VIC', '3483', '53581632', '0420346783', 'hagridr@gmail.com', 'hagridr', 'password', NULL, '2023-11-20 08:10:19');
+INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `profile_filename`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `logo_filename`, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
+(1, 52, 'Greg\'s Native Landscapes', 'Greg', 'Boyles', NULL, '51 824 753 556', 'Sole trader', 'Electrical license\r\nClass A\r\nNumber: 8743895324', 'Ecological weed control\r\nLow maintenance\r\nDrought tolerant\r\nIrrigation systems\r\nSmall retaining walls\r\nSmall tree removal\r\nGeneral pruning\r\nBush tucker gardens\r\nSmall ornamental billabongs\r\nNative lawns', 0000000120, 0000005000, 'Up to 50', 0000000100, 'Logo.jpg', 'Unit 3, building 6(Cooper)', '56 Derby Drive', 'EPPING', 'VIC', '3076', '94013696', '0455328886', 'gregplants@bigpond.com', 'gregaryb', 'password', '2024-11-08', '2023-11-07 11:25:49'),
+(11, 59, NULL, 'Albus', 'Dumbledore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '38 Harris Street', 'Terip Terip', 'VIC', '3179', '94012348', '0414567980', 'albus.dumbledore@gmail.com', 'dumbledorea', 'password', NULL, '2023-11-20 06:20:23'),
+(12, 59, NULL, 'Ronald', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11 Boughtman Street', 'Notting Hill', 'VIC', '3168', '94012846', '0414284527', 'ronald.weasley@gmail.com', 'weasleyr', 'password', NULL, '2023-11-20 06:22:07'),
+(15, 59, NULL, 'Fred', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '45 Watson Street', 'Runnymede', 'VIC', '3559', '94013049', '0455482983', 'fred.weasley@gmail.com', 'weasleyf', 'password', NULL, '2023-11-20 06:26:13'),
+(16, 59, NULL, 'George', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '45 Watson Street', 'Runnymede', 'VIC', '3559', '94556737', '0455678351', 'george.weasley@gmail.com', 'weasleyg', 'password', NULL, '2023-11-20 06:31:25'),
+(17, 59, NULL, 'Harry', 'Potter', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '60 Yarra Street', 'Rocklyn', 'VIC', '3364', '53501756', '0455678293', 'harry.potter@gmail.com', 'potterh', 'password', NULL, '2023-11-20 07:09:57'),
+(22, 59, NULL, 'Hermione', 'Granger', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '86 Shaw Drive', 'VIC', '3465', '53666640', '0419349268', 'hermione.granger@gmail.com', 'grangerh', 'password', NULL, '2023-11-20 07:15:35'),
+(23, 59, NULL, 'Draco', 'Malfoy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '31 Larissa Court', 'Colignan', 'VIC', '3464', '53857486', '0419285723', '', 'draco.malfoy.gmail.com', 'password', NULL, '2023-11-20 07:15:35'),
+(24, 59, NULL, 'Severus', 'Snape', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '85 McLachlan Street', 'Remlaw', 'VIC', '3401', '53393767', '0456674890', 'severus.snape@gmail.com', 'snapes', 'password', NULL, '2023-11-20 07:19:19'),
+(25, 59, NULL, 'Seamus', 'Finigan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5 Fitzroy Street', 'Golden Point', 'VIC', '3350', '53269950', '0456474990', 'seamus.finigan@gmail.com', 'finigans', 'password', NULL, '2023-11-20 07:20:09'),
+(26, 59, NULL, 'Rubeus', 'Hagrid', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '18 Sullivan Court', 'Curyo', 'VIC', '3483', '53581632', '0420346783', 'hagridr@gmail.com', 'hagridr', 'password', NULL, '2023-11-20 08:10:19');
 
 --
 -- Indexes for dumped tables

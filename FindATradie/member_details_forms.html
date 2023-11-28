@@ -1,4 +1,4 @@
-﻿<form method="post" id="form_user_details" action="account.php" class="form">
+﻿<form method="post" id="form_user_details" action="" class="form">
 	<fieldset>
 		<legend>User details:</legend>
 		<table class="table_no_borders">
@@ -13,8 +13,7 @@
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password</b></td>
 				<td class="cell_no_borders">
-					<input type="password" id="text_password" name="text_password" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
-					&nbsp;<input type="checkbox" id="check_show" onclick="OnClickCheckboxShow('check_show', 'text_password', 'text_password_again')" /><label for="check_show"><b>Show password</b></label>
+					<input type="text" id="text_password" name="text_password" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
 					<br/><br/>
 					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.					
 				</td>
@@ -22,7 +21,7 @@
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password again</b></td>
 				<td class="cell_no_borders">
-					<input type="password" id="text_password_again" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
+					<input type="text" id="text_password_again" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php if (isset($_SESSION['account_password'])) echo $_SESSION['account_password']; ?>" />
 					<br/><br/>
 					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.
 				</td>
@@ -38,7 +37,7 @@
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_trade_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
+<form method="post" id="form_trade_details" action="" class="form">
 	<fieldset>
 		<legend>Trade details</legend>
 			<table class="table_no_borders">
@@ -46,7 +45,7 @@
 					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
 					<td class="cell_no_borders">
 						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
-							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
+							<?php DoGeneratePrimaryTradeOptions(""); ?>
 						</select>
 						<br/><br/>
 						<label id="trade_description">XXXXXXXXXXXXX</label>
@@ -78,7 +77,7 @@
 	</fieldset>
 </form>
 <br/><br/>		
-<form method="post" id="form_business_details" action="account.php" style="display:<?php if ((isset($g_bIsStaged) && $g_bIsStaged) || (isset($g_bIsCustomer) && $g_bIsCustomer)) echo "none"; else echo "block"; ?>" class="form">
+<form method="post" id="form_business_details" action="" class="form">
 	<fieldset>
 		<legend>Business details:</legend>
 		<table class="table_no_borders">
@@ -96,11 +95,7 @@
 				<td class="cell_no_borders" style="text-align:right;"><b>Business structure</b></td>
 				<td class="cell_no_borders">
 					<select id="select_structure" name="select_structure" required>
-						<option>Sole trader</option>
-						<option>Company</option>
-						<option>Cooperative</option>
-						<option>Partnership</option>
-						<option>Indigenous corporation</option>
+						<?php include "business_structure.html"; ?>
 					</select>
 				</td>
 			</tr>
@@ -160,7 +155,7 @@
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_contact_details" action="account.php" style="display:<?php if (isset($g_bIsStaged) && $g_bIsStaged) echo "none"; else echo "block"; ?>" class="form">
+<form method="post" id="form_contact_details" action="" class="form">
 	<fieldset>
 		<legend>Contact details:</legend>
 		<table class="table_no_borders">
@@ -199,14 +194,7 @@
 				<td class="cell_no_borders" style="text-align:right;"><b>State</b></td>
 				<td class="cell_no_borders">
 					<select id="select_state" name="select_state">
-						<option selected=>ACT</option>
-						<option>NSW</option>
-						<option>NT</option>
-						<option>QLD</option>
-						<option>SA</option>
-						<option>TAS</option>
-						<option>VIC</option>
-						<option>WA</option>
+						<?php include "states.html"; ?>
 					</select>
 				</td>
 			</tr>
@@ -238,28 +226,21 @@
 				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="cell_no_borders"><input type="button" name="button_contact_details" id="button_contact_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_contact_details')" /></td>
+				<td class="cell_no_borders"><input type="button" name="button_contact_details" id="button_contact_details" onclick="DoFormSubmit('form_contact_details')" /></td>
 				<td class="cell_no_borders">
-<?php 
-	if ($g_bIsStaged)
-		echo "<input type=\"button\" name=\"button_save\" id=\"button_save\" value=\"SAVE\"  onclick=\"\" />";
-?>
-
+					<input type="button" name="button_save" id="button_save" value="SAVE" style="display:none;" onclick="DoFormSubmitAll()" />
 				</td>
 			</tr>
 		</table>			
 	</fieldset>
 </form>
 
-
-
-
 <script type="text/javascript">
 	
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** CFUNCTIONS FOR THE ABOVE FORMS
+	//** FUNCTIONS FOR THE ABOVE FORMS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -272,38 +253,23 @@
 								["form_contact_details", ["text_first_name", "text_surname",  "text_unit",  "text_street",  
 									"text_suburb",  "select_state",  "text_postcode",  "text_phone",  "text_mobile",  
 									"text_email"]],
-								["form_user_details", [ "text_username",  "text_password",  "text_password_again"]]
+								["form_user_details", [ "text_username", "text_password",  "text_password_again"]]
 									]);
 
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
 
 
-	function OnClickCheckboxShow(strCheckID, strPasswordID, strPasswordAgainID)
-	{
-		let textPassword = DoGetInput(strPasswordID, 'password'),
-			textPasswordAgain = DoGetInput(strPasswordAgainID, 'password'),
-			checkShow = DoGetInput(strCheckID, 'checkbox');
-		
-		if (checkShow && textPassword && textPasswordAgain)
-		{
-			if (checkShow.checked)
-			{
-				textPassword.type = "text";
-				textPasswordAgain.type = "text";
-			}
-			else
-			{
-				textPassword.type = "password";
-				textPasswordAgain.type = "password";
-			}
-		}
-	}
-													
 	function IsValid(Input)
 	{
-		let bResult = true;
+		let bResult = true,
+			bWasPassword = false;
 		
-		if ((Input.type === "text") || (Input.type === "password"))
+		if (Input.type === "password")
+		{	
+			bWasPassword = true;
+			Input.type = "text";
+		}
+		if (Input.type === "text")
 		{
 			if (!Input.checkValidity())
 			{
@@ -311,6 +277,10 @@
 				Input.focus();
 				bResult = false;
 			}
+		}
+		if (bWasPassword)
+		{
+			Input.type = "password";
 		}
 		return bResult;
 	}
@@ -361,10 +331,72 @@
 		return bResult;
 	}
 	
+	function DoCopyTextInput(strIDSrc, strIDDest)
+	{
+		let inputTextSrc = DoGetInput(strIDSrc),
+			inputTextDest = DoGetInput(strIDDest);
+			
+		if (inputTextSrc && inputTextDest)
+		{
+			inputTextDest.value = inputTextSrc.value;
+		}
+	}
+	
+	function DoCopySelectInput(strIDSrc, strIDDest)
+	{
+		let inputSelectSrc = DoGetInput(strIDSrc),
+			inputSelectDest = DoGetInput(strIDDest);
+			
+		if (inputSelectSrc && inputSelectDest)
+		{
+			inputTextDest.selectedIndex = inputTextSrc.selectedIndex;
+		}
+	}
+	
+	function DoNextStage(strFormID)
+	{
+		if (strFormID == "form_user_details")
+		{
+			DoGetInput("form_user_details").style.display = "none";
+			if (g_bIsCustomer)
+			{
+				DoGetInput("form_contact_details").style.display = "block"
+			}
+			else
+			{
+				DoGetInput("form_trade_details").style.display = "block";
+			}
+		}
+		else if (strFormID == "form_trade_details")
+		{
+			DoGetInput("form_trade_details").style.display = "none";
+			DoGetInput("form_business_details").style.display = "block";
+		}
+		else if (strFormID == "form_business_details")
+		{
+			DoGetInput("form_business_details").style.display = "none";
+			DoGetInput("form_contact_details").style.display = "block";
+		}
+		else if (strFormID == "form_contact_details")
+		{
+			DoGetInput("form_contact_details").style.display = "none";
+			DoGetInput("form_user_details").style.display = "block";
+		}
+	}
+	
 	function DoFormSubmit(strFormID)
 	{
 		if (DoFormValidate(strFormID))
-			document.getElementById(strFormID).submit();
+		{
+			if (g_bIsStaged)
+			{
+				DoNextStage(strFormID);
+			}
+			else
+			{
+				document.getElementById(strFormID).submit();
+			}
+		}
 	}
 	
 	function DoUserDetailsFormSubmit(strFormID)
@@ -389,37 +421,28 @@
 			}
 			else
 			{
-				document.getElementById(strFormID).submit();
+				DoFormSubmit(strFormID);
 			}
 		}
 	}
 	
-	function DoChangeButtonTradeDetailsFunction(NewFunction)
+	function DoChangeFormButtonText(strText)
 	{
-		DoChangeButtonFunction("button_trade_details", NewFunction)
+		DoGetInput("button_trade_details").value = strText; 
+		DoGetInput("button_business_details").value = strText;
+		DoGetInput("button_contact_details").value = strText;
+		DoGetInput("button_user_details").value = strText;
 	}
 	
-	function DoChangeButtonBusinessDetailsFunction(NewFunction)
+	function DoSetStaged()
 	{
-		DoChangeButtonFunction("button_business_details", NewFunction)
+		DoGetInput("form_trade_details").style.display = "none";
+		DoGetInput("form_business_details").style.display = "none";
+		DoGetInput("form_contact_details").style.display = "none";
+		DoGetInput("form_contact_details").style.display = "none";
+		DoGetInput("button_save").style.display = "inline";
 	}
 	
-	function DoChangeButtonContactDetailsFunction(NewFunction)
-	{
-		DoChangeButtonFunction("button_contact_details", NewFunction)
-	}
-	
-	function DoChangeButtonUserDetailsFunction(NewFunction)
-	{
-		DoChangeButtonFunction("button_user_details", NewFunction)
-	}
-	
-	function DoChangeButtonSaveFunction(NewFunction)
-	{
-		DoChangeButtonFunction("button_save", NewFunction)
-	}
-	
-	OnClickCheckboxShow('check_show', 'text_password', 'text_password_again');
-	
-</script>	
+</script>
+
 	

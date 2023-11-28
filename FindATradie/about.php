@@ -21,6 +21,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -38,7 +39,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -49,7 +50,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
@@ -77,6 +78,13 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 				<?php
 				

@@ -39,6 +39,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 			
 				.faq_question
 				{
@@ -77,7 +78,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
@@ -105,6 +106,13 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 				<div class="note" style="display:block;overflow-x:auto;overflow-y:visible;">
 
@@ -149,19 +157,44 @@
 						</li>
 						<li class="faq_answer">A. It won't cost you anything to list jobs.</li>
 						<hr/><li class="faq_question">
+							Q. Can I add positive feedback and testimonials for jobs I have completed in the past?<br/>
+						</li>
+						<li class="faq_answer">A. Yes you can - just email us with the feedback and testimonials and we will add it for you. We need to peruse the feedback to satisfy ourselves that it is genuine.</li>
+						<hr/><li class="faq_question">
+							Q. How is <u>www.find-a-tradie.com.au</u> safer than Facebook groups?<br/>
+						</li>
+						<li class="faq_answer">
+							A. The integrity of customers and treadies alike is only as good as the efforts of the Facebook group 
+							owners to maintain it a high level. And let's face it, the amount of revenue from Facebaook groups is directly 
+							proportional to the number of members. So the insentive for Facebook group owners is always to maximise the 
+							number of group members rather than the integrity of its members.
+						</li>
+						<hr/><li class="faq_question">
 							Q. Do you store bank account and credit card numbers?<br/>
 						</li>
 						<li class="faq_answer">A. No. All payments are made through Paypal, so no financial details are stored on the web site.</li>
 						<hr/><li class="faq_question">
-							Q. Why do I have to join to find a tradie?<br/>
+							Q. I am a customer so why do I have to join to 'Find a Tradie'?<br/>
 						</li>
 						<li class="faq_answer">
-							A. Because we want this system to be fair for both tradies and their customers. It employs a mutual 
-							trust and feedback system, similar to eBay, that allows both tradies and customers to judge each other's 
-							integrity.
+							A. Because we want this system to be fair for both 
+							tradies and their customers. It employs a mutual 
+							trust and feedback system, similar to eBay, that 
+							allows both tradies and customers to judge each 
+							other's integrity based on their feedback and 
+							testimonials
+						<hr/><li class="faq_question">
+							Q. What if someone hacks my account?<br/>
+						</li>
+						<li class="faq_answer">
+							A. If they do then it is not really going to bring them much benefit. There are no credit cards numbers,
+							no bank account numbers, no dates of birth or any other identity data for them to steal. Other than what you
+							 have likely made public yourself in the Yellow Pages or on Facebook etc. All comminications take place 
+							 via your phone numbers and private email accounts, so there is litle information about you for them to 
+							 access. Unless they also hack your email and mobile accounts
 						</li>
 						<hr/><li class="faq_question">
-							Q. Does 'Find a Tradie'  provide guarentees on workmanship or refunds?<br/>
+							Q. Does 'Find a Tradie' provide guarentees on workmanship or refunds?<br/>
 						</li>
 						<li class="faq_answer">
 							A. No. It is simply a platform to allow tradies to connect with customers. We play no 

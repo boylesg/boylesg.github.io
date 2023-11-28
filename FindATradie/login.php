@@ -82,6 +82,8 @@
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
 			$_SESSION["account_password"] = $row["password"];
+			$_SESSION["account_logo_filename"] = $row["logo_filename"];
+			$_SESSION["account_profile_filename"] = $row["profile_filename"];
 			
 			// Next we need to get the listb of additional trades.
 			$_SESSION["account_additional_trades"] = [];
@@ -156,7 +158,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
@@ -287,8 +289,8 @@
 						
 						if (textUsername && textPassword)
 						{
-							textUsername.value = DoAESEncrypt(textUsername.value);
-							textPassword.value = DoAESEncrypt(textPassword.value);
+							textUsername.value = DoEncrypt(textUsername.value, localStorage.getItem("LOREM"));
+							textPassword.value = DoEncrypt(textPassword.value, localStorage.getItem("LOREM"));
 							DoGetInput("form_login").submit();
 						}
 					}

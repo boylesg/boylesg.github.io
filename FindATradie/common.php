@@ -10,7 +10,8 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	$g_strEmailAdmin = "Email admin at gregplants@bigpond.com with this error message.";
+	$g_strEmailAddress = "gregplants@bigpond.com";
+	$g_strEmailAdmin = "Email admin at " . $g_strEmailAddress . " with this error message.";
 	$g_nCostPerMonth = 10;
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
@@ -28,74 +29,29 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
-	
-	$g_strPassword = "DG9qD3Upfmj8JMvRF6CZ4gwKmSqmMD3V";
-	$g_strIV = "wX9yWCcxyUjw3Xf6";
-	$g_strMethod = "aes-128-ccm";
-	/*
-	    [0] => aes-128-cbc
-	    [1] => aes-128-cbc-hmac-sha1
-	    [2] => aes-128-cbc-hmac-sha256
-	    [3] => aes-128-ccm
-	    [4] => aes-128-cfb
-	    [5] => aes-128-cfb1
-	    [6] => aes-128-cfb8
-	    [7] => aes-128-ctr
-	    [9] => aes-128-gcm
-	    [10] => aes-128-ocb
-	    [11] => aes-128-ofb
-	    [12] => aes-128-xts
-	    [13] => aes-192-cbc
-	    [14] => aes-192-ccm
-	    [15] => aes-192-cfb
-	    [16] => aes-192-cfb1
-	    [17] => aes-192-cfb8
-	    [18] => aes-192-ctr
-	    [20] => aes-192-gcm
-	    [21] => aes-192-ocb
-	    [22] => aes-192-ofb
-	    [23] => aes-256-cbc
-	    [24] => aes-256-cbc-hmac-sha1
-	    [25] => aes-256-cbc-hmac-sha256
-	    [26] => aes-256-ccm
-	    [27] => aes-256-cfb
-	    [28] => aes-256-cfb1
-	    [29] => aes-256-cfb8
-	    [30] => aes-256-ctr
-	    [32] => aes-256-gcm
-	    [33] => aes-256-ocb
-	    [34] => aes-256-ofb
-	    [35] => aes-256-xts
-	    [36] => aria-128-cbc
-	    [37] => aria-128-ccm
-	    [38] => aria-128-cfb
-	    [39] => aria-128-cfb1
-	    [40] => aria-128-cfb8
-	*/
+	include "CryptoJSAES.php";
+	$g_strKey = "dPRBqi32EH7LgfxuhWXm";
+		
 	function DoAESEncrypt($strPlainText)
 	{
-		global $g_strPassword;
-		global $g_strIV;
-		global $g_strMethod;
+		global $g_strKey;
 
-		//$result = openssl_encrypt($strPlainText, $g_strMethod, $g_strPassword, OPENSSL_RAW_DATA, $g_strIV);
-		//$result = base64_encode($result);
-		$result = base64_encode($strPlainText);
+		//$strResult = base64_encode($strPlainText);
 
-		return $result;
+		$strResult = CryptoJsAes::encrypt($strPlainText, $g_strKey);
+
+		return $strResult;
 	}
 	
 	function DoAESDecrypt($strEncryptedText)
 	{
-		global $g_strPassword;
-		global $g_strIV;
-		global $g_strMethod;
+		global $g_strKey;
 
-		//$result = base64_decode($strEncryptedText);
-		//$result = openssl_decrypt($strEncryptedText, $g_strMethod, $g_strPassword, OPENSSL_RAW_DATA, $g_strIV);
-		$result = base64_decode($strEncryptedText);
+		//$strResult = base64_decode($strEncryptedText);
+		
+		$strResult = CryptoJsAes::decrypt($strEncryptedText, $g_strKey);
 
-		return $result;
+		return $strResult;
 	}
 	
 

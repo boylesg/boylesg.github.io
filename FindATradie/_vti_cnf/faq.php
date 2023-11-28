@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|25 Nov 2023 08:16:58 -0000
+vti_timelastmodified:TR|28 Nov 2023 13:22:39 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|Frequently Asked Questions
 vti_backlinkinfo:VX|benefits.php index.php login.php new_customer.php master.dwt contact.php account.php advert.php faq.php new_tradie.php tradie.php about.php
-vti_nexttolasttimemodified:TW|25 Nov 2023 08:10:40 -0000
-vti_cacheddtm:TX|25 Nov 2023 08:16:58 -0000
-vti_filesize:IR|6844
+vti_nexttolasttimemodified:TR|27 Nov 2023 04:32:59 -0000
+vti_cacheddtm:TX|28 Nov 2023 13:22:39 -0000
+vti_filesize:IR|8561
 vti_cachedtitle:SR|Frequently Asked Questions
 vti_cachedbodystyle:SR|<body>
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php NHUS|new_customer FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/background.jpg FSUS|images/Tradie.png FHUS|new_tradie.php FHUS|new_customer.php FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false

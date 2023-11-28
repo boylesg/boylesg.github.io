@@ -16,7 +16,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-<title>Contact Us</title>
+		<title>Contact Us</title>
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
@@ -50,7 +50,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
@@ -86,23 +86,52 @@
 
 
 
-			<h2>Contact Us</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque 
-			ornare ipsum at erat. Quisque elementum tempus urna. Donec ornare fringilla 
-			erat. Phasellus gravida lectus vel dui. Fusce eget justo at odio posuere 
-			dignissim.</p>
-			<h3>Mailing Address</h3>
-			<img alt="" height="200" src="contact/images/map.jpg" width="200" />
-			<p>123 Main Street<br />
-			City, ST 00000</p>
-			<h3>Hours of Operation</h3>
-			<p>Monday - Friday 09:00 a.m. - 06:00 p.m.<br />
-			Closed Saturday and Sunday</p>
-			<h4>Driving Directions</h4>
-			<ol>
-				<li>Lorem ipsum dolor sit amet</li>
-				<li>consectetuer adipiscing elit.</li>
-			</ol>
+<?php
+
+	if (isset($_POST["submit_message"]))
+	{
+		mail($g_strEmailAddress, $_POST["select_about"], $_POST["hidden_member_id"] . ", " . $_POST["hidden_member_name"] . "\r\n\r\n" . $_POST["text_message"], "From: <" . $_POST["hidden_email"] . ">\r\n");
+	}
+?>
+				<div class="note" style="flex-wrap:wrap;">
+
+					<form method="post" action="" id="form_contact">
+						
+						<table class="table_no_borders">
+							<tr>
+								<td class="cell_no_borders"><b>What are you contacting us about?</b></td>
+								<td class="cell_no_borders">
+									<select id="select_about" name="select_about">
+										<option value="1">Please add my tesimonials</option>
+										<option value="2">Technical problem</option>
+										<option value="3">Complaint</option>
+										<option value="4">Testimonial</option>
+										<option value="5">Other</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="cell_no_borders"><b>Date</b></td>
+								<td class="cell_no_borders">
+									<input type="date" id="date_now" name="date_now" readonly value="<?php echo date("Y-m-d"); ?>" />
+								</td>
+							</tr>
+							<tr>
+								<td class="cell_no_borders"><b>Message</b></td>
+								<td class="cell_no_borders">
+									<textarea id="text_message" name="text_message" cols="128" rows="10"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td class="cell_no_borders" colspan="2"><input type="submit" name="submit_message" value="SEND" /></td>
+							</tr>
+						</table>
+						<hidden id="hidden_member_id" name="hidden_member_id" value="<?php if (isset($_SESSIION["account_id"])) echo $_SESSIION["account_id"]; ?>" />
+						<hidden id="hidden_member_name" name="hidden_member_id" value="<?php if (isset($_SESSIION["account_first_name"])) echo $_SESSIION["account_first_name"] . " " . $_SESSIION["account_surname"]; ?>" />
+						<hidden id="hidden_email" name="hidden_email" value="<?php if (isset($_SESSIION["account_email"])) echo $_SESSIION["account_email"]; ?>" />
+					</form>
+
+				</div>
 
 
 

@@ -21,7 +21,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -39,7 +38,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -50,7 +49,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
@@ -98,7 +97,7 @@
 	//*******************************************************************************************
 	//*******************************************************************************************
 	
-	if (isset($_POST["text_business_name"]))
+	if (isset($_POST["submit_all_details"]))
 	{
 		/*
 			Array ( 
@@ -140,41 +139,16 @@
 		}
 		else
 		{
-			$_SESSION["account_id"] = $_POST["text_id"];
-			$_SESSION["account_trade"] = $_POST["select_trade"];
-			$_SESSION["account_additional_trades"] = $_POST["select_additional_trades"];
-			$_SESSION["account_business_name"] = $_POST["text_business_name"];
-			$_SESSION["account_first_name"] = $_POST["text_first_name"];
-			$_SESSION["account_surname"] = $_POST["text_surname"];
-			$_SESSION["account_abn"] = $_POST["text_abn"];
-			$_SESSION["account_structure"] = $_POST["select_structure"];
-			$_SESSION["account_license"] = $_POST["text_license"];
-			$_SESSION["account_description"] = $_POST["text_description"];
-			$_SESSION["account_minimum_charge"] = $_POST["text_minimum_charge"];
-			$_SESSION["account_minimum_budget"] = $_POST["text_minimum_budget"];
-			$_SESSION["account_maximum_size"] = $_POST["select_maximum_size"];
-			$_SESSION["account_maximum_distance"] = $_POST["text_maximum_distance"];
-			$_SESSION["account_unit"] = $_POST["text_unit"];
-			$_SESSION["account_street"] = $_POST["text_street"];
-			$_SESSION["account_suburb"] = $_POST["text_suburb"];
-			$_SESSION["account_state"] = $_POST["select_state"];
-			$_SESSION["account_postcode"] = $_POST["text_postcode"];
-			$_SESSION["account_phone"] = $_POST["text_phone"];
-			$_SESSION["account_mobile"] = $_POST["text_mobile"];				
-			$_SESSION["account_email"] = $_POST["text_email"];
-			$_SESSION["account_username"] = $_POST["text_username"];
-			$_SESSION["account_password"] = $_POST["text_password"];
-
 			$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username password expiry_date) VALUES (" .
 							AppendSQLInsertValues($_POST["select_trade"], $_POST["text_business_name"], 
-							$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
-							$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
-							$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
-							$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
-							$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
-							$_POST["text_username"], $_POST["text_password"], date("Y-m-d") ) . ")";
+								$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
+								$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
+								$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
+								$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
+								$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
+								$_POST["text_username"], $_POST["text_password"], date("Y-m-d") ) . ")";
 	
 			$result = DoQuery($g_dbFindATradie, $strQuery);
 			if ($result->num_rows == 1)
@@ -197,7 +171,7 @@
 				if ($bResult)
 				{
 					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-											"DoGetInput('form_tradie_login').submit();"], 4, true);
+												"DoGetInput('form_tradie_login').submit();"], 4, true);					
 				}
 			}
 			else
@@ -213,17 +187,17 @@
 
 				
 				
-	$g_strButtonText = "NEXT";
-	$g_bIsStaged = true;
-	include "member_details_forms.html"; 
-?>
-					
+	PrintJavascriptLines(["let g_bIsCustomer = false;", "let g_bIsStaged = true;"], 2, true);
+	include "member_details_forms.html";
+	PrintJavascriptLine("DoChangeFormButtonText('NEXT');", 2, true);
 
-					<form method="post" action="new_tradie.php" id="form_hidden_tradie_details" style="visibility: hidden">
+?>			
+
+					<form method="post" id="form_all_details" action="" class="form" style="display:none;">
 						<input type="text" id="htext_username" name="text_username" />
-						<input type="text" id="htext_password" name="text_password" />
+						<input type="password" id="htext_password" name="text_password" />
 						<select id="hselect_trade" name="select_trade">
-							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
+							<?php DoGeneratePrimaryTradeOptions(""); ?>
 						</select>
 						<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
 							<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
@@ -231,22 +205,14 @@
 						<input type="text" id="htext_business_name" name="text_business_name" />
 						<input type="text" id="htext_abn" name="text_abn" />
 						<select id="hselect_structure" name="select_structure">
-							<option>Sole trader</option>
-							<option>Company</option>
-							<option>Cooperative</option>
-							<option>Partnership</option>
-							<option>Indigenous corporation</option>
+							<?php include "business_structure.html"; ?>
 						</select>
 						<textarea id="htext_license" name="text_license"></textarea>
 						<textarea id="htext_description" name="text_description"></textarea>
-						<input type="text" id="htext_minimum_charge" name="text_minimum charge" />
-						<input type="text" id="htext_minimum_budget" name="text_minimum_budget" />
-						<select id="hselect_maximum_size" name="select_maximum_size">
-							<option selected>Up to 50</option>
-							<option>50 - 100</option>
-							<option>100 - 250</option>
-							<option>250 - 500</option>
-							<option>More than 500</option>
+						<input type="htext" id="htext_minimum_charge" name="text_minimum charge" />
+						<input type="htext" id="htext_minimum_budget" name="text_minimum_budget" />
+						<select id="hselect_maximum_size" name="select_maximum_size" required>
+							<?php include "job_size.html"; ?>
 						</select>
 						<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
 						<input type="text" id="htext_first_name" name="text_first_name" />
@@ -255,36 +221,20 @@
 						<input type="text" id="htext_street" name="text_street" />
 						<input type="text" id="htext_suburb" name="text_suburb" />
 						<select id="hselect_state" name="select_state">
-							<option selected=>ACT</option>
-							<option>NSW</option>
-							<option>NT</option>
-							<option>QLD</option>
-							<option>SA</option>
-							<option>TAS</option>
-							<option>VIC</option>
-							<option>WA</option>
+							<?php include "states.html"; ?>
 						</select>
 						<input type="text" id="htext_postcode" name="text_postcode" />
-						<input type="text" id="htext_phone" name="text_phone" />
-						<input type="text" id="htext_mobile" name="text_mobile" />
-						<input type="text" id="htext_email" name="text_email" />
+						<input type="text"  id="htext_phone" name="text_phone" />
+						<input type="text"  id="htext_mobile" name="text_mobile" />
+						<input type="text"  id="htext_email" name="text_email" />
+						<input type="hidden" name="submit_all_details" value="SUBMIT" />
 					</form>
 
-				
-				
-				
 					<form method="post" id="form_tradie_login" style="visibility:hidden;" action="login.php">
 						<input type="text" id="text_username" name="text_username" value="<?php if (isset($_POST["text_username"])) echo $_POST["text_username"]; ?>"/>
 						<input type="text" id="text_password" name="text_password" value="<?php if (isset($_POST["text_password"])) echo $_POST["text_password"]; ?>"/>
 						<input type="submit" name="submit_login" value="LOG IN" />
 					</form>
-					
-
-
-
-
-
-
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
@@ -304,6 +254,38 @@
 		<!-- #BeginEditable "footer" -->
 
 
+
+		<script type="text/javascript">
+		
+			function DoFormSubmitAll()
+			{
+				DoGetInput("htext_username").value = DoEncrypt(DoGetInput("text_username"), localStorage.getItem("LOREM"));
+				DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password"), localStorage.getItem("LOREM"));
+				DoCopySelectInput("select_trade", "hselect_trade");
+				DoCopySelectInput("select_additional_trades", "hselect_additional_trades");
+				DoCopyTextInput("text_business_name", "htext_business_name");
+				DoCopyTextInput("text_abn", "htext_abn");
+				DoCopyTextInput("text_license", "htext_license");
+				DoCopyTextInput("text_description", "htext_description");
+				DoCopyTextInput("text_minimum_charge", "htext_minimum_charge");
+				DoCopyTextInput("text_minimum_budget", "htext_minimum_budget");
+				DoCopyTextInput("text_maximum_distance", "htext_maximum_distance");
+				DoCopySelectInput("select_structure", "hselect_structure");
+				DoCopySelectInput("select_maximum_size", "hselect_maximum_size")
+				DoCopyTextInput("text_first_name", "htext_first_name");
+				DoCopyTextInput("text_surname", "htext_surname");
+				DoCopyTextInput("text_unit", "htext_unit");
+				DoCopyTextInput("text_street", "htext_street");
+				DoCopyTextInput("text_suburb", "htext_suburb");
+				DoCopyTextInput("text_postcode", "htext_postcode");
+				DoCopyTextInput("text_phone", "htext_phone");
+				DoCopyTextInput("text_mobile", "htext_mobile");
+				DoCopyTextInput("text_email", "htext_email");
+				DoCopySelectInput("select_state", "hselect_state");
+				DoGetInput("form_all_details").submit();
+			}
+			
+		</script>
 
 		<!-- #EndEditable -->
 

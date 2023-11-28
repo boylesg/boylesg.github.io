@@ -222,13 +222,17 @@
 							}
 							if (move_uploaded_file($_FILES["file_image_name"]["tmp_name"], $strTargetPath))
 							{
-								$_SESSION["image_file_name"] = basename($_FILES["file"]["name"]);
+								$_SESSION["account_logo_filename"] = basename($_FILES["file"]["name"]);
 							}
 							else
 							{
 								PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "' to the server!<br><br>" . $g_strEmailAdmin . "\");", 3, true);
 							}
 						}
+					}
+					else
+					{
+						PrintJavascriptLine("AlertError(\"Unknown advert space ID '" . $strSpaceID . "'!\");", 3, true);
 					}
 				}
 				else if (isset($_GET["advert_paid"]))
@@ -280,8 +284,8 @@
 					
 					if (isset($_FILES["file_image_name"])) 
 						$strAltText = $_FILES["file_image_name"]["name"]; 
-					else if (isset($_SESSION["file_image_name"])) 
-						$strAltText = $_SESSION["file_image_name"]["name"]; 
+					else if (isset($_SESSION["account_logo_filename"])) 
+						$strAltText = $_SESSION["account_logo_filename"]; 
 					else 
 						$strAltText = "IMAGE PREVIEW";
 						
@@ -356,7 +360,7 @@
 			<img class="logo" alt="" src="images/Tradie.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
