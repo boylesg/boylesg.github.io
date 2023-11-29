@@ -45,7 +45,7 @@
 					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
 					<td class="cell_no_borders">
 						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
-							<?php DoGeneratePrimaryTradeOptions(""); ?>
+							<?php DoGeneratePrimaryTradeOptions($_SESSION["account_trade"]); ?>
 						</select>
 						<br/><br/>
 						<label id="trade_description">XXXXXXXXXXXXX</label>
