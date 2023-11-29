@@ -40,7 +40,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 			<?php
 
@@ -216,17 +216,17 @@
 							$g_strPaypalRowDisplay = "block";
 							$strTargetPath = "";
 							
-							if (isset($_FILES["file_image_name"]))
+							if (isset($_FILES["file_name"]))
 							{
 								$strTargetPath = "images/" . basename($_FILES["file"]["name"]);
 							}
-							if (move_uploaded_file($_FILES["file_image_name"]["tmp_name"], $strTargetPath))
+							if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
 							{
 								$_SESSION["account_logo_filename"] = basename($_FILES["file"]["name"]);
 							}
 							else
 							{
-								PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "' to the server!<br><br>" . $g_strEmailAdmin . "\");", 3, true);
+								PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "' to the server!\");", 3, true);
 							}
 						}
 					}
@@ -282,8 +282,8 @@
 				{
 					$strAltText = "";
 					
-					if (isset($_FILES["file_image_name"])) 
-						$strAltText = $_FILES["file_image_name"]["name"]; 
+					if (isset($_FILES["file_name"])) 
+						$strAltText = $_FILES["file_name"]["name"]; 
 					else if (isset($_SESSION["account_logo_filename"])) 
 						$strAltText = $_SESSION["account_logo_filename"]; 
 					else 
@@ -293,32 +293,8 @@
 				}
 
 			?>
-				
 			<script type="text/javascript">
 			
-				function DoImagePreview()
-				{
-					let imgPreview = document.getElementById("image_preview"),
-						inputFile = document.getElementById("file_image_name");
-					
-					if (imgPreview)
-					{
-						imgPreview.src = URL.createObjectURL(inputFile.files[0]);
-					}
-				}
-				
-				function OnChangeFile(inputFile)
-				{
-					if (inputFile.files[0].size > 500000)
-					{
-						AlertError("File size cannot exceed 500 kilobytes!");
-					}
-					else
-					{							
-						DoImagePreview();
-					}
-				}
-				
 				function OnKeyUpMonths(inputMonths, eventKey)
 				{
 					let labelTotalCost = document.getElementById("label_cost_total");
@@ -411,22 +387,9 @@
 									</select>
 								</td>
 							</tr>
-							<tr>
-								<td style="text-align:right;" class="cell_no_borders">
-									<b>Select and image to display</b>
-								</td>
-								<td class="cell_no_borders">
-									<input type="file" required id="file_image_name" name="file_image_name" accept=".jpg, .png, .jpeg, .gif|image/*" onchange="OnChangeFile(this)"/>
-								</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;" class="cell_no_borders">
-									<b>Image preview</b>
-								</td>
-								<td class="cell_no_borders">
-									<img src="" alt="<?php echo GetImageAltText(); ?>" id="image_preview" width="50" />
-								</td>
-							</tr>
+
+							<?php include "select_file.html"; ?>
+
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
 									<b>Text to display beside image</b>

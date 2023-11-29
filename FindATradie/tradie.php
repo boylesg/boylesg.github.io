@@ -16,7 +16,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title><?php echo $row["business_name"]; ?></title>
+		<title>Tradie Details</title>
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
@@ -39,7 +39,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -79,64 +79,97 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
 		<div class="page_content" id="page_content0">
 
 			<div class="note" style="overflow-x:auto;overflow-y:visible;">
 				<?php 
 				
-					echo "<div class=\"tradie_details\">\n";
-					echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
-					if ($row["logo_file_name"] && ($row["logo_file_name"] != ""))
+					if (isset($_GET["member_id"]))
 					{
-						echo "<img class=\"advert_image\" width=\"250\" src=\"images/" . $row["logo_file_name"] . "\" alt=\"images/" . $row["logo_file_name"] . "\" />\n";
+						$results = DoFindQuery1($g_dbFindATradie, "members", "id", $_GET["member_id"]);
+						if ($results && ($results->num_rows > 0))
+						{
+							$row = $results->fetch_assoc();
+							if ($row)
+							{
+								echo "<div class=\"tradie_details\">\n";
+								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
+								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
+								{
+									echo "<img class=\"advert_image\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
+								}
+								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"width:510px;\">\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>ABN:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["abn"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Structure:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["structure"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Name:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								echo $row["first_name"] . " " . $row["surname"] . "<br/><br/>";
+								echo "<img src=\"images/" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
+								echo "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">\n";
+								if ($row["phone"] && ($row["phone"] != ""))
+									echo $row["phone"] . "\n";
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								if ($row["mobile"] && ($row["mobile"] != ""))
+									echo $row["mobile"] . "\n";
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								if ($row["email"] && ($row["email"] != ""))
+									echo $row["email"];
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Location:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "</table>\n";
+								echo "</div>\n";
+								echo "<div class=\"tradie_about\">\n";
+								if ($row["license"] && ($row["license"] != ""))
+								{
+									echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";
+									echo RelaceCRLF($row["license"]);
+									echo "<br/><br/>";
+								}
+								if ($row["description"] && ($row["description"] != ""))
+								{
+									echo "<b><u>ABOUT THE BUSINESS</u></b><br/>\n";
+									echo RelaceCRLF($row["description"]);
+									echo "<br/>";
+								}
+								echo "</div>\n";
+								echo "<div class=\"tradie_feedback\">\n";
+								echo "<b><u>FEEDBACK</u></b>\n";
+								DoDisplayFeedback($row["id"], "", false);
+								echo "</div>\n";
+							}
+						}
 					}
-					echo "<b>ABN: </b>" . $row["abn"] . "<br/><br/>\n";
-					echo "<b>Structure: </b>" . $row["structure"] . "<br/><br/>\n";
-					echo "<b>Name: </b>" . $row["first_name"] . " " . $row["surname"] . "<br/><br/>\n";
-					if ($row["phone"] && ($row["phone"] != ""))
-						echo "<b>Phone: </b>" . $row["phone"] . "<br/><br/>\n";
-					if ($row["mobile"] && ($row["mobile"] != ""))
-						echo "<b>Mobile: </b>" . $row["mobile"] . "<br/><br/>\n";
-					if ($row["email"] && ($row["email"] != ""))
-						echo "<b>Email: </b>" . $row["email"] . "<br/><br/>\n";
-					echo "<b>Location: </b>" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "<br/><br/>\n";
-					echo "</div>\n";
-					echo "<div class=\"tradie_about\">\n";
-					if ($row["license"] && ($row["license"] != ""))
-					{
-						echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";
-						echo RelaceCRLF($row["license"]);
-						echo "<br/><br/>";
-					}
-					if ($row["description"] && ($row["description"] != ""))
-					{
-						echo "<b><u>ABOUT THE BUSINESS</u></b><br/>\n";
-						echo RelaceCRLF($row["description"]);
-						echo "<br/>";
-					}
-					echo "</div>\n";
-					echo "<div class=\"tradie_feedback\">\n";
-					echo "<b><u>FEEDBACK</u></b>\n";
-					DoDisplayFeedback($row["id"], "", false);
-					echo "</div>\n";
 				?>
 			</div>
 		</div>
-
-
-
-
-
-
-
-
+		
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>

@@ -1,0 +1,75 @@
+﻿<?php
+	
+	function GetImageAltText()
+	{
+		$strImageFileName = "PROFILE IMAGE FILE";
+			
+		if (isset($_FILES["file_image_name"])) 
+			$strImageFileName = $_FILES["file_image_name"]["name"]; 
+		else if (isset($_SESSION["account_profile_filename"])) 
+			$strImageFileName = $_SESSION["account_profile_filename"]; 
+		
+		return $strImageFileName;
+	}
+	
+?>
+
+<script type="text/javascript">
+
+	let g_nMaxFileSizeBytes = 500000;
+	
+	function DoImagePreview()
+	{
+		let imgPreview = document.getElementById("image_preview"),
+			inputFile = document.getElementById("file_name");
+		
+		if (imgPreview)
+		{
+			imgPreview.src = URL.createObjectURL(inputFile.files[0]);
+		}
+	}
+	
+	function OnChangeFile(inputFile)
+	{
+		if (inputFile.files[0].size > g_nMaxFileSizeBytes)
+		{
+			AlertError("File size cannot exceed " + g_nMaxFileSizeBytes.toString() + " kilobytes!");
+		}
+		else
+		{							
+			DoImagePreview();
+		}
+	}
+	
+	function SetMaxFileSize(nMaxFileSize)
+	{
+		g_nMaxFileSizeBytes = nMaxFileSize;
+	}
+	
+</script>
+
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;width:180px;">
+					Select a profile image
+				</td>
+				<td class="cell_no_borders" style="">
+					<input type="file" required id="file_name" name="file_name" accept=".jpg, .png, .jpeg, .gif|image/*" onchange="OnChangeFile(this)"/>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;" class="cell_no_borders">
+					<b>Image preview</b>
+				</td>
+				<td class="cell_no_borders">
+					<img src="" alt="<?php echo GetImageAltText(); ?>" id="image_preview" width="50" />
+				</td>
+			</tr>
+
+<script type="text/javascript">
+	
+	function SetAccepts(strAccept)
+	{
+		DoGetInput("file_name").accept = strAccept;
+	}
+	
+</script>

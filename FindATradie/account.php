@@ -254,7 +254,33 @@
 	echo "<br><br>";
 */	
 
-	if (isset($_GET["submit_accept_job"]))
+	if (isset($_POST["submit_file"]))
+	{
+		$strTargetPath = "";
+		
+		if (isset($_FILES["file_name"]))
+		{
+			$strTargetPath = "images/" . basename($_FILES["file_name"]["name"]);
+		}
+		if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
+		{
+			$_SESSION["account_profile_filename"] = basename($_FILES["file_name"]["name"]);
+			$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $_SESSION["account_profile_filename"], "id", $_SESSION["account_id"]);
+			if ($results)
+			{
+				PrintJavascriptLine("AlertSuccess(\"Profile image file '" . $_FILES["file_name"]["name"] . "' was saved!\");", 3, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Could not update the table entry!\");", 3, true);
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "\");", 3, true);
+		}
+	}
+	else if (isset($_GET["submit_accept_job"]))
 	{
 		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_GET["text_member_id"], "id", $_GET["text_job_id"]);
 		if ($resultsJob)
@@ -684,13 +710,6 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
 				<div class="note" style="flex-wrap:wrap;">
 
 					<form method="post" id="form_logout" action="login.php">
@@ -1038,10 +1057,29 @@
 						
 						<div id="tab_contents3" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
-							
-<?php 
+														
+							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width: 1100px;">
+								<fieldset>
+									<legend>Profile image:</legend>
+									<table class="table_no_borders">
+<?php
+	include "select_file.html";
+?>
+										<tr>
+											<td class="cell_no_borders" colspan="2" style="width:100%;text-align:right;vertical-align:center;">
+												<input type="submit" name="submit_file" value="SAVE" />
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</form>
+								
+<?php
 	include "member_details_forms.html"; 
 ?>
+<script type="text/javascript">
+	SetMaxFileSize(50000);
+</script>
 
 						</div>
 						
@@ -1089,7 +1127,7 @@
 		PrintJavascriptLine("DoOpenTab(\"tab_button2\", \"tab_contents2\");", 1, true);
 	}
 	else if (isset($_POST["submit_trade_details"]) || isset($_POST["text_business_name"]) || isset($_POST["text_first_name"]) || 
-				isset($_POST["text_username"]))
+				isset($_POST["text_username"]) || isset($_POST["submit_file"]))
 	{
 		PrintJavascriptLine("DoOpenTab(\"tab_button3\", \"tab_contents3\");", 1, true);
 	}
