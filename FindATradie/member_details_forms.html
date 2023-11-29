@@ -1,4 +1,4 @@
-﻿<form method="post" id="form_user_details" action="" class="form">
+﻿<form method="post" id="form_user_details" action="" class="form" style="width: 1100px;">
 	<fieldset>
 		<legend>User details:</legend>
 		<table class="table_no_borders">
@@ -30,14 +30,14 @@
 				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="cell_no_borders" colspan="2"><input type="button" name="button_user_details" id="button_user_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoUserDetailsFormSubmit('form_user_details')" /></td>
+				<td class="cell_no_borders" colspan="2"><input type="button" name="button_user_details" id="button_user_details" onclick="DoUserDetailsFormSubmit('form_user_details')" /></td>
 
 			</tr>
 		</table>		
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_trade_details" action="" class="form">
+<form method="post" id="form_trade_details" action="" class="form" style="width:950px;">
 	<fieldset>
 		<legend>Trade details</legend>
 			<table class="table_no_borders">
@@ -71,13 +71,13 @@
 					<td class="cell_no_borders" colspan="3">&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="cell_no_borders" colspan="3"><input type="button" name="button_trade_details" id="button_trade_details" value="<?php echo $g_strButtonText; ?>"  onclick="DoFormSubmit('form_trade_details')" /></td>
+					<td class="cell_no_borders" colspan="3"><input type="button" name="button_trade_details" id="button_trade_details" onclick="DoFormSubmit('form_trade_details')" /></td>
 				</tr>
 			</table>
 	</fieldset>
 </form>
 <br/><br/>		
-<form method="post" id="form_business_details" action="" class="form">
+<form method="post" id="form_business_details" action="" class="form" style="width:1250px;">
 	<fieldset>
 		<legend>Business details:</legend>
 		<table class="table_no_borders">
@@ -149,13 +149,13 @@
 				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="cell_no_borders" colspan="2"><input type="button" name="button_business_details" id="button_business_details" value="<?php echo $g_strButtonText; ?>" onclick="DoFormSubmit('form_business_details')" /></td>
+				<td class="cell_no_borders" colspan="2"><input type="button" name="button_business_details" id="button_business_details" onclick="DoFormSubmit('form_business_details')" /></td>
 			</tr>
 		</table>			
 	</fieldset>
 </form>
 <br/><br/>
-<form method="post" id="form_contact_details" action="" class="form">
+<form method="post" id="form_contact_details" action="" class="form" style="width:650px;">
 	<fieldset>
 		<legend>Contact details:</legend>
 		<table class="table_no_borders">
@@ -235,7 +235,53 @@
 	</fieldset>
 </form>
 
+<form method="post" id="form_all_details" action="" class="form" style="display:none;">
+	<input type="text" id="htext_username" name="text_username" />
+	<input type="password" id="htext_password" name="text_password" />
+	<select id="hselect_trade" name="select_trade">
+		<?php DoGeneratePrimaryTradeOptions(""); ?>
+	</select>
+	<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
+		<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
+	</select>
+	<input type="text" id="htext_business_name" name="text_business_name" />
+	<input type="text" id="htext_abn" name="text_abn" />
+	<select id="hselect_structure" name="select_structure">
+		<?php include "business_structure.html"; ?>
+	</select>
+	<textarea id="htext_license" name="text_license"></textarea>
+	<textarea id="htext_description" name="text_description"></textarea>
+	<input type="htext" id="htext_minimum_charge" name="text_minimum charge" />
+	<input type="htext" id="htext_minimum_budget" name="text_minimum_budget" />
+	<select id="hselect_maximum_size" name="select_maximum_size" required>
+		<?php include "job_size.html"; ?>
+	</select>
+	<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
+	<input type="text" id="htext_first_name" name="text_first_name" />
+	<input type="text" id="htext_surname" name="text_surname" />
+	<input type="text" id="htext_unit" name="text_unit" />
+	<input type="text" id="htext_street" name="text_street" />
+	<input type="text" id="htext_suburb" name="text_suburb" />
+	<select id="hselect_state" name="select_state">
+		<?php include "states.html"; ?>
+	</select>
+	<input type="text" id="htext_postcode" name="text_postcode" />
+	<input type="text"  id="htext_phone" name="text_phone" />
+	<input type="text"  id="htext_mobile" name="text_mobile" />
+	<input type="text"  id="htext_email" name="text_email" />
+	<input type="hidden" id="submit_all_details" name="submit_all_details" value="SUBMIT" />
+</form>
+
+<form method="post" id="form_tradie_login" style="display:none;" action="login.php">
+	<input type="text" id="text_username" name="text_username" value="<?php if (isset($_POST["text_username"])) echo $_POST["text_username"]; ?>"/>
+	<input type="text" id="text_password" name="text_password" value="<?php if (isset($_POST["text_password"])) echo $_POST["text_password"]; ?>"/>
+	<input type="submit" name="submit_login" value="LOG IN" />
+</form>
+
 <script type="text/javascript">
+	
+	let g_bIsCustomer = false;
+	let g_bIsStaged = true;
 	
 	//******************************************************************************
 	//******************************************************************************
@@ -441,8 +487,65 @@
 		DoGetInput("form_contact_details").style.display = "none";
 		DoGetInput("form_contact_details").style.display = "none";
 		DoGetInput("button_save").style.display = "inline";
+		DoChangeFormButtonText('NEXT');
+		g_bIsStaged = true;
 	}
 	
+	function DoSetNotStaged()
+	{
+		DoGetInput("form_trade_details").style.display = "block";
+		DoGetInput("form_business_details").style.display = "block";
+		DoGetInput("form_contact_details").style.display = "block";
+		DoGetInput("form_contact_details").style.display = "block";
+		DoGetInput("button_save").style.display = "none";
+		DoChangeFormButtonText('SAVE');
+		g_bIsStaged = false;
+
+	}
+	
+	function DoSetCustomer()
+	{
+		DoGetInput("submit_all_details").value = "SUBMIT_NEW_CUSTOMER";
+		g_bIsCustomer = true;
+	}
+	
+	function DoSetTradie()
+	{
+		DoGetInput("submit_all_details").value = "SUBMIT_NEW_TRADIE";
+		g_bIsCustomer = false;
+	}
+	
+	function DoFormSubmitAll()
+	{
+		DoGetInput("htext_username").value = DoEncrypt(DoGetInput("text_username"), localStorage.getItem("LOREM"));
+		DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password"), localStorage.getItem("LOREM"));
+		if (!g_bIsCustomer)
+		{
+			DoCopySelectInput("select_trade", "hselect_trade");
+			DoCopySelectInput("select_additional_trades", "hselect_additional_trades");
+			DoCopyTextInput("text_business_name", "htext_business_name");
+			DoCopyTextInput("text_abn", "htext_abn");
+			DoCopyTextInput("text_license", "htext_license");
+			DoCopyTextInput("text_description", "htext_description");
+			DoCopyTextInput("text_minimum_charge", "htext_minimum_charge");
+			DoCopyTextInput("text_minimum_budget", "htext_minimum_budget");
+			DoCopyTextInput("text_maximum_distance", "htext_maximum_distance");
+			DoCopySelectInput("select_structure", "hselect_structure");
+			DoCopySelectInput("select_maximum_size", "hselect_maximum_size");
+		}
+		DoCopyTextInput("text_first_name", "htext_first_name");
+		DoCopyTextInput("text_surname", "htext_surname");
+		DoCopyTextInput("text_unit", "htext_unit");
+		DoCopyTextInput("text_street", "htext_street");
+		DoCopyTextInput("text_suburb", "htext_suburb");
+		DoCopyTextInput("text_postcode", "htext_postcode");
+		DoCopyTextInput("text_phone", "htext_phone");
+		DoCopyTextInput("text_mobile", "htext_mobile");
+		DoCopyTextInput("text_email", "htext_email");
+		DoCopySelectInput("select_state", "hselect_state");
+		DoGetInput("form_all_details").submit();
+	}
+			
 </script>
 
 	

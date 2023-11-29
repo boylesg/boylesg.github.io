@@ -1040,8 +1040,6 @@
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							
 <?php 
-	$g_strButtonText = "UPDATE";
-	$g_bIsStaged = false;
 	include "member_details_forms.html"; 
 ?>
 
@@ -1068,6 +1066,13 @@
 				</div>
 
 <script type="text/javascript">
+			
+	g_bIsCustomer = <?php $_SESSION["account_trade"] == 59; ?>;
+	DoSetNotStaged();
+	if (g_bIsCustomer)
+		DoSetCustomer();
+	else
+		DoSetTradie();
 
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
 	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));

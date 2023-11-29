@@ -158,7 +158,10 @@ a.masthead_button:hover
 
 .page_content
 {
+	display: block;
+	position: relative;
 	overflow: auto;
+	padding: var(--Padding);
 }
 
 .note
@@ -281,16 +284,18 @@ a.masthead_button:hover
 
 .form
 {
-	display: inline-block;
+	display: block;
 	position: relative;
 	border-style: none;
+	border-color: red;
+	/*
 	margin-right: var(--Margin);
 	margin-top: var(--Margin);
 	margin-bottom: var(--Margin);
+	*/
 	padding: 10px;
 	background-color: var(--ColorMastheadBG);
 	border-radius: var(--BorderRadius);
-
 }
 
 form.form fieldset

@@ -180,61 +180,14 @@
 			}
 		}
 	}
-	else
+	else if (count($_POST) > 0)
 	{
 		print_r($_POST);
-	}
-
+	}		
 				
-				
-	PrintJavascriptLines(["let g_bIsCustomer = false;", "let g_bIsStaged = true;"], 2, true);
 	include "member_details_forms.html";
-	PrintJavascriptLine("DoChangeFormButtonText('NEXT');", 2, true);
 
 ?>			
-
-					<form method="post" id="form_all_details" action="" class="form" style="display:none;">
-						<input type="text" id="htext_username" name="text_username" />
-						<input type="password" id="htext_password" name="text_password" />
-						<select id="hselect_trade" name="select_trade">
-							<?php DoGeneratePrimaryTradeOptions(""); ?>
-						</select>
-						<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
-							<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
-						</select>
-						<input type="text" id="htext_business_name" name="text_business_name" />
-						<input type="text" id="htext_abn" name="text_abn" />
-						<select id="hselect_structure" name="select_structure">
-							<?php include "business_structure.html"; ?>
-						</select>
-						<textarea id="htext_license" name="text_license"></textarea>
-						<textarea id="htext_description" name="text_description"></textarea>
-						<input type="htext" id="htext_minimum_charge" name="text_minimum charge" />
-						<input type="htext" id="htext_minimum_budget" name="text_minimum_budget" />
-						<select id="hselect_maximum_size" name="select_maximum_size" required>
-							<?php include "job_size.html"; ?>
-						</select>
-						<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
-						<input type="text" id="htext_first_name" name="text_first_name" />
-						<input type="text" id="htext_surname" name="text_surname" />
-						<input type="text" id="htext_unit" name="text_unit" />
-						<input type="text" id="htext_street" name="text_street" />
-						<input type="text" id="htext_suburb" name="text_suburb" />
-						<select id="hselect_state" name="select_state">
-							<?php include "states.html"; ?>
-						</select>
-						<input type="text" id="htext_postcode" name="text_postcode" />
-						<input type="text"  id="htext_phone" name="text_phone" />
-						<input type="text"  id="htext_mobile" name="text_mobile" />
-						<input type="text"  id="htext_email" name="text_email" />
-						<input type="hidden" name="submit_all_details" value="SUBMIT" />
-					</form>
-
-					<form method="post" id="form_tradie_login" style="visibility:hidden;" action="login.php">
-						<input type="text" id="text_username" name="text_username" value="<?php if (isset($_POST["text_username"])) echo $_POST["text_username"]; ?>"/>
-						<input type="text" id="text_password" name="text_password" value="<?php if (isset($_POST["text_password"])) echo $_POST["text_password"]; ?>"/>
-						<input type="submit" name="submit_login" value="LOG IN" />
-					</form>
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
@@ -253,40 +206,13 @@
 		
 		<!-- #BeginEditable "footer" -->
 
-
-
 		<script type="text/javascript">
-		
-			function DoFormSubmitAll()
-			{
-				DoGetInput("htext_username").value = DoEncrypt(DoGetInput("text_username"), localStorage.getItem("LOREM"));
-				DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password"), localStorage.getItem("LOREM"));
-				DoCopySelectInput("select_trade", "hselect_trade");
-				DoCopySelectInput("select_additional_trades", "hselect_additional_trades");
-				DoCopyTextInput("text_business_name", "htext_business_name");
-				DoCopyTextInput("text_abn", "htext_abn");
-				DoCopyTextInput("text_license", "htext_license");
-				DoCopyTextInput("text_description", "htext_description");
-				DoCopyTextInput("text_minimum_charge", "htext_minimum_charge");
-				DoCopyTextInput("text_minimum_budget", "htext_minimum_budget");
-				DoCopyTextInput("text_maximum_distance", "htext_maximum_distance");
-				DoCopySelectInput("select_structure", "hselect_structure");
-				DoCopySelectInput("select_maximum_size", "hselect_maximum_size")
-				DoCopyTextInput("text_first_name", "htext_first_name");
-				DoCopyTextInput("text_surname", "htext_surname");
-				DoCopyTextInput("text_unit", "htext_unit");
-				DoCopyTextInput("text_street", "htext_street");
-				DoCopyTextInput("text_suburb", "htext_suburb");
-				DoCopyTextInput("text_postcode", "htext_postcode");
-				DoCopyTextInput("text_phone", "htext_phone");
-				DoCopyTextInput("text_mobile", "htext_mobile");
-				DoCopyTextInput("text_email", "htext_email");
-				DoCopySelectInput("select_state", "hselect_state");
-				DoGetInput("form_all_details").submit();
-			}
+			
+			DoSetTradie();
+			DoSetStaged();
 			
 		</script>
-
+		
 		<!-- #EndEditable -->
 
 	</footer>
