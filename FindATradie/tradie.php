@@ -94,11 +94,7 @@
 							{
 								echo "<div class=\"tradie_details\">\n";
 								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
-								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
-								{
-									echo "<img class=\"advert_image\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
-								}
-								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"width:510px;\">\n";
+								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
 								echo "	<tr>\n";
 								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
 								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "</td>\n";
@@ -144,8 +140,17 @@
 								echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
 								echo "	</tr>\n";
 								echo "</table>\n";
+								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
+								{
+									echo "<img class=\"advert_image\" style=\"float:right;\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
+								}
 								echo "</div>\n";
 								echo "<div class=\"tradie_about\">\n";
+								echo "<b><u>TRADES</u></b><br/>\n";
+								echo "<b>Primary trade: </b>" . GetTradeName($row["trade_id"]) . "<br/<br/>\n";
+								echo "<b>Additional trades: </b>";
+								echo GetAdditionalTradeNames($row["id"]) . "<br/><br/>\n";
+								
 								if ($row["license"] && ($row["license"] != ""))
 								{
 									echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";

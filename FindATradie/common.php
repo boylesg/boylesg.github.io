@@ -626,6 +626,43 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function GetTradeName($strTradeID)
+	{
+		global $g_dbFindATradie;
+		$strTradeName = "";
+
+		$results = DoFindQuery1($g_dbFindATradie, "trades", "id", $strTradeID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strTradeName = $row["name"];
+			}
+		}
+		return $strTradeName;
+	}
+	
+	function GetAdditionalTradeNames($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strTradeNames = "";
+
+		$results1 = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $strMemberID);
+		if ($results1 && ($results1->num_rows > 0))
+		{
+			while ($row1 = $results1->fetch_assoc())
+			{
+				$results2 = DoFindQuery1($g_dbFindATradie, "trades", "id", $row1["trade_id"]);
+				if ($row2 = $results2->fetch_assoc())
+				{
+					$strTradeNames = $strTradeNames . $row2["name"] . ", ";
+				}
+			}
+			$strTradeNames = substr($strTradeNames, 0, strlen($strTradeNames) - 2);
+		}
+		return $strTradeNames;
+	}
+	
 	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
 	{
 		$nJobSize = (int)$strJobSizeIndex;
@@ -1185,7 +1222,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** TRADIEDoGetJops SEARCH FUNCTIONS
+	//** TRADIE SEARCH FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
