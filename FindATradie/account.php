@@ -883,8 +883,8 @@
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:3em;"><b>ID</b></td>
 										<td class="cell_no_borders search_cell" style="width:6em;"><b>Date</b></td>
-										<td class="cell_no_borders search_cell" style="width:25em;"><b>Name</b></td>
-										<td class="cell_no_borders search_cell" style="width:30em;"><b>Email</b></td>
+										<td class="cell_no_borders search_cell" style="width:26em;"><b>Name</b></td>
+										<td class="cell_no_borders search_cell" style="width:25em;"><b>Email</b></td>
 										<td class="cell_no_borders search_cell" style="width:10em;"><b>Maximum budget</b></td>
 										<td class="cell_no_borders search_cell" style="width:5em;"><b>Size</b></td>
 										<td class="cell_no_borders search_cell" style="width:5em;"><b>Urgent?</b></td>
@@ -1067,158 +1067,20 @@
 
 <script type="text/javascript">
 			
-	g_bIsCustomer = <?php $_SESSION["account_trade"] == 59; ?>;
+	g_bIsCustomer = <?php if ($_SESSION["account_trade"] == 59) echo "true"; else echo "false" ?>;
 	DoSetNotStaged();
 	if (g_bIsCustomer)
 		DoSetCustomer();
 	else
-		DoSetTradie();
-
-	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
-	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));
-	
+		DoSetTradie();	
 	
 	function OnClickComplete(strJobID)
 	{
 		DoGetInput("feedback_form").style.display = "block";
-		DoGetInput("hidden_job_id").value = strJobID);
+		DoGetInput("hidden_job_id").value = strJobID;
 		return false;
 	}
-	
-	function DoNextForm(strForm2HideID, strForm2ShowID)
-	{
-		let form2Hide = DoGetInput(strForm2HideID),
-			form2Show = DoGetInput(strForm2ShowID);
-		
-		if (form2Hide && form2Show)
-		{
-			form2Hide.style.display = "none";
-			form2Show.style.display = "block";
-		}
-	}
 
-	function OnClickButtonUserDetails()
-	{
-		if (DoFormValidate("form_user_details"))
-		{
-			let textPassword = DoGetInput("text_password"),
-				textPasswordAgain = DoGetInput("text_password_again");
-
-			if (!textPassword)
-			{
-				AlertIDError("text_password", "password input");
-			}
-			else if (!textPasswordAgain)
-			{
-				AlertIDError("text_password_again", "password input");
-			}
-			else if (textPassword.value != textPasswordAgain.value)
-			{
-				AlertError("The two passwords do not match!");
-				textPassword.focus();
-			}
-			else
-			{
-				DoNextForm("form_user_details", "form_trade_details");
-			}
-		}
-
-	}
-				
-	DoChangeButtonUserDetailsFunction(OnClickButtonUserDetails);
-	
-	
-	
-	
-	function OnClickButtonTradeDetails()
-	{
-		if (DoFormValidate("form_trade_details"))
-		{
-			DoNextForm("form_trade_details", "form_business_details");
-		}
-	}
-
-	DoChangeButtonTradeDetailsFunction(OnClickButtonTradeDetails);
-
-
-
-	
-
-	function OnClickButtonBusinessDetails()
-	{
-		if (DoFormValidate("form_business_details"))
-		{
-			DoNextForm("form_business_details", "form_contact_details");
-		}
-	}
-
-	DoChangeButtonBusinessDetailsFunction(OnClickButtonBusinessDetails);
-
-
-
-	
-
-	function OnClickButtonContactDetails()
-	{
-		if (DoFormValidate("form_contact_details"))
-		{
-			DoNextForm("form_contact_details", "form_user_details");
-		}
-	}
-
-	DoChangeButtonContactDetailsFunction(OnClickButtonContactDetails);
-
-	
-	
-	
-	function OnClickButtonSave()
-	{
-		let formHidden = DoGetInput("form_hidden_tradie_details");
-		
-		if (formHidden)
-		{
-			DoGetInput("htext_username").value = DoGetInput("text_username").value;
-			DoGetInput("htext_password").value = DoGetInput("text_password").value;
-			DoGetInput("hselect_trade").selectedIndex = DoGetInput("select_trade").selectedIndex;
-
-			let selectAdditionalTrades = DoGetInput("select_additional_trades"),
-				hselectAdditionalTrades = DoGetInput("hselect_additional_trades");
-
-			if (selectAdditionalTrades && hselectAdditionalTrades)
-			{
-				for (let nI = 0; nI < selectAdditionalTrades.options.length; nI++)
-				{
-					hselectAdditionalTrades.options[nI].selected = selectAdditionalTrades.options[nI].selected;
-				}
-			}
-			DoGetInput("htext_business_name").value = DoGetInput("text_business_name").value;
-			DoGetInput("hselect_structure").selectedIndex = DoGetInput("select_structure").selectedIndex;
-			DoGetInput("htext_license").value = DoGetInput("text_license").value;
-			DoGetInput("htext_description").value = DoGetInput("text_description").value;
-			DoGetInput("htext_minimum_charge").value = DoGetInput("text_minimum_charge").value;
-			DoGetInput("htext_minimum_budget").value = DoGetInput("text_minimum_budget").value;
-			DoGetInput("hselect_maximum_size").selectedIndex = DoGetInput("select_maximum_size").selectedIndex;
-			DoGetInput("htext_maximum_distance").value = DoGetInput("text_maximum_distance").value;
-			DoGetInput("htext_first_name").value = DoGetInput("text_first_name").value;
-			DoGetInput("htext_surname").value = DoGetInput("text_surname").value;
-			DoGetInput("htext_unit").value = DoGetInput("text_unit").value;
-			DoGetInput("htext_street").value = DoGetInput("text_street").value;
-			DoGetInput("htext_suburb").value = DoGetInput("text_suburb").value;
-			DoGetInput("htext_postcode").value = DoGetInput("text_postcode").value;
-			DoGetInput("hselect_state").selectedIndex = DoGetInput("select_state").selectedIndex;
-			DoGetInput("htext_phone").value = DoGetInput("text_phone").value;
-			DoGetInput("htext_mobile").value = DoGetInput("text_mobile").value;
-			DoGetInput("htext_email").value = DoGetInput("text_email").value;
-
-			formHidden.submit();
-		}
-	}
-	
-	//DoChangeButtonSaveFunction(OnClickButtonSave);
-	SetSelection("select_structure", "<?php echo $_SESSION["account_structure"]; ?>");
-	SetSelection("select_maximum_size", "<?php echo $_SESSION["account_maximum_size"]; ?>");
-	SetSelection("select_state", "<?php echo $_SESSION["account_state"]; ?>");
-			
 </script>
 
 <?php

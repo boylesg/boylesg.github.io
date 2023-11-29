@@ -545,6 +545,13 @@
 		DoCopySelectInput("select_state", "hselect_state");
 		DoGetInput("form_all_details").submit();
 	}
+	
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));
+			
+	SetSelection("select_structure", "<?php if (isset($_SESSION["account_structure"])) echo $_SESSION["account_structure"]; else echo ""; ?>");
+	SetSelection("select_maximum_size", "<?php if (isset($_SESSION["account_maximum_size"])) echo $_SESSION["account_maximum_size"]; else echo ""; ?>");
+	SetSelection("select_state", "<?php if (isset($_SESSION["account_state"])) echo $_SESSION["account_state"]; else echo ""; ?>");
 			
 </script>
 
