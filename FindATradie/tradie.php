@@ -108,7 +108,7 @@
 								echo "		<td class=\"cell_no_borders\">" . $row["structure"] . "</td>\n";
 								echo "	</tr>\n";
 								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Name:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
 								echo "		<td class=\"cell_no_borders\">";
 								echo $row["first_name"] . " " . $row["surname"] . "<br/><br/>";
 								echo "<img src=\"images/" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
