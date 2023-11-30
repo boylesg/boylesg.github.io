@@ -21,7 +21,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -32,14 +31,14 @@
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
-					background-size: 100%;
+					background-size: cover;
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -78,6 +77,13 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 		<div class="page_content" id="page_content0">
 
@@ -175,6 +181,13 @@
 			</div>
 		</div>
 		
+
+
+
+
+
+
+
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>

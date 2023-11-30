@@ -21,6 +21,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -31,7 +32,7 @@
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
-					background-size: 100%;
+					background-size: cover;
 				}
 				
 			</style>
@@ -39,7 +40,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
@@ -246,7 +247,7 @@
 						<input type="hidden" name="submit_login" value="LOG IN" />
 					</form>
 					
-					<div class="advert" id="advert_login" style="width:656px;">
+					<div class="advert" id="advert_login" style="width:640px;height:200px;">
 						<?php DoInsertAdvert("login1", 180, "advert_login"); ?>
 					</div>
 					

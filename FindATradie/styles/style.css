@@ -197,10 +197,10 @@ a.masthead_button:hover
 	border-color: var(--NoteHeadingColor);
 	background-color: var(--NoteColorBG);
 	border-radius: var(--BorderRadius);
-	margin-left: 0px;
+	margin-left: 15px;
 	margin-right: 0px;
-	margin-top: var(--Margin);
-	margin-bottom: var(--Margin);
+	margin-top: 0px;
+	margin-bottom: 0px;
 	padding: var(--Padding);
 }
 

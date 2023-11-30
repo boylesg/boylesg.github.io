@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|30 Nov 2023 03:15:49 -0000
+vti_timelastmodified:TR|30 Nov 2023 12:14:00 -0000
 vti_timecreated:TR|18 Nov 2023 12:45:10 -0000
 vti_title:SR|Tradie Details
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|
-vti_nexttolasttimemodified:TW|29 Nov 2023 12:42:39 -0000
-vti_cacheddtm:TX|30 Nov 2023 03:15:49 -0000
-vti_filesize:IR|7468
+vti_nexttolasttimemodified:TW|30 Nov 2023 12:12:36 -0000
+vti_cacheddtm:TX|30 Nov 2023 12:14:00 -0000
+vti_filesize:IR|7492
 vti_cachedtitle:SR|Tradie Details
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/background.jpg S|images/Tradie.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php

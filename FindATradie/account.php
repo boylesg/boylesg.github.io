@@ -31,7 +31,7 @@
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
-					background-size: 100%;
+					background-size: cover;
 				}
 				
 			</style>
@@ -710,6 +710,13 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 				<div class="note" style="flex-wrap:wrap;">
 
 					<form method="post" id="form_logout" action="login.php">
@@ -1066,7 +1073,7 @@
 	include "select_file.html";
 ?>
 										<tr>
-											<td class="cell_no_borders" colspan="2" style="width:100%;text-align:right;vertical-align:center;">
+											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
 												<input type="submit" name="submit_file" value="SAVE" />
 											</td>
 										</tr>

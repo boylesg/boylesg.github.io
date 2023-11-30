@@ -32,13 +32,15 @@
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
-					background-size: 100%;
+					background-size: cover;
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
+
 
 			
 				.faq_question

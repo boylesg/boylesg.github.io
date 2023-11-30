@@ -32,14 +32,14 @@
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
-					background-size: 100%;
+					background-size: cover;
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -78,6 +78,13 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 <?php
 				
@@ -142,6 +149,13 @@
 	
 ?>		
 
+
+
+
+
+
+
+
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>
@@ -159,12 +173,16 @@
 		
 		<!-- #BeginEditable "footer" -->
 
+
+
 		<script type="text/javascript">
 			
 			DoSetCustomer();
 			DoSetStaged();
 			
 		</script>
+
+
 
 		<!-- #EndEditable -->
 
