@@ -40,7 +40,7 @@ body
 	background-color: var(--ColorMastheadBG);
 	padding-left: var(--Padding);
 	padding-right:var(--Padding);
-	height: 210px;
+	height: 220px;
 }
 
 .logo
@@ -127,7 +127,8 @@ a.masthead_button:hover
 	color: var(--LinkColorText);
 	font-size: x-large;
 	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
+	/*font-family: Arial, Helvetica, sans-serif;*/
+	font-family: 'Concrete';
 	text-decoration: none;
 	background-color: var(--LinkColorBG);
 	padding: 0.3em;
@@ -150,10 +151,13 @@ a.masthead_button:hover
 	margin-top: 10px;
 	margin-left: 10px;
 	color: var(--LinkColorText);
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: x-large;
+	/*font-family: Arial, Helvetica, sans-serif;*/
+	font-family: 'Concrete';
+	font-size: xx-large;
 	font-weight: bold;
 	text-decoration: underline;
+	text-decoration-color: silver;
+	width: 97%;
 }
 
 .page_content
