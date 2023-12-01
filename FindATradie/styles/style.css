@@ -250,6 +250,7 @@ a.masthead_button:hover
 	margin:10px;
 	overflow:auto;
 	flex-grow:1;
+	font-size: medium;
 }
 
 .tradie_about
@@ -263,6 +264,7 @@ a.masthead_button:hover
 	margin:10px;
 	overflow:auto;
 	flex-grow:1;
+	font-size: medium;
 }
 
 .tradie_feedback

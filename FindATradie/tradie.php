@@ -38,7 +38,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -98,7 +98,7 @@
 							$row = $results->fetch_assoc();
 							if ($row)
 							{
-								echo "<div class=\"tradie_details\">\n";
+								echo "<div class=\"tradie_details\" style=\"font-size:large;\">\n";
 								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
 								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
 								echo "	<tr>\n";

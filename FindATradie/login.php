@@ -247,7 +247,7 @@
 						<input type="hidden" name="submit_login" value="LOG IN" />
 					</form>
 					
-					<div class="advert" id="advert_login" style="width:640px;height:200px;">
+					<div class="advert" id="advert_login" style="width:630px;height:200px;">
 						<?php DoInsertAdvert("login1", 180, "advert_login"); ?>
 					</div>
 					
