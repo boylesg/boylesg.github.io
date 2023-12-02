@@ -10,8 +10,6 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	$g_strEmailAddress = "gregplants@bigpond.com";
-	$g_strEmailAdmin = "Email admin at " . $g_strEmailAddress . " with this error message.";
 	$g_nCostPerMonth = 10;
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
@@ -264,7 +262,7 @@
 		}
 		catch(Exception $e)
 		{
-			PrintJavascriptLine("AlertError(\"" . $e->getMessage() . "<br/><br/>" . $g_strEmailAdmin . "\");", 2, true);
+			PrintJavascriptLine("AlertError(\"" . $e->getMessage() . "\");", 2, true);
 			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;

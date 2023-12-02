@@ -115,9 +115,12 @@
 
 	function AlertError(strMsg)
 	{
+		let strEmailAddress = "find-a-tradie@outlook.com",
+			strEmailAdmin = "Email admin at " + strEmailAddress + " with this error message...";
+		
 		swal({
 		 		title: "ERROR",
-		  		text: strMsg,
+		  		text: strMsg + "<br><br>" + strEmailAdmin,
 		  		icon: "error",
 		  		buttons: true,
 		  		closeModal: true
