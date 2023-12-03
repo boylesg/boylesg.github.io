@@ -47,7 +47,7 @@
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
-			<img class="logo" alt="" src="images/Tradie.png" width="90" />
+			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
 			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
@@ -68,6 +68,7 @@
 					?>
 					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
+					<a class="navigation_link" href="phpBB3/index.php">Forum</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
