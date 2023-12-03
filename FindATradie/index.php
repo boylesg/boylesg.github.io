@@ -39,7 +39,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -68,7 +68,7 @@
 					?>
 					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
-					<a class="navigation_link" href="phpBB3/index.php">Forum</a>
+					<a class="navigation_link" href="forum.php">Forum</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -108,13 +108,17 @@
 	}
 
 ?>
-
+				<div class="note" style="flex-wrap: wrap;">
+					<h4><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h4>
+					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member. Tradies can negotiate jobs with customers directly. 
+					Customers can pick the brains opf tradies.</p>
+				</div>
+				
 				<div class="note" style="flex-wrap: wrap;">
 					
 					<div>
 						<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
-						<h5><a href="befits.php">Click here</a> to read the benefits of becoming a member of 'Find a tradie'.</h5>
-						<h6>However you can give it a test run here...</h6>
+						<h5>However you can give it a test run here...</h5>
 					</div>
 					<form method="post" action="index.php" style="width:745px">
 						

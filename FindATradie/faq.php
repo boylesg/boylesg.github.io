@@ -44,6 +44,8 @@
 
 
 
+
+
 			
 				.faq_question
 				{
@@ -100,7 +102,7 @@
 					?>
 					<a class="navigation_link" href="faq.php">FAQ</a>
 					<a class="navigation_link" href="contact.php">Contact</a>
-					<a class="navigation_link" href="phpBB3/index.php">Forum</a>
+					<a class="navigation_link" href="forum.php">Forum</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
