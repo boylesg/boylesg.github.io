@@ -446,9 +446,13 @@
 		// New job
 		if (isset($_POST["hidden_job_id"]) && ($_POST["hidden_job_id"] == ""))
 		{
+			$bIsUrgent = "0";
+			if (isset($_POST["check_urgent"]) && ($_POST["check_urgent"] == "on"))
+				$bIsUrgent = "1";
+				
 			$results = DoInsertQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_job"], 
 										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
-										"urgent", $_POST["check_urgent"] == "on", "description", $_POST["text_description"]);
+										"urgent", (int)$bIsUrgent, "description", $_POST["text_description"]);
 			if ($results && ($results->num_rows > 0))
 			{
 				PrintJavascriptLine("AlertSuccess(\"Job has been added!\");", 2, true);
