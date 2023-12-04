@@ -952,8 +952,8 @@
 							<form method="post" action="" id="form_add_job" class="form search_form">
 								<table cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 									<tr>
-										<td class="form_table_cell" style="width:800px;"><b>Trade type</b></td>
-										<td class="form_table_cell" style="width:160px;"><b>Maximum budget</b></td>
+										<td class="form_table_cell" style="width:790px;"><b>Trade type</b></td>
+										<td class="form_table_cell" style="width:230px;"><b>Maximum budget</b></td>
 										<td class="form_table_cell" style="width:70px;"><b>Size</b></td>
 										<td class="form_table_cell" style="width:75px;"><b>Urgent</b></td>
 										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
@@ -969,7 +969,7 @@
 											<label id="trade_description_job">XXXXXXXXXXXXX</label>
 										</td>
 										<td class="form_table_cell">
-											<b>$</b>&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" size="8" maxlength="7" onkeydown="OnKeyPressDigitsOnly(event)" />
+											<b>$</b>&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" size="8" maxlength="7" required onkeydown="OnKeyPressDigitsOnly(event)" />
 										</td class="form_table_cell">
 										<td class="form_table_cell">
 											<select id="select_job_size" name="select_job_size">
@@ -983,7 +983,7 @@
 											<input type="checkbox" id="check_urgent" name="check_urgent" />
 										</td class="form_table_cell">
 										<td class="form_table_cell" >
-											<textarea id="text_description" name="text_description" maxlength="512" cols="48" rows="3"></textarea>
+											<textarea id="text_description" name="text_description" maxlength="512" cols="48" rows="3" required></textarea>
 										</td>
 									</tr>
 								</table>

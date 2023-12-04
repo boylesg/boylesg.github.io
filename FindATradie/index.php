@@ -111,7 +111,10 @@
 				<div class="note" style="flex-wrap: wrap;">
 					<h4><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h4>
 					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member. Tradies can negotiate jobs with customers directly. 
-					Customers can pick the brains opf tradies.</p>
+					Customers can pick the brains opf tradies.<br/><br/>
+					If you have an objection to getting involved with groups on facebook then you can get involved with the 
+					community in this forum instead.<br/><br/>
+					Just use the the same uername and password that you have used for 'find-a-tradie'.</p>
 				</div>
 				
 				<div class="note" style="flex-wrap: wrap;">

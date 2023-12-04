@@ -38,7 +38,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -104,6 +104,7 @@
 					<h6>Re-directing to the forum.</h6>
 				</div>
 				
+
 
 
 
