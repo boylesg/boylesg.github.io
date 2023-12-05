@@ -80,22 +80,6 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-		<div class="page_content" id="page_content0">
-
-
-
-
-
-
-
-
 <?php
 	$strResultsDisplay = "none";
 	$arrayResults = [];
@@ -108,6 +92,12 @@
 	}
 
 ?>
+				<div class="note" style="display:block;">
+					<h6>Tradies can join for 6 months, free of charge until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.</h6>
+					<br/>
+					<h6><?php echo $g_nDaysToGo; ?> days to go!</h6>
+				</div>
+				
 				<div class="note" style="flex-wrap: wrap;">
 					<h4><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h4>
 					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member - 
@@ -202,14 +192,6 @@
 						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
 					</div>
 				</div>
-
-		</div>
-
-
-
-
-
-
 
 
 				<!-- #EndEditable -->

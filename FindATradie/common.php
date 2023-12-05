@@ -15,8 +15,8 @@
 	$g_strDivClose = "</div>";
 	$g_strPaypalLive = "none";
 	$g_strPaypalTest = "block";
-
-
+	$g_dateJoinFree = new DateTime("2024-04-30");
+	$g_nDaysToGo = $g_dateJoinFree->diff( new DateTime())->days;
 	
 	
 	
