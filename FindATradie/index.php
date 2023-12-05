@@ -93,7 +93,7 @@
 
 ?>
 				<div class="note" style="display:block;">
-					<h6>Tradies can join for 6 months, free of charge until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.</h6>
+					<h6>Tradies can join for 6 months, free of charge, until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.</h6>
 					<br/>
 					<h6><?php echo $g_nDaysToGo; ?> days to go!</h6>
 				</div>

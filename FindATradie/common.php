@@ -147,7 +147,7 @@
 		}
 		echo $strOpening . $strVarName . " = " . $strVarValue . $strClosing . "<br>";
 	}
-
+	
 	function PrintJavascriptLine($strCode, $nNumIndents, $bScriptTags)
 	{
 		if ($bScriptTags)
@@ -166,6 +166,21 @@
 		}
 	}
 
+	function PrintJSAlertSuccess($strMsg, $nNumIndents)
+	{
+		PrintJavascriptLine("AlertSuccess(\"" . $strMsg . "\");", $nNumIndents, true);
+	}
+	
+	function PrintJSAlertWarning($strMsg, $nNumIndents)
+	{
+		PrintJavascriptLine("AlertWarning(\"" . $strMsg . "\");", $nNumIndents, true);
+	}
+	
+	function PrintJSAlertError($strMsg, $nNumIndents)
+	{
+		PrintJavascriptLine("AlertError(\"" . $strMsg . "\");", $nNumIndents, true);
+	}
+	
 	function PrintJavascriptLines($arrayStrCode, $nNumIndents, $bScriptTags)
 	{
 		if ($bScriptTags)
