@@ -245,7 +245,7 @@
 	$strAccountDisplay = "block";
 	
 /*	
-	DEBUG PAYPAAL RESPONSE
+	DEBUG PAYPAL RESPONSE
 	
 	$_GET["paypal"] = 12;
 	DebugPrint("_SESSION[\"username\"]", $_SESSION["username"], 2);
@@ -479,7 +479,7 @@
 			}
 		}
 	}
-	else if (isset($_GET["paypal"]))
+	else if (isset($_GET["paypal"]) && isset($_GET["PayerID"]))
 	{
 		$nNumMonths = (int)$_GET["paypal"];
 		
@@ -656,14 +656,14 @@
 		}
 	}
 	// If the session has expired
-	if (!isset($_SESSION["account_id"]))
+	if (!isset($_SESSION["account_id"]) || ($_SESSION["account_id"] == ""))
 	{
 		PrintJavascriptLine("document.location = \"login.php\";", 1, true);
 	}
 	else
 	{
 		// If a tradie account then...
-		if ($_SESSION["account_trade"] != "customer")
+		if ($_SESSION["account_trade"] != $g_nTradeIDCustomer)
 		{
 			// We need to check the expity date of their account agiants the current date...
 			$dateNow = new DateTime();
@@ -759,7 +759,7 @@
 									<div id="debug1" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 											<input type="hidden" name="cmd" value="_s-xclick" />
-											<input type="hidden" name="hosted_button_id" value="TC9NMYXTGYEZA" />
+											<input type="hidden" name="hosted_button_id" value="PVESVMVV6SGR4" />
 											<input type="hidden" name="currency_code" value="AUD" />
 											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>
@@ -803,7 +803,7 @@
 									<div id="debug12" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 											<input type="hidden" name="cmd" value="_s-xclick" />
-											<input type="hidden" name="hosted_button_id" value="WZUHD9HBFW9ZL" />
+											<input type="hidden" name="hosted_button_id" value="CSLBRUZVYDNFW" />
 											<input type="hidden" name="currency_code" value="AUD" />
 											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>
@@ -825,9 +825,9 @@
 									<div id="debug18" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 											<input type="hidden" name="cmd" value="_s-xclick" />
-											<input type="hidden" name="hosted_button_id" value="VY2EEXHBHSL8N" />
+											<input type="hidden" name="hosted_button_id" value="6GDHY53HDNLPQ" />
 											<input type="hidden" name="currency_code" value="AUD" />
-											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>		
 									</div>
 								</td>
@@ -847,9 +847,9 @@
 									<div id="debug24" style="display: <?php echo $g_strPaypalTest; ?>;">
 										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 											<input type="hidden" name="cmd" value="_s-xclick" />
-											<input type="hidden" name="hosted_button_id" value="T6CUPQ49FJC7L" />
+											<input type="hidden" name="hosted_button_id" value="5MEDPTLFQF3JU" />
 											<input type="hidden" name="currency_code" value="AUD" />
-											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+											<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 										</form>
 									</div>
 								</td>
@@ -860,12 +860,7 @@
 					
 					<div id="account" style="display:<?php echo $strAccountDisplay; ?>;">
 					
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-  <input type="hidden" name="cmd" value="_s-xclick" />
-  <input type="hidden" name="hosted_button_id" value="TC9NMYXTGYEZA" />
-  <input type="hidden" name="currency_code" value="AUD" />
-  <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-</form>						<br/><br/>
+						<br/><br/>
 						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')"><?php if (IsTradie()) echo "Browse your jobs"; else echo "Browse tradies";?></button>
 						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Post your own job</button>
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>

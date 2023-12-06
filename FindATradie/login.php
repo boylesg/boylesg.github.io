@@ -39,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
@@ -59,7 +59,7 @@
 		{
 			$row = $result->fetch_assoc();
 			$_SESSION["account_id"] = $row["id"];
-			$_SESSION["account_trade"] = $row["trade_id"];
+			$_SESSION["account_trade"] = (int)$row["trade_id"];
 			$_SESSION["account_business_name"] = $row["business_name"];
 			$_SESSION["account_first_name"] = $row["first_name"];
 			$_SESSION["account_surname"] = $row["surname"];
@@ -106,7 +106,7 @@
 	else if (isset($_POST["submit_logout"]) && (strlen($_POST["submit_logout"]) > 0))
 	{
 		$_SESSION["account_id"] = "";
-		$_SESSION["account_trade"] = "";
+		$_SESSION["account_trade"] = -1;
 		$_SESSION["account_business_name"] = "";
 		$_SESSION["account_first_name"] = "";
 		$_SESSION["account_surname"] = "";

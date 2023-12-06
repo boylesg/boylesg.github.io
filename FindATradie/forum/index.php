@@ -1,34 +1,33 @@
 <?php
 
-/**
- * This, as you have probably guessed, is the crux on which SMF functions.
- * Everything should start here, so all the setup and security is done
- * properly.  The most interesting part of this file is the action array in
- * the smf_main() function.  It is formatted as so:
- * 	'action-in-url' => array('Source-File.php', 'FunctionToCall'),
- *
- * Then, you can access the FunctionToCall() function from Source-File.php
- * with the URL index.php?action=action-in-url.  Relatively simple, no?
- *
- * Simple Machines Forum (SMF)
- *
- * @package SMF
- * @author Simple Machines https://www.simplemachines.org
- * @copyright 2023 Simple Machines and individual contributors
- * @license https://www.simplemachines.org/about/smf/license.php BSD
- *
- * @version 2.1.4
- */
-
-// Get everything started up...
-if (!isset($_SESSION["account_id"]) || ($_SESSION["account_id"] == ""))
-{
-	echo "<script type=\"text/javascript\">\n";
-	echo "	document.location.href = \"http://www.find-a-tradie.com.au/forum.php\";\n";
-	echo "</script>\n";
-}
-else
-{
+	/**
+	 * This, as you have probably guessed, is the crux on which SMF functions.
+	 * Everything should start here, so all the setup and security is done
+	 * properly.  The most interesting part of this file is the action array in
+	 * the smf_main() function.  It is formatted as so:
+	 * 	'action-in-url' => array('Source-File.php', 'FunctionToCall'),
+	 *
+	 * Then, you can access the FunctionToCall() function from Source-File.php
+	 * with the URL index.php?action=action-in-url.  Relatively simple, no?
+	 *
+	 * Simple Machines Forum (SMF)
+	 *
+	 * @package SMF
+	 * @author Simple Machines https://www.simplemachines.org
+	 * @copyright 2023 Simple Machines and individual contributors
+	 * @license https://www.simplemachines.org/about/smf/license.php BSD
+	 *
+	 * @version 2.1.4
+	 */
+	
+	session_start();
+	
+	// Get everything started up...
+	
+	if (!isset($_SESSION["account_id"]) || ($_SESSION["account_id"] == ""))
+	{
+		header("Location: http://www.find-a-tradie.com.au/forum.php", true);
+	}
 	define('SMF', 1);
 	define('SMF_VERSION', '2.1.4');
 	define('SMF_FULL_VERSION', 'SMF ' . SMF_VERSION);
@@ -458,6 +457,5 @@ else
 		// Do the right thing.
 		return call_helper($actionArray[$_REQUEST['action']][1], true);
 	}
-}
 
 ?>
