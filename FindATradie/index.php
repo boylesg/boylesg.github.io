@@ -171,7 +171,7 @@
 							</tr>
 						</table>
 					</form>
-					<div class="advert" id="advert_index" style="height: 208px; width: 484px;">
+					<div class="advert" id="advert_index" style="height: 208px; width: 100%;">
 						<?php DoInsertAdvert("index1", 180, "advert_index"); ?>
 					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">

@@ -866,6 +866,7 @@
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
 						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
 						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've given</button>
+						<button style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Your adverts</button>
 
 						<div id="tab_contents1" class="tab_content">
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
@@ -1087,6 +1088,7 @@
 									<legend>Profile image:</legend>
 									<table class="table_no_borders">
 <?php
+	$_SESSION["filename"] = $_SESSION["account_profile_filename"];
 	include "select_file.html";
 ?>
 										<tr>
@@ -1123,8 +1125,39 @@
 ?>
 						</div>
 						
+						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
+							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
+							<table  cellspacing="0" cellpadding="3" border="1" class="search_table" style="table-layout:fixed;">
+								<tr>
+									<td class="search_cell" style="width:5em;"><b>Date</b></td>
+									<td class="search_cell" style=""><b>Advert Location</b></td>
+									<td class="search_cell" style="width:8em;"><b>Cost per Month</b></td>
+									<td class="search_cell" style="width:7em;"><b>Time Period</b></td>
+									<td class="search_cell" style="width:6em;"><b>Total Cost</b></td>
+									<td class="search_cell" style="width:5em;"><b>Functions</b></td>
+								</tr>
+<?php
+
+	$bHideExpired = false;
+	$dateStart = new DateTime("2022-1-1");
+	$dateEnd = new DateTime("2100-1-1");
+	
+	if (isset($_POST["check_hide_expired"]) && ($_POST["check_hide_expired"] == "on"))
+		$bHideExpired = true;
+	if (isset($_POST["date_start"]))
+		$dateStart = new DateTime($_POST["date_start"]);
+	if (isset($_POST["date_end"]))
+		$dateEnd = new DateTime($_POST["date_end"]);
+	
+	DoDisplayAdverts($_SESSION["account_id"], $dateStart, $dateEnd, $bHideExpired);
+?>
+								<tr><td colspan="6">&nbsp;</td></tr>
+							</table>
+							
+						</div>
+						
 					</div>
-					
+
 				</div>
 
 <script type="text/javascript">

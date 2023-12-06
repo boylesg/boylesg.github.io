@@ -39,7 +39,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 			<?php
 
@@ -146,44 +146,12 @@
 					return $bResult;
 				}
 				
-				
-				
-				
-				//********************************************************
-				//********************************************************
-				//**
-				//** START DEBUGGING & TESTING
-				//**
-				//********************************************************
-				//********************************************************
-				//$_GET["location"] = "login1";
-				//$_SESSION["account_id"] = "1";
-				//$_SESSION["cost_per_month"] = "10";
-				//$_GET["advert_paid"] = true;
-				//$_SESSION["space_code"]  = "index1";
-				
-				//unset($_SESSION["account_id"]);
-				//unset($_SESSION["text_months"]);
-				//unset($_SESSION["space_id"]);
-				//unset($_SESSION["space_code"]);
-				//unset($_SESSION["cost_per_month"]);
-				//unset($_SESSION["image_file_name"]);
-				
-				//unset($_GET["advert_paid"]);
-				//unset($_POST["submit_advert"]);
-				
-				//********************************************************
-				//********************************************************
-				//**
-				//** END DEBUGGING & TESTING
-				//**
-				//********************************************************
-				//********************************************************
-				
-				
+								
 				
 				
 				$g_strPaypalRowDisplay = "none";
+				if (!isset($_SESSION["edit_advert"]))
+					$_SESSION["edit_advert"] = false;
 				
 				if (isset($_GET["location"]) && !isset($_POST["submit_advert"]) && !isset($_GET["advert_paid"]))
 				{
@@ -204,6 +172,7 @@
 					$_SESSION["text_months"] = $_POST["text_months"];
 					$_SESSION["total_cost"] = (int)$_SESSION["text_months"] * (int)$_SESSION["cost_per_month"];
 					$_SESSION["text_desc"] = $_POST["text_desc"];
+					$_SESSION["filename"] = $_FILES["file"]["name"];
 					
 					$strSpaceID = GetSpaceID($_POST["select_space"]);
 					if ($strSpaceID != "")
@@ -246,28 +215,41 @@
 					{
 						$_SESSION["text_months"] = $_POST["text_months"];
 							
-						$strQuery = "INSERT INTO adverts (member_id, space_id, text, image_name, expiry_date) VALUES (" . 
-									AppendSQLInsertValues($_SESSION["account_id"], (int)$_SESSION["space_id"], $_POST["text_desc"], $_SESSION["image_file_name"], $dateExpiry->format("Y-m-d")) . 
-										")";
-
-						$results = DoQuery($g_dbFindATradie, $strQuery);
-						if ($results)
+						if ($_SESSION["edit_advert"])
 						{
-						
-							PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
-							$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_file_name", $_SESSION["image_file_name"], "id", $_SESSION["account_id"]);
-							if ($results && ($results->num_rows > 0))
-							{
-							}
-							else
-							{
-								PrintJavascriptLine("AlertError(\"Could not update logo file name!\");", 3, true);
-							}
+							$result = DoUpdateQuery2($g_dbFindATradie, "adverts", "text", $_POST["text_desc"], "image_name", $_SESSION["image_file_name"], "id", $_SESSION["advert_id"]);
+							unset($_SESSION["space_code"]);
+							unset($_SESSION["advert_id"]);
+							unset($_SESSION["edit_advert"]);
+							unset($_SESSION["space_description"]);
+							unset($_SESSION["text_desc"]);
+							$_SESSION["filename"] = "";
 						}
 						else
 						{
-							PrintJavascriptLine("AlertError(\"Your advert could not be saved to the database!\");", 3, true);
-							DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);
+							$strQuery = "INSERT INTO adverts (member_id, space_id, text, image_name, expiry_date) VALUES (" . 
+										AppendSQLInsertValues($_SESSION["account_id"], (int)$_SESSION["space_id"], $_POST["text_desc"], $_SESSION["image_file_name"], $dateExpiry->format("Y-m-d")) . 
+											")";
+	
+							$results = DoQuery($g_dbFindATradie, $strQuery);
+							if ($results)
+							{
+							
+								PrintJavascriptLine("AlertSuccess(\"Your advert was saved to the database and wil expire on " . $dateExpiry->format("d-m-Y") . ".\");", 3, true);
+								$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_file_name", $_SESSION["image_file_name"], "id", $_SESSION["account_id"]);
+								if ($results && ($results->num_rows > 0))
+								{
+								}
+								else
+								{
+									PrintJavascriptLine("AlertError(\"Could not update logo file name!\");", 3, true);
+								}
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Your advert could not be saved to the database!\");", 3, true);
+								DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);
+							}
 						}
 					}
 					else
@@ -276,21 +258,25 @@
 						DoCleanupAdvert($g_dbFindATradie, $strTargetPath, $dateExpiry);			
 					}
 				}
-				
-				function GetImageAltText()
+				else if (isset($_GET["advert_id"]))
 				{
-					$strAltText = "";
-					
-					if (isset($_FILES["file_name"])) 
-						$strAltText = $_FILES["file_name"]["name"]; 
-					else if (isset($_SESSION["account_logo_filename"])) 
-						$strAltText = $_SESSION["account_logo_filename"]; 
-					else 
-						$strAltText = "IMAGE PREVIEW";
-						
-					return $strAltText;
+					$result = DoFindQuery1($g_dbFindATradie, "adverts", "id", $_GET["advert_id"]);
+					if ($result && ($result->num_rows > 0))
+					{
+						if ($row = $result->fetch_assoc())
+						{
+							$rowAdvert = GetAdvert($_GET["advert_id"]);
+							$rowAdvertSpace = GetAdvertSpace($rowAdvert["space_id"]);
+							$_SESSION["space_code"] = $rowAdvertSpace["space_code"];
+							$_SESSION["advert_id"] = $_GET["advert_id"];
+							$_SESSION["edit_advert"] = true;
+							$_SESSION["space_description"] = $rowAdvertSpace["space_description"];
+							$_SESSION["text_desc"] = $rowAdvert["text"];
+							$_SESSION["filename"] = $rowAdvert["image_name"];
+						}
+					}
 				}
-
+				
 			?>
 			<script type="text/javascript">
 			

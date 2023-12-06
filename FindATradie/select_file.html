@@ -6,8 +6,9 @@
 			
 		if (isset($_FILES["file_image_name"])) 
 			$strImageFileName = $_FILES["file_image_name"]["name"]; 
-		else if (isset($_SESSION["account_profile_filename"])) 
-			$strImageFileName = $_SESSION["account_profile_filename"]; 
+		else if (isset($_SESSION["filename"])) 
+			$strImageFileName = $_SESSION["filename"]; 
+ 
 		
 		return $strImageFileName;
 	}

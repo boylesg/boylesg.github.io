@@ -302,7 +302,7 @@
 		return $result;
 	}
 
-	function DoFindAllQuery($dbConnection, $strTableName, $strCondition = "")
+	function DoFindAllQuery($dbConnection, $strTableName, $strCondition = "", $strOrderBy = "")
 	{
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName;
@@ -313,47 +313,91 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-	function DoFindQuery0($dbConnection, $strTableName, $strCondition = "")
+	function DoFindQuery0($dbConnection, $strTableName, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName;
 
 		if (strlen($strCondition) > 0)
 			$g_strQuery = $g_strQuery . " WHERE " . $strCondition;
-
+		if (strlen($strOrderBy) > 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+			{
+				$g_strQuery = $g_strQuery . " ASC";
+			}
+			else
+			{
+				$g_strQuery = $g_strQuery . " DESC";
+			}
+		}
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "")
+	function DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
 
 		if (strlen($strCondition) > 0)
 			$g_strQuery = $g_strQuery . " AND " . $strCondition;
-
+		if (strlen($strOrderBy) > 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+			{
+				$g_strQuery = $g_strQuery . " ASC";
+			}
+			else
+			{
+				$g_strQuery = $g_strQuery . " DESC";
+			}
+		}
 		return DoQuery($dbConnection, $g_strQuery);
 	}	
 	
-	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strCondition = "")
+	function DoFindQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{	
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'";
 	
 		if (strlen($strCondition) > 0)
 			$g_strQuery = $g_strQuery . " AND " . $strCondition;
-
+		if (strlen($strOrderBy) > 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+			{
+				$g_strQuery = $g_strQuery . " ASC";
+			}
+			else
+			{
+				$g_strQuery = $g_strQuery . " DESC";
+			}
+		}
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strCondition = "")
+	function DoFindQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{	
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'";		
 	
 		if (strlen($strCondition) > 0)
 			$g_strQuery = $g_strQuery . " AND " . $strCondition;
-
+		if (strlen($strOrderBy) > 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+			{
+				$g_strQuery = $g_strQuery . " ASC";
+			}
+			else
+			{
+				$g_strQuery = $g_strQuery . " DESC";
+			}
+		}
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
@@ -842,6 +886,36 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function GetAdvert($strID)
+	{
+		global $g_dbFindATradie;
+		$row = NULL;
+		
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $strID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+			}
+		}
+		return $row;
+	}
+	
+	function GetAdvertSpace($strSpaceID)
+	{
+		global $g_dbFindATradie;
+		$row = NULL;
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+			}
+		}
+		return $row;
+	}
+	
 	function GetSpaceID($strSpaceCode)
 	{
 		global $g_dbFindATradie;
@@ -857,13 +931,14 @@
 		}
 		return $strSpaceID;
 	}
-	
+		
 	function DoInsertAdvert($strSpaceCode, $nImageHeight, $strIDAdvertDiv)
 	{
 		global $g_dbFindATradie;
 		$dateNow = new DateTime();
 		
-		$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode) , "expiry_date > '" . $dateNow->format("Y-m-d") . "'");		
+		$strSpaceID = GetSpaceID($strSpaceCode);
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", $strSpaceID, "expiry_date > '" . $dateNow->format("Y-m-d") . "'");		
 		if ($results && ($results->num_rows > 0))
 		{
 			$row = $results->fetch_assoc(); 
@@ -905,6 +980,58 @@
 					unlink($strImageFileName);
 					//DebugPrint("deleting image file", $strImageFileName, 6);
 				}
+			}
+		}
+	}
+	
+	function DoDisplayAdverts($strMemberID, $dateStart, $dateEnd, $bHideExpired)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$strSortBy = "";
+		$result = NULL;
+						
+		$result = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $strMemberID, "(expiry_date>='" . 
+											$dateStart->format("Y-m-d") . "') AND (expiry_date <='" . $dateEnd->format("Y-m-d") . "')", 
+											"expiry_date", !$bHideExpired);
+
+		if ($result && ($result->num_rows > 0))
+		{
+			while ($row = $result->fetch_assoc())
+			{
+				$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
+				
+				echo "	<tr>\n";
+				echo "		<td>";
+				$dateAdded = new DateTime($row["date_added"]);
+				echo $dateAdded->format("d/m/Y");
+				echo "</td>\n";
+				
+				echo "		<td>";
+				echo $rowAdvertSpace["space_description"];
+				echo "</td>\n";
+				
+				echo "		<td>";
+				echo "$" . sprintf("%d", $rowAdvertSpace["cost_per_month"]);
+				echo "</td>\n";
+				
+				echo "		<td>";
+				$dateExpires = new DateTime($row["expiry_date"]);
+				$interval = $dateExpires->diff($dateAdded);
+				$nMonths = (int)$interval->format("%m months");
+				echo $nMonths;
+				echo "</td>\n";
+
+				echo "		<td>";
+				echo "$" . $nMonths * (int)$rowAdvertSpace["cost_per_month"];
+				echo "</td>\n";
+				
+				echo "		<td>";
+				$dateNow = new DateTime();
+				if ($dateExpires > $dateNow)
+					echo "<button id=\"button_edit_advert\" title=\"Edit your advert\" onclick=\"document.location = 'advert.php?advert_id=" . $row["id"] . "'\"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>";
+				echo "</td>\n";
+				echo "</tr>\n";
 			}
 		}
 	}
