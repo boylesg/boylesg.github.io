@@ -1110,6 +1110,8 @@
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table cellspacing="0" cellpadding="10">
 <?php
@@ -1126,6 +1128,32 @@
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
+							
+							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
+								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">
+									<tr>
+										<td class="form_table_cell" style="text-align:right;width:6em;">Start Date</td>
+										<td class="form_table_cell" style="text-align:left;"><input name="date_start" type="date" value="<?php if (isset($_POST["date_start"])) echo $_POST["date_start"]; ?>" /></td>
+										<td class="form_table_cell" style="text-align:right;width:6em;">End Date</td>
+										<td class="form_table_cell" style="text-align:left;"><input name="date_end" type="date" value="<?php if (isset($_POST["date_end"])) echo $_POST["date_end"]; ?>" /></td>
+										<td class="form_table_cell" style="text-align:right;width:10em;">Advertising Space</td>
+										<td class="form_table_cell" style="text-align:left;">
+											<select name="Select_advertising_space">
+												<?php 
+													$strSpaceCode = "";
+													if (isset($_POST["Select_advertising_space"]))
+														$strSpaceCode = $_POST["Select_advertising_space"];
+													DoGenerateAdvertSpaceOptions($strSpaceCode); 
+												?>
+											</select></td>
+										<td class="form_table_cell" style="text-align:right;width:11em;">Hide Expired Adverts</td>
+										<td class="form_table_cell" style="text-align:left;"><input name="checkbox_hide_expired_adverts" type="checkbox"<?php if (isset($_POST["checkbox_hide_expired_adverts"]) && ($_POST["checkbox_hide_expired_adverts"] == "on")) echo " checked"; ?>/></td>
+										<td class="form_table_cell" style="text-align:right;width:8em;"><input name="submit_search_adverts" type="submit" value="SEARCH" /></td>
+									</tr>
+								</table>
+							</form>
+							
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table  cellspacing="0" cellpadding="3" border="1" class="search_table" style="table-layout:fixed;">
 								<tr>
@@ -1141,15 +1169,20 @@
 	$bHideExpired = false;
 	$dateStart = new DateTime("2022-1-1");
 	$dateEnd = new DateTime("2100-1-1");
+	$strSpaceID = "";
 	
-	if (isset($_POST["check_hide_expired"]) && ($_POST["check_hide_expired"] == "on"))
-		$bHideExpired = true;
-	if (isset($_POST["date_start"]))
-		$dateStart = new DateTime($_POST["date_start"]);
-	if (isset($_POST["date_end"]))
-		$dateEnd = new DateTime($_POST["date_end"]);
-	
-	DoDisplayAdverts($_SESSION["account_id"], $dateStart, $dateEnd, $bHideExpired);
+	if (isset($_POST["submit_search_adverts"]))
+	{
+		if (isset($_POST["checkbox_hide_expired_adverts"]) && ($_POST["checkbox_hide_expired_adverts"] == "on"))
+			$bHideExpired = true;
+		if (isset($_POST["date_start"]))
+			$dateStart = new DateTime($_POST["date_start"]);
+		if (isset($_POST["date_end"]))
+			$dateEnd = new DateTime($_POST["date_end"]);
+		if (isset($_POST["Select_advertising_space"]))
+			$strSpaceID = $_POST["Select_advertising_space"];
+	}
+	DoDisplayAdverts($_SESSION["account_id"], $strSpaceID, $dateStart, $dateEnd, $bHideExpired);
 ?>
 								<tr><td colspan="6">&nbsp;</td></tr>
 							</table>
@@ -1191,6 +1224,10 @@
 	else if (isset($_POST["submit_feedback_edit"]))
 	{
 		PrintJavascriptLine("DoOpenTab(\"tab_button5\", \"tab_contents5\");", 1, true);
+	}
+	else if (isset($_POST["submit_search_adverts"]))
+	{
+		PrintJavascriptLine("DoOpenTab(\"tab_button6\", \"tab_contents6\");", 1, true);
 	}
 	else
 	{

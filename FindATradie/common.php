@@ -886,6 +886,23 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function DoGenerateAdvertSpaceOptions($strSpaceCode)
+	{
+		global $g_dbFindATradie;
+		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces");
+
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				echo "<option ";
+				if ($strSpaceCode == $row["space_code"])
+					echo "selected ";
+				echo "value=\"" . $row["space_code"] . "\">" . $row["space_description"] . "</option>\n";
+			}
+		}
+	}
+	
 	function GetAdvert($strID)
 	{
 		global $g_dbFindATradie;
@@ -984,16 +1001,22 @@
 		}
 	}
 	
-	function DoDisplayAdverts($strMemberID, $dateStart, $dateEnd, $bHideExpired)
+	function DoDisplayAdverts($strMemberID, $strSpaceID, $dateStart, $dateEnd, $bHideExpired)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$strSortBy = "";
 		$result = NULL;
+		$nGrandTotal = 0;
 						
-		$result = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $strMemberID, "(expiry_date>='" . 
-											$dateStart->format("Y-m-d") . "') AND (expiry_date <='" . $dateEnd->format("Y-m-d") . "')", 
-											"expiry_date", !$bHideExpired);
+		if ($strSpaceID == "")
+			$result = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $strMemberID, "(expiry_date>='" . 
+												$dateStart->format("Y-m-d") . "') AND (expiry_date <='" . $dateEnd->format("Y-m-d") . "')", 
+												"expiry_date", !$bHideExpired);
+		else
+			$result = DoFindQuery2($g_dbFindATradie, "adverts", "member_id", $strMemberID, "space_id", $strSpaceID, "(expiry_date>='" . 
+												$dateStart->format("Y-m-d") . "') AND (expiry_date <='" . $dateEnd->format("Y-m-d") . "')", 
+												"expiry_date", !$bHideExpired);			
 
 		if ($result && ($result->num_rows > 0))
 		{
@@ -1024,12 +1047,19 @@
 
 				echo "		<td>";
 				echo "$" . $nMonths * (int)$rowAdvertSpace["cost_per_month"];
+				$nGrandTotal += $nMonths * (int)$rowAdvertSpace["cost_per_month"];
 				echo "</td>\n";
 				
 				echo "		<td>";
 				$dateNow = new DateTime();
 				if ($dateExpires > $dateNow)
 					echo "<button id=\"button_edit_advert\" title=\"Edit your advert\" onclick=\"document.location = 'advert.php?advert_id=" . $row["id"] . "'\"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>";
+				echo "</td>\n";
+				echo "</tr>\n";
+				echo "<tr>\n";
+				echo "<td colspan=\"4\" style=\"text-align:right;\"><b>Grand Total</b></td>\n";
+				echo "<td colspan=\"2\">";
+				echo sprintf("$%d", $nGrandTotal);
 				echo "</td>\n";
 				echo "</tr>\n";
 			}

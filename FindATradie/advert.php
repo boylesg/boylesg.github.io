@@ -50,7 +50,7 @@
 					$strID = "";
 					$strCode = "";
 					$strDesc = "";
-
+			
 					if ($strSpaceCode != "")
 					{
 						$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "space_code", $strSpaceCode);
@@ -97,23 +97,6 @@
 						$nCost = "0";
 						
 					return $nCost;
-				}
-				
-				function DoGenerateAdvertSpaceOptions($strSpaceCode)
-				{
-					global $g_dbFindATradie;
-					$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces");
-			
-					if ($results && ($results->num_rows > 0))
-					{
-						while ($row = $results->fetch_assoc())
-						{
-							echo "<option ";
-							if ($strSpaceCode == $row["space_code"])
-								echo "selected ";
-							echo "value=\"" . $row["space_code"] . "\">" . $row["space_description"] . "</option>\n";
-						}
-					}
 				}
 				
 				function DoGenerateAdvertCostMap()
