@@ -21,7 +21,6 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
-
 			
 				body 
 				{
@@ -29,10 +28,13 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
@@ -80,6 +82,13 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 <?php
 	$strResultsDisplay = "none";
 	$arrayResults = [];
@@ -92,10 +101,13 @@
 	}
 
 ?>
-				<div class="note" style="display:block;">
-					<h6>Tradies can join for 6 months, free of charge, until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.</h6>
-					<br/>
-					<h6><?php echo $g_nDaysToGo; ?> days to go!</h6>
+				<div class="advert" id="advert_index1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
+				</div>
+				<div class="note" style="display:block;font-weight:bold;font-size:medium;">
+					Tradies can join for 6 months, free of charge, until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.
+					&nbsp;&nbsp;
+					<?php echo $g_nDaysToGo; ?> days to go!
 				</div>
 				
 				<div class="note" style="flex-wrap: wrap;">
@@ -171,8 +183,8 @@
 							</tr>
 						</table>
 					</form>
-					<div class="advert" id="advert_index" style="height: 208px; width: 100%;">
-						<?php DoInsertAdvert("index1", 180, "advert_index"); ?>
+					<div class="advert" id="advert_index2" style="height: 208px; width: 100%;">
+						<?php DoInsertAdvert("index2", 180, "advert_index2"); ?>
 					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
@@ -192,6 +204,12 @@
 						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
 					</div>
 				</div>
+
+
+
+
+
+
 
 
 				<!-- #EndEditable -->

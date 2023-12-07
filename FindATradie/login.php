@@ -21,6 +21,7 @@
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 			<style>
+
 			
 				body 
 				{
@@ -28,10 +29,13 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
@@ -244,11 +248,15 @@
 								<td style="text-align:right;" class="cell_no_borders"><br/><input type="button" id="submit_login" name="submit_login" value="LOG IN" onclick="OnClickButtonSubmit()"/></td>
 							</tr>
 						</table>
+						<br/><br/>Your password and username will be encrypted when you click the 'login' button.
 						<input type="hidden" name="submit_login" value="LOG IN" />
 					</form>
 					
-					<div class="advert" id="advert_login" style="width:630px;height:200px;">
-						<?php DoInsertAdvert("login1", 180, "advert_login"); ?>
+					<div class="advert" id="advert_login1" style="width:630px;height:240px;">
+						<?php DoInsertAdvert("login1", 180, "advert_login1"); ?>
+					</div>
+					<div class="advert" id="advert_login2" style="width:1250px;height:300px;margin-top:20px;margin-left:0px;margin-right:0px;">
+						<?php DoInsertAdvert("login2", 180, "advert_login2"); ?>
 					</div>
 					
 				</div>	

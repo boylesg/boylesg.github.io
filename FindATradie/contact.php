@@ -29,17 +29,20 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -94,6 +97,14 @@
 		mail($g_strEmailAddress, $_POST["select_about"], $_POST["hidden_member_id"] . ", " . $_POST["hidden_member_name"] . "\r\n\r\n" . $_POST["text_message"], "From: <" . $_POST["hidden_email"] . ">\r\n");
 	}
 ?>
+				<div class="advert" id="advert_contact1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("contact1", 70, "advert_contact1"); ?>
+				</div>
+
+				<div class="advert" id="advert_contact2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("contact2", 70, "advert_contact2"); ?>
+				</div>
+				
 				<div class="note" style="flex-wrap:wrap;">
 
 					<form method="post" action="" id="form_contact">
@@ -134,6 +145,14 @@
 
 				</div>
 
+				<div class="advert" id="advert_contact3" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("contact3", 70, "advert_contact3"); ?>
+				</div>
+
+				<div class="advert" id="advert_contact4" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("contact4", 70, "advert_contact4"); ?>
+				</div>
+				
 
 
 

@@ -29,17 +29,20 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -87,6 +90,14 @@
 
 
 
+				<div class="advert" id="advert_benefits1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("benefits1", 70, "advert_benefits1"); ?>
+				</div>
+
+				<div class="advert" id="advert_benefits2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("benefits2", 70, "advert_benefits2"); ?>
+				</div>
+				
 				<div class="note" style="float: left; margin-left: 45px;width:1200px; display: block;">
 					<p>
 						<b><u>www.find-a-tradie.com.au</u></b> uses a mutual trust system like <b>eBay</b>, with both tradies and 

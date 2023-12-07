@@ -28,10 +28,13 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
@@ -736,6 +739,14 @@
 
 				<div class="note" style="flex-wrap:wrap;">
 
+					<div class="advert" id="advert_account1" style="height: 80px; width: 95%;">
+						<?php DoInsertAdvert("account1", 70, "advert_account1"); ?>
+					</div>
+
+					<div class="advert" id="advert_account2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+						<?php DoInsertAdvert("account2", 70, "advert_account2"); ?>
+					</div>
+					
 					<form method="post" id="form_logout" action="login.php">
 						<input type="submit" class="button" id="submit_logout" name="submit_logout" value="LOG OUT" />
 					</form>
@@ -1162,6 +1173,7 @@
 									<td class="search_cell" style="width:8em;"><b>Cost per Month</b></td>
 									<td class="search_cell" style="width:7em;"><b>Time Period</b></td>
 									<td class="search_cell" style="width:6em;"><b>Total Cost</b></td>
+									<td class="search_cell" style="width:6em;"><b>Clicks</b></td>
 									<td class="search_cell" style="width:5em;"><b>Functions</b></td>
 								</tr>
 <?php
@@ -1184,7 +1196,7 @@
 	}
 	DoDisplayAdverts($_SESSION["account_id"], $strSpaceID, $dateStart, $dateEnd, $bHideExpired);
 ?>
-								<tr><td colspan="6">&nbsp;</td></tr>
+								<tr><td colspan="7">&nbsp;</td></tr>
 							</table>
 							
 						</div>

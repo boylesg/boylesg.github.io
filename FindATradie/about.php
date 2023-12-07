@@ -29,17 +29,20 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -93,6 +96,14 @@
 
 				?>
 
+				<div class="advert" id="advert_about1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("about1", 70, "advert_about1"); ?>
+				</div>
+
+				<div class="advert" id="advert_about2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("about2", 70, "advert_about2"); ?>
+				</div>
+				
 				<div class="note" style="overflow-x:auto;overflow-y:visible;">
 					<h6><b>Who created <u>www.find-a-tradie.com.au?</u></b></h6>
 					<p>

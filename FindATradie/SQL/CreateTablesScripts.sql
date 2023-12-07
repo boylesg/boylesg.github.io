@@ -194,7 +194,7 @@ CREATE TABLE `members` (
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `profile_filename`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `logo_filename`, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
+INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `profile_filename`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `adverts``, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
 (1, 52, 'Greg\'s Native Landscapes', 'Greg', 'Boyles', NULL, '51 824 753 556', 'Sole trader', 'Electrical license\r\nClass A\r\nNumber: 8743895324', 'Ecological weed control\r\nLow maintenance\r\nDrought tolerant\r\nIrrigation systems\r\nSmall retaining walls\r\nSmall tree removal\r\nGeneral pruning\r\nBush tucker gardens\r\nSmall ornamental billabongs\r\nNative lawns', 0000000120, 0000005000, 'Up to 50', 0000000100, 'Logo.jpg', 'Unit 3, building 6(Cooper)', '56 Derby Drive', 'EPPING', 'VIC', '3076', '94013696', '0455328886', 'gregplants@bigpond.com', 'gregaryb', 'password', '2024-11-08', '2023-11-07 11:25:49'),
 (11, 59, NULL, 'Albus', 'Dumbledore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '38 Harris Street', 'Terip Terip', 'VIC', '3179', '94012348', '0414567980', 'albus.dumbledore@gmail.com', 'dumbledorea', 'password', NULL, '2023-11-20 06:20:23'),
 (12, 59, NULL, 'Ronald', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11 Boughtman Street', 'Notting Hill', 'VIC', '3168', '94012846', '0414284527', 'ronald.weasley@gmail.com', 'weasleyr', 'password', NULL, '2023-11-20 06:22:07'),
@@ -428,6 +428,20 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+-- phpMyAdmin SQL Dump
+-- version 5.1.1deb5ubuntu1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Dec 07, 2023 at 06:47 PM
+-- Server version: 8.0.35-0ubuntu0.22.04.1
+-- PHP Version: 8.1.2-1ubuntu2.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -446,7 +460,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `advert_spaces` (
   `id` int UNSIGNED NOT NULL,
   `space_code` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `space_description` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `space_description` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cost_per_month` int UNSIGNED NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -456,7 +470,21 @@ CREATE TABLE `advert_spaces` (
 
 INSERT INTO `advert_spaces` (`id`, `space_code`, `space_description`, `cost_per_month`) VALUES
 (1, 'index1', 'Index page, beside search form', 20),
-(2, 'login1', 'Login page, beside login form', 10);
+(2, 'login1', 'Login page, beside login form', 10),
+(3, 'login2', 'Below the login form', 20),
+(4, 'index2', 'Top of home page', 10),
+(5, 'account1', 'Top of account page', 50),
+(6, 'account2', 'Second from top of account page', 50),
+(19, 'about1', 'Top of about page', 5),
+(20, 'about', 'Second from top of about page', 5),
+(21, 'faq1', 'Top of FAQ page', 10),
+(22, 'faq2', 'Second from top of FAQ page', 10),
+(23, 'benefit1', 'Top of benefit page', 10),
+(24, 'benefit2', 'Second from top of benefit page', 10),
+(25, 'contact1', 'Top of comtact page', 5),
+(26, 'contact2', 'Second from top of contact page', 10),
+(27, 'contact3', 'Second from bottom of contact page', 10),
+(28, 'contact4', 'Bottom of contact page', 10);
 
 --
 -- Indexes for dumped tables
@@ -477,7 +505,7 @@ ALTER TABLE `advert_spaces`
 -- AUTO_INCREMENT for table `advert_spaces`
 --
 ALTER TABLE `advert_spaces`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

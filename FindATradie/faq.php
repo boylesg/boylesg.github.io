@@ -29,16 +29,20 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
 
 
 
@@ -123,6 +127,14 @@
 
 
 
+				<div class="advert" id="advert_faq1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("faq1", 70, "advert_faq1"); ?>
+				</div>
+
+				<div class="advert" id="advert_faq2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("faq2", 70, "advert_faq2"); ?>
+				</div>
+				
 				<div class="note" style="display:block;overflow-x:auto;overflow-y:visible;">
 
 					<ul>						<hr/><li class="faq_question">

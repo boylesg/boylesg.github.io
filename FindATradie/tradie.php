@@ -28,17 +28,20 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
+					background-color:#A0B6C5;
+					/*
 					background-image: url('images/background.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
+					*/
 				}
 				
 			</style>
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -178,6 +181,35 @@
 							}
 						}
 					}
+					
+					if (isset($_GET["advert_id"]))
+					{
+						$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $_GET["advert_id"]);
+						if ($results && ($results->num_rows > 0))
+						{
+							if ($row = $results->fetch_assoc())
+							{
+								$nNumClicks = (int)$row["number_clicks"] + 1;
+								$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "number_clicks", $nNumClicks, "id", $_GET["advert_id"]);
+								if ($results)
+								{
+								}
+								else
+								{
+									PrintJSAlertError("Could not increment number of clicks for advert with ID '" . $_GET["advert_id"] . "'!");
+								}
+							}
+							else
+							{
+								PrintJSAlertError("Could not fetch advert record with ID '" . $_GET["advert_id"] . "'!");
+							}
+						}
+						else
+						{
+							PrintJSAlertError("Could not find advert with ID '" . $_GET["advert_id"] . "'!");
+						}
+					}
+
 				?>
 			</div>
 		</div>
