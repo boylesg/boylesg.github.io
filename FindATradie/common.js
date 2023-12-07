@@ -15,15 +15,37 @@
 	//******************************************************************************
 	//******************************************************************************
 			
-	function DoEncrypt(strPlainText, strKey)
+	function GetEncryptionKey()
 	{
-		return CryptoJSAesJson.encrypt(strPlainText, strKey);
+		$strKey = "";
+		
+		let strAllCookies = decodeURIComponent(document.cookie),
+			arrayCookies = strAllCookies.split(';');
+		
+		for (let nI = 0; nI < arrayCookies.length; nI++) 
+		{
+			while (arrayCookies[nI].charAt(0) == ' ')
+			{
+				arrayCookies[nI] = arrayCookies[nI].substring(1);
+			}
+			if (arrayCookies[nI].includes("encryption_key"))
+			{
+				let nJ = arrayCookies[nI].indexOf("=") + 1;
+				$strKey = arrayCookies[nI].substring(nJ);
+			}
+		}						
+		return $strKey;
+	}
+	
+	function DoEncrypt(strPlainText)
+	{
+		return CryptoJSAesJson.encrypt(strPlainText, GetEncryptionKey());
 		//return btoa(strPlainText);
 	}
 	
-	function DoDecrypt(strEncryptedText, strKey)
+	function DoDecrypt(strEncryptedText)
 	{
-		return CryptoJSAesJson.decrypt(strEncryptedText, strKey);
+		return CryptoJSAesJson.decrypt(strEncryptedText, GetEncryptionKey());
 		//atob(strEncryptedText);
 	}
 	

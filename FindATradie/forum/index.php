@@ -21,7 +21,7 @@
 	 */
 	
 	session_start();
-	
+
 	// Get everything started up...
 	
 	if (!isset($_SESSION["account_id"]) || ($_SESSION["account_id"] == ""))

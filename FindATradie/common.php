@@ -28,9 +28,11 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
-	include "CryptoJSAES.php";
+	require_once "CryptoJSAES.php";
 	$g_strKey = "dPRBqi32EH7LgfxuhWXm";
-		
+	
+	setcookie("encryption_key", $g_strKey, 0, "/");
+	
 	function DoAESEncrypt($strPlainText)
 	{
 		global $g_strKey;

@@ -56,7 +56,7 @@
 	if (isset($_POST["submit_login"]))
 	{
 		$_SESSION["account_username"] = DoAESDecrypt($_POST["text_username"]);
-		$_SESSION["account_password"] = DoAESDecrypt($_POST["text_password"]);
+		$_SESSION["account_password"] = $_POST["text_password"];
 		$strQuery = "SELECT * FROM members WHERE username='" . $_SESSION["account_username"] . "' OR email='" . $_SESSION["account_username"] . "' AND password='" . $_SESSION["account_password"] . "'";
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result->num_rows == 1)
@@ -298,8 +298,8 @@
 						
 						if (textUsername && textPassword)
 						{
-							textUsername.value = DoEncrypt(textUsername.value, localStorage.getItem("LOREM"));
-							textPassword.value = DoEncrypt(textPassword.value, localStorage.getItem("LOREM"));
+							textUsername.value = DoEncrypt(textUsername.value);
+							textPassword.value = DoEncrypt(textPassword.value);
 							DoGetInput("form_login").submit();
 						}
 					}

@@ -517,8 +517,8 @@
 	
 	function DoFormSubmitAll()
 	{
-		DoGetInput("htext_username").value = DoEncrypt(DoGetInput("text_username"), localStorage.getItem("LOREM"));
-		DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password"), localStorage.getItem("LOREM"));
+		DoGetInput("htext_username").value = DoEncrypt(DoGetInput("text_username"));
+		DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password"));
 		if (!g_bIsCustomer)
 		{
 			DoCopySelectInput("select_trade", "hselect_trade");

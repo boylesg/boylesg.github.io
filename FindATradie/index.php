@@ -90,6 +90,7 @@
 
 
 <?php
+
 	$strResultsDisplay = "none";
 	$arrayResults = [];
 

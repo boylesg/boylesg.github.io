@@ -42,7 +42,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -126,7 +126,7 @@
 		else
 		{
 			$strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
-							"phone, mobile, email, username password expiry_date) VALUES (" .
+							"phone, mobile, email, username, password, expiry_date) VALUES (" .
 							AppendSQLInsertValues("59", $_POST["text_first_name"], $_POST["text_surname"], $_POST["text_unit"],  
 								$_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  $_POST["text_postcode"],  
 								$_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], $_POST["text_username"], 
