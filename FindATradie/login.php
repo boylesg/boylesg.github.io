@@ -168,26 +168,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
-			<a class="masthead_button" href="login.php">LOG IN</a>
+			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
+			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
+			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php">Home</a>
-				<a class="navigation_link" href="benefits.php">Benefits</a>
-				<a class="navigation_link" href="about.php">About</a>
+				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
+				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
+				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\">Account</a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php">FAQ</a>
-					<a class="navigation_link" href="contact.php">Contact</a>
-					<a class="navigation_link" href="forum.php">Forum</a>
+					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
+					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
+					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>

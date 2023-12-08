@@ -71,13 +71,16 @@ body
 
 .masthead_button
 {
-	display: inline-block;
+	/*display: inline-block;*/
 	position: relative;
-	background-color: silver;
-	color: rgb(100, 100, 100);
+	cursor: pointer;
 	float: right;
 	margin-top: 3.6em;
 	margin-right: 3em;
+	opacity: 1.0;
+	/*
+	background-color: silver;
+	color: rgb(100, 100, 100);
 	font-size: small;
 	font-weight: 800;
 	font-family: Arial, Helvetica, sans-serif;
@@ -92,13 +95,14 @@ body
 	border-left-color: rgb(220, 220, 220);
 	border-bottom-color: rgb(200, 200, 200);
 	border-right-color: rgb(200, 200, 200);
-	cursor: pointer;
 	text-decoration: none;
+	*/
 }
 
 a.masthead_button:hover
 {
-	background-color: rgb(210, 210, 210);
+	/*background-color: rgb(210, 210, 210);*/
+	opacity: 0.75;
 }
 
 .navigation
@@ -113,22 +117,25 @@ a.masthead_button:hover
 {
 	display: inline-block;
 	position: relative;
-	margin-right: 3em;
+	margin-right: 20px;
+	opacity: 1.0;
+	/*
 	color: var(--LinkColorText);
 	font-size: x-large;
 	font-weight: bold;
-	/*font-family: Arial, Helvetica, sans-serif;*/
 	font-family: 'Concrete';
 	text-decoration: none;
 	background-color: var(--LinkColorBG);
 	padding: 0.3em;
 	border-radius: var(--BorderRadiusButton);
+	*/
 	
 }
 
 .navigation_link:hover
 {
-	background-color: var(--LinkColorHighlightBG);
+	/*background-color: var(--LinkColorHighlightBG);*/
+	opacity: 0.75;
 }
 
 .page_heading

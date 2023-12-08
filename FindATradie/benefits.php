@@ -32,7 +32,6 @@
 				
 			?>
 			<style>
-
 			
 				body 
 				{
@@ -60,26 +59,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
-			<a class="masthead_button" href="login.php">LOG IN</a>
+			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
+			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
+			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
 			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php">Home</a>
-				<a class="navigation_link" href="benefits.php">Benefits</a>
-				<a class="navigation_link" href="about.php">About</a>
+				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
+				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
+				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\">Account</a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\">Login</a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php">FAQ</a>
-					<a class="navigation_link" href="contact.php">Contact</a>
-					<a class="navigation_link" href="forum.php">Forum</a>
+					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
+					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
+					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -109,13 +108,13 @@
 				<div class="note" style="float: left; margin-left: 45px;width:1200px; display: block;">
 					<p>
 						<b><u>www.find-a-tradie.com.au</u></b> uses a mutual trust system like <b>eBay</b>, with both tradies and 
-						customers being able to leave each other's feedback. And both parties being able to peruse that feedback 
+						customers being able to leave each other feedback. And both parties are able to peruse that feedback 
 						and decide for themselves if they are trustworthy enough to do business with. It is for that reason that 
 						customers also need to register and login to use this service.
 						
-						The problem with Faecbook groups is that the owners are incentivised to maximise the number of members of 
+						The problem with Facebook groups is that the owners are incentivised to maximise the number of members of 
 						their facebook groups, in order to earn a cut of Facebook's advert revenue. The goal of 
-						<b><u>www.find-a-tradie.com.au</u></b> is to maximise the trustworthyness of all participants.
+						<b><u>www.find-a-tradie.com.au</u></b> is to maximise the trustworthiness of all participants.
 					</p>
 					<h5>BENEFITS FOR TRADIES</h5>
 					<ul style="font-size: medium;">
@@ -149,7 +148,7 @@
 							tradies that have listed it as an additional trade.</li>
 						<li>
 							There is little or no risk of you spending more money on advertising here than you actually earn from 
-							an jobs you win, so <b><u>www.find-a-tradie.com.au</u></b> is ideal for small business tradies who are 
+							any jobs you win, so <b><u>www.find-a-tradie.com.au</u></b> is ideal for small business tradies who are 
 							just starting out.
 						</li>
 						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through there charging 
