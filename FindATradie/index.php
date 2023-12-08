@@ -20,7 +20,19 @@
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+			<?php
+			
+				function DoGetRandomBackgroundImage()
+				{
+					$strImagfeFileName = "background";
+					$nNum = rand(1, 9);
+					$strImagfeFileName = $strImagfeFileName . $nNum;
+					return $strImagfeFileName;
+				}
+				
+			?>
 			<style>
+
 			
 				body 
 				{
@@ -28,13 +40,10 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
-					background-color:#A0B6C5;
-					/*
-					background-image: url('images/background.jpg');
+					background-image: url('images/<?php echo DoGetRandomBackgroundImage(); ?>.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
-					*/
 				}
 				
 			</style>
@@ -102,7 +111,7 @@
 	}
 
 ?>
-				<div class="advert" id="advert_index1" style="height: 80px; width: 95%;">
+				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
 					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
 				</div>
 				<div class="note" style="display:block;font-weight:bold;font-size:medium;">
@@ -112,22 +121,21 @@
 				</div>
 				
 				<div class="note" style="flex-wrap: wrap;">
-					<h4><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h4>
+					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h6>
+					<p style="font-size:medium;"><b>find-a-tradie.com.au</b> is perfect for tradies who are just starting out with 
+					their small sole proprietor business, and don't yet have a large advertising budget.</p>
 					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member - 
 					just use the same user name and password to register that you have used for 'find-a-tradie'. 
-					Tradies can negotiate jobs with customers directly.<br/><br/>
 					Customers and tradies can negotiate jobs directly with each other through the this forum, in the same way as 
 					others do on Facebook. However you can rest assured that your personal data will not be exploited for profit as 
-					Facebook does.<br/><br/>
-					Customers can 'pick the brains' of experienced tradies and obtain their advice on particular problems.<br/><br/>
-					Get involved in this community!</p>
+					Facebook does. It is alternative to posting jobs if you prefer a more social experience.</p>
 				</div>
 				
 				<div class="note" style="flex-wrap: wrap;">
 					
 					<div>
-						<h4>Both customers &amp; tradies need to register and login to use this service.</h4>
-						<h5>However you can give it a test run here...</h5>
+						<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
+						<p style="font-size:medium;">However you can give it a test run here...</p>
 					</div>
 					<form method="post" action="index.php" style="width:745px">
 						

@@ -18,10 +18,8 @@
 
 body 
 { 
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
+  margin: 0px;
+  padding: 0px;
   position: relative;
 }
 
@@ -32,6 +30,7 @@ body
 	padding: var(--Padding);
 	height: 170px;
 	margin: 0px;
+	opacity: 1.0;
 }
 
 .title

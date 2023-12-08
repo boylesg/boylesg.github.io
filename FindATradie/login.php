@@ -20,8 +20,18 @@
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+			<?php
+			
+				function DoGetRandomBackgroundImage()
+				{
+					$strImagfeFileName = "background";
+					$nNum = rand(1, 9);
+					$strImagfeFileName = $strImagfeFileName . $nNum;
+					return $strImagfeFileName;
+				}
+				
+			?>
 			<style>
-
 			
 				body 
 				{
@@ -29,13 +39,10 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
-					background-color:#A0B6C5;
-					/*
-					background-image: url('images/background.jpg');
+					background-image: url('images/<?php echo DoGetRandomBackgroundImage(); ?>.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
-					*/
 				}
 				
 			</style>
@@ -43,7 +50,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-			</style>
+</style>
 						
 <?php
 

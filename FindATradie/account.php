@@ -20,6 +20,17 @@
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+			<?php
+			
+				function DoGetRandomBackgroundImage()
+				{
+					$strImagfeFileName = "background";
+					$nNum = rand(1, 9);
+					$strImagfeFileName = $strImagfeFileName . $nNum;
+					return $strImagfeFileName;
+				}
+				
+			?>
 			<style>
 			
 				body 
@@ -28,13 +39,10 @@
 					font-family: Arial, Helvetica, sans-serif;
 					font-size: small;
 					font-style: normal;
-					background-color:#A0B6C5;
-					/*
-					background-image: url('images/background.jpg');
+					background-image: url('images/<?php echo DoGetRandomBackgroundImage(); ?>.jpg');
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: cover;
-					*/
 				}
 				
 			</style>
@@ -688,6 +696,9 @@
 		}
 	}
 	
+	$g_nButtonHeight = 75;
+	$g_AdvertHeight = 100;
+	
 ?>
 
 		<!-- #EndEditable -->
@@ -739,12 +750,8 @@
 
 				<div class="note" style="flex-wrap:wrap;">
 
-					<div class="advert" id="advert_account1" style="height: 80px; width: 95%;">
-						<?php DoInsertAdvert("account1", 70, "advert_account1"); ?>
-					</div>
-
-					<div class="advert" id="advert_account2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-						<?php DoInsertAdvert("account2", 70, "advert_account2"); ?>
+					<div class="advert" id="advert_account" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;">
+						<?php DoInsertAdvert("account", $g_nButtonHeight, "advert_account"); ?>
 					</div>
 					
 					<form method="post" id="form_logout" action="login.php">
@@ -880,6 +887,9 @@
 						<button style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Your adverts</button>
 
 						<div id="tab_contents1" class="tab_content">
+							<div class="advert" id="advert_account_browse_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_browse_jobs", $g_nButtonHeight, "advert_account_browse_jobs"); ?>
+							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:955px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
@@ -976,6 +986,9 @@
 						</div>
 						
 						<div id="tab_contents2" class="tab_content">
+							<div class="advert" id="advert_account_post_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_post_job", $g_nButtonHeight, "advert_account_post_jobs"); ?>
+							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
 							<form method="post" action="" id="form_add_job" class="form search_form">
 								<table cellspacing="0" cellpadding="3" border="0" class="forrm_table">
@@ -1092,6 +1105,9 @@
 						</div>
 						
 						<div id="tab_contents3" class="tab_content">
+							<div class="advert" id="advert_account_details" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
+							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 														
 							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width: 1100px;">
@@ -1121,6 +1137,9 @@
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">
+							<div class="advert" id="advert_account_feedback_received" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_feedback_received", $g_nButtonHeight, "advert_account_feedback_received"); ?>
+							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
@@ -1132,6 +1151,10 @@
 						</div>
 
 						<div id="tab_contents5" class="tab_content">
+							<div class="advert" id="advert_account_feedback_given" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_feedback_given", $g_nButtonHeight, "advert_account_feedback_given"); ?>
+							</div>
+							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
@@ -1139,6 +1162,9 @@
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
+							<div class="advert" id="advert_account_adverts" style="height: <?php echo $g_AdvertHeight; ?>x; width: 95%;margin-top:20px;margin-bottom:10px;">
+								<?php DoInsertAdvert("account_adverts", $g_nButtonHeight, "advert_account_adverts"); ?>
+							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">

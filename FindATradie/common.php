@@ -280,7 +280,7 @@
 		}
 		catch(Exception $e)
 		{
-			PrintJavascriptLine("AlertError(\"" . $e->getMessage() . "\");", 2, true);
+			PrintJavascriptLine("AlertError(\"'" . $e->getMessage() . "'\");", 2, true);
 			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;
@@ -299,7 +299,8 @@
 		}
 		catch(Exception $e) 
 		{
-  			echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
+			PrintJavascriptLine("AlertError(\"'" . $e->getMessage() . "' with query '" . $strQuery . "'\");", 2, true);
+  			//echo "ERROR: '". $e->getMessage() . "'<br><br>With query '" . $strQuery . "'.<br><br>" . $g_strEmailAdmin;
 		}		
 		return $result;
 	}
@@ -951,6 +952,17 @@
 		return $strSpaceID;
 	}
 		
+	function DoGetCostPerMonth($strSpaceID)
+	{
+		$strCost = "0";
+		$row = GetAdvertSpace($strSpaceID);
+		if ($row)
+		{
+			$strCost = sprintf("%d", $row["cost_per_month"]);
+		}
+		return $strCost;
+	}
+	
 	function DoInsertAdvert($strSpaceCode, $nImageHeight, $strIDAdvertDiv)
 	{
 		global $g_dbFindATradie;
@@ -976,7 +988,7 @@
 			else
 				echo "OpenAdvertEditor('index1')";
 				
-			echo "\"></button>\n";
+			echo "\"><br/>$" . DoGetCostPerMonth($strSpaceID) . " per month</button>\n";
 		}
 	}
 

@@ -331,7 +331,7 @@ COMMIT;
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 23, 2023 at 10:32 PM
+-- Generation Time: Dec 08, 2023 at 05:05 PM
 -- Server version: 8.0.35-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -358,7 +358,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `feedback` (
   `id` int UNSIGNED NOT NULL,
   `recipient_id` int UNSIGNED NOT NULL,
-  `provider_id` int UNSIGNED NOT NULL,
+  `provider_id` int DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
   `positive` tinyint(1) NOT NULL,
   `description` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -369,17 +370,17 @@ CREATE TABLE `feedback` (
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`id`, `recipient_id`, `provider_id`, `positive`, `description`, `date_added`, `date_modified`) VALUES
-(5, 1, 11, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum ut purus ac efficitur.', '2023-11-19 13:00:00', '2023-11-20 08:17:03'),
-(6, 1, 12, 1, 'Vivamus quis sapien volutpat, vehicula sem vitae, venenatis leo. Aenean eget semper lectus. Suspendisse id tellus finibus, vulputate lorem facilisis, ultricies quam.', '2023-11-19 13:00:00', '2023-11-20 08:18:01'),
-(7, 1, 25, 0, 'Aenean vitae justo vel mauris porttitor pellentesque condimentum vitae arcu.', '2023-11-19 13:00:00', '2023-11-20 08:18:56'),
-(8, 1, 26, 1, 'Suspendisse potenti. Vestibulum aliquam turpis eu sem euismod accumsan non quis risus. Donec posuere turpis risus, at vulputate ante mollis ac.', '2023-11-19 13:00:00', '2023-11-20 08:21:34'),
-(11, 1, 15, 0, 'Cras gravida lorem mi, non vulputate neque lacinia quis.', '2023-11-19 13:00:00', '2023-11-20 08:24:29'),
-(12, 1, 17, 1, 'Aenean nisl dui, suscipit id velit non, convallis ornare dui. Etiam consectetur imperdiet neque in maximus.', '2023-11-19 13:00:00', '2023-11-20 08:26:06'),
-(13, 1, 22, 1, 'Proin vehicula nisi ut elit volutpat ornare.', '2023-11-19 13:00:00', '2023-11-20 08:27:38'),
-(14, 1, 23, 0, 'Nulla iaculis dolor sit amet nunc fringilla, eget tristique augue ultricies.', '2023-11-19 13:00:00', '2023-11-20 08:27:38'),
-(15, 11, 1, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua XXXXX.', '2023-11-19 13:00:00', '2023-11-20 10:31:35'),
-(16, 12, 1, 0, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '2023-11-19 13:00:00', '2023-11-20 10:32:16');
+INSERT INTO `feedback` (`id`, `recipient_id`, `provider_id`, `name`, `positive`, `description`, `date_added`, `date_modified`) VALUES
+(5, 1, 11, NULL, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum ut purus ac efficitur.', '2023-11-19 13:00:00', '2023-11-20 08:17:03'),
+(6, 1, 12, NULL, 1, 'Vivamus quis sapien volutpat, vehicula sem vitae, venenatis leo. Aenean eget semper lectus. Suspendisse id tellus finibus, vulputate lorem facilisis, ultricies quam.', '2023-11-19 13:00:00', '2023-11-20 08:18:01'),
+(7, 1, 25, NULL, 0, 'Aenean vitae justo vel mauris porttitor pellentesque condimentum vitae arcu.', '2023-11-19 13:00:00', '2023-11-20 08:18:56'),
+(8, 1, 26, NULL, 1, 'Suspendisse potenti. Vestibulum aliquam turpis eu sem euismod accumsan non quis risus. Donec posuere turpis risus, at vulputate ante mollis ac.', '2023-11-19 13:00:00', '2023-11-20 08:21:34'),
+(11, 1, 15, NULL, 0, 'Cras gravida lorem mi, non vulputate neque lacinia quis.', '2023-11-19 13:00:00', '2023-11-20 08:24:29'),
+(12, 1, 17, NULL, 1, 'Aenean nisl dui, suscipit id velit non, convallis ornare dui. Etiam consectetur imperdiet neque in maximus.', '2023-11-19 13:00:00', '2023-11-20 08:26:06'),
+(13, 1, 22, NULL, 1, 'Proin vehicula nisi ut elit volutpat ornare.', '2023-11-19 13:00:00', '2023-11-20 08:27:38'),
+(14, 1, 23, NULL, 0, 'Nulla iaculis dolor sit amet nunc fringilla, eget tristique augue ultricies.', '2023-11-19 13:00:00', '2023-11-20 08:27:38'),
+(15, 11, 1, NULL, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua XXXXX.', '2023-11-19 13:00:00', '2023-11-20 10:31:35'),
+(16, 12, 1, NULL, 0, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', '2023-11-19 13:00:00', '2023-11-20 10:32:16');
 
 --
 -- Indexes for dumped tables
