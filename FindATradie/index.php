@@ -32,6 +32,7 @@
 				
 			?>
 			<style>
+
 			
 				body 
 				{
@@ -121,8 +122,8 @@
 				
 				<div class="note" style="flex-wrap: wrap;">
 					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h6>
-					<p style="font-size:medium;"><b>find-a-tradie.com.au</b> is perfect for tradies who are just starting out with 
-					their small sole proprietor business, and don't yet have a large advertising budget.</p>
+					<p style="font-size:medium;"><b>find-a-tradie.com.au</b> is perfect for tradies and small business people who 
+					are just starting out with their sole proprietor business, and don't yet have a large advertising budget.</p>
 					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member - 
 					just use the same user name and password to register that you have used for 'find-a-tradie'. 
 					Customers and tradies can negotiate jobs directly with each other through this forum, in the same way as 
