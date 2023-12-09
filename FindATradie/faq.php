@@ -122,6 +122,7 @@
 
 
 
+
 			
 				.faq_question
 				{
@@ -182,7 +183,7 @@
 				<div class="nav_images">
 					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
 					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
-					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" />
+					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" style="width:50px; />
 					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
 					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
 					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />

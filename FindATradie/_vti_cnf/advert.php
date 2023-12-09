@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|09 Dec 2023 11:36:16 -0000
+vti_timelastmodified:TR|09 Dec 2023 11:47:02 -0000
 vti_timecreated:TR|15 Nov 2023 09:16:44 -0000
 vti_title:SR|Create an advertisement
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|advert.php
-vti_nexttolasttimemodified:TR|09 Dec 2023 11:35:09 -0000
-vti_cacheddtm:TX|09 Dec 2023 11:36:16 -0000
-vti_filesize:IR|16867
+vti_nexttolasttimemodified:TR|09 Dec 2023 11:36:16 -0000
+vti_cacheddtm:TX|09 Dec 2023 11:47:02 -0000
+vti_filesize:IR|16886
 vti_cachedtitle:SR|Create an advertisement
 vti_cachedbodystyle:SR|<body>
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/< S|images/Tools.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php H|forum.php S|images/tools/ACTester.png S|images/tools/Chainsaw.png S|images/tools/LawnMower.png S|images/tools/SewingMachine.png S|images/tools/PlumberWrench.png S|images/tools/GlassCutter.png A|advert.php A|https://www.sandbox.paypal.com/cgi-bin/webscr S|https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif A|https://www.paypal.com/cgi-bin/webscr S|https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css DSUS|images/< FSUS|images/Tools.png FHUS|new_tradie.php FHUS|new_customer.php FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php FHUS|forum.php NSUS|images/tools/ACTester.png FSUS|images/tools/Chainsaw.png FSUS|images/tools/LawnMower.png FSUS|images/tools/SewingMachine.png FSUS|images/tools/PlumberWrench.png FSUS|images/tools/GlassCutter.png FAUS|advert.php NASS|https://www.sandbox.paypal.com/cgi-bin/webscr NSSS|https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif NASS|https://www.paypal.com/cgi-bin/webscr NSSS|https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/< S|images/Tools.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php H|forum.php S|images/tools/ACTester.png S|images/tools/Chainsaw.png S|images/tools/LawnMower.png S|images/tools/PlumberWrench.png S|images/tools/GlassCutter.png A|advert.php A|https://www.sandbox.paypal.com/cgi-bin/webscr S|https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif A|https://www.paypal.com/cgi-bin/webscr S|https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css DSUS|images/< FSUS|images/Tools.png FHUS|new_tradie.php FHUS|new_customer.php FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php FHUS|forum.php NSUS|images/tools/ACTester.png FSUS|images/tools/Chainsaw.png FSUS|images/tools/LawnMower.png FSUS|images/tools/PlumberWrench.png FSUS|images/tools/GlassCutter.png FAUS|advert.php NASS|https://www.sandbox.paypal.com/cgi-bin/webscr NSSS|https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif NASS|https://www.paypal.com/cgi-bin/webscr NSSS|https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false
