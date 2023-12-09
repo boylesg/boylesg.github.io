@@ -32,7 +32,6 @@
 				
 			?>
 			<style>
-
 			
 				body 
 				{
@@ -50,7 +49,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -77,9 +76,17 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php">FAQ</a>
-					<a class="navigation_link" href="contact.php">CONTACT</a>
-					<a class="navigation_link" href="forum.php">FORUM</a>
+				<a class="navigation_link" href="faq.php">FAQ</a>
+				<a class="navigation_link" href="contact.php">CONTACT</a>
+				<a class="navigation_link" href="forum.php">FORUM</a>
+				<div class="nav_images">
+					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
+					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
+					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" />
+					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
+					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
+					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />
+				</div>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -140,9 +147,9 @@
 						the heat or the rain out doors!
 					</p>
 					<p>
-						So these are the two reasons why my brother and I have created <i>www.find-a-tradie.com.au</i>. Not in small 
+						So these are the two reasons why my brother and I have created <b><u>www.find-a-tradie.com.au</u></b>. Not in small 
 						part is the satisfaction of leveraging my programming skills to undermine these companies that are clearly 
-						engaged in gouging small business tradies. And to give small Australian tradie businesses a fair go.
+						engaged in gouging small business tradies. And to give small business tradies a fair go.
 					</p>
 					<h6><b>Why is <u>www.find-a-tradie.com.au</u> different from Oneflare, Highpages and ServiceSeeking</b></h6>
 					<p>
@@ -163,7 +170,7 @@
 						obtain their contact details.
 					</p>
 					<p>
-						<b><u>find-a-tradie.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
+						<b><u>www.find-a-tradie.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
 						leave each other feedback. If tradies complete jobs on time and on budget then customers can leave that tradie positive 
 						feedback. Or negative feedback if the tradie does a poor job. Similarly if customers delays payment or refuses to pay 
 						tradies then the tradie can leave that customer negative feedback and warn other tradies. If the customer 

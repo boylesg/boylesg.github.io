@@ -32,7 +32,6 @@
 				
 			?>
 			<style>
-
 			
 				body 
 				{
@@ -50,7 +49,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -77,9 +76,17 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php">FAQ</a>
-					<a class="navigation_link" href="contact.php">CONTACT</a>
-					<a class="navigation_link" href="forum.php">FORUM</a>
+				<a class="navigation_link" href="faq.php">FAQ</a>
+				<a class="navigation_link" href="contact.php">CONTACT</a>
+				<a class="navigation_link" href="forum.php">FORUM</a>
+				<div class="nav_images">
+					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
+					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
+					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" />
+					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
+					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
+					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />
+				</div>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -102,10 +109,6 @@
 					<?php DoInsertAdvert("benefits1", 70, "advert_benefits1"); ?>
 				</div>
 
-				<div class="advert" id="advert_benefits2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-					<?php DoInsertAdvert("benefits2", 70, "advert_benefits2"); ?>
-				</div>
-				
 				<div class="note" style="float: left; margin-left: 45px;width:1200px; display: block;">
 					<p>
 						<b><u>www.find-a-tradie.com.au</u></b> uses a mutual trust system like <b>eBay</b>, with both tradies and 
@@ -113,7 +116,7 @@
 						and decide for themselves if they are trustworthy enough to do business with. It is for that reason that 
 						customers also need to register and login to use this service.
 						
-						The problem with Facebook groups is that the owners are incentivised to maximise the number of members of 
+						The problem with Facebook groups is that the owners are incentivised to maximise the number of members on 
 						their facebook groups, in order to earn a cut of Facebook's advert revenue. The goal of 
 						<b><u>www.find-a-tradie.com.au</u></b> is to maximise the trustworthiness of all participants.
 					</p>
@@ -172,9 +175,13 @@
 							other forms of advertising and social media etc.</li>
 						<li>All payments made with Paypal to us are made by using Paypal.</li>
 						<li>All payments by members to each other are made through third party invoicing and payment systems, e.g. direct bank deposits.</li>
-						<li>All communcations between clients and tradies are done through your private email account or phone numbers.</li>
-						<li>So if the web site is hacked there really is not much that the hackers can gain by doing so.</li>
+						<li>All communcations between clients and tradies are done through their private email accounts or phone numbers.</li>
+						<li>So if the web site is hacked there really is not much that the hackers can gain.</li>
 					</ul>
+				</div>
+				
+				<div class="advert" id="advert_benefits2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("benefits2", 70, "advert_benefits2"); ?>
 				</div>
 				
 

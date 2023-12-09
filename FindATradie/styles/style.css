@@ -9,7 +9,7 @@
 	--BorderRadiusButton: 10px;
 	--LinkColorBG: #506171;
 	--LinkColorHighlightBG: #607181;
-	--LinkColorText: black;
+	--LinkColorText: rgb(230, 230, 230);
 	--NoteColorBG: white;
 	--NoteColor: black;
 	--Margin: 20px;
@@ -32,7 +32,7 @@ body
 	padding: var(--Padding);
 	height: 170px;
 	margin: 0px;
-	opacity: 1.0;
+	opacity: 0.95;
 }
 
 .title
@@ -95,10 +95,10 @@ body
 	margin-right: 30px;
 	opacity: 1.0;
 	/*background-color: silver;*/
-	background-image: url('/images/rock_texture1.jpg');
+	background-image: url('/images/rock_texture3.jpg');
 	background-repeat: repeat;
 	background-position: center center;
-	color: var(--LinkColorText);;
+	color: var(--LinkColorText);
 	font-size: large;
 	font-weight: bold;
 	font-family: 'TrenchSlab-Bold';
@@ -164,6 +164,27 @@ a.masthead_button:hover
 {
 	/*background-color: var(--LinkColorHighlightBG);*/
 	opacity: 0.75;
+}
+
+.nav_image
+{
+	margin-right: 35px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	width: 40px;
+}
+
+.nav_images
+{
+	display: inline-block;
+	position: relative;
+	top: -10px;
+	float: right;
+	/*
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+	*/
 }
 
 .page_heading

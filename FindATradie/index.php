@@ -76,9 +76,17 @@
 							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php">FAQ</a>
-					<a class="navigation_link" href="contact.php">CONTACT</a>
-					<a class="navigation_link" href="forum.php">FORUM</a>
+				<a class="navigation_link" href="faq.php">FAQ</a>
+				<a class="navigation_link" href="contact.php">CONTACT</a>
+				<a class="navigation_link" href="forum.php">FORUM</a>
+				<div class="nav_images">
+					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
+					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
+					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" />
+					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
+					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
+					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />
+				</div>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -116,27 +124,37 @@
 					<?php echo $g_nDaysToGo; ?> days to go!
 				</div>
 
-				<div class="note" style="flex-wrap: wrap;">
-					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h6>
-					<p style="font-size:medium;"><b>find-a-tradie.com.au</b> is perfect for tradies and small business people who 
-					are just starting out with their sole proprietor business, and don't yet have a large advertising budget.</p>
-					<p style="font-size:medium;">Don't forget to join the <a href="forum.php">forum</a> once you become a member - 
-					just use the same user name and password to register that you have used for 'find-a-tradie'. 
-					Customers and tradies can negotiate jobs directly with each other through this forum, in the same way as 
-					others do on Facebook. However you can rest assured that your personal data will not be exploited for profit as 
-					Facebook does. It is an alternative to posting jobs if you prefer a more social experience.</p>
-				</div>
-						
 				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
 					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
 				</div>
 
-				<div class="note" style="flex-wrap: wrap;">
-					
-					<div>
-						<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
-						<p style="font-size:medium;">However you can give it a test run here...</p>
-					</div>
+				<div class="note" style="display:block;">
+					<img src="images/Lawn-Mowing.jpg" alt="images/Lawn-Mowing.jpg" width="200" style="float:left;margin-right:5px;"/>
+					<h6><a href="benefits.php">Click here</a> to read the benefits of becoming a member.</h6>
+					<p style="font-size:medium;">
+						<b><u>find-a-tradie.com.au</u></b> is perfect for tradies and small business people who are just starting out 
+						with their sole proprietor business, and don't yet have a large advertising budget.
+					</p>
+					<p style="font-size:medium;">
+						Advertising costs can run into $1000s per year with no guarentee of results, and often no way of 
+						tracking its effectiveness. A <b><u>find-a-tradie.com.au</u></b> membership will cost you a maximum of 
+						$<?php echo sprintf("%d", $g_nCostPerMonth * 12); ?> per year and you can try for as many jobs as you please, no additional charges.
+					</p>
+					<hr/>
+					<img src="images/forum.jpg" alt="images/forum.jpg" width="300" style="float:right;margin-left:5px;"/>
+					<h6>Community forum</h6>
+					<p style="font-size:medium;">
+						Don't forget to join the <a href="forum.php">forum</a> once you become a member - just use the same user 
+						name and password to register a forum account.
+					</p>
+					<p style="font-size:medium;">
+						Customers and tradies can negotiate jobs directly with each other through this forum, in the same way as 
+						others do on Facebook. However you can rest assured that your personal data will not be exploited for 
+						profit as Facebook does. It is an alternative to posting jobs if you prefer a more social experience.
+					</p>
+					<hr/>
+					<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
+					<p style="font-size:medium;">However if you are new here then you can give it a test run...</p>
 					<form method="post" action="index.php" style="width:745px">
 						
 						<table class="table_no_borders">
@@ -186,15 +204,15 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;" class="cell_no_borders" colspan="2">
-									<input type="submit" id="submit_search"  name="submit_search" value="SEARCH" />
+								<td style="text-align:left;" class="cell_no_borders">
+									&nbsp;
+								</td>
+								<td style="text-align:left;" class="cell_no_borders">
+									&nbsp;&nbsp;&nbsp;<input type="submit" id="submit_search"  name="submit_search" value="SEARCH" />
 								</td>
 							</tr>
 						</table>
 					</form>
-					<div class="advert" id="advert_index2" style="height: 208px; width: 100%;">
-						<?php DoInsertAdvert("index2", 180, "advert_index2"); ?>
-					</div>
 					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
 						<h6><u>RESULTS</u></h6>
 						<select id="text_results" size="10" style="font-size:large;width:850px;border-width:medium;border-color:var(--NoteHeadingColor);">
@@ -212,6 +230,10 @@
 						<br/><br/>
 						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
 					</div>
+				</div>
+
+				<div class="advert" id="advert_index2" style="height: 100px; width: 95%;">
+					<?php DoInsertAdvert("index1", 70, "advert_index2"); ?>
 				</div>
 
 
