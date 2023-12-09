@@ -32,6 +32,7 @@
 				
 			?>
 			<style>
+
 			
 				body 
 				{
@@ -49,7 +50,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -59,26 +60,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
-			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
-			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
-			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
+			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
-				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
-				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
+				<a class="navigation_link" href="index.php">HOME</a>
+				<a class="navigation_link" href="benefits.php">BENEFITS</a>
+				<a class="navigation_link" href="about.php">ABOUT</a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
-					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
-					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">CONTACT</a>
+					<a class="navigation_link" href="forum.php">FORUM</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -151,26 +152,27 @@
 							any jobs you win, so <b><u>www.find-a-tradie.com.au</u></b> is ideal for small business tradies who are 
 							just starting out.
 						</li>
-						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through there charging 
+						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through their charging 
 						to obtain customer contact details.</li>
 					</ul>
 					<h5>BENEFITS FOR CUSTOMERS</h5>
 					<ul style="font-size: medium;">
 						<li>Customers can browse tradies and view their feedback reputation.</li>
-						<li>Customers can can post jobs for local tradies to browse and answer.</li>
+						<li>Customers can post jobs for local tradies to browse and answer.</li>
 						<li>Free membership for customers.</li>
 						<li>Customers can browse tradies (based on filters like minimum charge and maximum distance) and contact them directly.</li>
 						<li>No bank account or credit card numbers are stored on the web site.</li>
 						<li>All payments made with Paypal.</li>
 					</ul>
 					<h5>BENEFITS FOR BOTH</h5>
-					<ul>
+					<ul style="font-size: medium;">
 						<li>No bank account or credit card numbers are stored on the web site.</li>
 						<li>Personal identification data, such as DOB, are not stored on the web site.</li>
-						<li>Any of your business or personal information that is stored on the web site, you have almost certainly made public through other forms of advertising and social media etc.</li>
+						<li>Any of your business or personal information that is stored on the web site, you have almost certainly made public through 
+							other forms of advertising and social media etc.</li>
 						<li>All payments made with Paypal to us are made by using Paypal.</li>
-						<li>All payments by members to each other are made through third party invoiceing and payment systems, e.g. direct bank deposits.</li>
-						<li>All commincations between clients and tradies is done through your private email account or phone numbers.</li>
+						<li>All payments by members to each other are made through third party invoicing and payment systems, e.g. direct bank deposits.</li>
+						<li>All communcations between clients and tradies are done through your private email account or phone numbers.</li>
 						<li>So if the web site is hacked there really is not much that the hackers can gain by doing so.</li>
 					</ul>
 				</div>

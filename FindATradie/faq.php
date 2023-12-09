@@ -101,6 +101,12 @@
 
 
 
+
+
+
+
+
+
 			
 				.faq_question
 				{
@@ -138,26 +144,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
-			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
-			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
-			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
+			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
-				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
-				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
+				<a class="navigation_link" href="index.php">HOME</a>
+				<a class="navigation_link" href="benefits.php">BENEFITS</a>
+				<a class="navigation_link" href="about.php">ABOUT</a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
-					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
-					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">CONTACT</a>
+					<a class="navigation_link" href="forum.php">FORUM</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -225,24 +231,32 @@
 						<hr/><li class="faq_question">
 							Q. How much will it cost me to list a job for tradies?<br/>
 						</li>
-						<li class="faq_answer">A. It won't cost you anything to list jobs.</li>
-						<hr/><li class="faq_question">
-							Q. Can I add positive feedback and testimonials for jobs I have completed in the past?<br/>
+						<li class="faq_answer">
+							A. It won't cost you anything to list jobs, you just have to register a customer account.
 						</li>
-						<li class="faq_answer">A. Yes you can - just email us with the feedback and testimonials and we will add it for you. We need to peruse the feedback to satisfy ourselves that it is genuine.</li>
 						<hr/><li class="faq_question">
-							Q. How is <u>www.find-a-tradie.com.au</u> safer than Facebook groups?<br/>
+							Q. Can I add positive feedback and testimonials for jobs I have completed in the past and on other 
+								platforms?<br/>
 						</li>
 						<li class="faq_answer">
-							A. The integrity of customers and treadies alike is only as good as the efforts of the Facebook group 
-							owners to maintain it a high level. And let's face it, the amount of revenue from Facebaook groups is directly 
-							proportional to the number of members. So the insentive for Facebook group owners is always to maximise the 
+							A. Yes you can - just email us with the feedback and testimonials and we will add it 
+							for you. We need to peruse the feedback to satisfy ourselves that it is genuine.
+						</li>
+						<hr/><li class="faq_question">
+							Q. How is <b><u>www.find-a-tradie.com.au</u></b> safer than Facebook groups?<br/>
+						</li>
+						<li class="faq_answer">
+							A. The integrity of customers and tradies alike is only as good as the efforts of the Facebook group 
+							owners to maintain it a high level. And let's face it, the amount of revenue from Facebook groups is directly 
+							proportional to the number of members. So the incentive for Facebook group owners is always to maximise the 
 							number of group members rather than the integrity of its members.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Do you store bank account and credit card numbers?<br/>
 						</li>
-						<li class="faq_answer">A. No. All payments are made through Paypal, so no financial details are stored on the web site.</li>
+						<li class="faq_answer">
+							A. No. All payments are made through Paypal, so no financial details are stored on the web site.
+						</li>
 						<hr/><li class="faq_question">
 							Q. I am a customer so why do I have to join to 'Find a Tradie'?<br/>
 						</li>
@@ -252,19 +266,20 @@
 							trust and feedback system, similar to eBay, that 
 							allows both tradies and customers to judge each 
 							other's integrity based on their feedback and 
-							testimonials
+							testimonials.
+						</li>
 						<hr/><li class="faq_question">
 							Q. What if someone hacks my account?<br/>
 						</li>
 						<li class="faq_answer">
 							A. If they do then it is not really going to bring them much benefit. There are no credit cards numbers,
 							no bank account numbers, no dates of birth or any other identity data for them to steal. Other than what you
-							 have likely made public yourself in the Yellow Pages or on Facebook etc. All comminications take place 
-							 via your phone numbers and private email accounts, so there is litle information about you for them to 
-							 access. Unless they also hack your email and mobile accounts
+							 have likely made public yourself in the Yellow Pages or on Facebook etc. All communications take place 
+							 via your phone numbers and private email accounts, so there is little information about you for them to 
+							 access. Unless they also hack your email and mobile accounts.
 						</li>
 						<hr/><li class="faq_question">
-							Q. Does 'Find a Tradie' provide guarentees on workmanship or refunds?<br/>
+							Q. Does 'Find a Tradie' provide guarantees on workmanship or refunds?<br/>
 						</li>
 						<li class="faq_answer">
 							A. No. It is simply a platform to allow tradies to connect with customers. We play no 
@@ -276,7 +291,7 @@
 						<li class="faq_answer">
 							A. No. The only data we store is basic contact information. In the case of tradies they routinely make 
 							that information publicly available through advertising. In the case of customers they make basic contact 
-							information public on web sites like Google and Facebook. In both cases you we do not require you to 
+							information public on web sites like Google and Facebook. In both cases you do not require you to 
 							enter your street address. If you have a business address then you can include your street address if you 
 							wish.
 						</li>

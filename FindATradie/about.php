@@ -50,7 +50,7 @@
 			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 	</head>
 	
@@ -60,26 +60,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
-			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
-			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
-			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
+			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
-				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
-				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
+				<a class="navigation_link" href="index.php">HOME</a>
+				<a class="navigation_link" href="benefits.php">BENEFITS</a>
+				<a class="navigation_link" href="about.php">ABOUT</a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
-					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
-					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">CONTACT</a>
+					<a class="navigation_link" href="forum.php">FORUM</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -115,10 +115,10 @@
 				<div class="note" style="overflow-x:auto;overflow-y:visible;">
 					<h6><b>Who created <u>www.find-a-tradie.com.au?</u></b></h6>
 					<p>
-						Find a Tradie was created by myself and my brother. I am a former medical scientist, former programmer and a 
+						Find a Tradie was created by my brother and myself. I am a former medical scientist, former programmer and a 
 						small business gardener/landscaper, by choice, for the past  <?php echo $nYears; ?> years. My brother is still 
 						a programmer. I still love the creativity and problem solving involved with building web sites and software, 
-						and have put my programming skils to good use building, maintaining and hosting my own landscaping business web 
+						and have put my programming skills to good use building, maintaining and hosting my own landscaping business web 
 						site. Building this web site has been very enjoyable.
 					</p>
 					<h6><b>Why did we create <u>www.find-a-tradie.com.au?</u></b></h6>
@@ -130,19 +130,19 @@
 					<p>
 						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 1 hour or so, and pay 
 						more than $100. Combine that with 30-60 minutes drive time between jobs and you end up working for below the 
-						minimum wage. And rising interest rates, rising rents and rising electricity/water/gas bills are disuading 
+						minimum wage. And rising interest rates, rising rents and rising electricity/water/gas bills are dissuading 
 						so many people from spending on many trade services altogether. 
 					</p>
 					<p>
 						So the client detail purchase fees, charged by Highpages etc., take a signficant chunk out of what I would 
-						likely earn from any gardening jobs I obtained from them. And I doubt that I am the only tradie with the 
-						injustice about a bunch of 'suits' charging tradies THAT much to advertise while we do all the hard work hard 
-						in the heat or the rain out doors!
+						likely earn from any gardening jobs I obtained from them. And I doubt that I am the only tradie that recognises   
+						the injustice of a bunch of 'suits' charging tradies THAT much to advertise, while we do all the hard work in 
+						the heat or the rain out doors!
 					</p>
 					<p>
-						So these are the two reason why my brother and I have created <i>www.find-a-tradie.com.au</i>. Not in small 
-						part is the satisfaction of levergaing my programming skills to undermine these companies that are clearly 
-						engaged in gouging small business tradies. And to give Australian small business tradies a fair go.
+						So these are the two reasons why my brother and I have created <i>www.find-a-tradie.com.au</i>. Not in small 
+						part is the satisfaction of leveraging my programming skills to undermine these companies that are clearly 
+						engaged in gouging small business tradies. And to give small Australian tradie businesses a fair go.
 					</p>
 					<h6><b>Why is <u>www.find-a-tradie.com.au</u> different from Oneflare, Highpages and ServiceSeeking</b></h6>
 					<p>
@@ -159,14 +159,11 @@
 						to register an account and login to post jobs.
 					</p>
 					<p>
-						With <b><u>www.highpages.com.au</u></b> that poses no risk to tradies because we don't charge them to 
-						obtain their contact details. And tradies must mark a job as complete, and leave feedback, once they 
-						receive payment from the customer. If customers make a habit of posting jobs that they don't really have 
-						any intention of following through on then those pending jobs will be visible to tradies as an indication 
-						of that customer's integrity.
+						With <b><u>www.find-a-tradie.com.au</u></b> such customers pose no risk to tradies because we don't charge tradies to 
+						obtain their contact details.
 					</p>
 					<p>
-						<b><u>www.highpages.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
+						<b><u>find-a-tradie.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
 						leave each other feedback. If tradies complete jobs on time and on budget then customers can leave that tradie positive 
 						feedback. Or negative feedback if the tradie does a poor job. Similarly if customers delays payment or refuses to pay 
 						tradies then the tradie can leave that customer negative feedback and warn other tradies. If the customer 

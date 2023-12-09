@@ -32,7 +32,6 @@
 				
 			?>
 			<style>
-
 			
 				body 
 				{
@@ -60,26 +59,26 @@
 		<div class="masthead" id="masthead">
 			<img class="logo" alt="" src="images/Tools.png" width="90" />
 			<div class="title" id="title">FIND A TRADIE</div>
-			<a class="masthead_button" href="new_tradie.php"><img src="images/StoneButtonTradie.png" alt="images/StoneButtonTradie.png" width="150"/></a>
-			<a class="masthead_button" href="new_customer.php"><img src="images/StoneButtonCustomer.png" alt="images/StoneButtonCustomer.png" width="150"/></a>
-			<a class="masthead_button" href="login.php"><img src="images/StoneButtonLogin.png" alt="images/StoneButtonLogin.png" width="150"/></a>
-			<div class="tag" id="tag">Created by an Australian tradie for Australians</div>
+			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="login.php">LOG IN</a>
+			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php"><img src="images/StoneButtonHome.png" alt="images/StoneButtonHome.png" width="150"/></a>
-				<a class="navigation_link" href="benefits.php"><img src="images/StoneButtonBenefits.png" alt="images/StoneBenefitsTradie.png" width="150"/></a>
-				<a class="navigation_link" href="about.php"><img src="images/StoneButtonAbout.png" alt="images/StoneButtonAbout.png" width="150"/></a>
+				<a class="navigation_link" href="index.php">HOME</a>
+				<a class="navigation_link" href="benefits.php">BENEFITS</a>
+				<a class="navigation_link" href="about.php">ABOUT</a>
 					<?php
 	
 						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\"><img src=\"images/StoneButtonAccount.png\" alt=\"images/StoneButtonAccount.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
 						else
-							echo "<a class=\"navigation_link\" href=\"login.php\"><img src=\"images/StoneButtonLogin.png\" alt=\"images/StoneButtonLogin.png\" width=\"150\"/></a>\n";
+							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
 							
 					?>
-					<a class="navigation_link" href="faq.php"><img src="images/StoneButtonFAQ.png" alt="images/StoneButtonFAQ.png" width="150"/></a>
-					<a class="navigation_link" href="contact.php"><img src="images/StoneButtonContact.png" alt="images/StoneButtonContact.png" width="150"/></a>
-					<a class="navigation_link" href="forum.php"><img src="images/StoneButtonForum.png" alt="images/StoneButtonForum.png" width="150"/></a>
+					<a class="navigation_link" href="faq.php">FAQ</a>
+					<a class="navigation_link" href="contact.php">CONTACT</a>
+					<a class="navigation_link" href="forum.php">FORUM</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -111,15 +110,12 @@
 	}
 
 ?>
-				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
-					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
-				</div>
-				<div class="note" style="display:block;font-weight:bold;font-size:medium;">
+				<div class="note" style="display:block;font-weight:bold;font-size:medium;margin-top:0px;">
 					Tradies can join for 6 months, free of charge, until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.
 					&nbsp;&nbsp;
 					<?php echo $g_nDaysToGo; ?> days to go!
 				</div>
-				
+
 				<div class="note" style="flex-wrap: wrap;">
 					<h6><a href="befits.php">Click here</a> to read the benefits of becoming a member.</h6>
 					<p style="font-size:medium;"><b>find-a-tradie.com.au</b> is perfect for tradies and small business people who 
@@ -130,7 +126,11 @@
 					others do on Facebook. However you can rest assured that your personal data will not be exploited for profit as 
 					Facebook does. It is an alternative to posting jobs if you prefer a more social experience.</p>
 				</div>
-				
+						
+				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
+					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
+				</div>
+
 				<div class="note" style="flex-wrap: wrap;">
 					
 					<div>

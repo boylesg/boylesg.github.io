@@ -1,4 +1,6 @@
-﻿:root
+﻿@import "trench-slab.css";
+
+:root
 {
 	--ColorMastheadBG: LightSlateGray;
 	/*--ColorMastheadBG: rgba(100, 100, 150, 0.96);*/
@@ -7,10 +9,10 @@
 	--BorderRadiusButton: 10px;
 	--LinkColorBG: #506171;
 	--LinkColorHighlightBG: #607181;
-	--LinkColorText: white;
+	--LinkColorText: black;
 	--NoteColorBG: white;
 	--NoteColor: black;
-	--Margin: 30px;
+	--Margin: 20px;
 	--BorderRadius: 5px;
 	--BorderRadiusSmall: 4px;
 	--Padding: 20px;
@@ -26,7 +28,7 @@ body
 .masthead
 {
 	display: block;
-	background-color: var(--ColorMastheadBG);
+	background-color: var(--ColorMastheadBG);	
 	padding: var(--Padding);
 	height: 170px;
 	margin: 0px;
@@ -40,7 +42,18 @@ body
 	top: 0px;
 	font-size: 6em;
 	font-weight: bold;
-	font-family: 'Concrete';
+	font-family: 'TrenchSlab-Bold';
+
+	background-image: url('/images/rock_texture4.jpg');
+	background-repeat: repeat;
+	background-position: center center;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	-moz-background-clip:text;
+	background-clip:text; 	
+	background-size: contain;
+	-webkit-text-stroke-width: 0.5px;
+ 	-webkit-text-stroke-color: black;
 }
 
 .logo
@@ -48,55 +61,63 @@ body
 	display: inline-block;
 }
 
-@font-face 
-{
-    font-family: 'Concrete';
-    src: url('ConcretepersonaluseRegular-DOzG0.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .tag
 {
 	display: block;
 	position: relative;
 	top: -30px;
-	font-family: 'Concrete';
+	font-family: 'TrenchSlab-Bold';
 	font-size: xx-large;
 	font-weight: bold;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: MidnightBlue;
+	
+	background-image: url('/images/rock_texture5.jpg');
+	background-repeat: repeat;
+	background-position: center center;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	-moz-background-clip:text;
+	background-clip:text; 	
+	background-size: contain;
+	-webkit-text-stroke-width: 0.5px;
+ 	-webkit-text-stroke-color: black;
 }
 
 .masthead_button
 {
-	/*display: inline-block;*/
+	display: inline-block;
 	position: relative;
 	cursor: pointer;
 	float: right;
-	margin-top: 3.6em;
-	margin-right: 3em;
+	margin-top: 35px;
+	margin-right: 30px;
 	opacity: 1.0;
-	/*
-	background-color: silver;
-	color: rgb(100, 100, 100);
-	font-size: small;
-	font-weight: 800;
-	font-family: Arial, Helvetica, sans-serif;
+	/*background-color: silver;*/
+	background-image: url('/images/rock_texture1.jpg');
+	background-repeat: repeat;
+	background-position: center center;
+	color: var(--LinkColorText);;
+	font-size: large;
+	font-weight: bold;
+	font-family: 'TrenchSlab-Bold';
 	border-radius: var(--BorderRadiusButton);
-	padding-left: 1em;
-	padding-right: 1em;
-	padding-top: 0.6em;
-	padding-bottom: 0.5em;
-	border-style: outset;
-	border-width: thin;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-style: solid;
+	border-color: black;
+	border-width: 0.5px;
+
+	/*
 	border-top-color: rgb(220, 220, 220);
 	border-left-color: rgb(220, 220, 220);
 	border-bottom-color: rgb(200, 200, 200);
 	border-right-color: rgb(200, 200, 200);
-	text-decoration: none;
 	*/
+	text-decoration: none;
 }
 
 a.masthead_button:hover
@@ -119,17 +140,24 @@ a.masthead_button:hover
 	position: relative;
 	margin-right: 20px;
 	opacity: 1.0;
-	/*
 	color: var(--LinkColorText);
-	font-size: x-large;
+	font-size: large;
 	font-weight: bold;
-	font-family: 'Concrete';
+	font-family: 'TrenchSlab-Bold';
 	text-decoration: none;
 	background-color: var(--LinkColorBG);
-	padding: 0.3em;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-style: solid;
+	border-color: black;
+	border-width: 0.5px;
 	border-radius: var(--BorderRadiusButton);
-	*/
 	
+	background-image: url('/images/rock_texture2.jpg');
+	background-repeat: repeat;
+	background-position: center center;	
 }
 
 .navigation_link:hover
@@ -143,18 +171,31 @@ a.masthead_button:hover
 	display: inline-block;
 	position: relative;
 	background-color: var(--LinkColorBG);
-	padding: 10px;
+	padding: 0px;
 	border-radius: var(--BorderRadiusButton);
-	margin-top: 10px;
-	margin-left: 10px;
-	color: var(--LinkColorText);
-	/*font-family: Arial, Helvetica, sans-serif;*/
-	font-family: 'Concrete';
-	font-size: xx-large;
+	margin-left: var(--Margin);
+	margin-top: var(--Margin);
+	margin-bottom: 0px;
+	/*color: var(--LinkColorText);*/
+	font-family: 'TrenchSlab-Bold';
+	font-size: 60px;
 	font-weight: bold;
+	/*
 	text-decoration: underline;
 	text-decoration-color: silver;
+	*/
 	width: 97%;
+
+	background-image: url('/images/rock_texture2.jpg');
+	background-repeat: repeat;
+	background-position: center center;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	-moz-background-clip:text;
+	background-clip:text; 	
+	background-size: contain;
+	-webkit-text-stroke-width: 1px;
+ 	-webkit-text-stroke-color: black;
 }
 
 .page_content
@@ -169,15 +210,13 @@ a.masthead_button:hover
 {
 	/*display: block;*/
 	display: flex;
+	position: relative;
  	flex-wrap: wrap;	
  	/*background-color: rgba(255, 255, 255, 0.9);*/
 	background-color: var(--NoteColorBG);
 	border-radius: 20px;
 	padding: var(--Padding);
-	margin-left: var(--Margin);
-	margin-right: var(--Margin);
-	margin-top: var(--Margin);
-	margin-bottom: var(--Margin);
+	margin: var(--Margin);
 	/*box-shadow: 10px 10px rgba(0, 0, 0, 0.65);*/
 	box-shadow: 10px 10px rgb(0, 0, 0);
 	border-style: solid;
