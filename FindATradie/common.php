@@ -21,6 +21,26 @@
 	
 	
 	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** BACKGROUND IMAGE FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+
+	function DoGetRandomBackgroundImage()
+	{
+		$strImagfeFileName = "background";
+		$nNum = rand(1, 9);
+		$strImagfeFileName = $strImagfeFileName . $nNum;
+		return $strImagfeFileName;
+	}
+	
+	
+	
+	
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -31,7 +51,7 @@
 	require_once "CryptoJSAES.php";
 	$g_strKey = "dPRBqi32EH7LgfxuhWXm";
 	
-	setcookie("encryption_key", $g_strKey, 0, "/");
+	setcookie("find-a-tradie", "encryption_key=" . $g_strKey . ",SameSite=Strict", 0, "/");
 	
 	function DoAESEncrypt($strPlainText)
 	{

@@ -3,6 +3,7 @@
 :root
 {
 	--ColorMastheadBG: LightSlateGray;
+	--ColorMastheadButtonBG: #607080;
 	/*--ColorMastheadBG: rgba(100, 100, 150, 0.96);*/
 	--NoteHeadingColor: MidnightBlue;
 	--NoteTextColor: black;
@@ -18,11 +19,21 @@
 	--Padding: 20px;
 }
 
-body 
+.body 
 { 
-  margin: 0px;
-  padding: 0px;
-  position: relative;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-style: normal;
+	/*background-image: url("../images/background1.jpg");*/
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 1.0;
 }
 
 .masthead
@@ -32,7 +43,7 @@ body
 	padding: var(--Padding);
 	height: 170px;
 	margin: 0px;
-	opacity: 0.95;
+	opacity: 0.98;
 }
 
 .title
@@ -94,10 +105,12 @@ body
 	margin-top: 35px;
 	margin-right: 30px;
 	opacity: 1.0;
-	/*background-color: silver;*/
+	background-color: var(--ColorMastheadButtonBG);
+	/*
 	background-image: url('/images/rock_texture3.jpg');
 	background-repeat: repeat;
 	background-position: center center;
+	*/
 	color: var(--LinkColorText);
 	font-size: large;
 	font-weight: bold;
@@ -107,9 +120,9 @@ body
 	padding-right: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-style: solid;
-	border-color: black;
-	border-width: 0.5px;
+	border-style: outset;
+	border-color: var(--ColorMastheadButtonBG);
+	border-width: medium;
 
 	/*
 	border-top-color: rgb(220, 220, 220);
@@ -126,6 +139,20 @@ a.masthead_button:hover
 	opacity: 0.75;
 }
 
+.navigation_list
+{
+	display: flex;
+	list-style-type: square;
+}
+
+.navigation_list_item
+{
+	margin-right: 60px;
+	list-style-position: inside;
+	color: var(--LinkColorText);
+	font-size: x-large;
+}
+
 .navigation
 {
 	display: block;
@@ -136,34 +163,17 @@ a.masthead_button:hover
 
 .navigation_link
 {
-	display: inline-block;
-	position: relative;
-	margin-right: 20px;
-	opacity: 1.0;
 	color: var(--LinkColorText);
 	font-size: large;
 	font-weight: bold;
 	font-family: 'TrenchSlab-Bold';
 	text-decoration: none;
-	background-color: var(--LinkColorBG);
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-style: solid;
-	border-color: black;
-	border-width: 0.5px;
-	border-radius: var(--BorderRadiusButton);
-	
-	background-image: url('/images/rock_texture2.jpg');
-	background-repeat: repeat;
-	background-position: center center;	
 }
 
 .navigation_link:hover
 {
 	/*background-color: var(--LinkColorHighlightBG);*/
-	opacity: 0.75;
+	color: silver;
 }
 
 .nav_image
@@ -191,22 +201,19 @@ a.masthead_button:hover
 {
 	display: inline-block;
 	position: relative;
-	background-color: var(--LinkColorBG);
-	padding: 0px;
+	background-color: var(--ColorMastheadBG);
+	padding: 10px;
 	border-radius: var(--BorderRadiusButton);
 	margin-left: var(--Margin);
 	margin-top: var(--Margin);
 	margin-bottom: 0px;
-	/*color: var(--LinkColorText);*/
+	color: var(--LinkColorText);
 	font-family: 'TrenchSlab-Bold';
-	font-size: 60px;
+	font-size: xx-large;
 	font-weight: bold;
-	/*
 	text-decoration: underline;
-	text-decoration-color: silver;
-	*/
-	width: 97%;
-
+	text-decoration-color: var(--LinkColorText);
+/*
 	background-image: url('/images/rock_texture2.jpg');
 	background-repeat: repeat;
 	background-position: center center;
@@ -217,6 +224,7 @@ a.masthead_button:hover
 	background-size: contain;
 	-webkit-text-stroke-width: 1px;
  	-webkit-text-stroke-color: black;
+*/
 }
 
 .page_content
@@ -243,6 +251,7 @@ a.masthead_button:hover
 	border-style: solid;
 	border-width: thick;
 	border-color: var(--LinkColorBG);
+	overflow: auto;
 }
 
 .advert
@@ -260,7 +269,7 @@ a.masthead_button:hover
 	border-radius: var(--BorderRadius);
 	margin-left: 15px;
 	margin-right: 0px;
-	margin-top: 0px;
+	margin-top: 20px;
 	margin-bottom: 0px;
 	padding: var(--Padding);
 }

@@ -20,40 +20,24 @@
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-			<?php
-			
-				function DoGetRandomBackgroundImage()
-				{
-					$strImagfeFileName = "background";
-					$nNum = rand(1, 9);
-					$strImagfeFileName = $strImagfeFileName . $nNum;
-					return $strImagfeFileName;
-				}
-				
-			?>
-			<style>
-			
-				body 
-				{
-					color: #000;
-					font-family: Arial, Helvetica, sans-serif;
-					font-size: small;
-					font-style: normal;
-					background-image: url('images/<?php echo DoGetRandomBackgroundImage(); ?>.jpg');
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: cover;
-				}
-				
-			</style>
-			
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
+		<script type="text/javascript">
+			
+			function DoChangeBackgroundImage()
+			{
+				let nImageNum = Math.ceil(Math.random() * 39),
+					strFilename = "url('/images/background" + nImageNum + ".jpg')";
+					
+				document.body.style.backgroundImage = strFilename;
+			}
+			
+		</script>
 	</head>
-	
-	<body>
+
+	<body class="body" onload="DoChangeBackgroundImage()">
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -65,28 +49,22 @@
 			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php">HOME</a>
-				<a class="navigation_link" href="benefits.php">BENEFITS</a>
-				<a class="navigation_link" href="about.php">ABOUT</a>
-					<?php
-	
-						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
-						else
-							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
-							
-					?>
-				<a class="navigation_link" href="faq.php">FAQ</a>
-				<a class="navigation_link" href="contact.php">CONTACT</a>
-				<a class="navigation_link" href="forum.php">FORUM</a>
-				<div class="nav_images">
-					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
-					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
-					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" style="width:50px; />
-					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
-					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
-					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />
-				</div>
+				<ul class="navigation_list">
+					<li class="navigation_list_item"><a class="navigation_link" href="index.php">HOME</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="benefits.php">BENEFITS</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="about.php">ABOUT</a></li>
+						<?php
+		
+							if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+								echo "<li class=\"navigation_list_item\"><a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a></li>\n";
+							else
+								echo "<li class=\"navigation_list_item\"><a class=\"navigation_link\" href=\"login.php\">LOG IN</a></li>\n";
+								
+						?>
+					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
+				</ul>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -118,27 +96,30 @@
 	}
 
 ?>
-				<div class="note" style="display:block;font-weight:bold;font-size:medium;margin-top:0px;">
+				<div class="note" style="display:block;font-weight:bold;font-size:medium;margin-top:0px;height:70px;">
+					<img src="images/UnderConstruction.jpg" alt="images/UnderConstruction.jpg" width="150" style="float:left;" />
 					Tradies can join for 6 months, free of charge, until <span style="color:red;"><?php echo $g_dateJoinFree->format("d/m/Y"); ?></span>.
-					&nbsp;&nbsp;
+					<br/><br/>
 					<?php echo $g_nDaysToGo; ?> days to go!
-				</div>
-
-				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
-					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
 				</div>
 
 				<div class="note" style="display:block;">
 					<img src="images/Lawn-Mowing.jpg" alt="images/Lawn-Mowing.jpg" width="200" style="float:left;margin-right:5px;"/>
 					<h6><a href="benefits.php">Click here</a> to read the benefits of becoming a member.</h6>
 					<p style="font-size:medium;">
-						<b><u>find-a-tradie.com.au</u></b> is perfect for tradies and small business people who are just starting out 
+						<b><u>www.find-a-tradie.com.au</u></b> is perfect for tradies and small business people who are just starting out 
 						with their sole proprietor business, and don't yet have a large advertising budget.
 					</p>
 					<p style="font-size:medium;">
-						Advertising costs can run into $1000s per year with no guarentee of results, and often no way of 
-						tracking its effectiveness. A <b><u>find-a-tradie.com.au</u></b> membership will cost you a maximum of 
-						$<?php echo sprintf("%d", $g_nCostPerMonth * 12); ?> per year and you can try for as many jobs as you please, no additional charges.
+						Advertising costs can run into $1000s per year, with no guarentee of results, and potentially leaving you 
+						unprofitable or barely profitable for a year or more. Few if any conventional advertisers show sole 
+						proprietors, just starting out with their small businesses, any consideration.
+					</p>
+					<p style="font-size:medium;">
+						With <b><u>www.find-a-tradie.com.au</u></b> membership will cost you a maximum of 
+						$<?php echo sprintf("%d", $g_nCostPerMonth * 12); ?> per year and you can try for as many jobs as you 
+						please, with no additional charges. So there is little risk of you spending more on advertising than you 
+						are likely to earn over an entire year when you are just starting out.
 					</p>
 					<hr/>
 					<img src="images/forum.jpg" alt="images/forum.jpg" width="300" style="float:right;margin-left:5px;"/>
@@ -150,7 +131,12 @@
 					<p style="font-size:medium;">
 						Customers and tradies can negotiate jobs directly with each other through this forum, in the same way as 
 						others do on Facebook. However you can rest assured that your personal data will not be exploited for 
-						profit as Facebook does. It is an alternative to posting jobs if you prefer a more social experience.
+						profit as Facebook does. 
+					</p>
+					<p style="font-size:medium;">
+						It is an alternative to posting jobs and waiting for tradies to respond if you prefer a more social 
+						experience, but you don't trust the modern forms of social media. You can also seek advice from  tradies 
+						about the feasibility of different solutions to your particular problems. Get involved in the community.
 					</p>
 					<hr/>
 					<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
@@ -230,6 +216,10 @@
 						<br/><br/>
 						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
 					</div>
+				</div>
+
+				<div class="advert" id="advert_index1" style="height: 100px; width: 95%;">
+					<?php DoInsertAdvert("index1", 70, "advert_index1"); ?>
 				</div>
 
 				<div class="advert" id="advert_index2" style="height: 100px; width: 95%;">

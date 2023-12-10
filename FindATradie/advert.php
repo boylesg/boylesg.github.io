@@ -20,34 +20,6 @@
 		<!-- #EndEditable -->
 		<?php include "common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-			<?php
-			
-				function DoGetRandomBackgroundImage()
-				{
-					$strImagfeFileName = "background";
-					$nNum = rand(1, 9);
-					$strImagfeFileName = $strImagfeFileName . $nNum;
-					return $strImagfeFileName;
-				}
-				
-			?>
-			<style>
-
-			
-				body 
-				{
-					color: #000;
-					font-family: Arial, Helvetica, sans-serif;
-					font-size: small;
-					font-style: normal;
-					background-image: url('images/<?php echo DoGetRandomBackgroundImage(); ?>.jpg');
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: cover;
-				}
-				
-			</style>
-			
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
@@ -307,9 +279,20 @@
 			</script>
 			
 		<!-- #EndEditable -->
+		<script type="text/javascript">
+			
+			function DoChangeBackgroundImage()
+			{
+				let nImageNum = Math.ceil(Math.random() * 39),
+					strFilename = "url('/images/background" + nImageNum + ".jpg')";
+					
+				document.body.style.backgroundImage = strFilename;
+			}
+			
+		</script>
 	</head>
-	
-	<body>
+
+	<body class="body" onload="DoChangeBackgroundImage()">
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
@@ -321,28 +304,22 @@
 			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
-				<a class="navigation_link" href="index.php">HOME</a>
-				<a class="navigation_link" href="benefits.php">BENEFITS</a>
-				<a class="navigation_link" href="about.php">ABOUT</a>
-					<?php
-	
-						if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
-							echo "<a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a>\n";
-						else
-							echo "<a class=\"navigation_link\" href=\"login.php\">LOG IN</a>\n";
-							
-					?>
-				<a class="navigation_link" href="faq.php">FAQ</a>
-				<a class="navigation_link" href="contact.php">CONTACT</a>
-				<a class="navigation_link" href="forum.php">FORUM</a>
-				<div class="nav_images">
-					<img src="images/tools/ACTester.png" alt="images/tools/ACTester.png" class="nav_image" />
-					<img src="images/tools/Chainsaw.png" alt="images/tools/Chainsaw.png" class="nav_image" style="width:80px;" />
-					<img src="images/tools/LawnMower.png" alt="images/tools/LawnMower.png" class="nav_image" style="width:50px; />
-					<img src="images/tools/SewingMachine.png" alt="images/tools/SewingMachine.png" class="nav_image" />
-					<img src="images/tools/PlumberWrench.png" alt="images/tools/PlumberWrench.png" class="nav_image" />
-					<img src="images/tools/GlassCutter.png" alt="images/tools/GlassCutter.png" class="nav_image" />
-				</div>
+				<ul class="navigation_list">
+					<li class="navigation_list_item"><a class="navigation_link" href="index.php">HOME</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="benefits.php">BENEFITS</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="about.php">ABOUT</a></li>
+						<?php
+		
+							if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+								echo "<li class=\"navigation_list_item\"><a class=\"navigation_link\" href=\"account.php\">ACCOUNT</a></li>\n";
+							else
+								echo "<li class=\"navigation_list_item\"><a class=\"navigation_link\" href=\"login.php\">LOG IN</a></li>\n";
+								
+						?>
+					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
+				</ul>
 			</nav>
 			<!-- End Navigation -->
 		</div>
