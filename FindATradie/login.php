@@ -23,7 +23,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
@@ -185,12 +185,33 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
+				<?php
+					
+					function DoGetUsername()
+					{
+						$strUsername = "";
+							
+						if (isset($_SESSION["account_username"]))
+							$strUsername = $_SESSION["account_username"];
+						else if (isset($_POST["text_username"]))
+							$strUsername = $_POST["text_username"];
+							
+						return $strUsername;
+					}
+					
+					function DoGetPassword()
+					{
+						$strPassword = "";
+							
+						if (isset($_SESSION["account_password"]))
+							$strPassword = $_SESSION["account_password"];
+						else if (isset($_POST["text_password"]))
+							$strPassword = $_POST["text_password"];
+							
+						return $strPassword;
+					}
+					
+				?>
 
 				<div class="note">
 
@@ -199,7 +220,7 @@
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username or email: </label></td>
 								<td class="cell_no_borders">
-									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value="<?php echo $_SESSION["account_username"]; ?>"/>
+									<input name="text_username" id="text_recover_username" style="width: 20em" type="text" value=""/>
 								</td>
 							</tr>
 							<tr>
@@ -226,13 +247,13 @@
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email: </label></td>
 								<td class="cell_no_borders">
-									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php echo $_SESSION["account_username"]; ?>"/>
+									<input name="text_username" id="text_username" style="width: 20em" type="text" value="<?php echo DoGetUsername(); ?>"/>
 								</td>
 							</tr>
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_password" id="label_password" >Password: </label></td>
 								<td class="cell_no_borders">
-									<input type="password" name="text_password" id="text_password" style="width: 20em" value="<?php if (isset($_SESSION["account_password"])) echo $_SESSION["account_password"]; ?>"/>
+									<input type="password" name="text_password" id="text_password" style="width: 20em" value="<?php echo DoGetPassword(); ?>"/>
 									<br/><input type="checkbox" id="check_show" onclick="OnClickCheckboxShow(this)" /><label for="textPassword">Show password</label>
 								</td>
 							</tr>

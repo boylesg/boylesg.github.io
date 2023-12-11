@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -85,6 +85,8 @@
 
 <?php
 				
+	include "member_details_forms.html";
+
 	$_SESSION["account_additional_trades"] = [];
 
 	//*******************************************************************************************
@@ -123,7 +125,8 @@
 				[text_mobile] => 0456345298 
 				[text_email] => f@gmail.com)
 		*/
-		if (DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]))
+		$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
+		if ($results && ($results->num_rows > 0))
 		{
 			PrintJavascriptLine("AlertError(\"username '" . $_POST["text_username"] . "' is already registered by someone else!\");", 2, true);
 		}
@@ -156,7 +159,7 @@
 								$_POST["text_username"], $_POST["text_password"], $dateExpiry->format("Y-m-d")) . ")";
 	
 			$result = DoQuery($g_dbFindATradie, $strQuery);
-			if ($result->num_rows == 1)
+			if ($result)
 			{
 				$row = $result->fetch_assoc();
 				$strMemberID = $row["id"];
@@ -176,7 +179,9 @@
 				if ($bResult)
 				{
 					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-												"DoGetInput('form_tradie_login').submit();"], 4, true);					
+											"DoGetInput('form_login').submit();"], 4, true);
+					$_SESSION["account_usernanme"] = $_POST["text_username"];			
+					$_SESSION["account_password"] = $_POST["text_password"];			
 				}
 			}
 			else
@@ -190,8 +195,6 @@
 		print_r($_POST);
 	}		
 				
-	include "member_details_forms.html";
-
 ?>			
 
 

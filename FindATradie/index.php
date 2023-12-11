@@ -134,9 +134,9 @@
 						profit as Facebook does. 
 					</p>
 					<p style="font-size:medium;">
-						It is an alternative to posting jobs and waiting for tradies to respond if you prefer a more social 
-						experience, but you don't trust the modern forms of social media. You can also seek advice from  tradies 
-						about the feasibility of different solutions to your particular problems. Get involved in the community.
+						It is an alternative to posting jobs and waiting for tradies to respond to your job request, if you prefer a more social 
+						experience. You can also seek advice from  tradies about the feasibility of different solutions to your 
+						particular problems, and discuss jobs and times. Take advantage of this community and get involved.
 					</p>
 					<hr/>
 					<h6>Both customers &amp; tradies need to register and login to use this service.</h6>

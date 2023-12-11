@@ -69,7 +69,6 @@
 		global $g_strKey;
 
 		//$strResult = base64_decode($strEncryptedText);
-		
 		$strResult = CryptoJsAes::decrypt($strEncryptedText, $g_strKey);
 
 		return $strResult;

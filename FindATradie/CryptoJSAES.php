@@ -49,7 +49,8 @@
 	        $md5[0] = md5($concatedPassphrase, true);
 	        $result = $md5[0];
 	        $i = 1;
-	        while (strlen($result) < 32) {
+	        while (strlen($result) < 32) 
+	        {
 	            $md5[$i] = md5($md5[$i - 1] . $concatedPassphrase, true);
 	            $result .= $md5[$i];
 	            $i++;

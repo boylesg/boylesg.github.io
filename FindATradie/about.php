@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -104,62 +104,32 @@
 						and I have been a small business gardener/landscaper for the past <?php echo $nYears; ?> years. My 
 						brother is still a programmer. I still love the creativity and problem solving involved with building 
 						web sites and software, and have put my programming skills to good use building, maintaining and hosting 
-						my own landscaping business web site. Building this web site has been very enjoyable.
+						my own landscaping business web site. As well as half dozen other web sites for my self and a friend.
 					</p>
 					<h6><b>Why did we create <u>www.find-a-tradie.com.au?</u></b></h6>
 					<p>
-						Recently I explored advertising on <b><u>www.highpages.com.au</u></b> and was rather disgusted at the level of gouging that 
-						this company was engaging in. I was quoted $109 PER MONTH that essentially gave me 7 or so chances to 'purchase' 
-						client contact details and gain a paying job.
+						Recently I explored advertising on other similar tradie advertising web services and was rather disgusted 
+						at the level of gouging that they engaging in. I was quoted $109 PER MONTH, that essentially gave me 7 or 
+						so chances to 'purchase' client contact details and obtain a paying job.
 					</p>
 					<p>
-						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 1 hour or so, and pay 
-						more than $100. Combine that with 30-60 minutes drive time between jobs and you end up working for below the 
-						minimum wage. And rising interest rates, rising rents and rising electricity/water/gas bills are dissuading 
-						so many people from spending on many trade services altogether. 
+						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 1-2 hours, 
+						and pay more than $100 or so. Combine that with 30-60 minutes drive time between jobs and you can easily 
+						end up working for minimum wage or barely above it. And rising interest rates, rising cost of living over 
+						the last few years are disuading so many people from spending on many trade services altogether. 
 					</p>
 					<p>
-						So the client detail purchase fees, charged by Highpages etc., take a signficant chunk out of what I would 
-						likely earn from any gardening jobs I obtained through them. And I doubt that I am the only tradie that recognises   
-						the injustice of a bunch of 'suits' charging tradies THAT much to advertise, while we do all the hard work in 
-						the heat or the rain out doors!
+						Combine that with high level of competition in many trade services and I could easily spend as much on 
+						advertising with these companies over a year than I would likely earn from any gardening jobs I obtained 
+						through them. And I doubt that I am the only tradie who is experiencing this issue. Nor the only tradie 
+						who feels that the 'suits' behind these companies gouging such a high gaurenteed income from us really 
+						sucks when it is we who do all the hard work in the heat or the rain outdoors!
 					</p>
 					<p>
-						So these are the two reasons why my brother and I have created <b><u>www.find-a-tradie.com.au</u></b>. Not in small 
-						part is the satisfaction of leveraging my programming skills to undermine these companies that are clearly 
-						engaged in gouging small business tradies. And to give small business tradies a fair go.
-					</p>
-					<h6><b>Why is <u>www.find-a-tradie.com.au</u> different from Oneflare, Highpages and ServiceSeeking</b></h6>
-					<p>
-						We do not charge you to obtain a customer's contact details. For a flat membership fee of $10 per month, or $120 
-						per year, you can try for as many jobs as you want. So there is little risk of you spending more money on trying for 
-						jobs than you make from actually completing jobs. 
-
-					</p>
-					<p>
-						There is also the issue of customers being able to post jobs on the other web sites when they are not entirely 
-						serious about engaging the services of a tradie, and just want to get an idea of the cost do do a job for 
-						example. It still costs tradies $10 to $20 to get their contact details but it costs the customer nothing to 
-						post the job, and there are no other consequences for them. So it is for this reason that customers ALSO need 
-						to register an account and login to post jobs.
-					</p>
-					<p>
-						With <b><u>www.find-a-tradie.com.au</u></b> such customers pose no risk to tradies because we don't charge tradies to 
-						obtain their contact details.
-					</p>
-					<p>
-						<b><u>www.find-a-tradie.com.au</u></b> uses a mutual trust system, similar to eBay, where both customers and tradies can 
-						leave each other feedback. If tradies complete jobs on time and on budget then customers can leave that tradie positive 
-						feedback. Or negative feedback if the tradie does a poor job. Similarly if customers delays payment or refuses to pay 
-						tradies then the tradie can leave that customer negative feedback and warn other tradies. If the customer 
-						pays in full and on time then the tradie can leave that customer positive feedback. Any feedback tradies 
-						or customers leave each other is editable at any time subject to private negotiations between them.
-						
-					</p>
-					<p>
-						I am old enough to remember when this country was built on the foundation of a 'fair go' for outdoor workers. 
-						And I believe that myself and my brother are giving small business Australian tradies a fair go through this 
-						web site.
+						So these are the two reasons why my brother and I have created <b><u>www.find-a-tradie.com.au</u></b>. 
+						Not in small part is the satisfaction of leveraging my programming skills to give other small business 
+						tradies like me, and indeed myself, a fair go. And I am old enough to remember when this country was built 
+						on the foundation of giving all workers are fair go.
 					</p>
 				
 				</div>
