@@ -116,6 +116,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 			
 				.faq_question
 				{
@@ -162,12 +172,14 @@
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
-			<img class="logo" alt="" src="images/Tools.png" width="90" />
-			<div class="title" id="title">FIND A TRADIE</div>
+			<div class="logo"><img alt="" src="images/FATLogo.png" width="100" /></div>
+			<div class="title_container">
+				<div class="title text_outline" id="title">FIND A TRADIE</div>
+				<div class="tag text_outline" id="tag">Created by an Australian tradie</div>
+			</div>
 			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
-			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul class="navigation_list">
@@ -190,7 +202,7 @@
 			<!-- End Navigation -->
 		</div>
 		<!-- Begin PageHeading -->
-		<div id="page_heading"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
+		<div id="page_heading text_outline"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
@@ -247,9 +259,9 @@
 							</table>
 						</li>
 						<hr/><li class="faq_question">
-							Q. Do I have to pay for leads?<br/>
+							Q. Do I have to pay to obtain customer contact details?<br/>
 						</li>
-						<li class="faq_answer">A. You do not have to pay an additional fee for leads.</li>
+						<li class="faq_answer">A. No, you do not have to pay fees to obtain customer contact details.</li>
 						<hr/><li class="faq_question">
 							Q. How much will it cost me to list a job for tradies?<br/>
 						</li>

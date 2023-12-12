@@ -41,12 +41,14 @@
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
-			<img class="logo" alt="" src="images/Tools.png" width="90" />
-			<div class="title" id="title">FIND A TRADIE</div>
+			<div class="logo"><img alt="" src="images/FATLogo.png" width="100" /></div>
+			<div class="title_container">
+				<div class="title text_outline" id="title">FIND A TRADIE</div>
+				<div class="tag text_outline" id="tag">Created by an Australian tradie</div>
+			</div>
 			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
-			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul class="navigation_list">
@@ -69,7 +71,7 @@
 			<!-- End Navigation -->
 		</div>
 		<!-- Begin PageHeading -->
-		<div id="page_heading"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
+		<div id="page_heading text_outline"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
@@ -95,7 +97,7 @@
 						customers also need to register and login to use this service.
 						
 						The problem with Facebook groups is that the owners are incentivised to maximise the number of members on 
-						their facebook groups, in order to earn a cut of Facebook's advert revenue. The goal of 
+						their Facebook groups, in order to earn a cut of Facebook's advertising revenue. In constrast the goal of 
 						<b><u>www.find-a-tradie.com.au</u></b> is to maximise the trustworthiness of all participants.
 					</p>
 					<h5>BENEFITS FOR TRADIES</h5>
@@ -133,8 +135,8 @@
 							any jobs you win, so <b><u>www.find-a-tradie.com.au</u></b> is ideal for small business tradies who are 
 							just starting out.
 						</li>
-						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through their charging 
-						to obtain customer contact details.</li>
+						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through their 
+						charging you to obtain customer contact details.</li>
 					</ul>
 					<h5>BENEFITS FOR CUSTOMERS</h5>
 					<ul style="font-size: medium;">

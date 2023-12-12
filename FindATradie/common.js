@@ -15,29 +15,45 @@
 	//******************************************************************************
 	//******************************************************************************
 			
-	function GetEncryptionKey()
+	function GetCookie(strName)
 	{
-		let strKey = "",
+		let mapCookie = new Map(),
 			strAllCookies = decodeURIComponent(document.cookie),
-			arrayCookies = strAllCookies.split(';');
+			arrayCookies = strAllCookies.split(";");
 		
 		for (let nI = 0; nI < arrayCookies.length; nI++) 
 		{
-			while (arrayCookies[nI].charAt(0) == ' ')
+			while (arrayCookies[nI].charAt(0) == " ")
 			{
 				arrayCookies[nI] = arrayCookies[nI].substring(1);
 			}
-			if (arrayCookies[nI].includes("find-a-tradie"))
+			if (arrayCookies[nI].includes(strName))
 			{
-				let strFATCookie = arrayCookies[nI];
-				let nJ = strFATCookie.indexOf("encryption_key=") + 15;
-				strKey = strFATCookie.substring(nJ);
-				break;		
+				let strCookie = arrayCookies[nI], // find-a-tradie=encryption_key=dPRBqi32EH7LgfxuhWXm,SameSite=Strict
+					arrayLeyValue = null,
+					nPos = strCookie.indexOf("=");
+				
+				strCookie = strCookie.substring(nPos + 1); // encryption_key=dPRBqi32EH7LgfxuhWXm,SameSite=Strict
+				arrayKeyValues = strCookie.split(",");
+
+				for (let nJ = 0; nJ < arrayKeyValues.length; nJ++)
+				{
+					nPos = arrayKeyValues[nJ].indexOf("=");
+					mapCookie.set(arrayKeyValues[nJ].substring(0, nPos), arrayKeyValues[nJ].substring(nPos + 1));
+				}
 			}
-		}	
-		return strKey;
+		}
+		return mapCookie;
 	}
 	
+	function GetEncryptionKey()
+	{
+		let mapCookie = GetCookie("find-a-tradie"),
+			strKey = mapCookie.get("encryption_key");
+
+		return strKey;
+	}
+
 	function DoEncrypt(strPlainText)
 	{
 		return CryptoJSAesJson.encrypt(strPlainText, GetEncryptionKey());

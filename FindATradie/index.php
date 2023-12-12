@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -41,12 +41,14 @@
 	
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
-			<img class="logo" alt="" src="images/Tools.png" width="90" />
-			<div class="title" id="title">FIND A TRADIE</div>
+			<div class="logo"><img alt="" src="images/FATLogo.png" width="100" /></div>
+			<div class="title_container">
+				<div class="title text_outline" id="title">FIND A TRADIE</div>
+				<div class="tag text_outline" id="tag">Created by an Australian tradie</div>
+			</div>
 			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
 			<a class="masthead_button" href="login.php">LOG IN</a>
-			<div class="tag" id="tag">Created by an Australian tradie.</div>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul class="navigation_list">
@@ -69,7 +71,7 @@
 			<!-- End Navigation -->
 		</div>
 		<!-- Begin PageHeading -->
-		<div id="page_heading"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
+		<div id="page_heading text_outline"class="page_heading"><script type="text/javascript">document.write(document.title);</script></div>				
 		<!-- End PageHeading -->
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
@@ -104,43 +106,39 @@
 				</div>
 
 				<div class="note" style="display:block;">
-					<img src="images/Lawn-Mowing.jpg" alt="images/Lawn-Mowing.jpg" width="200" style="float:left;margin-right:5px;"/>
+					<img src="images/Lawn-Mowing.jpg" alt="images/Lawn-Mowing.jpg" width="180" style="float:left;margin-right:10px;margin-bottom:10px;"/>
 					<h6><a href="benefits.php">Click here</a> to read the benefits of becoming a member.</h6>
-					<p style="font-size:medium;">
+					<p style="font-size:large;">
 						<b><u>www.find-a-tradie.com.au</u></b> is perfect for tradies and small business people who are just starting out 
-						with their sole proprietor business, and don't yet have a large advertising budget.
+						with their sole proprietor business, and are reluctant to spend $100 per month or more for avertising, when 
+						there are no guarantees of it resulting in enough paid jobs to cover the cost.
 					</p>
-					<p style="font-size:medium;">
-						Advertising costs can run into $1000s per year, with no guarentee of results, and potentially leaving you 
-						unprofitable or barely profitable for a year or more. Few if any conventional advertisers show sole 
-						proprietors, just starting out with their small businesses, any consideration.
-					</p>
-					<p style="font-size:medium;">
+					<p style="font-size:large;">
 						With <b><u>www.find-a-tradie.com.au</u></b> membership will cost you a maximum of 
 						$<?php echo sprintf("%d", $g_nCostPerMonth * 12); ?> per year and you can try for as many jobs as you 
 						please, with no additional charges. So there is little risk of you spending more on advertising than you 
-						are likely to earn over an entire year when you are just starting out.
+						are likely to earn over an entire year.
 					</p>
 					<hr/>
-					<img src="images/forum.jpg" alt="images/forum.jpg" width="300" style="float:right;margin-left:5px;"/>
+					<img src="images/forum.jpg" alt="images/forum.jpg" width="340" style="float:right;margin-left:10px;margin-bottom:10px;"/>
 					<h6>Community forum</h6>
-					<p style="font-size:medium;">
+					<p style="font-size:large;">
 						Don't forget to join the <a href="forum.php">forum</a> once you become a member - just use the same user 
 						name and password to register a forum account.
 					</p>
-					<p style="font-size:medium;">
+					<p style="font-size:large;">
 						Customers and tradies can negotiate jobs directly with each other through this forum, in the same way as 
 						others do on Facebook. However you can rest assured that your personal data will not be exploited for 
 						profit as Facebook does. 
 					</p>
-					<p style="font-size:medium;">
+					<p style="font-size:large;">
 						It is an alternative to posting jobs and waiting for tradies to respond to your job request, if you prefer a more social 
 						experience. You can also seek advice from  tradies about the feasibility of different solutions to your 
 						particular problems, and discuss jobs and times. Take advantage of this community and get involved.
 					</p>
 					<hr/>
 					<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
-					<p style="font-size:medium;">However if you are new here then you can give it a test run...</p>
+					<p style="font-size:large;">However if you are new here then you can give it a test run...</p>
 					<form method="post" action="index.php" style="width:745px">
 						
 						<table class="table_no_borders">
