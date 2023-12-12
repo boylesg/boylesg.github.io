@@ -1,18 +1,18 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|12 Dec 2023 08:09:27 -0000
+vti_timelastmodified:TR|12 Dec 2023 12:30:23 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
 vti_timecreated:TR|11 Nov 2023 21:07:14 -0000
 vti_title:SR|Frequently Asked Questions
 vti_backlinkinfo:VX|benefits.php index.php login.php new_customer.php forum.php master.dwt contact.php account.php advert.php faq.php new_tradie.php tradie.php about.php
-vti_nexttolasttimemodified:TR|12 Dec 2023 08:04:53 -0000
-vti_cacheddtm:TX|12 Dec 2023 08:09:27 -0000
-vti_filesize:IR|9837
+vti_nexttolasttimemodified:TR|12 Dec 2023 11:47:37 -0000
+vti_cacheddtm:TX|12 Dec 2023 12:30:23 -0000
+vti_filesize:IR|10026
 vti_cachedtitle:SR|Frequently Asked Questions
 vti_cachedbodystyle:SR|<body class="body" onload="DoChangeBackgroundImage()">
-vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/FATLogo.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php H|forum.php
-vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/FATLogo.png FHUS|new_tradie.php FHUS|new_customer.php FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php FHUS|forum.php
+vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/FATLogo.png H|new_tradie.php H|new_customer.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php H|forum.php H|https://www.facebook.com/FindATradiePage/ S|images/Facebook.png
+vti_cachedsvcrellinks:VX|FGUS|master.dwt FQUS|styles/style.css FSUS|images/FATLogo.png FHUS|new_tradie.php FHUS|new_customer.php FHUS|login.php FHUS|index.php FHUS|benefits.php FHUS|about.php FHUS|faq.php FHUS|contact.php FHUS|forum.php NHSS|https://www.facebook.com/FindATradiePage/ FSUS|images/Facebook.png
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false

@@ -67,6 +67,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
+				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -124,7 +125,7 @@
 						Combine that with high level of competition in many trade services and I could easily spend as much on 
 						advertising with these companies over a year than I would likely earn from any gardening jobs I obtained 
 						through them. And I doubt that I am the only tradie who is experiencing this issue. Nor the only tradie 
-						who feels that the 'suits' behind these companies gouging such a high gaurenteed income from us really 
+						who feels that the 'suits' behind these companies gouging such a high gauranteed income from us really 
 						sucks when it is we who do all the hard work in the heat or the rain outdoors!
 					</p>
 					<p>
