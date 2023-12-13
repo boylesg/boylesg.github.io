@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -119,7 +119,7 @@
 						As a gardener/landscaper, in particular, it is quite hard to get decent jobs that exceed 1-2 hours, 
 						and pay more than $100 or so. Combine that with 30-60 minutes drive time between jobs and you can easily 
 						end up working for minimum wage or barely above it. And rising interest rates, rising cost of living over 
-						the last few years are disuading so many people from spending on many trade services altogether. 
+						the last few years are dissuading so many people from spending on many trade services altogether. 
 					</p>
 					<p>
 						Combine that with high level of competition in many trade services and I could easily spend as much on 
@@ -132,7 +132,7 @@
 						So these are the two reasons why my brother and I have created <b><u>www.find-a-tradie.com.au</u></b>. 
 						Not in small part is the satisfaction of leveraging my programming skills to give other small business 
 						tradies like me, and indeed myself, a fair go. And I am old enough to remember when this country was built 
-						on the foundation of giving all workers are fair go.
+						on the foundation of giving all workers a fair go.
 					</p>
 				
 				</div>

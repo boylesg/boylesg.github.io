@@ -23,115 +23,6 @@
 		<!-- #BeginEditable "page_styles" -->
 			<style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			
 				.faq_question
 				{
@@ -313,11 +204,11 @@
 							Q. What if someone hacks my account?<br/>
 						</li>
 						<li class="faq_answer">
-							A. If they do then it is not really going to bring them much benefit. There are no credit cards numbers,
-							no bank account numbers, no dates of birth or any other identity data for them to steal. Other than what you
-							 have likely made public yourself in the Yellow Pages or on Facebook etc. All communications take place 
-							 via your phone numbers and private email accounts, so there is little information about you for them to 
-							 access. Unless they also hack your email and mobile accounts.
+							A. If they do then it is not really going to bring them much benefit. There are no credit cards 
+							numbers, no bank account numbers, no dates of birth or any other identity data for them to steal. 
+							Other than what you have likely made public yourself in the Yellow Pages or on Facebook etc. All 
+							communications take place via your phone numbers and private email accounts, so there is little 
+							information about you for them to access. Unless they also hack your email and mobile accounts.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Does 'Find a Tradie' provide guarantees on workmanship or refunds?<br/>
@@ -332,7 +223,7 @@
 						<li class="faq_answer">
 							A. No. The only data we store is basic contact information. In the case of tradies they routinely make 
 							that information publicly available through advertising. In the case of customers they make basic contact 
-							information public on web sites like Google and Facebook. In both cases you do not require you to 
+							information public on web sites like Google and Facebook. In both cases you are not required to 
 							enter your street address. If you have a business address then you can include your street address if you 
 							wish.
 						</li>

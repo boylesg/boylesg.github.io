@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -98,7 +98,7 @@
 						customers also need to register and login to use this service.
 						
 						The problem with Facebook groups is that the owners are incentivised to maximise the number of members on 
-						their Facebook groups, in order to earn a cut of Facebook's advertising revenue. In constrast the goal of 
+						their Facebook groups, in order to earn a cut of Facebook's advertising revenue. In contrast the goal of 
 						<b><u>www.find-a-tradie.com.au</u></b> is to maximise the trustworthiness of all participants.
 					</p>
 					<h5>BENEFITS FOR TRADIES</h5>
@@ -132,12 +132,13 @@
 						<li>Tradies with a primary trade that matches what a customer is searching for are prioritized over 
 							tradies that have listed it as an additional trade.</li>
 						<li>
-							There is little or no risk of you spending more money on advertising here than you actually earn from 
-							any jobs you win, so <b><u>www.find-a-tradie.com.au</u></b> is ideal for small business tradies who are 
-							just starting out.
+							There is little or no risk of you spending more money on advertising than you are likely to actually 
+							earn from any jobs you win over an entire year. So <b><u>www.find-a-tradie.com.au</u></b> is ideal 
+							for small business tradies who are just starting out.
 						</li>
-						<li>That is a big disadvantage of sites like OneFlare, HiPages &amp; ServiceSeeking through their 
-						charging you to obtain customer contact details.</li>
+						<li>The services of our competitors charge you around $10 each time you request a customers contact 
+						details, and that means you can easily spend more on advertising than you can earn from jobs over a matter
+						of months.</li>
 					</ul>
 					<h5>BENEFITS FOR CUSTOMERS</h5>
 					<ul style="font-size: medium;">
