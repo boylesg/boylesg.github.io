@@ -24,65 +24,6 @@
 						
 			<style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				:root 
 				{
 					--Width: 98%;
@@ -249,7 +190,8 @@
 			
 			<script type="text/javascript">
 			
-				let g_buttonTabLastActive = null;
+				if (sessionStorage.getItem("active tab_button") == undefined)
+					sessionStorage.setItem("active tab_button", "");
 				
 				function  DoOpenTab(strTabButtonID, strTab2ShowID) 
 				{
@@ -272,10 +214,12 @@
 						let divTabButton = document.getElementById(strTabButtonID);
 						if (divTabButton)
 						{
-							if (g_buttonTabLastActive)
-								g_buttonTabLastActive.style.backgroundColor = GetCSSVariable("--ColorBG");
+							if (sessionStorage.getItem("active tab_button") != "")
+							{
+								DoGetInput(sessionStorage.getItem("active tab_button")).style.backgroundColor = GetCSSVariable("--ColorBG");
+							}
 							divTabButton.style.backgroundColor = GetCSSVariable("--ColorActiveBG");
-							g_buttonTabLastActive = divTabButton;
+							sessionStorage.setItem("active tab_button", divTabButton.id);
 						}
 					}
 				}
@@ -1157,23 +1101,30 @@
 								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
 							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
-														
-							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width: 1100px;">
-								<fieldset>
-									<legend>Profile image:</legend>
-									<table class="table_no_borders">
+							<table border="0" cellspacing="0" cellpadding="0">
+									
+								<tr>
+									<td><img src="images/<?php if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) echo $_SESSION["account_profile_filename"]; ?>" alt="images/<?php if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) echo $_SESSION["account_profile_filename"]; ?>" width="300" /></td>
+									<td>					
+										<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data">
+											<fieldset>
+												<legend>Profile image:</legend>
+												<table class="table_no_borders">
 <?php
 	$_SESSION["filename"] = $_SESSION["account_profile_filename"];
 	include "select_file.html";
 ?>
-										<tr>
-											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
-												<input type="submit" name="submit_file" value="SAVE" />
-											</td>
-										</tr>
-									</table>
-								</fieldset>
-							</form>
+													<tr>
+														<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
+															<input type="submit" name="submit_file" value="SAVE" />
+														</td>
+													</tr>
+												</table>
+											</fieldset>
+										</form>
+									</td>
+								</tr>
+							</table>
 								
 <?php
 	include "member_details_forms.html"; 
@@ -1294,39 +1245,40 @@
 		DoGetInput("hidden_job_id").value = strJobID;
 		return false;
 	}
+	
+	function DoRestoreTab()
+	{
+		let strID = sessionStorage["active tab_button"];
+		
+		if (strID == "tab_button2")
+		{
+			DoOpenTab("tab_button2", "tab_contents2");
+		}
+		else if (strID == "tab_button3")
+		{
+			DoOpenTab("tab_button3", "tab_contents3");
+		}
+		else if (strID == "tab_button4")
+		{
+			DoOpenTab("tab_button4", "tab_contents4");
+		}
+		else if (strID == "tab_button5")
+		{
+			DoOpenTab("tab_button5", "tab_contents5");
+		}
+		else if (strID == "tab_button6")
+		{
+			DoOpenTab("tab_button6", "tab_contents6");
+		}
+		else
+		{
+			DoOpenTab("tab_button1", "tab_contents1");
+		}
+	}
+	
+	DoRestoreTab();
 
 </script>
-
-<?php
-	if (isset($_POST["submit_job_edit"]) || isset($_POST["submit_job_delete"]) || isset($_POST["submit_job"]))
-	{
-		PrintJavascriptLine("DoOpenTab(\"tab_button2\", \"tab_contents2\");", 1, true);
-	}
-	else if (isset($_POST["submit_trade_details"]) || isset($_POST["text_business_name"]) || isset($_POST["text_first_name"]) || 
-				isset($_POST["text_username"]) || isset($_POST["submit_file"]))
-	{
-		PrintJavascriptLine("DoOpenTab(\"tab_button3\", \"tab_contents3\");", 1, true);
-	}
-	else if (isset($_POST["submit_feedback_edit"]))
-	{
-		PrintJavascriptLine("DoOpenTab(\"tab_button5\", \"tab_contents5\");", 1, true);
-	}
-	else if (isset($_POST["submit_search_adverts"]))
-	{
-		PrintJavascriptLine("DoOpenTab(\"tab_button6\", \"tab_contents6\");", 1, true);
-	}
-	else
-	{
-		PrintJavascriptLine("DoOpenTab(\"tab_button1\", \"tab_contents1\");", 1, true);
-	}
-
-?>
-
-
-
-
-
-
 
 
 				<!-- #EndEditable -->
