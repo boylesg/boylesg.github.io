@@ -692,7 +692,7 @@
 	</head>
 
 	<body class="body" onload="DoChangeBackgroundImage()">
-	
+			
 		<!-- Begin Masthead -->
 		<div class="masthead" id="masthead">
 			<div class="logo"><img alt="" src="images/FATLogo.png" width="100" /></div>
@@ -702,7 +702,18 @@
 			</div>
 			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
 			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
-			<a class="masthead_button" href="login.php">LOG IN</a>
+			<?php 
+				$g_strLoginButtonDisplay = "block";
+				$g_strLogoutButtonDisplay = "none";
+				
+				if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
+				{
+					$g_strLoginButtonDisplay = "none";
+					$g_strLogoutButtonDisplay = "block";
+				}
+			?>
+			<a class="masthead_button" href="login.php" style="display:<?php echo $g_strLoginButtonDisplay; ?>;">LOG IN</a>
+			<a class="masthead_button" href="login.php?submit_logout=LOG OUT" style="display:<?php echo $g_strLogoutButtonDisplay; ?>;">LOG OUT</a>
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul class="navigation_list">
@@ -745,10 +756,6 @@
 					<div class="advert" id="advert_account" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;">
 						<?php DoInsertAdvert("account", $g_nButtonHeight, "advert_account"); ?>
 					</div>
-					
-					<form method="post" id="form_logout" action="login.php">
-						<input type="submit" class="button" id="submit_logout" name="submit_logout" value="LOG OUT" />
-					</form>
 					
 					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
 
@@ -1279,6 +1286,12 @@
 	DoRestoreTab();
 
 </script>
+
+
+
+
+
+
 
 
 				<!-- #EndEditable -->
