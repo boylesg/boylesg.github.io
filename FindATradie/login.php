@@ -23,7 +23,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
@@ -35,7 +35,7 @@
 	// Processing post data.
 	if (isset($_POST["submit_login"]))
 	{
-		$_SESSION["account_username"] = DoAESDecrypt($_POST["text_username"]);
+		$_SESSION["account_username"] = $_POST["text_username"];
 		$_SESSION["account_password"] = $_POST["text_password"];
 		$strQuery = "SELECT * FROM members WHERE username='" . $_SESSION["account_username"] . "' OR email='" . $_SESSION["account_username"] . "' AND password='" . $_SESSION["account_password"] . "'";
 		$result = DoQuery($g_dbFindATradie, $strQuery);
@@ -65,7 +65,7 @@
 			$_SESSION["account_email"] = $row["email"];
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
-			$_SESSION["account_password"] = $row["password"];
+			$_SESSION["account_password"] = DoAESDecrypt($row["password"]);
 			$_SESSION["account_logo_filename"] = $row["logo_filename"];
 			$_SESSION["account_profile_filename"] = $row["profile_filename"];
 			
@@ -119,7 +119,7 @@
 		if ($result->num_rows == 1)
 		{
 			$row = $result->fetch_assoc();
-			mail($row["email"], "Username and pass word recovery at FindATradie", "Username: " . $row["username"] . "%0D%0APassword: " . $row["password"] . "%0D%0A");			
+			mail($row["email"], "Username and pass word recovery at FindATradie", "Username: " . $row["username"] . "%0D%0APassword: " . DoAESDecrypt($row["password"]) . "%0D%0A");			
 			PrintJavascriptLine("alert('Your username and password have been emailed to " . $row["email"] . "');", 3);
 		}
 		else
@@ -283,7 +283,6 @@
 								<td style="text-align:right;" class="cell_no_borders"><br/><input type="button" id="submit_login" name="submit_login" value="LOG IN" onclick="OnClickButtonSubmit()"/></td>
 							</tr>
 						</table>
-						<br/><br/>Your password and username will be encrypted when you click the 'login' button.
 						<input type="hidden" name="submit_login" value="LOG IN" />
 					</form>
 					
@@ -333,8 +332,6 @@
 						
 						if (textUsername && textPassword)
 						{
-							textUsername.value = DoEncrypt(textUsername.value);
-							textPassword.value = DoEncrypt(textPassword.value);
 							DoGetInput("form_login").submit();
 						}
 					}

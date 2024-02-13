@@ -1,13 +1,13 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
-vti_modifiedby:SR|DESKTOP-KFJ8F7O\\boyle
-vti_timelastmodified:TR|17 Dec 2023 11:51:50 -0000
+vti_modifiedby:SR|DESKTOP-UI5GN0G\\boyle
+vti_timelastmodified:TR|13 Feb 2024 12:41:18 -0000
 vti_timecreated:TR|18 Nov 2023 12:45:10 -0000
 vti_title:SR|Tradie Details
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|
 vti_nexttolasttimemodified:TR|17 Dec 2023 11:45:00 -0000
-vti_cacheddtm:TX|17 Dec 2023 11:51:50 -0000
+vti_cacheddtm:TX|13 Feb 2024 12:41:18 -0000
 vti_filesize:IR|9618
 vti_cachedtitle:SR|Tradie Details
 vti_cachedbodystyle:SR|<body class="body" onload="DoChangeBackgroundImage()">
