@@ -15,7 +15,7 @@ CREATE TABLE `postcodes_geolocation` (
   `longitude` decimal(6,3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQUE` (`postcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=33485 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=33485 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 
 
