@@ -675,3 +675,23 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+/*****************************************************************************************************************************************************/
+/*****************************************************************************************************************************************************/
+/*****************************************************************************************************************************************************/
+/*****************************************************************************************************************************************************/
+
+CREATE TABLE `config` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int DEFAULT NULL,
+  `advert_id` int DEFAULT NULL,
+  `purpose` varchar(24) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `member_id_UNIQUE` (`member_id`),
+  UNIQUE KEY `advert_id_UNIQUE` (`advert_id`),
+  UNIQUE KEY `purpose_UNIQUE` (`purpose`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `config` (`member_id`, `advert_id`, `purpose`) VALUES (1, 2, 'XXXX');
