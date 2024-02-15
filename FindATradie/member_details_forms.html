@@ -801,7 +801,6 @@
 	function DoFormSubmitAll()
 	{
 		DoGetInput("htext_username").value = DoGetInput("text_username").value;
-		DoGetInput("htext_password").value = DoEncrypt(DoGetInput("text_password").value);
 		if (!g_bIsCustomer)
 		{
 			DoCopySelectInput("select_trade", "hselect_trade");

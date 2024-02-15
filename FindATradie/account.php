@@ -626,7 +626,7 @@
 		{
 			$strQuery = "UPDATE members SET " .
 						AppendSQLUpdateValues("username", $_POST["text_username"], 
-												"password", $_POST["text_password"]) .
+												"password", DoAESEncrypt($_POST["text_password"])) .
 						" WHERE id='" . $_SESSION["account_id"] . "'";
 			
 			$result = DoQuery($g_dbFindATradie, $strQuery);

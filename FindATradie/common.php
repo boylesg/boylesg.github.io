@@ -58,7 +58,6 @@
 		global $g_strKey;
 
 		//$strResult = base64_encode($strPlainText);
-
 		$strResult = CryptoJsAes::encrypt($strPlainText, $g_strKey);
 
 		return $strResult;
