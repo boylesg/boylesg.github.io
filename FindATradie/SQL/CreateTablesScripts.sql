@@ -32,7 +32,7 @@ CREATE TABLE `trades`
   `id` int NOT NULL,
   `name` varchar(64) NOT NULL,
   `description` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `trades`
@@ -175,7 +175,7 @@ CREATE TABLE `members` (
   `minimum_budget` int(10) UNSIGNED ZEROFILL DEFAULT NULL,
   `maximum_size` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `maximum_distance` int(10) UNSIGNED ZEROFILL DEFAULT NULL,
-  `logo_file_name` varchar(32) DEFAULT NULL,
+  `logo_filename` varchar(32) DEFAULT NULL,
   `unit` varchar(64) DEFAULT NULL,
   `street` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `suburb` varchar(64) NOT NULL,
@@ -188,13 +188,13 @@ CREATE TABLE `members` (
   `password` varchar(64) NOT NULL,
   `expiry_date` date DEFAULT NULL,
   `date_joined` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `profile_filename`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `adverts``, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
+INSERT INTO `members` (`id`, `trade_id`, `business_name`, `first_name`, `surname`, `profile_filename`, `abn`, `structure`, `license`, `description`, `minimum_charge`, `minimum_budget`, `maximum_size`, `maximum_distance`, `logo_filename`, `unit`, `street`, `suburb`, `state`, `postcode`, `phone`, `mobile`, `email`, `username`, `password`, `expiry_date`, `date_joined`) VALUES
 (1, 52, 'Greg\'s Native Landscapes', 'Greg', 'Boyles', NULL, '51 824 753 556', 'Sole trader', 'Electrical license\r\nClass A\r\nNumber: 8743895324', 'Ecological weed control\r\nLow maintenance\r\nDrought tolerant\r\nIrrigation systems\r\nSmall retaining walls\r\nSmall tree removal\r\nGeneral pruning\r\nBush tucker gardens\r\nSmall ornamental billabongs\r\nNative lawns', 0000000120, 0000005000, 'Up to 50', 0000000100, 'Logo.jpg', 'Unit 3, building 6(Cooper)', '56 Derby Drive', 'EPPING', 'VIC', '3076', '94013696', '0455328886', 'gregplants@bigpond.com', 'gregaryb', 'password', '2024-11-08', '2023-11-07 11:25:49'),
 (11, 59, NULL, 'Albus', 'Dumbledore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '38 Harris Street', 'Terip Terip', 'VIC', '3179', '94012348', '0414567980', 'albus.dumbledore@gmail.com', 'dumbledorea', 'password', NULL, '2023-11-20 06:20:23'),
 (12, 59, NULL, 'Ronald', 'Weasley', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11 Boughtman Street', 'Notting Hill', 'VIC', '3168', '94012846', '0414284527', 'ronald.weasley@gmail.com', 'weasleyr', 'password', NULL, '2023-11-20 06:22:07'),
@@ -277,7 +277,7 @@ CREATE TABLE `additional_trades` (
   `id` int UNSIGNED NOT NULL,
   `member_id` int NOT NULL,
   `trade_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `additional_trades`
@@ -364,7 +364,7 @@ CREATE TABLE `feedback` (
   `description` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `feedback`
@@ -463,7 +463,7 @@ CREATE TABLE `advert_spaces` (
   `space_code` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `space_description` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cost_per_month` int UNSIGNED NOT NULL DEFAULT '10'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `advert_spaces`
@@ -555,7 +555,7 @@ CREATE TABLE `adverts` (
   `image_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `expiry_date` date NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `adverts`
@@ -636,7 +636,7 @@ CREATE TABLE `jobs` (
   `size` varchar(16) NOT NULL,
   `urgent` tinyint(1) NOT NULL DEFAULT '0',
   `completed` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `jobs`
