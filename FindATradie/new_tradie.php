@@ -22,7 +22,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -170,7 +170,7 @@
 								$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
 								$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
 								$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
-								$_POST["text_username"], $_POST["text_password"], $dateExpiry->format("Y-m-d")) . ")";
+								$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), $dateExpiry->format("Y-m-d")) . ")";
 	
 			$result = DoQuery($g_dbFindATradie, $strQuery);
 			if ($result)

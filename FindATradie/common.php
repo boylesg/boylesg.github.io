@@ -58,6 +58,7 @@
 		global $g_strKey;
 
 		//$strResult = base64_encode($strPlainText);
+
 		$strResult = CryptoJsAes::encrypt($strPlainText, $g_strKey);
 
 		return $strResult;
@@ -294,7 +295,7 @@
 		
 		try
 		{		
-			$dbFindATradie = new mysqli("127.0.0.1", "debian-sys-maint", "wCN5zhYx5R6004zg", "find_a_tradie");
+			$dbFindATradie = new mysqli("127.0.0.1", "debian-sys-maint", "wCN5zhYx5R6004zg", "findatradie");
 		}
 		catch(Exception $e)
 		{
