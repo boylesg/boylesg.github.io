@@ -175,7 +175,6 @@ CREATE TABLE `members` (
   `minimum_budget` int(10) UNSIGNED ZEROFILL DEFAULT NULL,
   `maximum_size` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `maximum_distance` int(10) UNSIGNED ZEROFILL DEFAULT NULL,
-  `logo_filename` varchar(32) DEFAULT NULL,
   `unit` varchar(64) DEFAULT NULL,
   `street` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `suburb` varchar(64) NOT NULL,
