@@ -18,6 +18,7 @@
 	$g_dateJoinFree = new DateTime("2024-04-30");
 	$g_nDaysToGo = $g_dateJoinFree->diff( new DateTime())->days;
 	$g_nTradeIDCustomer = 59;
+	$g_strAdminEmail = "find-a-tradie@outlook.com";
 	
 	
 	
@@ -295,7 +296,7 @@
 		
 		try
 		{		
-			$dbFindATradie = new mysqli("127.0.0.1", "debian-sys-maint", "wCN5zhYx5R6004zg", "findatradie");
+			$dbFindATradie = new mysqli("127.0.0.1", "gregaryb", "Pulsar112358#", "find-a-tradie");
 		}
 		catch(Exception $e)
 		{
@@ -553,7 +554,24 @@
 		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName . "=(SELECT MAX(" . $strColumnName . ") FROM " . $strTableName . ")";
 		$result = DoQuery($dbConnection, $g_strQuery);
 		return $result;
-	}	
+	}
+	
+	function DoGetMemberFullName($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strName = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strName = $row["first_name"] . " " . $row["surname"];
+			}
+		}
+		return $strName;
+	}
+	
 	
 	
 	

@@ -1,0 +1,93 @@
+<?php
+
+	include "../common.php";
+	
+	
+	
+	
+	function DoLoginStuff($results, $strPassword)
+	{
+		if ($results->num_rows == 1)
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				if ($row["password"] == $strPassword)
+				{
+					$objectMember = (object)[];
+					
+					$objectMember->id = $row["id"];
+					$objectMember->trade_id = $row["trade_id"];
+					$objectMember->business_name = $row["business_name"];
+					$objectMember->first_name = $row["first_name"];
+					$objectMember->surname = $row["surname"];
+					$objectMember->profile_filename = $row["profile_filename"];
+					$objectMember->logo_filename = $row["logo_filename"];
+					$objectMember->abn = $row["abn"];
+					$objectMember->structure = $row["structure"];
+					$objectMember->license = $row["license"];
+					$objectMember->description = $row["description"];
+					$objectMember->minimum_charge = $row["minimum_charge"];
+					$objectMember->minimum_budget = $row["minimum_budget"];
+					$objectMember->maximum_size = $row["maximum_size"];
+					$objectMember->maximum_distance = $row["maximum_distance"];
+					$objectMember->unit = $row["unit"];
+					$objectMember->street = $row["street"];
+					$objectMember->suburb = $row["suburb"];
+					$objectMember->state = $row["state"];
+					$objectMember->postcode = $row["postcode"];
+					$objectMember->phone = $row["phone"];
+					$objectMember->mobile = $row["mobile"];
+					$objectMember->email = $row["email"];
+					$objectMember->username = $row["username"];
+					$objectMember->password = $row["password"];
+					$objectMember->expiry_date = $row["expiry_date"];
+					$objectMember->date_joined = $row["date_joined"];
+				}
+				else
+					echo "FAILED";
+			}
+		}
+	}
+	
+	
+	
+	
+	if (isset($_POST["button"]))
+	{
+		$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["username"]);
+		// Username found so check if an email address has been used.
+
+		if ($results)
+		{
+			if ($results->num_rows > 1)
+				echo "For than once member with username '" . $_POST["username"] . "'!";
+			else ($results->num_rows == 1)
+			{
+				DoLoginStuff($results, $_POST["password"]);
+			}
+		}
+		// Username not found.
+		else
+		{
+			// Check if an email address has been used.
+			$results = DoFindQuery1($g_dbFindATradie, "members", "email", $_POST["username"]);
+
+			// Email address found...
+			if ($results)
+			{
+				if ($results->num_rows > 1)
+				{
+					echo "More than one member with email '" . $_POST["username"] . "'!";
+				}
+				else if ($results->num_rows == 1)
+				{
+					DoLoginStuff($results, $_POST["password"]);
+				}
+			}
+			// Email address found either...
+			else
+				echo "FAILED";
+		}
+	}	
+	
+?>
