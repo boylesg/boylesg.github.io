@@ -48,6 +48,7 @@
 				if (!mail($g_strAdminEmail, "From member of Find a Tradie...", 
 							"NAME: " . $_POST["member_name"] . "\r\n" . 
 							"ID: " . $_POST["member_id"] . "\r\n" . 
+							"ABOUT: " . $_POST["about"] . "\r\n" . 
 							"SUBJECT: " . $_POST["subject"] . "\r\n" .
 							"MESSAGE:\r\n--------\r\n" . $_POST["message"] . "\r\n", 
 							"From: <" . $_POST["email"] . ">"))
