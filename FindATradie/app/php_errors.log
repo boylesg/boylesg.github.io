@@ -1,0 +1,12 @@
+[18-Feb-2024 09:40:22 UTC] PHP Warning:  include(common.php): Failed to open stream: No such file or directory in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 3
+[18-Feb-2024 09:40:22 UTC] PHP Warning:  include(): Failed opening 'common.php' for inclusion (include_path='.;C:\php\pear') in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 3
+[18-Feb-2024 09:54:49 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 54
+[18-Feb-2024 10:40:31 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:41:37 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:41:39 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:43:40 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[18-Feb-2024 10:44:17 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 84
+[18-Feb-2024 10:47:47 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 88
+[18-Feb-2024 10:49:07 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 55
+[18-Feb-2024 10:50:12 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[18-Feb-2024 10:50:54 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 91

@@ -1,0 +1,6 @@
+[18-Feb-2024 08:31:08 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:643
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php(656): DoGenerateJavascriptTradeArray()
+#1 C:\inetpub\wwwroot\www.find-a-tradie.com.au\index.php(6): include('C:\\inetpub\\wwwr...')
+#2 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 643
