@@ -4,38 +4,58 @@
 	
 	
 	
+	$g_nAll = 0;
+	$g_nPositive = 1;
+	$g_nNegative = 2;
 	
-	function DoFeedbackStuff($results, $bFeedbackReceived)
+	function DoFeedbackStuff($results, $bFeedbackReceived, $strStartDate = "", $strEndDate = "", $nType = $g_nAll)
 	{
+		$arrayFeedback = [];
+		
 		if ($results && ($results->num_rows > 0))
 		{
-			$arrayFeedback = [];
-			
+			$dateStart = new DateTime("2023-1-1");
+			$dateEnd = new DateTime("2100-1-1");
+			if (strlen($strStartDate) > 0)
+				$dateStart = new DateTime($strStartDate);
+			if (strlen($strEndDate) > 0)
+				$dateEnd = new DateTime($strEndDate);
+						
 			while ($row = $results->fetch_assoc())
 			{
-				$objectFeedback = (object)[];
+				$dateRow = new DateTime($row["date_added"]);
 				
-				$objectFeedback->recipient_id = $row["recipient_id"];
-				$objectFeedback->provider_id = $row["provider_id"];
-				
-				if ($bFeedbackReceived)
+				if (($dateRow >= $dateStart) && ($dateRow <= $dateEnd))
 				{
-					if (strlen($row["provider_id"]) > 0)
-						$objectFeedback->name = DoGetMemberFullName($row["provider_id"]);
-					else
-						$objectFeedback->name = $row["name"];
+					if (($nType = $g_nAll) || (($nType = $g_nPositive) && ($row["positive"] == "1")) || (($nType = $g_nNegative) && ($row["positive"] == "0"))
+					{
+						$objectFeedback = (object)[];
+						
+						$objectFeedback->recipient_id = $row["recipient_id"];
+						$objectFeedback->provider_id = $row["provider_id"];
+						
+						if ($bFeedbackReceived)
+						{
+							if (strlen($row["provider_id"]) > 0)
+								$objectFeedback->name = DoGetMemberFullName($row["provider_id"]);
+							else
+								$objectFeedback->name = $row["name"];
+						}
+						else
+						{
+							$objectFeedback->name = DoGetMemberFullName($row["recipient_id"]);
+						}
+							
+						$objectFeedback->positive = $row["positive"];
+						$objectFeedback->description = $row["description"];
+						$objectFeedback->date_added = $row["date_added"];
+						$objectFeedback->date_modified = $row["date_modified"];
+						$arrayFeedback[] = $objectFeedback;
+					}
 				}
-				else
-				{
-					$objectFeedback->name = DoGetMemberFullName($row["recipient_id"]);
-				}
-					
-				$objectFeedback->positive = $row["positive"];
-				$objectFeedback->description = $row["description"];
-				$objectFeedback->date_added = $row["date_added"];
-				$objectFeedback->date_modified = $row["date_modified"];
 			}
 		}
+		echo json_encode($arrayFeedback);
 	}
 	
 	
@@ -45,13 +65,41 @@
 	{
 		if ($_POST["button"] == "feedback_received")
 		{
-			$results = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $_POST["id"]);
+			$results = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $_POST["member_id"]);
 			DoFeedbackStuff($results, true);
 		}
 		else if ($_POST["button"] == "feedback_given")
 		{
-			$results = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $_POST["id"]);
+			$results = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $_POST["member_id"]);
 			DoFeedbackStuff($results, false);
+		}
+		else if ($_POST["button"] == "search_given")
+		{
+			$nTypeFeedBack = 0;
+			
+			if ($_POST["all_selected"])
+				$nTypeFeedBack = $g_nAll;
+			else if ($_POST["pos_neg"])
+				$nTypeFeedBack = $g_nPositive;
+			else
+				$nTypeFeedBack = $g_nNegative;
+						
+			$results = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $_POST["member_id"], $_POST["start_date"], $_POST["end_date"], $nTypeFeedBack);
+			DoFeedbackStuff($results, false);
+		}
+		else if ($_POST["button"] == "search_received")
+		{
+			$nTypeFeedBack = 0;
+			
+			if ($_POST["all_selected"])
+				$nTypeFeedBack = $g_nAll;
+			else if ($_POST["pos_neg"])
+				$nTypeFeedBack = $g_nPositive;
+			else
+				$nTypeFeedBack = $g_nNegative;
+
+			$results = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $_POST["member_id"], $_POST["start_date"], $_POST["end_date"], $nTypeFeedBack);
+			DoFeedbackStuff($results, true);
 		}
 		else if ($_POST["button"] == "send_email")
 		{
