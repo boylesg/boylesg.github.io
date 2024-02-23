@@ -121,9 +121,73 @@
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
 	}
-	else
+	// File upload?
+	else if (!empty($_POST))
 	{
-		print_r($_POST);
+		$strMemberID = "";
+		
+		if (IsLogoImageUpload($strMemberID))
+		{
+			if (strlen($strMemberID) > 0)
+			{
+				$strProfileFilename = DoGetProfileImageFilename($strMemberID);
+				$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strProfileFilename);
+				if ($results)
+				{
+					$data = file_get_contents('php://input');
+					$nBytes = file_put_contents($imgDir.$fileName, $data);
+					
+					if ($nBytes > 0)
+						echo "OK";
+					else
+						echo "File '" . $strProfileFilename . "' could not be saved!";
+				}
+				else
+				{
+					echo "Could not update 'profile_filename' column for member '" . $strMemberID . "'!";
+				}
+			}
+			else
+			{
+				echo "PROFILE image file name member ID is blank!";
+			}		
+		}
+		else
+		{
+			//print_r($_POST);
+		}
 	}
 
+	function DoGetProfileImageFilename($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strFilename = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strFilename = $row["profile_filename"];
+				if (strlen($strFilename) == 0)
+				{
+					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename);
+					if ($results)
+						echo "OK";
+					else
+						echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
+				}
+				else
+					echo "OK";
+			}
+			else
+				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
+		}
+		else
+		{
+			echo "Member with ID '" . $strMemberID . "' was not found!";
+		}
+		return $strFilename;
+	}
 ?>

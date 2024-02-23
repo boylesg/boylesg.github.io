@@ -284,7 +284,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** QUERY FUNCTIONS
+	//** GENERAL QUERY FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -548,6 +548,17 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** SPECIFIC QUERY FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
 	function DoFindMaxValueQuery1($dbConnection, $strTableName, $strColumnName)
 	{
 		global $g_strQuery;
@@ -588,13 +599,23 @@
 		return $strCustomerTradeID;
 	}
 	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** CONFIG TEABLE / FILE UPLOAD QUERIES
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
 	$g_strPROFILE = "PROFILE";
 	$g_strLOGO = "LOGO";
 		
 	function DoSetConfigProfileImage($strMemberID)
 	{
 		global $g_dbFindATradie;
-		global $_g_strQuery;
 		
 		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
 		if ($result && ($result->num_rows > 0))
@@ -605,6 +626,23 @@
 			}
 		}
 		return $results;
+	}
+	
+	function IsProfileImageUpload(&$strMemberID)
+	{
+		global $g_dbFindATradie;
+		$bResult = false;
+		
+		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		if ($result && ($result->num_rows > 0))
+		{
+			if ($row = $result->fecth_assoc())
+			{
+				$bResult = strcmp($row["purpose"], $g_strPROFILE) == 0;
+				$strMemberID = $row["member_id"];
+			}
+		}
+		return $bResult;
 	}
 	
 	function DoSetConfigLogoImage($strAdvertID)
@@ -618,10 +656,38 @@
 			if ($row = $result->fecth_assoc())
 			{
 				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO);
+				$strAdvertID = $row["advert_id"];
 			}
 		}
 		return $results;
 	}
+	
+	function IsLogoImageUpload()
+	{
+		global $g_dbFindATradie;
+		$bResult = false;
+		
+		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		if ($result && ($result->num_rows > 0))
+		{
+			if ($row = $result->fecth_assoc())
+			{
+				$bResult = strcmp($row["purpose"], $g_strLOGO) == 0;
+			}
+		}
+		return $bResult;
+	}	
+	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** CHECK FOR TABLE COLUMN VALUES
+	//** 
+	//******************************************************************************
+	//******************************************************************************
 	
 	function DoesColumnExist($strTableName, $strColumnName, $strColumnValue)
 	{
