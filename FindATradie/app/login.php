@@ -42,6 +42,10 @@
 				$objectMember->expiry_date = $row["expiry_date"];
 				$objectMember->date_joined = $row["date_joined"];
 				
+				$dateNow = new DateTime();
+				$dateExpiry = new DateTime($row["expiry_date"]);
+				$objectMember->expired = $dateNow >= $dateExpiry;
+				
 				echo "OK" . json_encode($objectMember);
 			}
 			else

@@ -85,11 +85,18 @@
 			else
 			{
 				DoSetConfigProfileImage($_POST["member_id"]);
+				
+				$dateNow = new DateTime();
+				$dateExpiry = new DateTime();
+				if ($dateNow <= $g_dateJoinFree)
+					$dateExpiry = $g_dateJoinFree;
+				else
+					$dateExpiry = $dateNow;
 			
 				$g_strQuery = "INSERT INTO members (first_name , surname, unit, street, suburb, state, postcode, phone, mobile, " . 
 													"email, username, password, business_name, abn, license, description, " .
-													"minimum_charge, minimum_budget, maximum_size, maximumm_distance, trade_id) " . 
-													"VALUES (" . 
+													"minimum_charge, minimum_budget, maximum_size, maximumm_distance, trade_id, " . 
+													"expiry_date) VALUES (" . 
 													"'" . $_POST["first_name"] . "', " . 
 											  		"'" . $_POST["surname"] .  "', " . 
 													"'" . $_POST["unit"] .  "', " . 
@@ -102,6 +109,7 @@
 													"'" . $_POST["email"] .  "'" . 
 													"'" . $_POST["username"] .  "', " . 
 													"'" . $_POST["password"] .  "', " . 
+												  	"'" . $dateExpiry->format("Y-m-d"); . "'" . 
 													
 													"'" . $_POST["business_name"] . "', " .
 													"'" . $_POST["abn"] . "', " .

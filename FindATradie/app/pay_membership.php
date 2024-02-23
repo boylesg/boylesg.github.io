@@ -12,10 +12,15 @@
 	<body>
 	
 		<div id="paypal_live" style="display:<?php echo $g_strPaypalLive; ?>">
-			<table cellpadding="0" cellspacing="0" border="1">
+			<table cellpadding="7" cellspacing="0" border="1">
 				<tr>
-					<td><b>Renew for 1 month</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth); ?></td>
+					<td class="table_cell"><b>RENEW FOR</b></td>
+					<td class="table_cell"><b>COST</b></td>
+					<td><b>PAYPAL</b></td>
+				</tr>
+				<tr>
+					<td class="table_cell">1 month</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth); ?></td>
 					<td>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -26,8 +31,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 6 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 6); ?></td>
+					<td class="table_cell">6 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 6); ?></td>
 					<td>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -38,8 +43,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 12 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 12); ?></td>
+					<td class="table_cell">12 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 12); ?></td>
 					<td>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -50,8 +55,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 18 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 18); ?></td>
+					<td class="table_cell">18 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 18); ?></td>
 					<td>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -62,8 +67,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 24 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 24); ?></td>
+					<td class="table_cell">24 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 24); ?></td>
 					<td>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -78,10 +83,15 @@
 		
 		<div id="paypal_test" style="display:<?php echo $g_strPaypalTest; ?>">
 		
-			<table cellpadding="50" cellspacing="0" border="1">
+			<table cellpadding="7" cellspacing="0" border="1">
 				<tr>
-					<td><b>Renew for 1 month</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth); ?></td>
+					<td class="table_cell"><b>RENEW FOR</b></td>
+					<td class="table_cell"><b>COST</b></td>
+					<td><b>PAYPAL</b></td>
+				</tr>
+				<tr>
+					<td class="table_cell">1 month</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth); ?></td>
 					<td>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -92,8 +102,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 6 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 6); ?></td>
+					<td class="table_cell">6 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 6); ?></td>
 					<td>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -104,8 +114,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 12 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 12); ?></td>
+					<td class="table_cell">12 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 12); ?></td>
 					<td>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -116,8 +126,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 18 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 18); ?></td>
+					<td class="table_cell">18 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 18); ?></td>
 					<td>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />
@@ -128,8 +138,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>Renew for 24 months</b></td>
-					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth * 24); ?></td>
+					<td class="table_cell">24 months</td>
+					<td class="table_cell">$<?php echo sprintf("%02d", $g_nCostPerMonth * 24); ?></td>
 					<td>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							<input type="hidden" name="cmd" value="_s-xclick" />

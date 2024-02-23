@@ -43,6 +43,7 @@
 				$objectLists->job_size_list = $arrayList;
 				
 				$objectLists->customer_trade_id = DoGetCustomerTradeID();
+				$objectLists->date_join_free = $g_dateJoinFree;
 				
 				echo "OK" . json_encode($objectLists);
 			}

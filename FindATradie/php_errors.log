@@ -30,3 +30,27 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 11:52:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 11:55:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 11:57:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 12:38:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 12:43:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 12:48:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
