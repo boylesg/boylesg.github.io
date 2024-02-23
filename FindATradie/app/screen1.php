@@ -1,6 +1,7 @@
 <?php
 
-	include "../common.php";
+	$g_bIsApp = true;
+	require_once "../common.php";
 	
 	if (isset($_POST["button"]))
 	{

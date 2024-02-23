@@ -648,7 +648,7 @@
 	function DoSetConfigLogoImage($strAdvertID)
 	{
 		global $g_dbFindATradie;
-		global $_g_strQuery;
+		global $g_strQuery;
 		
 		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
 		if ($result && ($result->num_rows > 0))
@@ -810,7 +810,8 @@
 		$arrayTrades[] = "};";
 		PrintJavascriptLines($arrayTrades, 2, true);
 	}
-	DoGenerateJavascriptTradeArray();
+	if (!isset($g_bIsApp))
+		DoGenerateJavascriptTradeArray();
 
 
 
@@ -1640,11 +1641,3 @@
 	}
 	
 ?>
-
-
-
-
-
-
-
-_

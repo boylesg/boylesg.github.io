@@ -18,3 +18,15 @@ Stack trace:
 #2 C:\inetpub\wwwroot\www.find-a-tradie.com.au\new_tradie.php(102): include('C:\\inetpub\\wwwr...')
 #3 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 615
+[23-Feb-2024 09:02:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 10:04:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 10:29:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
