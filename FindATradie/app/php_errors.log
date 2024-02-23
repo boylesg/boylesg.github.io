@@ -10,3 +10,12 @@
 [18-Feb-2024 10:49:07 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 55
 [18-Feb-2024 10:50:12 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
 [18-Feb-2024 10:50:54 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 91
+[23-Feb-2024 06:06:15 UTC] PHP Parse error:  syntax error, unexpected variable "$_POST" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 80
+[23-Feb-2024 06:47:25 UTC] PHP Parse error:  syntax error, unexpected token "," in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 604
+[23-Feb-2024 07:37:04 UTC] PHP Parse error:  syntax error, unexpected token ";", expecting "]" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 64
+[23-Feb-2024 07:50:39 UTC] PHP Parse error:  syntax error, unexpected token "}", expecting ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 636
+[23-Feb-2024 07:51:54 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:09 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:11 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:12 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:12 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679

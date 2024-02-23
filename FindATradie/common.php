@@ -572,10 +572,83 @@
 		return $strName;
 	}
 	
+	function DoGetCustomerTradeID()
+	{
+		global $g_dbFindATradie;
+		$strCustomerTradeID = "";
+		
+		$results = DoFindAllQuery($g_dbFindATradie, "trades", "name == 'Customer' OR name == 'customer' OR name == 'CUSTOMER'");
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strCustomerTradeID = $row["id"];
+			}
+		}
+		return $strCustomerTradeID;
+	}
+	
+	$g_strPROFILE = "PROFILE";
+	$g_strLOGO = "LOGO";
+		
+	function DoSetConfigProfileImage($strMemberID)
+	{
+		global $g_dbFindATradie;
+		global $_g_strQuery;
+		
+		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		if ($result && ($result->num_rows > 0))
+		{
+			if ($row = $result->fecth_assoc())
+			{
+				$results = DoUpdateQuery2($g_dbFindATradie, "config", "member_id", $strMemberID, "purpose", $g_strPROFILE);
+			}
+		}
+		return $results;
+	}
+	
+	function DoSetConfigLogoImage($strAdvertID)
+	{
+		global $g_dbFindATradie;
+		global $_g_strQuery;
+		
+		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		if ($result && ($result->num_rows > 0))
+		{
+			if ($row = $result->fecth_assoc())
+			{
+				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO);
+			}
+		}
+		return $results;
+	}
+	
+	function DoesColumnExist($strTableName, $strColumnName, $strColumnValue)
+	{
+		global $g_dbFindATradie;
+		$bResult = false;
+		
+		$results = DoFindQuery1($g_dbFindATradie, $strTableName, $strColumnName, $strColumnValue);
+		if ($results && ($results->num_rows > 0))
+			$bResult = true;
+			
+		return $bResult;
+	}
+	
+	function DoesUsernameExist($strUsername)
+	{
+		return DoesColumnExist("members", "username", $strUsername);
+	}
+	
+	function DoesEmailExist($strEmail)
+	{
+		return DoesColumnExist("members", "email", $strEmail);
+	}
 	
 	
 	
 	
+		
 	//******************************************************************************
 	//******************************************************************************
 	//** 

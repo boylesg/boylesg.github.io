@@ -41,6 +41,8 @@
 				$arrayList[] = "More than 500";
 				$objectLists->job_size_list = $arrayList;
 				
+				$objectLists->customer_trade_id = DoGetCustomerTradeID();
+				
 				echo "OK" . json_encode($objectLists);
 			}
 			else if ($_POST["button"] == "email_admin")
