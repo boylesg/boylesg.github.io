@@ -4,7 +4,7 @@
 	require_once "../common.php";
 	
 	
-	echo DoAESEncrypt("Password10#");
+	
 	
 	function DoLoginStuff($results, $strPassword)
 	{
