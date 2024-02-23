@@ -12,7 +12,7 @@
 	<body>
 	
 		<div id="paypal_live" style="display:<?php echo $g_strPaypalLive; ?>">
-			<table cellpadding="50" cellspacing="0" border="1">
+			<table cellpadding="0" cellspacing="0" border="1">
 				<tr>
 					<td><b>Renew for 1 month</b></td>
 					<td>$<?php echo sprintf("%02d", $g_nCostPerMonth); ?></td>

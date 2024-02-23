@@ -10,7 +10,7 @@
 	{
 		if ($row = $results->fetch_assoc())
 		{
-			if ($row["password"] == $strPassword)
+			if (DoAESDecrypt($row["password"]) == $strPassword)
 			{
 				$objectMember = (object)[];
 				
