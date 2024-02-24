@@ -55,19 +55,22 @@
 						$objectFeedback->description = $row["description"];
 						$objectFeedback->date_added = $row["date_added"];
 						$objectFeedback->date_modified = $row["date_modified"];
+						$objectFeedback->email_recipient = "";
 						$objectFeedback->email_provider = "";
 						$objectFeedback->mobile_provider = "";
 						if ($bFeedbackReceived)
 						{
 							$strPhone = "";
+							$strMobile = "";
 							DoGetMemberContactDetails($row["provider_id"], $strPhone, $objectFeedback->mobile_provider, $objectFeedback->email_provider);
+							DoGetMemberContactDetails($row["recipient_id"], $strPhone, $strMobile, $objectFeedback->email_recipient);
 						}
 						$arrayFeedback[] = $objectFeedback;
 					}
 				}
 			}
 		}
-		echo "OK" . json_encode($arrayFeedback);
+		echo "OKL" . json_encode($arrayFeedback);
 	}
 	
 	
@@ -128,16 +131,16 @@
 			}
 			else
 			{
-				echo "EMAIL_SENT";
+				echo "OKEEMAILEmail was sent successfully!";
 			}
 		}
 		else if ($_POST["button"] == "edit_feedback")
 		{
 			$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["description"], "positive", $_POST["feedback"], "id", $_POST["id"]);
 			if ($results)
-				echo "EMAIL SENT";
+				echo "OKUFeedback was updated successfully!";
 			else
-				echo "Email could not be sent!";
+				echo "Feedback could not be updated!";
 		}
 		else
 		{
