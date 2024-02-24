@@ -54,3 +54,7 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[23-Feb-2024 12:54:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
