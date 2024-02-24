@@ -50,7 +50,7 @@
 						{
 							$objectFeedback->name = DoGetMemberFullName($row["recipient_id"]);
 						}
-							
+						$objectFeedback->id = $row["id"];
 						$objectFeedback->positive = $row["positive"];
 						$objectFeedback->description = $row["description"];
 						$objectFeedback->date_added = $row["date_added"];
@@ -136,7 +136,10 @@
 		}
 		else if ($_POST["button"] == "edit_feedback")
 		{
-			$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["description"], "positive", $_POST["feedback"], "id", $_POST["id"]);
+			$strPositive = "0";
+			if ($_POST["feedback"] == "true")
+				$strPositive = "1";
+			$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["description"], "positive", $strPositive, "id", $_POST["id"]);
 			if ($results)
 				echo "OKUFeedback was updated successfully!";
 			else
