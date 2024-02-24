@@ -14,21 +14,21 @@
 			$g_strDisplay80 = "";
 			$g_strDisplay100 = "";
 			
-			if (isset($_GET["paypal"]))
+			if (isset($_GET["amount"]))
 			{
-				if (strcmp($_GET["paypal"], "10") == 0)
+				if (strcmp($_GET["amount"], "10") == 0)
 				{
 					$g_strDisplay10 = "block";
 					$g_strDisplay80 = "none";
 					$g_strDisplay100 = "none";
 				}
-				else if (strcmp($_GET["paypal"], "80") == 0)
+				else if (strcmp($_GET["amount"], "80") == 0)
 				{
 					$g_strDisplay10 = "none";
 					$g_strDisplay80 = "block";
 					$g_strDisplay100 = "none";
 				}
-				else if (strcmp($_GET["paypal"], "100") == 0)
+				else if (strcmp($_GET["amount"], "100") == 0)
 				{
 					$g_strDisplay10 = "none";
 					$g_strDisplay80 = "none";

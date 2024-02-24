@@ -9,8 +9,11 @@
 	$g_nPositive = 1;
 	$g_nNegative = 2;
 	
-	function DoFeedbackStuff($results, $bFeedbackReceived, $strStartDate = "", $strEndDate = "", $nType = $g_nAll)
+	function DoFeedbackStuff($results, $bFeedbackReceived, $strStartDate = "", $strEndDate = "", $nType = 0)
 	{
+		global $g_nAll;
+		global $g_nPositive;
+		global $g_nNegative;
 		$arrayFeedback = [];
 		
 		if ($results && ($results->num_rows > 0))
@@ -28,7 +31,8 @@
 				
 				if (($dateRow >= $dateStart) && ($dateRow <= $dateEnd))
 				{
-					if (($nType = $g_nAll) || (($nType = $g_nPositive) && ($row["positive"] == "1")) || (($nType = $g_nNegative) && ($row["positive"] == "0"))
+					if (($nType = $g_nAll) || (($nType = $g_nPositive) && ($row["positive"] == "1")) || 
+						(($nType = $g_nNegative) && ($row["positive"] == "0")))
 					{
 						$objectFeedback = (object)[];
 						
@@ -51,12 +55,19 @@
 						$objectFeedback->description = $row["description"];
 						$objectFeedback->date_added = $row["date_added"];
 						$objectFeedback->date_modified = $row["date_modified"];
+						$objectFeedback->email_provider = "";
+						$objectFeedback->mobile_provider = "";
+						if ($bFeedbackReceived)
+						{
+							$strPhone = "";
+							DoGetMemberContactDetails($row["provider_id"], $strPhone, $objectFeedback->mobile_provider, $objectFeedback->email_provider);
+						}
 						$arrayFeedback[] = $objectFeedback;
 					}
 				}
 			}
 		}
-		echo json_encode($arrayFeedback);
+		echo "OK" . json_encode($arrayFeedback);
 	}
 	
 	

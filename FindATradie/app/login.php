@@ -14,7 +14,7 @@
 			{
 				$objectMember = (object)[];
 				
-				$objectMember->id = $row["id"];
+				$objectMember->member_id = $row["id"];
 				$objectMember->trade_id = $row["trade_id"];
 				$objectMember->business_name = $row["business_name"];
 				$objectMember->first_name = $row["first_name"];

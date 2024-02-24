@@ -22,3 +22,58 @@
 [23-Feb-2024 09:02:09 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
 [23-Feb-2024 09:04:31 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
 [23-Feb-2024 09:53:32 UTC] PHP Parse error:  syntax error, unexpected identifier "DoGenerateJavascriptTradeArray" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 814
+[24-Feb-2024 04:58:21 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 33
+[24-Feb-2024 05:30:44 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 33
+[24-Feb-2024 05:31:50 UTC] PHP Fatal error:  Constant expression contains invalid operations in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 12
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 09:59:16 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 10:04:18 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 10:53:58 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 12:08:00 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113

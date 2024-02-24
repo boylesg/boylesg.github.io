@@ -599,6 +599,22 @@
 		return $strCustomerTradeID;
 	}
 	
+	function DoGetMemberContactDetails($strMemberID, &$strPhone, &$strMobile, &$strEmail)
+	{
+		global $g_dbFindATradie;
+
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strPhone = $row["phone"];
+				$strMobile = $row["mobile"];
+				$strEmail = $row["email"];
+			}
+		}
+	}
+	
 	
 	
 	
