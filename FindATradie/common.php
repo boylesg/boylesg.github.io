@@ -631,8 +631,34 @@
 		return $strWebOrApp;
 	}
 	
+	function DoGetAdvertSpaceName($strSpaceID)
+	{
+		global $g_dbFindATradie;
+		$strName = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strName = $row["space_description"];
+			}
+		}
+		return $strName;
+	}
+	
+	function DoGetLastInserted($strTable, $strColumn, $strValue)
+	{
+		global $g_dbFindATradie;
+		
+		$results = DoQuery($g_dbFindATradie, "SELECT MAX(id) from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'");
+		
+		return $results;
+	}
 	
 	
+	
+		
 	
 	//******************************************************************************
 	//******************************************************************************
@@ -677,7 +703,7 @@
 		return $bResult;
 	}
 	
-	function DoSetConfigLogoImage($strAdvertID)
+	function DoSetConfigLogoImage($strAdvertID, $strMemberID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -687,14 +713,14 @@
 		{
 			if ($row = $result->fecth_assoc())
 			{
-				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO);
+				$results = DoUpdateQuery3($g_dbFindATradie, "config", "member_id", $strMemberID, "advert_id", $strAdvertID, "purpose", $g_strLOGO);
 				$strAdvertID = $row["advert_id"];
 			}
 		}
 		return $results;
 	}
 	
-	function IsLogoImageUpload()
+	function IsLogoImageUpload($strAdvertID, $strMemberID)
 	{
 		global $g_dbFindATradie;
 		$bResult = false;
@@ -705,6 +731,8 @@
 			if ($row = $result->fecth_assoc())
 			{
 				$bResult = strcmp($row["purpose"], $g_strLOGO) == 0;
+				$strAdvertID = $row["advert_id"];
+				$strMemberID = $row["member_id"];
 			}
 		}
 		return $bResult;

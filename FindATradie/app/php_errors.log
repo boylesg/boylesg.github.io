@@ -87,3 +87,9 @@
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 19
+[25-Feb-2024 11:27:39 UTC] PHP Fatal error:  Cannot redeclare DoGetCostPerMonth() (previously declared in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:634) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1190
+[25-Feb-2024 11:27:39 UTC] PHP Fatal error:  Cannot redeclare DoGetCostPerMonth() (previously declared in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:634) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1190
+[25-Feb-2024 11:37:56 UTC] PHP Parse error:  syntax error, unexpected variable "$dateRow" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 11:37:56 UTC] PHP Parse error:  syntax error, unexpected variable "$dateRow" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 14:33:03 UTC] PHP Parse error:  syntax error, unexpected token "." in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 112
+[25-Feb-2024 14:34:23 UTC] PHP Parse error:  syntax error, unexpected token "." in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 148

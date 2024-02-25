@@ -23,7 +23,43 @@
 	
 	
 	
-	
+
+	function DoGetProfileImageFilename($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strFilename = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strFilename = $row["profile_filename"];
+				if (strlen($strFilename) == 0)
+				{
+					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename);
+					if ($results)
+						echo "OK";
+					else
+						echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
+				}
+				else
+					echo "OK";
+			}
+			else
+				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
+		}
+		else
+		{
+			echo "Member with ID '" . $strMemberID . "' was not found!";
+		}
+		return $strFilename;
+	}
+
+
+
+
 	if (isset($_POST["button"]))
 	{
 		// Updating details of an existing member
@@ -109,7 +145,7 @@
 													"'" . $_POST["email"] .  "'" . 
 													"'" . $_POST["username"] .  "', " . 
 													"'" . $_POST["password"] .  "', " . 
-												  	"'" . $dateExpiry->format("Y-m-d"); . "'" . 
+												  	"'" . $dateExpiry->format("Y-m-d") . "'" . 
 													
 													"'" . $_POST["business_name"] . "', " .
 													"'" . $_POST["abn"] . "', " .
@@ -144,7 +180,7 @@
 				if ($results)
 				{
 					$data = file_get_contents('php://input');
-					$nBytes = file_put_contents($imgDir.$fileName, $data);
+					$nBytes = file_put_contents($strProfileFilename, $data);
 					
 					if ($nBytes > 0)
 						echo "OK";
@@ -167,36 +203,4 @@
 		}
 	}
 
-	function DoGetProfileImageFilename($strMemberID)
-	{
-		global $g_dbFindATradie;
-		$strFilename = "";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
-		if ($results && ($results->num_rows > 0))
-		{
-			if ($row = $results->fetch_assoc())
-			{
-				$strFilename = $row["profile_filename"];
-				if (strlen($strFilename) == 0)
-				{
-					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename);
-					if ($results)
-						echo "OK";
-					else
-						echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
-				}
-				else
-					echo "OK";
-			}
-			else
-				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
-		}
-		else
-		{
-			echo "Member with ID '" . $strMemberID . "' was not found!";
-		}
-		return $strFilename;
-	}
 ?>
