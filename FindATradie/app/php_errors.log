@@ -83,3 +83,7 @@
 [25-Feb-2024 04:43:29 UTC] PHP Parse error:  Unclosed '[' does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 43
 [25-Feb-2024 04:43:32 UTC] PHP Parse error:  Unclosed '[' does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 43
 [25-Feb-2024 04:44:12 UTC] PHP Parse error:  syntax error, unexpected token "{" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 09:55:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetWebOrApp() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 19

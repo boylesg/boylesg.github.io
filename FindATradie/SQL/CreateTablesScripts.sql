@@ -556,7 +556,8 @@ CREATE TABLE `adverts` (
   `text` varchar(600) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `image_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `expiry_date` date NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `clicks` int NOT NULL DEFAULT '0'
 );
 
 --

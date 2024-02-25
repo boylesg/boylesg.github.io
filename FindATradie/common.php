@@ -615,6 +615,22 @@
 		}
 	}
 	
+	function DoGetWebOrApp($strSpaceID)
+	{
+		global $g_dbFindATradie;
+		$strWebOrApp = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strWebOrApp = $row["app_or_web"];
+			}
+		}
+		return $strWebOrApp;
+	}
+	
 	
 	
 	

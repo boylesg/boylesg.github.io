@@ -14,23 +14,23 @@
 			{
 				while ($row = $results->fetch_assoc())
 				{
-					if (!$_POST["all_or_selected"] || 
-						($_POST["all_or_selected"] && !$_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "web")) || 
-						($_POST["all_or_selected"] && $_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "app")))
+					//if (!$_POST["all_or_selected"] || 
+					//	($_POST["all_or_selected"] && !$_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "web")) || 
+					//	($_POST["all_or_selected"] && $_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "app")))
 					{
 						$dateNow = new DateTime();
 						$dateExpiry = new DateTime($row["expiry_date"]);
-						if (!$_POST["all_or_status"] ||
-							($_POST["all_or_status"] && !$_POST["active_or_expired"] && ($dateExpiry > $dateNow)) ||
-							($_POST["all_or_status"] && $_POST["active_or_expired"] && ($dateExpiry <= $dateNow)))
+						//if (!$_POST["all_or_status"] ||
+						//	($_POST["all_or_status"] && !$_POST["active_or_expired"] && ($dateExpiry > $dateNow)) ||
+						//	($_POST["all_or_status"] && $_POST["active_or_expired"] && ($dateExpiry <= $dateNow)))
 						{
 							$dateAdded = new DateTime($row["date_added"]);
 							$dateStart = new DateTime($_POST["start_date"]);
 							$dateEnd = new DateTime($_POST["end_date"]);
 
-							if (($dateAdded >= $dateStart) && ($dateAdded <= $dateEnd))
+							//if (($dateAdded >= $dateStart) && ($dateAdded <= $dateEnd))
 							{
-								if (($_POST["space_id"] == $row["space_id"]) || empty($_POST["space_id"]))
+								//if (($_POST["space_id"] == $row["space_id"]) || empty($_POST["space_id"]))
 								{
 									$objectAdvertSpace = (object)[];
 									$objectAdvertSpace->id = $row["id"];
@@ -38,8 +38,10 @@
 									$objectAdvertSpace->space_id = $row["space_id"];
 									$objectAdvertSpace->text = $row["text"];
 									$objectAdvertSpace->image_name = $row["image_name"];
-									$objectAdvertSpace->expiry_date = $row["expiry_date"];
-									$objectAdvertSpace->date_added = $row["date_added"];
+									$dateRow = new DateTime($row["expiry_date"]);
+									$objectAdvertSpace->expiry_date = $dateRow->format("d/m/Y");
+									$dateRow = new DateTime($row["date_added"]);
+									$objectAdvertSpace->date_added = $dateRow->format("d/m/Y");
 									$arrayList[] = $objectAdvertSpace;
 								}
 							}
@@ -48,6 +50,12 @@
 				}
 			}
 			echo "OKA" . json_encode($arrayList);
+			/*
+			echo "all_or_selected = " . $_POST["all_or_selected"] . "\n\nweb_or_app = " . $_POST["web_or_app"] . 
+					"\n\nall_or_status = " . $_POST["all_or_status"] . "\n\nactive_or_expired = " . $_POST["active_or_expired"] . 
+					"\n\nspace_id = " . $_POST["space_id"] . "\n\nstart_date = " . $_POST["start_date"] . 
+					"\n\nend_date = " . $_POST["end_date"];
+			*/
 		}
 		else if ($_POST["button"] == "get_advert_spaces")
 		{
