@@ -458,33 +458,36 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `advert_spaces` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `space_code` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `space_description` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `cost_per_month` int UNSIGNED NOT NULL DEFAULT '10'
-);
+  `cost_per_month` int unsigned NOT NULL DEFAULT '10',
+  `app_or_web` varchar(8) NOT NULL DEFAULT 'web',
+  PRIMARY KEY (`id`),
+  KEY `advert_space_name` (`space_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `advert_spaces`
 --
 
-INSERT INTO `advert_spaces` (`id`, `space_code`, `space_description`, `cost_per_month`) VALUES
-(1, 'index1', 'Index page, beside search form', 20),
-(2, 'login1', 'Login page, beside login form', 10),
-(3, 'login2', 'Below the login form', 20),
-(4, 'index2', 'Top of home page', 10),
-(5, 'account1', 'Top of account page', 50),
-(6, 'account2', 'Second from top of account page', 50),
-(19, 'about1', 'Top of about page', 5),
-(20, 'about', 'Second from top of about page', 5),
-(21, 'faq1', 'Top of FAQ page', 10),
-(22, 'faq2', 'Second from top of FAQ page', 10),
-(23, 'benefit1', 'Top of benefit page', 10),
-(24, 'benefit2', 'Second from top of benefit page', 10),
-(25, 'contact1', 'Top of comtact page', 5),
-(26, 'contact2', 'Second from top of contact page', 10),
-(27, 'contact3', 'Second from bottom of contact page', 10),
-(28, 'contact4', 'Bottom of contact page', 10);
+INSERT INTO `advert_spaces` (`id`, `space_code`, `space_description`, `cost_per_month`, `app_or_web`) VALUES
+(1, 'index1', 'Index page, beside search form', 20, 'web'),
+(2, 'login1', 'Login page, beside login form', 10, 'web'),
+(3, 'login2', 'Below the login form', 20, 'web'),
+(4, 'index2', 'Top of home page', 10, 'web'),
+(5, 'account1', 'Top of account page', 50, 'web'),
+(6, 'account2', 'Second from top of account page', 50, 'web'),
+(19, 'about1', 'Top of about page', 5, 'web'),
+(20, 'about', 'Second from top of about page', 10, 'web'),
+(21, 'faq1', 'Top of FAQ page', 10, 'web'),
+(22, 'faq2', 'Second from top of FAQ page', 10, 'web'),
+(23, 'benefit1', 'Top of benefit page', 10, 'web', 'web'),
+(24, 'benefit2', 'Second from top of benefit page', 10, 'web'),
+(25, 'contact1', 'Top of comtact page', 10, 'web'),
+(26, 'contact2', 'Second from top of contact page', 10, 'web'),
+(27, 'contact3', 'Second from bottom of contact page', 10, 'web'),
+(28, 'contact4', 'Bottom of contact page', 10, 'web');
 
 --
 -- Indexes for dumped tables
