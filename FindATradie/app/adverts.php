@@ -187,7 +187,8 @@
 			else
 			{
 				echo "LOGO image file name member ID is blank!";
-			}		
+			}
+		}	
 	}
 	
 ?>
