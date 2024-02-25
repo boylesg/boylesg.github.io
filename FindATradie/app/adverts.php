@@ -53,23 +53,23 @@
 			{
 				while ($row = $results->fetch_assoc())
 				{
-					//if (!$_POST["all_or_selected"] || 
-					//	($_POST["all_or_selected"] && !$_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "web")) || 
-					//	($_POST["all_or_selected"] && $_POST["web_or_app"] && (DoGetWebOrApp($row["space_id"]) == "app")))
+					if (($_POST["all_or_selected"] == "false") || 
+						(($_POST["all_or_selected"] == "true") && ($_POST["web_or_app"] == "false") && (DoGetWebOrApp($row["space_id"]) == "web")) || 
+						(($_POST["all_or_selected"] == "true") && ($_POST["web_or_app"] == "true") && (DoGetWebOrApp($row["space_id"]) == "app")))
 					{
 						$dateNow = new DateTime();
 						$dateExpiry = new DateTime($row["expiry_date"]);
-						//if (!$_POST["all_or_status"] ||
-						//	($_POST["all_or_status"] && !$_POST["active_or_expired"] && ($dateExpiry > $dateNow)) ||
-						//	($_POST["all_or_status"] && $_POST["active_or_expired"] && ($dateExpiry <= $dateNow)))
+						if (($_POST["all_or_status"] == "false") ||
+							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "false") && ($dateExpiry > $dateNow)) ||
+							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "true") && ($dateExpiry <= $dateNow)))
 						{
 							$dateAdded = new DateTime($row["date_added"]);
 							$dateStart = new DateTime($_POST["start_date"]);
 							$dateEnd = new DateTime($_POST["end_date"]);
 
-							//if (($dateAdded >= $dateStart) && ($dateAdded <= $dateEnd))
+							if ((($dateAdded >= $dateStart) && ($dateAdded <= $dateEnd)) || ($dateStart == $dateEnd))
 							{
-								//if (($_POST["space_id"] == $row["space_id"]) || empty($_POST["space_id"]))
+								if (($_POST["space_id"] == $row["space_id"]) || empty($_POST["space_id"]))
 								{
 									$objectAdvertSpace = (object)[];
 									$objectAdvertSpace->id = $row["id"];
