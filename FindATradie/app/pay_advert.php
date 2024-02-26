@@ -95,7 +95,7 @@
 					<input type="hidden" name="currency_code" value="AUD" />
 					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 				</form>
-				</p>
+			</p>
 			<p style="display:<?php echo $g_strDisplay100;?>">
 				<b>$100</b><br/><br/>
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
