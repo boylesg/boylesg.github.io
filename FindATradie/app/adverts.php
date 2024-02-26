@@ -61,25 +61,6 @@
 
 
 
-	function DoGetAdvertSpaceCost($strSpaceID)
-	{
-		global $g_dbFindATradie;
-		$strSpaceCost = "";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
-		if ($results && ($results->num_rows > 0))
-		{
-			if ($row = $results->fetch_assoc())
-			{
-				$strSpaceCost = $row["cost_per_month"];
-			}
-		}
-		return $strSpaceCost;
-	}
-
-
-
-
 	if (isset($_POST["button"]))
 	{
 		$arrayList = [];
@@ -96,20 +77,21 @@
 					{
 						$dateNow = new DateTime();
 						$dateExpiry = new DateTime($row["expiry_date"]);
+						$dateAdded = new DateTime($row["date_added"]);
+						$dateStart = new DateTime($_POST["start_date"]);
+						$dateEnd = new DateTime($_POST["end_date"]);
+
 
 						if (($_POST["all_or_status"] == "false") ||
 							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "false") && ($dateExpiry > $dateNow)) ||
 							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "true") && ($dateExpiry <= $dateNow)))
 						{
-							$dateAdded = new DateTime($row["date_added"]);
-							$dateStart = new DateTime($_POST["start_date"]);
-							$dateEnd = new DateTime($_POST["end_date"]);
-
 							if ((($dateAdded >= $dateStart) && ($dateAdded <= $dateEnd)) || ($dateStart == $dateEnd))
 							{
 								if (($_POST["space_id"] == $row["space_id"]) || empty($_POST["space_id"]))
 								{
 									$objectAdvertSpace = (object)[];
+			
 									$objectAdvertSpace->id = $row["id"];
 									$objectAdvertSpace->member_id = $row["member_id"];
 									$objectAdvertSpace->space_id = $row["space_id"];
@@ -118,17 +100,18 @@
 									$objectAdvertSpace->clicks = $row["clicks"];
 									$objectAdvertSpace->space_name = DoGetAdvertSpaceName($row["space_id"]);
 									
-									$dateExpiry = new DateTime($row["expiry_date"]);
 									$objectAdvertSpace->expiry_date = $dateExpiry->format("d/m/Y");
-									$dateNow = new DateTime();
-									$interval = $dateExpiry->diff($dateNow);
-									$objectAdvertSpace->number_months =  ($interval->y * 12) + $interval->m;
-									$objectAdvertSpace->cost_per_month = DoGetCostPerMonth($row["space_id"]);
-									$objectAdvertSpace->total_cost = (int)$objectAdvertSpace->cost_per_month * (int)$objectAdvertSpace->number_months;
-									
-									$dateAdded = new DateTime($row["date_added"]);
 									$objectAdvertSpace->date_added = $dateAdded->format("d/m/Y");
-									$objectAdvertSpace->expired = $dateNow > $dateExpiry;
+
+									$interval = $dateExpiry->diff($dateNow);
+									$objectAdvertSpace->number_months =  ($interval->y * 12) + $interval->m + 1;
+									$objectAdvertSpace->cost_per_year = DoGetCostPerYear($row["space_id"]);
+									
+									$objectAdvertSpace->expired = "";
+									if ($dateNow > $dateExpiry)
+										$objectAdvertSpace->expired = "1";
+									else
+										$objectAdvertSpace->expired = "0";
 									$arrayList[] = $objectAdvertSpace;
 								}
 							}
@@ -149,7 +132,7 @@
 					$objectAdvertSpace->space_id = $row["id"];
 					$objectAdvertSpace->space_code = $row["space_code"];
 					$objectAdvertSpace->space_description = $row["space_description"];
-					$objectAdvertSpace->cost_per_month = $row["cost_per_month"];
+					$objectAdvertSpace->cost_per_year = $row["cost_per_year"];
 					$objectAdvertSpace->app_or_web = $row["app_or_web"];
 					$arrayList[] = $objectAdvertSpace;
 				}
@@ -190,7 +173,7 @@
 				$results = DoInsertQuery4($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "space_id", $_POST["space_id"], "expiry_date", $dateNow->format("Y-m-d"), "text", EscapeSingleQuote($_POST["text"]));
 				if ($results)
 				{
-					$results = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "id", false);
+					$results = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "", "id", false);
 					if ($results && ($results->num_rows > 0))
 					{
 						if ($row = $results->fetch_assoc())
@@ -199,7 +182,7 @@
 							{
 								 DoSetConfigLogoImage($row["id"], $row["member_id"]);
 							}
-							echo "OKN" . $row["id"] . "," .  $row["space_id"] . "," . DoGetAdvertSpaceCost($row["space_id"]);
+							echo "OKN" . $row["id"] . "," . DoGetCostPerYear($row["space_id"]);
 						}
 					}
 				}
@@ -215,6 +198,7 @@
 					$dateExpiry = new DateTime();
 					$dateExpiry->modify("+12 month");
 					$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "expiry_date", $dateExpiry->format("Y-m-d"), "id", $_POST["advert_id"]);
+		//echo "####" . $_POST["advert_id"] . "#####";
 					if ($results)
 						echo "advert_activated=true";
 				}

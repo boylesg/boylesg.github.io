@@ -120,3 +120,19 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 183
+[26-Feb-2024 13:29:20 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:29:20 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:50:28 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:50:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetCostPerMonth() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:107
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 107
+[26-Feb-2024 15:26:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:105
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 105
+[26-Feb-2024 15:34:30 UTC] PHP Fatal error:  Uncaught TypeError: strtotime(): Argument #1 ($datetime) must be of type string, DateTime given in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:113
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php(113): strtotime(Object(DateTime))
+#1 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 113

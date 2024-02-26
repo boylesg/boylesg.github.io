@@ -1156,13 +1156,13 @@
 		return $strSpaceID;
 	}
 		
-	function DoGetCostPerMonth($strSpaceID)
+	function DoGetCostPerYear($strSpaceID)
 	{
 		$strCost = "0";
 		$row = GetAdvertSpace($strSpaceID);
 		if ($row)
 		{
-			$strCost = sprintf("%d", $row["cost_per_month"]);
+			$strCost = sprintf("%d", $row["cost_per_year"]);
 		}
 		return $strCost;
 	}
@@ -1253,21 +1253,16 @@
 				echo "</td>\n";
 				
 				echo "		<td>";
-				echo "$" . sprintf("%d", $rowAdvertSpace["cost_per_month"]);
+				echo "$" . sprintf("%d", $rowAdvertSpace["cost_per_year"]);
 				echo "</td>\n";
-				
+
 				echo "		<td>";
 				$dateExpires = new DateTime($row["expiry_date"]);
 				$interval = $dateExpires->diff($dateAdded);
 				$nMonths = (int)$interval->format("%m months");
 				echo $nMonths;
 				echo "</td>\n";
-
-				echo "		<td>";
-				echo "$" . $nMonths * (int)$rowAdvertSpace["cost_per_month"];
-				$nGrandTotal += $nMonths * (int)$rowAdvertSpace["cost_per_month"];
-				echo "</td>\n";
-				
+			
 				echo "		<td>";
 				echo sprintf("%d", $row["number_clicks"]);
 				echo "</td>\n";

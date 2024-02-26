@@ -23,7 +23,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 			<?php
 
@@ -41,7 +41,7 @@
 						if ($results->num_rows > 0)
 						{							
 							$row = $results->fetch_assoc();
-							$nCost = (int)$row["cost_per_month"];
+							$nCost = (int)$row["cost_per_year"];
 							$strID = $row["id"];
 							$strCode = $row["space_code"];
 							$strDesc = $row["space_description"];
@@ -69,20 +69,6 @@
 					}
 				}
 				
-				function DoCalculateTotalCost()
-				{
-					$nCost = 0;
-					
-					if (isset($_POST["text_months"]) && isset($_SESSION["cost_per_month"]))
-						$nCost = ((int)$_POST["text_months"] * (int)$_SESSION["cost_per_month"]);
-					else if (isset($_SESSION["total_cost"]))
-						$nCost = $_SESSION["total_cost"];
-					else
-						$nCost = "0";
-						
-					return $nCost;
-				}
-				
 				function DoGenerateAdvertCostMap()
 				{
 					global $g_dbFindATradie;
@@ -93,7 +79,7 @@
 						$nI = 0;
 						while ($row = $results->fetch_assoc())
 						{
-							echo "[\"" . $row["space_code"] . "\", " . $row["cost_per_month"] . "]";
+							echo "[\"" . $row["space_code"] . "\", " . $row["cost_per_year"] . "]";
 							if ($nI < ($results->num_rows - 1))
 								echo ",";
 							echo "\n";
@@ -127,7 +113,7 @@
 					$_SESSION["space_id"] = $results[0];
 					$_SESSION["space_code"] = $results[1];
 					$_SESSION["space_description"] = $results[2];
-					$_SESSION["cost_per_month"] = $results[3];
+					$_SESSION["cost_per_year"] = $results[3];
 				}
 				else if (isset($_POST["submit_advert"]))
 				{
@@ -135,9 +121,8 @@
 					$_SESSION["space_id"] = $results[0];
 					$_SESSION["space_code"] = $results[1];
 					$_SESSION["space_description"] = $results[2];
-					$_SESSION["cost_per_month"] = $results[3];
-					$_SESSION["text_months"] = $_POST["text_months"];
-					$_SESSION["total_cost"] = (int)$_SESSION["text_months"] * (int)$_SESSION["cost_per_month"];
+					$_SESSION["cost_per_year"] = $results[3];
+					$_SESSION["total_cost"] = (int)$_SESSION["cost_per_year"];
 					$_SESSION["text_desc"] = $_POST["text_desc"];
 					$_SESSION["filename"] = $_FILES["file"]["name"];
 					
@@ -173,15 +158,9 @@
 				else if (isset($_GET["advert_paid"]))
 				{
 					$dateExpiry = new DateTime();
-					if (isset($_SESSION["text_months"]))
-					{
-						$interval = DateInterval::createFromDateString($_SESSION["text_months"] . " month");
-						$dateExpiry = $dateExpiry->add($interval);
-					}			
+					$dateExpiry->modify("12 month");		
 					if ($_GET["advert_paid"] == "true")
-					{
-						$_SESSION["text_months"] = $_POST["text_months"];
-							
+					{	
 						if ($_SESSION["edit_advert"])
 						{
 							$result = DoUpdateQuery2($g_dbFindATradie, "adverts", "text", $_POST["text_desc"], "image_name", $_SESSION["image_file_name"], "id", $_SESSION["advert_id"]);
@@ -247,17 +226,6 @@
 			?>
 			<script type="text/javascript">
 			
-				function OnKeyUpMonths(inputMonths, eventKey)
-				{
-					let labelTotalCost = document.getElementById("label_cost_total");
-					
-					if (labelTotalCost)
-					{
-						let nCost = Number(inputMonths.value) * <?php if (isset($_SESSION["cost_per_month"])) echo $_SESSION["cost_per_month"]; else echo "0";; ?>;
-						labelTotalCost.innerText = nCost.toString();
-					}
-				}
-				
 				let g_mapSpaceCosts = new Map([
 												<?php DoGenerateAdvertCostMap(); ?>
 											  ]);
@@ -266,8 +234,7 @@
 				{
 					let selectSpace = document.getElementById("select_space"),
 						labelCostMonth = document.getElementById("label_cost_month"),
-						labelTotalCost = document.getElementById("label_cost_total"),
-						textMonths = document.getElementById("text_months");
+						labelTotalCost = document.getElementById("label_cost_total"));
 							
 					if (selectSpace && labelCostMonth && textMonths)
 					{
@@ -380,21 +347,10 @@
 							</tr>
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
-									<b>How many months?</b>
+									<b>Cost for 12 month:</b>
 								</td>
 								<td class="cell_no_borders">
-									<input type="text" required size="4" maxlength="3" id="text_months" name="text_months" value="<?php if (isset($_SESSION["text_months"])) echo $_SESSION["text_months"]; else echo "1"; ?>" onkeypress="OnKeyPressDigitsOnly(event)" onkeyup="OnKeyUpMonths(this, event)"/>
-								</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;" class="cell_no_borders">
-									<b>Cost per month:</b><br/>
-									<b>Total cost:</b>
-								</td>
-								<td class="cell_no_borders">
-									$<label id="label_cost_month"><?php if (isset($_SESSION["cost_per_month"])) echo $_SESSION["cost_per_month"]; else echo "0"; ?></label>
-									<br/>
-									$<label id="label_cost_total"><script type="text/javascript">DoCalculateTotalCost();</script></label>
+									$<label id="label_cost_total"><?php if (isset($_SESSION["cost_per_year"])) echo $_SESSION["cost_per_year"]; ?></label>
 								</td>
 							</tr>
 							<tr>
