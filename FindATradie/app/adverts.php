@@ -38,6 +38,25 @@
 		}
 		return $strFilename;
 	}
+	
+	
+	
+	
+	function DoGetAdvertSpaceName($strSpaceID)
+	{
+		global $g_dbFindATradie;
+		$strSpaceName = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strSpaceName = $row["space_description"];
+			}
+		}
+		return $strSpaceName;
+	}
 
 
 
@@ -54,11 +73,11 @@
 				while ($row = $results->fetch_assoc())
 				{
 					if (($_POST["all_or_selected"] == "false") || 
-						(($_POST["all_or_selected"] == "true") && ($_POST["web_or_app"] == "false") && (DoGetWebOrApp($row["space_id"]) == "web")) || 
-						(($_POST["all_or_selected"] == "true") && ($_POST["web_or_app"] == "true") && (DoGetWebOrApp($row["space_id"]) == "app")))
+						(($_POST["all_or_selected"] == "true") && ($_POST["web_or_app"] == DoGetWebOrApp($row["space_id"])))) 
 					{
 						$dateNow = new DateTime();
 						$dateExpiry = new DateTime($row["expiry_date"]);
+
 						if (($_POST["all_or_status"] == "false") ||
 							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "false") && ($dateExpiry > $dateNow)) ||
 							(($_POST["all_or_status"] == "true") && ($_POST["active_or_expired"] == "true") && ($dateExpiry <= $dateNow)))
@@ -99,12 +118,6 @@
 				}
 			}
 			echo "OKA" . json_encode($arrayList);
-			/*
-			echo "all_or_selected = " . $_POST["all_or_selected"] . "\n\nweb_or_app = " . $_POST["web_or_app"] . 
-					"\n\nall_or_status = " . $_POST["all_or_status"] . "\n\nactive_or_expired = " . $_POST["active_or_expired"] . 
-					"\n\nspace_id = " . $_POST["space_id"] . "\n\nstart_date = " . $_POST["start_date"] . 
-					"\n\nend_date = " . $_POST["end_date"];
-			*/
 		}
 		else if ($_POST["button"] == "get_advert_spaces")
 		{
@@ -114,6 +127,7 @@
 				while ($row = $results->fetch_assoc())
 				{
 					$objectAdvertSpace = (object)[];
+					$objectAdvertSpace->space_id = $row["id"];
 					$objectAdvertSpace->space_code = $row["space_code"];
 					$objectAdvertSpace->space_description = $row["space_description"];
 					$objectAdvertSpace->cost_per_month = $row["cost_per_month"];
@@ -136,20 +150,67 @@
 		}
 		else if ($_POST["button"] == "add_advert")
 		{
-			$results = DoInsertQuery3($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "space_id", $_POST["space_id"], "text", $_POST["text"]);
-			if ($results)
+			$bActiveAdvert = false;
+			$dateNow = new DateTime();
+			$results = DoFindQuery1($g_dbFindATradie, "adverts", "space_id", $_POST["space_id"]);
+			if ($results && ($results->num_rows > 0))
 			{
-				$results = DoGetLastInserted("adverts", "member_id", $_POST["member_id"]);
-				if ($results && ($results->num_rows > 0))
+				while ($row = $results->fetch_assoc())
 				{
-					if ($row = $results->fetch_assoc())
+					$dateExpiry = new DateTime($row["expiry_date"]);
+					if ($dateExpiry > $dateNow)
 					{
-						echo "OKN" . $row["id"] . "," .  $row["space_id"];
-						if (isset($_POST["logo_filename"]))
+						echo "This advert space already has an active advert that expires on " . $dateExpiry->format("d/m/Y");
+						$bActiveAdvert = true;
+						break;
+					}
+				}
+			}
+			if (!$bActiveAdvert)
+			{
+				$results = DoInsertQuery4($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "space_id", $_POST["space_id"], "expiry_date", $dateNow->format("Y-m-d"), "text", EscapeSingleQuote($_POST["text"]));
+				if ($results)
+				{
+					$results = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"], "id", false);
+					if ($results && ($results->num_rows > 0))
+					{
+						if ($row = $results->fetch_assoc())
 						{
-							 DoSetConfigLogoImage($_POST["advert_id"], $_POST["member_id"]);
+							if (isset($_POST["logo_filename"]))
+							{
+								 DoSetConfigLogoImage($row["id"], $row["member_id"]);
+							}
+							echo "OKN" . $row["id"] . "," .  $row["space_id"] . "," . DoGetAdvertSpaceCost($row["space_id"]);
 						}
 					}
+				}
+			}		
+		}
+		else if ($_POST["button"] == "activate_advert")
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $_POST["advert_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					$dateExpiry = new DateTime();
+					$dateExpiry->modify("+12 month");
+					$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "expiry_date", $dateExpiry->format("Y-m-d"), "id", $_POST["advert_id"]);
+					if ($results)
+						echo "advert_activated=true";
+				}
+			}
+		}
+		else if ($_POST["button"] == "delete_advert")
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $_POST["advert_id"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					$results = DoDeleteQuery1($g_dbFindATradie, "adverts", "id", $_POST["advert_id"]);
+					if ($results)
+						echo "advert_activated=false";
 				}
 			}
 		}

@@ -503,7 +503,7 @@
 	function DoInsertQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES(" . $strColumnValue . ")";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES('" . $strColumnValue . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -511,7 +511,7 @@
 	function DoInsertQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . ")";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -519,7 +519,7 @@
 	function DoInsertQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . ")";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -527,7 +527,7 @@
 	function DoInsertQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . $strColumnValue4 . ")";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "','" . $strColumnValue4 . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -535,7 +535,7 @@
 	function DoInsertQuery5($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . ") VALUES(" . $strColumnValue1 . "," . $strColumnValue2 . "," . $strColumnValue3 . $strColumnValue4 . "," . $strColumnValue5 . ")";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "','" . $strColumnValue4 . "','" . $strColumnValue5 . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -615,50 +615,19 @@
 		}
 	}
 	
-	function DoGetWebOrApp($strSpaceID)
-	{
-		global $g_dbFindATradie;
-		$strWebOrApp = "";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
-		if ($results && ($results->num_rows > 0))
-		{
-			if ($row = $results->fetch_assoc())
-			{
-				$strWebOrApp = $row["app_or_web"];
-			}
-		}
-		return $strWebOrApp;
-	}
-	
-	function DoGetAdvertSpaceName($strSpaceID)
-	{
-		global $g_dbFindATradie;
-		$strName = "";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
-		if ($results && ($results->num_rows > 0))
-		{
-			if ($row = $results->fetch_assoc())
-			{
-				$strName = $row["space_description"];
-			}
-		}
-		return $strName;
-	}
-	
 	function DoGetLastInserted($strTable, $strColumn, $strValue)
 	{
 		global $g_dbFindATradie;
+		global $g_strQuery;
 		
-		$results = DoQuery($g_dbFindATradie, "SELECT MAX(id) from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'");
+		$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
+		$results = DoQuery($g_dbFindATradie, $g_strQuery);
 		
 		return $results;
 	}
 	
 	
 	
-		
 	
 	//******************************************************************************
 	//******************************************************************************
@@ -703,7 +672,7 @@
 		return $bResult;
 	}
 	
-	function DoSetConfigLogoImage($strAdvertID, $strMemberID)
+	function DoSetConfigLogoImage($strAdvertID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -713,14 +682,14 @@
 		{
 			if ($row = $result->fecth_assoc())
 			{
-				$results = DoUpdateQuery3($g_dbFindATradie, "config", "member_id", $strMemberID, "advert_id", $strAdvertID, "purpose", $g_strLOGO);
+				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO);
 				$strAdvertID = $row["advert_id"];
 			}
 		}
 		return $results;
 	}
 	
-	function IsLogoImageUpload($strAdvertID, $strMemberID)
+	function IsLogoImageUpload()
 	{
 		global $g_dbFindATradie;
 		$bResult = false;
@@ -731,8 +700,6 @@
 			if ($row = $result->fecth_assoc())
 			{
 				$bResult = strcmp($row["purpose"], $g_strLOGO) == 0;
-				$strAdvertID = $row["advert_id"];
-				$strMemberID = $row["member_id"];
 			}
 		}
 		return $bResult;

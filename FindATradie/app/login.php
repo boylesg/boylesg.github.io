@@ -60,38 +60,51 @@
 	
 	if (isset($_POST["button"]))
 	{
-		$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["username"]);
-		// Username found so check if an email address has been used.
-
-		if ($results)
+		if ($_POST["button"] == "login")
 		{
-			if ($results->num_rows > 1)
-				echo "FAILEDMore than once member with username '" . $_POST["username"] . "'!";
-			else if ($results->num_rows == 1)
-			{
-				DoLoginStuff($results, $_POST["password"]);
-			}
-		}
-		// Username not found.
-		else
-		{
-			// Check if an email address has been used.
-			$results = DoFindQuery1($g_dbFindATradie, "members", "email", $_POST["username"]);
-
-			// Email address found...
+			$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["username"]);
+			// Username found so check if an email address has been used.
+	
 			if ($results)
 			{
 				if ($results->num_rows > 1)
-				{
-					echo "FAILEDMore than one member with email '" . $_POST["username"] . "'!";
-				}
+					echo "FAILEDMore than once member with username '" . $_POST["username"] . "'!";
 				else if ($results->num_rows == 1)
 				{
 					DoLoginStuff($results, $_POST["password"]);
 				}
 			}
+			// Username not found.
 			else
-				echo "FAILEDMember with username or email '" . $_POST["username"] . "' was not found!";
+			{
+				// Check if an email address has been used.
+				$results = DoFindQuery1($g_dbFindATradie, "members", "email", $_POST["username"]);
+	
+				// Email address found...
+				if ($results)
+				{
+					if ($results->num_rows > 1)
+					{
+						echo "FAILEDMore than one member with email '" . $_POST["username"] . "'!";
+					}
+					else if ($results->num_rows == 1)
+					{
+						DoLoginStuff($results, $_POST["password"]);
+					}
+				}
+				else
+					echo "FAILEDMember with username or email '" . $_POST["username"] . "' was not found!";
+			}
+		}
+		else if ($_POST["button"] == "update_expiry_date")
+		{
+			$dateExpiry = new DateTime();
+			$dateExpiry->modify("+" . $_POST["number_months"] . " month");
+			$results = DoUpdateQuery1($g_dbFindATradie, "members", "expiry_date", $dateExpiry->format("Y-m-d"), "id", $_POST["member_id"]);
+			if ($results)
+				echo "expiry_date_updated=true";
+			else
+				echo "expiry_date_updated=false";
 		}
 	}	
 	

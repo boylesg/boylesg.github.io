@@ -282,3 +282,31 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 03:26:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 03:43:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 04:07:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 04:31:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 04:33:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 04:37:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8
+[26-Feb-2024 04:40:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertAdvert() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php:8
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\about_content.php on line 8

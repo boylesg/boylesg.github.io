@@ -95,3 +95,24 @@ Stack trace:
 [25-Feb-2024 14:34:23 UTC] PHP Parse error:  syntax error, unexpected token "." in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 148
 [25-Feb-2024 14:40:36 UTC] PHP Parse error:  Unclosed '{' on line 162 in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 194
 [25-Feb-2024 14:40:36 UTC] PHP Parse error:  Unclosed '{' on line 162 in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 194
+[26-Feb-2024 04:18:43 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 61
+[26-Feb-2024 04:19:38 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 61
+[26-Feb-2024 05:08:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "dateExpiry" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:60
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 05:09:33 UTC] PHP Warning:  Undefined variable $dateExpiry in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 05:09:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:60
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 07:09:32 UTC] PHP Warning:  Undefined array key "id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:09:32 UTC] PHP Warning:  Undefined array key "space_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:16:21 UTC] PHP Warning:  Undefined array key "id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:16:21 UTC] PHP Warning:  Undefined array key "space_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 09:44:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetAdvertSpaceName() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:81
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 81
+[26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47
+[26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47

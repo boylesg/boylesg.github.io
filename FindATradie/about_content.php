@@ -4,14 +4,6 @@
 
 ?>
 
-<div class="advert" id="advert_about1" style="height: 80px; width: 95%;">
-	<?php DoInsertAdvert("about1", 70, "advert_about1"); ?>
-</div>
-
-<div class="advert" id="advert_about2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-	<?php DoInsertAdvert("about2", 70, "advert_about2"); ?>
-</div>
-
 <div class="note" style="overflow-x:auto;overflow-y:visible;">
 	<h6><b>Who created <u>www.find-a-tradie.com.au?</u></b></h6>
 	<p>

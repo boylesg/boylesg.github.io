@@ -90,6 +90,14 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+				<div class="advert" id="advert_about1" style="height: 80px; width: 95%;">
+					<?php DoInsertAdvert("about1", 70, "advert_about1"); ?>
+				</div>
+				
+				<div class="advert" id="advert_about2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
+					<?php DoInsertAdvert("about2", 70, "advert_about2"); ?>
+				</div>
+				
 				<?php include "about_content.php"; ?>
 
 				<!-- #EndEditable -->

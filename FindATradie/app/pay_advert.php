@@ -43,7 +43,7 @@
 	<body>
 	
 		<div id="paypal_live" style="display:<?php echo $g_strPaypalLive; ?>">
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay10; ?>">
+			<table cellpadding="7" cellspacing="5" border="1" style="display:<?php echo $g_strDisplay10; ?>">
 				<tr>
 					<td class="table_cell">
 						$10
@@ -159,7 +159,7 @@
 		
 		if (isset($_GET["paypal"]))
 		{
-			PrintJavascriptLine("AppInventor.setWebViewString(paypal_membership_payment=" . $_GET["paypal"] . ");", 2, true);
+			PrintJavascriptLine("AppInventor.setWebViewString(\"paypal_membership_payment=" . $_GET["paypal"] . "\");", 2, true);
 		}
 	
 	?>

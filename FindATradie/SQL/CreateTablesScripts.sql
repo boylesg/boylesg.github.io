@@ -554,7 +554,7 @@ CREATE TABLE `adverts` (
   `member_id` int NOT NULL,
   `space_id` int UNSIGNED NOT NULL,
   `text` varchar(600) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `image_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `image_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `expiry_date` date NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `clicks` int NOT NULL DEFAULT '0'
@@ -576,7 +576,7 @@ INSERT INTO `adverts` (`id`, `member_id`, `space_id`, `text`, `image_name`, `exp
 --
 ALTER TABLE `adverts`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `space` (`space_id`),
+  ADD KEY `space` (`space_id`),
   ADD KEY `member_id` (`member_id`);
 
 --
