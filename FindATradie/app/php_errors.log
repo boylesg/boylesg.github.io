@@ -116,3 +116,7 @@ Stack trace:
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 81
 [26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47
 [26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47
+[26-Feb-2024 10:19:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetAdvertSpaceCost() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:183
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 183

@@ -61,6 +61,25 @@
 
 
 
+	function DoGetAdvertSpaceCost($strSpaceID)
+	{
+		global $g_dbFindATradie;
+		$strSpaceCost = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "id", $strSpaceID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strSpaceCost = $row["cost_per_month"];
+			}
+		}
+		return $strSpaceCost;
+	}
+
+
+
+
 	if (isset($_POST["button"]))
 	{
 		$arrayList = [];
