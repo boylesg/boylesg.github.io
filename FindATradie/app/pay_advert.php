@@ -10,9 +10,9 @@
 		
 			require_once "../common.php";
 			
-			$g_strDisplay10 = "";
-			$g_strDisplay80 = "";
-			$g_strDisplay100 = "";
+			$g_strDisplay10 = "none";
+			$g_strDisplay80 = "none";
+			$g_strDisplay100 = "none";
 			
 			if (isset($_GET["amount"]))
 			{
@@ -35,6 +35,10 @@
 					$g_strDisplay100 = "block";
 				}
 			}
+			else if (isset($_GET["paypal"]))
+			{
+				PrintJavascriptLine("AppInventor.setWebViewString(\"paypal_membership_payment=" . $_GET["paypal"] . "\");", 2, true);
+			}
 		
 		?>
 	</head>
@@ -43,125 +47,66 @@
 	<body>
 	
 		<div id="paypal_live" style="display:<?php echo $g_strPaypalLive; ?>">
-			<table cellpadding="7" cellspacing="5" border="1" style="display:<?php echo $g_strDisplay10; ?>">
-				<tr>
-					<td class="table_cell">
-						$10
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="VF7D5V7W4CPJ4" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</td>
-				</tr>
-			</table>
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay80; ?>">
-				<tr>
-					<td class="table_cell">
-						$80
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="F4FH6AVBNP2YS" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</td>
-				</tr>
-			</table>
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay100; ?>">
-				<tr>
-					<td class="table_cell">
-						$100
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="78WNB6PA7CP4A" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</td>
-				</tr>
-			</table>
+				<p style="display:<?php echo $g_strDisplay10;?>">
+					<b>$10</b><br/><br/>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="VF7D5V7W4CPJ4" />
+						<input type="hidden" name="currency_code" value="AUD" />
+						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+					</form>
+				</p>
+				<p style="display:<?php echo $g_strDisplay80;?>">
+					<b>$80</b><br/><br/>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="F4FH6AVBNP2YS" />
+						<input type="hidden" name="currency_code" value="AUD" />
+						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+					</form>
+				</p>
+				<p style="display:<?php echo $g_strDisplay100;?>">
+					<b>$100</b><br/><br/>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="78WNB6PA7CP4A" />
+						<input type="hidden" name="currency_code" value="AUD" />
+						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+					</form>
+				</p>
 		</div>
 		
 		<div id="paypal_test" style="display:<?php echo $g_strPaypalTest; ?>">
 		
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay10; ?>">
-				<!--10-->
-				<tr>
-					<td class="table_cell">
-						$10
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="RJ5N5VXSSTGBG" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</td>
-				</tr>
-			</table>
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay80; ?>">
-				<tr>
-					<td class="table_cell">
-						$80
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="DJKLEWWU3SHHA" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</td>
-				</tr>
-			</table>
-			<table cellpadding="7" cellspacing="0" border="1" style="display:<?php echo $g_strDisplay100; ?>">
-				<tr>
-					<td class="table_cell">
-						$100
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="W22A5JKGRMJXY" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>				
-					</td>
-				</tr>
-			</table>
-			
+			<p style="display:<?php echo $g_strDisplay10;?>">
+				<b>$10</b><br/><br/>
+				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="hosted_button_id" value="RJ5N5VXSSTGBG" />
+					<input type="hidden" name="currency_code" value="AUD" />
+					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+				</form>
+			</p>
+			<p style="display:<?php echo $g_strDisplay80;?>">
+				<b>$80</b><br/><br/>
+				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="hosted_button_id" value="DJKLEWWU3SHHA" />
+					<input type="hidden" name="currency_code" value="AUD" />
+					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+				</form>
+				</p>
+			<p style="display:<?php echo $g_strDisplay100;?>">
+				<b>$100</b><br/><br/>
+				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="hosted_button_id" value="W22A5JKGRMJXY" />
+					<input type="hidden" name="currency_code" value="AUD" />
+					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+				</form>				
+			</p>
 		</div>
 
 	</body>
-	
-	<?php
 		
-		if (isset($_GET["paypal"]))
-		{
-			PrintJavascriptLine("AppInventor.setWebViewString(\"paypal_membership_payment=" . $_GET["paypal"] . "\");", 2, true);
-		}
-	
-	?>
-	
 </html>
