@@ -1276,7 +1276,7 @@
 			else
 				echo "OpenAdvertEditor('index1')";
 				
-			echo "\"><br/>$" . DoGetCostPerMonth($strSpaceID) . " per month</button>\n";
+			echo "\"><br/>$" . DoGetCostPerYear($strSpaceID) . " per year</button>\n";
 		}
 	}
 

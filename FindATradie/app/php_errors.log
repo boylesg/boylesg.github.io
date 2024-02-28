@@ -138,3 +138,12 @@ Stack trace:
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 113
 [28-Feb-2024 07:16:08 UTC] PHP Warning:  Undefined array key "HTTP_X_REQUESTED_WITH" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144
 [28-Feb-2024 07:16:38 UTC] PHP Warning:  Array to string conversion in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144
+[28-Feb-2024 12:47:18 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:07 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:11 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:12 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:12 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:13 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:51:54 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:56:18 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:56:56 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 24

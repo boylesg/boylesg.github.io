@@ -1104,42 +1104,53 @@
 						</div>
 						
 						<div id="tab_contents3" class="tab_content">
+						
 							<div class="advert" id="advert_account_details" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
 							</div>
 							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
-							<table border="0" cellspacing="0" cellpadding="0">
-									
-								<tr>
-									<td><img src="images/<?php if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) echo $_SESSION["account_profile_filename"]; ?>" alt="images/<?php if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) echo $_SESSION["account_profile_filename"]; ?>" width="300" /></td>
-									<td>					
-										<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data">
-											<fieldset>
-												<legend>Profile image:</legend>
-												<table class="table_no_borders">
+							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:40%;">
+								<fieldset>
+									<legend>Profile image:</legend>
+									<br/>
+									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
+
+<?php
+
+	function DoGetProfileImage()
+	{
+		$strProfileFilename = "";
+		
+		if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) 
+			$strProfileFilename = $_SESSION["account_profile_filename"];
+			
+		return $strProfileFilename;
+	}
+?>
+										<tr>
+											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
+											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo DoGetProfileImage(); ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
+										</tr>
+										<br/>				
 <?php
 	$_SESSION["filename"] = $_SESSION["account_profile_filename"];
-	include "select_file.html";
+	require_once "select_file.html";
 ?>
-													<tr>
-														<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
-															<input type="submit" name="submit_file" value="SAVE" />
-														</td>
-													</tr>
-												</table>
-											</fieldset>
-										</form>
-									</td>
-								</tr>
-							</table>
-								
+			
+										<tr>
+											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">
+												<input type="submit" name="submit_file" value="SAVE" />
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</form>
 <?php
 	include "member_details_forms.html"; 
 ?>
 <script type="text/javascript">
 	SetMaxFileSize(50000);
 </script>
-
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">

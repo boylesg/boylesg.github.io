@@ -1,21 +1,4 @@
-﻿<?php
-	
-	function GetImageAltText()
-	{
-		$strImageFileName = "PROFILE IMAGE FILE";
-			
-		if (isset($_FILES["file_image_name"])) 
-			$strImageFileName = $_FILES["file_image_name"]["name"]; 
-		else if (isset($_SESSION["filename"])) 
-			$strImageFileName = $_SESSION["filename"]; 
- 
-		
-		return $strImageFileName;
-	}
-	
-?>
-
-<script type="text/javascript">
+﻿<script type="text/javascript">
 
 	let g_nMaxFileSizeBytes = 500000;
 	
@@ -46,23 +29,23 @@
 	{
 		g_nMaxFileSizeBytes = nMaxFileSize;
 	}
-	
+
 </script>
 
 			<tr>
-				<td class="cell_no_borders" style="text-align:right;vertical-align:top;width:180px;">
-					Select a profile image
+				<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
+					<b>Select a new profile image</b>
 				</td>
-				<td class="cell_no_borders" style="">
+				<td class="cell_no_borders" style="vertical-align:middle;">
 					<input type="file" required id="file_name" name="file_name" accept=".jpg, .png, .jpeg, .gif|image/*" onchange="OnChangeFile(this)"/>
 				</td>
 			</tr>
 			<tr>
-				<td style="text-align:right;" class="cell_no_borders">
+				<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
 					<b>Image preview</b>
 				</td>
-				<td class="cell_no_borders">
-					<img src="" alt="<?php echo GetImageAltText(); ?>" id="image_preview" width="50" />
+				<td class="cell_no_borders" style="vertical-align:middle;text-align:left;">
+					<img src="" id="image_preview" width="200" />
 				</td>
 			</tr>
 
