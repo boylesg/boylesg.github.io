@@ -124,7 +124,7 @@
 					$_SESSION["cost_per_year"] = $results[3];
 					$_SESSION["total_cost"] = (int)$_SESSION["cost_per_year"];
 					$_SESSION["text_desc"] = $_POST["text_desc"];
-					$_SESSION["filename"] = $_FILES["file"]["name"];
+					$_SESSION["filename"] = DoGetLogoImageFilename($strMemberID);
 					
 					$strSpaceID = GetSpaceID($_POST["select_space"]);
 					if ($strSpaceID != "")
@@ -138,11 +138,11 @@
 							
 							if (isset($_FILES["file_name"]))
 							{
-								$strTargetPath = "images/" . basename($_FILES["file"]["name"]);
+								$strTargetPath = "images/" . DoGetLogoImageFilename($_SESSION["member_id"]);
 							}
 							if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
 							{
-								$_SESSION["account_logo_filename"] = basename($_FILES["file"]["name"]);
+								$_SESSION["account_logo_filename"] = DoGetLogoImageFilename($strMemberID);
 							}
 							else
 							{

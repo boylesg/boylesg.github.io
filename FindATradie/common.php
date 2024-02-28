@@ -454,7 +454,7 @@
 	function DoUpdateQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName . "='" . $strColumnValue . "' WHERE " . 
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "' WHERE " . 
 			$strFindColumnName . "='" . $strFindColumnValue . "'";
 	
 		return DoQuery($dbConnection, $g_strQuery);
@@ -463,9 +463,9 @@
 	function DoUpdateQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "'," . 
 			$strColumnName2 . "='" .  $strColumnValue2 . "' WHERE " . 
-			$strFindColumnName . "='" . $strFindColumnValue . "'";
+			$strFindColumnName . "='" . EscapeSingleQuote($strFindColumnValue) . "'";
 
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -473,8 +473,8 @@
 	function DoUpdateQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
-			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . 
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "'," . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "'," . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . 
 			$strColumnName4 . "='" .  $strColumnValue4 . 
 			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
 
@@ -484,9 +484,9 @@
 	function DoUpdateQuery5($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . $strColumnValue1 . "'," . 
-			$strColumnName2 . "='" .  $strColumnValue2 . "'," . $strColumnName3 . "='" .  $strColumnValue3 . 
-			$strColumnName4 . "='" .  $strColumnValue4 . $strColumnName5 . "='" .  $strColumnValue5 . 
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "'," . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "'," . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . 
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . 
 			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
 
 		return DoQuery($dbConnection, $g_strQuery);
@@ -495,7 +495,7 @@
 	function DoDeleteQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -503,7 +503,7 @@
 	function DoInsertQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES('" . $strColumnValue . "')";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName . ") VALUES('" . EscapeSingleQuote($strColumnValue) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -511,7 +511,7 @@
 	function DoInsertQuery2($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "')";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -519,7 +519,7 @@
 	function DoInsertQuery3($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "')";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -527,7 +527,7 @@
 	function DoInsertQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "','" . $strColumnValue4 . "')";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -535,7 +535,7 @@
 	function DoInsertQuery5($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5)
 	{
 		global $g_strQuery;
-		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . ") VALUES('" . $strColumnValue1 . "','" . $strColumnValue2 . "','" . $strColumnValue3 . "','" . $strColumnValue4 . "','" . $strColumnValue5 . "')";
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -543,7 +543,7 @@
 	function DoDeleteQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
-		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . $strColumnValue . "'";
+		$g_strQuery = "DELETE FROM " . $strTableName . " WHERE " . $strColumnName . "='" . EscapeSingleQuote($strColumnValue) . "'";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -632,6 +632,83 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
+	//** STANARD IMAGE FILENAMES
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoGetLogoImageFilename($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strFilename = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strFilename = $row["logo_filename"];
+				if (strlen($strFilename) == 0)
+				{
+					$strFilename = $row["business_name"] . ".jpg";
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename);
+					if ($results)
+						echo "OK";
+					else
+						echo "Could not update 'logo_filename' column for member with ID '" . $strMemberID, "'!";
+				}
+				else
+					echo "OK";
+			}
+			else
+				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
+		}
+		else
+		{
+			echo "Member with ID '" . $strMemberID . "' was not found!";
+		}
+		return $strFilename;
+	}
+	
+	function DoGetProfileImageFilename($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strFilename = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strFilename = $row["profile_filename"];
+				if (strlen($strFilename) == 0)
+				{
+					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename);
+					if ($results)
+						echo "OK";
+					else
+						echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
+				}
+				else
+					echo "OK";
+			}
+			else
+				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
+		}
+		else
+		{
+			echo "Member with ID '" . $strMemberID . "' was not found!";
+		}
+		return $strFilename;
+	}
+
+
+
+
+	//******************************************************************************
+	//******************************************************************************
+	//** 
 	//** CONFIG TEABLE / FILE UPLOAD QUERIES
 	//** 
 	//******************************************************************************
@@ -644,13 +721,17 @@
 	{
 		global $g_dbFindATradie;
 		
-		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		$result = DoFindQuery1($g_dbFindATradie, "member_id", $strMemberID);
 		if ($result && ($result->num_rows > 0))
 		{
 			if ($row = $result->fecth_assoc())
 			{
-				$results = DoUpdateQuery2($g_dbFindATradie, "config", "member_id", $strMemberID, "purpose", $g_strPROFILE);
+				$results = DoUpdateQuery1($g_dbFindATradie, "config", "purpose", $g_strPROFILE, "member_id", $strMemberID);
 			}
+		}
+		else
+		{
+			$results = DoUpdateInsert3($g_dbFindATradie, "config", "member_id", $strMemberID, "purpose", $g_strPROFILE, "advert_id", "");
 		}
 		return $results;
 	}
@@ -672,19 +753,22 @@
 		return $bResult;
 	}
 	
-	function DoSetConfigLogoImage($strAdvertID)
+	function DoSetConfigLogoImage($strAdvertID, $strMemberID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		
-		$result = DoQuery($g_dbFindATradie, "SELECT FIRST FROM config");
+		$result = DoFindQuery1($g_dbFindATradie, "config", "member_id", $strMemberID);
 		if ($result && ($result->num_rows > 0))
 		{
 			if ($row = $result->fecth_assoc())
 			{
-				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO);
-				$strAdvertID = $row["advert_id"];
+				$results = DoUpdateQuery2($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO, "member_id", $strMemberID);
 			}
+		}
+		else
+		{
+			$result = DoInsertQuery3($g_dbFindATradie, "config", "advert_id", $strAdvertID, "purpose", $g_strLOGO, "member_id", $strMemberID);
 		}
 		return $results;
 	}

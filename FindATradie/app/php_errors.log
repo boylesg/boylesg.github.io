@@ -136,3 +136,5 @@ Stack trace:
 #0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php(113): strtotime(Object(DateTime))
 #1 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 113
+[28-Feb-2024 07:16:08 UTC] PHP Warning:  Undefined array key "HTTP_X_REQUESTED_WITH" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144
+[28-Feb-2024 07:16:38 UTC] PHP Warning:  Array to string conversion in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144

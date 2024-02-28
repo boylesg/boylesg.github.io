@@ -247,11 +247,11 @@
 		
 		if (isset($_FILES["file_name"]))
 		{
-			$strTargetPath = "images/" . basename($_FILES["file_name"]["name"]);
+			$strTargetPath = "images/" . DoGetProfileImageFilename($_SESSION["member_id"]);
 		}
 		if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
 		{
-			$_SESSION["account_profile_filename"] = basename($_FILES["file_name"]["name"]);
+			$_SESSION["account_profile_filename"] = DoGetProfileImageFilename($_POST["member_id"]);
 			$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $_SESSION["account_profile_filename"], "id", $_SESSION["account_id"]);
 			if ($results)
 			{

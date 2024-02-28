@@ -6,42 +6,6 @@
 
 
 	
-	function DoGetLogoImageFilename($strMemberID)
-	{
-		global $g_dbFindATradie;
-		$strFilename = "";
-		
-		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
-		if ($results && ($results->num_rows > 0))
-		{
-			if ($row = $results->fetch_assoc())
-			{
-				$strFilename = $row["logo_filename"];
-				if (strlen($strFilename) == 0)
-				{
-					$strFilename = $row["business_name"] . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename);
-					if ($results)
-						echo "OK";
-					else
-						echo "Could not update 'logo_filename' column for member with ID '" . $strMemberID, "'!";
-				}
-				else
-					echo "OK";
-			}
-			else
-				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
-		}
-		else
-		{
-			echo "Member with ID '" . $strMemberID . "' was not found!";
-		}
-		return $strFilename;
-	}
-	
-	
-	
-	
 	function DoGetAdvertSpaceName($strSpaceID)
 	{
 		global $g_dbFindATradie;
@@ -148,6 +112,7 @@
 			if (isset($_POST["logo_filename"]))
 			{
 				 DoSetConfigLogoImage($_POST["advert_id"], $_POST["member_id"]);
+				 $_SESSION["member_id"] = $_POST["member_id"];
 			}
 		}
 		else if ($_POST["button"] == "add_advert")
@@ -198,7 +163,6 @@
 					$dateExpiry = new DateTime();
 					$dateExpiry->modify("+12 month");
 					$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "expiry_date", $dateExpiry->format("Y-m-d"), "id", $_POST["advert_id"]);
-		//echo "####" . $_POST["advert_id"] . "#####";
 					if ($results)
 						echo "advert_activated=true";
 				}
@@ -221,38 +185,6 @@
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
-	}
-	else if (!empty($_POST))
-	{
-		$strAdvertID = "";
-		$strMemberID = "";
-		
-		if (IsLogoImageUpload($strAdvertID))
-		{
-			if (strlen($strMemberID) > 0)
-			{
-				$strLogoFilename = DoGetLogoImageFilename($strMemberID);
-				$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strLogoFilename);
-				if ($results)
-				{
-					$data = file_get_contents('php://input');
-					$nBytes = file_put_contents($strLogoFilename, $data);
-					
-					if ($nBytes > 0)
-						echo "OK";
-					else
-						echo "File '" . $strLogoFilename . "' could not be saved!";
-				}
-				else
-				{
-					echo "Could not update 'logo_filename' column for member '" . $strMemberID . "'!";
-				}
-			}
-			else
-			{
-				echo "LOGO image file name member ID is blank!";
-			}
-		}	
 	}
 	
 ?>
