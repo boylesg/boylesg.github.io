@@ -370,6 +370,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="cell_no_borders" style="text-align:right;width:338px;"><b>Business logo</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_business_name" name="text_business_name" size="32" required pattern="^(?=[^A-Za-z]*[A-Za-z])[ -~]*$" value="<?php echo DoGetDefaultBusinessName(); ?>" />
+				</td>
+			</tr>
+			<tr>
 				<td class="cell_no_borders" style="text-align:right;"><b>ABN</b></td>
 				<td class="cell_no_borders"><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php echo DoGetDefaultABN() ?>" onkeydown="OnKeyPressDigitsOnly(event)" /> e.g. 51 824 753 556</td>
 			</tr>

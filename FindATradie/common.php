@@ -1262,8 +1262,8 @@
 		{
 			$row = $results->fetch_assoc(); 
 			$dateExpiry = new DateTime($row["expiry_date"]);
-			echo "<a href=\"tradie.php?member_id=" . $row["member_id"] . "&advert_id=" . $row["id"] . "\"><img src=\"images/" . $row["image_name"] . 
-					"\" alt=\"" . $row["image_name"] . "\" class=\"advert_image\" height=\"" .  $nImageHeight . "\" />\n";
+			echo "<a href=\"tradie.php?member_id=" . $row["member_id"] . "&advert_id=" . $row["id"] . "\"><img src=\"images/" . $_SESSION["account_logo_filename"] . 
+					"\" alt=\"" . $_SESSION["account_logo_filename"] . "\" class=\"advert_image\" height=\"" .  $nImageHeight . "\" />\n";
 			echo "<div class=\"advert_text\" style=\"height:" . $nImageHeight . "px;line-height:" . $nImageHeight . "px\";\">" . $row["text"] . "</div></a>\n";
 			echo "<div class=\"advert_expires\">Advert expires on " . $dateExpiry->format("D d M Y") . "</div>\n";
 		}
@@ -1280,29 +1280,6 @@
 		}
 	}
 
-	function DoCleanupAdvertImages()
-	{
-		global $g_dbFindATradie;
-		$dateStart = new DateTime();
-		$dateEnd = new DateTime();
-		$interval = DateInterval::createFromDateString("-6 month");
-		$dateStart = $dateStart->add($interval);
-
-		$results = DoFindQuery0($g_dbFindATradie, "adverts", "expiry_date>'" . $dateStart->format("Y-m-d") . "' AND expiry_date<='" . $dateEnd->format("Y-m-d") . "'");
-		if ($results && ($results->num_rows > 0))
-		{
-			while ($row = $results->fetch_assoc())
-			{
-				$strImageFileName = "images/" . $row["image_name"];
-				if (file_exists($strImageFileName))
-				{
-					unlink($strImageFileName);
-					//DebugPrint("deleting image file", $strImageFileName, 6);
-				}
-			}
-		}
-	}
-	
 	function DoDisplayAdverts($strMemberID, $strSpaceID, $dateStart, $dateEnd, $bHideExpired)
 	{
 		global $g_dbFindATradie;
@@ -1348,7 +1325,7 @@
 				echo "</td>\n";
 			
 				echo "		<td>";
-				echo sprintf("%d", $row["number_clicks"]);
+				echo sprintf("%d", $row["clicks"]);
 				echo "</td>\n";
 				
 				echo "		<td>";

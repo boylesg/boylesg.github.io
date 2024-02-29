@@ -241,7 +241,33 @@
 	echo "<br><br>";
 */	
 
-	if (isset($_POST["submit_file"]))
+	if (isset($_POST["submit_logo"]))
+	{
+		$strTargetPath = "";
+		
+		if (isset($_FILES["file_name"]))
+		{
+			$strTargetPath = "images/" . DoGetLogoImageFilename($_SESSION["member_id"]);
+		}
+		if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
+		{
+			$_SESSION["account_logo_filename"] = DoGetProfileImageFilename($_POST["member_id"]);
+			$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_logo_filename"], "id", $_SESSION["account_id"]);
+			if ($results)
+			{
+				PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["file_name"]["name"] . "' was saved!\");", 3, true);
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Logo image column could not be updated!\");", 3, true);
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_logo_filename"] . "\");", 3, true);
+		}
+	}
+	else if (isset($_POST["submit_profile"]))
 	{
 		$strTargetPath = "";
 		
@@ -259,12 +285,12 @@
 			}
 			else
 			{
-				PrintJavascriptLine("AlertError(\"Could not update the table entry!\");", 3, true);
+				PrintJavascriptLine("AlertError(\"Profile image column could not update!\");", 3, true);
 			}
 		}
 		else
 		{
-			PrintJavascriptLine("AlertError(\"Could not save file '" . $_FILES["file"]["name"] . "\");", 3, true);
+			PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_profile_filename"] . "\");", 3, true);
 		}
 	}
 	else if (isset($_GET["submit_accept_job"]))
@@ -1115,39 +1141,48 @@
 									<br/>
 									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
 
-<?php
-
-	function DoGetProfileImage()
-	{
-		$strProfileFilename = "";
-		
-		if (isset($_SESSION["account_profile_filename"]) && ($_SESSION["account_profile_filename"] != "")) 
-			$strProfileFilename = $_SESSION["account_profile_filename"];
-			
-		return $strProfileFilename;
-	}
-?>
 										<tr>
 											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
-											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo DoGetProfileImage(); ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
+											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
 										</tr>
 										<br/>				
-<?php
-	$_SESSION["filename"] = $_SESSION["account_profile_filename"];
-	require_once "select_file.html";
-?>
+
+<?php require_once "select_file.html"; ?>
 			
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">
-												<input type="submit" name="submit_file" value="SAVE" />
+												<input type="submit" name="submit_profile" value="SAVE" />
 											</td>
 										</tr>
 									</table>
 								</fieldset>
 							</form>
+							
+							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:40%;">
+								<fieldset>
+									<legend>Business logo image:</legend>
+									<br/>
+									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
+
+										<tr>
+											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
+											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
+										</tr>
+										<br/>				
 <?php
-	include "member_details_forms.html"; 
+	require_once "select_file.html";
 ?>
+			
+										<tr>
+											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">
+												<input type="submit" name="submit_logo" value="SAVE" />
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</form>
+
+<?php include "member_details_forms.html"; ?>
 <script type="text/javascript">
 	SetMaxFileSize(50000);
 </script>
