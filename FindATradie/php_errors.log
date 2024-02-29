@@ -569,3 +569,26 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 81
+[29-Feb-2024 07:48:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetAdvertSpace() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php:81
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 81
+[29-Feb-2024 07:48:25 UTC] PHP Warning:  Undefined variable $g_strDisplayAddButton in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 302
+[29-Feb-2024 07:48:25 UTC] PHP Warning:  Undefined variable $g_strDisplayEditButton in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 303
+[29-Feb-2024 07:48:26 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 07:48:32 UTC] PHP Warning:  Undefined variable $g_strDisplayAddButton in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 302
+[29-Feb-2024 07:48:32 UTC] PHP Warning:  Undefined variable $g_strDisplayEditButton in C:\inetpub\wwwroot\www.find-a-tradie.com.au\advert.php on line 303
+[29-Feb-2024 07:48:32 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 08:22:37 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 08:22:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetProfileImage() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php:1146
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1146
+[29-Feb-2024 08:23:48 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 08:23:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetProfileImage() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php:1169
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1169
+[29-Feb-2024 08:24:39 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 08:25:48 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[29-Feb-2024 08:25:48 UTC] PHP Warning:  Undefined array key "account_log_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1169

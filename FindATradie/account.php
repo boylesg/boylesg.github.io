@@ -1143,7 +1143,7 @@
 
 										<tr>
 											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
-											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
+											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo $_SESSION["account_profile_filename"]; ?>" width="300" /></td>
 										</tr>
 										<br/>				
 
@@ -1165,8 +1165,8 @@
 									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
 
 										<tr>
-											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
-											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo DoGetProfileImage(); ?>" width="300" /></td>
+											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing logo image</b></td>
+											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_logo_filename"]; ?>" width="200" alt="<?php echo $_SESSION["account_logo_filename"]; ?>" width="300" /></td>
 										</tr>
 										<br/>				
 <?php
