@@ -60,7 +60,6 @@
 									$objectAdvertSpace->member_id = $row["member_id"];
 									$objectAdvertSpace->space_id = $row["space_id"];
 									$objectAdvertSpace->text = $row["text"];
-									$objectAdvertSpace->image_name = $row["image_name"];
 									$objectAdvertSpace->clicks = $row["clicks"];
 									$objectAdvertSpace->space_name = DoGetAdvertSpaceName($row["space_id"]);
 									
@@ -92,13 +91,17 @@
 			{
 				while ($row = $results->fetch_assoc())
 				{
-					$objectAdvertSpace = (object)[];
-					$objectAdvertSpace->space_id = $row["id"];
-					$objectAdvertSpace->space_code = $row["space_code"];
-					$objectAdvertSpace->space_description = $row["space_description"];
-					$objectAdvertSpace->cost_per_year = $row["cost_per_year"];
-					$objectAdvertSpace->app_or_web = $row["app_or_web"];
-					$arrayList[] = $objectAdvertSpace;
+					if ((($_POST["which"] == "app") && str_contains($row["space_code"], "app")) ||
+						(($_POST["which"] == "web") && !str_contains($row["space_code"], "app")))
+					{
+						$objectAdvertSpace = (object)[];
+						$objectAdvertSpace->space_id = $row["id"];
+						$objectAdvertSpace->space_code = $row["space_code"];
+						$objectAdvertSpace->space_description = $row["space_description"];
+						$objectAdvertSpace->cost_per_year = $row["cost_per_year"];
+						$objectAdvertSpace->app_or_web = $row["app_or_web"];
+						$arrayList[] = $objectAdvertSpace;
+					}
 				}
 			}
 			echo "OKS" . json_encode($arrayList);

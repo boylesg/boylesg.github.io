@@ -147,3 +147,17 @@ Stack trace:
 [28-Feb-2024 12:51:54 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
 [28-Feb-2024 12:56:18 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
 [28-Feb-2024 12:56:56 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 24
+[29-Feb-2024 11:53:06 UTC] PHP Fatal error:  Uncaught Error: Attempt to assign property "space_id" on null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:98
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 98
+[29-Feb-2024 11:53:06 UTC] PHP Warning:  Undefined array key "image_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 63
+[29-Feb-2024 11:53:06 UTC] PHP Warning:  Undefined array key "image_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 63
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20

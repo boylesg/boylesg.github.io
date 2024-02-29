@@ -588,7 +588,7 @@
 		global $g_dbFindATradie;
 		$strCustomerTradeID = "";
 		
-		$results = DoFindAllQuery($g_dbFindATradie, "trades", "name == 'Customer' OR name == 'customer' OR name == 'CUSTOMER'");
+		$results = DoFindAllQuery($g_dbFindATradie, "trades", "name = 'Customer' OR name = 'customer' OR name = 'CUSTOMER'");
 		if ($results && ($results->num_rows > 0))
 		{
 			if ($row = $results->fetch_assoc())

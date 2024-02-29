@@ -6,6 +6,26 @@
 	
 	
 	
+	function DoGetAdditionalTrades($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$arrayAdditionalTradeIDs = [];
+		
+		$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "member_id", $strMemberID);
+		
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				$arrayAdditionalTradeIDs[] = GetTradeName($row["id"]);
+			}
+		}
+		return $arrayAdditionalTradeIDs;
+	}
+	
+	
+	
+	
 	function DoLoginStuff($results, $strPassword)
 	{
 		if ($row = $results->fetch_assoc())
@@ -16,6 +36,8 @@
 				
 				$objectMember->member_id = $row["id"];
 				$objectMember->trade_id = $row["trade_id"];
+				$objectMember->trade_name = GetTradeName($row["trade_id"]);
+				$objectMember->additional_trades = DoGetAdditionalTrades($row["id"]);
 				$objectMember->business_name = $row["business_name"];
 				$objectMember->first_name = $row["first_name"];
 				$objectMember->surname = $row["surname"];
@@ -38,7 +60,7 @@
 				$objectMember->mobile = $row["mobile"];
 				$objectMember->email = $row["email"];
 				$objectMember->username = $row["username"];
-				$objectMember->password = $row["password"];
+				$objectMember->password = DoAESDecrypt($row["password"]);
 				$objectMember->expiry_date = $row["expiry_date"];
 				$objectMember->date_joined = $row["date_joined"];
 				

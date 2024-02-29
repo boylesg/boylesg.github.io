@@ -7,9 +7,6 @@
 	{
 		if ($_POST["button"] == "spinner_lists")
 		{
-			"trades_list";
-			"structure_list";
-			"job_size_list";
 			$results = DoFindAllQuery($g_dbFindATradie, "trades");
 			if ($results->num_rows > 0)
 			{

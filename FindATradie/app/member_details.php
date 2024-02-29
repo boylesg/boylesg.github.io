@@ -130,41 +130,9 @@
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
 	}
-	// File upload?
-	else if (!empty($_POST))
+	else
 	{
-		$strMemberID = "";
-		
-		if (IsLogoImageUpload($strMemberID))
-		{
-			if (strlen($strMemberID) > 0)
-			{
-				$strProfileFilename = DoGetProfileImageFilename($strMemberID);
-				$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strProfileFilename);
-				if ($results)
-				{
-					$data = file_get_contents('php://input');
-					$nBytes = file_put_contents($strProfileFilename, $data);
-					
-					if ($nBytes > 0)
-						echo "OK";
-					else
-						echo "File '" . $strProfileFilename . "' could not be saved!";
-				}
-				else
-				{
-					echo "Could not update 'profile_filename' column for member '" . $strMemberID . "'!";
-				}
-			}
-			else
-			{
-				echo "PROFILE image file name member ID is blank!";
-			}		
-		}
-		else
-		{
-			//print_r($_POST);
-		}
+		//print_r($_POST);
 	}
 
 ?>
