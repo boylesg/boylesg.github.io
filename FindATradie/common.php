@@ -822,15 +822,17 @@
 		return DoesColumnExist("members", "email", $strEmail);
 	}
 	
-	function DoGetColumnValue($strTableName, $strFindColumnName, $strFindColumnValue; $strReturnColumnName)
+	function DoGetColumnValue($strTableName, $strFindColumnName, $strFindColumnValue, $strReturnColumnName)
 	{
 		global $g_dbFindATradie;
 		$strReturnValue = "";
-		
 		$results = DoFindQuery1($g_dbFindATradie, "members", $strFindColumnName, $strFindColumnValue);
 		if ($results && ($results->num_rows > 0))
 		{
-			$strValue = $row[$strReturnColumnName];
+			if ($row = $results->fetch_assoc())
+			{
+				$strReturnValue = $row[$strReturnColumnName];
+			}
 		}
 		return $strReturnValue;	
 	}
@@ -1026,7 +1028,7 @@
 	
 	function IsTradeMatch($strPrimaryTradeID, $arrayAdditionalTradeIDs, $strTargetTradeID)
 	{
-		bool $bMatch = false;
+		$bMatch = false;
 		
 		if ($strPrimaryTradeID == $strTargetTradeID)
 			$bMatch = true;

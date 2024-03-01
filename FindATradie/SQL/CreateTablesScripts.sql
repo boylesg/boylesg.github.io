@@ -632,21 +632,23 @@ CREATE TABLE `jobs` (
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `member_id` int UNSIGNED NOT NULL,
   `accepted_by_member_id` int UNSIGNED DEFAULT '0',
+  `accepted` date DEFAULT NULL
   `trade_id` int UNSIGNED NOT NULL,
   `description` varchar(512) NOT NULL,
   `maximum_budget` int NOT NULL,
   `size` varchar(16) NOT NULL,
   `urgent` tinyint(1) NOT NULL DEFAULT '0',
-  `completed` tinyint(1) NOT NULL DEFAULT '0'
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `date_completed` date DEFAULT NULL
 );
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`id`, `date_added`, `member_id`, `accepted_by_member_id`, `trade_id`, `description`, `maximum_budget`, `size`, `urgent`, `completed`) VALUES
-(1, '2023-11-22 09:39:24', 11, 0, 52, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6000, 'Up to 50', 1, 0),
-(2, '2023-11-22 09:39:24', 12, 0, 52, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 5001, 'Up to 50', 0, 0);
+INSERT INTO `jobs` (`id`, `date_added`, `member_id`, `accepted_by_member_id`, `date_accepted`, `trade_id`, `description`, `maximum_budget`, `size`, `urgent`, `completed`, `date_completed`) VALUES
+(1, '2023-11-22 09:39:24', 11, 0, NULL, 52, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 6000, 'Up to 50', 1, 0, NULL),
+(2, '2023-11-22 09:39:24', 12, 0, NULL, 52, 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 5001, 'Up to 50', 0, 0, NULL);
 
 --
 -- Indexes for dumped tables
