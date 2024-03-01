@@ -83,11 +83,42 @@
 			$_POST["message"]
 		*/
 		}
-		else if ($_POST["button"] == "XXXXXXXX")
+		else if ($_POST["button"] == "new_job")
 		{
+			//$_POST["trade_id"]
+			//$_POST["description"]
+			//$_POST["maximum_budget"]
+			//$_POST["size"]
+			//$_POST["urgent"]
 		}
-		else if ($_POST["button"] == "XXXXXXXX")
+		else if ($_POST["button"] == "edit_job")
 		{
+			//$_POST["id"]
+			//$_POST["trade_id"]
+			//$_POST["description"]
+			//$_POST["maximum_budget"]
+			//$_POST["size"]
+			//$_POST["urgent"]
+		}
+		else if ($_POST["button"] == "accept_job")
+		{
+			//$_POST["id"]
+		}
+		else if ($_POST["button"] == "unaccept_job")
+		{
+			//$_POST["id"]
+		}
+		else if ($_POST["button"] == "complete_job")
+		{
+			//$_POST["id"]
+		}
+		else if ($_POST["button"] == "uncomplete_job")
+		{
+			//$_POST["id"]
+		}
+		else if ($_POST["button"] == "delere_job")
+		{
+			//$_POST["id"]
 		}
 		else
 		{
