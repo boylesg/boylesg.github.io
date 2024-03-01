@@ -61,6 +61,10 @@
 					echo "EMAIL_SENT";
 				}
 			}
+			else
+			{
+				echo "Unexpected button name '" . $_POST["button"] . "'!";
+			}
 		}
 	}
 

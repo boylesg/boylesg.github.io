@@ -128,6 +128,10 @@
 			else
 				echo "expiry_date_updated=false";
 		}
+		else
+		{
+			echo "Unexpected button name '" . $_POST["button"] . "'!";
+		}
 	}	
 	
 ?>

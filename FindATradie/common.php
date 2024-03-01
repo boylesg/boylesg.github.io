@@ -822,6 +822,18 @@
 		return DoesColumnExist("members", "email", $strEmail);
 	}
 	
+	function DoGetColumnValue($strTableName, $strFindColumnName, $strFindColumnValue; $strReturnColumnName)
+	{
+		global $g_dbFindATradie;
+		$strReturnValue = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", $strFindColumnName, $strFindColumnValue);
+		if ($results && ($results->num_rows > 0))
+		{
+			$strValue = $row[$strReturnColumnName];
+		}
+		return $strReturnValue;	
+	}
 	
 	
 	
@@ -930,7 +942,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** GENERAL MEMBER LOKUP FUNCTIONS
+	//** GENERAL MEMBER LOOKUP FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -1010,6 +1022,26 @@
 			$strTradeNames = substr($strTradeNames, 0, strlen($strTradeNames) - 2);
 		}
 		return $strTradeNames;
+	}
+	
+	function IsTradeMatch($strPrimaryTradeID, $arrayAdditionalTradeIDs, $strTargetTradeID)
+	{
+		bool $bMatch = false;
+		
+		if ($strPrimaryTradeID == $strTargetTradeID)
+			$bMatch = true;
+		else
+		{
+			for ($nI = 0; $nI < count($arrayAdditionalTradeIDs); $nI++)
+			{
+				if ($arrayAdditionalTradeIDs[$nI] == $strTargetTradeID)
+				{
+					$bMatch = true;
+					break;
+				}
+			}
+		}
+		return $bMatch;
 	}
 	
 	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)

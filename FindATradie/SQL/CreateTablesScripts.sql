@@ -631,7 +631,7 @@ CREATE TABLE `jobs` (
   `id` int UNSIGNED NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `member_id` int UNSIGNED NOT NULL,
-  `accepted_by_member_id` int UNSIGNED DEFAULT NULL,
+  `accepted_by_member_id` int UNSIGNED DEFAULT '0',
   `trade_id` int UNSIGNED NOT NULL,
   `description` varchar(512) NOT NULL,
   `maximum_budget` int NOT NULL,
