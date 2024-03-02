@@ -8,11 +8,22 @@
 
 	if (isset($_POST["button"]))
 	{
+		$dateNow = new DateTime();
+		$strDateNow = $dateNow->format("Y-m-d");
+		
 		if ($_POST["button"] == "jobs_list")
 		{
 			$arrayJobsList = [];
+			$results = false;
 			
-			$results = DoFindAllQuery($g_dbFindATradie, "jobs", "member_id", $_POST["member_id"], "accepted_member_id = '0' OR accepted_by_member_id = " . $_POST["member_id"]);
+			if ($_POST["which"] == "my_jobs")
+			{
+				$results = DoFindQuery1($g_dbFindATradie, "jobs", "member_id", $_POST["member_id"]);
+			}
+			else if ($_POST["which"] == "other_jobs")
+			{
+				$results = DoFindAllQuery($g_dbFindATradie, "jobs", "accepted_member_id = '0' OR accepted_by_member_id = " . $_POST["member_id"]);
+			}
 			if ($results && ($results->num_rows > 0))
 			{
 				while ($row = $results->fetch_assoc())
@@ -24,10 +35,11 @@
 					{
 						if (($_POST["hide_accepted_jobs"] == "false") || (($_POST["hide_accepted_jobs"] == "true") && ($row["accepted_by_member_id"] == "0")))
 						{
-							if (($row["maximum_budget"] >= $_POST["minimum_budget"]) && ($dateAdded >= $dateMinimum) && 
+							if ((($row["maximum_budget"] >= $_POST["minimum_budget"]) && ($dateAdded >= $dateMinimum) && 
 								IsMatchMaxSize(DoGetSizeIndex($_POST["maximum_size"]), DoGetSizeIndex($row["size"])) && 
 								IsDistanceMatch($_POST["postcode"], DoGetColumnValue("members", "id", $row["member_id"], "postcode"), $_POST["maximum_distance"]) &&
-								IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"]))
+								IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"])) ||
+								($_POST["which"] == "my_jobs"))
 							{
 								$objectJobDetails = (object)[];
 								$objectJobDetails->job_id = $row["id"];
@@ -63,17 +75,6 @@
 			}
 			echo "OK" . json_encode($arrayJobsList);
 		}
-		else if ($_POST["button"] == "edit_job")
-		{
-		/*
-			$_POST["job_id"]
-			$_POST["trade_id"]
-			$_POST["description"]
-			$_POST["maximum_budget"]
-			$_POST["size"]
-			$_POST["urgent"]
-		*/
-		}
 		else if ($_POST["button"] == "send_job_email")
 		{
 		/*
@@ -102,23 +103,31 @@
 		}
 		else if ($_POST["button"] == "accept_job")
 		{
-			//$_POST["id"]
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "accepted_by_member_id", $_SESSION["account_id"], "date_accepted", $strDateNow, "id", $_POST["id"]);
+			if ($results)
+				echo "OK";
 		}
 		else if ($_POST["button"] == "unaccept_job")
 		{
-			//$_POST["id"]
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "accepted_by_member_id", "0", "date_accepted", NULL, "id", $_POST["id"]);
+			if ($results)
+				echo "OK";
 		}
 		else if ($_POST["button"] == "complete_job")
 		{
-			//$_POST["id"]
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", true, "date_completed", $strDateNow, "id", $_POST["id"]);
+			if ($results)
+				echo "OK";
 		}
 		else if ($_POST["button"] == "uncomplete_job")
 		{
-			//$_POST["id"]
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", false, "date_completed", NULL, "id", $_POST["id"]);
+			if ($results)
+				echo "OK";
 		}
-		else if ($_POST["button"] == "delere_job")
+		else if ($_POST["button"] == "delete_job")
 		{
-			//$_POST["id"]
+			$results = DoDeleteQuery($g_dbFindATradie, "jobs", "id", $_POST["id"]);
 		}
 		else
 		{
