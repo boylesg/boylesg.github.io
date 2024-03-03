@@ -22,7 +22,7 @@
 			}
 			else if ($_POST["which"] == "other_jobs")
 			{
-				$results = DoFindAllQuery($g_dbFindATradie, "jobs", "accepted_member_id = '0' OR accepted_by_member_id = " . $_POST["member_id"]);
+				$results = DoFindAllQuery($g_dbFindATradie, "jobs", "accepted_by_member_id = '0' OR accepted_by_member_id = " . $_POST["member_id"]);
 			}
 			if ($results && ($results->num_rows > 0))
 			{
@@ -46,10 +46,27 @@
 								$objectJobDetails->member_id = $row["member_id"];
 								
 								$objectJobDetails->accepted_by_name = "";
+								$objectJobDetails->accepted_by_mobile = "";
+								$objectJobDetails->accepted_by_email = "";
+								$objectJobDetails->name = "";
+								$objectJobDetails->mobile = "";
+								$objectJobDetails->email = "";
 								if (!empty($row["accepted_by_member_id"]))
 								{
-									$rowMember = DoGetMember($row["accepted_by_member_id"]);
-									$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
+									//if ($_POST["which"] == "my_jobs")
+									{
+										$rowMember = DoGetMember($row["accepted_by_member_id"]);
+										$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
+										$objectJobDetails->accepted_by_mobile = $rowMember["mobile"];
+										$objectJobDetails->accepted_by_email = $rowMember["email"];
+									}
+									//else if ($_POST["which"] == "other_jobs")
+									{
+										$rowMember = DoGetMember($row["member_id"]);
+										$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
+										$objectJobDetails->mobile = $rowMember["mobile"];
+										$objectJobDetails->email = $rowMember["email"];
+									}
 								}
 								$objectJobDetails->trade_id = $row["trade_id"];
 								$objectJobDetails->date_added = $row["date_added"];
@@ -68,8 +85,9 @@
 								$objectJobDetails->description = $row["description"];
 								$objectJobDetails->maximum_budget = $row["maximum_budget"];
 								$objectJobDetails->size = $row["size"];
-								$objectJobDetails->urgent = $row["urgent"];
+								$objectJobDetails->urgent = $row["urgent"] == "1";
 								$objectJobDetails->completed = $row["completed"] == "1";
+								
 								$arrayJobsList[] = $objectJobDetails;
 							}
 						}
@@ -85,8 +103,9 @@
 		}
 		else if ($_POST["button"] == "new_job")
 		{
-			$results = DoInsertQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["trade_id"], "description", $_POST["description"], 
-										"maximum_budget", $_POST["maximum_budget"], "size", $_POST["size"], "urgent", $_POST["urgent"]);
+			$results = DoInsertQuery6($g_dbFindATradie, "jobs", "trade_id", $_POST["trade_id"], "description", $_POST["description"], 
+										"maximum_budget", $_POST["maximum_budget"], "size", $_POST["size"], "urgent", $_POST["urgent"],
+										"member_id", $_POST["member_id"]);
 			if ($results)
 				echo "JOB_ADDED";
 		}
@@ -95,30 +114,31 @@
 			$results = DoUpdateQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["trade_id"], "description", $_POST["description"], 
 										"maximum_budget", $_POST["maximum_budget"], "size", $_POST["size"], "urgent", $_POST["urgent"], 
 										"id", $_POST["id"]);
+			echo $g_strQuery;
 			if ($results)
 				echo "JOB_EDITED";
 		}
 		else if ($_POST["button"] == "accept_job")
 		{
-			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "accepted_by_member_id", $_SESSION["account_id"], "date_accepted", $strDateNow, "id", $_POST["id"]);
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "accepted_by_member_id", $_POST["accepted_by_member_id"], "date_accepted", $strDateNow, "id", $_POST["id"]);
 			if ($results)
 				echo "JOB_ACCEPTED";
 		}
 		else if ($_POST["button"] == "unaccept_job")
 		{
-			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "accepted_by_member_id", "0", "date_accepted", NULL, "id", $_POST["id"]);
+			$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", "0", "id", $_POST["id"]);
 			if ($results)
 				echo "JOB_UNACCEPTED";
 		}
 		else if ($_POST["button"] == "complete_job")
 		{
-			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", true, "date_completed", $strDateNow, "id", $_POST["id"]);
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", "1", "date_completed", $strDateNow, "id", $_POST["id"]);
 			if ($results)
 				echo "JOB_COMPLETED";
 		}
 		else if ($_POST["button"] == "uncomplete_job")
 		{
-			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", false, "date_completed", NULL, "id", $_POST["id"]);
+			$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "completed", "0", "id", $_POST["id"]);
 			if ($results)
 				echo "JOB_UNCOMPLETED";
 		}
