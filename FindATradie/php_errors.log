@@ -594,3 +594,59 @@ Stack trace:
 [29-Feb-2024 08:25:48 UTC] PHP Warning:  Undefined array key "account_log_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1169
 [29-Feb-2024 08:26:32 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
 [29-Feb-2024 10:02:34 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1501
+[01-Mar-2024 00:13:06 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1265
+[01-Mar-2024 00:13:06 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1266
+[01-Mar-2024 00:13:06 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1265
+[01-Mar-2024 00:13:06 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1266
+[02-Mar-2024 03:01:46 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1535
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[02-Mar-2024 08:38:14 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1299
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[03-Mar-2024 08:19:08 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1300
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_maximum_size" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 943
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_trade" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 961
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_maximum_size" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1045
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1510
+[03-Mar-2024 08:59:10 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_profile_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1146
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_profile_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1146
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1169
+[03-Mar-2024 08:59:10 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1169
+[03-Mar-2024 08:59:10 UTC] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, string given in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:879
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php(900): FindAdditionalTrade('', '1')
+#1 C:\inetpub\wwwroot\www.find-a-tradie.com.au\member_details_forms.html(340): DoGenerateAdditionalTradeOptions('')
+#2 C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php(1185): include('C:\\inetpub\\wwwr...')
+#3 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 879
+[03-Mar-2024 09:34:07 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 09:34:07 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[03-Mar-2024 09:34:07 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 09:34:07 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[03-Mar-2024 10:26:55 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 10:26:55 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[03-Mar-2024 10:26:55 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 10:26:55 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[03-Mar-2024 23:31:53 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 23:31:53 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[03-Mar-2024 23:31:53 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1307
+[03-Mar-2024 23:31:53 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1308
+[04-Mar-2024 01:23:22 UTC] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, string given in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:887
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php(908): FindAdditionalTrade('', '1')
+#1 C:\inetpub\wwwroot\www.find-a-tradie.com.au\member_details_forms.html(340): DoGenerateAdditionalTradeOptions('')
+#2 C:\inetpub\wwwroot\www.find-a-tradie.com.au\new_tradie.php(102): include('C:\\inetpub\\wwwr...')
+#3 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 887

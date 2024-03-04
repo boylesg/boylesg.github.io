@@ -27,10 +27,10 @@
 
 	if (isset($_POST["button"]))
 	{
-		$arrayList = [];
-		
 		if ($_POST["button"] == "get_adverts")
 		{
+			$arrayList = [];
+			
 			$results = DoFindQuery1($g_dbFindATradie, "adverts", "member_id", $_POST["member_id"]);
 			if ($results && ($results->num_rows > 0))
 			{

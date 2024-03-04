@@ -1054,9 +1054,8 @@
 		return $bMatch;
 	}
 	
-	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
+	function DoGetJobSizeIndex($strJobSize)
 	{
-		$nJobSize = (int)$strJobSizeIndex;
 		$nTradieMaxSizeIndex = 0;
 		
 		if ($strTradieMaxSize == "Up to 50")
@@ -1072,6 +1071,14 @@
 		else if ($strTradieMaxSize == "Up to 50")
 			$nTradieMaxSizeIndex = 6;
 			
+		return $nTradieMaxSizeIndex;
+	}
+	
+	function IsMatchMaxSize($strTradieMaxSize, $strJobSizeIndex)
+	{
+		$nJobSize = (int)$strJobSizeIndex;
+		$nTradieMaxSizeIndex = DoGetJobSizeIndex($strTradieMaxSize);
+					
 		return $nJobSize <= $nTradieMaxSizeIndex;
 	}
 	
