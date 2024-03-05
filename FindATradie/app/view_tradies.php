@@ -36,6 +36,8 @@
 							$objectTradieDetails->postcode = $row["postcode"];
 							$objectTradieDetails->state = $row["state"];
 							$objectTradieDetails->profile_filename = $row["profile_filename"];
+							$objectTradieDetails->license = $row["license"];
+							$objectTradieDetails->description = $row["description"];
 					
 							$arrayTradies[] = $objectTradieDetails;
 						}
