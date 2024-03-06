@@ -40,7 +40,7 @@
 											  "mobile = '" . $_POST["mobile"] . "', " .
 											  "email = '" . $_POST["email"] . "', " .
 											  "username = '" . $_POST["username"] .  "', " .
-											  "password = '" . $_POST["password"] . "'" .
+											  "password = '" . DoAESEncrypt($_POST["password"]) . "'" .
 											  " WHERE id = '" . $_POST["member_id"] . "'";
 											  		
 			$results = DoQuery($g_dbFindATradie, $g_strQuery);
@@ -119,7 +119,7 @@
 														"'" . $_POST["mobile"]	.  "', " . 
 														"'" . $_POST["email"] .  "'" . 
 														"'" . $_POST["username"] .  "', " . 
-														"'" . $_POST["password"] .  "', " . 
+														"'" . DoAESEncrypt($_POST["password"]) .  "', " . 
 													  	"'2050-12-31'" . 
 														"'" . $_POST["trade_id"] . "')";
 				}
@@ -145,7 +145,7 @@
 														"'" . $_POST["mobile"]	.  "', " . 
 														"'" . $_POST["email"] .  "'" . 
 														"'" . $_POST["username"] .  "', " . 
-														"'" . $_POST["password"] .  "', " . 
+														"'" . DoAESEncrypt($_POST["password"]) .  "', " . 
 													  	"'" . $dateExpiry->format("Y-m-d") . "'" . 
 														
 														"'" . EscapeSingleQuote($_POST["business_name"]) . "', " .

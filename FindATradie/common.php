@@ -1059,17 +1059,17 @@
 	{
 		$nTradieMaxSizeIndex = 0;
 		
-		if ($strTradieMaxSize == "Up to 50")
+		if ($strJobSize == "Up to 50")
 			$nTradieMaxSizeIndex = 1;
-		else if ($strTradieMaxSize == ">50 - 100")
+		else if ($strJobSize == ">50 - 100")
 			$nTradieMaxSizeIndex = 2;
-		else if ($strTradieMaxSize == "100 - 250")
+		else if ($strJobSize == "100 - 250")
 			$nTradieMaxSizeIndex = 3;
-		else if ($strTradieMaxSize == "250 - 500")
+		else if ($strJobSize == "250 - 500")
 			$nTradieMaxSizeIndex = 4;
-		else if ($strTradieMaxSize == "More than 500")
+		else if ($strJobSize == "More than 500")
 			$nTradieMaxSizeIndex = 5;
-		else if ($strTradieMaxSize == "Up to 50")
+		else if ($strJobSize == "Up to 50")
 			$nTradieMaxSizeIndex = 6;
 			
 		return $nTradieMaxSizeIndex;
