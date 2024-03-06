@@ -299,3 +299,4 @@ Stack trace:
 [05-Mar-2024 08:15:37 UTC] PHP Warning:  Undefined array key "licenses" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
 [05-Mar-2024 11:33:37 UTC] PHP Warning:  Undefined variable $g_strQuery in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_member.php on line 15
 [05-Mar-2024 11:34:15 UTC] PHP Parse error:  syntax error, unexpected identifier "g_strQuery", expecting variable or "$" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_member.php on line 13
+[06-Mar-2024 07:44:30 UTC] PHP Warning:  Undefined variable $results in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 48

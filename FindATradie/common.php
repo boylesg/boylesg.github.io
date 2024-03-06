@@ -15,7 +15,8 @@
 	$g_strDivClose = "</div>";
 	$g_strPaypalLive = "none";
 	$g_strPaypalTest = "block";
-	$g_dateJoinFree = new DateTime("2024-04-30");
+	$g_dateJoinFree = new DateTime("2024-07-30");
+	$g_nNumMonthsFree = 6;
 	$g_nDaysToGo = $g_dateJoinFree->diff( new DateTime())->days;
 	$g_nTradeIDCustomer = 59;
 	$g_strAdminEmail = "find-a-tradie@outlook.com";
