@@ -2,6 +2,61 @@
 	
 	$g_bIsApp = true;
 	require_once "../common.php";
+	
+	
+	
+	
+	function DoGetJobDetails($row)
+	{
+		$objectJobDetails = (object)[];
+		$objectJobDetails->job_id = $row["id"];
+		$objectJobDetails->member_id = $row["member_id"];
+		
+		$objectJobDetails->accepted_by_name = "";
+		$objectJobDetails->accepted_by_mobile = "";
+		$objectJobDetails->accepted_by_email = "";
+		$objectJobDetails->name = "";
+		$objectJobDetails->mobile = "";
+		$objectJobDetails->email = "";
+		if (!empty($row["accepted_by_member_id"]))
+		{
+			//if ($_POST["which"] == "my_jobs")
+			{
+				$rowMember = DoGetMember($row["accepted_by_member_id"]);
+				$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
+				$objectJobDetails->accepted_by_mobile = $rowMember["mobile"];
+				$objectJobDetails->accepted_by_email = $rowMember["email"];
+			}
+			//else if ($_POST["which"] == "other_jobs")
+			{
+				$rowMember = DoGetMember($row["member_id"]);
+				$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
+				$objectJobDetails->mobile = $rowMember["mobile"];
+				$objectJobDetails->email = $rowMember["email"];
+			}
+		}
+		$objectJobDetails->trade_id = $row["trade_id"];
+		$objectJobDetails->date_added = $row["date_added"];
+		
+		$objectJobDetails->date_completed = "";
+		if ($row["date_completed"] != NULL)
+			$objectJobDetails->date_completed = $row["date_completed"];
+			
+		$objectJobDetails->accepted_by_member_id = $row["accepted_by_member_id"];
+		$objectJobDetails->accepted = $row["accepted_by_member_id"] != "0";
+
+		$objectJobDetails->date_accepted = "";
+		if ($row["date_accepted"] != NULL)
+			$objectJobDetails->date_accepted = $row["date_accepted"];
+			
+		$objectJobDetails->description = $row["description"];
+		$objectJobDetails->maximum_budget = $row["maximum_budget"];
+		$objectJobDetails->size = $row["size"];
+		$objectJobDetails->urgent = $row["urgent"] == "1";
+		$objectJobDetails->completed = $row["completed"] == "1";
+		
+		return $objectJobDetails;
+	}
 
 
 
@@ -19,6 +74,27 @@
 			if ($_POST["which"] == "my_jobs")
 			{
 				$results = DoFindQuery1($g_dbFindATradie, "jobs", "member_id", $_POST["member_id"]);
+				if ($results && ($results->num_rows > 0))
+				{			
+					$dateMinimum = new DateTime($_POST["minimum_date"]);
+					
+					while ($row = $results->fetch_assoc())
+					{
+						$dateAdded = new DateTime($row["date_added"]);
+						
+						if (($_POST["show_selected_jobs"] == "false") ||
+							(($_POST["show_selected_jobs"] == "true") || 
+							(($_POST["show_urgent_jobs_only"] == "false") || (($_POST["show_urgent_jobs_only"] == "true") && ($row["urgent"] == "1"))) ||
+							(($_POST["show_accepted_jobs_only"] == "false") || (($_POST["show_accepted_jobs_only"] == "true") && ($row["accepted_by_member_id"] != "0")))))
+						{
+							if ($dateAdded >= $dateMinimum)
+							{
+								$objectJobDetails = DoGetJobDetails($row);
+								$arrayJobsList[] = $objectJobDetails;
+							}
+						}							
+					}
+				}
 			}
 			else if ($_POST["which"] == "other_jobs")
 			{
@@ -31,9 +107,11 @@
 					$dateAdded = new DateTime($row["date_added"]);
 					$dateMinimum = new DateTime($_POST["minimum_date"]);
 					
-					if (($_POST["show_urgent_jobs_only"] == "false") || (($_POST["show_urgent_jobs_only"] == "true") && ($row["urgent"] == '1')))
+					if (($_POST["show_urgent_jobs_only"] == "false") || 
+						(($_POST["show_urgent_jobs_only"] == "true") && ($row["urgent"] == '1')))
 					{
-						if (($_POST["hide_accepted_jobs"] == "false") || (($_POST["hide_accepted_jobs"] == "true") && ($row["accepted_by_member_id"] == "0")))
+						if ((($_POST["show_accepted_jobs_only"] == "false") || (($_POST["show_accepted_jobs_only"] == "true") && ($row["accepted_by_member_id"] != "0"))) ||
+							(($_POST["show_paid_jobs_only"] == "false") || (($_POST["show_paid_jobs_only"] == "true") && ($row["completed"] == "1"))))
 						{
 							if ((($row["maximum_budget"] >= $_POST["minimum_budget"]) && ($dateAdded >= $dateMinimum) && 
 								IsMatchMaxSize(DoGetSizeIndex($_POST["maximum_size"]), DoGetSizeIndex($row["size"])) && 
@@ -41,53 +119,7 @@
 								IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"])) ||
 								($_POST["which"] == "my_jobs"))
 							{
-								$objectJobDetails = (object)[];
-								$objectJobDetails->job_id = $row["id"];
-								$objectJobDetails->member_id = $row["member_id"];
-								
-								$objectJobDetails->accepted_by_name = "";
-								$objectJobDetails->accepted_by_mobile = "";
-								$objectJobDetails->accepted_by_email = "";
-								$objectJobDetails->name = "";
-								$objectJobDetails->mobile = "";
-								$objectJobDetails->email = "";
-								if (!empty($row["accepted_by_member_id"]))
-								{
-									//if ($_POST["which"] == "my_jobs")
-									{
-										$rowMember = DoGetMember($row["accepted_by_member_id"]);
-										$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
-										$objectJobDetails->accepted_by_mobile = $rowMember["mobile"];
-										$objectJobDetails->accepted_by_email = $rowMember["email"];
-									}
-									//else if ($_POST["which"] == "other_jobs")
-									{
-										$rowMember = DoGetMember($row["member_id"]);
-										$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
-										$objectJobDetails->mobile = $rowMember["mobile"];
-										$objectJobDetails->email = $rowMember["email"];
-									}
-								}
-								$objectJobDetails->trade_id = $row["trade_id"];
-								$objectJobDetails->date_added = $row["date_added"];
-								
-								$objectJobDetails->date_completed = "";
-								if ($row["date_completed"] != NULL)
-									$objectJobDetails->date_completed = $row["date_completed"];
-									
-								$objectJobDetails->accepted_by_member_id = $row["accepted_by_member_id"];
-								$objectJobDetails->accepted = $row["accepted_by_member_id"] != "0";
-
-								$objectJobDetails->date_accepted = "";
-								if ($row["date_accepted"] != NULL)
-									$objectJobDetails->date_accepted = $row["date_accepted"];
-									
-								$objectJobDetails->description = $row["description"];
-								$objectJobDetails->maximum_budget = $row["maximum_budget"];
-								$objectJobDetails->size = $row["size"];
-								$objectJobDetails->urgent = $row["urgent"] == "1";
-								$objectJobDetails->completed = $row["completed"] == "1";
-								
+								$objectJobDetails = DoGetJobDetails($row);
 								$arrayJobsList[] = $objectJobDetails;
 							}
 						}

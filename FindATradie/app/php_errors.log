@@ -324,3 +324,12 @@ Stack trace:
 [06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1068
 [06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1070
 [06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1072
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:15:04 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 90
