@@ -163,7 +163,8 @@
 				
 				.search_cell
 				{
-					font-size: small;
+					font-size: 12.5px;
+					/*color: maroon;*/
 					border-bottom-style: solid;
 					border-width: thin;
 					border-color: black;

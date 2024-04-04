@@ -1545,10 +1545,11 @@
 					echo "NO\n";
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
-				if ($row["accepted_by_member_id"] > -1)
+				if ($row["accepted_by_member_id"] > 0)
 				{
 					$rowMember = DoGetMember($row["accepted_by_member_id"]);
-					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . $rowMember["business_name"] . "</a>\n";
+					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
+							$rowMember["business_name"] . "</a>\n";
 				}
 				else
 				{

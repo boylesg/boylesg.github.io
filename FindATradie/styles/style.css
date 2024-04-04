@@ -137,7 +137,7 @@
 	background-position: center center;
 	*/
 	color: var(--LinkColorText);
-	font-size: medium;
+	font-size: small;
 	font-weight: bold;
 	font-family: 'BespokeSans-Bold';
 	border-radius: var(--BorderRadiusButton);

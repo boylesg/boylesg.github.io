@@ -119,6 +119,76 @@
 		return input;
 	}
 
+		function IsAllowedChar(nKeyCode, strAllowedChars)
+	{
+		let bValid = true;
+			
+		for (let nI = 0; nI < strAllowedChars.length; nI++)
+		{
+			bValid = nKeyCode == strAllowedChars[nI];
+			if (bValid)
+				break;
+		}
+		return bValid;
+	}
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** INPUT KEY VALIDATION FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************			
+
+	function IsAllowedChar(nChar, strAllowedChars)
+	{
+		let bValid = true;
+			
+		for (let nI = 0; nI < strAllowedChars.length; nI++)
+		{
+			bValid = nChar == strAllowedChars[nI];
+			if (bValid)
+				break;
+		}
+		return bValid;
+	}
+	
+	function IsEditKey(event)
+	{
+		let bIsValid = ((event.keyCode == 8) || (event.keyCode == 46) || (event.keyCode == 37) || (event.keyCode == 39));
+	
+		return bIsValid;
+	}
+	
+	function IsDigit(event, strAllowedChars = "") 
+	{
+    	let bIsValid = IsEditKey(event) || ((event.key >= '0') && (event.key <= '9')) || IsAllowedChar(event.key, strAllowedChars);
+    	
+		return bIsValid;
+	}
+
+	function IsAlpha(event, strAllowedChars = "")
+	{
+		let bIsValid = ((event.key >= 'A') && (event.key <= 'Z')) || ((event.key >= 'a') && (event.key <= 'z')) || IsAllowedChar(event.key, strAllowedChars);
+		
+		return bIsValid;
+	}
+	
+	function IsAlphaNumeric(event, strAllowedChars = "") 
+	{
+    	let bIsValid = IsEditKey(event) || IsDigit(event) || IsAlpha(event) || IsAllowedChar(event.key, strAllowedChars);
+
+		return bIsValid;
+	}
+
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** ALERT MESSAGES
+	//** 
+	//******************************************************************************
+	//******************************************************************************			
+
 	function AlertInformation(strTitle, strMsg)
 	{
 		swal({
