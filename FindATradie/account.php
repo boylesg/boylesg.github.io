@@ -186,6 +186,13 @@
 					vertical-align: middle;
 					text-align: left;
 				}
+				
+				.function_button
+				{
+					border-style: outset;
+					border-width: thin;
+					border-color: silver;
+				}
 
 			</style>
 			
@@ -294,12 +301,12 @@
 			PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_profile_filename"] . "\");", 3, true);
 		}
 	}
-	else if (isset($_GET["submit_accept_job"]))
+	else if (isset($_POST["submit_accept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_GET["text_member_id"], "id", $_GET["text_job_id"]);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_POST["text_member_id"], "id", $_POST["text_job_id"]);
 		if ($resultsJob)
 		{
-			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["text_job_id"]);
 			if ($results && ($results->num_rows > 0))
 			{
 				if ($rowJob = $results->fetch_assoc())
@@ -331,7 +338,7 @@
 	}
 	else if (isset($_GET["submit_unaccept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", -1, "id", $_GET["text_job_id"]);
+		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", 0, "id", $_GET["text_job_id"]);
 		if ($resultsJob)
 		{
 			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
@@ -483,7 +490,7 @@
 										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
 										"urgent", $_POST["check_urgent"] == "on", "description", $_POST["text_description"], 				
 										"id", $_POST["hidden_job_id"]);
-			if ($results && ($results->num_rows > 0))
+			if ($results)
 			{
 				PrintJavascriptLine("AlertSuccess(\"Job has been updated!\");", 2, true);
 			}
@@ -787,7 +794,7 @@
 					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
 
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
-						<h2>It is time to renew your membership...</h2><br/>
+						<h2 id="tab_heading">It is time to renew your membership...</h2><br/>
 						<table class="paypal_table">
 							<tr>
 								<td class="paypal_cell paypal_first_cell">1 month</td>
@@ -916,7 +923,7 @@
 							<div class="advert" id="advert_account_browse_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_browse_jobs", $g_nButtonHeight, "advert_account_browse_jobs"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:955px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
@@ -1015,7 +1022,8 @@
 							<div class="advert" id="advert_account_post_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_post_job", $g_nButtonHeight, "advert_account_post_jobs"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
+							
 							<form method="post" action="" id="form_add_job" class="form search_form">
 								<table cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 									<tr>
@@ -1057,6 +1065,7 @@
 								<input type="hidden" id="hidden_member_id" name="hidden_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
 								<input type="hidden" id="hidden_job_id" name="hidden_job_id" value="" />
 							</form>
+					
 <?php
 	
 	$bFeedbackEdit = false;
@@ -1135,7 +1144,7 @@
 							<div class="advert" id="advert_account_details" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:40%;">
 								<fieldset>
 									<legend>Profile image:</legend>
@@ -1193,7 +1202,7 @@
 							<div class="advert" id="advert_account_feedback_received" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_feedback_received", $g_nButtonHeight, "advert_account_feedback_received"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table cellspacing="0" cellpadding="10">
@@ -1207,7 +1216,7 @@
 							<div class="advert" id="advert_account_feedback_given" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_feedback_given", $g_nButtonHeight, "advert_account_feedback_given"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
@@ -1218,7 +1227,7 @@
 							<div class="advert" id="advert_account_adverts" style="height: <?php echo $g_AdvertHeight; ?>x; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_adverts", $g_nButtonHeight, "advert_account_adverts"); ?>
 							</div>
-							<h2><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
+							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
 								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">
@@ -1331,6 +1340,8 @@
 	}
 	
 	DoRestoreTab();
+	let rectHeading = DoGetInut("tab_heading").getBoundingClientRect();
+	window.screenTop = rectHeading.top + 100;
 
 </script>
 

@@ -1530,7 +1530,8 @@
 			{
 				echo "<tr>\n";
 				echo "<td class=\"search_cell\">\n";
-				echo $row["date_added"];
+				$dateAdded = new DateTime($row["date_added"]);
+				echo $dateAdded->format("d/m/Y");
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
 				echo $row["size"];
@@ -1561,9 +1562,9 @@
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
 				echo "	<form method=\"post\" action=\"\">\n";
-				echo "		<button type=\"submit\ id=\"submit_job_edit\" name=\"submit_job_edit\" title=\"Edit your job\" value=\"EDIT\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20px\" /></button>&nbsp;\n";
-				echo "		<button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" width=\"20px\" /></button>\n";
-				echo "		<button type=\"button\ id=\"button_job_complete\" name=\"button_job_complete\" title=\"Flag your job as complete and provide feedback for your client\" value=\"COMPLETE\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/complete.png\" alt=\"images/complete.png\" width=\"20px\" /></button>\n";
+				echo "		<button type=\"submit\ id=\"submit_job_edit\" name=\"submit_job_edit\" class=\"function_button\" title=\"Edit your job\" value=\"EDIT\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20px\" /></button>&nbsp;\n";
+				echo "		<button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" width=\"20px\" /></button>\n";
+				echo "		<button type=\"button\ id=\"button_job_complete\" name=\"button_job_complete\" class=\"function_button\" title=\"Flag your job as complete and provide feedback for your client\" value=\"COMPLETE\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/complete.png\" alt=\"images/complete.png\" width=\"20px\" /></button>\n";
 				echo "		<input type=\"hidden\" name=\"hidden_job_edit_id\" value=\"" . $row["id"] . "\">\n";
 				echo "	</form>\n";
 				echo "</td>\n"; 
@@ -1676,35 +1677,44 @@
 			{
 				$rowMember = DoGetMember($rowJob["member_id"]);
 
-				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]) && 
-					(DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"])) &&
-					(($rowJob["accepted_by_member_id"] == -1) || ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])))
+				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]))
 				{
-					if (!array_key_exists($rowJob["id"], $mapAddedJobIDs))
+					if (DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"]))
 					{
-						$mapAddedJobIDs[$rowJob["id"]] = true;
-						echo "<tr>\n";
-						$date = new DateTime($rowJob["date_added"]);
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
-						echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
-						echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
-						if ($rowJob["urgent"])
-							echo "<td class=\"cell_no_borders search_cell\">YES</td>";
-						else
-							echo "<td class=\"cell_no_borders search_cell\">NO</td>";
-						echo "<td class=\"cell_no_borders search_cell\">";
-						echo "<button type=\"button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
-						if ($rowJob["accepted_by_member_id"] == -1)
-							echo "<button type=\"button\" title=\"Accept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&text_member_id=" . $_SESSION["account_id"] . "&submit_accept_job=ACCEPT';\" \"><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
-						else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
-							echo "<button type=\"button\" title=\"Unaccept this job\" onclick=\"document.location = 'account.php?text_job_id=" . $rowJob["id"] . "&submit_unaccept_job=UNACCEPT';\" \"><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
-						else
-							echo "ERROR";
-						echo "</td>\n";
-						echo "</tr>\n";
+						if (($rowJob["accepted_by_member_id"] == 0) || ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"]))
+						{
+							if (!array_key_exists($rowJob["id"], $mapAddedJobIDs))
+							{
+								$mapAddedJobIDs[$rowJob["id"]] = true;
+								echo "<tr>\n";
+								$date = new DateTime($rowJob["date_added"]);
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
+								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
+								echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
+								echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
+								if ($rowJob["urgent"])
+									echo "<td class=\"cell_no_borders search_cell\">YES</td>";
+								else
+									echo "<td class=\"cell_no_borders search_cell\">NO</td>";
+								echo "<td class=\"cell_no_borders search_cell\">";
+								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
+								
+								echo "	<form method=\"post\" action=\"\">\n";
+								echo "     <input type=\"hidden\" value=\"\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
+								echo "     <input type=\"hidden\" value=\"\" name=\"text_member_id\" value=\"" . $_SESSION["account_id"] . "\" />\n";
+								if ($rowJob["accepted_by_member_id"] == 0)
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Accept this job\" id=\"submit_accept_job\" name=\"submit_accept_job\" value=\"ACCEPT\" /><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
+								else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Unaccept this job\" name=\"submit_unaccept_job\" value=\"UNACCEPT\" /><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
+								else
+									echo "ERROR";
+								echo "</form>\n";
+								echo "</td>\n";
+								echo "</tr>\n";
+							}
+						}
 					}
 				}
 			}
