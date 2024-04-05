@@ -210,7 +210,7 @@ a:hover
 {
 	font-style: italic;
 }
-li
+li, p
 {
 	font-size: medium;
 }
