@@ -210,7 +210,12 @@ a:hover
 {
 	font-style: italic;
 }
-li, p
+li
+{
+	font-size: medium;
+	margin-bottom: 20px;
+}
+p
 {
 	font-size: medium;
 }
