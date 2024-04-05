@@ -19,7 +19,7 @@
 			<div class="banner-heading">Victorian Goldfields Historic Rail Loop</div>
 			<div class="banner_tag">An immersive experience in the history of the largest intact goldfields landscape in the world!</div>
 		</div>
-		<img class="masthead_image" src="images/Maryboroughstation.jpg"  alt="images/Maryboroughstation.jpg" width="210"/>
+		<img class="masthead_image" src="/images/Maryboroughstation.jpg"  alt="/images/Maryboroughstation.jpg" width="210"/>
 	</div>
 	<!-- End Masthead -->
 	<!-- Begin Navigation -->
