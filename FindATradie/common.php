@@ -1561,7 +1561,7 @@
 				echo $row["description"];
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
-				echo "	<form method=\"post\" action=\"\">\n";
+				echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";
 				echo "		<button type=\"submit\ id=\"submit_job_edit\" name=\"submit_job_edit\" class=\"function_button\" title=\"Edit your job\" value=\"EDIT\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20px\" /></button>&nbsp;\n";
 				echo "		<button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" width=\"20px\" /></button>\n";
 				echo "		<button type=\"button\ id=\"button_job_complete\" name=\"button_job_complete\" class=\"function_button\" title=\"Flag your job as complete and provide feedback for your client\" value=\"COMPLETE\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/complete.png\" alt=\"images/complete.png\" width=\"20px\" /></button>\n";
@@ -1701,7 +1701,7 @@
 								echo "<td class=\"cell_no_borders search_cell\">";
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
 								
-								echo "	<form method=\"post\" action=\"\">\n";
+								echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";
 								echo "     <input type=\"hidden\" value=\"\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
 								echo "     <input type=\"hidden\" value=\"\" name=\"text_member_id\" value=\"" . $_SESSION["account_id"] . "\" />\n";
 								if ($rowJob["accepted_by_member_id"] == 0)

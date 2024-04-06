@@ -189,9 +189,17 @@
 				
 				.function_button
 				{
+					display: inline-block;
 					border-style: outset;
 					border-width: thin;
 					border-color: silver;
+				}
+				
+				.function_form
+				{
+					display: inline-block;
+					border-color: red;
+					border-style: none;
 				}
 
 			</style>
