@@ -201,6 +201,13 @@
 					border-color: red;
 					border-style: none;
 				}
+				
+				.feedback_form
+				{
+					width: 580px;
+					float: right;
+					background-color: var(--ColorInactiveBG);
+				}
 
 			</style>
 			
@@ -1228,7 +1235,9 @@
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
-?>
+	$bFeedbackEdit = true;
+	include "feedback_form.html";
+?>							
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
@@ -1348,7 +1357,7 @@
 	}
 	
 	DoRestoreTab();
-	let rectHeading = DoGetInut("tab_heading").getBoundingClientRect();
+	let rectHeading = DoGetInput("tab_heading").getBoundingClientRect();
 	window.screenTop = rectHeading.top + 100;
 
 </script>

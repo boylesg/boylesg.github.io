@@ -1410,7 +1410,12 @@
 		global $g_dbFindATradie;
 		$bDisplayEdit = $strProviderID != "";
 		$queryResult = NULL;
-
+		
+		if ($bDisplayEdit)
+			$strFormID = "given";
+		else
+			$strFormID = "received";
+			
 		if (($strProviderID != "") && ($strRecipientID != ""))
 			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
 		else if ($strRecipientID != "")
@@ -1453,11 +1458,7 @@
 			echo "</tr>\n";
 			echo "</table>\n";
 			echo "<hr><br/><br/>";
-			if ($bDisplayEdit)
-			{
-				$bFeedbackEdit = true;
-				include "feedback_form.html";
-			}
+
 			echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders search_table\" style=\"width:99%;layout:fixed;\">\n";
 			$queryResult->data_seek(0);
 			while ($rowFeedback = $queryResult->fetch_assoc())
@@ -1497,8 +1498,7 @@
 				{
 					echo "<td class=\"feedback_row\" style=\"width:30px;\">\n";
 					echo "<button type=\"button\" id=\"button_edit\" title=\"Edit your feedback\" onclick=\"OnClickEditFeedback(this, '" . $rowFeedback["id"] . 
-						"', '" . $rowFeedback["positive"] . "', '" . $rowFeedback["description"] . 
-						"') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
+						"', '" . $rowFeedback["positive"] . "', '" . $rowFeedback["description"] . "', '" . $strFormID . "') \"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>\n";
 					echo "</td>\n";
 				}
 				echo "</tr>\n";

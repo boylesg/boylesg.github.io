@@ -1,26 +1,26 @@
-﻿<form class="form" id="feedback_form" method="post" action="" style="display:none;width:580px;position:relative;float:right;background-color:var(--ColorInactiveBG);">
+﻿<form id="feedback_<?php if ($bFeedbackEdit) echo "given"; else echo "received"; ?>_form" method="post" action="" class="form feedback_form" style="display:none;">
 
-	<table cellspacing="0" cellpadding="10" style="layout:fixed;width: 400px;">
+	<table cellspacing="0" cellpadding="10" style="layout:fixed;width:400px;">
 		<tr>
 			<td style="text-align:right;">
 				Comments&nbsp;
 			</td>
 			<td colspan="2">
-				<textarea cols="64" name="textarea_comments" id="textarea_comments" rows="2" tabindex="3" maxlength="256"></textarea>
+				<textarea cols="64" name="textarea_comments" id="textarea_feedback_<?php if ($bFeedbackEdit) echo "given"; else echo "received"; ?>" rows="4" tabindex="3" maxlength="256"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td style="text-align:left;">&nbsp;</td>
 			<td style="text-align:left;width:600px;">
-				<img alt="images/thumbs_up.png" src="images/thumbs_up.png" width="20">
-				<input checked="checked" name="radio_feedback" id="radio_feedback_positive" tabindex="1" type="radio" value="true">
+				<img alt="images/thumbs_up.png" src="images/thumbs_up.png" width="20" />
+				<input checked="checked" name="radio_feedback" id="radio_feedback_<?php if ($bFeedbackEdit) echo "given"; else echo "received"; ?>_positive" tabindex="1" type="radio" value="true" />
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<img alt="images/thumbs_down.png" src="images/thumbs_down.png" width="20">
-				<input name="radio_feedback" id="radio_feedback_negative" tabindex="2" type="radio" value="false">
+				<img alt="images/thumbs_down.png" src="images/thumbs_down.png" width="20" />
+				<input name="radio_feedback" id="radio_feedback_<?php if ($bFeedbackEdit) echo "given"; else echo "received"; ?>_negative" tabindex="2" type="radio" value="false" />
 			</td>
 			<td style="text-align:left;">
-				<input name="submit_feedback_edit" type="submit" value="SAVE" style=display:"<?php if ($bFeedbackEdit) echo "inline"; else echo "none"; ?>">
-				<input name="submit_feedback_add" type="submit" value="SAVE" style=display:"<?php if (!$bFeedbackEdit) echo "inline"; else echo "none"; ?>">
+				<input name="submit_feedback_edit" type="submit" value="SAVE" style="display:<?php if ($bFeedbackEdit) echo "inline-block"; else echo "none"; ?>">
+				<input name="submit_feedback_add" type="submit" value="SAVE" style="display:<?php if (!$bFeedbackEdit) echo "inline-block"; else echo "none"; ?>">
 			</td>
 		</tr>
 	</table>

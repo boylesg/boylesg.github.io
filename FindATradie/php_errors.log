@@ -28214,3 +28214,50 @@ Stack trace:
 [06-Apr-2024 06:10:18 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1316
 [06-Apr-2024 06:10:18 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1315
 [06-Apr-2024 06:10:18 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1316
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_maximum_size" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 959
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_trade" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 977
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_maximum_size" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1062
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1526
+[06-Apr-2024 10:07:39 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 243
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_profile_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1164
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_profile_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1164
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1187
+[06-Apr-2024 10:07:39 UTC] PHP Warning:  Undefined array key "account_logo_filename" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1187
+[06-Apr-2024 10:07:40 UTC] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, string given in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:888
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php(909): FindAdditionalTrade('', '1')
+#1 C:\inetpub\wwwroot\www.find-a-tradie.com.au\member_details_forms.html(340): DoGenerateAdditionalTradeOptions('')
+#2 C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php(1203): include('C:\\inetpub\\wwwr...')
+#3 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 888
+[06-Apr-2024 10:16:45 UTC] PHP Warning:  Array to string conversion in C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php on line 1229
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1478
+[06-Apr-2024 11:45:57 UTC] PHP Warning:  Undefined variable $bDisplayEdit in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1490
+[06-Apr-2024 12:45:44 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "bDisplayEdit" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:1414
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php(1225): DoDisplayFeedback('1', '', true)
+#1 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1414
+[06-Apr-2024 12:46:05 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "bDisplayEdit" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:1414
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\account.php(1225): DoDisplayFeedback('1', '', true)
+#1 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1414
