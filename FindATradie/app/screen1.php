@@ -46,6 +46,7 @@
 			}
 			else if ($_POST["button"] == "email_admin")
 			{
+			/*
 				if (!mail($g_strAdminEmail, "From member of Find a Tradie...", 
 							"NAME: " . $_POST["member_name"] . "\r\n" . 
 							"ID: " . $_POST["member_id"] . "\r\n" . 
@@ -60,6 +61,8 @@
 				{
 					echo "EMAIL_SENT";
 				}
+				*/
+				print_r($_POST);
 			}
 			else
 			{
