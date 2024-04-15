@@ -44,30 +44,27 @@
 				
 				echo "OK" . json_encode($objectLists);
 			}
-			else if ($_POST["button"] == "email_admin")
+		}
+		else if ($_POST["button"] == "email_admin")
+		{
+			if (!mail($g_strAdminEmail, "From member of Find a Tradie...", 
+						"NAME: " . $_POST["member_name"] . "\r\n" . 
+						"ID: " . $_POST["member_id"] . "\r\n" . 
+						"ABOUT: " . $_POST["about"] . "\r\n" . 
+						"SUBJECT: " . $_POST["subject"] . "\r\n" .
+						"MESSAGE:\r\n--------\r\n" . $_POST["message"] . "\r\n", 
+						"From: <" . $_POST["email"] . ">"))
 			{
-			/*
-				if (!mail($g_strAdminEmail, "From member of Find a Tradie...", 
-							"NAME: " . $_POST["member_name"] . "\r\n" . 
-							"ID: " . $_POST["member_id"] . "\r\n" . 
-							"ABOUT: " . $_POST["about"] . "\r\n" . 
-							"SUBJECT: " . $_POST["subject"] . "\r\n" .
-							"MESSAGE:\r\n--------\r\n" . $_POST["message"] . "\r\n", 
-							"From: <" . $_POST["email"] . ">"))
-				{
-					echo "Email could not be sent!";
-				}
-				else
-				{
-					echo "EMAIL_SENT";
-				}
-				*/
-				print_r($_POST);
+				echo "Email could not be sent!";
 			}
 			else
 			{
-				echo "Unexpected button name '" . $_POST["button"] . "'!";
+				echo "EMAIL_SENT";
 			}
+		}
+		else
+		{
+			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
 	}
 

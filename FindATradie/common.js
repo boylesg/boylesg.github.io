@@ -256,6 +256,14 @@
 	//******************************************************************************
 	//******************************************************************************
 
+	function OnKeyPressDigitsSpaceOnly(eventKey)
+	{
+		if (((eventKey.which < 48) || (eventKey.which > 57)) && (eventKey.which != 8) && (eventKey.which != 32))
+		{
+			eventKey.preventDefault();
+		}
+	}
+
 	function OnKeyPressDigitsOnly(eventKey)
 	{
 		if (((eventKey.which < 48) || (eventKey.which > 57)) && (eventKey.which != 8))
