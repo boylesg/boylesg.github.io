@@ -270,11 +270,11 @@
 		
 		if (isset($_FILES["logo_file_name"]))
 		{
-			$strTargetPath = "images/" . DoGetLogoImageFilename($_SESSION["account_id"]);
+			$strTargetPath = DoGetLogoImageFilename($_SESSION["account_id"], false);
 		}
 		if (move_uploaded_file($_FILES["logo_file_name"]["tmp_name"], $strTargetPath))
 		{
-			$_SESSION["account_logo_filename"] = DoGetLogoImageFilename($_SESSION["account_id"]);
+			$_SESSION["account_logo_filename"] = $strTargetPath;
 			$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_logo_filename"], "id", $_SESSION["account_id"]);
 			if ($results)
 			{
@@ -296,11 +296,11 @@
 		
 		if (isset($_FILES["profile_file_name"]))
 		{
-			$strTargetPath = "images/" . DoGetProfileImageFilename($_SESSION["account_id"]);
+			$strTargetPath = DoGetProfileImageFilename($_SESSION["account_id"], false);
 		}
 		if (move_uploaded_file($_FILES["profile_file_name"]["tmp_name"], $strTargetPath))
 		{
-			$_SESSION["account_profile_filename"] = DoGetProfileImageFilename($_POST["member_id"]);
+			$_SESSION["account_profile_filename"] = $strTargetPath;
 			$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $_SESSION["account_profile_filename"], "id", $_SESSION["account_id"]);
 			if ($results)
 			{
@@ -1171,7 +1171,7 @@
 	include "select_file.html"; 
 ?>
 <script type="text/javascript">
-	document.getElementById("profile_image_preview").src = "images/<?php echo $_SESSION["account_profile_filename"]; ?>";
+	document.getElementById("profile_image_preview").src = "<?php echo $_SESSION["account_profile_filename"]; ?>";
 </script>
 			
 										<tr>
@@ -1194,7 +1194,7 @@
 	include "select_file.html";
 ?>
 <script type="text/javascript">
-	document.getElementById("logo_image_preview").src = "images/<?php echo $_SESSION["account_logo_filename"]; ?>";
+	document.getElementById("logo_image_preview").src = "<?php echo $_SESSION["account_logo_filename"]; ?>";
 </script>
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">

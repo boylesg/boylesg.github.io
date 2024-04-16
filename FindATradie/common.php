@@ -656,7 +656,7 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoGetLogoImageFilename($strMemberID)
+	function DoGetLogoImageFilename($strMemberID, $bIsApp = true)
 	{
 		global $g_dbFindATradie;
 		$strFilename = "";
@@ -669,27 +669,30 @@
 				$strFilename = $row["logo_filename"];
 				if (strlen($strFilename) == 0)
 				{
-					$strFilename = ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
+					$strFilename = "images/" . ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
 					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename, "id", $strMemberID);
-					if ($results)
-						echo "OK";
-					else
-						echo "Could not update 'logo_filename' column for member with ID '" . $strMemberID, "'!";
+					if ($bIsApp)
+					{
+						if ($results)
+							echo "OK";
+						else
+							echo "Could not update 'logo_filename' column for member with ID '" . $strMemberID, "'!";
+					}
 				}
-				else
+				else if ($bIsApp)
 					echo "OK";
 			}
-			else
+			else if ($bIsApp)
 				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
 		}
-		else
+		else if ($bIsApp)
 		{
 			echo "Member with ID '" . $strMemberID . "' was not found!";
 		}
 		return $strFilename;
 	}
 	
-	function DoGetProfileImageFilename($strMemberID)
+	function DoGetProfileImageFilename($strMemberID, $bIsApp = true)
 	{
 		global $g_dbFindATradie;
 		$strFilename = "";
@@ -702,20 +705,23 @@
 				$strFilename = $row["profile_filename"];
 				if (strlen($strFilename) == 0)
 				{
-					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
+					$strFilename = "images/" . $row["first_name"] . "_" . $row["surname"] . ".jpg";
 					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename, "id", $strMemberID);
-					if ($results)
-						echo "OK";
-					else
-						echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
+					if ($bIsApp)
+					{
+						if ($results)
+							echo "OK";
+						else
+							echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
+					}
 				}
-				else
+				else if ($bIsApp)
 					echo "OK";
 			}
-			else
+			else if ($bIsApp)
 				echo "Failed to fetch row for member with ID '" . $strMemberID, "'!";
 		}
-		else
+		else if ($bIsApp)
 		{
 			echo "Member with ID '" . $strMemberID . "' was not found!";
 		}
