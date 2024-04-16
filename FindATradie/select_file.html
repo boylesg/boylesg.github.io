@@ -1,43 +1,9 @@
-﻿<script type="text/javascript">
-
-	let g_nMaxFileSizeBytes = 500000;
-	
-	function DoImagePreview()
-	{
-		let imgPreview = document.getElementById("image_preview"),
-			inputFile = document.getElementById("file_name");
-		
-		if (imgPreview)
-		{
-			imgPreview.src = URL.createObjectURL(inputFile.files[0]);
-		}
-	}
-	
-	function OnChangeFile(inputFile)
-	{
-		if (inputFile.files[0].size > g_nMaxFileSizeBytes)
-		{
-			AlertError("File size cannot exceed " + g_nMaxFileSizeBytes.toString() + " kilobytes!");
-		}
-		else
-		{							
-			DoImagePreview();
-		}
-	}
-	
-	function SetMaxFileSize(nMaxFileSize)
-	{
-		g_nMaxFileSizeBytes = nMaxFileSize;
-	}
-
-</script>
-
-			<tr>
+﻿			<tr>
 				<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
 					<b>Select a new image</b>
 				</td>
 				<td class="cell_no_borders" style="vertical-align:middle;">
-					<input type="file" required id="file_name" name="file_name" accept=".jpg, .jpeg|image/*" onchange="OnChangeFile(this)"/>
+					<input type="file" required id="<?php if (isset($strID)) echo $strID; ?>_file_name" name="<?php if (isset($strID)) echo $strID; ?>_file_name" accept=".jpg, .jpeg|image/*" onchange="OnChangeFile(this)"/>
 				</td>
 			</tr>
 			<tr>
@@ -45,15 +11,7 @@
 					<b>Image preview</b>
 				</td>
 				<td class="cell_no_borders" style="vertical-align:middle;text-align:left;">
-					<img src="" id="image_preview" width="200" />
+					<img src="" id="<?php if (isset($strID)) echo $strID; ?>_image_preview" width="200" />
 				</td>
 			</tr>
 
-<script type="text/javascript">
-	
-	function SetAccepts(strAccept)
-	{
-		DoGetInput("file_name").accept = strAccept;
-	}
-	
-</script>

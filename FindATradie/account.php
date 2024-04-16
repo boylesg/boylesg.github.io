@@ -268,17 +268,17 @@
 	{
 		$strTargetPath = "";
 		
-		if (isset($_FILES["file_name"]))
+		if (isset($_FILES["logo_file_name"]))
 		{
-			$strTargetPath = "images/" . DoGetLogoImageFilename($_SESSION["member_id"]);
+			$strTargetPath = "images/" . DoGetLogoImageFilename($_SESSION["account_id"]);
 		}
-		if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
+		if (move_uploaded_file($_FILES["logo_file_name"]["tmp_name"], $strTargetPath))
 		{
-			$_SESSION["account_logo_filename"] = DoGetProfileImageFilename($_POST["member_id"]);
+			$_SESSION["account_logo_filename"] = DoGetLogoImageFilename($_SESSION["account_id"]);
 			$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_logo_filename"], "id", $_SESSION["account_id"]);
 			if ($results)
 			{
-				PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["file_name"]["name"] . "' was saved!\");", 3, true);
+				PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_file_name"]["name"] . "' was saved!\");", 3, true);
 			}
 			else
 			{
@@ -294,17 +294,17 @@
 	{
 		$strTargetPath = "";
 		
-		if (isset($_FILES["file_name"]))
+		if (isset($_FILES["profile_file_name"]))
 		{
-			$strTargetPath = "images/" . DoGetProfileImageFilename($_SESSION["member_id"]);
+			$strTargetPath = "images/" . DoGetProfileImageFilename($_SESSION["account_id"]);
 		}
-		if (move_uploaded_file($_FILES["file_name"]["tmp_name"], $strTargetPath))
+		if (move_uploaded_file($_FILES["profile_file_name"]["tmp_name"], $strTargetPath))
 		{
 			$_SESSION["account_profile_filename"] = DoGetProfileImageFilename($_POST["member_id"]);
 			$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $_SESSION["account_profile_filename"], "id", $_SESSION["account_id"]);
 			if ($results)
 			{
-				PrintJavascriptLine("AlertSuccess(\"Profile image file '" . $_FILES["file_name"]["name"] . "' was saved!\");", 3, true);
+				PrintJavascriptLine("AlertSuccess(\"Profile image file '" . $_FILES["profile_file_name"]["name"] . "' was saved!\");", 3, true);
 			}
 			else
 			{
@@ -1160,19 +1160,19 @@
 								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
 							</div>
 							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
-							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:40%;">
+							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:50%;">
 								<fieldset>
 									<legend>Profile image:</legend>
 									<br/>
-									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
+									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">									
 
-										<tr>
-											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing profile image</b></td>
-											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_profile_filename"]; ?>" width="200" alt="<?php echo $_SESSION["account_profile_filename"]; ?>" width="300" /></td>
-										</tr>
-										<br/>				
-
-<?php require_once "select_file.html"; ?>
+<?php
+	$strID = "profile";
+	include "select_file.html"; 
+?>
+<script type="text/javascript">
+	document.getElementById("profile_image_preview").src = "images/<?php echo $_SESSION["account_profile_filename"]; ?>";
+</script>
 			
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">
@@ -1183,21 +1183,19 @@
 								</fieldset>
 							</form>
 							
-							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:40%;">
+							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:50%;">
 								<fieldset>
 									<legend>Business logo image:</legend>
 									<br/>
 									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
-
-										<tr>
-											<td class="cell_no_borders" style="text-align:right;vertical-align:middle;width:250px;"><b>Existing logo image</b></td>
-											<td class="cell_no_borders" style="text-align:left;vertical-align:middle;"><img src="images/<?php echo $_SESSION["account_logo_filename"]; ?>" width="200" alt="<?php echo $_SESSION["account_logo_filename"]; ?>" width="300" /></td>
-										</tr>
-										<br/>				
+	
 <?php
-	require_once "select_file.html";
+	$strID = "logo";
+	include "select_file.html";
 ?>
-			
+<script type="text/javascript">
+	document.getElementById("logo_image_preview").src = "images/<?php echo $_SESSION["account_logo_filename"]; ?>";
+</script>
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;" colspan="2">
 												<input type="submit" name="submit_logo" value="SAVE" />
@@ -1208,9 +1206,6 @@
 							</form>
 
 <?php include "member_details_forms.html"; ?>
-<script type="text/javascript">
-	SetMaxFileSize(50000);
-</script>
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">

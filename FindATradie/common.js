@@ -423,5 +423,51 @@
 
 
 
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** FILE SELECT FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+
+	let g_nMaxFileSizeBytes = 500000;
+	
+	function DoImagePreview()
+	{
+		let imgPreview = document.getElementById("image_preview"),
+			inputFile = document.getElementById("file_name");
+		
+		if (imgPreview)
+		{
+			imgPreview.src = URL.createObjectURL(inputFile.files[0]);
+		}
+	}
+	
+	function OnChangeFile(inputFile)
+	{
+		if (inputFile.files[0].size > g_nMaxFileSizeBytes)
+		{
+			AlertError("File size cannot exceed " + g_nMaxFileSizeBytes.toString() + " kilobytes!");
+		}
+		else
+		{							
+			DoImagePreview();
+		}
+	}
+	
+	function SetMaxFileSize(nMaxFileSize)
+	{
+		g_nMaxFileSizeBytes = nMaxFileSize;
+	}
+
+	function SetAccepts(strAccept)
+	{
+		DoGetInput("file_name").accept = strAccept;
+	}
+
+
+
+
 </script>
 

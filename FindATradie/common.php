@@ -243,6 +243,16 @@
 		return str_replace("'", "''", $strText);
 	}
 	
+	function ReplaceQuote($strText)
+	{
+		return str_replace("\"", "", str_replace("'", "", $strText));
+	}
+	
+	function ReplaceSpaces($strText)
+	{
+		return str_replace(" ", "_", $strText);
+	}
+	
 	function AppendSQLInsertValues(...$param) 
 	{
 		$strQuery = "";
@@ -659,8 +669,8 @@
 				$strFilename = $row["logo_filename"];
 				if (strlen($strFilename) == 0)
 				{
-					$strFilename = $row["business_name"] . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename);
+					$strFilename = ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename, "id", $strMemberID);
 					if ($results)
 						echo "OK";
 					else
@@ -693,7 +703,7 @@
 				if (strlen($strFilename) == 0)
 				{
 					$strFilename = $row["first_name"] . "_" . $row["surname"] . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename);
+					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename, "id", $strMemberID);
 					if ($results)
 						echo "OK";
 					else

@@ -4,10 +4,10 @@
 	{
 		$strUsername = "";
 		
-		if (isset($_SESSION['account_username'])) 
-			$strUsername = $_SESSION['account_username'];
-		else if (isset($_POST["text_username"]))
+		if (isset($_POST["text_username"]))
 			$strUsername = $_POST["text_username"];
+		else if (isset($_SESSION['account_username'])) 
+			$strUsername = $_SESSION['account_username'];
 			
 		return $strUsername;
 	}
@@ -16,12 +16,11 @@
 	{
 		$strPassword = "";
 		
-		if (isset($_SESSION['account_password'])) 
-			$strPassword = $_SESSION['account_password'];
-		else if (isset($_POST["text_password"]))
-		{
+		if (isset($_POST["text_password"]))
 			$strPassword = DoAESDecrypt($_POST["text_password"]);
-		}
+		else if (isset($_SESSION['account_password'])) 
+			$strPassword = $_SESSION['account_password'];
+
 		return $strPassword;
 	}
 	
@@ -29,10 +28,10 @@
 	{
 		$strTrade = "";
 		
-		if (isset($_SESSION["account_trade"]))
-			$strTrade = $_SESSION["account_trade"];
-		else if (isset($_POST["select_trade"]))
+		if (isset($_POST["select_trade"]))
 			$strTrade = $_POST["select_trade"];
+		else if (isset($_SESSION["account_trade"]))
+			$strTrade = $_SESSION["account_trade"];
 			
 		return $strTrade;	
 	}
@@ -41,10 +40,10 @@
 	{
 		$strTrades = "";
 		
-		if (isset($_SESSION["account_additional_trades"]))
-			$strTrades = $_SESSION["account_additional_trades"];
-		else if (isset($_POST["select_additional_trades"]))
+		if (isset($_POST["select_additional_trades"]))
 			$strTrades = $_POST["select_additional_trades"];
+		else if (isset($_SESSION["account_additional_trades"]))
+			$strTrades = $_SESSION["account_additional_trades"];
 			
 		return $strTrades;	
 	}
@@ -53,10 +52,10 @@
 	{
 		$strBusinessName = "";
 		
-		if (isset($_SESSION["account_business_name"]))
-			$strBusinessName = $_SESSION["account_business_name"];
-		else if (isset($_POST["text_business_name"]))
+		if (isset($_POST["text_business_name"]))
 			$strBusinessName = $_POST["text_business_name"];
+		else if (isset($_SESSION["account_business_name"]))
+			$strBusinessName = $_SESSION["account_business_name"];
 
 		return $strBusinessName ;
 	}
@@ -65,10 +64,10 @@
 	{
 		$strABN = "";
 		
-		if (isset($_SESSION["account_abn"]))
-			$strABN = $_SESSION["account_abn"];
-		else if (isset($_POST["text_abn"]))
+		if (isset($_POST["text_abn"]))
 			$strABN = $_POST["text_abn"];
+		else if (isset($_SESSION["account_abn"]))
+			$strABN = $_SESSION["account_abn"];
 
 		return $strABN;
 	}
@@ -77,10 +76,10 @@
 	{
 		$strStructure = "";
 		
-		if (isset($_SESSION["account_structure"]))
-			$strStructure = $_SESSION["account_structure"];
-		else if (isset($_POST["select_structure"]))
+		if (isset($_POST["select_structure"]))
 			$strStructure = $_POST["select_structure"];
+		else if (isset($_SESSION["account_structure"]))
+			$strStructure = $_SESSION["account_structure"];
 
 		return $strStructure;
 	}
@@ -89,10 +88,10 @@
 	{
 		$strLicense = "";
 		
-		if (isset($_SESSION["account_license"]))
-			$strLicense = $_SESSION["account_license"];
-		else if (isset($_POST["text_license"]))
+		if (isset($_POST["text_license"]))
 			$strLicense = $_POST["text_license"];
+		else if (isset($_SESSION["account_license"]))
+			$strLicense = $_SESSION["account_license"];
 
 		return $strLicense;
 	}
@@ -101,10 +100,10 @@
 	{
 		$strDescription = "";
 		
-		if (isset($_SESSION["account_description"]))
-			$strDescription = $_SESSION["account_description"];
-		else if (isset($_POST["description"]))
+		if (isset($_POST["description"]))
 			$strDescription = $_POST["description"];
+		else if (isset($_SESSION["account_description"]))
+			$strDescription = $_SESSION["account_description"];
 
 		return $strDescription;
 	}
@@ -113,10 +112,10 @@
 	{
 		$strMinimumCharge = "";
 		
-		if (isset($_SESSION["account_minimum_charge"]))
-			$strMinimumCharge = $_SESSION["account_minimum_charge"];
-		else if (isset($_POST["text_minimum_charge"]))
-			$strMinimumCharge = $_POST["text_minimum_charge"];
+		if (isset($_POST["text_minimum_charge"]))
+			$strMinimumCharge = sprintf("%.2f", $_POST["text_minimum_charge"]);
+		else if (isset($_SESSION["account_minimum_charge"]))
+			$strMinimumCharge = sprintf("%.2f", $_SESSION["account_minimum_charge"]);
 
 		return $strMinimumCharge;
 	}
@@ -125,10 +124,10 @@
 	{
 		$strMinimumBudget = "";
 		
-		if (isset($_SESSION["account__minimum_budget"]))
-			$strMinimumBudget = $_SESSION["account_minimum_budget"];
-		else if (isset($_POST["text_minimum_budget"]))
-			$strMinimumBudget = $_POST["text_minimum_budget"];
+		if (isset($_POST["text_minimum_budget"]))
+			$strMinimumBudget = sprintf("%.2f", $_POST["text_minimum_budget"]);
+		else if (isset($_SESSION["account_minimum_budget"]))
+			$strMinimumBudget = sprintf("%.2f", $_SESSION["account_minimum_budget"]);
 
 		return $strMinimumBudget;
 	}
@@ -137,10 +136,10 @@
 	{
 		$strMaximumSize = "";
 		
-		if (isset($_SESSION["account_maximum_size"]))
-			$strMaximumSize = $_SESSION["account_maximum_size"];
-		else if (isset($_POST["select_maximum_size"]))
+		if (isset($_POST["select_maximum_size"]))
 			$strMaximumSize = $_POST["select_maximum_size"];
+		else if (isset($_SESSION["account_maximum_size"]))
+			$strMaximumSize = $_SESSION["account_maximum_size"];
 			
 		return $strMaximumSize;
 	}
@@ -149,10 +148,10 @@
 	{
 		$strMaximumDistance = "";
 		
-		if (isset($_SESSION["account_maximum_distance"]))
-			$strMaximumDistance = $_SESSION["account_maximum_distance"];
-		else if (isset($_POST["text_maximum_distance"]))
-			$strMaximumDistance = $_POST["text_maximum_distance"];
+		if (isset($_POST["text_maximum_distance"]))
+			$strMaximumDistance = sprintf("%d", $_POST["text_maximum_distance"]);
+		else if (isset($_SESSION["account_maximum_distance"]))
+			$strMaximumDistance = sprintf("%d", $_SESSION["account_maximum_distance"]);
 
 		return $strMaximumDistance;
 	}
@@ -161,10 +160,10 @@
 	{
 		$strFirstName = "";
 		
-		if (isset($_SESSION["account_first_name"]))
-			$strFirstName = $_SESSION["account_first_name"];
-		else if (isset($_POST["text_first_name"]))
+		if (isset($_POST["text_first_name"]))
 			$strFirstName = $_POST["text_first_name"];
+		else if (isset($_SESSION["account_first_name"]))
+			$strFirstName = $_SESSION["account_first_name"];
 
 		return $strFirstName;
 	}
@@ -173,10 +172,10 @@
 	{
 		$strSurname = "";
 		
-		if (isset($_SESSION["account_surname"]))
-			$strSurname = $_SESSION["account_surname"];
-		else if (isset($_POST["text_surname"]))
+		if (isset($_POST["text_surname"]))
 			$strSurname = $_POST["text_surname"];
+		else if (isset($_SESSION["account_surname"]))
+			$strSurname = $_SESSION["account_surname"];
 
 		return $strSurname;
 	}
@@ -185,10 +184,10 @@
 	{
 		$strUnit = "";
 		
-		if (isset($_SESSION["account_unit"]))
-			$strUnit = $_SESSION["account_unit"];
-		else if (isset($_POST["text_unit"]))
+		if (isset($_POST["text_unit"]))
 			$strUnit = $_POST["text_unit"];
+		else if (isset($_SESSION["account_unit"]))
+			$strUnit = $_SESSION["account_unit"];
 
 		return $strUnit;
 	}
@@ -197,10 +196,10 @@
 	{
 		$strStreet = "";
 		
-		if (isset($_SESSION["account_street"]))
-			$strStreet = $_SESSION["account_street"];
-		else if (isset($_POST["text_street"]))
+		if (isset($_POST["text_street"]))
 			$strStreet = $_POST["text_street"];
+		else if (isset($_SESSION["account_street"]))
+			$strStreet = $_SESSION["account_street"];
 
 		return $strStreet;
 	}
@@ -209,10 +208,10 @@
 	{
 		$strSuburb = "";
 		
-		if (isset($_SESSION["account_suburb"]))
-			$strSuburb = $_SESSION["account_suburb"];
-		else if (isset($_POST["text_suburb"]))
+		if (isset($_POST["text_suburb"]))
 			$strSuburb = $_POST["text_suburb"];
+		else if (isset($_SESSION["account_suburb"]))
+			$strSuburb = $_SESSION["account_suburb"];
 
 		return $strSuburb;
 	}
@@ -221,10 +220,10 @@
 	{
 		$strState = "";
 		
-		if (isset($_SESSION["account_state"]))
-			$strState = $_SESSION["account_state"];
-		else if (isset($_POST["select_state"]))
+		if (isset($_POST["select_state"]))
 			$strState = $_POST["select_state"];
+		else if (isset($_SESSION["account_state"]))
+			$strState = $_SESSION["account_state"];
 
 		return $strState;
 	}
@@ -233,10 +232,10 @@
 	{
 		$strPostcode = "";
 		
-		if (isset($_SESSION["account_postcode"]))
-			$strPostcode = $_SESSION["account_postcode"];
-		else if (isset($_POST["text_postcode"]))
+		if (isset($_POST["text_postcode"]))
 			$strPostcode = $_POST["text_postcode"];
+		else if (isset($_SESSION["account_postcode"]))
+			$strPostcode = $_SESSION["account_postcode"];
 
 		return $strPostcode;
 	}
@@ -245,10 +244,10 @@
 	{
 		$strPhone = "";
 		
-		if (isset($_SESSION["account_phone"]))
-			$strPhone = $_SESSION["account_phone"];
-		else if (isset($_POST["text_phone"]))
+		if (isset($_POST["text_phone"]))
 			$strPhone = $_POST["text_phone"];
+		else if (isset($_SESSION["account_phone"]))
+			$strPhone = $_SESSION["account_phone"];
 
 		return $strPhone;
 	}
@@ -257,10 +256,10 @@
 	{
 		$strMobile = "";
 		
-		if (isset($_SESSION["account_mobile"]))
-			$strMobile = $_SESSION["account_mobile"];
-		else if (isset($_POST["text_mobile"]))
+		if (isset($_POST["text_mobile"]))
 			$strMobile = $_POST["text_mobile"];
+		else if (isset($_SESSION["account_mobile"]))
+			$strMobile = $_SESSION["account_mobile"];
 
 		return $strMobile;
 	}
@@ -269,10 +268,10 @@
 	{
 		$strEmail = "";
 		
-		if (isset($_SESSION["account_email"]))
-			$strEmail = $_SESSION["account_email"];
-		else if (isset($_POST["text_email"]))
+		if (isset($_POST["text_email"]))
 			$strEmail = $_POST["text_email"];
+		else if (isset($_SESSION["account_email"]))
+			$strEmail = $_SESSION["account_email"];
 
 		return $strEmail;
 	}
