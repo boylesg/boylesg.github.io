@@ -435,6 +435,28 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
+	function DoFindQuery4($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strCondition = "", $strOrderBy = "", $bAscending = true)
+	{	
+		global $g_strQuery;
+		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "' AND " . $strColumnName4 . "='" . EscapeSingleQuote($strColumnValue4) . "'";		
+	
+		if (strlen($strCondition) > 0)
+			$g_strQuery = $g_strQuery . " AND " . $strCondition;
+		if (strlen($strOrderBy) > 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+			{
+				$g_strQuery = $g_strQuery . " ASC";
+			}
+			else
+			{
+				$g_strQuery = $g_strQuery . " DESC";
+			}
+		}
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
 	function DoInsertFindQuery1($dbConnection, $strQuery, $strTableName, $strColumnName, $strColumnValue)
 	{
 		$result = DoFindQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue);
@@ -1410,6 +1432,106 @@
 		}
 	}
 	
+	function DoGetAppAdverts($strScreenName)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$arrayAdverts = [];
+		
+		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "INSTR(`space_code`, '{$strScreenName}') > 0");
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				$objectAdvertDetails = (object)[];
+				$objectAdvertDetails->strBusinessName = "";
+				$objectAdvertDetails->strBusinessLogo = "";
+				$objectAdvertDetails->strID = "";
+				$objectAdvertDetails->strPrice = sprintf("$%.2f", $row["cost_per_year"]);
+				$arrayAdverts[] = $objectAdvertDetails;
+			}
+		}
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "page_name", $strScreenName);
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{				
+				$dateExpiry = new DateTime($row["expiry_date"]);
+				$dateNow = new DateTime();
+				if ($dateExpiry >= $dateNow)
+				{
+					$objectAdvertDetails = (object)[];
+					$rowMember = DoGetMember($row["member_id"]);
+					$objectAdvertDetails->strBusinessName = $rowMember["business_name"];
+					$objectAdvertDetails->strBusinessLogo = $rowMember["logo_filename"];
+					$objectAdvertDetails->strID = $row["id"];
+					
+					$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
+					if (strcmp($rowAdvertSpace["space_code"], "app_screen1_1") == 0)
+					{
+						$arrayAdverts[0] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_2") == 0)
+					{
+						$arrayAdverts[1] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_3") == 0)
+					{
+						$arrayAdverts[2] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_4") == 0)
+					{
+						$arrayAdverts[3] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_5") == 0)
+					{
+						$arrayAdverts[4] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_6") == 0)
+					{
+						$arrayAdverts[5] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_7") == 0)
+					{
+						$arrayAdverts[6] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_8") == 0)
+					{
+						$arrayAdverts[7] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_9") == 0)
+					{
+						$arrayAdverts[8] = $objectAdvertDetails;
+					}
+					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_10") == 0)
+					{
+						$arrayAdverts[9] = $objectAdvertDetails;
+					}
+				}
+			}
+		}
+		echo "ADVERT_LIST=" . json_encode($arrayAdverts);
+	}
+	
+	function DoNewAppAdvert($strSpaceCode, $strMemberID, $strScreen)
+	{
+		global $g_dbFindATradie;
+		$dateNow = new DateTime();
+		$results = DoInsertQuery4($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode), "member_id", $strMemberID, "page_name", $strScreen, "expiry_date", $dateNow->format("Y-m-d"));
+		if ($results)
+		{
+			$results = DoFindQuery4($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode), "member_id", $strMemberID, "page_name", $strScreen, "expiry_date", $dateNow->format("Y-m-d"));
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					echo "NEW_ADVERT_ID=" . $row["id"];
+				}
+			}
+		}
+	}
+	
+
 
 
 

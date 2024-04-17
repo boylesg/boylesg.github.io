@@ -62,6 +62,14 @@
 				echo "EMAIL_SENT";
 			}
 		}
+		else if ($_POST["button"] == "get_adverts")
+		{
+			DoGetAppAdverts($_POST["screen"]);
+		}
+		else if ($_POST["button"] == "new_advert")
+		{
+			DoNewAppAdvert($_POST["space_id"], $_POST["member_id"], $_POST["screen"]);
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
