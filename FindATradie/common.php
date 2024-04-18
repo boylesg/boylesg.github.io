@@ -1447,6 +1447,7 @@
 				$objectAdvertDetails->strBusinessName = "";
 				$objectAdvertDetails->strBusinessLogo = "";
 				$objectAdvertDetails->strID = "";
+				$objectAdvertDetails->strMemberID = "";
 				$objectAdvertDetails->strPrice = sprintf("$%.2f", $row["cost_per_year"]);
 				$arrayAdverts[] = $objectAdvertDetails;
 			}
@@ -1465,7 +1466,7 @@
 					$objectAdvertDetails->strBusinessName = $rowMember["business_name"];
 					$objectAdvertDetails->strBusinessLogo = $rowMember["logo_filename"];
 					$objectAdvertDetails->strID = $row["id"];
-					
+					$objectAdvertDetails->strMemberID = $row["member_id"];
 					$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
 					if (strcmp($rowAdvertSpace["space_code"], "app_screen1_1") == 0)
 					{
@@ -1531,6 +1532,50 @@
 		}
 	}
 	
+	function DoClickAdvert($strAdvertID)
+	{
+		global $g_dbFindATradie;
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $strAdvertID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$nClicks = intval($row["clicks"]) + 1;
+				$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "clicks", $nClicks, "id", $strAdvertID);
+				if ($results)
+				{
+					echo "advert_click=" . $strAdvertID;
+				}
+			}
+		}
+		else
+		{
+			echo "advert_id = " . $strAdvertID;
+		}
+	}
+	
+	function ProcessAdvertFunction()
+	{
+		$bResult = true;
+		
+		if ($_POST["button"] == "get_adverts")
+		{
+			DoGetAppAdverts($_POST["screen"]);
+		}
+		else if ($_POST["button"] == "new_advert")
+		{
+			DoNewAppAdvert($_POST["space_id"], $_POST["member_id"], $_POST["screen"]);
+		}
+		else if ($_POST["button"] == "advert_click")
+		{
+			DoClickAdvert($_POST["advert_id"]);
+		}
+		else
+		{
+			$bResult = false;
+		}
+		return $bResult;
+	}
 
 
 
