@@ -145,6 +145,9 @@
 			else
 				echo "Feedback could not be updated!";
 		}
+		else if (ProcessAdvertFunction())
+		{
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";

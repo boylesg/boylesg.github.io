@@ -128,6 +128,9 @@
 			else
 				echo "expiry_date_updated=false";
 		}
+		else if (ProcessAdvertFunction())
+		{
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";

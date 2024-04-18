@@ -51,6 +51,9 @@
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
 	}
+	else if (ProcessAdvertFunction())
+	{
+	}
 	else
 	{
 		print_r($_POST);

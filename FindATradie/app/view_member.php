@@ -91,6 +91,9 @@
 			}
 			echo "OK" . json_encode($objectMemberCollection);
 		}
+		else if (ProcessAdvertFunction())
+		{
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";

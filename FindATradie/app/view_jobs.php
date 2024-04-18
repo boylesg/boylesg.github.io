@@ -180,6 +180,9 @@
 			if ($results)
 				echo "JOB_DELETED";
 		}
+		else if (ProcessAdvertFunction())
+		{
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
