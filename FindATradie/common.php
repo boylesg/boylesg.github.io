@@ -1526,7 +1526,7 @@
 			{
 				if ($row = $results->fetch_assoc())
 				{
-					echo "NEW_ADVERT_ID=" . $row["id"];
+					echo "NEW_ADVERT_ID," . $row["id"] . "," . DoGetCostPerYear($row["space_id"]);
 				}
 			}
 		}
