@@ -1554,6 +1554,29 @@
 		}
 	}
 	
+	function DoActivateAdvert($strAdvertID, $strPaymentAmount)
+	{
+		global $g_dbFindATradie;
+		$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $strAdvertID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$dateExpiry = new DateTime($row["expiry_date"]);
+				$dateExpiry->modify("+12 months");
+				$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "id", "expiry_date", $dateExpiry->format("Y-m-d"), $strAdvertID);
+			}
+		}
+	}
+	
+	function DoDeleteAdvert($strAdvertID)
+	{
+		global $g_dbFindATradie;
+		$results = DoDeleteQuery($g_dbFindATradie, "adverts", "id", $strAdvertID);
+		if ($results)
+			echo "advert_deleted,Advert cancelled!";
+	}
+	
 	function ProcessAdvertFunction()
 	{
 		$bResult = true;
@@ -1569,6 +1592,14 @@
 		else if ($_POST["button"] == "advert_click")
 		{
 			DoClickAdvert($_POST["advert_id"]);
+		}
+		else if ($_POST["button"] == "activate_advert")
+		{
+			DoActivateAdvert($_POST["advert_id"], $_POST["payment_amount"]);
+		}
+		else if ($_POST["button"] == "delete_advert")
+		{
+			DoDeleteAdvert($_POST["advert_id"]);
 		}
 		else
 		{

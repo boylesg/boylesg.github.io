@@ -24,9 +24,11 @@
 			$g_strPriceLevel1 = "50";
 			$g_strPriceLevel2 = "80";
 			$g_strPriceLevel3 = "100";
+			$g_strPriceLevel4 = "120";
 			$g_strDisplayPriceLevel1 = "none";
 			$g_strDisplayPriceLevel2 = "none";
 			$g_strDisplayPriceLevel3 = "none";
+			$g_strDisplayPriceLevel4 = "none";
 			
 			if (isset($_GET["amount"]))
 			{
@@ -35,18 +37,28 @@
 					$g_strDisplayPriceLevel1 = "block";
 					$g_strDisplayPriceLevel2 = "none";
 					$g_strDisplayPriceLevel3 = "none";
+					$g_strDisplayPriceLevel4 = "none";
 				}
 				else if (strcmp($_GET["amount"], $g_strPriceLevel2) == 0)
 				{
 					$g_strDisplayPriceLevel1 = "none";
 					$g_strDisplayPriceLevel2 = "block";
 					$g_strDisplayPriceLevel3 = "none";
+					$g_strDisplayPriceLevel4 = "none";
 				}
 				else if (strcmp($_GET["amount"], $g_strPriceLevel3) == 0)
 				{
 					$g_strDisplayPriceLevel1 = "none";
 					$g_strDisplayPriceLevel2 = "none";
 					$g_strDisplayPriceLevel3 = "block";
+					$g_strDisplayPriceLevel4 = "none";
+				}
+				else if (strcmp($_GET["amount"], $g_strPriceLevel4) == 0)
+				{
+					$g_strDisplayPriceLevel1 = "none";
+					$g_strDisplayPriceLevel2 = "none";
+					$g_strDisplayPriceLevel3 = "none";
+					$g_strDisplayPriceLevel4 = "block";
 				}
 			}
 			else if (isset($_GET["paypal_advert_payment"]))
@@ -88,7 +100,14 @@
 						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 					</form>
 				</div>
-				
+				<div style="display:<?php echo $g_strDisplayPriceLevel3;?>;">
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="TWZN6KQ34TCKQ" />
+						<input type="hidden" name="currency_code" value="AUD" />
+						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+					</form>			
+				</div>				
 		</div>
 		
 		<div id="paypal_test" style="display:<?php echo $g_strPaypalTest; ?>">
@@ -119,7 +138,15 @@
 					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 				</form>				
 			</div>
-			
+			<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;">
+				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick" />
+					<input type="hidden" name="hosted_button_id" value="GEGHG2FCDMQK4" />
+					<input type="hidden" name="currency_code" value="AUD" />
+					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+				</form>
+			</div>
+
 		</div>
 
 	</body>
