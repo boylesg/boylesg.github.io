@@ -336,7 +336,7 @@
 		return $result;
 	}
 
-	function DoFindAllQuery($dbConnection, $strTableName, $strCondition = "", $strOrderBy = "")
+	function DoFindAllQuery($dbConnection, $strTableName, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName;

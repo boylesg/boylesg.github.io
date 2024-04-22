@@ -7,7 +7,7 @@
 	{
 		if ($_POST["button"] == "spinner_lists")
 		{
-			$results = DoFindAllQuery($g_dbFindATradie, "trades");
+			$results = DoFindAllQuery($g_dbFindATradie, "trades", "", "name");
 			if ($results->num_rows > 0)
 			{
 				$objectLists = (object)[];
