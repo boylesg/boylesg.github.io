@@ -41,6 +41,7 @@
 				$objectMember->business_name = $row["business_name"];
 				$objectMember->first_name = $row["first_name"];
 				$objectMember->surname = $row["surname"];
+				$objectMember->gender = $row["gender"];
 				$objectMember->profile_filename = $row["profile_filename"];
 				$objectMember->logo_filename = $row["logo_filename"];
 				$objectMember->abn = $row["abn"];

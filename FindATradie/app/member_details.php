@@ -31,6 +31,7 @@
 		{
 			$g_strQuery = "UPDATE members SET first_name = '" . EscapeSingleQuote($_POST["first_name"]) . "', " .
 											  "surname = '" . EscapeSingleQuote($_POST["surname"]) . "', " .
+											  "gender = '" . $_POST["gender"] . "', " .
 											  "unit = '" . EscapeSingleQuote($_POST["unit"]) . "', " .
 											  "street = '" . EscapeSingleQuote($_POST["street"]) . "', " .
 											  "suburb = '" . EscapeSingleQuote($_POST["suburb"]) . "', " .
@@ -163,6 +164,9 @@
 				if ($results)
 					echo "OK";
 			}
+		}
+		else if (ProcessAdvertFunction())
+		{
 		}
 		else
 		{

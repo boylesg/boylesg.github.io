@@ -341,9 +341,17 @@
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName;
 		
-		if ($strCondition != "")
+		if (strcmp($strCondition, "") != 0)
 			$g_strQuery = $g_strQuery . " WHERE " . $strCondition;
 			
+		if (strcmp($strOrderBy, "") != 0)
+		{
+			$g_strQuery = $g_strQuery . " ORDER BY " . $strOrderBy;
+			if ($bAscending)
+				$g_strQuery = $g_strQuery . " ASC";
+			else
+				$g_strQuery = $g_strQuery . " DESC";
+		}		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
