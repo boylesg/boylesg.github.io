@@ -1476,43 +1476,43 @@
 					$objectAdvertDetails->strID = $row["id"];
 					$objectAdvertDetails->strMemberID = $row["member_id"];
 					$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
-					if (strcmp($rowAdvertSpace["space_code"], "app_screen1_1") == 0)
+					if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_1") == 0)
 					{
 						$arrayAdverts[0] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_2") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_2") == 0)
 					{
 						$arrayAdverts[1] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_3") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_3") == 0)
 					{
 						$arrayAdverts[2] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_4") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_4") == 0)
 					{
 						$arrayAdverts[3] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_5") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_5") == 0)
 					{
 						$arrayAdverts[4] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_6") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_6") == 0)
 					{
 						$arrayAdverts[5] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_7") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_7") == 0)
 					{
 						$arrayAdverts[6] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_8") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_8") == 0)
 					{
 						$arrayAdverts[7] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_9") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_9") == 0)
 					{
 						$arrayAdverts[8] = $objectAdvertDetails;
 					}
-					else if (strcmp($rowAdvertSpace["space_code"], "app_screen1_10") == 0)
+					else if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_10") == 0)
 					{
 						$arrayAdverts[9] = $objectAdvertDetails;
 					}
@@ -1595,7 +1595,7 @@
 		}
 		else if ($_POST["button"] == "new_advert")
 		{
-			DoNewAppAdvert($_POST["space_id"], $_POST["member_id"], $_POST["screen"]);
+			DoNewAppAdvert($_POST["space_code"], $_POST["member_id"], $_POST["screen"]);
 		}
 		else if ($_POST["button"] == "advert_click")
 		{

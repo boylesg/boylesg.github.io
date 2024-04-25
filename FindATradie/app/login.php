@@ -48,10 +48,10 @@
 				$objectMember->structure = $row["structure"];
 				$objectMember->license = $row["license"];
 				$objectMember->description = $row["description"];
-				$objectMember->minimum_charge = $row["minimum_charge"];
-				$objectMember->minimum_budget = $row["minimum_budget"];
+				$objectMember->minimum_charge = sprintf("%d", $row["minimum_charge"]);
+				$objectMember->minimum_budget = sprintf("%d", $row["minimum_budget"]);
 				$objectMember->maximum_size = $row["maximum_size"];
-				$objectMember->maximum_distance = $row["maximum_distance"];
+				$objectMember->maximum_distance = sprintf("%d", $row["maximum_distance"]);
 				$objectMember->unit = $row["unit"];
 				$objectMember->street = $row["street"];
 				$objectMember->suburb = $row["suburb"];

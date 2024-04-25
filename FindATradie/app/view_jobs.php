@@ -8,6 +8,7 @@
 	
 	function DoGetJobDetails($row)
 	{
+		$dateTemp = new DateTime();
 		$objectJobDetails = (object)[];
 		$objectJobDetails->job_id = $row["id"];
 		$objectJobDetails->member_id = $row["member_id"];
@@ -36,24 +37,34 @@
 			}
 		}
 		$objectJobDetails->trade_id = $row["trade_id"];
-		$objectJobDetails->date_added = $row["date_added"];
+		$dateTemp = new DateTime($row["date_added"]);
+		$objectJobDetails->date_added = $dateTemp->format("d/m/Y");
 		
+		$objectJobDetails->date_paid = "";
+		$objectJobDetails->paid = strcmp($row["paid"], "1") == 0;
+		if ($objectJobDetails->paid)
+		{
+			$dateTemp = new DateTime($row["date_paid"]);
+			$objectJobDetails->date_paid = $dateTemp->format("d/m/Y");
+		}
 		$objectJobDetails->date_completed = "";
-		if ($row["date_completed"] != NULL)
-			$objectJobDetails->date_completed = $row["date_completed"];
-			
-		$objectJobDetails->accepted_by_member_id = $row["accepted_by_member_id"];
-		$objectJobDetails->accepted = $row["accepted_by_member_id"] != "0";
-
+		$objectJobDetails->completed = strcmp($row["completed"], "1") == 0;
+		if ($objectJobDetails->completed)
+		{
+			$dateTemp = new DateTime($row["date_completed"]);
+			$objectJobDetails->date_completed = $dateTemp->format("d/m/Y");
+		}
 		$objectJobDetails->date_accepted = "";
-		if ($row["date_accepted"] != NULL)
-			$objectJobDetails->date_accepted = $row["date_accepted"];
-			
+		$objectJobDetails->accepted = strcmp($row["accepted_by_member_id"], "0") != 0;
+		if ($objectJobDetails->accepted)
+		{
+			$dateTemp = new DateTime($row["date_accepted"]);
+			$objectJobDetails->date_accepted = $dateTemp->format("d/m/Y");
+		}
+		$objectJobDetails->accepted_by_member_id = $row["accepted_by_member_id"];			
 		$objectJobDetails->description = $row["description"];
-		$objectJobDetails->maximum_budget = $row["maximum_budget"];
+		$objectJobDetails->maximum_budget = sprintf("%d", $row["maximum_budget"]);
 		$objectJobDetails->size = $row["size"];
-		$objectJobDetails->urgent = $row["urgent"] == "1";
-		$objectJobDetails->completed = $row["completed"] == "1";
 		
 		return $objectJobDetails;
 	}
@@ -81,16 +92,30 @@
 					while ($row = $results->fetch_assoc())
 					{
 						$dateAdded = new DateTime($row["date_added"]);
-						
-						if (($_POST["show_selected_jobs"] == "false") ||
-							(($_POST["show_selected_jobs"] == "true") || 
-							(($_POST["show_urgent_jobs_only"] == "false") || (($_POST["show_urgent_jobs_only"] == "true") && ($row["urgent"] == "1"))) ||
-							(($_POST["show_accepted_jobs_only"] == "false") || (($_POST["show_accepted_jobs_only"] == "true") && ($row["accepted_by_member_id"] != "0")))))
+												
+						if ((strcasecmp($_POST["acceptance_status"], "All jobs") == 0) || 
+							((strcasecmp($_POST["acceptance_status"], "Accepted jobs") == 0) && (strcmp($row["accepted_by_member_id"], $_POST["member_id"]) == 0)) || 							
+							((strcasecmp($_POST["acceptance_status"], "Other jobs") == 0) && (strcmp($row["accepted_by_member_id"], "0") == 0)))
 						{
-							if ($dateAdded >= $dateMinimum)
+							if ((strcasecmp($_POST["urgency"], "All jobs") == 0) || 
+								((strcasecmp($_POST["urgency"], "Urgent jobs") == 0) && (strcmp($row["urgent"], "1") == 0)) || 							
+								((strcasecmp($_POST["urgency"], "Normal jobs") == 0) && (strcmp($row["urgent"], "0") == 0)))
 							{
-								$objectJobDetails = DoGetJobDetails($row);
-								$arrayJobsList[] = $objectJobDetails;
+								if ((strcasecmp($_POST["completion_status"], "All jobs") == 0) || 
+									((strcasecmp($_POST["completion_status"], "Completed jobs") == 0) && (strcmp($row["completed"], "1") == 0)) || 							
+									((strcasecmp($_POST["completion_status"], "Uncompleted jobs") == 0) && (strcmp($row["completed"], "0") == 0)))
+								{
+									if ((strcasecmp($_POST["payment_status"], "All jobs") == 0) || 
+										((strcasecmp($_POST["payment_status"], "Paid jobs") == 0) && (strcmp($row["paid"], "1") == 0)) || 							
+										((strcasecmp($_POST["payment_status"], "Unpaid jobs") == 0) && (strcmp($row["paid"], "0") == 0)))
+									{
+										if ($dateAdded >= $dateMinimum)
+										{
+											$objectJobDetails = DoGetJobDetails($row);
+											$arrayJobsList[] = $objectJobDetails;
+										}
+									}
+								}
 							}
 						}							
 					}
@@ -107,20 +132,40 @@
 					$dateAdded = new DateTime($row["date_added"]);
 					$dateMinimum = new DateTime($_POST["minimum_date"]);
 					
-					if (($_POST["show_urgent_jobs_only"] == "false") || 
-						(($_POST["show_urgent_jobs_only"] == "true") && ($row["urgent"] == '1')))
+					if ((strcasecmp($_POST["acceptance_status"], "All jobs") == 0) || 
+						((strcasecmp($_POST["acceptance_status"], "Accepted jobs") == 0) && (strcmp($row["accepted_by_member_id"], $_POST["member_id"]) == 0)) || 							
+						((strcasecmp($_POST["acceptance_status"], "Other jobs") == 0) && (strcmp($row["accepted_by_member_id"], "0") == 0)))
 					{
-						if ((($_POST["show_accepted_jobs_only"] == "false") || (($_POST["show_accepted_jobs_only"] == "true") && ($row["accepted_by_member_id"] != "0"))) ||
-							(($_POST["show_paid_jobs_only"] == "false") || (($_POST["show_paid_jobs_only"] == "true") && ($row["completed"] == "1"))))
+						if ((strcasecmp($_POST["urgency"], "All jobs") == 0) || 
+							((strcasecmp($_POST["urgency"], "Urgent jobs") == 0) && (strcmp($row["urgent"], "1") == 0)) || 							
+							((strcasecmp($_POST["urgency"], "Normal jobs") == 0) && (strcmp($row["urgent"], "0") == 0)))
 						{
-							if ((($row["maximum_budget"] >= $_POST["minimum_budget"]) && ($dateAdded >= $dateMinimum) && 
-								IsMatchMaxSize(DoGetSizeIndex($_POST["maximum_size"]), DoGetSizeIndex($row["size"])) && 
-								IsDistanceMatch($_POST["postcode"], DoGetColumnValue("members", "id", $row["member_id"], "postcode"), $_POST["maximum_distance"]) &&
-								IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"])) ||
-								($_POST["which"] == "my_jobs"))
+							if ((strcasecmp($_POST["completion_status"], "All jobs") == 0) || 
+								((strcasecmp($_POST["completion_status"], "Completed jobs") == 0) && (strcmp($row["completed"], "1") == 0)) || 							
+								((strcasecmp($_POST["completion_status"], "Uncompleted jobs") == 0) && (strcmp($row["completed"], "0") == 0)))
 							{
-								$objectJobDetails = DoGetJobDetails($row);
-								$arrayJobsList[] = $objectJobDetails;
+								if ((strcasecmp($_POST["payment_status"], "All jobs") == 0) || 
+									((strcasecmp($_POST["payment_status"], "Paid jobs") == 0) && (strcmp($row["paid"], "1") == 0)) || 							
+									((strcasecmp($_POST["payment_status"], "Unpaid jobs") == 0) && (strcmp($row["paid"], "0") == 0)))
+								{
+									if ($row["maximum_budget"] >= $_POST["minimum_budget"])
+									{
+										if ($dateAdded >= $dateMinimum)
+										{
+											if (IsMatchMaxSize(DoGetSizeIndex($_POST["maximum_size"]), DoGetSizeIndex($row["size"])))
+											{
+												if (IsDistanceMatch($_POST["postcode"], DoGetColumnValue("members", "id", $row["member_id"], "postcode"), $_POST["maximum_distance"]))
+												{
+													if (IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"]))
+													{
+														$objectJobDetails = DoGetJobDetails($row);
+														$arrayJobsList[] = $objectJobDetails;
+													}
+												}
+											}
+										}
+									}
+								}
 							}
 						}
 					}
@@ -173,6 +218,18 @@
 			$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "completed", "0", "id", $_POST["id"]);
 			if ($results)
 				echo "JOB_UNCOMPLETED";
+		}
+		else if ($_POST["button"] == "pay_job")
+		{
+			$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "paid", "1", "date_paid", $strDateNow, "id", $_POST["id"]);
+			if ($results)
+				echo "JOB_PAID";
+		}
+		else if ($_POST["button"] == "unpay_job")
+		{
+			$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "paid", "0", "id", $_POST["id"]);
+			if ($results)
+				echo "JOB_UNPAID";
 		}
 		else if ($_POST["button"] == "delete_job")
 		{

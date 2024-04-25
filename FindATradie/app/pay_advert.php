@@ -21,7 +21,7 @@
 		
 			require_once "../common.php";
 			
-			$g_strPriceLevel1 = "50";
+			$g_strPriceLevel1 = "60";
 			$g_strPriceLevel2 = "80";
 			$g_strPriceLevel3 = "100";
 			$g_strPriceLevel4 = "120";
@@ -59,6 +59,10 @@
 					$g_strDisplayPriceLevel2 = "none";
 					$g_strDisplayPriceLevel3 = "none";
 					$g_strDisplayPriceLevel4 = "block";
+				}
+				else
+				{
+					print_r($_GET);
 				}
 			}
 			else if (isset($_GET["paypal_advert_payment"]))

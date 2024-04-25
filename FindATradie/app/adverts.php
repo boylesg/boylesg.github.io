@@ -27,7 +27,7 @@
 
 	if (isset($_POST["button"]))
 	{
-		if ($_POST["button"] == "get_adverts")
+		if ($_POST["button"] == "get_advert_list")
 		{
 			$arrayList = [];
 			
@@ -69,6 +69,7 @@
 									$interval = $dateExpiry->diff($dateNow);
 									$objectAdvertSpace->number_months =  ($interval->y * 12) + $interval->m + 1;
 									$objectAdvertSpace->cost_per_year = DoGetCostPerYear($row["space_id"]);
+									$objectAdvertSpace->cost = (intval($objectAdvertSpace->number_months) / 12) * intval($objectAdvertSpace->cost_per_year);
 									
 									$objectAdvertSpace->expired = "";
 									if ($dateNow > $dateExpiry)
@@ -87,6 +88,7 @@
 		else if ($_POST["button"] == "get_advert_spaces")
 		{
 			$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces");
+			$arrayList = [];
 			if ($results && ($results->num_rows > 0))
 			{
 				while ($row = $results->fetch_assoc())
@@ -183,6 +185,9 @@
 						echo "advert_activated=false";
 				}
 			}
+		}
+		else if (ProcessAdvertFunction())
+		{
 		}
 		else
 		{
