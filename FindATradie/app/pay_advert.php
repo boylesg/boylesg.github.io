@@ -104,7 +104,8 @@
 						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 					</form>
 				</div>
-				<div style="display:<?php echo $g_strDisplayPriceLevel3;?>;">
+				<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;">
+					<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div >
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="hidden" name="hosted_button_id" value="TWZN6KQ34TCKQ" />
@@ -143,6 +144,7 @@
 				</form>				
 			</div>
 			<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;">
+			<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div >
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick" />
 					<input type="hidden" name="hosted_button_id" value="GEGHG2FCDMQK4" />
