@@ -1461,6 +1461,7 @@
 			}
 		}
 		$results = DoFindQuery1($g_dbFindATradie, "adverts", "page_name", $strScreenName);
+
 		if ($results && ($results->num_rows > 0))
 		{
 			while ($row = $results->fetch_assoc())
@@ -1476,6 +1477,7 @@
 					$objectAdvertDetails->strID = $row["id"];
 					$objectAdvertDetails->strMemberID = $row["member_id"];
 					$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
+	
 					if (strcmp($rowAdvertSpace["space_code"], $strScreenName . "_1") == 0)
 					{
 						$arrayAdverts[0] = $objectAdvertDetails;
@@ -1525,6 +1527,7 @@
 	function DoNewAppAdvert($strSpaceCode, $strMemberID, $strScreen)
 	{
 		global $g_dbFindATradie;
+		global $g_strQuery;
 		$dateNow = new DateTime();
 		$results = DoInsertQuery4($g_dbFindATradie, "adverts", "space_id", GetSpaceID($strSpaceCode), "member_id", $strMemberID, "page_name", $strScreen, "expiry_date", $dateNow->format("Y-m-d"));
 		if ($results)
@@ -1536,7 +1539,19 @@
 				{
 					echo "NEW_ADVERT_ID," . $row["id"] . "," . DoGetCostPerYear($row["space_id"]);
 				}
+				else
+				{
+					echo "ERROR: $results->fetch_assoc()";
+				}
 			}
+			else
+			{
+				echo "ERROR: " . $g_strQuery;
+			}
+		}
+		else
+		{
+			echo "ERROR: " . $g_strQuery;
 		}
 	}
 	

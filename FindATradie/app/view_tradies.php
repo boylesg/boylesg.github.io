@@ -46,13 +46,13 @@
 				echo "OK" . json_encode($arrayTradies);
 			}
 		}
+		else if (ProcessAdvertFunction())
+		{
+		}
 		else
 		{
 			echo "Unexpected button name '" . $_POST["button"] . "'!";
 		}
-	}
-	else if (ProcessAdvertFunction())
-	{
 	}
 	else
 	{

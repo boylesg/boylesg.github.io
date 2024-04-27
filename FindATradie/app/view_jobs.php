@@ -19,22 +19,22 @@
 		$objectJobDetails->name = "";
 		$objectJobDetails->mobile = "";
 		$objectJobDetails->email = "";
-		if (!empty($row["accepted_by_member_id"]))
-		{
-			//if ($_POST["which"] == "my_jobs")
+		if ($_POST["which"] == "my_jobs")
+		{		
+			if (!empty($row["accepted_by_member_id"]))
 			{
 				$rowMember = DoGetMember($row["accepted_by_member_id"]);
 				$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
 				$objectJobDetails->accepted_by_mobile = $rowMember["mobile"];
 				$objectJobDetails->accepted_by_email = $rowMember["email"];
 			}
-			//else if ($_POST["which"] == "other_jobs")
-			{
-				$rowMember = DoGetMember($row["member_id"]);
-				$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
-				$objectJobDetails->mobile = $rowMember["mobile"];
-				$objectJobDetails->email = $rowMember["email"];
-			}
+		}
+		else if ($_POST["which"] == "other_jobs")
+		{
+			$rowMember = DoGetMember($row["member_id"]);
+			$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
+			$objectJobDetails->mobile = $rowMember["mobile"];
+			$objectJobDetails->email = $rowMember["email"];
 		}
 		$objectJobDetails->trade_id = $row["trade_id"];
 		$dateTemp = new DateTime($row["date_added"]);
@@ -65,7 +65,7 @@
 		$objectJobDetails->description = $row["description"];
 		$objectJobDetails->maximum_budget = sprintf("%d", $row["maximum_budget"]);
 		$objectJobDetails->size = $row["size"];
-		
+
 		return $objectJobDetails;
 	}
 
