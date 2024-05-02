@@ -98,10 +98,7 @@
 				
 				$dateNow = new DateTime();
 				$dateExpiry = new DateTime();
-				if ($dateNow <= $g_dateJoinFree)
-					$dateExpiry = $g_dateJoinFree;
-				else
-					$dateExpiry = $dateNow;
+				$dateExpiry->modify($g_strFreeMembership);
 			
 				if (strcmp($_POST["trade_id"], DoGetCustomerTradeID()) == 0)
 				{

@@ -156,11 +156,7 @@
 		{
 			$dateExpiry = new DateTime();
 						
-			if ($g_nDaysToGo > 0)
-			{
-				$interval = DateInterval::createFromDateString("6 months");
-				$dateExpiry->add($interval);
-			}
+			$dateExpiry->modify($g_strFreeMembership);
 			$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
 							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username, password, expiry_date) VALUES (" .
