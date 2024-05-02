@@ -36,7 +36,7 @@
 				$arrayList[] = "50 - 100";
 				$arrayList[] = "100 - 250";
 				$arrayList[] = "250 - 500";
-				$arrayList[] = "More than 500";
+				$arrayList[] = "500 plus";
 				$objectLists->job_size_list = $arrayList;
 				
 				$objectLists->customer_trade_id = DoGetCustomerTradeID();

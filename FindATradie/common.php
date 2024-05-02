@@ -15,11 +15,10 @@
 	$g_strDivClose = "</div>";
 	$g_strPaypalLive = "none";
 	$g_strPaypalTest = "block";
-	$g_dateJoinFree = new DateTime("2024-07-30");
 	$g_nNumMonthsFree = 6;
-	$g_nDaysToGo = $g_dateJoinFree->diff( new DateTime())->days;
 	$g_nTradeIDCustomer = 59;
 	$g_strAdminEmail = "find-a-tradie@outlook.com";
+	$g_strFreeMembership = "+6 months";
 	
 	
 	
@@ -1113,7 +1112,7 @@
 			$nTradieMaxSizeIndex = 3;
 		else if ($strJobSize == "250 - 500")
 			$nTradieMaxSizeIndex = 4;
-		else if ($strJobSize == "More than 500")
+		else if (($strJobSize == "More than 500") || ($strJobSize == "500 plus"))
 			$nTradieMaxSizeIndex = 5;
 		else if ($strJobSize == "Up to 50")
 			$nTradieMaxSizeIndex = 6;

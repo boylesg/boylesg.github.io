@@ -32,7 +32,8 @@
 		else if ($_POST["which"] == "other_jobs")
 		{
 			$rowMember = DoGetMember($row["member_id"]);
-			$objectJobDetails->name = $rowMember["first_name"] . " " . $rowMember["surname"];
+			$objectJobDetails->first_name = $rowMember["first_name"];
+			$objectJobDetails->surname = $rowMember["surname"];
 			$objectJobDetails->mobile = $rowMember["mobile"];
 			$objectJobDetails->email = $rowMember["email"];
 		}
