@@ -3,7 +3,7 @@
 	
 	<!-- #BeginTemplate "master.dwt" -->
 	
-	<?php include "common.php"; ?>
+	<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.php"; ?>
 	
 	<!-- #BeginEditable "server" -->
 	
@@ -18,11 +18,15 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>Account</title>
 		<!-- #EndEditable -->
-		<?php include "common.js"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
+
+
+
+
 
 				:root 
 				{
@@ -938,7 +942,7 @@
 							<div class="advert" id="advert_account_browse_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_browse_jobs", $g_nButtonHeight, "advert_account_browse_jobs"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
+							<h2 id="tab_heading0"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:955px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
@@ -1037,7 +1041,7 @@
 							<div class="advert" id="advert_account_post_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_post_job", $g_nButtonHeight, "advert_account_post_jobs"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
+							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_add_job" class="form search_form">
 								<table cellspacing="0" cellpadding="3" border="0" class="forrm_table">
@@ -1159,7 +1163,7 @@
 							<div class="advert" id="advert_account_details" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
+							<h2 id="tab_heading2"><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:50%;">
 								<fieldset>
 									<legend>Profile image:</legend>
@@ -1212,7 +1216,7 @@
 							<div class="advert" id="advert_account_feedback_received" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_feedback_received", $g_nButtonHeight, "advert_account_feedback_received"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+							<h2 id="tab_heading3"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table cellspacing="0" cellpadding="10">
@@ -1226,7 +1230,7 @@
 							<div class="advert" id="advert_account_feedback_given" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_feedback_given", $g_nButtonHeight, "advert_account_feedback_given"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+							<h2 id="tab_heading4"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
@@ -1239,7 +1243,7 @@
 							<div class="advert" id="advert_account_adverts" style="height: <?php echo $g_AdvertHeight; ?>x; width: 95%;margin-top:20px;margin-bottom:10px;">
 								<?php DoInsertAdvert("account_adverts", $g_nButtonHeight, "advert_account_adverts"); ?>
 							</div>
-							<h2 id="tab_heading"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
+							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
 								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">

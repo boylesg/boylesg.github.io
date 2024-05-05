@@ -3,7 +3,7 @@
 	
 <!-- #BeginTemplate "master.dwt" -->
 
-	<?php include "common.php"; ?>
+	<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.php"; ?>
 	
 	<!-- #BeginEditable "server" -->
 	
@@ -18,11 +18,11 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>Home</title>
 		<!-- #EndEditable -->
-		<?php include "common.js"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			

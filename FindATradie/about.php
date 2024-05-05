@@ -3,7 +3,7 @@
 	
 <!-- #BeginTemplate "master.dwt" -->
 
-	<?php include "common.php"; ?>
+	<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.php"; ?>
 	
 	<!-- #BeginEditable "server" -->
 	
@@ -18,11 +18,11 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>About Us</title>
 		<!-- #EndEditable -->
-		<?php include "common.js"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -90,6 +90,13 @@
 		<div class="page_content" id="page_content">
 				<!-- #BeginEditable "content" -->
 
+
+
+
+
+
+
+
 				<div class="advert" id="advert_about1" style="height: 80px; width: 95%;">
 					<?php DoInsertAdvert("about1", 70, "advert_about1"); ?>
 				</div>
@@ -99,6 +106,13 @@
 				</div>
 				
 				<?php include "about_content.php"; ?>
+
+
+
+
+
+
+
 
 				<!-- #EndEditable -->
 		<!-- End Page Content -->
