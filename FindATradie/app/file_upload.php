@@ -107,21 +107,72 @@
 
 			
 			<form class="form" method="post" target="_self" enctype="multipart/form-data">
-				<h6>Upload <?php if (isset($_GET["file_upload"])) echo $_GET["file_upload"]; ?> image file...</h6>
-				<input type="file" required id="file_name" name="file_name" accept=".jpg, .jpeg|image/*" />
+				<h6>Upload <?php if (isset($_GET["upload"])) echo $_GET["upload"]; ?> image file...</h6>
+				<input type="file" required id="<?php if (isset($_GET["upload"])) echo $_GET["upload"]; ?>_file_name" name="<?php if (isset($_GET["upload"])) echo $_GET["upload"]; ?>_file_name" accept=".jpg, .jpeg|image/*" />
 				<br/><br/>
-				<input type="submit" name="submit_<?php if (isset($_GET["file_upload"])) echo $_GET["file_upload"]; ?>" value="UPLOAD"/>
-			</form>
+				<label><b>Member ID: </b></label><input type="text" readonly size="5" id="member_id" name="member_id" value="<?php if (isset($_GET["member_id"])) echo $_GET["member_id"]; ?>" />
+				<br/><br/>
+				<input type="submit" name="submit_file" value="UPLOAD"/>
+				<br/><br/><h6>
 					
-			<?php
-			
-				echo "<br>";
-				print_r($_POST);
-				echo "<br>";
-				print_r($_FILES["file_name"]);
+				<?php
 				
-			?>
-
+					$strTargetPath = "";
+					
+					if (isset($_FILES["logo_file_name"]))
+					{
+						$strTargetPath = DoGetLogoImageFilename($_POST["member_id"], false);
+						if (move_uploaded_file($_FILES["logo_file_name"]["tmp_name"], $strTargetPath))
+						{
+							$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strTargetPath, "id", $_POST["member_id"]);
+							if ($results)
+							{
+								echo "Logo image file '" . $_FILES["logo_file_name"]["name"] . "' was uploaded!";
+							}
+							else
+							{
+								echo "Column 'logo_filename' could not be updated!";
+							}
+						}
+						else
+						{
+							echo "Could not save file '" . $strTargetPath . "'";
+						}
+					}
+					else if (isset($_FILES["profile_file_name"]))
+					{
+						$strTargetPath = DoGetProfileImageFilename($_POST["member_id"], false);
+						if (move_uploaded_file($_FILES["profile_file_name"]["tmp_name"], $strTargetPath))
+						{
+							$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strTargetPath, "id", $_POST["member_id"]);
+							if ($results)
+							{
+								echo "Profile image file '" . $_FILES["profile_file_name"]["name"] . "' was saved!";
+							}
+							else
+							{
+								echo "Column 'profile_filename' could not update!";
+							}
+						}
+						else
+						{
+							echo "Could not save file '" . $strTargetPath . "'";
+						}
+					}
+					else
+					{
+						echo "<div style=\"background-color:white;\">";
+						print_r($_GET);
+						echo "<br/><br/>";
+						print_r($_POST);
+						echo "<br/><br/>";
+						print_r($_FILES);
+						echo "</div>";
+					}
+					
+				?>
+				</h6>
+			</form>
 
 
 

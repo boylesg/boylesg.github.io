@@ -695,10 +695,10 @@
 		{
 			if ($row = $results->fetch_assoc())
 			{
-				$strFilename = $row["logo_filename"];
+				$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/" . $row["logo_filename"];
 				if (strlen($strFilename) == 0)
 				{
-					$strFilename = "images/" . ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
+					$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/images/" . ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
 					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename, "id", $strMemberID);
 					if ($bIsApp)
 					{
@@ -731,10 +731,10 @@
 		{
 			if ($row = $results->fetch_assoc())
 			{
-				$strFilename = $row["profile_filename"];
+				$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/" . $row["profile_filename"];
 				if (strlen($strFilename) == 0)
 				{
-					$strFilename = "images/" . $row["first_name"] . "_" . $row["surname"] . ".jpg";
+					$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/images/" . $row["first_name"] . "_" . $row["surname"] . ".jpg";
 					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename, "id", $strMemberID);
 					if ($bIsApp)
 					{
