@@ -306,6 +306,7 @@
 						</tr>
 					</table>
 					<input type="hidden" id="advert_space_code" name="advert_space_code" />
+					<input type="hidden" id="current_page" name="current_page" />
 				</form>
 			</div>
 			<!-- #BeginEditable "content" -->

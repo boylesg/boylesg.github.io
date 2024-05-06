@@ -381,6 +381,7 @@
 		let strAdvertCode = document.title + "_" + g_arrayAdvertIDs[nAdvertIndex];
 		
 		DoGetInput("advert_space_code").value = strAdvertCode;
+		DoGetInput("current_page").value = document.location;
 		DoGetInput("form_adverts").submit();
 	}	
 	
