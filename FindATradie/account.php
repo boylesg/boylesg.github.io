@@ -18,11 +18,57 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>Account</title>
 		<!-- #EndEditable -->
-		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
+		<?php 
+			include $_SERVER['DOCUMENT_ROOT'] . "/common.js";
+			include "set_advert.php";
+		?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -725,9 +771,6 @@
 		}
 	}
 	
-	$g_nButtonHeight = 75;
-	$g_AdvertHeight = 100;
-	
 ?>
 
 		<!-- #EndEditable -->
@@ -740,6 +783,8 @@
 					
 				document.body.style.backgroundImage = strFilename;
 			}
+			
+			setInterval(DoNextAdvert, 3000);
 			
 		</script>
 	</head>
@@ -795,7 +840,113 @@
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
-				<!-- #BeginEditable "content" -->
+			<div class="advert_marquee">
+				<form id="form_adverts" method="post">
+					<table class="scroll" cellpadding="0" cellspacing="0" border="0" id="advert_1">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(1)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_1_text">ADVERT 1 HTML</td>
+							<div class="advert_expires" id="advert_1_expires" colspan="2">Advert expires on 0/0/0000</div>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_2" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(2)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_2_text">ADVERT 2 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_3" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(3)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_3_text">ADVERT 3 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_4" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(4)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_4_text">ADVERT 4 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_5" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(5)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_5_text">ADVERT 5 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_6" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(6)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_6_text">ADVERT 6 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_7" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(7)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_7_text">ADVERT 7 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_8" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(8)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_8_text">ADVERT 8 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_9" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(9)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_9_text">ADVERT 9 HTML</td>
+						</tr>
+					</table>
+					<table cellpadding="0" cellspacing="0" border="0" id="advert_10" style="display: none;">
+						<tr class="advert_row">
+							<td>
+								<button type="button" onclick="DoSetAdvert(10)" class="advert_button">
+									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
+								</button>
+							</td>
+							<td class="advert_text" id="advert_10_text">ADVERT 10 HTML</td>
+						</tr>
+					</table>
+					<input type="hidden" id="advert_space_code" name="advert_space_code" />
+				</form>
+			</div>
+			<!-- #BeginEditable "content" -->
 
 
 
@@ -805,10 +956,6 @@
 
 
 				<div class="note" style="flex-wrap:wrap;">
-
-					<div class="advert" id="advert_account" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;">
-						<?php DoInsertAdvert("account", $g_nButtonHeight, "advert_account"); ?>
-					</div>
 					
 					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
 
@@ -939,9 +1086,6 @@
 						<button style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Your adverts</button>
 
 						<div id="tab_contents1" class="tab_content">
-							<div class="advert" id="advert_account_browse_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_browse_jobs", $g_nButtonHeight, "advert_account_browse_jobs"); ?>
-							</div>
 							<h2 id="tab_heading0"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:955px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
@@ -1038,9 +1182,6 @@
 						</div>
 						
 						<div id="tab_contents2" class="tab_content">
-							<div class="advert" id="advert_account_post_jobs" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_post_job", $g_nButtonHeight, "advert_account_post_jobs"); ?>
-							</div>
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_add_job" class="form search_form">
@@ -1159,10 +1300,6 @@
 						</div>
 						
 						<div id="tab_contents3" class="tab_content">
-						
-							<div class="advert" id="advert_account_details" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_details", $g_nButtonHeight, "advert_account_detailss"); ?>
-							</div>
 							<h2 id="tab_heading2"><script type="text/javascript">document.write(document.getElementById("tab_button3").innerText);</script></h2>
 							<form method="post" id="form_profile_image" action="" class="form" enctype="multipart/form-data" style="width:50%;">
 								<fieldset>
@@ -1213,9 +1350,6 @@
 						</div>
 						
 						<div id="tab_contents4" class="tab_content">
-							<div class="advert" id="advert_account_feedback_received" style="height: <?php echo $g_AdvertHeight; ?>px; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_feedback_received", $g_nButtonHeight, "advert_account_feedback_received"); ?>
-							</div>
 							<h2 id="tab_heading3"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
@@ -1227,9 +1361,6 @@
 						</div>
 
 						<div id="tab_contents5" class="tab_content">
-							<div class="advert" id="advert_account_feedback_given" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_feedback_given", $g_nButtonHeight, "advert_account_feedback_given"); ?>
-							</div>
 							<h2 id="tab_heading4"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
@@ -1240,9 +1371,6 @@
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
-							<div class="advert" id="advert_account_adverts" style="height: <?php echo $g_AdvertHeight; ?>x; width: 95%;margin-top:20px;margin-bottom:10px;">
-								<?php DoInsertAdvert("account_adverts", $g_nButtonHeight, "advert_account_adverts"); ?>
-							</div>
 							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
@@ -1368,7 +1496,7 @@
 
 
 
-				<!-- #EndEditable -->
+			<!-- #EndEditable -->
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->

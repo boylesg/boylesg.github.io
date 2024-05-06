@@ -361,6 +361,31 @@
 	
 	
 	
+	let g_nCurrentAdvert = 0;
+	let g_arrayAdvertIDs = ["advert_1", "advert_2", "advert_3", "advert_4", "advert_5", "advert_6", "advert_7", "advert_8", "advert_9", "advert_10"];
+		
+	function DoNextAdvert()
+	{
+		document.getElementById(g_arrayAdvertIDs[g_nCurrentAdvert]).style.display = "none";
+		g_nCurrentAdvert++;
+		if (g_nCurrentAdvert == g_arrayAdvertIDs.length)
+			g_nCurrentAdvert = 0;
+		document.getElementById(g_arrayAdvertIDs[g_nCurrentAdvert]).style.display = "block";
+	}
+	
+	
+	
+	
+	function DoSetAdvert(nAdvertIndex)
+	{
+		let strAdvertCode = document.title + "_" + g_arrayAdvertIDs[nAdvertIndex];
+		
+		DoGetInput("advert_space_code").value = strAdvertCode;
+		DoGetInput("form_adverts").submit();
+	}	
+	
+	
+	
 	
 	//******************************************************************************
 	//******************************************************************************

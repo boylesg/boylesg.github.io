@@ -281,46 +281,50 @@ a.masthead_button:hover
 	overflow: auto;
 }
 
-.advert
+.advert_marquee
 {
-	display: flex;
-	/*position: relative;*/
-	justify-content: left;
-	flex-align: left;
-	flex-wrap: wrap;
-	overflow: auto;
+	display: block;
+	background-color: #171763;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+	height: 132px;
 	border-style: solid;
-	border-width: medium;
-	border-color: var(--NoteHeadingColor);
-	background-color: var(--NoteColorBG);
-	border-radius: var(--BorderRadius);
-	margin-left: 15px;
-	margin-right: 0px;
-	margin-top: 20px;
-	margin-bottom: 0px;
-	padding: var(--Padding);
+	border-width: thick;
+	border-color: var(--LinkColorBG); 
+	border-radius: 20px;
+	box-shadow: 10px 10px rgb(0, 0, 0);
+}
+
+.advert_row
+{
+	background-color: white;
 }
 
 .advert_button
 {
 	cursor: pointer;
-	flex-grow: 2;
+	width: 200px;
+	height: 100px;
+	margin: 5px;
 }
 
-.advert_image
+.advert_logo
 {
-	display: inline-block;
-	float: left;
+	cursor: pointer;
+	height: 100%;
 }
 
 .advert_text
 {
-	display: inline-block;
-	float: left;
 	vertical-align: middle;
-	flex-grow: 2;
 	font-size: medium;
 	font-weight: bold;
+	color: black;
+	/*background-color: lime;*/
+	width: 500px;
+	height: 100%;
+	padding: 5px;
 }
 
 .advert_expires
@@ -328,21 +332,22 @@ a.masthead_button:hover
 	display: block;
 	font-size: x-small;
 	font-weight: bold;
-	margin-top: 5px;
+	padding: 5px;
 	width: 100%;
+	color: white;
 }
 
 .tradie_details
 {
-	display:inline-block;
-	font-size:small;
-	border-style:solid;
-	border-width:thin;
-	border-color:black;
-	padding:10px;
-	margin:10px;
-	overflow:auto;
-	flex-grow:1;
+	display: inline-block;
+	font-size: small;
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+	padding: 10px;
+	margin: 10px;
+	overflow: auto;
+	flex-grow: 1;
 	font-size: medium;
 }
 
