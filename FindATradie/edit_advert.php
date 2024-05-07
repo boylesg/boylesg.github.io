@@ -233,6 +233,10 @@
 						else
 							PrintJSAlertError("Your advert could not be deleted!", 4);
 					}
+					unset($_SESSION["page_name"]);
+					unset($_SESSION["space_code"]);
+					unset($_SESSION["current_page"]);
+					unset($_SESSION["cost_per_year"]);
 				}
 				else
 				{
@@ -252,7 +256,7 @@
 			
 			<form method="post" enctype="multipart/form-data" id="advert_form" class="form" style="width:748px;">
 				<h6>Advert Details</h6>
-				<table cellspacing="0" cellpadding="10" border="1">
+				<table cellspacing="0" cellpadding="10" border="0">
 					<tr>
 						<td>
 							<b>Current business logo</b><br/><br/>
@@ -279,83 +283,91 @@
 
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<div style="display:<?php echo $g_strPaypalTest; ?>">
+								<div style="display:<?php echo $g_strDisplayPriceLevel4; ?>">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
+									<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="UQTFACVJZN84J" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>			
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel3; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
+									<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="YLYNKRXQG3QMU" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel2; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
+									<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="4FPTE2NUTZV34" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel1; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div>
+									<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="QCJ8E7WVCZ93Q" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>				
+								</div>
+							</div>
+							<div style="display:<?php echo $g_strPaypalLive; ?>">
+								<div style="display:<?php echo $g_strDisplayPriceLevel4; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
+									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="ZSPJBYAAWTRYS" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>					
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel3; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
+									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="AB3JSKQCJSQRU" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>				
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel2; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
+									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="Z8PE7XKU6272A" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>				
+								</div>
+								<div style="display:<?php echo $g_strDisplayPriceLevel1; ?>;">
+									<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div>
+									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="3SLW8ZH5LUFR8" />
+										<input type="hidden" name="currency_code" value="AUD" />
+										<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+									</form>			
+								</div>
+							</div>		
+							<?php
+								$_SESSION["current_page"] = substr($_SESSION["current_page"], 0, strpos($_SESSION["current_page"], "php") + 3);
+							?>
+							<a href="<?php echo $_SESSION["current_page"]; ?>" style="display:<?php if (isset($_GET["paypal_advert_payment"])) echo "block"; else echo "none"; ?>"><img src="/images/back.png" alt="save.png" width="35"/></a>
+						</td>
+					</tr>
 				</table>
-				<div style="display:<?php echo $g_strPaypalTest; ?>">
-					<div style="display:<?php echo $g_strDisplayPriceLevel4; ?>">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="UQTFACVJZN84J" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>			
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel3; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="YLYNKRXQG3QMU" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel2; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="4FPTE2NUTZV34" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel1; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div>
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="QCJ8E7WVCZ93Q" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>				
-					</div>
-				</div>
-				<div style="display:<?php echo $g_strPaypalLive; ?>">
-					<div style="display:<?php echo $g_strDisplayPriceLevel4; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="ZSPJBYAAWTRYS" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>					
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel3; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="AB3JSKQCJSQRU" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>				
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel2; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="Z8PE7XKU6272A" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>				
-					</div>
-					<div style="display:<?php echo $g_strDisplayPriceLevel1; ?>;">
-						<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_s-xclick" />
-							<input type="hidden" name="hosted_button_id" value="3SLW8ZH5LUFR8" />
-							<input type="hidden" name="currency_code" value="AUD" />
-							<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-						</form>			
-					</div>
-				</div>
 				<input type="hidden" id="advert_space_code" name="advert_space_code" value="<?php  echo $_SESSION["space_code"]; ?>" />
 				<input type="hidden" id="current_page" name="current_page" value="<?php  echo $_SESSION["current_page"]; ?>" />
 				<input type="hidden" id="cost_per_year" name="cost_per_year" value="<?php  echo $_SESSION["cost_per_year"]; ?>" />
@@ -365,7 +377,15 @@
 
 
 
+		</div>
+
+
+
+
+
 			<!-- #EndEditable -->
+									<div class="page_content" id="page_content">
+			
 		<!-- End Page Content -->
 		</div>
 		<!-- Begin Footer -->
