@@ -3,8 +3,18 @@
 	
 <!-- #BeginTemplate "master.dwt" -->
 
-	<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.php"; ?>
+	<?php 
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/advert_stuff.php";
+	?>
+	<script type="text/javascript">	
 	
+		var g_nCurrentAdvert = 0;
+		var g_arrayAdverts = [
+								<?php DoGenerateJSAdvertArray(); ?>
+					 		 ];
+	
+	</script>
 	<!-- #BeginEditable "server" -->
 	
 		<?php
@@ -18,10 +28,7 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title>Contact Us</title>
 		<!-- #EndEditable -->
-		<?php 
-			include $_SERVER['DOCUMENT_ROOT'] . "/common.js";
-			include "set_advert.php";
-		?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
@@ -94,111 +101,7 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 			<div class="advert_marquee">
-				<form id="form_adverts" method="post">
-					<table class="scroll" cellpadding="0" cellspacing="0" border="0" id="advert_1">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(1)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_1_text">ADVERT 1 HTML</td>
-							<div class="advert_expires" id="advert_1_expires" colspan="2">Advert expires on 0/0/0000</div>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_2" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(2)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_2_text">ADVERT 2 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_3" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(3)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_3_text">ADVERT 3 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_4" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(4)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_4_text">ADVERT 4 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_5" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(5)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_5_text">ADVERT 5 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_6" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(6)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_6_text">ADVERT 6 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_7" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(7)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_7_text">ADVERT 7 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_8" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(8)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_8_text">ADVERT 8 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_9" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(9)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_9_text">ADVERT 9 HTML</td>
-						</tr>
-					</table>
-					<table cellpadding="0" cellspacing="0" border="0" id="advert_10" style="display: none;">
-						<tr class="advert_row">
-							<td>
-								<button type="button" onclick="DoSetAdvert(10)" class="advert_button">
-									<img class="advert_logo" src="images/AdvertiseHere.png" alt="AdvertiseHere.png" />
-								</button>
-							</td>
-							<td class="advert_text" id="advert_10_text">ADVERT 10 HTML</td>
-						</tr>
-					</table>
-					<input type="hidden" id="advert_space_code" name="advert_space_code" />
-					<input type="hidden" id="current_page" name="current_page" />
-				</form>
+				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
 
@@ -293,6 +196,12 @@
 	</body>
 	
 	<footer>
+		
+		<script type="text/javascript">	
+		
+			DoSetAdverts();
+		
+		</script>
 		
 		<!-- #BeginEditable "footer" -->
 

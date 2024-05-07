@@ -13,13 +13,17 @@
 	$g_nCostPerMonth = 10;
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
-	$g_strPaypalLive = "none";
-	$g_strPaypalTest = "block";
 	$g_nNumMonthsFree = 6;
 	$g_nTradeIDCustomer = 59;
 	$g_strAdminEmail = "find-a-tradie@outlook.com";
 	$g_strFreeMembership = "+6 months";
 	
+	$g_strPriceLevel1 = "60";
+	$g_strPriceLevel2 = "80";
+	$g_strPriceLevel3 = "100";
+	$g_strPriceLevel4 = "120";
+	$g_strPaypalLive = "none";
+	$g_strPaypalTest = "block";
 	
 	
 	
@@ -668,7 +672,8 @@
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		
-		$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
+		//$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
+		$g_strQuery = "SELECT * FROM " . $strTable . " WHERE (id = @last_id) AND (" . $strColumn . " = '" . $strValue . "')";
 		$results = DoQuery($g_dbFindATradie, $g_strQuery);
 		
 		return $results;
@@ -1267,7 +1272,151 @@
 	//******************************************************************************
 	//******************************************************************************
 	//** 
-	//** ADVERT RELATED FUNCTIONS
+	//** WEB ADVERT RELATED FUNCTIONS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	function DoGetSpaceID($strSpaceCode)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$strSpaceID = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "advert_spaces", "space_code", $strSpaceCode);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strSpaceID = $row["id"];
+			}
+		}
+		return $strSpaceID;
+	}
+	
+	function DoGetPageName()
+	{
+		$strURL = $_SERVER["REQUEST_URI"];
+
+		$nPos1 = strpos($strURL, "/") + 1;
+		$nPos2 = strpos($strURL, ".php");
+		$strPageName = substr($strURL, $nPos1, $nPos2 - 1);
+		return $strPageName;
+	}
+	
+	
+	
+	
+	function DoFindActiveAdvert($strSpaceID, $strPageName)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$dateNow = new DateTime();
+		$row = NULL;
+		
+		$results = DoFindQuery2($g_dbFindATradie, "adverts", "space_id", $strSpaceID, "page_name", $strPageName, "expiry_date > '" . $dateNow->format("Y-m-d") . "'");
+
+		if ($results && ($results->num_rows > 0))
+			$row = $results->fetch_assoc();
+			
+		return $row;
+	}
+	
+	
+	
+	function DoGenerateJSAdvertArray()
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$strPageName = DoGetPageName();
+		$strSpaceCode = "";
+		$strLogoURL = "";
+		$strAdvertText = "";
+		$strAdvertID = "";
+		$strMemberID = "";
+		$dateExpiry = new DateTime;
+		$strExpiryDate = "";
+		
+		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (`app_or_web` = 'web')");
+		if ($results && ($results->num_rows > 0))
+		{
+			$nCount = 0;
+			while ($rowSpace = $results->fetch_assoc())
+			{
+				// {space_code:"advert_1", image_url:"", text:"", member_id:""}
+				$nCount++;
+				$strSpaceCode = $strPageName . "_" . $nCount;
+				
+				$rowAdvert = DoFindActiveAdvert($rowSpace["id"], $strPageName);
+				if ($rowAdvert)
+				{
+					$rowMember = DoGetMember($rowAdvert["member_id"]);
+					if ($rowMember)
+					{
+						$strLogoURL = $rowMember["logo_filename"];
+						$strAdvertText = $rowAdvert["text"];
+						$strAdvertID = $rowAdvert["id"];
+						$strMemberID = $rowMember["id"];
+						$dateExpiry = new DateTime($rowAdvert["expiry_date"]);
+						$strExpiryDate = $dateExpiry->format("d/m/Y");
+					}
+				}
+				else
+				{
+					$strLogoURL = "";
+					$strAdvertText = "";
+					$strAdvertID = "";
+					$strMemberID = "";
+					$strExpiryDate = "";
+				}
+				echo "{space_id:\"" . $rowSpace["id"] . "\", space_code:\"" . $strSpaceCode . 
+						"\", cost_per_year:\"" . sprintf("%.2f", $rowSpace["cost_per_year"]) . 
+						"\", image_url:\"". $strLogoURL . "\", text:\"" . $strAdvertText . "\", advert_id:\"" . $strAdvertID . 
+						"\", expiry_date:\"" . $strExpiryDate . "\", member_id:\"" . $strMemberID . "\"}";
+				if ($nCount < $results->num_rows)
+					echo ",";
+				echo "\n";
+			}
+		}
+	}
+	
+	function DoGenerateAdvertSlotHTML()
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$strPageName = DoGetPageName();
+		$strDisplay = "block";
+		
+		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (app_or_web = 'web')");			
+		if ($results && ($results->num_rows > 0))
+		{
+			$nCount = 0;
+			while ($row = $results->fetch_assoc())
+			{
+				$nCount++;
+				echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"advert_" . $nCount . "\" style=\"display: " . $strDisplay . ";\">\n";
+				echo "						<tr class=\"advert_row\">\n";
+				echo "							<td>\n";
+				echo "								<button type=\"button\" onclick=\"DoClickAdvert(" . $nCount . ")\" class=\"advert_button\" width=\"80px;\">\n";
+				echo "									<img class=\"advert_logo\" id=\"advert_image_" .  $nCount . "\" src=\"images/AdvertiseHere.png\" alt=\"AdvertiseHere.png\" />\n";
+				echo "								</button>\n";
+				echo "							</td>\n";
+				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">ADVERT " . $nCount . " HTML</td>\n";
+				echo "						</tr>";
+				echo "						<tr><td class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">Advert expires on 0/0/0000</td></tr>\n";
+				echo "					</table>\n";
+				$strDisplay = "none";
+			}
+		}
+	}
+	
+	
+	
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** APP ADVERT RELATED FUNCTIONS
 	//** 
 	//******************************************************************************
 	//******************************************************************************
@@ -1445,7 +1594,7 @@
 		global $g_strQuery;
 		$arrayAdverts = [];
 		
-		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "INSTR(`space_code`, '{$strScreenName}') > 0");
+		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strScreenName}') > 0) AND (`app_or_web` = 'app')");
 		if ($results && ($results->num_rows > 0))
 		{
 			while ($row = $results->fetch_assoc())

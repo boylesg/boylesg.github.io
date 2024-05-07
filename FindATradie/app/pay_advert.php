@@ -21,10 +21,6 @@
 		
 			require_once "../common.php";
 			
-			$g_strPriceLevel1 = "60";
-			$g_strPriceLevel2 = "80";
-			$g_strPriceLevel3 = "100";
-			$g_strPriceLevel4 = "120";
 			$g_strDisplayPriceLevel1 = "none";
 			$g_strDisplayPriceLevel2 = "none";
 			$g_strDisplayPriceLevel3 = "none";
@@ -35,29 +31,17 @@
 				if (strcmp($_GET["amount"], $g_strPriceLevel1) == 0)
 				{
 					$g_strDisplayPriceLevel1 = "block";
-					$g_strDisplayPriceLevel2 = "none";
-					$g_strDisplayPriceLevel3 = "none";
-					$g_strDisplayPriceLevel4 = "none";
 				}
 				else if (strcmp($_GET["amount"], $g_strPriceLevel2) == 0)
 				{
-					$g_strDisplayPriceLevel1 = "none";
 					$g_strDisplayPriceLevel2 = "block";
-					$g_strDisplayPriceLevel3 = "none";
-					$g_strDisplayPriceLevel4 = "none";
 				}
 				else if (strcmp($_GET["amount"], $g_strPriceLevel3) == 0)
 				{
-					$g_strDisplayPriceLevel1 = "none";
-					$g_strDisplayPriceLevel2 = "none";
 					$g_strDisplayPriceLevel3 = "block";
-					$g_strDisplayPriceLevel4 = "none";
 				}
 				else if (strcmp($_GET["amount"], $g_strPriceLevel4) == 0)
 				{
-					$g_strDisplayPriceLevel1 = "none";
-					$g_strDisplayPriceLevel2 = "none";
-					$g_strDisplayPriceLevel3 = "none";
 					$g_strDisplayPriceLevel4 = "block";
 				}
 				else
@@ -85,9 +69,9 @@
 						<input type="hidden" name="hosted_button_id" value="VF7D5V7W4CPJ4" />
 						<input type="hidden" name="currency_code" value="AUD" />
 						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-					</form>				</div>
+					</form>
 				<div style="display:<?php echo $g_strDisplayPriceLevel2;?>;">
-					<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div >
+					<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="hidden" name="hosted_button_id" value="F4FH6AVBNP2YS" />
@@ -96,7 +80,7 @@
 					</form>
 				</div>
 				<div style="display:<?php echo $g_strDisplayPriceLevel3;?>;">
-					<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div >
+					<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="hidden" name="hosted_button_id" value="78WNB6PA7CP4A" />
@@ -105,7 +89,7 @@
 					</form>
 				</div>
 				<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;">
-					<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div >
+					<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick" />
 						<input type="hidden" name="hosted_button_id" value="TWZN6KQ34TCKQ" />
@@ -118,15 +102,16 @@
 		<div id="paypal_test" style="display:<?php echo $g_strPaypalTest; ?>">
 		
 			<div style="display:<?php echo $g_strDisplayPriceLevel1;?>;">
-				<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div >
-				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-					<input type="hidden" name="cmd" value="_s-xclick" />
-					<input type="hidden" name="hosted_button_id" value="RJ5N5VXSSTGBG" />
-					<input type="hidden" name="currency_code" value="AUD" />
-					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-				</form>			</div>
+				<div  class="price"><b>$<?php echo $g_strPriceLevel1; ?> for 12 months</b></div>
+					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="EKGLAFJNPTZJQ" />
+						<input type="hidden" name="currency_code" value="AUD" />
+						<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+					</form>
+				</div>
 			<div style="display:<?php echo $g_strDisplayPriceLevel2;?>;">
-				<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div >
+				<div  class="price"><b>$<?php echo $g_strPriceLevel2; ?> for 12 months</b></div>
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick" />
 					<input type="hidden" name="hosted_button_id" value="DJKLEWWU3SHHA" />
@@ -135,7 +120,7 @@
 				</form>
 			</div>
 			<div style="display:<?php echo $g_strDisplayPriceLevel3;?>;">
-				<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div >
+				<div  class="price"><b>$<?php echo $g_strPriceLevel3; ?> for 12 months</b></div>
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick" />
 					<input type="hidden" name="hosted_button_id" value="W22A5JKGRMJXY" />
@@ -143,14 +128,14 @@
 					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
 				</form>				
 			</div>
-			<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;">
-			<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div >
+			<div style="display:<?php echo $g_strDisplayPriceLevel4;?>;"></div>
+			<div  class="price"><b>$<?php echo $g_strPriceLevel4; ?> for 12 months</b></div>
 				<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
 					<input type="hidden" name="cmd" value="_s-xclick" />
-					<input type="hidden" name="hosted_button_id" value="GEGHG2FCDMQK4" />
+					<input type="hidden" name="hosted_button_id" value="RJ5N5VXSSTGBG" />
 					<input type="hidden" name="currency_code" value="AUD" />
 					<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
-				</form>
+				</form>					
 			</div>
 
 		</div>

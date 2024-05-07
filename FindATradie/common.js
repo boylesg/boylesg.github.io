@@ -345,7 +345,6 @@
 	
 
 
-
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -354,40 +353,85 @@
 	//******************************************************************************
 	//******************************************************************************
 
-	function OpenAdvertEditor(strAdvertSpaceName)
+	function DoOpenAdvertEditor(nAdvertIndex)
 	{
 		document.location = "advert.php?location=" + strAdvertSpaceName;
 	}
-	
-	
-	
-	let g_nCurrentAdvert = 0;
-	let g_arrayAdvertIDs = ["advert_1", "advert_2", "advert_3", "advert_4", "advert_5", "advert_6", "advert_7", "advert_8", "advert_9", "advert_10"];
-		
+			
 	function DoNextAdvert()
 	{
-		document.getElementById(g_arrayAdvertIDs[g_nCurrentAdvert]).style.display = "none";
+		let strID = "advert_" + (g_nCurrentAdvert + 1).toString();
+		DoGetInput(strID).style.display = "none";
 		g_nCurrentAdvert++;
-		if (g_nCurrentAdvert == g_arrayAdvertIDs.length)
+		if (g_nCurrentAdvert == g_arrayAdverts.length)
 			g_nCurrentAdvert = 0;
-		document.getElementById(g_arrayAdvertIDs[g_nCurrentAdvert]).style.display = "block";
+		DoGetInput("advert_" + (g_nCurrentAdvert + 1).toString()).style.display = "block";
 	}
 	
 	
 	
 	
-	function DoSetAdvert(nAdvertIndex)
+	function DoSetAdverts()
 	{
-		let strAdvertCode = document.title + "_" + g_arrayAdvertIDs[nAdvertIndex];
+		for (let nI = 0; nI < g_arrayAdverts.length; nI++)
+		{
+			if (g_arrayAdverts[nI].advert_id.length > 0)
+			{
+				DoGetInput("advert_image_" + (nI + 1).toString()).src = "https://www.find-a-tradie.com.au/" + g_arrayAdverts[nI].image_url;
+				DoGetInput("advert_text_" + (nI + 1).toString()).innerHTML = g_arrayAdverts[nI].text;
+				DoGetInput("advert_expires_" + (nI + 1).toString()).innerText = "Advert expires on " + g_arrayAdverts[nI].expiry_date;
+			}
+			else
+			{
+				DoGetInput("advert_text_" + (nI + 1).toString()).innerHTML = "<b style=\"color:darkgreen;\">Advertisment slot " + (nI + 1).toString() + "!</b>";
+				DoGetInput("advert_expires_" + (nI + 1).toString()).innerText = "$" + g_arrayAdverts[nI].cost_per_year + " per year...";
+			}
+		}
+	}
+	
+	
+	
+	
+	function DoGetPageName()
+	{
+		let strURL = document.location.toString();
+		nPos1 = strURL.lastIndexOf("/") + 1;
+		nPos2 = strURL.lastIndexOf(".php");
+		let strPageName = strURL.substring(nPos1, nPos2);
 		
-		DoGetInput("advert_space_code").value = strAdvertCode;
-		DoGetInput("current_page").value = document.location;
-		DoGetInput("form_adverts").submit();
+		return strPageName;
+	}
+
+
+
+
+	function DoClickAdvert(nAdvertIndex)
+	{
+		if (g_arrayAdverts[nAdvertIndex].image_url.length > 0)
+		{
+			document.location = "<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/view_member.php?member_id=" + 
+								g_arrayAdvertIDs[nAdvertIndex].member_id;
+		}
+		else
+		{
+
+			if ((sessionStorage["member_id"] == undefined) || (sessionStorage["member_id"] == ""))
+			{
+				AlertWarning("You must be logged in to add an advert!");
+			}
+			else
+			{
+				document.location = "https://www.find-a-tradie.com.au/edit_advert.php?page_name=" + DoGetPageName() + "&" + 
+																							  "advert_slot_index=" + nAdvertIndex.toString() + "&" + 
+																							  "current_page=" + document.location + "&" + 
+																							  "cost_per_year=" + g_arrayAdverts[nAdvertIndex].cost_per_year;
+			}
+		}
 	}	
-	
-	
-	
-	
+
+
+
+
 	//******************************************************************************
 	//******************************************************************************
 	//** 
