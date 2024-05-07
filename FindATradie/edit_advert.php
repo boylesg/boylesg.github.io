@@ -186,7 +186,29 @@
 								}
 							}
 						}
-						//"logo_filename", DoGetLogoImageFilename($_SESSION["account_id"])
+						$strTargetPath = "";
+						
+						if (isset($_FILES["logo_filename"]))
+						{
+							$strTargetPath = DoGetLogoImageFilename($_SESSION["account_id"], false);
+						}
+						if (move_uploaded_file($_FILES["logo_filename"]["tmp_name"], $strTargetPath))
+						{
+							$_SESSION["account_logo_filename"] = $strTargetPath;
+							$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_logo_filename"], "id", $_SESSION["account_id"]);
+							if ($results)
+							{
+								PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_filename"]["name"] . "' was saved!\");", 3, true);
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Logo image column could not be updated!\");", 3, true);
+							}
+						}
+						else
+						{
+							PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_logo_filename"] . "\");", 3, true);
+						}
 					}
 					else
 					{
