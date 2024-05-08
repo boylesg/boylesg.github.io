@@ -219,7 +219,7 @@
 		  		icon: "warning",
 		  		buttons: true,
 		  		closeModal: true
-			});	
+		  	 });
 	}
 
 	function AlertError(strMsg)
@@ -439,7 +439,7 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
-
+	
 	function OnClickEditFeedback(buttonEdit, strID, bPositive, strDescription, strFormID)
 	{
 		//alert("strID = '" + strID + "', bPositive = '" + bPositive.toString() + "', strDescription = '" + strDescription + "'");

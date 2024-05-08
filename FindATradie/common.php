@@ -600,6 +600,18 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
+	function DoGetLastInserted($strTable, $strColumn, $strValue)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		
+		//$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
+		$g_strQuery = "SELECT * FROM " . $strTable . " WHERE (id = @last_id) AND (" . $strColumn . " = '" . $strValue . "')";
+		$results = DoQuery($g_dbFindATradie, $g_strQuery);
+		
+		return $results;
+	}
+	
 	
 	
 	
@@ -651,6 +663,22 @@
 		return $strCustomerTradeID;
 	}
 	
+	function DoGetBusinessName($strMemberID)
+	{
+		global $g_dbFindATradie;
+		$strBusinessName = "";
+		
+		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strBusinessName = $row["business_name"];
+			}
+		}
+		return $strBusinessName;
+}
+	
 	function DoGetMemberContactDetails($strMemberID, &$strPhone, &$strMobile, &$strEmail)
 	{
 		global $g_dbFindATradie;
@@ -667,18 +695,17 @@
 		}
 	}
 	
-	function DoGetLastInserted($strTable, $strColumn, $strValue)
+	function DoGetMemberEmail($strMemberID)
 	{
-		global $g_dbFindATradie;
-		global $g_strQuery;
+		$strPhone = "";
+		$strMobile = ""; 
+		$strEmail = "";
 		
-		//$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
-		$g_strQuery = "SELECT * FROM " . $strTable . " WHERE (id = @last_id) AND (" . $strColumn . " = '" . $strValue . "')";
-		$results = DoQuery($g_dbFindATradie, $g_strQuery);
+		DoGetMemberContactDetails($strMemberID, $strPhone, $strMobile, $strEmail);
 		
-		return $results;
+		return $strEmail;
 	}
-	
+		
 	
 	
 	
@@ -1033,6 +1060,40 @@
 				$row = $result->fetch_assoc();
 				$bResult = $row["name"] != "Customer";
 			}
+		}
+		return $bResult;
+	}
+	
+	function DoSaveMemberImage($strMemberID, $strColumnName, $file)
+	{
+		$bResult = false;
+		
+		if (isset($file) && (strlen($file["tmp_name"]) > 0))
+		{
+			$strTargetPath = DoGetLogoImageFilename($strMemberID, false);
+
+			if (move_uploaded_file($file["tmp_name"], $strTargetPath))
+			{
+				$_SESSION["account_" . $strColumnName] = $strTargetPath;
+				$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_" . $strColumnName], "id", $strMemberID);
+				if ($results)
+				{
+					//PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_filename"]["name"] . "' was saved!\");", 3, true);
+					$bResult = true;
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Logo image column could not be updated!\");", 3, true);
+				}
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_" . $strColumnName] . "\");", 3, true);
+			}
+		}
+		else
+		{
+			$bResult = true;
 		}
 		return $bResult;
 	}
@@ -1563,9 +1624,7 @@
 
 				echo "		<td>";
 				$dateExpires = new DateTime($row["expiry_date"]);
-				$interval = $dateExpires->diff($dateAdded);
-				$nMonths = (int)$interval->format("%m months");
-				echo $nMonths;
+				echo $dateExpires->format("d/m/Y");
 				echo "</td>\n";
 			
 				echo "		<td>";
@@ -1575,13 +1634,7 @@
 				echo "		<td>";
 				$dateNow = new DateTime();
 				if ($dateExpires > $dateNow)
-					echo "<button id=\"button_edit_advert\" title=\"Edit your advert\" onclick=\"document.location = 'advert.php?advert_id=" . $row["id"] . "'\"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>";
-				echo "</td>\n";
-				echo "</tr>\n";
-				echo "<tr>\n";
-				echo "<td colspan=\"4\" style=\"text-align:right;\"><b>Grand Total</b></td>\n";
-				echo "<td colspan=\"3\">";
-				echo sprintf("$%d", $nGrandTotal);
+					echo "<button id=\"button_edit_advert\" title=\"Edit your advert\" onclick=\"document.location = 'edit_advert.php?advert_id=" . $row["id"] . "&current_page=" . $_SERVER['REQUEST_URI'] . "'\"><img src=\"images/edit.png\" alt=\"images/edit.png\" width=\"20\" /></button>";
 				echo "</td>\n";
 				echo "</tr>\n";
 			}
@@ -1789,6 +1842,21 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
+	
+	function DoGetFeedback($strFeedbackID, &$strFeedbackDesc, &$nPositive)
+	{
+		global $g_dbFindATradie;
+		
+		$results = DoFindQuery1($g_dbFindATradie, "feedback", "id", $strFeedbackID);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+				$strFeedbackDesc = $row["description"];
+				$nPositive = $row["positive"];
+			}
+		}
+	}
 	
 	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayNames)
 	{
@@ -2020,7 +2088,7 @@
 		return $date->format("d/m/Y");
 	}
 	
-	function DoGetJobs($strTradeID, $mapAddedJobIDs)
+	function DoGetWebJobs($strTradeID, $mapAddedJobIDs)
 	{
 		global $g_dbFindATradie;
 		$row = null;
@@ -2084,17 +2152,56 @@
 								else
 									echo "<td class=\"cell_no_borders search_cell\">NO</td>";
 								echo "<td class=\"cell_no_borders search_cell\">";
-								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" width=\"20px;\" /></button>&nbsp;";
+								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;";
 								
 								echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";
-								echo "     <input type=\"hidden\" value=\"\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
-								echo "     <input type=\"hidden\" value=\"\" name=\"text_member_id\" value=\"" . $_SESSION["account_id"] . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $rowJob["feedback_id"] . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_recipient_id\" value=\"" . $rowJob["member_id"] . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_provider_id\" value=\"" . $_SESSION["account_id"] . "\" />\n";
+								
+								
 								if ($rowJob["accepted_by_member_id"] == 0)
-									echo "<button type=\"submit\" class=\"function_button\" title=\"Accept this job\" id=\"submit_accept_job\" name=\"submit_accept_job\" value=\"ACCEPT\" /><img src=\"images/accept.png\" alt=\"images/accept.png\" width=\"20px;\" /></button>&nbsp;";
-								else if ($rowJob["accepted_by_member_id"] == $_SESSION["account_id"])
-									echo "<button type=\"submit\" class=\"function_button\" title=\"Unaccept this job\" name=\"submit_unaccept_job\" value=\"UNACCEPT\" /><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" width=\"20px;\" /></button>&nbsp;";
+								{
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Accept this job\" id=\"submit_accept_job\" name=\"submit_accept_job\" value=\"ACCEPT\" /><img src=\"images/accept.png\" alt=\"images/accept.png\" class=\"function_button_image\" /></button>&nbsp;";
+								}
+								else if ($rowJob["feedback_id"] > 0)
+								{
+									$strFeedbackDesc = "";
+									$nPositive = 0;
+									$strFilename = "";
+									DoGetFeedback($rowJob["feedback_id"], $strFeedbackDesc, $nPositive);
+									if ($nPositive == 1)
+										$strFilename = "thumbs_up.png";
+									else if ($nPositive == 0)
+										$strFilename = "thumbs_down.png";
+									echo "<img src=\"images/" . $strFilename . "\" alt=\"images/" . $strFilename . "\" class=\"function_button_image\" />&nbsp;";
+									echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" cols=\"26\" rows=\"1\">" . $strFeedbackDesc . "</textarea>\n";
+									echo "<button type=\"submit\" name=\"submit_edit_positive_feedback\" class=\"function_button\" title=\"Provide positive feedback\" value=\"POSITIVE FEEDBACK\" /><img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<button type=\"submit\" name=\"submit_edit_negative_feedback\" class=\"function_button\" title=\"Provide negative feedback\" value=\"NEGATIVE FEEDBACK\" /><img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" class=\"function_button_image\" /></button>&nbsp;";
+								}
+								else if ($rowJob["paid"] == 1)
+								{
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as unpaid\" name=\"submit_unpaid_job\" value=\"UNPAID\" /><img src=\"images/unpaid.png\" alt=\"images/unpaid.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" cols=\"26\" rows=\"1\"></textarea>\n";
+									echo "<button type=\"submit\" name=\"submit_positive_feedback\" class=\"function_button\" title=\"Provide positive feedback\" value=\"POSITIVE FEEDBACK\" /><img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<button type=\"submit\" name=\"submit_negative_feedback\" class=\"function_button\" title=\"Provide negative feedback\" value=\"NEGATIVE FEEDBACK\" /><img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" class=\"function_button_image\" /></button>&nbsp;";
+								}
+								else if ($rowJob["completed"] == 1)
+								{
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as incomplete\" name=\"submit_uncomplete_job\" value=\"UNCOMPLETE\" /><img src=\"images/uncomplete.png\" alt=\"images/uncomplete.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<button type=\"button\" class=\"function_button\" title=\"Raise PayPal invoice\" value=\"PAYPAL\" onclick=\"window.location.href = 'https://www.paypal.com'\" /><img src=\"images/paypal.png\" alt=\"images/paypal.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as paid\" name=\"submit_paid_job\" value=\"PAID\" /><img src=\"images/paid.png\" alt=\"images/paid.png\" class=\"function_button_image\" /></button>&nbsp;";
+								}
+								else if (strcmp($rowJob["accepted_by_member_id"], $_SESSION["account_id"]) == 0)
+								{
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Unaccept this job\" name=\"submit_unaccept_job\" value=\"UNACCEPT\" /><img src=\"images/unaccept.png\" alt=\"images/unaccept.png\" class=\"function_button_image\" /></button>&nbsp;";
+									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as complete\" name=\"submit_complete_job\" value=\"COMPLETE\" /><img src=\"images/complete.png\" alt=\"images/complete.png\" class=\"function_button_image\" /></button>&nbsp;";
+								}
 								else
+								{
 									echo "ERROR";
+								}	
 								echo "</form>\n";
 								echo "</td>\n";
 								echo "</tr>\n";

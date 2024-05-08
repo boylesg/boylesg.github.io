@@ -18,7 +18,6 @@
 	<!-- #BeginEditable "server" -->
 	
 		<?php
-		
 		?>
 	
 	<!-- #EndEditable -->
@@ -205,6 +204,11 @@
 					border-color: silver;
 				}
 				
+				.function_button_image
+				{
+					width: 40px;
+				}
+				
 				.function_form
 				{
 					display: inline-block;
@@ -280,124 +284,112 @@
 	}
 	else if (isset($_POST["submit_logo"]))
 	{
-		$strTargetPath = "";
-		
-		if (isset($_FILES["logo_file_name"]))
-		{
-			$strTargetPath = DoGetLogoImageFilename($_SESSION["account_id"], false);
-		}
-		if (move_uploaded_file($_FILES["logo_file_name"]["tmp_name"], $strTargetPath))
-		{
-			$_SESSION["account_logo_filename"] = $strTargetPath;
-			$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_logo_filename"], "id", $_SESSION["account_id"]);
-			if ($results)
-			{
-				PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_file_name"]["name"] . "' was saved!\");", 3, true);
-			}
-			else
-			{
-				PrintJavascriptLine("AlertError(\"Logo image column could not be updated!\");", 3, true);
-			}
-		}
-		else
-		{
-			PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_logo_filename"] . "\");", 3, true);
-		}
+		DoSaveMemberImage($_SESSION["account_id"], "logo_filename", $_FILES["logo_file_name"]);
 	}
 	else if (isset($_POST["submit_profile"]))
 	{
-		$strTargetPath = "";
-		
-		if (isset($_FILES["profile_file_name"]))
-		{
-			$strTargetPath = DoGetProfileImageFilename($_SESSION["account_id"], false);
-		}
-		if (move_uploaded_file($_FILES["profile_file_name"]["tmp_name"], $strTargetPath))
-		{
-			$_SESSION["account_profile_filename"] = $strTargetPath;
-			$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $_SESSION["account_profile_filename"], "id", $_SESSION["account_id"]);
-			if ($results)
-			{
-				PrintJavascriptLine("AlertSuccess(\"Profile image file '" . $_FILES["profile_file_name"]["name"] . "' was saved!\");", 3, true);
-			}
-			else
-			{
-				PrintJavascriptLine("AlertError(\"Profile image column could not update!\");", 3, true);
-			}
-		}
-		else
-		{
-			PrintJavascriptLine("AlertError(\"Could not save file '" . $_SESSION["account_profile_filename"] . "\");", 3, true);
-		}
+		DoSaveMemberImage($_SESSION["account_id"], "profile_filename", $_FILES["profile_file_name"]);
 	}
 	else if (isset($_POST["submit_accept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_POST["text_member_id"], "id", $_POST["text_job_id"]);
-		if ($resultsJob)
+		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", $_SESSION["account_id"], "id", $_POST["text_job_id"]);
+		if ($results)
 		{
 			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["text_job_id"]);
 			if ($results && ($results->num_rows > 0))
 			{
-				if ($rowJob = $results->fetch_assoc())
+				if ($row = $results->fetch_assoc())
 				{
-					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["member_id"]);
-					if ($results && ($results->num_rows > 0))
-					{
-						if ($rowMember = $results->fetch_assoc())
-						{
-							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $row["accepted_by_member_id"]);
-							if ($results && ($results->num_rows > 0))
-							{
-								if ($rowTradie = $results->fetch_assoc())
-								{
-									mail($rowMember["email"], "RE: job ID: " . $rowJob["id"] . ", date: " . 
-										$rowJob["date_added"] . " on 'FindaTradie'", "Business member '" . $rowTradie["business_name"] . " has accepted your job and will contact your shortly.");
-								}
-							}
-						}
-					}
+					$strFromEmail = $_SESSION["email"];
+					$strToEmail = DoGetMemberEmail($row["member_id"]);
+					
+					mail($strFromEmail, "RE: job ID: " . $row["id"] . ", date: " . 
+							$row["date_added"] . " on 'FindaTradie'", "Business member '" . 
+							$_SESSION["business_name"] . " has accepted your job and will contact your shortly.", 
+							"From: " . $strFromEmail);
+					PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Could not fetch job row!\")", 4, true);
 				}
 			}
-			PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Could not find row!\")", 4, true);
+			}
 		}
 		else
 		{
 			PrintJavascriptLine("AlertError(\"Job could not be accepted!\")", 4, true);
 		}
 	}
-	else if (isset($_GET["submit_unaccept_job"]))
+	else if (isset($_POST["submit_unaccept_job"]))
 	{
-		$resultsJob = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", 0, "id", $_GET["text_job_id"]);
-		if ($resultsJob)
+		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "accepted_by_member_id", 0, "id", $_POST["text_job_id"]);
+		if ($results)
 		{
-			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_GET["text_job_id"]);
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["text_job_id"]);
 			if ($results && ($results->num_rows > 0))
 			{
-				if ($rowJob = $results->fetch_assoc())
+				if ($row = $results->fetch_assoc())
 				{
-					$results = DoFindQuery1($g_dbFindATradie, "members", "id", $rowJob["member_id"]);
-					if ($results && ($results->num_rows > 0))
-					{
-						if ($rowMember = $results->fetch_assoc())
-						{
-							$results = DoFindQuery1($g_dbFindATradie, "members", "id", $rowJob["accepted_by_member_id"]);
-							if ($results && ($results->num_rows > 0))
-							{
-								if ($rowTradie = $results->fetch_assoc())
-								{
-									mail($rowMember["email"], "RE: job ID: " . $rowJob["id"] . ", date: " . 
-										$rowJob["date_added"] . " on 'FindaTradie'", "Business member '" . $rowTradie["business_name"] . " has changed their mind and declined your job.");
-								}
-							}
-						}
-					}
+					$strFromEmail = $_SESSION["email"];
+					$strToEmail = DoGetMemberEmail($row["member_id"]);
+					
+					mail($strFromEmail, "RE: job ID: " . $row["id"] . ", date: " . 
+							$row["date_added"] . " on 'FindaTradie'", "Business member '" . 
+							$_SESSION["business_name"] . " has changed their mind and declined your job.", 
+							"From: " . $strFromEmail);	
+					PrintJavascriptLine("AlertSuccess(\"Job was declined!\")", 4, true);
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Could not fetch job row!\")", 4, true);
 				}
 			}
-			PrintJavascriptLine("AlertSuccess(\"Job was declined!\")", 4, true);
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Could not find row!\")", 4, true);
+			}
 		}
 		else
 		{
 			PrintJavascriptLine("AlertError(\"Job could not be declined!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_complete_job"]))
+	{
+		$dateNow = new DateTime();
+		$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "completed", 1, "date_completed", $dateNow->format("Y-m-d"), "id", $_POST["text_job_id"]);
+		if (!$results)
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be marked as complete!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_uncomplete_job"]))
+	{
+		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "completed", 0, "id", $_POST["text_job_id"]);
+		if (!$results)
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be marked as incomplete!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_paid_job"]))
+	{
+		$dateNow = new DateTime();
+		$results = DoUpdateQuery2($g_dbFindATradie, "jobs", "paid", 1, "date_paid", $dateNow->format("Y-m-d"), "id", $_POST["text_job_id"]);
+		if (!$results)
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be marked as paid!\")", 4, true);
+		}
+	}
+	else if (isset($_POST["submit_unpaid_job"]))
+	{
+		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "paid", 0, "id", $_POST["text_job_id"]);
+		if (!$results)
+		{
+			PrintJavascriptLine("AlertError(\"Job could not be marked as unpaid!\")", 4, true);
 		}
 	}
 	else if (isset($_POST["submit_feedback_add"]))
@@ -438,24 +430,70 @@
 			PrintJavascriptLine("AlertError(\"Job could not be completed!\")", 4, true);
 		}
 	}
-	else if (isset($_POST["submit_feedback_edit"]))
+	else if (isset($_POST["submit_edit_positive_feedback"]) || isset($_POST["submit_edit_negative_feedback"]))
 	{
-		$bPositive = true;
+		$nPositive = 0;
 		
-		if ($_POST["radio_feedback"] == "true")
-			$bPositive = true;
-		else if ($_POST["radio_feedback"] == "false")
-			$bPositive = false;
+		if (isset($_POST["submit_edit_positive_feedback"]))
+			$nPositive = 1;
+		else if (isset($_POST["submit_edit_negative_feedback"]))
+			$nPositive = 0;
 
-		$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
-			"positive", $bPositive, "id", $_POST["hidden_feedback_id"]);
+		$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
+									"id", $_POST["text_feedback_id"]);
 		if ($results)
 		{
-			PrintJavascriptLine("AlertSuccess(\"Feedback was updated!\")", 4, true);
+			PrintJavascriptLine("AlertSuccess(\"Your feedback has been updated!\");", 5, true);
 		}
 		else
 		{
-			PrintJavascriptLine("AlertError(\"Feedback could not be updated!\")", 4, true);
+			PrintJavascriptLine("AlertError(\"Your feedback could not be updated!\");", 5, true);
+		}
+	}
+	else if (isset($_POST["submit_positive_feedback"]) || isset($_POST["submit_negative_feedback"]))
+	{
+		$nPositive = 0;
+		
+		if (isset($_POST["submit_positive_feedback"]))
+			$nPositive = 1;
+		else if (isset($_POST["submit_negative_feedback"]))
+			$nPositive = 0;
+
+		$results = DoInsertQuery5($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
+									"job_id", $_POST["text_job_id"], "recipient_id", $_POST["text_recipient_id"],
+									"provider_id", $_POST["text_provider_id"]);
+		echo $g_strQuery;
+		if ($results)
+		{
+			$results = DoFindQuery2($g_dbFindATradie, "feedback", "job_id", $_POST["text_job_id"], 
+									"description", $_POST["text_feedback"]);
+			if ($results && ($results->num_rows > 0))
+			{
+				if ($row = $results->fetch_assoc())
+				{
+					$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "feedback_id", $row["id"], "id", $_POST["text_job_id"]);
+					if ($results)
+					{
+						PrintJavascriptLine("AlertSuccess(\"Your feedback has been added!\");", 5, true);
+					}
+					else
+					{
+						PrintJavascriptLine("AlertError(\"Your feedback could not be added!\");", 5, true);
+					}
+				}
+				else
+				{
+					PrintJavascriptLine("AlertError(\"Could not fetch feedback row!\");", 5, true);
+				}
+			}
+			else
+			{
+				PrintJavascriptLine("AlertError(\"Failed to find feedback!\");", 5, true);
+			}
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Feedback could not be inserted into table!\");", 5, true);
 		}
 	}
 	else if (isset($_POST["submit_job_edit"]))
@@ -503,7 +541,7 @@
 			$results = DoInsertQuery5($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_job"], 
 										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
 										"urgent", (int)$bIsUrgent, "description", $_POST["text_description"]);
-			if ($results && ($results->num_rows > 0))
+			if ($results)
 			{
 				PrintJavascriptLine("AlertSuccess(\"Job has been added!\");", 2, true);
 			}
@@ -704,6 +742,15 @@
 				PrintJavascriptLine("AlertError(\"User details could not be updated!\");\n", 2, true);
 			}
 		}
+	}
+	else
+	{
+		echo "GET DATA<br>---------<br>\n";
+		print_r($_GET);
+		echo "<br><br>POST DATA<br>---------<br>\n";
+		print_r($_POST);
+		echo "<br><br>FILES DATA<br>---------<br>\n";
+		print_r($_FILES);
 	}
 	// If the session has expired
 	if (!isset($_SESSION["account_id"]) || ($_SESSION["account_id"] == ""))
@@ -1003,13 +1050,13 @@
 								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 								<table class="table_no_borders search_table">
 									<tr>
-										<td class="cell_no_borders search_cell" style="width:3em;"><b>ID</b></td>
-										<td class="cell_no_borders search_cell" style="width:6em;"><b>Date</b></td>
-										<td class="cell_no_borders search_cell" style="width:26em;"><b>Name</b></td>
-										<td class="cell_no_borders search_cell" style="width:25em;"><b>Email</b></td>
-										<td class="cell_no_borders search_cell" style="width:10em;"><b>Maximum budget</b></td>
-										<td class="cell_no_borders search_cell" style="width:5em;"><b>Size</b></td>
-										<td class="cell_no_borders search_cell" style="width:5em;"><b>Urgent?</b></td>
+										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>
+										<td class="cell_no_borders search_cell" style="width:5.5em;"><b>Date</b></td>
+										<td class="cell_no_borders search_cell" style="width:16em;"><b>Name</b></td>
+										<td class="cell_no_borders search_cell" style="width:16em;"><b>Email</b></td>
+										<td class="cell_no_borders search_cell" style="width:4em;"><b>Budget</b></td>
+										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Size</b></td>
+										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Urgent?</b></td>
 										<td class="cell_no_borders search_cell" style=""><b>Functions</b></td>
 									</tr>
 									<?php
@@ -1018,14 +1065,14 @@
 										{
 											$mapAddedJobIDs = [];
 											
-											$mapAddedJobIDs = DoGetJobs($_SESSION["account_trade"], $mapAddedJobIDs);
+											$mapAddedJobIDs = DoGetWebJobs($_SESSION["account_trade"], $mapAddedJobIDs);
 											
 											$results = DoFindQuery1($g_dbFindATradie, "additional_trades", "trade_id", $_SESSION["account_trade"]);
 											if ($results && ($results->num_rows > 0))
 											{
 												while ($row = $results->fetch_assoc())
 												{
-													DoGetJobs($row["trade_id"], $mapAddedJobIDs);
+													DoGetWebJobs($row["trade_id"], $mapAddedJobIDs);
 												}
 											}
 										}
@@ -1232,7 +1279,7 @@
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
-							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
+							<h2 id="tab_heading6"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
 								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">
@@ -1263,9 +1310,8 @@
 								<tr>
 									<td class="search_cell" style="width:5em;"><b>Date</b></td>
 									<td class="search_cell" style=""><b>Advert Location</b></td>
-									<td class="search_cell" style="width:8em;"><b>Cost per Month</b></td>
-									<td class="search_cell" style="width:7em;"><b>Time Period</b></td>
-									<td class="search_cell" style="width:6em;"><b>Total Cost</b></td>
+									<td class="search_cell" style="width:8em;"><b>Cost per Year</b></td>
+									<td class="search_cell" style="width:6em;"><b>Expiry Date</b></td>
 									<td class="search_cell" style="width:6em;"><b>Clicks</b></td>
 									<td class="search_cell" style="width:5em;"><b>Functions</b></td>
 								</tr>
@@ -1289,7 +1335,6 @@
 	}
 	DoDisplayAdverts($_SESSION["account_id"], $strSpaceID, $dateStart, $dateEnd, $bHideExpired);
 ?>
-								<tr><td colspan="7">&nbsp;</td></tr>
 							</table>
 							
 						</div>
