@@ -300,14 +300,13 @@
 			{
 				if ($row = $results->fetch_assoc())
 				{
-					$strFromEmail = $_SESSION["email"];
+					$strFromEmail = $_SESSION["account_email"];
 					$strToEmail = DoGetMemberEmail($row["member_id"]);
 					
 					mail($strFromEmail, "RE: job ID: " . $row["id"] . ", date: " . 
 							$row["date_added"] . " on 'FindaTradie'", "Business member '" . 
-							$_SESSION["business_name"] . " has accepted your job and will contact your shortly.", 
+							$_SESSION["account_business_name"] . " has accepted your job and will contact your shortly.", 
 							"From: " . $strFromEmail);
-					PrintJavascriptLine("AlertSuccess(\"Job was accepted!\")", 4, true);
 				}
 				else
 				{
@@ -341,7 +340,6 @@
 							$row["date_added"] . " on 'FindaTradie'", "Business member '" . 
 							$_SESSION["business_name"] . " has changed their mind and declined your job.", 
 							"From: " . $strFromEmail);	
-					PrintJavascriptLine("AlertSuccess(\"Job was declined!\")", 4, true);
 				}
 				else
 				{
