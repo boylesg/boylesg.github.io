@@ -339,7 +339,7 @@ a.masthead_button:hover
 
 .tradie_details
 {
-	display: inline-block;
+	display: block;
 	font-size: small;
 	border-style: solid;
 	border-width: thin;
@@ -353,7 +353,7 @@ a.masthead_button:hover
 
 .tradie_about
 {
-	display:inline-block;
+	display:block;
 	font-size:small;
 	border-style:solid;
 	border-width:thin;

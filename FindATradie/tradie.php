@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -197,7 +197,7 @@
 									echo "<br/>";
 								}
 								echo "</div>\n";
-								echo "<div class=\"tradie_feedback\">\n";
+								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;\">\n";
 								echo "<b><u>FEEDBACK</u></b>\n";
 								DoDisplayFeedback($row["id"], "", false);
 								echo "</div>\n";
