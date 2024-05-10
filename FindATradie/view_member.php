@@ -26,7 +26,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>View Member</title>
+		<title>Member Details</title>
 		<!-- #EndEditable -->
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
@@ -107,18 +107,138 @@
 
 
 
-			<?php echo $_GET["page_name"]; ?>
-			<?php echo $_GET["advert_slot_index"]; ?>
-			<?php echo $_GET["current_page"]; ?>
-			
-			<form method="post" enctype="multipart/form-data" id="advert_form">
-				
-				<table cellspacing="0" cellpadding="2" border="1">
-					<tr><td>Current business logo</td></tr>
-					<tr><td><img src="" alt="" /></td></tr>
-				</table>
 
-			</form>
+
+
+
+
+		<div class="page_content" id="page_content0">
+
+			<div class="note" style="overflow-x:auto;overflow-y:visible;">
+				<?php 
+				
+					if (isset($_GET["member_id"]))
+					{
+						$results = DoFindQuery1($g_dbFindATradie, "members", "id", $_GET["member_id"]);
+						if ($results && ($results->num_rows > 0))
+						{
+							$row = $results->fetch_assoc();
+							if ($row)
+							{
+								echo "<div class=\"tradie_details\" style=\"font-size:large;\">\n";
+								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
+								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>ABN:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["abn"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Structure:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["structure"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								echo $row["first_name"] . " " . $row["surname"] . "<br/><br/>";
+								echo "<img src=\"images/" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
+								echo "</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">\n";
+								if ($row["phone"] && ($row["phone"] != ""))
+									echo $row["phone"] . "\n";
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								if ($row["mobile"] && ($row["mobile"] != ""))
+									echo $row["mobile"] . "\n";
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">";
+								if ($row["email"] && ($row["email"] != ""))
+									echo $row["email"];
+								echo "		</td>\n";
+								echo "	</tr>\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Location:</b></td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
+								echo "	</tr>\n";
+								echo "</table>\n";
+								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
+								{
+									echo "<img class=\"advert_image\" style=\"float:right;\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
+								}
+								echo "</div>\n";
+								echo "<div class=\"tradie_about\">\n";
+								echo "<b><u>TRADES</u></b><br/>\n";
+								echo "<b>Primary trade: </b>" . GetTradeName($row["trade_id"]) . "<br/<br/>\n";
+								echo "<b>Additional trades: </b>";
+								echo GetAdditionalTradeNames($row["id"]) . "<br/><br/>\n";
+								
+								if ($row["license"] && ($row["license"] != ""))
+								{
+									echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";
+									echo RelaceCRLF($row["license"]);
+									echo "<br/><br/>";
+								}
+								if ($row["description"] && ($row["description"] != ""))
+								{
+									echo "<b><u>ABOUT THE BUSINESS</u></b><br/>\n";
+									echo RelaceCRLF($row["description"]);
+									echo "<br/>";
+								}
+								echo "</div>\n";
+								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;\">\n";
+								echo "<b><u>FEEDBACK</u></b>\n";
+								DoDisplayFeedback($row["id"], "", false);
+								echo "</div>\n";
+							}
+						}
+					}
+					
+					if (isset($_GET["advert_id"]))
+					{
+						$results = DoFindQuery1($g_dbFindATradie, "adverts", "id", $_GET["advert_id"]);
+						if ($results && ($results->num_rows > 0))
+						{
+							if ($row = $results->fetch_assoc())
+							{
+								$nNumClicks = (int)$row["number_clicks"] + 1;
+								$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "number_clicks", $nNumClicks, "id", $_GET["advert_id"]);
+								if ($results)
+								{
+								}
+								else
+								{
+									PrintJSAlertError("Could not increment number of clicks for advert with ID '" . $_GET["advert_id"] . "'!");
+								}
+							}
+							else
+							{
+								PrintJSAlertError("Could not fetch advert record with ID '" . $_GET["advert_id"] . "'!");
+							}
+						}
+						else
+						{
+							PrintJSAlertError("Could not find advert with ID '" . $_GET["advert_id"] . "'!");
+						}
+					}
+
+				?>
+			</div>
+		</div>
+		
+
+
 
 
 

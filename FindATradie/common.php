@@ -727,20 +727,8 @@
 		{
 			if ($row = $results->fetch_assoc())
 			{
-				$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/" . $row["logo_filename"];
-				if (strlen($strFilename) == 0)
-				{
-					$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/images/" . ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $strFilename, "id", $strMemberID);
-					if ($bIsApp)
-					{
-						if ($results)
-							echo "OK";
-						else
-							echo "Could not update 'logo_filename' column for member with ID '" . $strMemberID, "'!";
-					}
-				}
-				else if ($bIsApp)
+				$strFilename = "images/" . ReplaceSpaces(ReplaceQuote($row["business_name"])) . ".jpg";
+				if ($bIsApp)
 					echo "OK";
 			}
 			else if ($bIsApp)
@@ -763,20 +751,8 @@
 		{
 			if ($row = $results->fetch_assoc())
 			{
-				$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/" . $row["profile_filename"];
-				if (strlen($strFilename) == 0)
-				{
-					$strFilename = $_SERVER['DOCUMENT_ROOT'] . "/images/" . $row["first_name"] . "_" . $row["surname"] . ".jpg";
-					$results = DoUpdateQuery1($g_dbFindATradie, "members", "profile_filename", $strFilename, "id", $strMemberID);
-					if ($bIsApp)
-					{
-						if ($results)
-							echo "OK";
-						else
-							echo "Could not update 'profile_filename' column for member with ID '" . $strMemberID, "'!";
-					}
-				}
-				else if ($bIsApp)
+				$strFilename ="images/" . $row["first_name"] . "_" . $row["surname"] . ".jpg";
+				if ($bIsApp)
 					echo "OK";
 			}
 			else if ($bIsApp)
@@ -1064,18 +1040,19 @@
 		return $bResult;
 	}
 	
-	function DoSaveMemberImage($strMemberID, $strColumnName, $file)
+	function DoSaveMemberImage($strMemberID, $strColumnName, $strFilePath, $file)
 	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
 		$bResult = false;
-		
+
 		if (isset($file) && (strlen($file["tmp_name"]) > 0))
 		{
-			$strTargetPath = DoGetLogoImageFilename($strMemberID, false);
-
-			if (move_uploaded_file($file["tmp_name"], $strTargetPath))
+			if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath))
 			{
-				$_SESSION["account_" . $strColumnName] = $strTargetPath;
-				$results = DoUpdateQuery1($g_dbFindATradie, "members", "logo_filename", $_SESSION["account_" . $strColumnName], "id", $strMemberID);
+				$_SESSION["account_" . $strColumnName] = $strFilePath;
+				$results = DoUpdateQuery1($g_dbFindATradie, "members", $strColumnName, $_SESSION["account_" . $strColumnName], "id", $strMemberID);
+
 				if ($results)
 				{
 					//PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_filename"]["name"] . "' was saved!\");", 3, true);
@@ -1096,6 +1073,24 @@
 			$bResult = true;
 		}
 		return $bResult;
+	}
+	
+	function DoSaveProfileImage($strMemberID, $file)
+	{
+		$_SESSION["profile_filename"] = DoGetProfileImageFilename($strMemberID, false);
+		if (!DoSaveMemberImage($strMemberID, "profile_filename", $_SESSION["profile_filename"], $file))
+		{
+			PrintJavascriptLine("AlertError('Could not save profile image file!')", 5, true);
+		}
+	}
+	
+	function DoSaveLogoImage($strMemberID, $file)
+	{
+		$_SESSION["logo_filename"] = DoGetLogoImageFilename($strMemberID, false);
+		if (DoSaveMemberImage($strMemberID, "logo_filename", $_SESSION["logo_filename"], $file))
+		{
+			PrintJavascriptLine("AlertError('Could not save logo image file!')", 5, true);
+		}
 	}
 	
 	
@@ -2011,7 +2006,7 @@
 				{
 					$rowMember = DoGetMember($row["accepted_by_member_id"]);
 					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
-							$rowMember["business_name"] . "</a>\n";
+							$rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>" . $rowMember["business_name"] . "</a>\n";
 				}
 				else
 				{
@@ -2241,7 +2236,8 @@
 								$date = new DateTime($rowJob["date_added"]);
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-								echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>";
+								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</a><br/>\n";
+								echo $rowMember["suburb"] . ", " . $rowMember["postcode"] . "<br/>\n";
 								echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";

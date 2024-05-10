@@ -282,18 +282,13 @@
 	DebugPrint("_SESSION[\"accountid\"]", $_SESSION["account_id"], 2);
 	echo "<br><br>";
 */	
-
-	if (isset($_GET["member_id"]))
+	if (isset($_POST["submit_logo"]))
 	{
-		PrintJavascriptLine("sessionStorage[\"member_id\"] = \"" . $_GET["member_id"] . "\";", 3, true);
-	}
-	else if (isset($_POST["submit_logo"]))
-	{
-		DoSaveMemberImage($_SESSION["account_id"], "logo_filename", $_FILES["logo_file_name"]);
+		DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_file_name"]);
 	}
 	else if (isset($_POST["submit_profile"]))
 	{
-		DoSaveMemberImage($_SESSION["account_id"], "profile_filename", $_FILES["profile_file_name"]);
+		DoSaveProfileImage($_SESSION["account_id"], $_FILES["profile_file_name"]);
 	}
 	else if (isset($_POST["submit_accept_job"]))
 	{
@@ -627,52 +622,34 @@
 	}
 	else if (isset($_POST["text_business_name"]))
 	{
-		$bError = false;
-
-		// Business name has changed
-		if ($_SESSION["account_business_name"] != $_POST["text_business_name"])
+		$strQuery = "UPDATE members SET " .
+					AppendSQLUpdateValues("business_name", $_POST["text_business_name"],
+											"abn", $_POST["text_abn"],
+											"structure", $_POST["select_structure"],
+											"license", $_POST["text_license"],
+											"description", $_POST["text_description"],
+											"minimum_charge", $_POST["text_minimum_charge"],
+											"minimum_budget", $_POST["text_minimum_budget"],
+											"maximum_size", $_POST["select_maximum_size"],
+											"maximum_distance", $_POST["text_maximum_distance"]) . 
+					" WHERE id='" . $_SESSION["account_id"] . "'";
+		$result = DoQuery($g_dbFindATradie, $strQuery);
+		if ($result)
 		{
-			// Check that the new business name is not being used by some one else.
-			$result = DoFindQuery1($g_dbFindATradie, "members", "business_name", $_POST["text_business_name"]);
-			if ($result->num_rows > 0)
-			{
-				PrintJavascriptLines(
-					["AlertError(\"Business name '" . $_POST["text_business_name"] . "' is already in use!\");\n",
-					 "document.getElementById(\"text_business_name\").focus();\n"], 2, true);
-				$bError = true;
-			}
+			PrintJavascriptLine("AlertSuccess(\"business details updated!\");\n", 2, true);
+			$_SESSION["account_business_name"] = $_POST["text_business_name"];
+			$_SESSION["account_abn"] = $_POST["text_abn"];
+			$_SESSION["account_structure"] = $_POST["select_structure"];
+			$_SESSION["account_icense"] = $_POST["text_license"];
+			$_SESSION["account_description"] = $_POST["text_description"];
+			$_SESSION["account_minimum_charge"] = $_POST["text_minimum_charge"];
+			$_SESSION["account_minimum_budget"] = $_POST["text_minimum_budget"];
+			$_SESSION["account_maximum_size"] = $_POST["select_maximum_size"];
+			$_SESSION["account_maximum_distance"] = $_POST["text_maximum_distance"];
 		}
-		if (!$bError)
+		else
 		{
-			$strQuery = "UPDATE members SET " .
-						AppendSQLUpdateValues("business_name", $_POST["text_business_name"],
-												"abn", $_POST["text_abn"],
-												"structure", $_POST["select_structure"],
-												"license", $_POST["text_license"],
-												"description", $_POST["text_description"],
-												"minimum_charge", $_POST["text_minimum_charge"],
-												"minimum_budget", $_POST["text_minimum_budget"],
-												"maximum_size", $_POST["select_maximum_size"],
-												"maximum_distance", $_POST["text_maximum_distance"]) . 
-						" WHERE id='" . $_SESSION["account_id"] . "'";
-			$result = DoQuery($g_dbFindATradie, $strQuery);
-			if ($result)
-			{
-				PrintJavascriptLine("AlertSuccess(\"business details updated!\");\n", 2, true);
-				$_SESSION["account_business_name"] = $_POST["text_business_name"];
-				$_SESSION["account_abn"] = $_POST["text_abn"];
-				$_SESSION["account_structure"] = $_POST["select_structure"];
-				$_SESSION["account_icense"] = $_POST["text_license"];
-				$_SESSION["account_description"] = $_POST["text_description"];
-				$_SESSION["account_minimum_charge"] = $_POST["text_minimum_charge"];
-				$_SESSION["account_minimum_budget"] = $_POST["text_minimum_budget"];
-				$_SESSION["account_maximum_size"] = $_POST["select_maximum_size"];
-				$_SESSION["account_maximum_distance"] = $_POST["text_maximum_distance"];
-			}
-			else
-			{
-				PrintJavascriptLine("AlertError(\"Business details could not be updated!\");\n", 2, true);
-			}
+			PrintJavascriptLine("AlertError(\"Business details could not be updated!\");\n", 2, true);
 		}
 	}
 	else if (isset($_POST["text_first_name"]))
@@ -757,6 +734,10 @@
 	else if (isset($_POST["submit_job_posted_search"]))
 	{
 		// See in tab below
+	}
+	else if (isset($_GET["member_id"]))
+	{
+		PrintJavascriptLine("sessionStorage[\"member_id\"] = \"" . $_GET["member_id"] . "\";", 3, true);
 	}
 	else
 	{
@@ -1077,7 +1058,7 @@
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>
 										<td class="cell_no_borders search_cell" style="width:5.5em;"><b>Date</b></td>
-										<td class="cell_no_borders search_cell" style="width:18em;"><b>Name<br/>Contact</b></td>
+										<td class="cell_no_borders search_cell" style="width:18em;"><b>Name<br/>Location<br/>Contact</b></td>
 										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Size<br/>Budget</b></td>
 										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Urgent?</b></td>
 										<td class="cell_no_borders search_cell" style="width:6em;"><b>Completed</b></td>
@@ -1236,11 +1217,9 @@
 
 <?php
 	$strID = "profile";
+	$strPreviewImageFilePath = $_SESSION["account_profile_filename"];
 	include "select_file.html"; 
 ?>
-<script type="text/javascript">
-	document.getElementById("profile_image_preview").src = "<?php echo $_SESSION["account_profile_filename"]; ?>";
-</script>
 			
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
@@ -1259,11 +1238,9 @@
 	
 <?php
 	$strID = "logo";
+	$strPreviewImageFilePath = $_SESSION["account_logo_filename"];
 	include "select_file.html";
 ?>
-<script type="text/javascript">
-	document.getElementById("logo_image_preview").src = "<?php echo $_SESSION["account_logo_filename"]; ?>";
-</script>
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
 												<input type="submit" name="submit_logo" value="SAVE" />
