@@ -2033,7 +2033,8 @@
 				echo "	  <button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" class=\"function_button_image\" /></button>\n";
 				//echo "	  <button type=\"button\ id=\"button_job_feedback\" name=\"button_job_feedback\" class=\"function_button\" title=\"Provide feedback for the tradie\" value=\"FEEDBACK\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></button>\n";
 				echo "<br/>\n";
-				DoCreateFeedbackTextArea($row["feedback_id"]);
+				if ($row["completed"] == 1)
+					DoCreateFeedbackTextArea($row["feedback_id"]);
 				echo "	  <input type=\"hidden\" name=\"text_job_edit_id\" value=\"" . $row["id"] . "\">\n";
 				echo "    <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $row["feedback_id"] . "\" />\n";
 				echo "    <input type=\"hidden\" name=\"text_recipient_id\" value=\"" . $row["accepted_by_member_id"] . "\" />\n";
@@ -2107,13 +2108,15 @@
 		return $date->format("d/m/Y");
 	}
 	
-	function DoCreateFeedbackTextArea($strFeedbackID)
+	function DoCreateFeedbackTextArea($strFeedbackID, $bRequired = false)
 	{
 		$strPrompt = "";
-		
+		$strRequired = "";
+		if ($bRequired)
+			$strRequired = " required";
 		if (strcmp($strFeedbackID, "0") == 0)
 		{
-			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" required cols=\"32\" rows=\"1\"></textarea>\n";
+			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\"" . $strRequired . "cols=\"32\" rows=\"1\"></textarea>\n";
 			$strPrompt = "You can add your feedback here...";
 		}
 		else
@@ -2236,18 +2239,24 @@
 								$mapAddedJobIDs[$rowJob["id"]] = true;
 								echo "<tr>\n";
 								$date = new DateTime($rowJob["date_added"]);
-								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>";
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-								echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-								echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
-								echo "<td class=\"cell_no_borders search_cell\">" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>";
-								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . "</td>";
-								if ($rowJob["urgent"])
-									echo "<td class=\"cell_no_borders search_cell\">YES</td>";
-								else
-									echo "<td class=\"cell_no_borders search_cell\">NO</td>";
-								echo "<td class=\"cell_no_borders search_cell\">";
-								
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>";
+								echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
+								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
+								DoDisplayBoolean($rowJob["urgent"] == 1, "function_button_image");
+								echo "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
+								DoDisplayBoolean($rowJob["completed"] == 1, "function_button_image");
+								echo "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
+								DoDisplayBoolean($rowJob["paid"] == 1, "function_button_image");
+								echo "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
+								DoDisplayBoolean($rowJob["feedback_id"] != 0, "function_button_image");
+								echo "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\">\n";
 								echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";
 								echo "     <input type=\"hidden\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
 								echo "     <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $rowJob["feedback_id"] . "\" />\n";
@@ -2263,14 +2272,14 @@
 								else if ($rowJob["paid"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as unpaid\" name=\"submit_unpaid_job\" value=\"UNPAID\" /><img src=\"images/unpaid.png\" alt=\"images/unpaid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea($rowJob["feedback_id"]);
+									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowJob["completed"] == 1);
 								}
 								else if ($rowJob["completed"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as incomplete\" name=\"submit_uncomplete_job\" value=\"UNCOMPLETE\" /><img src=\"images/uncomplete.png\" alt=\"images/uncomplete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"button\" class=\"function_button\" title=\"Raise PayPal invoice\" value=\"PAYPAL\" onclick=\"window.location.href = 'https://www.paypal.com'\" /><img src=\"images/paypal.png\" alt=\"images/paypal.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as paid\" name=\"submit_paid_job\" value=\"PAID\" /><img src=\"images/paid.png\" alt=\"images/paid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea($rowJob["feedback_id"]);
+									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowJob["completed"] == 1);
 								}
 								else if (strcmp($rowJob["accepted_by_member_id"], $_SESSION["account_id"]) == 0)
 								{

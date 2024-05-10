@@ -206,7 +206,7 @@
 				
 				.function_button_image
 				{
-					width: 40px;
+					width: 30px;
 				}
 				
 				.boolean_image
@@ -1077,11 +1077,12 @@
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>
 										<td class="cell_no_borders search_cell" style="width:5.5em;"><b>Date</b></td>
-										<td class="cell_no_borders search_cell" style="width:16em;"><b>Name</b></td>
-										<td class="cell_no_borders search_cell" style="width:18em;"><b>Email</b></td>
-										<td class="cell_no_borders search_cell" style="width:4em;"><b>Budget</b></td>
-										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Size</b></td>
+										<td class="cell_no_borders search_cell" style="width:18em;"><b>Name<br/>Contact</b></td>
+										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Size<br/>Budget</b></td>
 										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Urgent?</b></td>
+										<td class="cell_no_borders search_cell" style="width:6em;"><b>Completed</b></td>
+										<td class="cell_no_borders search_cell" style="width:4em;"><b>Paid</b></td>
+										<td class="cell_no_borders search_cell" style="width:6em;"><b>Feedback<br/>received</b></td>
 										<td class="cell_no_borders search_cell" style=""><b>Functions</b></td>
 									</tr>
 									<?php
@@ -1208,15 +1209,15 @@
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							<table  cellspacing="0" cellpadding="3" border="1" class="search_table">
 								<tr>
-									<td class="search_cell" style="width:5em;"><b>Date</b></td>
-									<td class="search_cell" style="width:4em;"><b>Size</b></td>
-									<td class="search_cell" style="width:9em;"><b>Maximum budget</b></td>
-									<td class="search_cell" style="width:3em;"><b>Urgent</b></td>
-									<td class="search_cell" style="width:12em;"><b>Accepted by</b></td>
-									<td class="search_cell" style="width:4em;"><b>Completed</b></td>
-									<td class="search_cell" style="width:4em;"><b>Paid</b></td>
-									<td class="search_cell" style="width:4em;"><b>Feedback<br/>given</b></td>
-									<td class="search_cell" style="width:320px;"><b>Functions</b></td>
+									<td class="cell_no_borders search_cell" style="width:5em;"><b>Date</b></td>
+									<td class="cell_no_borders search_cell" style="width:4em;"><b>Size</b></td>
+									<td class="cell_no_borders search_cell" style="width:9em;"><b>Maximum budget</b></td>
+									<td class="cell_no_borders search_cell" style="width:3em;"><b>Urgent</b></td>
+									<td class="cell_no_borders search_cell" style="width:12em;"><b>Accepted by</b></td>
+									<td class="cell_no_borders search_cell" style="width:4em;"><b>Completed</b></td>
+									<td class="cell_no_borders search_cell" style="width:4em;"><b>Paid</b></td>
+									<td class="cell_no_borders search_cell" style="width:4em;"><b>Feedback<br/>received</b></td>
+									<td class="cell_no_borders search_cell" style="width:320px;"><b>Functions</b></td>
 								</tr>
 								<?php
 									DoGetWebJobsPosted();
