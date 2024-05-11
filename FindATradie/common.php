@@ -25,6 +25,8 @@
 	$g_strPaypalLive = "none";
 	$g_strPaypalTest = "block";
 	
+	$g_strMailToNewLine = "%0E%0A";
+	
 	
 	
 	//******************************************************************************
@@ -89,6 +91,76 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
+	
+	function DoGetStateSelectionIndex($strState)
+	{
+		$nI = 0;
+		
+		if (strcmp($strState, "ACT") == 0)
+		{
+			$nI = 0;
+		}
+		else if (strcmp($strState, "NSW") == 0)
+		{
+			$nI = 1;
+		}
+		else if (strcmp($strState, "NT") == 0)
+		{
+			$nI = 2;
+		}
+		else if (strcmp($strState, "QLD") == 0)
+		{
+			$nI = 3;
+		}
+		else if (strcmp($strState, "SA") == 0)
+		{
+			$nI = 4;
+		}
+		else if (strcmp($strState, "TAS") == 0)
+		{
+			$nI = 5;
+		}
+		else if (strcmp($strState, "VIC") == 0)
+		{
+			$nI = 6;
+		}
+		else if (strcmp($strState, "WA") == 0)
+		{
+			$nI = 7;
+		}
+		return $nI;
+	}
+	
+	function DoGetJobSizeSelectionIndex($strJobSize)
+	{
+		$nI = 0;
+		
+		if (strcmp($strJobSize, "Not applicable") == 0)
+		{
+			$nI = 0;
+		}
+		else if (strcmp($strJobSize, "Up to 50") == 0)
+		{
+			$nI = 1;
+		}
+		else if (strcmp($strJobSize, "50 - 100") == 0)
+		{
+			$nI = 2;
+		}
+		else if (strcmp($strJobSize, "100 - 250") == 0)
+		{
+			$nI = 3;
+		}
+		else if (strcmp($strJobSize, "250 - 500") == 0)
+		{
+			$nI = 4;
+		}
+		else if (strcmp($strJobSize, "More than 500") == 0)
+		{
+			$nI = 5;
+		}
+		return $nI;
+	}
 	
 	function DoGetDateNow()
 	{
@@ -535,7 +607,85 @@
 
 		return DoQuery($dbConnection, $g_strQuery);
 	}
+
+	function DoUpdateQuery6($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . 
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) .
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
 	
+	function DoUpdateQuery7($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . "', " .
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) .
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoUpdateQuery8($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . "', " .
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . "', " . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) . 
+			$strColumnName8 . "='" .  EscapeSingleQuote($strColumnValue8) . "', " .
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoUpdateQuery9($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . "', " .
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . "', " . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) . "', " .
+			$strColumnName8 . "='" .  EscapeSingleQuote($strColumnValue8) . "', " . $strColumnName9 . "='" .  EscapeSingleQuote($strColumnValue9) . 
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoUpdateQuery10($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . "', " .
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . "', " . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) . "', " .
+			$strColumnName8 . "='" .  EscapeSingleQuote($strColumnValue8) . "', " . $strColumnName9 . "='" .  EscapeSingleQuote($strColumnValue9) . "', " .
+			$strColumnName10 . "='" .  EscapeSingleQuote($strColumnValue10) . 
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+
+	function DoUpdateQuery11($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10, $strColumnName11, $strColumnValue11, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . 
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . "', " . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) .
+			$strColumnName8 . "='" .  EscapeSingleQuote($strColumnValue8) . "', " . $strColumnName9 . "='" .  EscapeSingleQuote($strColumnValue9) . 
+			$strColumnName10 . "='" .  EscapeSingleQuote($strColumnValue10) . "', " . $strColumnName11 . "='" .  EscapeSingleQuote($strColumnValue11) .
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+
 	function DoDeleteQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
@@ -588,6 +738,46 @@
 	{
 		global $g_strQuery;
 		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery7($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery8($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . "," . $strColumnName8 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "','" . EscapeSingleQuote($strColumnValue8) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery9($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . "," . $strColumnName8 . "," . $strColumnName9 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "','" . EscapeSingleQuote($strColumnValue8) . "','" . EscapeSingleQuote($strColumnValue9) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery10($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . "," . $strColumnName8 . "," . $strColumnName9 . "," . $strColumnName10 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "','" . EscapeSingleQuote($strColumnValue8) . "','" . EscapeSingleQuote($strColumnValue9)  . "','" . EscapeSingleQuote($strColumnValue10) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
+	function DoInsertQuery11($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10, $strColumnName11, $strColumnValue11)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . "," . $strColumnName8 . "," . $strColumnName9 . "," . $strColumnName10 . "," . $strColumnName11 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "','" . EscapeSingleQuote($strColumnValue8) . "','" . EscapeSingleQuote($strColumnValue9)  . "','" . EscapeSingleQuote($strColumnValue10) . "','" . EscapeSingleQuote($strColumnValue11) . "')";
 		
 		return DoQuery($dbConnection, $g_strQuery);
 	}
@@ -910,6 +1100,22 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	function DoGenerateJobSizeOptions($strJobSize)
+	{
+		$arrayJobSize = ["Not applicable", "Up to 50", "50 - 100", "100 - 250", "250 - 500", "More than 500"];
+		$strSelected = "";
+					
+		for ($nI = 0; $nI < count($arrayJobSize); $nI++)
+		{
+			if (strcmp($arrayJobSize[$nI], $strJobSize) == 0)
+				$strSelected = " selected";
+			else
+				$strSelected = "";
+				
+			echo "<option" . $strSelected . ">" . $arrayJobSize[$nI] . "</option>\n";
+		}
+	}
+	
 	// Generate options for a primary trade 'select' input, with one selection.
 	function DoGeneratePrimaryTradeOptions($strTradeID)
 	{
@@ -922,13 +1128,14 @@
 	    	PrintIndents(8);
 			echo "<option value=\"" . $row["id"] . "\"";
 			
-			if (isset($strTradeID) && ($strTradeID != "") && ($strTradeID == $row["id"]))
+			if (isset($strTradeID) && (strcmp($strTradeID, "") != 0) && (strcmp($strTradeID, $row["id"]) == 0))
 				echo " selected";
+			else
+				$strSelected = "";
 			
 			echo ">";
 			echo $row["name"];
 			echo "</option>\n";
-			$strSelected = "";
 	    }
 	    $queryResult->free_result();
 	}
@@ -1003,6 +1210,302 @@
 
 
 	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** DEFAULT INPUT VALUES
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+
+	function DoGetDefaultUsername()
+	{
+		$strUsername = "";
+		
+		if (isset($_POST["text_username"]))
+			$strUsername = $_POST["text_username"];
+		else if (isset($_SESSION['account_username'])) 
+			$strUsername = $_SESSION['account_username'];
+			
+		return $strUsername;
+	}
+	
+	function DoGetDefaultPassword()
+	{
+		$strPassword = "";
+		
+		if (isset($_POST["text_password"]))
+			$strPassword = DoAESDecrypt($_POST["text_password"]);
+		else if (isset($_SESSION['account_password'])) 
+			$strPassword = $_SESSION['account_password'];
+
+		return $strPassword;
+	}
+	
+	function DoGetDefaultTrade()
+	{
+		$strTrade = "";
+		
+		if (isset($_POST["select_trade"]))
+			$strTrade = $_POST["select_trade"];
+		else if (isset($_SESSION["account_trade"]))
+			$strTrade = $_SESSION["account_trade"];
+			
+		return $strTrade;	
+	}
+
+	function DoGetDefaultAdditionalTrades()
+	{
+		$strTrades = "";
+		
+		if (isset($_POST["select_additional_trades"]))
+			$strTrades = $_POST["select_additional_trades"];
+		else if (isset($_SESSION["account_additional_trades"]))
+			$strTrades = $_SESSION["account_additional_trades"];
+			
+		return $strTrades;	
+	}
+	
+	function DoGetDefaultBusinessName()
+	{
+		$strBusinessName = "";
+		
+		if (isset($_POST["text_business_name"]))
+			$strBusinessName = $_POST["text_business_name"];
+		else if (isset($_SESSION["account_business_name"]))
+			$strBusinessName = $_SESSION["account_business_name"];
+
+		return $strBusinessName ;
+	}
+	
+	function DoGetDefaultABN()
+	{
+		$strABN = "";
+		
+		if (isset($_POST["text_abn"]))
+			$strABN = $_POST["text_abn"];
+		else if (isset($_SESSION["account_abn"]))
+			$strABN = $_SESSION["account_abn"];
+
+		return $strABN;
+	}
+	
+	function DoGetDefaultStructure()
+	{
+		$strStructure = "";
+		
+		if (isset($_POST["select_structure"]))
+			$strStructure = $_POST["select_structure"];
+		else if (isset($_SESSION["account_structure"]))
+			$strStructure = $_SESSION["account_structure"];
+
+		return $strStructure;
+	}
+
+	function DoGetDefaultLicense()
+	{
+		$strLicense = "";
+		
+		if (isset($_POST["text_license"]))
+			$strLicense = $_POST["text_license"];
+		else if (isset($_SESSION["account_license"]))
+			$strLicense = $_SESSION["account_license"];
+
+		return $strLicense;
+	}
+
+	function DoGetDefaultJobDescription()
+	{
+		$strDescription = "";
+		
+		if (isset($_POST["text_job_description"]))
+			$strDescription = $_POST["text_job_description"];
+
+		return $strDescription;
+	}
+
+	function DoGetDefaultDescription()
+	{
+		$strDescription = "";
+		
+		if (isset($_POST["description"]))
+			$strDescription = $_POST["description"];
+		else if (isset($_SESSION["account_description"]))
+			$strDescription = $_SESSION["account_description"];
+
+		return $strDescription;
+	}
+
+	function DoGetDefaultMinimumCharge()
+	{
+		$strMinimumCharge = "";
+		
+		if (isset($_POST["text_minimum_charge"]))
+			$strMinimumCharge = sprintf("%.2f", $_POST["text_minimum_charge"]);
+		else if (isset($_SESSION["account_minimum_charge"]))
+			$strMinimumCharge = sprintf("%.2f", $_SESSION["account_minimum_charge"]);
+
+		return $strMinimumCharge;
+	}
+
+	function DoGetDefaultMinimumBudget()
+	{
+		$strMinimumBudget = "";
+		
+		if (isset($_POST["text_minimum_budget"]))
+			$strMinimumBudget = sprintf("%.2f", $_POST["text_minimum_budget"]);
+		else if (isset($_SESSION["account_minimum_budget"]))
+			$strMinimumBudget = sprintf("%.2f", $_SESSION["account_minimum_budget"]);
+
+		return $strMinimumBudget;
+	}
+
+	function DoGetDefaultMaximumSize()
+	{
+		$strMaximumSize = "";
+		
+		if (isset($_POST["select_maximum_size"]))
+			$strMaximumSize = $_POST["select_maximum_size"];
+		else if (isset($_SESSION["account_maximum_size"]))
+			$strMaximumSize = $_SESSION["account_maximum_size"];
+			
+		return $strMaximumSize;
+	}
+
+	function DoGetDefaultMaximumDistance()
+	{
+		$strMaximumDistance = "";
+		
+		if (isset($_POST["text_maximum_distance"]))
+			$strMaximumDistance = sprintf("%d", $_POST["text_maximum_distance"]);
+		else if (isset($_SESSION["account_maximum_distance"]))
+			$strMaximumDistance = sprintf("%d", $_SESSION["account_maximum_distance"]);
+
+		return $strMaximumDistance;
+	}
+
+	function DoGetDefaultFirstName()
+	{
+		$strFirstName = "";
+		
+		if (isset($_POST["text_first_name"]))
+			$strFirstName = $_POST["text_first_name"];
+		else if (isset($_SESSION["account_first_name"]))
+			$strFirstName = $_SESSION["account_first_name"];
+
+		return $strFirstName;
+	}
+
+	function DoGetDefaultSurname()
+	{
+		$strSurname = "";
+		
+		if (isset($_POST["text_surname"]))
+			$strSurname = $_POST["text_surname"];
+		else if (isset($_SESSION["account_surname"]))
+			$strSurname = $_SESSION["account_surname"];
+
+		return $strSurname;
+	}
+
+	function DoGetDefaultUnit()
+	{
+		$strUnit = "";
+		
+		if (isset($_POST["text_unit"]))
+			$strUnit = $_POST["text_unit"];
+		else if (isset($_SESSION["account_unit"]))
+			$strUnit = $_SESSION["account_unit"];
+
+		return $strUnit;
+	}
+
+	function DoGetDefaultStreet()
+	{
+		$strStreet = "";
+		
+		if (isset($_POST["text_street"]))
+			$strStreet = $_POST["text_street"];
+		else if (isset($_SESSION["account_street"]))
+			$strStreet = $_SESSION["account_street"];
+
+		return $strStreet;
+	}
+
+	function DoGetDefaultSuburb()
+	{
+		$strSuburb = "";
+		
+		if (isset($_POST["text_suburb"]))
+			$strSuburb = $_POST["text_suburb"];
+		else if (isset($_SESSION["account_suburb"]))
+			$strSuburb = $_SESSION["account_suburb"];
+
+		return $strSuburb;
+	}
+
+	function DoGetDefaultState()
+	{
+		$strState = "";
+		
+		if (isset($_POST["select_state"]))
+			$strState = $_POST["select_state"];
+		else if (isset($_SESSION["account_state"]))
+			$strState = $_SESSION["account_state"];
+
+		return $strState;
+	}
+
+	function DoGetDefaultPostcode()
+	{
+		$strPostcode = "";
+		
+		if (isset($_POST["text_postcode"]))
+			$strPostcode = $_POST["text_postcode"];
+		else if (isset($_SESSION["account_postcode"]))
+			$strPostcode = $_SESSION["account_postcode"];
+
+		return $strPostcode;
+	}
+
+	function DoGetDefaultPhone()
+	{
+		$strPhone = "";
+		
+		if (isset($_POST["text_phone"]))
+			$strPhone = $_POST["text_phone"];
+		else if (isset($_SESSION["account_phone"]))
+			$strPhone = $_SESSION["account_phone"];
+
+		return $strPhone;
+	}
+
+	function DoGetDefaultMobile()
+	{
+		$strMobile = "";
+		
+		if (isset($_POST["text_mobile"]))
+			$strMobile = $_POST["text_mobile"];
+		else if (isset($_SESSION["account_mobile"]))
+			$strMobile = $_SESSION["account_mobile"];
+
+		return $strMobile;
+	}
+
+	function DoGetDefaultEmail()
+	{
+		$strEmail = "";
+		
+		if (isset($_POST["text_email"]))
+			$strEmail = $_POST["text_email"];
+		else if (isset($_SESSION["account_email"]))
+			$strEmail = $_SESSION["account_email"];
+
+		return $strEmail;
+	}
+
+
+
 	//******************************************************************************
 	//******************************************************************************
 	//** 
@@ -1979,6 +2482,7 @@
 	function DoGetWebJobsPosted()
 	{
 		global $g_dbFindATradie;
+		global $g_strMailToNewLine;
 		$row = null;
 		
 		$results = DoFindQuery1($g_dbFindATradie, "jobs", "member_id", $_SESSION["account_id"]);
@@ -1994,8 +2498,8 @@
 				echo "<td class=\"search_cell\">\n";
 				echo $row["size"];
 				echo "</td>\n";
-				echo "<td class=\"search_cell\">\n";
-				echo $row["maximum_budget"];
+				echo "<td class=\"search_cell\">$";
+				echo sprintf("%.2f", $row["maximum_budget"]);
 				echo "</td>\n";
 				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";
 				DoDisplayBoolean($row["urgent"], "function_button_image");
@@ -2006,7 +2510,11 @@
 				{
 					$rowMember = DoGetMember($row["accepted_by_member_id"]);
 					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
-							$rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>" . $rowMember["business_name"] . "</a>\n";
+							$rowMember["first_name"] . " " . $rowMember["surname"] . ", " . 
+							$rowMember["business_name"] . "</a><br/>\n";
+					if (strlen($row["unit"]) > 0)
+						echo $row["unit"] . ", ";
+					echo $row["street"] . "<br/>" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"];
 				}
 				else
 				{
@@ -2021,15 +2529,27 @@
 				echo "</td>\n";
 				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";
 				DoDisplayBoolean(DoGetColumnValue("feedback", "id", $row["feedback_id"], "positive"), "function_button_image");
+				echo "</td>\n";
 				echo "<td class=\"search_cell\">\n";
 				echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";	
 				echo "    <button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $row["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
-				echo "    <button type=\"submit\ id=\"submit_job_edit\" name=\"submit_job_edit\" class=\"function_button\" title=\"Edit your job\" value=\"EDIT\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" class=\"function_button_image\" /></button>&nbsp;\n";
-				echo "	  <button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" class=\"function_button_image\" /></button>\n";
-				//echo "	  <button type=\"button\ id=\"button_job_feedback\" name=\"button_job_feedback\" class=\"function_button\" title=\"Provide feedback for the tradie\" value=\"FEEDBACK\" onclick=\"return OnClickComplete(\"" . $row["id"] . "\");\" /><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></button>\n";
-				echo "<br/>\n";
+				if ($row["accepted_by_member_id"] == 0)
+				{
+					echo "    <button type=\"button\" class=\"function_button\" title=\"Edit this job\" value=\"EDIT\" onclick=\"OnClickEditJobButton('" . $row["id"] . "', '" . $row["member_id"] . "', '" . $row["trade_id"] . "', '" .  $row["maximum_budget"] . "', '" . $row["size"] . "', '" . $row["urgent"] . "', '" . $row["description"] . "', '" . $row["unit"] . "', '" . $row["street"] . "', '" . $row["suburb"] . "', '" . $row["state"] . "', '" . $row["postcode"] . "')\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" class=\"function_button_image\" /></button>\n";
+				}
+				echo "	  <button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 				if ($row["completed"] == 1)
-					DoCreateFeedbackTextArea($row["feedback_id"]);
+				{
+					$dateCompleted = new DateTime($row["date_completed"]);
+					$strHREF = "mailto://" . $rowMember["email"] . "?subject=RE: job in " . $_SESSION["account_suburb"] . "(" .
+								$_SESSION["account_postcode"] . ") with ID '" . $row["id"] . 
+								"'&body=Job Completed: " . $dateCompleted->format("d/m/Y") . $g_strMailToNewLine . $g_strMailToNewLine . 
+								"Client name: " . $_SESSION["account_first_name"] . " " . $_SESSION["account_surname"] . 
+								$g_strMailToNewLine . $g_strMailToNewLine . "Please send me an invoice.";
+					echo "	  <a href=\"" . $strHREF . "\"><img src=\"images/paypal.png\" alt=\"images/paypal.png\" class=\"function_button_image\" /></a>&nbsp;\n";				
+					echo "<br/>\n";
+					DoCreateFeedbackTextArea($row["feedback_id"], $rowMember["first_name"] . " " . $rowMember["surname"]);
+				}
 				echo "	  <input type=\"hidden\" name=\"text_job_edit_id\" value=\"" . $row["id"] . "\">\n";
 				echo "    <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $row["feedback_id"] . "\" />\n";
 				echo "    <input type=\"hidden\" name=\"text_recipient_id\" value=\"" . $row["accepted_by_member_id"] . "\" />\n";
@@ -2103,7 +2623,7 @@
 		return $date->format("d/m/Y");
 	}
 	
-	function DoCreateFeedbackTextArea($strFeedbackID, $bRequired = false)
+	function DoCreateFeedbackTextArea($strFeedbackID, $strRecipientName, $bRequired = false)
 	{
 		$strPrompt = "";
 		$strRequired = "";
@@ -2112,7 +2632,7 @@
 		if (strcmp($strFeedbackID, "0") == 0)
 		{
 			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\"" . $strRequired . "cols=\"32\" rows=\"1\"></textarea>\n";
-			$strPrompt = "You can add your feedback here...";
+			$strPrompt = "You can add your feedback for " . $strRecipientName . " here...";
 		}
 		else
 		{
@@ -2125,8 +2645,8 @@
 			else if ($nPositive == 0)
 				$strFilename = "thumbs_down.png";
 			echo "<img src=\"images/" . $strFilename . "\" alt=\"images/" . $strFilename . "\" class=\"function_button_image\" />&nbsp;\n";
-			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" required cols=\"32\" rows=\"1\">\n" . $strFeedbackDesc . "</textarea>\n";
-			$strPrompt = "You can edit your feedback here...";
+			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" " . $strRequired . " cols=\"32\" rows=\"1\">\n" . $strFeedbackDesc . "</textarea>\n";
+			$strPrompt = "You can edit your feedback for " . $strRecipientName . " here...";
 		}
 		echo "<button type=\"submit\" name=\"submit_positive_feedback\" class=\"function_button\" title=\"Provide positive feedback\" value=\"POSITIVE FEEDBACK\" /><img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 		echo "<button type=\"submit\" name=\"submit_negative_feedback\" class=\"function_button\" title=\"Provide negative feedback\" value=\"NEGATIVE FEEDBACK\" /><img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" class=\"function_button_image\" /></button>\n";
@@ -2237,11 +2757,16 @@
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</a><br/>\n";
-								echo $rowMember["suburb"] . ", " . $rowMember["postcode"] . "<br/>\n";
+								if (strlen($rowJob["unit"]) > 0)
+									echo $rowJob["unit"] . ", ";
+								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
 								echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
 								DoDisplayBoolean($rowJob["urgent"] == 1, "function_button_image");
+								echo "</td>\n";
+								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
+								DoDisplayBoolean($rowJob["accepted_by_member_id"] > 0, "function_button_image");
 								echo "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
 								DoDisplayBoolean($rowJob["completed"] == 1, "function_button_image");
@@ -2268,14 +2793,14 @@
 								else if ($rowJob["paid"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as unpaid\" name=\"submit_unpaid_job\" value=\"UNPAID\" /><img src=\"images/unpaid.png\" alt=\"images/unpaid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowJob["completed"] == 1);
+									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowMember["first_name"] . " " . $rowMember["surname"], $rowJob["completed"] == 1);
 								}
 								else if ($rowJob["completed"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as incomplete\" name=\"submit_uncomplete_job\" value=\"UNCOMPLETE\" /><img src=\"images/uncomplete.png\" alt=\"images/uncomplete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"button\" class=\"function_button\" title=\"Raise PayPal invoice\" value=\"PAYPAL\" onclick=\"window.location.href = 'https://www.paypal.com'\" /><img src=\"images/paypal.png\" alt=\"images/paypal.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as paid\" name=\"submit_paid_job\" value=\"PAID\" /><img src=\"images/paid.png\" alt=\"images/paid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowJob["completed"] == 1);
+									DoCreateFeedbackTextArea($rowJob["feedback_id"], $rowMember["first_name"] . " " . $rowMember["surname"], $rowJob["completed"] == 1);
 								}
 								else if (strcmp($rowJob["accepted_by_member_id"], $_SESSION["account_id"]) == 0)
 								{

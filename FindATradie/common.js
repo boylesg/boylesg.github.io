@@ -119,7 +119,7 @@
 		return input;
 	}
 
-		function IsAllowedChar(nKeyCode, strAllowedChars)
+	function IsAllowedChar(nKeyCode, strAllowedChars)
 	{
 		let bValid = true;
 			
@@ -130,6 +130,76 @@
 				break;
 		}
 		return bValid;
+	}
+	
+	function DoGetStateSelectionIndex(strState)
+	{
+		let nI = 0;
+		
+		if (strState == "ACT")
+		{
+			nI = 0;
+		}
+		else if (strState == "NSW")
+		{
+			nI = 1;
+		}
+		else if (strState == "NT")
+		{
+			nI = 2;
+		}
+		else if (strState == "QLD")
+		{
+			nI = 3;
+		}
+		else if (strState == "SA")
+		{
+			nI = 4;
+		}
+		else if (strState == "TAS")
+		{
+			nI = 5;
+		}
+		else if (strState == "VIC")
+		{
+			nI = 6;
+		}
+		else if (strState == "WA")
+		{
+			nI = 7;
+		}
+		return nI;
+	}
+	
+	function DoGetJobSizeSelectionIndex(strJobSize)
+	{
+		nI = 0;
+		
+		if (strJobSize == "Not applicable")
+		{
+			nI = 0;
+		}
+		else if (strJobSize == "Up to 50")
+		{
+			nI = 1;
+		}
+		else if (strJobSize == "50 - 100")
+		{
+			nI = 2;
+		}
+		else if (strJobSize == "100 - 250")
+		{
+			nI = 3;
+		}
+		else if (strJobSize == "250 - 500")
+		{
+			nI = 4;
+		}
+		else if (strJobSize == "More than 500")
+		{
+			nI = 5;
+		}
+		return nI;
 	}
 	
 	//******************************************************************************
