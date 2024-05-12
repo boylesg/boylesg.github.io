@@ -2375,6 +2375,8 @@
 		global $g_strQuery;
 		$bDisplayEdit = $strProviderID != "";
 		$queryResult = NULL;
+		$nPercentagePositive = 0;
+		$nPercentageNegative = 0;
 		
 		if ($bDisplayEdit)
 			$strFormID = "given";
@@ -2395,10 +2397,10 @@
 		}
 		if ($queryResult && ($queryResult->num_rows > 0))
 		{
-			$arrayFeedback = [];
 			$nTotal = 0;
 			$nPositive = 0;
 			$nNegative = 0;
+			$arrayFeedback = [];
 			
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
@@ -2409,35 +2411,39 @@
 
 				$nTotal++;
 			}
-			$nThumbsWidth = 20;
-			echo "<br/><br/><hr>\n";
-			echo "<table class=\"search_table\" cellspacing=\"0\" cellpadding=\"10\">\n";
-			echo "<tr>\n";
-			echo "<td>\n";
-			echo "<img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" width=\"" . $nThumbsWidth . "\" />\n";
-			echo "</td>\n";
-			echo "<td>\n";
-			printf("%d%%", ($nPositive * 100) / $nTotal);
-			echo "</td>\n";
-			echo "<td>\n";
-			echo "<img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" width=\"" . $nThumbsWidth . "\" />\n";
-			echo "</td>\n";
-			echo "<td>\n";
-			printf("%d%%", ($nNegative * 100) / $nTotal);
-			echo "</td>\n";
-			echo "</tr>\n";
-			echo "</table>\n";
-			echo "<hr><br/><br/>";
+			$nPercentagePositive = ($nPositive * 100) / $nTotal;
+			$nPercentageNegative = ($nNegative * 100) / $nTotal;
+		}
+		echo "<br/><br/><hr>\n";
+		echo "<table class=\"search_table\" cellspacing=\"0\" cellpadding=\"10\" style=\"width:30em;margin-left:0.5em;\">\n";
+		echo "<tr>\n";
+		echo "<td>\n";
+		echo "<img class=\"function_button_image\" src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" />\n";
+		echo "</td>\n";
+		echo "<td>\n";
+		printf("%d%%", $nPercentagePositive);
+		echo "</td>\n";
+		echo "<td>\n";
+		echo "<img class=\"function_button_image\" src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" />\n";
+		echo "</td>\n";
+		echo "<td>\n";
+		printf("%d%%", $nPercentageNegative);
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "<hr><br/><br/>";
 
-			echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\" style=\"width:99%;\">\n";
-			echo "<tr>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Member name<br/>Location</td>\n";
-			echo "<td class=\"cell_no_borders search_cell\" style=\"width:12em;\">Functions</td>\n";
-			echo "</tr>\n";
+		echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\" style=\"width:99%;\">\n";
+		echo "<tr>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Member name<br/>Location</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\" style=\"width:12em;\">Functions</td>\n";
+		echo "</tr>\n";
+		if ($queryResult && ($queryResult->num_rows > 0))
+		{
 			$queryResult->data_seek(0);
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
@@ -2472,6 +2478,10 @@
 				echo "</tr>\n";
 			}
 			echo "</table>\n";
+		}
+		else
+		{
+			echo "<td colspan=\"6\" class=\"cell_no_borders search_cell\">No feedback yet...</td>\n";
 		}
 	}
 	
