@@ -2457,7 +2457,8 @@
 				
 				echo "<td class=\"feedback_row\">\n";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
-								
+				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button><br/>";
 				if ($bDisplayNames && !$bDisplayEdit && !$rowFeedback["positive"])
 				{
 					echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"25\"/></a>\n";
