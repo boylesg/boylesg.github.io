@@ -173,7 +173,7 @@
 	
 	function DoGetJobSizeSelectionIndex(strJobSize)
 	{
-		nI = 0;
+		nI = -1;
 		
 		if (strJobSize == "Not applicable")
 		{

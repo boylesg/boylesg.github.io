@@ -168,6 +168,7 @@
 					border-style: inset;
 					border-width: medium;
 					border-color: var(--ColorInactiveBG);
+					table-layout: fixed;
 				}
 				
 				.search_cell
@@ -281,7 +282,7 @@
 	DebugPrint("_SESSION[\"password\"]", $_SESSION["password"], 2);
 	DebugPrint("_SESSION[\"accountid\"]", $_SESSION["account_id"], 2);
 	echo "<br><br>";
-*/	
+*/
 	if (isset($_POST["submit_logo"]))
 	{
 		DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_file_name"]);
@@ -390,64 +391,6 @@
 			PrintJavascriptLine("AlertError(\"Job could not be marked as unpaid!\")", 4, true);
 		}
 	}
-	else if (isset($_POST["submit_feedback_add"]))
-	{
-		$bPositive = true;
-		
-		if ($_POST["radio_feedback"] == "true")
-			$bPositive = true;
-		else if ($_POST["radio_feedback"] == "false")
-			$bPositive = false;
-
-		//$resultsFeedback = DoInsertQuery4($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
-		//	"positive", $bPositive, "recipient", $_POST["hidden_recipient_id"], "provider_id", $_SESSION["account_id"]);
-			
-		$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "completed", true, "id", $_POST["hidden_job_id"]);
-		if ($results)
-		{
-			$results = DoFindQuery1($g_dbFindATradie, "jobs", "id", $_POST["hidden_job_id"]);
-			if ($results && ($results->num_rows > 0))
-			{
-				if ($row = $results->fetch_assoc())
-				{
-					$resultsFeedback = DoInsertQuery4($g_dbFindATradie, "feedback", "description", $_POST["textarea_comments"], 
-						"positive", $bPositive, "recipient", $rowT["accepted_by_member_id"], "provider_id", $_SESSION["account_id"]);
-					if ($results && ($results->num_rows > 0))
-					{
-						PrintJavascriptLine("AlertSuccess(\"Job was completed with feedback!\")", 4, true);
-					}
-					else
-					{
-						PrintJavascriptLine("AlertSuccess(\"Job was completed without feedback!\")", 4, true);
-					}
-				}
-			}
-		}
-		else
-		{
-			PrintJavascriptLine("AlertError(\"Job could not be completed!\")", 4, true);
-		}
-	}
-	else if (isset($_POST["submit_edit_positive_feedback"]) || isset($_POST["submit_edit_negative_feedback"]))
-	{
-		$nPositive = 0;
-		
-		if (isset($_POST["submit_edit_positive_feedback"]))
-			$nPositive = 1;
-		else if (isset($_POST["submit_edit_negative_feedback"]))
-			$nPositive = 0;
-
-		$results = DoUpdateQuery2($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
-									"id", $_POST["text_feedback_id"]);
-		if ($results)
-		{
-			PrintJavascriptLine("AlertSuccess(\"Your feedback has been updated!\");", 5, true);
-		}
-		else
-		{
-			PrintJavascriptLine("AlertError(\"Your feedback could not be updated!\");", 5, true);
-		}
-	}
 	else if (isset($_POST["submit_positive_feedback"]) || isset($_POST["submit_negative_feedback"]))
 	{
 		$nPositive = 0;
@@ -456,42 +399,32 @@
 			$nPositive = 1;
 		else if (isset($_POST["submit_negative_feedback"]))
 			$nPositive = 0;
+		$strUpdateOrAdd = "XXXX";
 
-		$results = DoInsertQuery5($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
-									"job_id", $_POST["text_job_id"], "recipient_id", $_POST["text_recipient_id"],
-									"provider_id", $_POST["text_provider_id"]);
-		echo $g_strQuery;
-		if ($results)
+		if (strlen($_POST["text_feedback_id"]) == 0)
 		{
-			$results = DoFindQuery2($g_dbFindATradie, "feedback", "job_id", $_POST["text_job_id"], 
-									"description", $_POST["text_feedback"]);
-			if ($results && ($results->num_rows > 0))
-			{
-				if ($row = $results->fetch_assoc())
-				{
-					$results = DoUpdateQuery1($g_dbFindATradie, "jobs", "feedback_id", $row["id"], "id", $_POST["text_job_id"]);
-					if ($results)
-					{
-						PrintJavascriptLine("AlertSuccess(\"Your feedback has been added!\");", 5, true);
-					}
-					else
-					{
-						PrintJavascriptLine("AlertError(\"Your feedback could not be added!\");", 5, true);
-					}
-				}
-				else
-				{
-					PrintJavascriptLine("AlertError(\"Could not fetch feedback row!\");", 5, true);
-				}
-			}
-			else
-			{
-				PrintJavascriptLine("AlertError(\"Failed to find feedback!\");", 5, true);
-			}
+			$results = DoInsertQuery5($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
+										"job_id", $_POST["text_job_id"], "recipient_id", $_POST["text_recipient_id"],
+										"provider_id", $_POST["text_provider_id"]);
+			$strUpdateOrAdd = "added";
 		}
 		else
 		{
-			PrintJavascriptLine("AlertError(\"Feedback could not be inserted into table!\");", 5, true);
+			$results = DoUpdateQuery5($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
+										"job_id", $_POST["text_job_id"], "recipient_id", $_POST["text_recipient_id"],
+										"provider_id", $_POST["text_provider_id"], "id", $_POST["text_feedback_id"]);
+			$strUpdateOrAdd = "updated";
+		}
+echo $g_strQuery;
+echo "<br>";
+print_r($_POST);
+		if ($results)
+		{
+			PrintJavascriptLine("AlertSuccess(\"Your feedback has been " . $strUpdateOrAdd . "!\");", 5, true);
+		}
+		else
+		{
+			PrintJavascriptLine("AlertError(\"Your feedback could not be " . $strUpdateOrAdd . "!\");", 5, true);
 		}
 	}
 	else if (isset($_POST["submit_job_delete"]))
@@ -526,18 +459,18 @@
 			id="hidden_job_id"
 		*/
 		// New job
-		if (isset($_POST["hidden_job_id"]) && ($_POST["hidden_job_id"] == ""))
+		if (isset($_POST["text_job_id"]) && ($_POST["text_job_id"] == ""))
 		{
 			$bIsUrgent = "0";
-			if (isset($_POST["check_urgent"]) && ($_POST["check_urgent"] == "on"))
+			if (isset($_POST["check_urgent_job_edit"]) && ($_POST["check_urgent_job_edit"] == "on"))
 				$bIsUrgent = "1";
 			
-			$results = DoInsertQuery11($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_job"], 
-										"maximum_budget", $_POST["text_maximum_budget"], "size", $_POST["select_job_size"], 
-										"urgent", (int)$bIsUrgent, "description", $_POST["text_job_description"],
-										"unit", $_POST["text_unit"], "street", $_POST["text_street"], 
-										"suburb", $_POST["text_suburb"], "state", $_POST["select_state"], 
-										"postcode", $_POST["text_postcode"], "member_id", $_SESSION["account_id"]);
+			$results = DoInsertQuery11($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_id_edit"], 
+										"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
+										"urgent", (int)$bIsUrgent, "description", $_POST["text_job_description_edit"],
+										"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
+										"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
+										"postcode", $_POST["text_postcode_edit"], "member_id", $_SESSION["account_id"]);
 			echo $g_strQuery;
 			if ($results)
 			{
@@ -553,7 +486,7 @@
 		{
 			$results = DoUpdateQuery10($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_id_edit"], 
 										"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
-										"urgent", $_POST["check_urgent_edit"] == "on", "description", $_POST["text_job_description_edit"], 				
+										"urgent", $_POST["check_urgent_job_edit"] == "on", "description", $_POST["text_job_description_edit"], 				
 										"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
 										"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
 										"postcode", $_POST["text_postcode_edit"], "id", $_POST["text_job_id"]);
@@ -1170,10 +1103,10 @@
 										<td class="form_table_cell">
 											<select id="select_trade_id_edit" name="select_trade_id_edit" onchange="OnChangeTrade(this, DoGetInput('trade_description_job_edit'))">
 												<?php
-													$strTradeJob = "";
-													if (isset($_POST["select_trade_job"]))
-														$strTradeJob = $_POST["select_trade_job"];
-													DoGeneratePrimaryTradeOptions($strTradeJob); 
+													$strTradeID = "";
+													if (isset($_POST["select_trade_job_edit"]))
+														$strTradeID = $_POST["select_trade_job"];
+													DoGeneratePrimaryTradeOptions($strTradeID); 
 												?>
 											</select>
 										</td>
@@ -1189,7 +1122,7 @@
 											</select>
 										</td>
 										<td class="form_table_cell">
-											<input type="checkbox" id="check_urgent_edit" name="check_urgent_edit" <?php if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "on") == 0)) echo " checked"; ?> />
+											<input type="checkbox" id="check_urgent_job_edit" name="check_urgent_job_edit" <?php if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "on") == 0)) echo " checked"; ?> />
 										</td class="form_table_cell">
 										<td class="form_table_cell" >
 											<textarea id="text_job_description_edit" name="text_job_description_edit" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
@@ -1226,8 +1159,8 @@
 										</td>
 									</tr>
 								</table>
-								<input type="hidden" id="text_member_id" name="hidden_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
-								<input type="hidden" id="text_job_id" name="hidden_job_id" value="" />
+								<input type="hidden" id="text_member_id" name="text_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
+								<input type="hidden" id="text_job_id" name="text_job_id" value="" />
 							</form>
 							<p>
 								If you hover the mouse pointer over the function buttons then you will see what they do.
@@ -1244,13 +1177,13 @@
 								function OnClickEditJobButton(strJobID, strMemberID, strTradeID, strMaximumBudget, strSize, 
 																strUrgent, strDescription, strUnit, strStreet, strSuburb, 
 																strState, strPostcode)
-								{									
-									DoGetInput("text_job_id").selectedIndex = strJobID;
-									DoGetInput("text_member_id").selectedIndex = strMemberID;
-									DoGetInput("select_trade_id_edit").selectedIndex = strTradeID;
+								{
+									DoGetInput("text_job_id").value = strJobID;
+									DoGetInput("text_member_id").value = strMemberID;
+									DoGetInput("select_trade_id_edit").selectedIndex = strTradeID - 1;
 									DoGetInput("text_maximum_budget_edit").value = strMaximumBudget;
-									DoGetInput("select_job_size_edit").value = DoGetJobSizeSelectionIndex(strSize);
-									DoGetInput("check_urgent_edit").checked = strUrgent == 1;
+									DoGetInput("select_job_size_edit").selectedIndex = DoGetJobSizeSelectionIndex(strSize);
+									DoGetInput("check_urgent_job_edit").checked = strUrgent == 1;
 									DoGetInput("text_job_description_edit").value = strDescription;
 									DoGetInput("text_unit_edit").value = strUnit;
 									DoGetInput("text_street_edit").value = strStreet;
@@ -1269,10 +1202,10 @@
 									<td class="cell_no_borders search_cell" style="width:6em;"><b>Size</b></td>
 									<td class="cell_no_borders search_cell" style="width:3em;"><b>Budget</b></td>
 									<td class="cell_no_borders search_cell" style="width:3em;"><b>Urgent</b></td>
-									<td class="cell_no_borders search_cell" style="width:20em;"><b>Accepted by<br/>Location</b></td>
-									<td class="cell_no_borders search_cell" style="width:4em;"><b>Completed</b></td>
+									<td class="cell_no_borders search_cell" style="width:15em;"><b>Accepted by<br/>Location</b></td>
+									<td class="cell_no_borders search_cell" style="width:5em;"><b>Completed</b></td>
 									<td class="cell_no_borders search_cell" style="width:4em;"><b>Paid</b></td>
-									<td class="cell_no_borders search_cell" style="width:4em;"><b>Feedback<br/>received</b></td>
+									<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Feedback<br/>received</b></td>
 									<td class="cell_no_borders search_cell" style="width:320px;">
 										<table cellspacing="0" cellpadding="0" border="0">
 											<tr>
@@ -1351,12 +1284,10 @@
 						</div>
 
 						<div id="tab_contents5" class="tab_content">
-							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
+							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button5").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
-	$bFeedbackEdit = true;
-	include "feedback_form.html";
 ?>							
 						</div>
 						
@@ -1388,7 +1319,7 @@
 							</form>
 							
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
-							<table  cellspacing="0" cellpadding="3" border="1" class="search_table" style="table-layout:fixed;">
+							<table  cellspacing="0" cellpadding="3" border="1" class="search_table">
 								<tr>
 									<td class="search_cell" style="width:5em;"><b>Date</b></td>
 									<td class="search_cell" style=""><b>Advert Location</b></td>
