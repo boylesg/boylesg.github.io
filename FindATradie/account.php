@@ -415,9 +415,6 @@
 										"provider_id", $_POST["text_provider_id"], "id", $_POST["text_feedback_id"]);
 			$strUpdateOrAdd = "updated";
 		}
-echo $g_strQuery;
-echo "<br>";
-print_r($_POST);
 		if ($results)
 		{
 			PrintJavascriptLine("AlertSuccess(\"Your feedback has been " . $strUpdateOrAdd . "!\");", 5, true);

@@ -2429,7 +2429,7 @@
 			echo "</table>\n";
 			echo "<hr><br/><br/>";
 
-			echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"1\" class=\"table_no_borders search_table\" style=\"width:99%;\">\n";
+			echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\" style=\"width:99%;\">\n";
 			echo "<tr>\n";
 			echo "<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
 			echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
