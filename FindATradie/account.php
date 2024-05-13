@@ -1326,13 +1326,13 @@
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></td>
 										<td class="cell_no_borders search_cell" style="width:8em;"><b>Name</b></td>
-										<td class="cell_no_borders search_cell" style="width:4em;"><b>Send email</b></td>
-										<td class="cell_no_borders search_cell" style="width:3em;"><b>Phone</b></td>
-										<td class="cell_no_borders search_cell" style="width:3em;"><b>Mobile</b></td>
+										<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Send email</b></td>
+										<td class="cell_no_borders search_cell" style="width:2em;"><b>Phone</b></td>
+										<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Mobile</b></td>
 										<td class="cell_no_borders search_cell" style="width:4em;"><b>Suburb</b></td>
 										<td class="cell_no_borders search_cell" style="width:1em;"><b>State</b></td>
-										<td class="cell_no_borders search_cell" style="width:2em;"><b>Postcode</b></td>
-										<td class="cell_no_borders search_cell" style="width:3em;"><b>Feedback</b></td>
+										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>Postcode</b></td>
+										<td class="cell_no_borders search_cell" style="width:8em;"><b>Feedback</b></td>
 									</tr>
 									<script type="text/javascript">
 										OnChangeTrade(DoGetInput("select_trade_tradies"), DoGetInput("trade_description_tradies"));
