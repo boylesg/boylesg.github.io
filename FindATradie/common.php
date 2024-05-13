@@ -2942,6 +2942,8 @@
 		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"email.png\" class=\"function_button_image\" /></a></button></td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["suburb"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["state"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"View feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\"><img src=\"images/view.png\" alt=\"view.png\" class=\"function_button_image\" /></a></button></td>\n";
 		echo "</tr>\n";
