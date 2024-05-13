@@ -1272,8 +1272,42 @@
 						<div id="tab_contents4" class="tab_content">
 							<h2 id="tab_heading4"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
+							<br/><br/><hr/>
+							<?php
+								$nPercentagePositive = 0;
+								$nPercentageNegative = 0;
+								
+								DoGetFeedbackPercentages($_SESSION["account_id"], "", $nPercentagePositive, $nPercentageNegative);
+							?>
+							<table class="search_table" cellspacing="0" cellpadding="10" style="width:30em;margin-left:0.5em;">
+								<tr>
+									<td>
+										<img class="function_button_image" src="images/thumbs_up.png" alt="images/thumbs_up.png" />
+									</td>
+									<td>
+										<?php printf("%d%%", $nPercentagePositive); ?>
+									</td>
+									<td>
+										<img class="function_button_image" src="images/thumbs_down.png" alt="images/thumbs_down.png" />
+									</td>
+									<td>
+										<?php printf("%d%%", $nPercentageNegative); ?>
+									</td>
+								</tr>
+							</table>
+							<hr/><br/><br/>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
-							<table cellspacing="0" cellpadding="10">
+							
+							<table cellspacing="0" cellpadding="10" border="0" class="table_no_borders search_table">
+								<tr>
+									<td class="cell_no_borders search_cell" style="width:1em;">+/-</td>
+									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
+									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
+									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:12em;">Functions</td>
+								</tr>
+
 <?php
 	DoDisplayFeedback($_SESSION["account_id"], "", true);
 ?>
@@ -1283,9 +1317,19 @@
 						<div id="tab_contents5" class="tab_content">
 							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button5").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
+							<table cellspacing="0" cellpadding="10" border="0" class="table_no_borders search_table">
+								<tr>
+									<td class="cell_no_borders search_cell" style="width:1em;">+/-</td>
+									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
+									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
+									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:12em;">Functions</td>
+								</tr>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"], true);
-?>							
+?>
+							</table>				
 						</div>
 						
 						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >

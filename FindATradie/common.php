@@ -2369,20 +2369,12 @@
 		}
 	}
 	
-	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayNames)
+	function DoGetFeedbackPercentages($strRecipientID, $strProviderID, $nPercentagePositive, $nPercentageNegative)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
-		$bDisplayEdit = $strProviderID != "";
 		$queryResult = NULL;
-		$nPercentagePositive = 0;
-		$nPercentageNegative = 0;
-		
-		if ($bDisplayEdit)
-			$strFormID = "given";
-		else
-			$strFormID = "received";
-			
+					
 		if (($strProviderID != "") && ($strRecipientID != ""))
 		{
 			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
@@ -2414,37 +2406,34 @@
 			$nPercentagePositive = ($nPositive * 100) / $nTotal;
 			$nPercentageNegative = ($nNegative * 100) / $nTotal;
 		}
-		echo "<br/><br/><hr>\n";
-		echo "<table class=\"search_table\" cellspacing=\"0\" cellpadding=\"10\" style=\"width:30em;margin-left:0.5em;\">\n";
-		echo "<tr>\n";
-		echo "<td>\n";
-		echo "<img class=\"function_button_image\" src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" />\n";
-		echo "</td>\n";
-		echo "<td>\n";
-		printf("%d%%", $nPercentagePositive);
-		echo "</td>\n";
-		echo "<td>\n";
-		echo "<img class=\"function_button_image\" src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" />\n";
-		echo "</td>\n";
-		echo "<td>\n";
-		printf("%d%%", $nPercentageNegative);
-		echo "</td>\n";
-		echo "</tr>\n";
-		echo "</table>\n";
-		echo "<hr><br/><br/>";
+	}
 
-		echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\" style=\"width:99%;\">\n";
-		echo "<tr>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Member name<br/>Location</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\" style=\"width:12em;\">Functions</td>\n";
-		echo "</tr>\n";
+	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayNames)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$bDisplayEdit = $strProviderID != "";
+		$queryResult = NULL;
+
+		if ($bDisplayEdit)
+			$strFormID = "given";
+		else
+			$strFormID = "received";
+			
+		if (($strProviderID != "") && ($strRecipientID != ""))
+		{
+			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
+		}
+		else if ($strRecipientID != "")
+		{
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
+		}
+		else if ($strProviderID != "")
+		{
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
+		}
 		if ($queryResult && ($queryResult->num_rows > 0))
 		{
-			$queryResult->data_seek(0);
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowMember = DoGetMember($rowFeedback["recipient_id"]);
@@ -2455,13 +2444,13 @@
 				echo "</td>\n";
 				echo "<td class=\"feedback_row\">" . $rowFeedback["description"] . "</td>\n";
 				echo "<td class=\"feedback_row\">" . sprintf("%d", $rowFeedback["job_id"]) . "</td>\n";
-				echo "<td class=\"feedback_row\">\n";
+				echo "<td class=\"feedback_row\">";
 				$dateAdded = new DateTime($rowFeedback["date_added"]);
 				echo $dateAdded->format("d/m/Y");
 				echo "</td>\n";
 				echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>" . $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
 				
-				echo "<td class=\"feedback_row\">\n";
+				echo "<td class=\"feedback_row\">";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
 				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
 				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button><br/>";
