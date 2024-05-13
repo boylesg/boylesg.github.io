@@ -1304,13 +1304,13 @@
 							<hr/><br/><br/>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							
-							<table cellspacing="0" cellpadding="10" border="1" class="table_no_borders search_table">
+							<table cellspacing="0" cellpadding="10" border="0" class="table_no_borders search_table">
 								<tr>
 									<td class="cell_no_borders search_cell" style="width:1em;">+/-</td>
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Tradie name<br/>Business name</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Tradie name<br/>Business name<br/>Location</td>
 									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
 								</tr>
 
@@ -1323,13 +1323,13 @@
 						<div id="tab_contents5" class="tab_content">
 							<h2 id="tab_heading5"><script type="text/javascript">document.write(document.getElementById("tab_button5").innerText);</script></h2>
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
-							<table cellspacing="0" cellpadding="10" border="1" class="table_no_borders search_table">
+							<table cellspacing="0" cellpadding="10" border="0" class="table_no_borders search_table">
 								<tr>
 									<td class="cell_no_borders search_cell" style="width:1em;">+/-</td>
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Client name<br/>Location</td>
 									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
 								</tr>
 <?php

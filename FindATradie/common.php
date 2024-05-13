@@ -2470,7 +2470,7 @@
 					$dateAdded = new DateTime($rowJob["date_added"]);
 					echo "&nbsp;<a href=\"mailto://" . $rowTradie["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'&body=JOB ID: " . 
 							sprintf("%d", $rowFeedback["job_id"]) . $g_strMailToNewLine . "DATE: " . $dateAdded->format("d/m/Y") . $g_strMailToNewLine . 
-							"LOCATION: " . $rowClient["suburb"] . ", " . $rowClient["state"] . ", " . $rowClient["postcode"] . $g_strMailToNewLine . $g_strMailToNewLine . 
+							"LOCATION: " . $rowTradie["suburb"] . ", " . $rowTradie["state"] . ", " . $rowTradie["postcode"] . $g_strMailToNewLine . $g_strMailToNewLine . 
 							"JOB DESCRIPTION" . $g_strMailToNewLine . "----------------" . $g_strMailToNewLine . $rowJob["description"] . "&from=" .  $rowClient["email"] . 
 							"\")\"><button title=\"'Email " . $rowTradie["first_name"] . " " . $rowTradie["surname"] . " about this negative feedback'\" class=\"function_button_hidden\"><img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></button></a>\n";
 				}
