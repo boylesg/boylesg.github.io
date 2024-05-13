@@ -125,7 +125,7 @@
 							$row = $results->fetch_assoc();
 							if ($row)
 							{
-								echo "<div class=\"tradie_details\" style=\"font-size:large;\">\n";
+								echo "<div class=\"tradie_details\" style=\"font-size:large;background-color: #778899;\">\n";
 								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
 								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
 								echo "	<tr>\n";
@@ -144,7 +144,7 @@
 								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
 								echo "		<td class=\"cell_no_borders\">";
 								echo $row["first_name"] . " " . $row["surname"] . "<br/><br/>";
-								echo "<img src=\"images/" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
+								echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
 								echo "</td>\n";
 								echo "	</tr>\n";
 								echo "	<tr>\n";
@@ -178,7 +178,7 @@
 									echo "<img class=\"advert_image\" style=\"float:right;\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
 								}
 								echo "</div>\n";
-								echo "<div class=\"tradie_about\">\n";
+								echo "<div class=\"tradie_about\" style=\"background-color: #778899;\">\n";
 								echo "<b><u>TRADES</u></b><br/>\n";
 								echo "<b>Primary trade: </b>" . GetTradeName($row["trade_id"]) . "<br/<br/>\n";
 								echo "<b>Additional trades: </b>";
@@ -197,9 +197,37 @@
 									echo "<br/>";
 								}
 								echo "</div>\n";
-								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;\">\n";
-								echo "<b><u>FEEDBACK</u></b>\n";
-								DoDisplayFeedback($row["id"], "", false);
+								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;background-color: #778899;\">\n";
+								echo "<b><u>FEEDBACK AS A CLIENT</u></b>\n";
+								
+								DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
+
+								echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Tradie name<br/>Business name<br/>Location</td>\n";
+								echo "</tr>\n";
+								DoDisplayFeedbackAs($_GET["member_id"], "customer");
+								echo "</table>\n";
+								echo "</div>\n";
+								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;background-color: #778899;\">\n";
+								echo "<b><u>FEEDBACK AS A TRADIE</u></b>\n";
+								
+								DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
+								
+								echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+								echo "	<tr>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Client name<br/>Location</td>\n";
+								echo "</tr>\n";
+								DoDisplayFeedbackAs($_GET["member_id"], "tradie");
+								echo "</table>\n";
 								echo "</div>\n";
 							}
 						}

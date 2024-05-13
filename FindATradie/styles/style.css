@@ -347,8 +347,9 @@ a.masthead_button:hover
 	padding: 10px;
 	margin: 10px;
 	overflow: auto;
-	flex-grow: 1;
+	/*flex-grow: 1;*/
 	font-size: medium;
+	background-color: #778899;
 }
 
 .tradie_about
@@ -361,7 +362,7 @@ a.masthead_button:hover
 	padding:10px;
 	margin:10px;
 	overflow:auto;
-	flex-grow:1;
+	/*flex-grow:1;*/
 	font-size: medium;
 }
 
@@ -376,7 +377,6 @@ a.masthead_button:hover
 	margin:10px;
 	overflow:auto;
 	width: 100%;
-	height: 300px;
 }
 
 .feedback_row
@@ -384,6 +384,7 @@ a.masthead_button:hover
 	border-bottom-style: solid;
 	border-bottom-width: thin;
 	border-bottom-color: black;
+	font-size: small;
 }
 
 .form
@@ -532,6 +533,91 @@ div.note h6
 	/*width: 50%;*/
 	border-style: none;
 	padding: 10px;
+}
+
+.search_form
+{
+	background-color: var(--ColorInactiveBG);
+	border-style: solid;
+	border-width: thin;
+	border-radius: var(--BorderRadius);
+	border-color: var(--TextColor);
+	margin-top: 0px;
+	width: 96.5%;
+}
+
+.search_table
+{
+	width: 98%;
+	background-color: white;
+	border-style: inset;
+	border-width: medium;
+	border-color: var(--ColorInactiveBG);
+	table-layout: fixed;
+}
+
+.search_cell
+{
+	font-size: 12.5px;
+	/*color: maroon;*/
+	border-bottom-style: solid;
+	border-width: thin;
+	border-color: black;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: left;
+}
+
+.form_table
+{
+	table-layout: fixed;
+	width: 100%;
+}
+
+.form_table_cell
+{
+	font-size: small;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: left;
+}
+
+.function_button
+{
+	display: inline-block;
+	border-style: outset;
+	border-width: thin;
+	border-color: silver;
+}
+
+.function_button_image
+{
+	width: 30px;
+}
+
+.function_button_hidden
+{
+	background-color: transparent;
+	border-style: none;
+}
+
+.boolean_image
+{
+	width: 20px;
+}
+
+.function_form
+{
+	display: inline-block;
+	border-color: red;
+	border-style: none;
+}
+
+.feedback_form
+{
+	width: 580px;
+	float: right;
+	background-color: var(--ColorInactiveBG);
 }
 
 h1

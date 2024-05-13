@@ -2369,17 +2369,16 @@
 		}
 	}
 	
-	function DoGetFeedbackPercentages($strRecipientID, $strProviderID, &$nPercentagePositive, &$nPercentageNegative)
+	function DoDisplayFeedbackPercentages($strRecipientID, $strProviderID, $strAs = "")
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$queryResult = NULL;
+		$nPercentagePositive = 0;
+		$nPercentageNegative = 0;
+		$nCustomerTradeID = DoGetCustomerTradeID();		
 					
-		if (($strProviderID != "") && ($strRecipientID != ""))
-		{
-			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
-		}
-		else if ($strRecipientID != "")
+		if ($strRecipientID != "")
 		{
 			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
 		}
@@ -2396,18 +2395,87 @@
 			
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
-				if ($rowFeedback["positive"])
-					$nPositive++;
-				else
-					$nNegative++;
-
-				$nTotal++;
+				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				$rowMember = DoGetMember($rowFeedback["provider_id"]);
+				$bInclude = (strlen($strAs) == 0) || 
+							((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
+							((strcmp($strAs, "tradie") == 0) && ($rowMember["trade_id"] == $nCustomerTradeID));
+				if ($bInclude)
+				{
+					if ($rowFeedback["positive"])
+						$nPositive++;
+					else
+						$nNegative++;
+	
+					$nTotal++;
+				}
 			}
 			$nPercentagePositive = ($nPositive * 100) / $nTotal;
 			$nPercentageNegative = ($nNegative * 100) / $nTotal;
 		}
+		echo "<br/><br/><hr/>\n";
+		echo "<table class=\"search_table\" cellspacing=\"0\" cellpadding=\"10\" style=\"width:30em;margin-left:0.5em;\">\n";
+		echo "	<tr>\n";
+		echo "		<td>\n";
+		echo "			<img class=\"function_button_image\" src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" />\n";
+		echo "		</td>\n";
+		echo "		<td>\n";
+		printf("%d%%", $nPercentagePositive);
+		echo "		</td>\n";
+		echo "		<td>\n";
+		echo "			<img class=\"function_button_image\" src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" />\n";
+		echo "		</td>\n";
+		echo "		<td>\n";
+		printf("%d%%", $nPercentageNegative);
+		echo "		</td>\n";
+		echo "	</tr>\n";
+		echo "</table>\n";
+		echo "<hr/><br/><br/>";
+	}
+	
+	function DoCreateFeedbackRow($rowFeedback, $rowMember)
+	{
+		echo "<tr>\n";
+		echo "<td class=\"feedback_row\">";
+		DoDisplayBoolean($rowFeedback["positive"], "function_button_image", "images/thumbs_up.png", "images/thumbs_down.png");
+		echo "</td>\n";
+		echo "<td class=\"feedback_row\">" . $rowFeedback["description"] . "</td>\n";
+		echo "<td class=\"feedback_row\">" . sprintf("%d", $rowFeedback["job_id"]) . "</td>\n";
+		echo "<td class=\"feedback_row\">";
+		$dateAdded = new DateTime($rowFeedback["date_added"]);
+		echo $dateAdded->format("d/m/Y");
+		echo "</td>\n";
+
+		echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>"; 
+		if ($rowMember["business_name"] && (strlen($rowMember["business_name"]) > 0))
+			echo $rowMember["business_name"] . "<br/>";
+		echo $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
 	}
 
+	function DoDisplayFeedbackAs($strRecipientID, $strAs/* "customer" or "tradie" */)
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$results  = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
+		$nCustomerTradeID = DoGetCustomerTradeID();
+		
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($rowFeedback = $results->fetch_assoc())
+			{
+				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				$rowMember = DoGetMember($rowFeedback["provider_id"]);
+				$bInclude = ((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
+							((strcmp($strAs, "tradie") == 0) && ($rowMember["trade_id"] == $nCustomerTradeID));
+
+				if ($bInclude)
+				{
+					DoCreateFeedbackRow($rowFeedback, $rowMember);			
+				}
+			}
+		}
+	}
+	
 	function DoDisplayFeedback($strRecipientID, $strProviderID)
 	{
 		global $g_dbFindATradie;
@@ -2415,21 +2483,18 @@
 		global $g_strMailToNewLine;
 		$queryResult = NULL;
 		$bReceived = strlen($strRecipientID) > 0;
+		$rowMember = NULL;
 		
 		if (!$bReceived)
 			$strFormID = "given";
 		else
 			$strFormID = "received";
-			
-		if (($strProviderID != "") && ($strRecipientID != ""))
-		{
-			$queryResult = DoFindQuery2($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID, "provider_id", $strProviderID);
-		}
-		else if ($strRecipientID != "")
+		
+		if (strcmp($strRecipientID, "") != 0)
 		{
 			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
 		}
-		else if ($strProviderID != "")
+		else if (strcmp($strProviderID, "") != 0)
 		{
 			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
 		}
@@ -2442,21 +2507,7 @@
 				else
 					$rowMember = DoGetMember($rowFeedback["recipient_id"]);
 				
-				echo "<tr>\n";
-				echo "<td class=\"feedback_row\">";
-				DoDisplayBoolean($rowFeedback["positive"], "function_button_image", "images/thumbs_up.png", "images/thumbs_down.png");
-				echo "</td>\n";
-				echo "<td class=\"feedback_row\">" . $rowFeedback["description"] . "</td>\n";
-				echo "<td class=\"feedback_row\">" . sprintf("%d", $rowFeedback["job_id"]) . "</td>\n";
-				echo "<td class=\"feedback_row\">";
-				$dateAdded = new DateTime($rowFeedback["date_added"]);
-				echo $dateAdded->format("d/m/Y");
-				echo "</td>\n";
-
-				echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>"; 
-				if ($bReceived)
-					echo $rowMember["business_name"] . "<br/>";
-				echo $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
+				DoCreateFeedbackRow($rowFeedback, $rowMember);
 				
 				echo "<td class=\"feedback_row\">";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
@@ -2892,7 +2943,7 @@
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\"><a href=\"tradie.php?member_id=" . $rowMember["id"] . "\">View tradie feedback</a></td>";
+		echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\">View tradie feedback</a></td>";
 		echo "</tr>\n";
 	}
 

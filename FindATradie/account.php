@@ -150,91 +150,6 @@
 					border-radius: 10px;
 				}
 				
-				.search_form
-				{
-					background-color: var(--ColorInactiveBG);
-					border-style: solid;
-					border-width: thin;
-					border-radius: var(--BorderRadius);
-					border-color: var(--TextColor);
-					margin-top: 0px;
-					width: 96.5%;
-				}
-				
-				.search_table
-				{
-					width: 98%;
-					background-color: white;
-					border-style: inset;
-					border-width: medium;
-					border-color: var(--ColorInactiveBG);
-					table-layout: fixed;
-				}
-				
-				.search_cell
-				{
-					font-size: 12.5px;
-					/*color: maroon;*/
-					border-bottom-style: solid;
-					border-width: thin;
-					border-color: black;
-					padding: 5px;
-					vertical-align: middle;
-					text-align: left;
-				}
-
-				.form_table
-				{
-					table-layout: fixed;
-					width: 100%;
-				}
-				
-				.form_table_cell
-				{
-					font-size: small;
-					padding: 5px;
-					vertical-align: middle;
-					text-align: left;
-				}
-				
-				.function_button
-				{
-					display: inline-block;
-					border-style: outset;
-					border-width: thin;
-					border-color: silver;
-				}
-				
-				.function_button_image
-				{
-					width: 30px;
-				}
-				
-				.function_button_hidden
-				{
-					background-color: transparent;
-					border-style: none;
-				}
-				
-				.boolean_image
-				{
-					width: 20px;
-				}
-				
-				.function_form
-				{
-					display: inline-block;
-					border-color: red;
-					border-style: none;
-				}
-				
-				.feedback_form
-				{
-					width: 580px;
-					float: right;
-					background-color: var(--ColorInactiveBG);
-				}
-
 			</style>
 			
 			<script type="text/javascript">
@@ -1278,30 +1193,8 @@
 						<div id="tab_contents4" class="tab_content">
 							<h2 id="tab_heading4"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
-							<br/><br/><hr/>
-							<?php
-								$nPercentagePositive = 0;
-								$nPercentageNegative = 0;
-								
-								DoGetFeedbackPercentages($_SESSION["account_id"], "", $nPercentagePositive, $nPercentageNegative);
-							?>
-							<table class="search_table" cellspacing="0" cellpadding="10" style="width:30em;margin-left:0.5em;">
-								<tr>
-									<td>
-										<img class="function_button_image" src="images/thumbs_up.png" alt="images/thumbs_up.png" />
-									</td>
-									<td>
-										<?php printf("%d%%", $nPercentagePositive); ?>
-									</td>
-									<td>
-										<img class="function_button_image" src="images/thumbs_down.png" alt="images/thumbs_down.png" />
-									</td>
-									<td>
-										<?php printf("%d%%", $nPercentageNegative); ?>
-									</td>
-								</tr>
-							</table>
-							<hr/><br/><br/>
+							<?php DoGetFeedbackPercentages($_SESSION["account_id"], ""); ?>
+							
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							
 							<table cellspacing="0" cellpadding="10" border="0" class="table_no_borders search_table">
@@ -1366,7 +1259,7 @@
 							</form>
 							
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
-							<table  cellspacing="0" cellpadding="3" border="1" class="search_table">
+							<table  cellspacing="0" cellpadding="3" border="0" class="search_table">
 								<tr>
 									<td class="search_cell" style="width:5em;"><b>Date</b></td>
 									<td class="search_cell" style=""><b>Advert Location</b></td>
@@ -1444,18 +1337,21 @@
 									</script>
 									<?php
 										$strTradeID = "";
-										if (isset($_POST["select_trade_tradies"]))
-											$strTradeID = $_POST["select_trade_tradies"];
 										$strPostcode = "";
-										if (isset($_POST["text_postcode"]))
-											$strPostcode = $_POST["text_postcode"];
 										$strSuburb = "";
-										if (isset($_POST["text_suburb"]))
-											$strTrade = $_POST["text_suburb"];
-										$strMaxDistance = "";
-										if (isset($_POST["text_maximum_distance"]))
-											$strMaxDistance = $_POST["text_maximum_distance"];
-				
+										$strMaxDistance = "";				
+										
+										if (isset($_POST["submit_tradie_search"]))
+										{
+											if (isset($_POST["select_trade_tradies"]))
+												$strTradeID = $_POST["select_trade_tradies"];
+											if (isset($_POST["text_postcode"]))
+												$strPostcode = $_POST["text_postcode"];
+											if (isset($_POST["text_suburb"]))
+												$strTrade = $_POST["text_suburb"];
+											if (isset($_POST["text_maximum_distance"]))
+												$strMaxDistance = $_POST["text_maximum_distance"];
+										}
 										if (DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance) == 0)
 											echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";
 											
