@@ -2369,7 +2369,7 @@
 		}
 	}
 	
-	function DoGetFeedbackPercentages($strRecipientID, $strProviderID, $nPercentagePositive, $nPercentageNegative)
+	function DoGetFeedbackPercentages($strRecipientID, $strProviderID, &$nPercentagePositive, &$nPercentageNegative)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -2408,14 +2408,15 @@
 		}
 	}
 
-	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayNames)
+	function DoDisplayFeedback($strRecipientID, $strProviderID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
-		$bDisplayEdit = $strProviderID != "";
+		global $g_strMailToNewLine;
 		$queryResult = NULL;
-
-		if ($bDisplayEdit)
+		$bReceived = strlen($strRecipientID) > 0;
+		
+		if (!$bReceived)
 			$strFormID = "given";
 		else
 			$strFormID = "received";
@@ -2436,7 +2437,10 @@
 		{
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
-				$rowMember = DoGetMember($rowFeedback["recipient_id"]);
+				if ($bReceived)
+					$rowMember = DoGetMember($rowFeedback["provider_id"]);
+				else
+					$rowMember = DoGetMember($rowFeedback["recipient_id"]);
 				
 				echo "<tr>\n";
 				echo "<td class=\"feedback_row\">";
@@ -2448,18 +2452,31 @@
 				$dateAdded = new DateTime($rowFeedback["date_added"]);
 				echo $dateAdded->format("d/m/Y");
 				echo "</td>\n";
-				echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>" . $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
+
+				echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>"; 
+				if ($bReceived)
+					echo $rowMember["business_name"] . "<br/>";
+				echo $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
 				
 				echo "<td class=\"feedback_row\">";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
 				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
-				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button><br/>";
-				if ($bDisplayNames && !$bDisplayEdit && !$rowFeedback["positive"])
+				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>";
+				if ($bReceived && !$rowFeedback["positive"])
 				{
-					echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"images/email.png\" width=\"25\"/></a>\n";
+					$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+					$rowClient = DoGetRow("members", "id", $rowJob["member_id"]);
+					$rowTradie = DoGetRow("members", "id", $rowJob["accepted_by_member_id"]);
+					$dateAdded = new DateTime($rowJob["date_added"]);
+					echo "&nbsp;<a href=\"mailto://" . $rowTradie["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'&body=JOB ID: " . 
+							sprintf("%d", $rowFeedback["job_id"]) . $g_strMailToNewLine . "DATE: " . $dateAdded->format("d/m/Y") . $g_strMailToNewLine . 
+							"LOCATION: " . $rowClient["suburb"] . ", " . $rowClient["state"] . ", " . $rowClient["postcode"] . $g_strMailToNewLine . $g_strMailToNewLine . 
+							"JOB DESCRIPTION" . $g_strMailToNewLine . "----------------" . $g_strMailToNewLine . $rowJob["description"] . "&from=" .  $rowClient["email"] . 
+							"\")\"><button title=\"'Email " . $rowTradie["first_name"] . " " . $rowTradie["surname"] . " about this negative feedback'\" class=\"function_button_hidden\"><img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></button></a>\n";
 				}
-				else if ($bDisplayEdit)
+				else if (!$bReceived)
 				{
+					echo "<br/>";
 					DoCreateFeedbackTextArea(false, $rowFeedback["id"], $rowFeedback["recipient_id"], $rowFeedback["provider_id"], $rowFeedback["job_id"], true);
 				}
 				echo "</form>\n";
