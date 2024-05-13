@@ -130,7 +130,12 @@
 								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
 								echo "	<tr>\n";
 								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "</td>\n";
+								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "<br/>";
+								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
+								{
+									echo "<img class=\"advert_image\" style=\"display:block;\" width=\"200\" src=\"" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />";
+								}
+								echo "</td>\n";
 								echo "	</tr>\n";
 								echo "	<tr>\n";
 								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>ABN:</b></td>\n";
@@ -143,8 +148,8 @@
 								echo "	<tr>\n";
 								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
 								echo "		<td class=\"cell_no_borders\">";
-								echo $row["first_name"] . " " . $row["surname"] . "<br/><br/>";
-								echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"150\" />";
+								echo $row["first_name"] . " " . $row["surname"] . "<br/>";
+								echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"200\" style=\"display:block;\" />";
 								echo "</td>\n";
 								echo "	</tr>\n";
 								echo "	<tr>\n";
@@ -173,10 +178,6 @@
 								echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
 								echo "	</tr>\n";
 								echo "</table>\n";
-								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
-								{
-									echo "<img class=\"advert_image\" style=\"float:right;\" width=\"250\" src=\"images/" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />\n";
-								}
 								echo "</div>\n";
 								echo "<div class=\"tradie_about\" style=\"background-color: #778899;\">\n";
 								echo "<b><u>TRADES</u></b><br/>\n";

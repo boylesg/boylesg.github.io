@@ -2937,13 +2937,13 @@
 	function DoCreateTradieRow($rowMember)
 	{
 		echo "<tr>\n";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'\">Email member</a></td>\n";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>";
-		echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\">View tradie feedback</a></td>";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"email.png\" class=\"function_button_image\" /></a></button></td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"View feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\"><img src=\"images/view.png\" alt=\"view.png\" class=\"function_button_image\" /></a></button></td>\n";
 		echo "</tr>\n";
 	}
 

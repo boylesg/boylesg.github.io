@@ -1193,7 +1193,7 @@
 						<div id="tab_contents4" class="tab_content">
 							<h2 id="tab_heading4"><script type="text/javascript">document.write(document.getElementById("tab_button4").innerText);</script></h2>
 
-							<?php DoGetFeedbackPercentages($_SESSION["account_id"], ""); ?>
+							<?php DoDisplayFeedbackPercentages($_SESSION["account_id"], ""); ?>
 							
 							<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 							
@@ -1352,7 +1352,7 @@
 											if (isset($_POST["text_maximum_distance"]))
 												$strMaxDistance = $_POST["text_maximum_distance"];
 										}
-										if (DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance) == 0)
+										if (!DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance) == 0)
 											echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";
 											
 									?>
