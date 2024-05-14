@@ -32,75 +32,6 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			
 				.faq_question
 				{
@@ -200,14 +131,6 @@
 				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
-
-
-
-
-
-
-
-
 				
 				<div class="note" style="display:block;overflow-x:auto;overflow-y:visible;">
 
@@ -217,10 +140,6 @@
 						<li class="faq_answer">
 							A. Here are the costs.<br/><br/>
 							<table cellpadding="10" cellpadding="1" border="1" class="table_costs">
-								<tr>
-									<td><b>Per month</b></td>
-									<td><?php printf("$%02d", $g_nCostPerMonth); ?></td>
-								</tr>
 								<tr>
 									<td><b>Per month</b></td>
 									<td><?php printf("$%02d", $g_nCostPerMonth); ?></td>
@@ -251,7 +170,7 @@
 							Q. How much will it cost me to list a job for tradies?<br/>
 						</li>
 						<li class="faq_answer">
-							A. It won't cost you anything to list jobs, you just have to register a customer account.
+							A. It won't cost you anything to list jobs, but you still have to register a customer account.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Can I add positive feedback and testimonials for jobs I have completed in the past and on other 
@@ -274,28 +193,48 @@
 							Q. Do you store bank account and credit card numbers?<br/>
 						</li>
 						<li class="faq_answer">
-							A. No. All payments are made through Paypal, so no financial details are stored on the web site.
+							A. No. All payments are made by your through external web sites like Paypal or eBanking through your bank's web site. 
+							So no sensitive financial or personal details are stored on the web site. The only details that are stored are:
+							<ul>
+								<li>Business
+									<ul>
+										<li>Email</li>
+										<li>Mobile</li>
+										<li>Landline</li>
+										<li>Suburb, state, postcode</li>
+										<li>Unit number and street are optional - don't bother adding these unless they pertain to a business premises.</li>
+									</ul>
+								</li>
+								<li>Personal
+									<ul>
+										<li>Email</li>
+										<li>Mobile</li>
+										<li>Landline</li>
+										<li>Suburb, state, postcode</li>
+										<li>Unit number and street are optional - you can add these if you want but they are not necessary.</li>
+									</ul>
+								</li>
+							</ul>
+							<p>Most of these are likely to be in the public domain already through your Facebook and Google accounts etc.</p>
 						</li>
 						<hr/><li class="faq_question">
 							Q. I am a customer so why do I have to join to 'Find a Tradie'?<br/>
 						</li>
 						<li class="faq_answer">
-							A. Because we want this system to be fair for both 
-							tradies and their customers. It employs a mutual 
-							trust and feedback system, similar to eBay, that 
-							allows both tradies and customers to judge each 
-							other's integrity based on their feedback and 
-							testimonials.
+							A. Because we want this system to be fair for both tradies and their customers. It employs 
+							a mutual trust and feedback system, similar to eBay, that allows both tradies and customers 
+							to judge each other's integrity based on their feedback and testimonials.
 						</li>
 						<hr/><li class="faq_question">
 							Q. What if someone hacks my account?<br/>
 						</li>
 						<li class="faq_answer">
-							A. If they do then it is not really going to bring them much benefit. There are no credit cards 
-							numbers, no bank account numbers, no dates of birth or any other identity data for them to steal. 
-							Other than what you have likely made public yourself in the Yellow Pages or on Facebook etc. All 
-							communications take place via your phone numbers and private email accounts, so there is little 
-							information about you for them to access. Unless they also hack your email and mobile accounts.
+							A. If they do then it is not really going to bring them much benefit. There are no credit 
+							cards numbers, no bank account numbers, no dates of birth or any other identity data for 
+							them to steal. Other than what you have likely made public yourself in the Yellow Pages or 
+							on Facebook etc. All communications take place via your phone numbers and private email 
+							accounts, so there is little information about you for them to access. Unless they also 
+							hack your email and mobile accounts.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Does 'Find a Tradie' provide guarantees on workmanship or refunds?<br/>
@@ -305,24 +244,14 @@
 							role in business relationships or financial transactions between tradies and their customers.
 						</li>
 						<hr/><li class="faq_question">
-							Q. Does 'Find a Tradie'  store any other sensitive personal data?<br/>
+							Q. I am a tradie so can I try out find-a-tradie to see if it suits me?<br/>
 						</li>
 						<li class="faq_answer">
-							A. No. The only data we store is basic contact information. In the case of tradies they routinely make 
-							that information publicly available through advertising. In the case of customers they make basic contact 
-							information public on web sites like Google and Facebook. In both cases you are not required to 
-							enter your street address. If you have a business address then you can include your street address if you 
-							wish.
+							A.Yes you can. Every tradie gets their first <?php echo $g_strFreeMembership; ?> months membership for free. And there are no 
+							time limits on this.
 						</li>
 					</ul>
 				</div>
-
-
-
-
-
-
-
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->

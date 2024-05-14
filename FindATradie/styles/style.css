@@ -267,7 +267,7 @@ a.masthead_button:hover
 	/*display: block;*/
 	display: flex;
 	position: relative;
- 	flex-wrap: wrap;	
+ 	flex-wrap: wrap;
  	/*background-color: rgba(255, 255, 255, 0.9);*/
 	background-color: var(--NoteColorBG);
 	border-radius: 20px;
@@ -618,6 +618,11 @@ div.note h6
 	width: 580px;
 	float: right;
 	background-color: var(--ColorInactiveBG);
+}
+
+.list
+{
+	font-size: medium;
 }
 
 h1

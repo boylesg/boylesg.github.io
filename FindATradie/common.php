@@ -16,8 +16,8 @@
 	$g_nNumMonthsFree = 6;
 	$g_nTradeIDCustomer = 59;
 	$g_strAdminEmail = "find-a-tradie@outlook.com";
-	$g_strFreeMembership = "+6 months";
-	
+	$g_strFreeMembership = "6 months";
+	$g_nYears = (int)date("Y") - 2003;	
 	$g_strPriceLevel1 = "60";
 	$g_strPriceLevel2 = "80";
 	$g_strPriceLevel3 = "100";
