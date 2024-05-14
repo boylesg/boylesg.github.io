@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -118,7 +118,7 @@
 	
 		<title>NEW CUSTOMER</title>
 			<style>
-</style>
+			</style>
 
 
 
@@ -165,12 +165,15 @@
 		}
 		else
 		{
+			$dateExpiry = new DateTime();
+			$dateExpiry->modify("100 years")
 			$strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
 							"phone, mobile, email, username, password, expiry_date) VALUES (" .
-							AppendSQLInsertValues("59", $_POST["text_first_name"], $_POST["text_surname"], $_POST["text_unit"],  
-								$_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  $_POST["text_postcode"],  
-								$_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], $_POST["text_username"], 
-								DoAESEncrypt($_POST["text_password"]), date("Y-m-d") ) . ")";
+							AppendSQLInsertValues(DoGetCustomerTradeID(), $_POST["text_first_name"], $_POST["text_surname"], 
+								$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
+								$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
+								$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), date("Y-m-d") ) . 
+								$dateExpiry->format("Y-m-d") . ")";
 	
 			$result = DoQuery($g_dbFindATradie, $strQuery);
 			if ($result)
