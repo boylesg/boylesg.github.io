@@ -1075,11 +1075,53 @@
 		return DoesColumnExist("members", "email", $strEmail);
 	}
 	
-	function DoGetRow($strTableName, $strFindColumnName, $strFindColumnValue)
+	function DoGetRow1($strTableName, $strFindColumnName, $strFindColumnValue)
 	{
 		global $g_dbFindATradie;
 		$row = "";
 		$results = DoFindQuery1($g_dbFindATradie, $strTableName, $strFindColumnName, $strFindColumnValue);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+			}
+		}
+		return $row;	
+	}
+	
+	function DoGetRow2($strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2)
+	{
+		global $g_dbFindATradie;
+		$row = "";
+		$results = DoFindQuery2($g_dbFindATradie, $strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+			}
+		}
+		return $row;	
+	}
+	
+	function DoGetRow3($strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2, $strFindColumnName3, $strFindColumnValue3)
+	{
+		global $g_dbFindATradie;
+		$row = "";
+		$results = DoFindQuery3($g_dbFindATradie, $strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2, $strFindColumnName3, $strFindColumnValue3);
+		if ($results && ($results->num_rows > 0))
+		{
+			if ($row = $results->fetch_assoc())
+			{
+			}
+		}
+		return $row;	
+	}
+	
+	function DoGetRow4($strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2, $strFindColumnName3, $strFindColumnValue3, $strFindColumnName4, $strFindColumnValue4)
+	{
+		global $g_dbFindATradie;
+		$row = "";
+		$results = DoFindQuery4($g_dbFindATradie, $strTableName, $strFindColumnName1, $strFindColumnValue1, $strFindColumnName2, $strFindColumnValue2, $strFindColumnName3, $strFindColumnValue3, $strFindColumnName4, $strFindColumnValue4);
 		if ($results && ($results->num_rows > 0))
 		{
 			if ($row = $results->fetch_assoc())
@@ -2395,7 +2437,7 @@
 			
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
-				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
 				$rowMember = DoGetMember($rowFeedback["provider_id"]);
 				$bInclude = (strlen($strAs) == 0) || 
 							((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
@@ -2463,7 +2505,7 @@
 		{
 			while ($rowFeedback = $results->fetch_assoc())
 			{
-				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
 				$rowMember = DoGetMember($rowFeedback["provider_id"]);
 				$bInclude = ((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
 							((strcmp($strAs, "tradie") == 0) && ($rowMember["trade_id"] == $nCustomerTradeID));
@@ -2511,13 +2553,13 @@
 				
 				echo "<td class=\"feedback_row\">";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
-				$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
+				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
 				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>";
 				if ($bReceived && !$rowFeedback["positive"])
 				{
-					$rowJob = DoGetRow("jobs", "id", $rowFeedback["job_id"]);
-					$rowClient = DoGetRow("members", "id", $rowJob["member_id"]);
-					$rowTradie = DoGetRow("members", "id", $rowJob["accepted_by_member_id"]);
+					$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
+					$rowClient = DoGetRow1("members", "id", $rowJob["member_id"]);
+					$rowTradie = DoGetRow1("members", "id", $rowJob["accepted_by_member_id"]);
 					$dateAdded = new DateTime($rowJob["date_added"]);
 					echo "&nbsp;<a href=\"mailto://" . $rowTradie["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'&body=JOB ID: " . 
 							sprintf("%d", $rowFeedback["job_id"]) . $g_strMailToNewLine . "DATE: " . $dateAdded->format("d/m/Y") . $g_strMailToNewLine . 
@@ -2613,7 +2655,7 @@
 				DoDisplayBoolean($row["paid"], "function_button_image");
 				echo "</td>\n";
 				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";					
-				$rowFeedback = DoGetRow("feedback", "job_id", $row["id"]);
+				$rowFeedback = DoGetRow1("feedback", "job_id", $row["id"]);
 				if ($rowFeedback)
 					DoDisplayBoolean(DoGetColumnValue("feedback", "id", $rowFeedback["id"], "positive"), "function_button_image");
 				else
@@ -2850,6 +2892,10 @@
 						{
 							if (!array_key_exists($rowJob["id"], $mapAddedJobIDs))
 							{
+								$rowFeedback = DoGetRow2("feedback", "job_id", $rowJob["id"], "provider_id", $rowJob["member_id"]);
+								$strFeedbackID = 0;
+								if ($rowFeedback)
+									$strFeedbackID = $rowFeedback["id"];
 								$mapAddedJobIDs[$rowJob["id"]] = true;
 								echo "<tr>\n";
 								$date = new DateTime($rowJob["date_added"]);
@@ -2874,14 +2920,14 @@
 								DoDisplayBoolean($rowJob["paid"] == 1, "function_button_image");
 								echo "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
-								DoDisplayBoolean($rowJob["feedback_id"] != 0, "function_button_image");
+								DoDisplayBoolean($strFeedbackID != 0, "function_button_image");
 								echo "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">\n";
 								echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";
 								echo "     <input type=\"hidden\" name=\"text_job_id\" value=\"" . $rowJob["id"] . "\" />\n";
 								echo "     <input type=\"hidden\" name=\"text_member_id\" value=\"" . $rowJob["member_id"] . "\" />\n";
-								echo "     <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $rowJob["feedback_id"] . "\" />\n";
-								echo "     <input type=\"hidden\" name=\"text_accepted_by_member_id\" value=\"" . $row["accepted_by_member_id"] . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_feedback_id\" value=\"" . $strFeedbackID . "\" />\n";
+								echo "     <input type=\"hidden\" name=\"text_accepted_by_member_id\" value=\"" . $rowJob["accepted_by_member_id"] . "\" />\n";
 								
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 
@@ -2892,14 +2938,14 @@
 								else if ($rowJob["paid"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as unpaid\" name=\"submit_unpaid_job\" value=\"UNPAID\" /><img src=\"images/unpaid.png\" alt=\"images/unpaid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea(true, $rowJob["feedback_id"], $row["member_id"], $row["accepted_by_member_id"], $row["job_id"], $rowJob["completed"] == 1);
+									DoCreateFeedbackTextArea(true, $strFeedbackID, $row["member_id"], $row["accepted_by_member_id"], $row["job_id"], $rowJob["completed"] == 1);
 								}
 								else if ($rowJob["completed"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as incomplete\" name=\"submit_uncomplete_job\" value=\"UNCOMPLETE\" /><img src=\"images/uncomplete.png\" alt=\"images/uncomplete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"button\" class=\"function_button\" title=\"Raise PayPal invoice\" value=\"PAYPAL\" onclick=\"window.location.href = 'https://www.paypal.com'\" /><img src=\"images/paypal.png\" alt=\"images/paypal.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as paid\" name=\"submit_paid_job\" value=\"PAID\" /><img src=\"images/paid.png\" alt=\"images/paid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea(true, $rowJob["feedback_id"], $rowJob["member_id"], $rowJob["accepted_by_member_id"], $row["job_id"], $rowJob["completed"] == 1);
+									DoCreateFeedbackTextArea(true, $strFeedbackID, $rowJob["member_id"], $rowJob["accepted_by_member_id"], $rowJob["id"], $rowJob["completed"] == 1);
 								}
 								else if (strcmp($rowJob["accepted_by_member_id"], $_SESSION["account_id"]) == 0)
 								{
