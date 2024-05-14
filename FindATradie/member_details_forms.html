@@ -134,9 +134,8 @@
 				<td class="cell_no_borders" style="text-align:right;"><b>Maximum size</b></td>
 				<td class="cell_no_borders">
 					<select id="select_maximum_size" name="select_maximum_size" required>
-						<?php include "job_size.html"; ?>
+						<?php DoGenerateJobSizeOptions(DoGetDefaultMaximumSize()); ?>
 					</select>&nbsp;<b>m<sup>2</sup></b>
-					<script type="text/javascript"> SetSelectionValue("select_maximum_size", "<?php echo DoGetDefaultMaximumSize(); ?>"); </script>
 				</td>
 			</tr>
 			<tr>

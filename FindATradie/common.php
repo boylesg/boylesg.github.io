@@ -1200,11 +1200,14 @@
 	{
 		$bFound = false;
 		
-		for ($nI = 0; $nI < count($arrayAdditionalTrades); $nI++)
+		if ($arrayAdditionalTrades)
 		{
-			$bFound = $arrayAdditionalTrades[$nI] == $strTradeID;
-			if ($bFound)
-				break;
+			for ($nI = 0; $nI < count($arrayAdditionalTrades); $nI++)
+			{
+				$bFound = $arrayAdditionalTrades[$nI] == $strTradeID;
+				if ($bFound)
+					break;
+			}
 		}
 		return $bFound;
 	}
