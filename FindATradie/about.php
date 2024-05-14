@@ -106,7 +106,7 @@
 			<!-- #BeginEditable "content" -->
 
 
-				<div class="note" style="display:block;">
+				<div class="note">
 
 					<?php include "about_content.php"; ?>
 
