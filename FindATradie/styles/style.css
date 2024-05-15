@@ -345,7 +345,6 @@ a.masthead_button:hover
 	padding: 10px;
 	margin: 10px;
 	overflow: auto;
-	/*flex-grow: 1;*/
 	font-size: medium;
 	background-color: #778899;
 }
@@ -360,9 +359,8 @@ a.masthead_button:hover
 	padding:10px;
 	margin:10px;
 	overflow:auto;
-	/*flex-grow:1;*/
-	font-size: medium;
-}
+	font-size:medium;
+	background-color: #778899;}
 
 .tradie_feedback
 {
@@ -374,7 +372,8 @@ a.masthead_button:hover
 	padding:10px;
 	margin:10px;
 	overflow:auto;
-	width: 100%;
+	font-size:medium;
+	background-color: #778899;
 }
 
 .feedback_row

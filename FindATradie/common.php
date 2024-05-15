@@ -1584,19 +1584,16 @@
 		return $row;
 	}
 	
-	function IsTradie()
+	function IsTradie($nTradieID)
 	{
 		global $g_dbFindATradie;
 		$bResult = false;
 		
-		if (isset($_SESSION["account_trade"]))
+		$result = DoFindQuery1($g_dbFindATradie, "trades", "id", $nTradieID);
+		if ($result && ($result->num_rows > 0))
 		{
-			$result = DoFindQuery1($g_dbFindATradie, "trades", "id", $_SESSION["account_trade"]);
-			if ($result && ($result->num_rows > 0))
-			{
-				$row = $result->fetch_assoc();
-				$bResult = $row["name"] != "Customer";
-			}
+			$row = $result->fetch_assoc();
+			$bResult = strcasecmp($row["name"], "Customer") == 0;
 		}
 		return $bResult;
 	}
@@ -2437,7 +2434,6 @@
 			$nPositive = 0;
 			$nNegative = 0;
 			$arrayFeedback = [];
-			
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
@@ -2908,7 +2904,8 @@
 								if (strlen($rowJob["unit"]) > 0)
 									echo $rowJob["unit"] . ", ";
 								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
-								echo "<a href=\"mailto://" . $rowMember["email"] . "?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
+								echo "<a href=\"mailto://" . $rowMember["email"] .
+										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
 								DoDisplayBoolean($rowJob["urgent"] == 1, "function_button_image");
@@ -2933,6 +2930,11 @@
 								echo "     <input type=\"hidden\" name=\"text_accepted_by_member_id\" value=\"" . $rowJob["accepted_by_member_id"] . "\" />\n";
 								
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
+								echo "<button title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . 
+										" about this job\" class=\"function_button_hidden\"><a href=\"mailto://" . $rowMember["email"] .
+										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . 
+										" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+								echo "<button type=\"button\" class=\"function_button\" title=\"View feedback history of " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\"><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></a></button>&nbsp;\n";
 
 								if ($rowJob["accepted_by_member_id"] == 0)
 								{
@@ -2941,7 +2943,7 @@
 								else if ($rowJob["paid"] == 1)
 								{
 									echo "<button type=\"submit\" class=\"function_button\" title=\"Mark as unpaid\" name=\"submit_unpaid_job\" value=\"UNPAID\" /><img src=\"images/unpaid.png\" alt=\"images/unpaid.png\" class=\"function_button_image\" /></button><br/>\n";
-									DoCreateFeedbackTextArea(true, $strFeedbackID, $row["member_id"], $row["accepted_by_member_id"], $row["job_id"], $rowJob["completed"] == 1);
+									DoCreateFeedbackTextArea(true, $strFeedbackID, $rowJob["member_id"], $rowJob["accepted_by_member_id"], $rowJob["id"], $rowJob["completed"] == 1);
 								}
 								else if ($rowJob["completed"] == 1)
 								{

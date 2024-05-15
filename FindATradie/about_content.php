@@ -18,8 +18,22 @@
 		</li>
 	</ul>
 	<p>Small business tradies, like myself, deserve a fairer go.</p>
+	<p>
+		<img src="images/trades_person1.jpg" alt="images/trades_person1.jpg" width="150">&nbsp;
+		&nbsp;
+		<img src="images/trades_person2.jpg" alt="images/trades_person2.jpg" width="300">
+		&nbsp;
+		<img src="images/trades_person3.jpg" alt="images/trades_person3.jpg" width="300">&nbsp;
+		&nbsp;
+		<img src="images/trades_person4.jpg" alt="images/trades_person4.jpg" width="300">
+	</p>
 	
 <h4><b>Feedback System</b></h4>
+
+	<p>
+		<img src="images/thumbs_up.png" alt="images/thumbs_up.png" class="function_button_image" />&nbsp;
+		<img src="images/thumbs_down.png" alt="images/thumbs_down.png" class="function_button_image" />
+	</p>
 	<p>Feedback is where find-a-tradie is different. We use a feedback based mutual trust system similar to eBay.</p>
 	
 	<p>If the client refuses to pay the tradie or delays payment for an unacceptable period of time then the tradie can 
@@ -33,13 +47,24 @@
 	<p>Negative feedback will have an email link for the member who left the negative feedback and it is up to both 
 		parties to negotiate turning negative feedback into positive feedback.</p>
 
-<h4><b>Benefits of <u>find-a-tradie.com.au</u> over the competition</b></h4>
+<h4><b>Benefits of <u>find-a-tradie.com.au</u></b></h4>
 	<ul>
-		<li class="list">You can edit or delete any jobs you post if you change your mind. That way you don't waste tradie's time and 
-		money chasing 'dead' jobs.</li>
-		<li class="list">No sensitive personal or financial data is stored on the web site, because find a tradie is not intended to include a payment management system - these introduce signficant risk for you and myself.</li>
-		<li class="list">Tradies &amp; customers can browse the database of tradies, view their feedback history, contact details and business details etc..</li>
-		<li class="list">Tradies can view customers feedback history and contact details.</li>
+		<li class="list">
+			You can edit or delete any jobs you post if you change your mind. That way you don't waste tradie's time and 
+			money chasing 'dead' jobs.<br/>
+			<a href="images/edit_job.jpg"><img src="images/edit_job.jpg" alt="images/edit_job.jpg" width="1000"></a>
+		</li>
+		<li class="list">No sensitive personal or financial data is stored on the web site, because find a tradie is not intended to include a risky payment management system. All payments are done via external web sites such as eBanking and Paypal.</li>
+		<li class="list">
+			Tradies &amp; customers can browse the database of tradies, view their feedback history, contact details and business details etc..<br/>
+			<a href="images/browse_tradies.jpg"><img src="images/browse_tradies.jpg" alt="images/browse_tradies.jpg" width="1000"></a><br/><br/>
+			<a href="images/tradie_feedback.jpg"><img src="images/tradie_feedback.jpg" alt="images/tradie_feedback.jpg" width="1000"></a>
+		</li>
+		<li class="list">You can contact tradies directly from the list or post a job for tradies to respond to.</li>
+		<li class="list">
+			Tradies can view customers feedback history and contact details when they post jobs.<br/>
+			<a href="images/customer_feedback.jpg"><img src="images/customer_feedback.jpg" alt="images/customer_feedback.jpg" width="1000"></a>
+		</li>
 		<li class="list">Tradies can manage their jobs:<br/><br/>
 			<ul>
 				<li class="sublist">Mark the job as accepted - in which case it will not appear in the lists of other tradies browsing for jobs.</li>
@@ -51,12 +76,13 @@
 		</li>
 		<li class="list">New tradies get their first 6 months of membership for free, with no time limits.</li>
 		<li class="list">Customers get free membership.</li>
-		<li class="list">You can browse the tradie list and view business details, contact details and feedback history.</li>
-		<li class="list">You can contact tradies directly from the list or post a job for tradies to respond to.</li>
 		<li class="list">If tradies are qualified in more than one trade then they can list additional trades as well as a primary trade. And jobs matching theor primary trade or any of their additional trades will come up.</li>
-		<li class="list">There is a forum available for customers and tradies can use to discuss jobs, reqirements and tips etc. Information in the forum will not be sold to marketing data miners. </li>
+		<li class="list">
+			There is a forum available for customers and tradies can use to discuss jobs, reqirements and tips etc. Information in the forum will not be sold to marketing data miners.<br/>
+			<a href="images/forum.jpg"><img src="images/forum.jpg" alt="images/forum.jpg" width="1000"></a>
+		</li>
 		<li class="list">Membership is a flat monthly or yearly fee.</li>
-		<li class="list">You can try for as many jobs as your want for no additional payments.</li>
+		<li class="list">You can try for as many jobs as your want, with no additional payments.</li>
 	</ul>
-
+	<p>Your reputation as a tradie, as a customer or as both is ENTIRELY in your hands, as it is on eBay.</p>
 

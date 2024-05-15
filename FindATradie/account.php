@@ -322,7 +322,7 @@
 			$nPositive = 0;
 		$strUpdateOrAdd = "XXXX";
 
-		if (strlen($_POST["text_feedback_id"]) == 0)
+		if ($_POST["text_feedback_id"] == 0)
 		{
 			$results = DoInsertQuery5($g_dbFindATradie, "feedback", "positive", $nPositive, "description", $_POST["text_feedback"], 
 										"job_id", $_POST["text_job_id"], "recipient_id", $_POST["text_recipient_id"],
@@ -854,7 +854,7 @@
 
 						<div id="tab_contents1" class="tab_content">
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;width:1200px;">
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;width:1200px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
@@ -914,15 +914,15 @@
 								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 								<table class="table_no_borders search_table">
 									<tr>
-										<td class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></td>
-										<td class="cell_no_borders search_cell" style="width:5.5em;"><b>Date</b></td>
+										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>
+										<td class="cell_no_borders search_cell" style="width:6em;"><b>Date</b></td>
 										<td class="cell_no_borders search_cell" style="width:18em;"><b>Member<br/>Location<br/>Contact</b></td>
 										<td class="cell_no_borders search_cell" style="width:7em;"><b>Size<br/>Budget</b></td>
 										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Urgent?</b></td>
 										<td class="cell_no_borders search_cell" style="width:4.5em;"><b>Accepted</b></td>
 										<td class="cell_no_borders search_cell" style="width:6em;"><b>Completed</b></td>
 										<td class="cell_no_borders search_cell" style="width:4em;"><b>Paid</b></td>
-										<td class="cell_no_borders search_cell" style="width:5.5em;"><b>Feedback<br/>received</b></td>
+										<td class="cell_no_borders search_cell" style="width:6em;"><b>Feedback<br/>received</b></td>
 										<td class="cell_no_borders search_cell" style=""><b>Functions</b></td>
 									</tr>
 									<?php
@@ -1231,7 +1231,7 @@
 							</table>
 						</div>
 						
-						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie()) echo "block"; else echo "none"; ?>;" >
+						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;" >
 							<h2 id="tab_heading6"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">

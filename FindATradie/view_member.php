@@ -125,111 +125,176 @@
 							$row = $results->fetch_assoc();
 							if ($row)
 							{
-								echo "<div class=\"tradie_details\" style=\"font-size:large;background-color: #778899;\">\n";
-								echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
-								echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "<br/>";
-								if ($row["logo_filename"] && ($row["logo_filename"] != ""))
+								if (IsTradie($_GET["member_id"]))
 								{
-									echo "<img class=\"advert_image\" style=\"display:block;\" width=\"200\" src=\"" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />";
+									echo "<div class=\"tradie_details\">\n";
+									echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
+									echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Business name:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["business_name"] . "<br/>";
+									if ($row["logo_filename"] && (strcmp($row["logo_filename"], "") != 0))
+									{
+										echo "<img class=\"advert_image\" style=\"display:block;\" width=\"200\" src=\"" . $row["logo_filename"] . "\" alt=\"images/" . $row["logo_filename"] . "\" />";
+									}
+									echo "</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>ABN:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["abn"] . "</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Structure:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["structure"] . "</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									echo $row["first_name"] . " " . $row["surname"] . "<br/>";
+									if ($row["profile_filename"] && (strcmp($row["profile_filename"], "") != 0))
+									{
+										echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"200\" style=\"display:block;\" />";
+									}
+									echo "</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">\n";
+									if ($row["phone"] && ($row["phone"] != ""))
+										echo $row["phone"] . "\n";
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									if ($row["mobile"] && ($row["mobile"] != ""))
+										echo $row["mobile"] . "\n";
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									if ($row["email"] && ($row["email"] != ""))
+										echo $row["email"];
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Location:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
+									echo "	</tr>\n";
+									echo "</table>\n";
+									echo "</div>\n";
+									echo "<div class=\"tradie_about\">\n";
+									echo "<b><u>TRADES</u></b><br/>\n";
+									echo "<b>Primary trade: </b>" . GetTradeName($row["trade_id"]) . "<br/<br/>\n";
+									echo "<b>Additional trades: </b>";
+									echo GetAdditionalTradeNames($row["id"]) . "<br/><br/>\n";
+									
+									if ($row["license"] && ($row["license"] != ""))
+									{
+										echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";
+										echo RelaceCRLF($row["license"]);
+										echo "<br/><br/>";
+									}
+									if ($row["description"] && ($row["description"] != ""))
+									{
+										echo "<b><u>ABOUT THE BUSINESS</u></b><br/>\n";
+										echo RelaceCRLF($row["description"]);
+										echo "<br/>";
+									}
+									echo "</div>\n";
+									echo "<div class=\"tradie_feedback\">\n";
+									echo "<b><u>FEEDBACK AS A CLIENT</u></b>\n";
+									DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
+	
+									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Tradie name<br/>Business name<br/>Location</td>\n";
+									echo "</tr>\n";
+									DoDisplayFeedbackAs($_GET["member_id"], "customer");
+									echo "</table>\n";
+									echo "</div>\n";
+									
+									echo "<div class=\"tradie_feedback\">\n";
+									echo "<b><u>FEEDBACK AS A TRADIE</u></b>\n";
+										
+									DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
+										
+									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Feedback comments</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Client name<br/>Location</td>\n";
+									echo "</tr>\n";
+									DoDisplayFeedbackAs($_GET["member_id"], "tradie");
+									echo "</table>\n";
+									echo "</div>\n";
 								}
-								echo "</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>ABN:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">" . $row["abn"] . "</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Structure:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">" . $row["structure"] . "</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">";
-								echo $row["first_name"] . " " . $row["surname"] . "<br/>";
-								echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"200\" style=\"display:block;\" />";
-								echo "</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">\n";
-								if ($row["phone"] && ($row["phone"] != ""))
-									echo $row["phone"] . "\n";
-								echo "		</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">";
-								if ($row["mobile"] && ($row["mobile"] != ""))
-									echo $row["mobile"] . "\n";
-								echo "		</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">";
-								if ($row["email"] && ($row["email"] != ""))
-									echo $row["email"];
-								echo "		</td>\n";
-								echo "	</tr>\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Location:</b></td>\n";
-								echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
-								echo "	</tr>\n";
-								echo "</table>\n";
-								echo "</div>\n";
-								echo "<div class=\"tradie_about\" style=\"background-color: #778899;\">\n";
-								echo "<b><u>TRADES</u></b><br/>\n";
-								echo "<b>Primary trade: </b>" . GetTradeName($row["trade_id"]) . "<br/<br/>\n";
-								echo "<b>Additional trades: </b>";
-								echo GetAdditionalTradeNames($row["id"]) . "<br/><br/>\n";
-								
-								if ($row["license"] && ($row["license"] != ""))
+								else
 								{
-									echo "<b><u>BUSINESS LICENSES & PROFESSIONAL MEMBERSHIPS</u></b><br/>\n";
-									echo RelaceCRLF($row["license"]);
-									echo "<br/><br/>";
-								}
-								if ($row["description"] && ($row["description"] != ""))
-								{
-									echo "<b><u>ABOUT THE BUSINESS</u></b><br/>\n";
-									echo RelaceCRLF($row["description"]);
-									echo "<br/>";
-								}
-								echo "</div>\n";
-								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;background-color: #778899;\">\n";
-								echo "<b><u>FEEDBACK AS A CLIENT</u></b>\n";
-								
-								DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
+									echo "<div class=\"tradie_details\" style=\"font-size:large;background-color: #778899;\">\n";
+									echo "<b><u>CUSTOMER PROFILE</u></b><br/<br/><br/>\n";
+									echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Name:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									echo $row["first_name"] . " " . $row["surname"] . "<br/>";
+									if ($row["profile_filename"] && (strcmp($row["profile_filename"], "") != 0))
+									{
+										echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"200\" style=\"display:block;\" />";
+									}
+									echo "</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">\n";
+									if ($row["phone"] && ($row["phone"] != ""))
+										echo $row["phone"] . "\n";
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									if ($row["mobile"] && ($row["mobile"] != ""))
+										echo $row["mobile"] . "\n";
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">";
+									if ($row["email"] && ($row["email"] != ""))
+										echo $row["email"];
+									echo "		</td>\n";
+									echo "	</tr>\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Location:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"] . "</td>\n";
+									echo "	</tr>\n";
+									echo "</table>\n";
+									echo "</div>\n";
 
-								echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Tradie name<br/>Business name<br/>Location</td>\n";
-								echo "</tr>\n";
-								DoDisplayFeedbackAs($_GET["member_id"], "customer");
-								echo "</table>\n";
-								echo "</div>\n";
-								echo "<div class=\"tradie_feedback\" style=\"font-size:medium;background-color: #778899;\">\n";
-								echo "<b><u>FEEDBACK AS A TRADIE</u></b>\n";
-								
-								DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
-								
-								echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
-								echo "	<tr>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-								echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Client name<br/>Location</td>\n";
-								echo "</tr>\n";
-								DoDisplayFeedbackAs($_GET["member_id"], "tradie");
-								echo "</table>\n";
-								echo "</div>\n";
+									echo "<div class=\"tradie_feedback\" style=\"font-size:medium;background-color: #778899;\">\n";
+									echo "<b><u>FEEDBACK</u></b>\n";
+									DoDisplayFeedbackPercentages($_GET["member_id"], "", "customer");
+									
+									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\" style=\"\">\n";
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:0.5em;\">+/-</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:12em;\">Feedback comments</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:0.5em;\">Job ID</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">Date feedback</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:4em;\">Tradie name<br/>Business name<br/>Location</td>\n";
+									echo "</tr>\n";
+									DoDisplayFeedbackAs($_GET["member_id"], "customer");
+									echo "</table>\n";
+									echo "</div>\n";
+								}
 							}
 						}
 					}
