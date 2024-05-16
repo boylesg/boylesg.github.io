@@ -179,8 +179,8 @@
 				{
 					$results = DoFindQuery8($g_dbFindATradie, "members",  
 									"surname", $_POST["text_surname"], "first_name", $_POST["text_first_name"],
-									"email", $_POST["text_email"], "surburb", $_POST["text_suburb"],
-									"state", $_POST["select_state"], "postcode", $_POST["text_poscode"],
+									"email", $_POST["text_email"], "suburb", $_POST["text_suburb"],
+									"state", $_POST["select_state"], "postcode", $_POST["text_postcode"],
 									"mobile", $_POST["text_mobile"], "phone", $_POST["text_phone"]);
 					if ($results && ($results->num_rows > 0))
 					{
@@ -188,8 +188,7 @@
 					}
 					else
 					{
-						$dateExpiry = new DateTime();
-									
+						$dateExpiry = new DateTime();								
 						$dateExpiry->modify($g_strFreeMembership);
 						$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
 										"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
@@ -205,27 +204,30 @@
 						$result = DoQuery($g_dbFindATradie, $strQuery);
 						if ($result)
 						{
-							$row = $result->fetch_assoc();
-							$strMemberID = $row["id"];
-							$arrayAdditionalTrades = $_POST["select_additional_trades"];
-							$bResult = true;
-			
-							foreach ($arrayAdditionalTrades as $strTradeID)
+							$result = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
+							if ($result && ($result->num_rows > 0))
 							{
-								$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "client_id", $row["id"], "trade_id", $strTradeID);
-								if ($result->num_rows == 0)
+								$row = $result->fetch_assoc();
+								$strMemberID = $row["id"];
+								$arrayAdditionalTrades = $_POST["select_additional_trades"];
+								$bResult = true;
+				
+								foreach ($arrayAdditionalTrades as $strTradeID)
 								{
-									PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'additional_trades' in new_tradie.php!\");", 4, true);
-									$bResult = false;
-									break;
+									$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "client_id", $row["id"], "trade_id", $strTradeID);
+									if (!$result)
+									{
+										PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'additional_trades' in new_tradie.php!\");", 4, true);
+										$bResult = false;
+										break;
+									}
 								}
-							}
-							if ($bResult)
-							{
-								PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-														"window.location.href = \"https://www.find-a-tradie.com.au/login.php\";"], 4, true);
-								$_SESSION["account_usernanme"] = $_POST["text_username"];			
-								$_SESSION["account_password"] = $_POST["text_password"];			
+								if ($bResult)
+								{
+									PrintJavascriptLine("window.location.href = \"https://www.find-a-tradie.com.au/login.php\";", 4, true);
+									$_SESSION["account_usernanme"] = $_POST["text_username"];			
+									$_SESSION["account_password"] = $_POST["text_password"];			
+								}
 							}
 						}
 						else

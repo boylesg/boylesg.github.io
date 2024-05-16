@@ -1267,17 +1267,20 @@
 		global $g_dbFindATradie;
 		$strSelected = "";
 		
-		if (strlen($strTradeID) == 0)
+		if (isset($strTradeID) && (strlen($strTradeID) == 0))
 			$strSelected = " selected";
-		 
+	 
 		$queryResult = $g_dbFindATradie->query("SELECT id, name, description FROM trades ORDER BY name");
 			
 		while ($row = $queryResult->fetch_assoc())
 	    {			
-			if (strcmp($strTradeID, $row["id"]) == 0)
-				echo " selected";
 	    	PrintIndents(8);
-			echo "<option value=\"" . $row["id"] . "\"" . $strSelected . ">" . $row["name"] . "</option>\n";
+			echo "<option value=\"" . $row["id"] . "\"" . $strSelected;
+			if (isset($strTradeID) && (strcmp($strTradeID, $row["id"]) == 0))
+			{
+				echo " selected";
+			}
+			echo ">" . $row["name"] . "</option>\n";
 			$strSelected = "";
 	    }
 	    $queryResult->free_result();

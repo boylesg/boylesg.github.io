@@ -258,8 +258,8 @@
 	<textarea id="htext_description" name="text_description"></textarea>
 	<input type="htext" id="htext_minimum_charge" name="text_minimum charge" />
 	<input type="htext" id="htext_minimum_budget" name="text_minimum_budget" />
-	<select id="hselect_maximum_size" name="select_maximum_size" required>
-		<?php include "job_size.html"; ?>
+	<select id="hselect_maximum_size" name="select_maximum_size">
+		<?php DoGenerateJobSizeOptions(""); ?>
 	</select>
 	<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
 	<input type="text" id="htext_first_name" name="text_first_name" />
@@ -275,12 +275,6 @@
 	<input type="text"  id="htext_mobile" name="text_mobile" />
 	<input type="text"  id="htext_email" name="text_email" />
 	<input type="hidden" id="submit_all_details" name="submit_all_details" value="SUBMIT" />
-</form>
-
-<form method="post" id="form_login" style="display:none;" action="login.php">
-	<input type="text" id="text_username" name="text_username" value="<?php if (isset($_POST["text_username"])) echo $_POST["text_username"]; ?>"/>
-	<input type="text" id="text_password" name="text_password" value="<?php if (isset($_POST["text_password"])) echo $_POST["text_password"]; ?>"/>
-	<input type="submit" name="submit_login" value="LOG IN" />
 </form>
 
 <script type="text/javascript">

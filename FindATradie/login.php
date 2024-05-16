@@ -33,7 +33,7 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
@@ -300,15 +300,7 @@
 							</tr>
 						</table>
 						<input type="hidden" name="submit_login" value="LOG IN" />
-					</form>
-					
-					<div class="advert" id="advert_login1" style="width:630px;height:240px;">
-						<?php DoInsertAdvert("login1", 180, "advert_login1"); ?>
-					</div>
-					<div class="advert" id="advert_login2" style="width:1250px;height:300px;margin-top:20px;margin-left:0px;margin-right:0px;">
-						<?php DoInsertAdvert("login2", 180, "advert_login2"); ?>
-					</div>
-					
+					</form>					
 				</div>	
 
 
