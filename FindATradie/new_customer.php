@@ -90,7 +90,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -161,31 +161,43 @@
 		$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
 		if ($results && ($results->num_rows > 0))
 		{
-			PrintJavascriptLine("AlertError(\"The username '" . $_POST["text_username"] . "' is already registered by someone else!\");", 2, true);
+			PrintJSAlertWarning("The username '" . $_POST["text_username"] . "' is already registered by someone else!", 2, true);
 		}
 		else
 		{
-			$dateExpiry = new DateTime();
-			$dateExpiry->modify("100 years")
-			$strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
-							"phone, mobile, email, username, password, expiry_date) VALUES (" .
-							AppendSQLInsertValues(DoGetCustomerTradeID(), $_POST["text_first_name"], $_POST["text_surname"], 
-								$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
-								$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
-								$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), date("Y-m-d") ) . 
-								$dateExpiry->format("Y-m-d") . ")";
-	
-			$result = DoQuery($g_dbFindATradie, $strQuery);
-			if ($result)
+			$results = DoFindQuery8($g_dbFindATradie, "members",  
+							"surname", $_POST["text_surname"], "first_name", $_POST["text_first_name"],
+							"email", $_POST["text_email"], "surburb", $_POST["text_suburb"],
+							"state", $_POST["select_state"], "postcode", $_POST["text_poscode"],
+							"mobile", $_POST["text_mobile"], "phone", $_POST["text_phone"]);
+			if ($results && ($results->num_rows > 0))
 			{
-				PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-										"DoGetInput('form_login').submit();"], 4, true);					
-					$_SESSION["account_usernanme"] = $_POST["text_username"];			
-					$_SESSION["account_password"] = $_POST["text_password"];			
+				PrintJSAlertWarning("Some on with the same name, email address, suburb, state, postcode, mobile and phone is already registered as a member!",  2);
 			}
 			else
 			{
-				PrintJSAlertError("AlertError(\"there was a problem inserting a record into 'members' in new_tradie.php!\");", 4);
+				$dateExpiry = new DateTime();
+				$dateExpiry->modify("100 years")
+				$strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
+								"phone, mobile, email, username, password, expiry_date) VALUES (" .
+								AppendSQLInsertValues(DoGetCustomerTradeID(), $_POST["text_first_name"], $_POST["text_surname"], 
+									$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
+									$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
+									$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), date("Y-m-d") ) . 
+									$dateExpiry->format("Y-m-d") . ")";
+		
+				$result = DoQuery($g_dbFindATradie, $strQuery);
+				if ($result)
+				{
+					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
+											"window.location.href = \"https://www.find-a-tradie.com.au/login.php\";"], 4, true);					
+						$_SESSION["account_usernanme"] = $_POST["text_username"];			
+						$_SESSION["account_password"] = $_POST["text_password"];			
+				}
+				else
+				{
+					PrintJSAlertError("There was a problem inserting a record into 'members' in new_tradie.php!", 4);
+				}
 			}
 		}
 	}

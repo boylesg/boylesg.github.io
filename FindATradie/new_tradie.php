@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -90,7 +90,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -113,6 +113,8 @@
 
 
 <?php
+	
+	$_SESSION["NEW"] = true;
 				
 	include "member_details_forms.html";
 
@@ -157,61 +159,81 @@
 		$results = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
 		if ($results && ($results->num_rows > 0))
 		{
-			PrintJavascriptLine("AlertError(\"username '" . $_POST["text_username"] . "' is already registered by someone else!\");", 2, true);
-		}
-		else if (DoFindQuery1($g_dbFindATradie, "members", "business_name", $_POST["text_business_name"]))
-		{
-			PrintJavascriptLine("AlertError(\"buisness name '" . $_POST["text_business_name"] . "' is already registered by some one else!\");",  2, true);
-		}
-		else if (DoFindQuery1($g_dbFindATradie, "members", "abn", $_POST["text_abn"]))
-		{
-			PrintJavascriptLine("AlertError(\"ABN '" . $_POST["text_abn"] . "' is already registered by someone else!\");",  2, true);
+			PrintJSAlertWarning("Username '" . $_POST["text_username"] . "' is already registered by someone else!", 2);
 		}
 		else
 		{
-			$dateExpiry = new DateTime();
-						
-			$dateExpiry->modify($g_strFreeMembership);
-			$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
-							"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
-							"phone, mobile, email, username, password, expiry_date) VALUES (" .
-							AppendSQLInsertValues($_POST["select_trade"], $_POST["text_business_name"], 
-								$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
-								$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
-								$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
-								$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
-								$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
-								$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), $dateExpiry->format("Y-m-d")) . ")";
-	
-			$result = DoQuery($g_dbFindATradie, $strQuery);
-			if ($result)
+			$results = DoFindQuery1($g_dbFindATradie, "members", "business_name", $_POST["text_business_name"]);
+			if ($results && ($results->num_rows > 0))
 			{
-				$row = $result->fetch_assoc();
-				$strMemberID = $row["id"];
-				$arrayAdditionalTrades = $_POST["select_additional_trades"];
-				$bResult = true;
-
-				foreach ($arrayAdditionalTrades as $strTradeID)
-				{
-					$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "client_id", $row["id"], "trade_id", $strTradeID);
-					if ($result->num_rows == 0)
-					{
-						PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'additional_trades' in new_tradie.php!\");", 4, true);
-						$bResult = false;
-						break;
-					}
-				}
-				if ($bResult)
-				{
-					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-											"DoGetInput('form_login').submit();"], 4, true);
-					$_SESSION["account_usernanme"] = $_POST["text_username"];			
-					$_SESSION["account_password"] = $_POST["text_password"];			
-				}
+				PrintJSAlertWarning("Buisness name '" . $_POST["text_business_name"] . "' is already registered by some one else!",  2);
 			}
 			else
 			{
-				PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'members' in new_tradie.php!\");", 4, true);
+				$results = DoFindQuery1($g_dbFindATradie, "members", "abn", $_POST["text_abn"]);
+				if ($results && ($results->num_rows > 0))
+				{
+					PrintJSAlertWarning("ABN '" . $_POST["text_abn"] . "' is already registered by someone else!",  2);
+				}
+				else
+				{
+					$results = DoFindQuery8($g_dbFindATradie, "members",  
+									"surname", $_POST["text_surname"], "first_name", $_POST["text_first_name"],
+									"email", $_POST["text_email"], "surburb", $_POST["text_suburb"],
+									"state", $_POST["select_state"], "postcode", $_POST["text_poscode"],
+									"mobile", $_POST["text_mobile"], "phone", $_POST["text_phone"]);
+					if ($results && ($results->num_rows > 0))
+					{
+						PrintJSAlertWarning("Some on with the same name, email address, suburb, state, postcode, mobile and phone is already registered as a member!",  2);
+					}
+					else
+					{
+						$dateExpiry = new DateTime();
+									
+						$dateExpiry->modify($g_strFreeMembership);
+						$strQuery = "INSERT INTO members (trade_id, business_name, first_name, surname, abn, structure, license, description, " . 
+										"minimum_charge, minimum_budget, maximum_size, maximum_distance, unit, street, suburb, state, postcode, ".
+										"phone, mobile, email, username, password, expiry_date) VALUES (" .
+										AppendSQLInsertValues($_POST["select_trade"], $_POST["text_business_name"], 
+											$_POST["text_first_name"], $_POST["text_surname"],  $_POST["text_abn"],  $_POST["select_structure"],  
+											$_POST["text_license"], $_POST["text_description"],  $_POST["text_minimum_charge"],  
+											$_POST["text_minimum_budget"],   $_POST["select_maximum_size"],  $_POST["text_maximum_distance"],  
+											$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
+											$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
+											$_POST["text_username"], $_POST["text_password"], $dateExpiry->format("Y-m-d")) . ")";
+	
+						$result = DoQuery($g_dbFindATradie, $strQuery);
+						if ($result)
+						{
+							$row = $result->fetch_assoc();
+							$strMemberID = $row["id"];
+							$arrayAdditionalTrades = $_POST["select_additional_trades"];
+							$bResult = true;
+			
+							foreach ($arrayAdditionalTrades as $strTradeID)
+							{
+								$result = DoInsertQuery2($g_dbFindATradie, "additional_trades", "client_id", $row["id"], "trade_id", $strTradeID);
+								if ($result->num_rows == 0)
+								{
+									PrintJavascriptLine("AlertError(\"there was a problem inserting a record into 'additional_trades' in new_tradie.php!\");", 4, true);
+									$bResult = false;
+									break;
+								}
+							}
+							if ($bResult)
+							{
+								PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
+														"window.location.href = \"https://www.find-a-tradie.com.au/login.php\";"], 4, true);
+								$_SESSION["account_usernanme"] = $_POST["text_username"];			
+								$_SESSION["account_password"] = $_POST["text_password"];			
+							}
+						}
+						else
+						{
+							PrintJSAlertError("There was a problem inserting a record into 'members' in new_tradie.php!", 4, true);
+						}
+					}
+				}
 			}
 		}
 	}

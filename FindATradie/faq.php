@@ -32,6 +32,9 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
+
+
+
 			
 				.faq_question
 				{
@@ -117,7 +120,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -131,7 +134,14 @@
 				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
-				
+
+
+
+
+
+
+
+
 				<div class="note" style="display:block;overflow-x:auto;overflow-y:visible;">
 
 					<ul>						<hr/><li class="faq_question">
@@ -252,6 +262,13 @@
 						</li>
 					</ul>
 				</div>
+
+
+
+
+
+
+
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->

@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -90,7 +90,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -119,16 +119,12 @@
 		mail($g_strEmailAddress, $_POST["select_about"], $_POST["hidden_member_id"] . ", " . $_POST["hidden_member_name"] . "\r\n\r\n" . $_POST["text_message"], "From: <" . $_POST["hidden_email"] . ">\r\n");
 	}
 ?>
-				<div class="advert" id="advert_contact1" style="height: 80px; width: 95%;">
-					<?php DoInsertAdvert("contact1", 70, "advert_contact1"); ?>
-				</div>
-
-				<div class="advert" id="advert_contact2" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-					<?php DoInsertAdvert("contact2", 70, "advert_contact2"); ?>
-				</div>
 				
 				<div class="note" style="flex-wrap:wrap;">
-
+				
+					<h6>FEEDBACK</h6>
+					<p>I will listen to your feedback and suggestions and respond to them personally and individually.</p>
+					
 					<form method="post" action="" id="form_contact">
 						
 						<table class="table_no_borders">
@@ -136,7 +132,8 @@
 								<td class="cell_no_borders"><b>What are you contacting us about?</b></td>
 								<td class="cell_no_borders">
 									<select id="select_about" name="select_about">
-										<option value="1">Please add my tesimonials</option>
+										<option value="1">Please add recomendations to my feedback</option>
+										<option value="1">Suggestions &amp; feedback</option>
 										<option value="2">Technical problem</option>
 										<option value="3">Complaint</option>
 										<option value="4">Testimonial</option>
@@ -166,16 +163,6 @@
 					</form>
 
 				</div>
-
-				<div class="advert" id="advert_contact3" style="height: 80px; width: 95%;">
-					<?php DoInsertAdvert("contact3", 70, "advert_contact3"); ?>
-				</div>
-
-				<div class="advert" id="advert_contact4" style="height: 80px; width: 95%;margin-top:20px;margin-bottom:10px;">
-					<?php DoInsertAdvert("contact4", 70, "advert_contact4"); ?>
-				</div>
-				
-
 
 
 

@@ -16,6 +16,7 @@
 	     * @param string $passphrase Your password
 	     * @return string
 	     */
+
 	    public static function encrypt($value, string $passphrase)
 	    {
 	        $salt = openssl_random_pseudo_bytes(8);

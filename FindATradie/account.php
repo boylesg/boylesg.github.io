@@ -18,6 +18,7 @@
 	<!-- #BeginEditable "server" -->
 	
 		<?php
+		
 		?>
 	
 	<!-- #EndEditable -->
@@ -32,6 +33,9 @@
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
+
+
+
 
 				:root 
 				{
@@ -699,7 +703,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage/?viewas=100000686899395" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -1316,7 +1320,7 @@
 												<input type="text" name="text_suburb" size="24" name="" value="<?php if (isset($_POST["text_suburb"])) echo $_POST["text_suburb"]; else echo $_SESSION["account_suburb"]; ?>" />
 											</td>										
 											<td class="form_table_cell">
-												<input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; else printf("%d", $_SESSION["account_maximum_distance"]); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
+												<input type="text" id="text_maximum_distance0" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; else printf("%d", $_SESSION["account_maximum_distance"]); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
 											</td>
 										</tr>
 										<tr><td colspan="5"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>

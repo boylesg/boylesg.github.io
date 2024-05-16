@@ -57,7 +57,7 @@
 					<td class="cell_no_borders">
 						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" size="10">
 							<?php DoGenerateAdditionalTradeOptions(DoGetDefaultAdditionalTrades()); ?>
-						</select><br/>
+						</select>&nbsp;<button type="button" onclick="DoGetInput('select_additional_trades').selectedIndex = -1;"><img src="images/delete.png" alt="images/delete.png" class="function_button_image" /></button><br/>
 						<b><i>Hold down the CTRL key and click the left mouse button to select multiple items...</i></b>
 					</td>
 				</tr>
