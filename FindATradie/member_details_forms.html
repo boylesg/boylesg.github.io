@@ -45,7 +45,7 @@
 				<tr>
 					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
 					<td class="cell_no_borders">
-						<select id="select_trade" name="select_trade" onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
+						<select id="select_trade" name="select_trade" required onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
 							<?php DoGeneratePrimaryTradeOptions(DoGetDefaultTrade()); ?>
 						</select>
 						<br/><br/>
@@ -55,7 +55,7 @@
 				<tr>
 					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Additional trades</b></td>
 					<td class="cell_no_borders">
-						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" size="10">
+						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" required size="10">
 							<?php DoGenerateAdditionalTradeOptions(DoGetDefaultAdditionalTrades()); ?>
 						</select>&nbsp;<button type="button" onclick="DoGetInput('select_additional_trades').selectedIndex = -1;"><img src="images/delete.png" alt="images/delete.png" class="function_button_image" /></button><br/>
 						<b><i>Hold down the CTRL key and click the left mouse button to select multiple items...</i></b>
@@ -194,7 +194,7 @@
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;"><b>State</b></td>
 				<td class="cell_no_borders">
-					<select id="select_state" name="select_state">
+					<select id="select_state" name="select_state" required>
 						<?php include "states.html"; ?>
 					</select>
 					<script type="text/javascript"> SetSelectionValue("select_state", "<?php echo DoGetDefaultState(); ?>"); </script>
@@ -209,7 +209,7 @@
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;"><b>Phone</b></td>
 				<td class="cell_no_borders">
-					<input type="text"  id="text_phone" name="text_phone" maxlength="8" required pattern="^[0-9]{8}$" value="<?php echo DoGetDefaultPhone(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<input type="text"  id="text_phone" name="text_phone" maxlength="8" pattern="^[0-9]{8}$" value="<?php echo DoGetDefaultPhone(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
 				</td>
 			</tr>
 			<tr>
