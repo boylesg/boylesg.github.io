@@ -159,37 +159,57 @@
 			<script type="text/javascript">
 			
 				if (sessionStorage.getItem("active tab_button") == undefined)
-					sessionStorage.setItem("active tab_button", "");
+					sessionStorage.setItem("active tab_button", 0);
 				
-				function  DoOpenTab(strTabButtonID, strTab2ShowID) 
-				{
-					let divPageContent = document.getElementById("account");
-					
-					if (divPageContent)
+				let g_arrayTabs = [];
+			
+				<?php
+				
+					if (IsTradie($_SESSION["account_trade"]))
 					{
-						for (let nI = 0; nI < divPageContent.children.length; nI++)
+						echo "g_arrayTabs.push({tab:\"tab_button1\", contents:\"tab_contents1\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button2\", contents:\"tab_contents2\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button3\", contents:\"tab_contents3\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button4\", contents:\"tab_contents4\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button5\", contents:\"tab_contents5\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button6\", contents:\"tab_contents6\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button7\", contents:\"tab_contents7\"});\n";
+					}
+					else
+					{
+						echo "g_arrayTabs.push({tab:\"tab_button2\", contents:\"tab_contents2\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button3\", contents:\"tab_contents3\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button4\", contents:\"tab_contents4\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button5\", contents:\"tab_contents5\"});\n";
+						echo "g_arrayTabs.push({tab:\"tab_button7\", contents:\"tab_contents7\"});\n";
+					}
+				?>
+				
+				function GetSelectedTabIndex(strTabButtonID)
+				{
+					let nTabNum = -1;
+					
+					for (let nI = 0; nI < g_arrayTabs.length; nI++)
+					{
+						if (g_arrayTabs[nI].tab == strTabButtonID)
 						{
-							if (divPageContent.children[nI].className == "tab_content")
-							{
-								divPageContent.children[nI].style.display = "none";
-							}
-						}
-						let divTab2Show = document.getElementById(strTab2ShowID);
-						if (divTab2Show)
-						{
-							divTab2Show.style.display = "block";
-						}
-						let divTabButton = document.getElementById(strTabButtonID);
-						if (divTabButton)
-						{
-							if (sessionStorage.getItem("active tab_button") != "")
-							{
-								DoGetInput(sessionStorage.getItem("active tab_button")).style.backgroundColor = GetCSSVariable("--ColorBG");
-							}
-							divTabButton.style.backgroundColor = GetCSSVariable("--ColorActiveBG");
-							sessionStorage.setItem("active tab_button", divTabButton.id);
+							nTabNum = nI;
+							break;
 						}
 					}
+					return nTabNum;
+				}
+				
+				function  DoOpenTab(strTabButton2ShowID, strTab2ShowID) 
+				{
+					for (let nI = 0; nI < g_arrayTabs.length; nI++)
+					{
+						DoGetInput(g_arrayTabs[nI].contents).style.display = "none";
+						DoGetInput(g_arrayTabs[nI].tab).style.backgroundColor = GetCSSVariable("--ColorBG");
+					}
+					DoGetInput(strTab2ShowID).style.display = "block";
+					DoGetInput(strTabButton2ShowID).style.backgroundColor = GetCSSVariable("--ColorActiveBG");
+					sessionStorage.setItem("active tab_button", GetSelectedTabIndex(strTabButton2ShowID));
 				}
 				
 			</script>
@@ -1126,7 +1146,7 @@
 								}
 								OnChangeTrade(DoGetInput("select_trade_id_edit"), DoGetInput('trade_description_job_edit'));
 							</script>
-							<table  cellspacing="0" cellpadding="3" border="0" class="search_table">
+							<table  cellspacing="0" cellpadding="3" border="0" class="search_table" style="height: 100px;">
 								<tr>
 									<td class="cell_no_borders search_cell" style="width:5em;"><b>Date</b></td>
 									<td class="cell_no_borders search_cell" style="width:6em;"><b>Size</b></td>
@@ -1149,9 +1169,9 @@
 										</table>
 									</td>
 								</tr>
-								<?php
-									DoGetWebJobsPosted();
-								?>
+
+								<?php DoGetWebJobsPosted(); ?>
+								<tr><td class="cell_no_borders search_cell" colspan="8">&nbsp;</td></tr>
 							</table>
 
 						</div>
@@ -1395,50 +1415,43 @@
 	
 	function DoRestoreTab()
 	{
-		let strID = sessionStorage["active tab_button"],
-			nIndex = 0;
-		
-		if (strID == "tab_button2")
+		if (sessionStorage["active tab_button"] == "NaN")
+			sessionStorage["active tab_button"] = 0;
+			
+		let nSelectedTabIndex = parseInt(sessionStorage["active tab_button"]),
+			strSelectedTabID = "",
+			strSelectedContentsID = "";
+			
+		if ((nSelectedTabIndex == undefined) || (nSelectedTabIndex == "NaN"))
 		{
-			DoOpenTab("tab_button2", "tab_contents2");
-			nIndex = 2;
-		}
-		else if (strID == "tab_button3")
-		{
-			DoOpenTab("tab_button3", "tab_contents3");
-			nIndex = 3;
-		}
-		else if (strID == "tab_button4")
-		{
-			DoOpenTab("tab_button4", "tab_contents4");
-			nIndex = 4;
-		}
-		else if (strID == "tab_button5")
-		{
-			DoOpenTab("tab_button5", "tab_contents5");
-			nIndex = 5;
-		}
-		else if (strID == "tab_button6")
-		{
-			DoOpenTab("tab_button6", "tab_contents6");
-			nIndex = 6;
-		}
-		else if (strID == "tab_button7")
-		{
-			DoOpenTab("tab_button7", "tab_contents7");
-			nIndex = 7;
+			console.log("@@@@@" + nSelectedTabIndex + "@@@@@");
 		}
 		else
 		{
-			DoOpenTab("tab_button1", "tab_contents1");
-			nIndex = 1;
+			if (g_arrayTabs[nSelectedTabIndex] == undefined)
+			{
+				console.log("&&&&&" + nSelectedTabIndex + "&&&&&" + g_arrayTabs[nSelectedTabIndex] + "&&&&&");
+			}
+			else
+			{
+				strSelectedTabID = g_arrayTabs[nSelectedTabIndex].tab;
+				if (strSelectedTabID == undefined)
+				{
+					console.log("*****" + nSelectedTabIndex + "*****");
+				}
+				strSelectedContentsID = g_arrayTabs[nSelectedTabIndex].contents;
+				if (strSelectedContentsID == undefined)
+				{
+					console.log("#####" + nSelectedTabIndex + "#####");
+				}
+			}
 		}
-		return nIndex;
+		DoOpenTab(strSelectedTabID, strSelectedContentsID);
 	}
 	
-	let nI = DoRestoreTab();
-	let rectHeading = DoGetInput("tab_heading" + nI.toString()).getBoundingClientRect();
-	window.screenTop = rectHeading.top + 100;
+	DoRestoreTab();
+	//let rectHeading = DoGetInput("tab_heading" + (nI + 1).toString()).getBoundingClientRect();
+	//window.screenTop = rectHeading.top + 100;
 
 </script>
 

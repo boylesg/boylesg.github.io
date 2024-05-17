@@ -2710,21 +2710,20 @@
 			while ($row = $results->fetch_assoc())
 			{
 				echo "<tr>\n";
-				echo "<td class=\"search_cell\">\n";
+				echo "<td class=\"search_cell\">";
 				$dateAdded = new DateTime($row["date_added"]);
 				echo $dateAdded->format("d/m/Y");
 				echo "</td>\n";
-				echo "<td class=\"search_cell\">\n";
+				echo "<td class=\"search_cell\">";
 				echo $row["size"];
 				echo "</td>\n";
 				echo "<td class=\"search_cell\">$";
 				echo sprintf("%.2f", $row["maximum_budget"]);
 				echo "</td>\n";
-				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";
+				echo "<td class=\"search_cell\" style=\"text-align:center;\">";
 				DoDisplayBoolean($row["urgent"], "function_button_image");
 				echo "</td>\n";
-				echo "</td>\n";
-				echo "<td class=\"search_cell\">\n";
+				echo "<td class=\"search_cell\">";
 				if ($row["accepted_by_member_id"] > 0)
 				{
 					$rowMember = DoGetMember($row["accepted_by_member_id"]);
@@ -2740,21 +2739,20 @@
 					echo "";
 				}
 				echo "</td>\n";
-				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";
+				echo "<td class=\"search_cell\" style=\"text-align:center;\">";
 				DoDisplayBoolean($row["completed"], "function_button_image");
 				echo "</td>\n";
-				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";
+				echo "<td class=\"search_cell\" style=\"text-align:center;\">";
 				DoDisplayBoolean($row["paid"], "function_button_image");
 				echo "</td>\n";
-				echo "<td class=\"search_cell\" style=\"text-align:center;\">\n";					
+				echo "<td class=\"search_cell\" style=\"text-align:center;\">";					
 				$rowFeedback = DoGetRow1("feedback", "job_id", $row["id"]);
 				if ($rowFeedback)
 					DoDisplayBoolean(DoGetColumnValue("feedback", "id", $rowFeedback["id"], "positive"), "function_button_image");
 				else
 					DoDisplayBoolean(false, "function_button_image");
-;
 				echo "</td>\n";
-				echo "<td class=\"search_cell\">\n";
+				echo "<td class=\"search_cell\">";
 				echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";	
 				echo "    <button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $row["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 				if ($row["accepted_by_member_id"] == 0)
@@ -2782,6 +2780,10 @@
 				echo "</td>\n"; 
 				echo "</tr>\n";
 			}
+		}
+		else
+		{
+			echo "<tr><td colspan=\"9\" class=\"search_cell\">No matching jobs...</td></tr>\n";
 		}
 	}
 	
@@ -3063,6 +3065,10 @@
 					}
 				}
 			}
+		}
+		else
+		{
+			echo "<tr style=\"height:1000px;\"><td colspan=\"10\" class=\"search_cell\">No matching jobs...</td></tr>\n";
 		}
 		return $results->num_rows;
 	}
