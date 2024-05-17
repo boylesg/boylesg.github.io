@@ -278,7 +278,7 @@
 	function PrintJSAlertError($strMsg, $nNumIndents)
 	{
 		global $g_strQuery;
-		PrintJavascriptLine("AlertError(\"" . $strMsg . "\n\ng_strQuery = ". $g_strQuery . "\");", $nNumIndents, true);
+		PrintJavascriptLine("AlertError(\"" . $strMsg . "\\n\\ng_strQuery = ". $g_strQuery . "\");", $nNumIndents, true);
 	}
 	
 	function PrintJavascriptLines($arrayStrCode, $nNumIndents, $bScriptTags)
@@ -387,7 +387,9 @@
 		}
 		catch(Exception $e)
 		{
-			PrintJavascriptLine("AlertError(\"'" . $e->getMessage() . "'\");", 2, true);
+			$strMsg = $e->getMessage();
+			$strMsg = str_replace("\"", "'", $strMsg);
+			PrintJavascriptLine("AlertError(\"'" . $strMsg . "'\");", 2, true);
 			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailAdmin;
 		}
 		return $dbFindATradie;
@@ -1684,7 +1686,7 @@
 		if ($result && ($result->num_rows > 0))
 		{
 			$row = $result->fetch_assoc();
-			$bResult = strcasecmp($row["name"], "Customer") == 0;
+			$bResult = strcasecmp($row["name"], "Customer") != 0;
 		}
 		return $bResult;
 	}

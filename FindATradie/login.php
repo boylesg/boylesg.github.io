@@ -45,9 +45,7 @@
 	// Processing post data.
 	if (isset($_POST["submit_login"]))
 	{
-		$_SESSION["account_username"] = $_POST["text_username"];
-		$_SESSION["account_password"] = $_POST["text_password"];
-		$strQuery = "SELECT * FROM members WHERE username='" . $_SESSION["account_username"] . "' OR email='" . $_SESSION["account_username"] . "' AND password='" . $_SESSION["account_password"] . "'";
+		$strQuery = "SELECT * FROM members WHERE username='" . $_POST["text_username"] . "' OR email='" . $_POST["text_username"] . "' AND password='" . $_POST["text_password"] . "'";
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result->num_rows == 1)
 		{
@@ -75,7 +73,7 @@
 			$_SESSION["account_email"] = $row["email"];
 			$_SESSION["account_expiry_date"] = $row["expiry_date"];
 			$_SESSION["account_username"] = $row["username"];
-			$_SESSION["account_password"] = DoAESDecrypt($row["password"]);
+			$_SESSION["account_password"] = $row["password"];
 			$_SESSION["account_logo_filename"] = $row["logo_filename"];
 			$_SESSION["account_profile_filename"] = $row["profile_filename"];
 			

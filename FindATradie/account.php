@@ -846,17 +846,25 @@
 					</div>
 					
 					<div id="account" style="display:<?php echo $strAccountDisplay; ?>;">
+						
+						<h6>Welcome back <?php echo $_SESSION["account_first_name"] ;?>...</h6>
 					
+						<?php
+							$strDisplayTradieStuff = "none";
+							if (IsTradie($_SESSION["account_trade"]))
+								$strDisplayTradieStuff = "block";
+						?>
+						
 						<br/><br/>
-						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')">Browse your jobs</button>
+						<button class="tab_button" id="tab_button1" onclick="DoOpenTab('tab_button1', 'tab_contents1')" style="display:<?php echo $strDisplayTradieStuff; ?>;">Browse your jobs</button>
 						<button class="tab_button" id="tab_button2" onclick="DoOpenTab('tab_button2', 'tab_contents2')">Post your own job</button>
 						<button class="tab_button" id="tab_button3" onclick="DoOpenTab('tab_button3', 'tab_contents3')">Account details</button>
 						<button class="tab_button" id="tab_button4" onclick="DoOpenTab('tab_button4', 'tab_contents4')">Feedback you've received</button>
 						<button class="tab_button" id="tab_button5" onclick="DoOpenTab('tab_button5', 'tab_contents5')">Feedback you've given</button>
-						<button class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')">Your adverts</button>
+						<button class="tab_button" id="tab_button6" onclick="DoOpenTab('tab_button6', 'tab_contents6')" style="display:<?php echo $strDisplayTradieStuff; ?>;">Your adverts</button>
 						<button class="tab_button" id="tab_button7" onclick="DoOpenTab('tab_button7', 'tab_contents7')">Browse tradies</button>
 
-						<div id="tab_contents1" class="tab_content">
+						<div id="tab_contents1" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;">
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
 								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;width:1200px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
@@ -1235,7 +1243,7 @@
 							</table>
 						</div>
 						
-						<div id="tab_contents6" class="tab_content" style="display:<?php if (IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;" >
+						<div id="tab_contents6" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;" >
 							<h2 id="tab_heading6"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
 							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">

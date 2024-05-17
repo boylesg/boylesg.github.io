@@ -167,8 +167,8 @@
 		{
 			$results = DoFindQuery8($g_dbFindATradie, "members",  
 							"surname", $_POST["text_surname"], "first_name", $_POST["text_first_name"],
-							"email", $_POST["text_email"], "surburb", $_POST["text_suburb"],
-							"state", $_POST["select_state"], "postcode", $_POST["text_poscode"],
+							"email", $_POST["text_email"], "suburb", $_POST["text_suburb"],
+							"state", $_POST["select_state"], "postcode", $_POST["text_postcode"],
 							"mobile", $_POST["text_mobile"], "phone", $_POST["text_phone"]);
 			if ($results && ($results->num_rows > 0))
 			{
@@ -177,22 +177,20 @@
 			else
 			{
 				$dateExpiry = new DateTime();
-				$dateExpiry->modify("100 years")
-				$strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
+				$dateExpiry->modify("100 years");
+				$g_strQuery = "INSERT INTO members (trade_id, first_name, surname, unit, street, suburb, state, postcode, ".
 								"phone, mobile, email, username, password, expiry_date) VALUES (" .
 								AppendSQLInsertValues(DoGetCustomerTradeID(), $_POST["text_first_name"], $_POST["text_surname"], 
 									$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
 									$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
-									$_POST["text_username"], DoAESEncrypt($_POST["text_password"]), date("Y-m-d") ) . 
-									$dateExpiry->format("Y-m-d") . ")";
+									$_POST["text_username"], $_POST["text_password"], $dateExpiry->format("Y-m-d")) . ")";
 		
-				$result = DoQuery($g_dbFindATradie, $strQuery);
+				$result = DoQuery($g_dbFindATradie, $g_strQuery);
 				if ($result)
 				{
-					PrintJavascriptLines(["AlertSuccess(\"Your details were saved to the database!\");",
-											"window.location.href = \"https://www.find-a-tradie.com.au/login.php\";"], 4, true);					
-						$_SESSION["account_usernanme"] = $_POST["text_username"];			
-						$_SESSION["account_password"] = $_POST["text_password"];			
+					PrintJavascriptLine("window.location.href = \"https://www.find-a-tradie.com.au/login.php\";", 4, true);					
+					$_SESSION["account_usernanme"] = $_POST["text_username"];			
+					$_SESSION["account_password"] = $_POST["text_password"];			
 				}
 				else
 				{
