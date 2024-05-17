@@ -1192,7 +1192,7 @@
 			
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
-												<input type="submit" name="submit_profile" value="SAVE" />
+												<button class="function_button" title="Save this profile image" type="submit" name="submit_profile"><img class="function_button_image" src="images/save.png" alt="images/save.png" /></button>
 											</td>
 										</tr>
 									</table>
@@ -1212,7 +1212,7 @@
 ?>
 										<tr>
 											<td class="cell_no_borders" style="width:100%;text-align:right;vertical-align:center;">
-												<input type="submit" name="submit_logo" value="SAVE" />
+												<button class="function_button" title="Save this logo image" type="submit" name="submit_logo"><img class="function_button_image" src="images/save.png" alt="images/save.png" /></button>
 											</td>
 										</tr>
 									</table>
