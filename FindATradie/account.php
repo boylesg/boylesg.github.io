@@ -1199,7 +1199,7 @@
 								</fieldset>
 							</form>
 							
-							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:50%;">
+							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:50%;display:<?php if (isset($_SESSION["account_trade"]) && IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;">
 								<fieldset>
 									<legend>Business logo image:</legend>
 									<br/>

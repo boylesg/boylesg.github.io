@@ -76,8 +76,8 @@
 				</tr>
 			</table>
 	</fieldset>
+	<br/><br/>		
 </form>
-<br/><br/>		
 <form method="post" id="form_business_details" action="" class="form" style="width:1250px;">
 	<fieldset>
 		<legend>Business details:</legend>
@@ -154,8 +154,8 @@
 			</tr>
 		</table>			
 	</fieldset>
+	<br/><br/>
 </form>
-<br/><br/>
 <form method="post" id="form_contact_details" action="" class="form" style="width:650px;">
 	<fieldset>
 		<legend>Contact details:</legend>
@@ -233,7 +233,7 @@
 					<input type="button" name="button_save" id="button_save" value="SAVE" style="display:none;" onclick="DoFormSubmitAll()" />
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:<?php echo $strDisplayTradieStuff; ?>;">
 				<td class="cell_no_borders" colspan="2" style="font-size:x-large"><br/><b>You first 6 months is <span style="color:red;">FREE</span>!</b><br/></td>
 			</tr>
 		</table>			
@@ -483,7 +483,7 @@
 		DoGetInput("form_trade_details").style.display = "none";
 		DoGetInput("form_business_details").style.display = "none";
 		DoGetInput("form_contact_details").style.display = "none";
-		DoGetInput("form_contact_details").style.display = "none";
+		DoGetInput("form_user_details").style.display = "none";
 		DoGetInput("button_save").style.display = "inline";
 		DoChangeFormButtonText('NEXT');
 		g_bIsStaged = true;
@@ -491,10 +491,18 @@
 	
 	function DoSetNotStaged()
 	{
-		DoGetInput("form_trade_details").style.display = "block";
-		DoGetInput("form_business_details").style.display = "block";
+		if (g_bIsCustomer)
+		{
+			DoGetInput("form_business_details").style.display = "none";
+			DoGetInput("form_trade_details").style.display = "none";
+		}
+		else
+		{
+			DoGetInput("form_business_details").style.display = "block";
+			DoGetInput("form_trade_details").style.display = "block";
+		}
 		DoGetInput("form_contact_details").style.display = "block";
-		DoGetInput("form_contact_details").style.display = "block";
+		DoGetInput("form_user_details").style.display = "block";
 		DoGetInput("button_save").style.display = "none";
 		DoChangeFormButtonText('SAVE');
 		g_bIsStaged = false;
