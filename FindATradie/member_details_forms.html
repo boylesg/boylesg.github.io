@@ -1,6 +1,6 @@
 ﻿<form method="post" id="form_user_details" action="" class="form" style="width: 1100px;">
 	<fieldset>
-		<legend>User details:</legend>
+		<legend>User details</legend>
 		<table class="table_no_borders">
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;vertical-align:top;width:170px;"><b>Username or email</b></td>
@@ -32,10 +32,12 @@
 			</tr>
 			<tr>
 				<td class="cell_no_borders">
-					<button title="Go to previous form" class="function_button" type="button" id="button_user_previous" style="display:none;" onclick="DoClickPrevious('form_user_details', 'form_contact_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+					<button title="Go to previous form" class="function_button" type="button" id="button_user_previous" onclick="DoClickNextPreviousButton('form_user_details', 'form_contact_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
 				</td>
 				<td class="cell_no_borders" style="text-align:right;">
-					<button title="Go to next form" class="cell_no_borders" type="button" name="button_user_details" id="button_user_next" onclick="DoUserDetailsFormSubmit('form_user_details')"><img class="function_button_image" id="user_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Go to next form" class="cell_no_borders" type="button" id="button_user_next" onclick="DoClickNextPreviousButton('form_user_details', 'form_trade_details')"><img class="function_button_image" id="user_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these user details" class="function_button" type="button" id="button_user_save" name="button_user_save" onclick="DoClickSave('form_user_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+					<input type="hidden" name="button_user_save" value="SAVE_USER">
 				</td>
 
 			</tr>
@@ -62,7 +64,7 @@
 					<td class="cell_no_borders">
 						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" required size="10">
 							<?php DoGenerateAdditionalTradeOptions(DoGetDefaultAdditionalTrades()); ?>
-						</select>&nbsp;<button type="button" onclick="DoGetInput('select_additional_trades').selectedIndex = -1;"><img src="images/delete.png" alt="images/delete.png" class="function_button_image" /></button><br/>
+						</select>&nbsp;<button type="button" title="Clear all selections" onclick="DoGetInput('select_additional_trades').selectedIndex = -1;"><img src="images/delete.png" alt="images/delete.png" class="function_button_image" /></button><br/>
 						<b><i>Hold down the CTRL key and click the left mouse button to select multiple items...</i></b>
 					</td>
 				</tr>
@@ -78,10 +80,12 @@
 				</tr>
 				<tr>
 					<td class="cell_no_borders" colspan="3">
-						<button title="Go to previous form" class="function_button" type="button" id="button_trade_previous" style="display:none;" onclick="DoClickPrevious('form_trade_details', 'form_user_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+						<button title="Go to previous form" class="function_button" type="button" id="button_trade_previous" onclick="DoClickNextPreviousButton('form_trade_details', 'form_user_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
 					</td>
 					<td class="cell_no_borders" style="text-align:right;">
-						<button title="Go to next form" class="function_button" type="button" name="button_trade_details" id="button_trade_next" onclick="DoButtonClick('form_trade_details')"><img class="function_button_image" id="trade_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+						<button title="Go to next form" class="function_button" type="button" id="button_trade_next" onclick="DoClickNextPreviousButton('form_trade_details', 'form_business_details')"><img class="function_button_image" id="trade_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+						<button title="Save these trade details" class="function_button" type="button" id="button_trade_save" name="button_trade_save" onclick="DoClickSave('form_trade_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+						<input type="hidden" name="button_trade_save" value="SAVE_TRADE">
 					</td>
 				</tr>
 			</table>
@@ -90,7 +94,7 @@
 </form>
 <form method="post" id="form_business_details" action="" class="form" style="width:1175px;">
 	<fieldset>
-		<legend>Business details:</legend>
+		<legend>Business details</legend>
 		<table class="table_no_borders">
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;width:338px;"><b>Business name</b></td>
@@ -160,11 +164,13 @@
 				<td class="cell_no_borders" colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="cell_no_borders" colspan="2">
-					<button class="function_button" title="Go to previous form" type="button" id="button_business_previous" style="display:none;" onclick="DoClickPrevious('form_business_details', 'form_trade_details')"><img class="function_button_image" id="trade_details_previous_image" src="images/back.png" alt="images/back.png"></button>
+				<td class="cell_no_borders">
+					<button class="function_button" title="Go to previous form" type="button" id="button_business_previous" onclick="DoClickNextPreviousButton('form_business_details', 'form_trade_details')"><img class="function_button_image" id="trade_details_previous_image" src="images/back.png" alt="images/back.png"></button>
 				</td>
 				<td class="cell_no_borders" style="text-align:right;">
-					<button class="function_button" title="Go to next form" type="button" name="button_business_details" id="button_business_next" onclick="DoButtonClick('form_business_details')"><img class="function_button_image" id="business_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button class="function_button" title="Go to next form" type="button" id="button_business_next" onclick="DoClickNextPreviousButton('form_business_details', 'form_contact_details')"><img class="function_button_image" id="business_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these business details" class="function_button" type="button" id="button_business_save" name="button_business_save" onclick="DoClickSave('form_business_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+					<input type="hidden" name="button_business_save" value="SAVE_BUSINESS">
 				</td>
 			</tr>
 		</table>			
@@ -173,7 +179,7 @@
 </form>
 <form method="post" id="form_contact_details" action="" class="form" style="width:650px;">
 	<fieldset>
-		<legend>Contact details:</legend>
+		<legend>Contact details</legend>
 		<table class="table_no_borders">
 			<tr>
 				<td class="cell_no_borders" style="text-align:right;"><b>First name</b></td>
@@ -244,17 +250,14 @@
 			</tr>
 			<tr>
 				<td class="cell_no_borders">
-					<button class="function_button" title="Go to previous form" type="button" id="button_contact_previous" style="display:none;" onclick="DoClickPrevious('form_contact_details', 'form_business_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+					<button class="function_button" title="Go to previous form" type="button" id="button_contact_previous" style="display:none;" onclick="DoClickNextPreviousButton('form_contact_details', 'form_business_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
 				</td>
 				<td class="cell_no_borders" style="text-align:right;">
-					<button class="function_button" type="button" name="button_contact_details" id="button_contact_next" onclick="DoButtonClick('form_contact_details')"><img class="function_button_image" id="contact_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button class="function_button" title="Go to next form" type="button" name="button_contact_details" id="button_contact_next" onclick="DoClickNextPreviousButton('form_contact_details', 'form_user_details')"><img class="function_button_image" id="contact_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these contact details" class="function_button" type="button" id="button_contact_save" name="button_contact_save" onclick="DoClickSave('form_contact_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+					<input type="hidden" name="button_contact_save" value="SAVE_CONTACT">
+					<button class="function_button" title="Save these details" type="button" id="button_save_all" name="button_save_all" onclick="DoSaveAll()"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
 				</td>
-				<td class="cell_no_borders">
-					<button class="function_button" title="Go to next form" type="button" name="button_save" id="button_save" value="SAVE" style="display:none;" onclick="DoFormSubmitAll()"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
-				</td>
-			</tr>
-			<tr style="display:<?php echo $strDisplayTradieStuff; ?>;">
-				<td class="cell_no_borders" colspan="2" style="font-size:x-large"><br/><b>You first 6 months is <span style="color:red;">FREE</span>!</b><br/></td>
 			</tr>
 		</table>			
 	</fieldset>
@@ -294,7 +297,7 @@
 	<input type="text"  id="htext_phone" name="text_phone" />
 	<input type="text"  id="htext_mobile" name="text_mobile" />
 	<input type="text"  id="htext_email" name="text_email" />
-	<input type="hidden" id="submit_all_details" name="submit_all_details" value="SUBMIT" />
+	<input type="hidden" id="button_save_all" name="button_save_all" value="SAVE_ALL" />
 </form>
 
 <script type="text/javascript">
@@ -417,50 +420,52 @@
 		}
 	}
 	
-	function DoNextStage(strFormID)
+	function DoClickNextPreviousButton(strHideFormID, strShowFormID)
 	{
-		if (strFormID == "form_user_details")
+		if (DoFormValidate(strHideFormID))
 		{
-			DoGetInput("form_user_details").style.display = "none";
 			if (g_bIsCustomer)
 			{
-				DoGetInput("form_contact_details").style.display = "block"
+				if ((strHideFormID == "form_user_details") && (strShowFormID == "form_trade_details"))
+				{
+					strShowFormID = "form_contact_details";
+				}
+				else if ((strHideFormID == "form_contact_details") && (strShowFormID == "form_business_details"))
+				{
+					strShowFormID = "form_user_details";
+				}
 			}
-			else
-			{
-				DoGetInput("form_trade_details").style.display = "block";
-			}
-		}
-		else if (strFormID == "form_trade_details")
-		{
-			DoGetInput("form_trade_details").style.display = "none";
-			DoGetInput("form_business_details").style.display = "block";
-		}
-		else if (strFormID == "form_business_details")
-		{
-			DoGetInput("form_business_details").style.display = "none";
-			DoGetInput("form_contact_details").style.display = "block";
-		}
-		else if (strFormID == "form_contact_details")
-		{
-			DoGetInput("form_contact_details").style.display = "none";
-			DoGetInput("form_user_details").style.display = "block";
+			DoGetInput(strHideFormID).style.display = "none";
+			DoGetInput(strShowFormID).style.display = "block";
 		}
 	}
-	
-	function DoClickPrevious(strHideFormID, strShowFormID)
-	{
-		DoGetInput(strHideFormID).style.display = "none";
-		DoGetInput(strShowFormID).style.display = "block";
-	}
-	
-	function DoButtonClick(strFormID)
+		
+	function DoClickSave(strFormID)
 	{
 		if (DoFormValidate(strFormID))
 		{
-			if (g_bIsStaged)
+			if (strFormID == "form_user_details")
 			{
-				DoNextStage(strFormID);
+				let textPassword = DoGetInput("text_password"),
+					textPasswordAgain = DoGetInput("text_password_again");
+				
+				if (!textPassword)
+				{
+					AlertIDError("text_password", "password input");
+				}
+				else if (!textPasswordAgain)
+				{
+					AlertIDError("text_password_again", "password input");
+				}
+				else if (textPassword.value != textPasswordAgain.value)
+				{
+					AlertError("The two passwords do not match!");
+					textPassword.focus();
+				}
+				else
+				{
+					document.getElementById(strFormID).submit();
+				}
 			}
 			else
 			{
@@ -468,52 +473,7 @@
 			}
 		}
 	}
-	
-	function DoUserDetailsFormSubmit(strFormID)
-	{
-		if (DoFormValidate(strFormID))
-		{
-			let textPassword = DoGetInput("text_password"),
-				textPasswordAgain = DoGetInput("text_password_again");
-			
-			if (!textPassword)
-			{
-				AlertIDError("text_password", "password input");
-			}
-			else if (!textPasswordAgain)
-			{
-				AlertIDError("text_password_again", "password input");
-			}
-			else if (textPassword.value != textPasswordAgain.value)
-			{
-				AlertError("The two passwords do not match!");
-				textPassword.focus();
-			}
-			else
-			{
-				DoButtonClick(strFormID);
-			}
-		}
-	}
-	
-	function DoChangeFormButtonImage(strToWhat)
-	{
-		if (strToWhat == "SAVE")
-		{
-			DoGetInput("user_details_next_image").src = "images/save.png"; 
-			DoGetInput("trade_details_next_image").src = "images/save.png";
-			DoGetInput("business_details_next_image").src = "images/save.png";
-			DoGetInput("contact_details_next_image").src = "images/save.png";
-		}
-		else if (strToWhat == "NEXT")
-		{
-			DoGetInput("user_details_next_image").src = "images/forward.png"; 
-			DoGetInput("trade_details_next_image").src = "images/forward.png";
-			DoGetInput("business_details_next_image").src = "images/forward.png";
-			DoGetInput("contact_details_next_image").src = "images/forward.png";
-		}
-	}
-	
+		
 	function DoSetStaged()
 	{
 		if (g_bIsCustomer)
@@ -522,7 +482,6 @@
 			DoGetInput("form_business_details").style.display = "none";
 			DoGetInput("form_contact_details").style.display = "none";
 			DoGetInput("form_user_details").style.display = "block";
-			DoGetInput("button_save").style.display = "inline";
 		}
 		else
 		{
@@ -530,13 +489,23 @@
 			DoGetInput("form_business_details").style.display = "none";
 			DoGetInput("form_contact_details").style.display = "none";
 			DoGetInput("form_user_details").style.display = "block";
-			DoGetInput("button_save").style.display = "inline";
 		}
-		DoChangeFormButtonImage("NEXT");
-		DoGetInput("button_contact_previous").style.display = "block";
-		DoGetInput("button_business_previous").style.display = "block";
-		DoGetInput("button_trade_previous").style.display = "block";
-		DoGetInput("button_user_previous").style.display = "block";
+		DoGetInput("button_save_all").style.display = "inline";
+		
+		DoGetInput("button_contact_previous").style.display = "inline";
+		DoGetInput("button_business_previous").style.display = "inline";
+		DoGetInput("button_trade_previous").style.display = "inline";
+		DoGetInput("button_user_previous").style.display = "inline";
+
+		DoGetInput("button_contact_next").style.display = "inline";
+		DoGetInput("button_business_next").style.display = "inline";
+		DoGetInput("button_trade_next").style.display = "inline";
+		DoGetInput("button_user_next").style.display = "inline";
+
+		DoGetInput("button_contact_save").style.display = "none";
+		DoGetInput("button_business_save").style.display = "none";
+		DoGetInput("button_trade_save").style.display = "none";
+		DoGetInput("button_user_save").style.display = "none";
 
 		g_bIsStaged = true;
 	}
@@ -553,20 +522,22 @@
 			DoGetInput("form_business_details").style.display = "block";
 			DoGetInput("form_trade_details").style.display = "block";
 		}
-		DoGetInput("form_contact_details").style.display = "block";
-		DoGetInput("form_user_details").style.display = "block";
-		DoGetInput("button_save").style.display = "none";
-		DoChangeFormButtonImage("SAVE");
+		DoGetInput("button_save_all").style.display = "none";
 		
 		DoGetInput("button_contact_previous").style.display = "none";
 		DoGetInput("button_business_previous").style.display = "none";
 		DoGetInput("button_trade_previous").style.display = "none";
 		DoGetInput("button_user_previous").style.display = "none";
-		
-		DoGetInput("button_contact_next").title = "Save these contact details";
-		DoGetInput("button_business_next").title  = "Save these business details";
-		DoGetInput("button_trade_next").title  = "Save the trade details";
-		DoGetInput("button_user_next").title  = "Save these user details";
+
+		DoGetInput("button_contact_next").style.display = "none";
+		DoGetInput("button_business_next").style.display = "none";
+		DoGetInput("button_trade_next").style.display = "none";
+		DoGetInput("button_user_next").style.display = "none";
+
+		DoGetInput("button_contact_save").style.display = "inline";
+		DoGetInput("button_business_save").style.display = "inline";
+		DoGetInput("button_trade_save").style.display = "inline";
+		DoGetInput("button_user_save").style.display = "inline";
 
 		g_bIsStaged = false;
 
@@ -574,17 +545,17 @@
 	
 	function DoSetCustomer()
 	{
-		DoGetInput("submit_all_details").value = "SUBMIT_NEW_CUSTOMER";
+		DoGetInput("button_save_all").value = "SUBMIT_NEW_CUSTOMER";
 		g_bIsCustomer = true;
 	}
 	
 	function DoSetTradie()
 	{
-		DoGetInput("submit_all_details").value = "SUBMIT_NEW_TRADIE";
+		DoGetInput("button_save_all").value = "SUBMIT_NEW_TRADIE";
 		g_bIsCustomer = false;
 	}
 	
-	function DoFormSubmitAll()
+	function DoSaveAll()
 	{
 		DoGetInput("htext_username").value = DoGetInput("text_username").value;
 		if (!g_bIsCustomer)

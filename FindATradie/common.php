@@ -14,7 +14,6 @@
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
 	$g_nNumMonthsFree = 6;
-	$g_nTradeIDCustomer = 59;
 	$g_strAdminEmail = "find-a-tradie@outlook.com";
 	$g_strFreeMembership = "6 months";
 	$g_nYears = (int)date("Y") - 2003;	
@@ -609,7 +608,7 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-	function DoFindQuery8($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnValue7, $strColumnName7, $strColumnValue8, $strColumnName8, $strCondition = "", $strOrderBy = "", $bAscending = true)
+	function DoFindQuery8($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strCondition = "", $strOrderBy = "", $bAscending = true)
 	{	
 		global $g_strQuery;
 		$g_strQuery = "SELECT * FROM " . $strTableName . " WHERE " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "' AND " . $strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "' AND " . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "' AND " . $strColumnName4 . "='" . EscapeSingleQuote($strColumnValue4) . "' AND " . $strColumnName5 . "='" . EscapeSingleQuote($strColumnValue5) . "' AND " . $strColumnName6 . "='" . EscapeSingleQuote($strColumnValue6) . "' AND " . $strColumnName7 . "='" . EscapeSingleQuote($strColumnValue7) . "' AND " . $strColumnName8 . "='" . EscapeSingleQuote($strColumnValue8) . "'";		
@@ -1375,7 +1374,7 @@
 		
 		if (isset($_POST["text_username"]))
 			$strUsername = $_POST["text_username"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION['account_username'])) 
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION['account_username'])) 
 			$strUsername = $_SESSION['account_username'];
 			
 		return $strUsername;
@@ -1387,7 +1386,7 @@
 		
 		if (isset($_POST["text_password"]))
 			$strPassword = $_POST["text_password"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION['account_password'])) 
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION['account_password'])) 
 			$strPassword = $_SESSION['account_password'];
 
 		return $strPassword;
@@ -1399,7 +1398,7 @@
 		
 		if (isset($_POST["select_trade"]))
 			$strTrade = $_POST["select_trade"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_trade"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_trade"]))
 			$strTrade = $_SESSION["account_trade"];
 			
 		return $strTrade;	
@@ -1411,7 +1410,7 @@
 		
 		if (isset($_POST["select_additional_trades"]))
 			$strTrades = $_POST["select_additional_trades"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_additional_trades"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_additional_trades"]))
 			$strTrades = $_SESSION["account_additional_trades"];
 			
 		return $strTrades;	
@@ -1423,7 +1422,7 @@
 		
 		if (isset($_POST["text_business_name"]))
 			$strBusinessName = $_POST["text_business_name"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_business_name"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_business_name"]))
 			$strBusinessName = $_SESSION["account_business_name"];
 
 		return $strBusinessName ;
@@ -1435,7 +1434,7 @@
 		
 		if (isset($_POST["text_abn"]))
 			$strABN = $_POST["text_abn"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_abn"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_abn"]))
 			$strABN = $_SESSION["account_abn"];
 
 		return $strABN;
@@ -1447,7 +1446,7 @@
 		
 		if (isset($_POST["select_structure"]))
 			$strStructure = $_POST["select_structure"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_structure"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_structure"]))
 			$strStructure = $_SESSION["account_structure"];
 
 		return $strStructure;
@@ -1459,7 +1458,7 @@
 		
 		if (isset($_POST["text_license"]))
 			$strLicense = $_POST["text_license"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_license"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_license"]))
 			$strLicense = $_SESSION["account_license"];
 
 		return $strLicense;
@@ -1481,7 +1480,7 @@
 		
 		if (isset($_POST["text_description"]))
 			$strDescription = $_POST["text_description"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_description"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_description"]))
 			$strDescription = $_SESSION["account_description"];
 
 		return $strDescription;
@@ -1493,7 +1492,7 @@
 		
 		if (isset($_POST["text_minimum_charge"]))
 			$strMinimumCharge = sprintf("%.2f", $_POST["text_minimum_charge"]);
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_minimum_charge"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_minimum_charge"]))
 			$strMinimumCharge = sprintf("%.2f", $_SESSION["account_minimum_charge"]);
 
 		return $strMinimumCharge;
@@ -1505,7 +1504,7 @@
 		
 		if (isset($_POST["text_minimum_budget"]))
 			$strMinimumBudget = sprintf("%.2f", $_POST["text_minimum_budget"]);
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_minimum_budget"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_minimum_budget"]))
 			$strMinimumBudget = sprintf("%.2f", $_SESSION["account_minimum_budget"]);
 
 		return $strMinimumBudget;
@@ -1517,7 +1516,7 @@
 		
 		if (isset($_POST["select_maximum_size"]))
 			$strMaximumSize = $_POST["select_maximum_size"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_maximum_size"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_maximum_size"]))
 			$strMaximumSize = $_SESSION["account_maximum_size"];
 			
 		return $strMaximumSize;
@@ -1529,7 +1528,7 @@
 		
 		if (isset($_POST["text_maximum_distance"]))
 			$strMaximumDistance = sprintf("%d", $_POST["text_maximum_distance"]);
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_maximum_distance"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_maximum_distance"]))
 			$strMaximumDistance = sprintf("%d", $_SESSION["account_maximum_distance"]);
 
 		return $strMaximumDistance;
@@ -1541,7 +1540,7 @@
 		
 		if (isset($_POST["text_first_name"]))
 			$strFirstName = $_POST["text_first_name"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_first_name"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_first_name"]))
 			$strFirstName = $_SESSION["account_first_name"];
 
 		return $strFirstName;
@@ -1553,7 +1552,7 @@
 		
 		if (isset($_POST["text_surname"]))
 			$strSurname = $_POST["text_surname"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_surname"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_surname"]))
 			$strSurname = $_SESSION["account_surname"];
 
 		return $strSurname;
@@ -1565,7 +1564,7 @@
 		
 		if (isset($_POST["text_unit"]))
 			$strUnit = $_POST["text_unit"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_unit"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_unit"]))
 			$strUnit = $_SESSION["account_unit"];
 
 		return $strUnit;
@@ -1577,7 +1576,7 @@
 		
 		if (isset($_POST["text_street"]))
 			$strStreet = $_POST["text_street"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_street"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_street"]))
 			$strStreet = $_SESSION["account_street"];
 
 		return $strStreet;
@@ -1589,7 +1588,7 @@
 		
 		if (isset($_POST["text_suburb"]))
 			$strSuburb = $_POST["text_suburb"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_suburb"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_suburb"]))
 			$strSuburb = $_SESSION["account_suburb"];
 
 		return $strSuburb;
@@ -1601,7 +1600,7 @@
 		
 		if (isset($_POST["select_state"]))
 			$strState = $_POST["select_state"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_state"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_state"]))
 			$strState = $_SESSION["account_state"];
 
 		return $strState;
@@ -1613,7 +1612,7 @@
 		
 		if (isset($_POST["text_postcode"]))
 			$strPostcode = $_POST["text_postcode"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_postcode"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_postcode"]))
 			$strPostcode = $_SESSION["account_postcode"];
 
 		return $strPostcode;
@@ -1625,7 +1624,7 @@
 		
 		if (isset($_POST["text_phone"]))
 			$strPhone = $_POST["text_phone"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_phone"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_phone"]))
 			$strPhone = $_SESSION["account_phone"];
 
 		return $strPhone;
@@ -1637,7 +1636,7 @@
 		
 		if (isset($_POST["text_mobile"]))
 			$strMobile = $_POST["text_mobile"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_mobile"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_mobile"]))
 			$strMobile = $_SESSION["account_mobile"];
 
 		return $strMobile;
@@ -1646,10 +1645,10 @@
 	function DoGetDefaultEmail()
 	{
 		$strEmail = "";
-		
+			
 		if (isset($_POST["text_email"]))
 			$strEmail = $_POST["text_email"];
-		else if (!isset($_SESSION["NEW"]) && isset($_SESSION["account_email"]))
+		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION["account_email"]))
 			$strEmail = $_SESSION["account_email"];
 
 		return $strEmail;
@@ -1691,6 +1690,19 @@
 		return $bResult;
 	}
 	
+	function GenerateJSErrorMessage($strCommand, $arrayOutput, $nError)
+	{
+		$strMessage = $strCommand . "\n\n";
+		
+		for ($nI = 0; $nI < count($arrayOutput); $nI++)
+		{
+			$strMessage = $strMessage . $arrayOutput[$nI] . "\n";
+		}
+		$strMessage = $strMessage . "\n\nERROR CODE: " . $nError;
+				
+		PrintJSAlertError($strMessage, 4);
+	}
+	
 	function DoSaveMemberImage($strMemberID, $strColumnName, $strFilePath, $file)
 	{
 		global $g_dbFindATradie;
@@ -1699,19 +1711,62 @@
 
 		if (isset($file) && (strlen($file["tmp_name"]) > 0))
 		{
+/*
+echo "@@@@@@@<br>";
+print_r($file);
+echo "<br>";
+echo $strFilePath . "<br>";
+echo "@@@@@@@<br>";
+*/
 			if (move_uploaded_file($file["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath))
 			{
-				$_SESSION["account_" . $strColumnName] = $strFilePath;
-				$results = DoUpdateQuery1($g_dbFindATradie, "members", $strColumnName, $_SESSION["account_" . $strColumnName], "id", $strMemberID);
-
-				if ($results)
+				// move_uploaded_file corrupts JPG files. Using the OS to make a copy of the JPG file seems to fix it.
+				$arrayOutput = [];
+				$nErrorCode = 0;
+				
+				// Copy the JPG to a new file with '_' appended
+				$strCommand = "copy \"" . $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath . "\" \"" . $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath . "_\"";
+				$strCommand = str_replace("/", "\\", $strCommand);
+				exec($strCommand, $arrayOutput, $nErrorCode);
+				if ($nErrorCode == 0)
 				{
-					//PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_filename"]["name"] . "' was saved!\");", 3, true);
-					$bResult = true;
+					// Delete the original uploaded JPG file
+					$strCommand = "del \"" . $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath . "\"";
+					$strCommand = str_replace("/", "\\", $strCommand);
+					exec($strCommand, $arrayOutput, $nErrorCode);
+					if ($nErrorCode == 0)
+					{
+						// Rename the JPG file with the appended '_' to the original file name.
+						$strCommand = "ren \"" . $_SERVER['DOCUMENT_ROOT'] . "/" . $strFilePath . "_\" \"" . basename($strFilePath) . "\"";
+						$strCommand = str_replace("/", "\\", $strCommand);
+						exec($strCommand, $arrayOutput, $nErrorCode);
+						if ($nErrorCode == 0)
+						{
+							$_SESSION["account_" . $strColumnName] = $strFilePath;
+							$results = DoUpdateQuery1($g_dbFindATradie, "members", $strColumnName, $_SESSION["account_" . $strColumnName], "id", $strMemberID);
+							if ($results)
+							{
+								//PrintJavascriptLine("AlertSuccess(\"Logo image file '" . $_FILES["logo_filename"]["name"] . "' was saved!\");", 3, true);
+								$bResult = true;
+							}
+							else
+							{
+								PrintJavascriptLine("AlertError(\"Column '" . $strColumnName . "' could not be updated!\");", 3, true);
+							}
+						}
+						else
+						{
+							GenerateJSErrorMessage($strCommand, $arrayOutput, $nErrorCode);
+						}
+					}
+					else
+					{
+						GenerateJSErrorMessage($strCommand, $arrayOutput, $nErrorCode);
+					}
 				}
 				else
 				{
-					PrintJavascriptLine("AlertError(\"Logo image column could not be updated!\");", 3, true);
+					GenerateJSErrorMessage($strCommand, $arrayOutput, $nErrorCode);
 				}
 			}
 			else
@@ -1729,19 +1784,13 @@
 	function DoSaveProfileImage($strMemberID, $file)
 	{
 		$_SESSION["profile_filename"] = DoGetProfileImageFilename($strMemberID, false);
-		if (!DoSaveMemberImage($strMemberID, "profile_filename", $_SESSION["profile_filename"], $file))
-		{
-			PrintJavascriptLine("AlertError('Could not save profile image file!')", 5, true);
-		}
+		DoSaveMemberImage($strMemberID, "profile_filename", $_SESSION["profile_filename"], $file);
 	}
 	
 	function DoSaveLogoImage($strMemberID, $file)
 	{
 		$_SESSION["logo_filename"] = DoGetLogoImageFilename($strMemberID, false);
-		if (DoSaveMemberImage($strMemberID, "logo_filename", $_SESSION["logo_filename"], $file))
-		{
-			PrintJavascriptLine("AlertError('Could not save logo image file!')", 5, true);
-		}
+		DoSaveMemberImage($strMemberID, "logo_filename", $_SESSION["logo_filename"], $file);
 	}
 	
 	

@@ -1,17 +1,17 @@
-﻿			<tr>
-				<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
-					<b>Select a new image</b>
-				</td>
-				<td class="cell_no_borders" style="vertical-align:middle;">
-					<input type="file" required id="<?php if (isset($strID)) echo $strID; ?>_file_name" name="<?php if (isset($strID)) echo $strID; ?>_file_name" accept=".jpg, .jpeg|image/*" onchange="OnChangeFile(this)"/>
-				</td>
-			</tr>
-			<tr>
-				<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
-					<b>Image preview</b>
-				</td>
-				<td class="cell_no_borders" style="vertical-align:middle;text-align:left;">
-					<img src="<?php echo $strPreviewImageFilePath; ?>" id="<?php if (isset($strID)) echo $strID; ?>_image_preview" width="200" />
-				</td>
-			</tr>
+﻿<tr>
+	<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
+		<b>Select a new image</b>
+	</td>
+	<td class="cell_no_borders" style="vertical-align:middle;">
+		<input type="file" required id="<?php if (isset($strID)) echo $strID; ?>_file_name" name="<?php if (isset($strID)) echo $strID; ?>_file_name" accept=".jpg, .jpeg|image/*" onchange="OnChangeFile(this)"/>
+	</td>
+</tr>
+<tr>
+	<td class="cell_no_borders" style="text-align:right;vertical-align:middle;">
+		<b>Image preview</b>
+	</td>
+	<td class="cell_no_borders" style="vertical-align:middle;text-align:left;">
+		<img src="<?php echo $strPreviewImageFilePath; ?>" id="<?php if (isset($strID)) echo $strID; ?>_image_preview" width="200" />
+	</td>
+</tr>
 

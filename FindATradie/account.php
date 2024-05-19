@@ -215,7 +215,7 @@
 			</script>
 
 <?php 
-
+	$_SESSION["NEW"] = false;
 	$strPaypalDisplay = "none";
 	$strAccountDisplay = "block";
 	
@@ -231,10 +231,12 @@
 	if (isset($_POST["submit_logo"]))
 	{
 		DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_file_name"]);
+		unset($_FILES["profile_file_name"]);
 	}
 	else if (isset($_POST["submit_profile"]))
 	{
 		DoSaveProfileImage($_SESSION["account_id"], $_FILES["profile_file_name"]);
+		unset($_FILES["profile_file_name"]);
 	}
 	else if (isset($_POST["submit_accept_job"]))
 	{
@@ -466,7 +468,7 @@
 			PrintJSAlertError("You did not complete the payment so you membership renewal date was not be updated!", 5, true);
 		}
 	}
-	else if (isset($_POST["submit_trade_details"]))
+	else if (isset($_POST["button_trade_save"]))
 	{
 		/*
 			print_r($_POST);
@@ -493,11 +495,11 @@
 						break;
 				}
 				if ($result)
-					PrintJavascriptLine("AlertSuccess(\"trade details were updated!\");");
+					PrintJavascriptLine("AlertSuccess(\"Trade details were updated!\");");
 			}
 		}
 	}
-	else if (isset($_POST["text_business_name"]))
+	else if (isset($_POST["button_business_save"]))
 	{
 		$strQuery = "UPDATE members SET " .
 					AppendSQLUpdateValues("business_name", $_POST["text_business_name"],
@@ -529,7 +531,7 @@
 			PrintJavascriptLine("AlertError(\"Business details could not be updated!\");\n", 2, true);
 		}
 	}
-	else if (isset($_POST["text_first_name"]))
+	else if (isset($_POST["button_contact_save"]))
 	{
 		$strQuery = "UPDATE members SET " . 
 					AppendSQLUpdateValues("first_name", $_POST["text_first_name"], 
@@ -546,7 +548,8 @@
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result)
 		{
-			PrintJavascriptLine("AlertSuccess(\"contact details updated!\");\n", 2, true);
+			PrintJavascriptLine("AlertSuccess(\"Contact details updated!\");\n", 2, true);
+			
 			$_SESSION["account_first_name"] = $_POST["text_first_name"];
 			$_SESSION["account_surname"] = $_POST["text_surname"];
 			$_SESSION["account_unit"] = $_POST["text_unit"];
@@ -563,7 +566,7 @@
 			PrintJavascriptLine("AlertError(\"Contact details could not be updated!\");\n", 2, true);
 		}
 	}
-	else if (isset($_POST["text_username"]))
+	else if (isset($_POST["button_user_save"]))
 	{
 		$bError = false;
 	
@@ -642,7 +645,7 @@
 	else
 	{
 		// If a tradie account then...
-		if ($_SESSION["account_trade"] != $g_nTradeIDCustomer)
+		if ($_SESSION["account_trade"] != DoGetCustomerTradeID())
 		{
 			// We need to check the expity date of their account agiants the current date...
 			$dateNow = new DateTime();
@@ -1199,11 +1202,11 @@
 								</fieldset>
 							</form>
 							
-							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:50%;display:<?php if (isset($_SESSION["account_trade"]) && IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;">
+							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:500px;display:<?php if (isset($_SESSION["account_trade"]) && IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;">
 								<fieldset>
 									<legend>Business logo image:</legend>
 									<br/>
-									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:500px;">								
+									<table border="0" cellspacing="0" cellpadding="5" style="table-layout:fixed;width:700px;">								
 	
 <?php
 	$strID = "logo";

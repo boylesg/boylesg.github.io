@@ -18,7 +18,7 @@
 	<!-- #BeginEditable "server" -->
 	
 		<?php
-		
+			$_SESSION["NEW"] = true;
 		?>
 	
 	<!-- #EndEditable -->
@@ -26,7 +26,7 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title></title>
+		<title>NEW CUSTOMER</title>
 		<!-- #EndEditable -->
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
@@ -105,27 +105,8 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-		<?php
-		
-		?>
-	
-		<title>NEW CUSTOMER</title>
-			<style>
-			</style>
-
-
-
-
-
-
-
+			<div class="note">	
+				<h6>You can become a member for <span style="color:red;">FREE</span>!</h6>	
 
 <?php
 				
@@ -141,7 +122,7 @@
 	//*******************************************************************************************
 	//*******************************************************************************************
 	
-	if (isset($_POST["submit_all_details"]))
+	if (isset($_POST["button_save_all"]))
 	{
 		/*
 			Array ( 
@@ -184,10 +165,11 @@
 									$_POST["text_unit"],  $_POST["text_street"],  $_POST["text_suburb"],  $_POST["select_state"],  
 									$_POST["text_postcode"],  $_POST["text_phone"],  $_POST["text_mobile"],  $_POST["text_email"], 
 									$_POST["text_username"], $_POST["text_password"], $dateExpiry->format("Y-m-d")) . ")";
-		
+
 				$result = DoQuery($g_dbFindATradie, $g_strQuery);
 				if ($result)
 				{
+					mail("$g_strAdminEmail", "NEW CUSTOMER", "NAME: " . $_POST["text_first_name"] . " " . $_POST["text_surname"]);
 					PrintJavascriptLine("window.location.href = \"https://www.find-a-tradie.com.au/login.php\";", 4, true);					
 					$_SESSION["account_usernanme"] = $_POST["text_username"];			
 					$_SESSION["account_password"] = $_POST["text_password"];			
@@ -204,14 +186,9 @@
 		print_r($_POST);
 	}
 
-?>		
-
-
-
-
-
-
-
+?>
+			</div>	
+	
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->

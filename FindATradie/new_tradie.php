@@ -18,7 +18,7 @@
 	<!-- #BeginEditable "server" -->
 	
 		<?php
-		
+			$_SESSION["NEW"] = true;
 		?>
 	
 	<!-- #EndEditable -->
@@ -105,12 +105,10 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
+			<div class="note">
+				<h6>The first 6 months of your membership is <span style="color:red;">FREE</span>!</h6>
+				<h6>Try it out and see if you like it.</h6>
+				<h6>Membership will then cost you a flat $<?php printf("%d", $g_nCostPerMonth); ?> per month or $<?php printf("%d", $g_nCostPerMonth * 12); ?> per year, with no additional charges to obtain customer contact details.</h6>
 
 <?php
 	
@@ -128,7 +126,7 @@
 	//*******************************************************************************************
 	//*******************************************************************************************
 	
-	if (isset($_POST["submit_all_details"]))
+	if (isset($_POST["button_save_all"]))
 	{
 		/*
 			Array ( 
@@ -204,6 +202,7 @@
 						$result = DoQuery($g_dbFindATradie, $strQuery);
 						if ($result)
 						{
+							mail("$g_strAdminEmail", "NEW TRADIE", "NAME: " . $_POST["text_first_name"] . " " . $_POST["text_surname"]);
 							$result = DoFindQuery1($g_dbFindATradie, "members", "username", $_POST["text_username"]);
 							if ($result && ($result->num_rows > 0))
 							{
@@ -245,13 +244,7 @@
 	}		
 				
 ?>			
-
-
-
-
-
-
-
+			</div>	
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->
