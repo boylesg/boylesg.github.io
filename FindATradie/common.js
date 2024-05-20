@@ -423,6 +423,8 @@
 	//******************************************************************************
 	//******************************************************************************
 
+	let g_nMillisAdvertTimeout = 5000;
+	
 	function DoOpenAdvertEditor(nAdvertIndex)
 	{
 		document.location = "advert.php?location=" + strAdvertSpaceName;
@@ -483,8 +485,7 @@
 								g_arrayAdvertIDs[nAdvertIndex].member_id;
 		}
 		else
-		{
-
+		{ 
 			if ((sessionStorage["member_id"] == undefined) || (sessionStorage["member_id"] == ""))
 			{
 				AlertWarning("You must be logged in to add an advert!");

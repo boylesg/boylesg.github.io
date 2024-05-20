@@ -13,6 +13,7 @@
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
+		sessionStorage["member_id"] = <?php echo $_SESSION["account_id"]; ?>
 	
 	</script>
 	<!-- #BeginEditable "server" -->
@@ -680,7 +681,7 @@
 				document.body.style.backgroundImage = strFilename;
 			}
 			
-			setInterval(DoNextAdvert, 3000);
+			setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
 			
 		</script>
 	</head>
@@ -1026,7 +1027,7 @@
 											<textarea id="text_job_description" name="text_job_description" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
 										</td>
 									</tr>
-									<tr><td colspan="8"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
+									<tr><td colspan="6"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
 								</table>
 							</form>
 							<br/>
@@ -1081,7 +1082,7 @@
 											<textarea id="text_job_description_edit" name="text_job_description_edit" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
 										</td>
 									</tr>
-									<tr><td colspan="8"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td></tr>
+									<tr><td colspan="6"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td></tr>
 									<tr>
 										<td colspan="6">&nbsp;</td>
 									</tr>

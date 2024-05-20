@@ -13,6 +13,7 @@
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
+		sessionStorage["member_id"] = <?php echo $_SESSION["account_id"]; ?>
 	
 	</script>
 	<!-- #BeginEditable "server" -->
@@ -44,7 +45,7 @@
 				document.body.style.backgroundImage = strFilename;
 			}
 			
-			setInterval(DoNextAdvert, 3000);
+			setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
 			
 		</script>
 	</head>

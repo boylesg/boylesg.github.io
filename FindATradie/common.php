@@ -1784,13 +1784,13 @@ echo "@@@@@@@<br>";
 	function DoSaveProfileImage($strMemberID, $file)
 	{
 		$_SESSION["profile_filename"] = DoGetProfileImageFilename($strMemberID, false);
-		DoSaveMemberImage($strMemberID, "profile_filename", $_SESSION["profile_filename"], $file);
+		return DoSaveMemberImage($strMemberID, "profile_filename", $_SESSION["profile_filename"], $file);
 	}
 	
 	function DoSaveLogoImage($strMemberID, $file)
 	{
 		$_SESSION["logo_filename"] = DoGetLogoImageFilename($strMemberID, false);
-		DoSaveMemberImage($strMemberID, "logo_filename", $_SESSION["logo_filename"], $file);
+		return DoSaveMemberImage($strMemberID, "logo_filename", $_SESSION["logo_filename"], $file);
 	}
 	
 	
@@ -2049,6 +2049,9 @@ echo "@@@@@@@<br>";
 		}
 		return $strSpaceID;
 	}
+	
+	
+	
 	
 	function DoGetPageName()
 	{

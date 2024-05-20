@@ -13,12 +13,13 @@
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
+		sessionStorage["member_id"] = <?php echo $_SESSION["account_id"]; ?>
 	
 	</script>
 	<!-- #BeginEditable "server" -->
 	
 		<?php
-			$_SESSION["NEW"] = true;
+		
 		?>
 	
 	<!-- #EndEditable -->
@@ -32,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -44,7 +45,7 @@
 				document.body.style.backgroundImage = strFilename;
 			}
 			
-			setInterval(DoNextAdvert, 3000);
+			setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
 			
 		</script>
 	</head>
@@ -104,6 +105,13 @@
 				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
+
+
+
+
+
+
+
 
 			<div class="note">
 				<h6>The first 6 months of your membership is <span style="color:red;">FREE</span>!</h6>
@@ -245,6 +253,13 @@
 				
 ?>			
 			</div>	
+
+
+
+
+
+
+
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->

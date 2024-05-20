@@ -13,6 +13,7 @@
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
+		sessionStorage["member_id"] = <?php echo $_SESSION["account_id"]; ?>
 	
 	</script>
 	<!-- #BeginEditable "server" -->
@@ -32,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -44,7 +45,7 @@
 				document.body.style.backgroundImage = strFilename;
 			}
 			
-			setInterval(DoNextAdvert, 3000);
+			setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
 			
 		</script>
 	</head>
@@ -115,14 +116,13 @@
 			<div class="page_content" id="page_content0">
 			
 			<?php
-						
+			
 				$_SESSION["page_name"] = "";
 				$_SESSION["space_code"] = "";
 				$_SESSION["current_page"] = "";
 				$_SESSION["cost_per_year"] = "";
 				$_SESSION["advert_text"] = "";
-				$_SESSION["advert_id"] = "";
-
+					
 				if (isset($_GET["page_name"]))
 				{
 					$_SESSION["page_name"] = $_GET["page_name"];
@@ -183,7 +183,6 @@
 						  ) 				
 				*/
 				$g_strDisplayPriceLevel1 = $g_strDisplayPriceLevel2 = $g_strDisplayPriceLevel3 = $g_strDisplayPriceLevel4 = "none";
-
 				if (isset($_POST["button_submit_advert"]))
 				{
 					$dateNow = new DateTime();
@@ -195,7 +194,7 @@
 						$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "text", $_SESSION["advert_text"], "id", $_SESSION["advert_id"]);
 						if ($results)
 						{
-							if (DoSaveMemberImage($_SESSION["account_id"], "logo_filename", $_FILES["logo_filename"]))
+							if (DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_filename"]))
 							{
 								PrintJavascriptLine("AlertSuccess(\"Changes to your advert were saved!\");", 3, true);
 							}
@@ -210,41 +209,47 @@
 						}
 					}
 					else
-					{		
+					{
 						$results = DoInsertQuery5($g_dbFindATradie, "adverts", "space_id", intval($strSpaceID), 
-													"text", $_SESSION["advert_text"], "member_id", $_SESSION["account_id"], 
-													"expiry_date", $dateNow->format("Y-m-d"), "page_name", $_SESSION["page_name"]);
+													"text", $_POST["advert_text"], "member_id", $_SESSION["account_id"], 
+													"expiry_date", $dateNow->format("Y-m-d"), "page_name", $_POST["page_name"]);
 						if ($results)
 						{
-							$results = DoGetLastInserted("adverts", "space_id", $strSpaceID);
+							$results = DoFindQuery4($g_dbFindATradie, "adverts", "space_id", $strSpaceID, 
+													"member_id", $_SESSION["account_id"], 
+													"expiry_date", $dateNow->format("Y-m-d"), 
+													"text", $_POST["advert_text"]);
+
 							if ($results && ($results->num_rows > 0))
 							{
-								while ($row = $results->fetch_assoc())
+								if ($row = $results->fetch_assoc())
 								{
-									$dateExpiry = new DateTime($row["expiry_date"]);
-									if (($dateExpiry == $dateNow) && (strcmp($row["member_id"], $_SESSION["account_id"]) == 0) && 
-										(strcmp($row["text"], $_SESSION["advert_text"]) == 0))
+									$strDateAdded = $row["date_added"];
+									$strDateAdded = substr($row["date_added"], 0, strpos($row["date_added"], " ") - 1);
+									$dateAdded = new DateTime($strDateAdded);
+									if ($dateAdded = $dateNow)
 									{
 										$_SESSION["advert_id"] = $row["id"];
-										if (DoSaveMemberImage($_SESSION["account_id"], "logo_filename", $_FILES["logo_filename"]))
+										if (DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_filename"]))
 										{
-											if (strcmp(intval($_SESSION["cost_per_year"]), $g_strPriceLevel4) == 0)
+											if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel4) == 0)
 											{
 												$g_strDisplayPriceLevel4 = "block";
 											}
-											else if (strcmp(intval($_SESSION["cost_per_year"]), $g_strPriceLevel3) == 0)
+											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel3) == 0)
 											{
 												$g_strDisplayPriceLevel3 = "block";
 											}
-											else if (strcmp(intval($_SESSION["cost_per_year"]), $g_strPriceLevel2) == 0)
+											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel2) == 0)
 											{
 												$g_strDisplayPriceLevel2 = "block";
 											}
-											else if (strcmp(intval($_SESSION["cost_per_year"]), $g_strPriceLevel1) == 0)
+											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel1) == 0)
 											{
 												$g_strDisplayPriceLevel1 = "block";
 											}
 										}
+										$_SESSION["advert_id"] = $row["id"];
 									}
 								}
 							}
@@ -273,9 +278,16 @@
 						$dateExpiry = new DateTime();
 						$dateExpiry->modify("+12 months");
 						$results = DoUpdateQuery1($g_dbFindATradie, "adverts", "expiry_date", $dateExpiry->format("Y-m-d"), "id", $_SESSION["advert_id"]);
+				
 						if ($results)
 						{
 							PrintJSAlertSuccess("Your advert has been added and will expire in 12 months!", 4);
+							unset($_SESSION["page_name"]);
+							unset($_SESSION["space_code"]);
+							unset($_SESSION["current_page"]);
+							unset($_SESSION["cost_per_year"]);
+							unset($_SESSION["advert_text"]);
+							unset($_SESSION["advert_id"]);
 						}
 						else
 						{
@@ -325,7 +337,7 @@
 					<tr>
 						<td>
 							<b>Advert text (you can use HTML tags)</b><br/><br/>
-							<textarea name="advert_text" id="" rows="10" cols="100"><?php echo $_SESSION["advert_text"]; ?></textarea>
+							<textarea name="advert_text" id="advert_text" rows="10" cols="100"><?php echo $_SESSION["advert_text"]; ?></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -424,22 +436,9 @@
 				<input type="hidden" id="advert_space_code" name="advert_space_code" value="<?php  echo $_SESSION["space_code"]; ?>" />
 				<input type="hidden" id="current_page" name="current_page" value="<?php  echo $_SESSION["current_page"]; ?>" />
 				<input type="hidden" id="cost_per_year" name="cost_per_year" value="<?php  echo $_SESSION["cost_per_year"]; ?>" />
-				<input type="hidden" id="advert_id" name="advert_id" value="<?php  echo $_SESSION["advert_id"]; ?>" />
+				<input type="hidden" id="page_name" name="page_name" value="<?php  echo $_SESSION["page_name"]; ?>" />
 			</form>
 		</div>
-		<?php
-			unset($_SESSION["page_name"]);
-			unset($_SESSION["space_code"]);
-			unset($_SESSION["cost_per_year"]);
-			unset($_SESSION["advert_text"]);
-			unset($_SESSION["advert_id"]);
-			unset($_SESSION["current_page"]);
-		?>
-
-
-
-
-
 
 
 
