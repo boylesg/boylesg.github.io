@@ -197,16 +197,19 @@
 							Q. How is <b><u>www.find-a-tradie.com.au</u></b> safer than Facebook groups?<br/>
 						</li>
 						<li class="faq_answer">
-							A. The integrity of customers and tradies alike is only as good as the efforts of the Facebook group 
-							owners to maintain it a high level. And let's face it, the amount of revenue from Facebook groups is directly 
-							proportional to the number of members. So the incentive for Facebook group owners is always to maximise the 
-							number of group members rather than the integrity of its members.
+							A. Owners of facebook groups often earn a small cut of Facebook's advert revenue when people 
+							click on advert link. And in order for that to be likely you need hundreds of thousands of 
+							pariticipants in your Facebook group. So the incentive of Facbook group owners is to maximise 
+							the quantity of users rather than maximising the quality of users. So trust in a Facebook group 
+							can be a scarce commodity. At www.find-a-tradie.com.au we are about maximising the quality of 
+							our members. And we acheive that through our mutual feedback system. If there are any poor  
+							tradies or customers who don't pay, then this will be reflected in their feedback history.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Do you store bank account and credit card numbers?<br/>
 						</li>
 						<li class="faq_answer">
-							A. No. All payments are made by your through external web sites like Paypal or eBanking through your bank's web site. 
+							A. No. All payments are made by your through external web sites like Paypal or eBanking. 
 							So no sensitive financial or personal details are stored on the web site. The only details that are stored are:
 							<ul>
 								<li>Business
@@ -243,11 +246,9 @@
 						</li>
 						<li class="faq_answer">
 							A. If they do then it is not really going to bring them much benefit. There are no credit 
-							cards numbers, no bank account numbers, no dates of birth or any other identity data for 
-							them to steal. Other than what you have likely made public yourself in the Yellow Pages or 
-							on Facebook etc. All communications take place via your phone numbers and private email 
-							accounts, so there is little information about you for them to access. Unless they also 
-							hack your email and mobile accounts.
+							card numbers, no bank account numbers, no passwords other than your find-a-tradie password, 
+							no DOBs or any other sensitive financial or personal data for them to steal. Other than details 
+							you have likely made public in Yellow Pages or on your facebook and Google accounts etc.
 						</li>
 						<hr/><li class="faq_question">
 							Q. Does 'Find a Tradie' provide guarantees on workmanship or refunds?<br/>
