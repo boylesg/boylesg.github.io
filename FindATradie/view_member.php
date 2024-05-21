@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -126,7 +126,7 @@
 							$row = $results->fetch_assoc();
 							if ($row)
 							{
-								if (IsTradie($_GET["member_id"]))
+								if (IsTradie($row["trade_id"]))
 								{
 									echo "<div class=\"tradie_details\">\n";
 									echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";

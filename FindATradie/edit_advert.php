@@ -210,46 +210,56 @@
 					}
 					else
 					{
+						if ($_SESSION["account_id"] == 1)
+							$dateNow->modify("12 months");
+							
 						$results = DoInsertQuery5($g_dbFindATradie, "adverts", "space_id", intval($strSpaceID), 
 													"text", $_POST["advert_text"], "member_id", $_SESSION["account_id"], 
 													"expiry_date", $dateNow->format("Y-m-d"), "page_name", $_POST["page_name"]);
 						if ($results)
 						{
-							$results = DoFindQuery4($g_dbFindATradie, "adverts", "space_id", $strSpaceID, 
-													"member_id", $_SESSION["account_id"], 
-													"expiry_date", $dateNow->format("Y-m-d"), 
-													"text", $_POST["advert_text"]);
-
-							if ($results && ($results->num_rows > 0))
+							if ($_SESSION["account_id"] == 1)
 							{
-								if ($row = $results->fetch_assoc())
+								PrintJSAlertSuccess("Your advert has been added and will expire in 12 months!", 4);
+							}
+							else
+							{
+								$results = DoFindQuery4($g_dbFindATradie, "adverts", "space_id", $strSpaceID, 
+														"member_id", $_SESSION["account_id"], 
+														"expiry_date", $dateNow->format("Y-m-d"), 
+														"text", $_POST["advert_text"]);
+	
+								if ($results && ($results->num_rows > 0))
 								{
-									$strDateAdded = $row["date_added"];
-									$strDateAdded = substr($row["date_added"], 0, strpos($row["date_added"], " ") - 1);
-									$dateAdded = new DateTime($strDateAdded);
-									if ($dateAdded = $dateNow)
+									if ($row = $results->fetch_assoc())
 									{
-										$_SESSION["advert_id"] = $row["id"];
-										if (DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_filename"]))
+										$strDateAdded = $row["date_added"];
+										$strDateAdded = substr($row["date_added"], 0, strpos($row["date_added"], " ") - 1);
+										$dateAdded = new DateTime($strDateAdded);
+										if ($dateAdded = $dateNow)
 										{
-											if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel4) == 0)
+											$_SESSION["advert_id"] = $row["id"];
+											if (DoSaveLogoImage($_SESSION["account_id"], $_FILES["logo_filename"]))
 											{
-												$g_strDisplayPriceLevel4 = "block";
+												if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel4) == 0)
+												{
+													$g_strDisplayPriceLevel4 = "block";
+												}
+												else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel3) == 0)
+												{
+													$g_strDisplayPriceLevel3 = "block";
+												}
+												else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel2) == 0)
+												{
+													$g_strDisplayPriceLevel2 = "block";
+												}
+												else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel1) == 0)
+												{
+													$g_strDisplayPriceLevel1 = "block";
+												}
 											}
-											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel3) == 0)
-											{
-												$g_strDisplayPriceLevel3 = "block";
-											}
-											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel2) == 0)
-											{
-												$g_strDisplayPriceLevel2 = "block";
-											}
-											else if (strcmp(intval($_GET["cost_per_year"]), $g_strPriceLevel1) == 0)
-											{
-												$g_strDisplayPriceLevel1 = "block";
-											}
+											$_SESSION["advert_id"] = $row["id"];
 										}
-										$_SESSION["advert_id"] = $row["id"];
 									}
 								}
 							}

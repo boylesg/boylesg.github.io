@@ -21,8 +21,8 @@
 	$g_strPriceLevel2 = "80";
 	$g_strPriceLevel3 = "100";
 	$g_strPriceLevel4 = "120";
-	$g_strPaypalLive = "none";
-	$g_strPaypalTest = "block";
+	$g_strPaypalLive = "block";
+	$g_strPaypalTest = "none";
 	
 	$g_strMailToNewLine = "%0E%0A";
 	
