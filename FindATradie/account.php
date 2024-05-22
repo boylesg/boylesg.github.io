@@ -959,6 +959,7 @@
 									</table>
 								</form>
 								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
+								
 								<table class="table_no_borders search_table">
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>

@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -108,11 +108,52 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
+<?php
+
+	if (isset($_POST["submit_trade_edit"]))
+	{
+		$results = DoUpdateQuery2($g_dbFindATradie, "trades", "name", $_POST["text_trade_name"], "description", $_POST["text_trade_desc"], "id", $_POST["text_trade_id"]);
+		if (!$results)
+		{
+			PrintJSAlertError("Failed to save changes to trade '" . $_POST["text_trade_name"] . "'!", 4);
+		}
+	}
+	else if (isset($_POST["submit_new_trade"]))
+	{
+		$results = DoInsertQuery2($g_dbFindATradie, "trades", "name", $_POST["text_trade_name"], "description", $_POST["text_trade_desc"]);
+		if (!$results)
+		{
+			PrintJSAlertError("Failed to save new trade '" . $_POST["text_trade_name"] . "'!", 4);
+		}
+	}
+
+?>
 				<div class="note" style="flex-wrap:wrap;">
-
-
-
-
+					
+					<h6>TRADES</h6>
+					<div style="overflow-y:auto;height:20em;padding:10px;">
+						<table class="form" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td style="">
+									<table class="" border="0" cellpadding="0" cellspacing="2"><tr>
+										<td style="width:17.5em;padding-left:0.8em"><b>TRADE NAME</b></td>
+										<td style="width:66em;"><b>DESCRIPTION</b></td>
+										<td style=""><b>Functions</b></td>
+									</tr></table>
+								</td>
+							</tr>
+							<?php DoGenerateTradesList(); ?>
+						</table>
+					</div>
+					<br/><br/>
+					<form class="form" method="post" style="width:56em;">
+						<h6>ADD NEW TRADE</h6>
+						<label for="text_name">Name</label><br/>
+						<input type="text" name="text_trade_name" size="30" /><br/><br/>
+						<label for="text_name">Description</label><br/>
+						<textarea name="text_trade_desc" cols="100" rows="4"></textarea><br/><br/>
+						<button type="submit" name="submit_new_trade" title="Save new trade" class="function_button"><img src="images/save.png" alt="images/save.png" class="function_button_image" /></button>
+					</form>
 				</div>
 
 			<!-- #EndEditable -->

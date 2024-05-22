@@ -1356,6 +1356,37 @@
 	}
 	if (!isset($g_bIsApp))
 		DoGenerateJavascriptTradeArray();
+		
+	
+	
+	
+	function DoGenerateTradesList()
+	{
+		global $g_dbFindATradie;
+		global $g_strQuery;
+		$strTextStyles = "border-radius:var(--BorderRadiusSmall);border-style: inset;border-width: thin;";
+		$strButtonStyles = "border-radius:var(--BorderRadiusSmall);border-style: outset;border-width: thin;";
+
+		
+		$results = DoFindAllQuery($g_dbFindATradie, "trades", "", "name");
+		if ($results && ($results->num_rows > 0))
+		{
+			while ($row = $results->fetch_assoc())
+			{
+				echo "<tr><td class=\"search_cell\"><form style=\"padding:0px;border-radius: var(--BorderRadius);background-color:var(--ColorMastheadBG);\" method=\"post\">\n";
+				
+				echo "<input type=\"hidden\" name=\"text_trade_id\" value=\"" . $row["id"] . "\" />";
+				echo "<table class=\"\" border=\"0\" cellspacing=\"2\" cellpadding=\0\">\n";
+				echo "<td class=\"\"><input style=\"" . $strTextStyles . "\" type=\"text\" name=\"text_trade_name\" value=\"" . $row["name"] . "\" size=\"30\" /></td>\n";
+				echo "<td class=\"\"><input style=\"" . $strTextStyles . "\" type=\"text\" name=\"text_trade_desc\" value=\"" . $row["description"] . "\" size=\"120\" /></td>\n";
+				echo "<td class=\"\"><button styl=\"" . $strButtonStyles . "\" type=\"submit\" name=\"submit_trade_edit\" value=\"SUBMIT\" class=\"function_button\" /><img src=\"images/save.png\" alt=\"images/save.png\" class=\"function_button_image\" /></td>\n";
+				echo "</tr><input type=\"hidden\" name=\"text_trade_id\" value=\"" . $row["id"] . "\" /></form>\n";	
+				echo "</table>\n";
+				
+				echo "</form></td></tr>";		
+			}
+		}
+	}
 
 
 
