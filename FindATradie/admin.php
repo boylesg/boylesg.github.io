@@ -45,7 +45,8 @@
 				document.body.style.backgroundImage = strFilename;
 			}
 			
-			setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
+			if (document.title != "Admin Functions")
+				setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
 			
 		</script>
 	</head>
@@ -90,7 +91,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
-					<li class="navigation_list_item" style="display:<?php if (isset($_SESSION["account_admin"]) && $_SESSION["account_admin"]) echo "block"; else echo "none";?>;"><a class="navigation_link" href="admin.php">ADMIN</a></li>
+					<li class="navigation_list_item" <?php if (isset($_SESSION["account_admin"]) && ($_SESSION["account_admin"] == 0)) echo "style=\"display:none;\"";?>><a class="navigation_link" href="admin.php">ADMIN</a></li>
 				</ul>
 				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>
@@ -102,17 +103,17 @@
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
-			<div class="advert_marquee">
+			<div style="display:<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
 				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
 
+				<div class="note" style="flex-wrap:wrap;">
 
 
 
 
-
-
+				</div>
 
 			<!-- #EndEditable -->
 		<!-- End Page Content -->
