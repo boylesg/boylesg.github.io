@@ -38,6 +38,7 @@
 
 
 
+
 			
 				.faq_question
 				{
@@ -122,6 +123,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="admin.php">ADMIN</a></li>
 				</ul>
 				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>

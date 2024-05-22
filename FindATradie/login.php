@@ -77,6 +77,7 @@
 			$_SESSION["account_password"] = $row["password"];
 			$_SESSION["account_logo_filename"] = $row["logo_filename"];
 			$_SESSION["account_profile_filename"] = $row["profile_filename"];
+			$_SESSION["account_admin"] = $row["admin"];
 			
 			// Next we need to get the listb of additional trades.
 			$_SESSION["account_additional_trades"] = [];
@@ -198,6 +199,7 @@
 					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
 					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="admin.php">ADMIN</a></li>
 				</ul>
 				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 			</nav>

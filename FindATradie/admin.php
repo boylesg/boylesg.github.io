@@ -27,13 +27,13 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-		<title>Forum</title>
+		<title>Admin Functions</title>
 		<!-- #EndEditable -->
 		<?php include $_SERVER['DOCUMENT_ROOT'] . "/common.js"; ?>
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -107,31 +107,6 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-				<?php
-					 function IsLoggedIn()
-					 {
-					 	return isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != "");
-					 }
-					 
-					if (IsLoggedIn())
-						PrintJavascriptLine("document.location = \"forum/index.php\";", 1, true);
-				?>
-				
-				<div class="note" style="display:<?php if (!IsLoggedIn()) echo "block"; else echo "none"; ?>;">
-					<h6>You must register and login to access the forum.</h6>
-				</div>
-				
-				<div class="note" style="display:<?php if (IsLoggedIn()) echo "block"; else echo "none"; ?>;">
-					<h6>Re-directing to the forum.</h6>
-				</div>
-				
 
 
 
