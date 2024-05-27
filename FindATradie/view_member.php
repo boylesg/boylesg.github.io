@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -121,7 +121,7 @@
 				<?php 
 				
 					if (isset($_GET["member_id"]))
-					{
+					{						
 						$results = DoFindQuery1($g_dbFindATradie, "members", "id", $_GET["member_id"]);
 						if ($results && ($results->num_rows > 0))
 						{
@@ -130,6 +130,17 @@
 							{
 								if (IsTradie($row["trade_id"]))
 								{
+									$strEmail = $row["email"];
+									$strPhone = $row["phone"];
+									$strMobile = $row["mobile"];
+									if (isset($_GET["try_out"]) && (strcmp($_GET["try_out"], "true") == 0))
+									{
+										$strEmail = "dummy_email@gmail.com";
+										$strPhone = "94010000";
+										$strMobile = "0455000000";
+									}
+									
+									
 									echo "<div class=\"tradie_details\">\n";
 									echo "<b><u>BUSINESS PROFILE</u></b><br/<br/><br/>\n";
 									echo "<table cellspacing=\"0\" cellpadding=\"10\" class=\"table_no_borders\" style=\"display:inline-block;width:510px;\">\n";
@@ -164,21 +175,21 @@
 									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
 									echo "		<td class=\"cell_no_borders\">\n";
 									if ($row["phone"] && ($row["phone"] != ""))
-										echo $row["phone"] . "\n";
+										echo $strPhone . "\n";
 									echo "		</td>\n";
 									echo "	</tr>\n";
 									echo "	<tr>\n";
 									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Mobile:</b></td>\n";
 									echo "		<td class=\"cell_no_borders\">";
 									if ($row["mobile"] && ($row["mobile"] != ""))
-										echo $row["mobile"] . "\n";
+										echo $strMobile . "\n";
 									echo "		</td>\n";
 									echo "	</tr>\n";
 									echo "	<tr>\n";
 									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Email:</b></td>\n";
 									echo "		<td class=\"cell_no_borders\">";
 									if ($row["email"] && ($row["email"] != ""))
-										echo $row["email"];
+										echo $strEmail;
 									echo "		</td>\n";
 									echo "	</tr>\n";
 									echo "	<tr>\n";

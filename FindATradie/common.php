@@ -1940,44 +1940,51 @@ echo "@@@@@@@<br>";
 		global $g_dbFindATradie;
 		$bResult = false;
 	
-		$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode1);
-		if ($results && ($results->num_rows > 0))
-		{	
-			$row = $results->fetch_assoc();
-			if ($row)
-			{		
-				$fLat1 = $row["latitude"];
-				$fLong1 = $row["longitude"];
-				
-				$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode2);
-				if ($results && ($results->num_rows > 0))
-				{	
-					$row = $results->fetch_assoc();
-					if ($row)
-					{		
-						$fLat2 = $row["latitude"];
-						$fLong2 = $row["longitude"];
-						$fDistance = DoCalculateDistance($fLat1, $fLong1, $fLat2, $fLong2);
-						$bResult = round($fDistance) <= ((int)$strTradieMaxDistance + 5);
+		if ((strlen($strPostcode1) == 0) || (strlen($strPostcode2) == 0))
+		{
+			$bResult = true;
+		}
+		else
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode1);
+			if ($results && ($results->num_rows > 0))
+			{	
+				$row = $results->fetch_assoc();
+				if ($row)
+				{		
+					$fLat1 = $row["latitude"];
+					$fLong1 = $row["longitude"];
+					
+					$results = DoFindQuery1($g_dbFindATradie, "postcodes_geolocation", "postcode", (int)$strPostcode2);
+					if ($results && ($results->num_rows > 0))
+					{	
+						$row = $results->fetch_assoc();
+						if ($row)
+						{		
+							$fLat2 = $row["latitude"];
+							$fLong2 = $row["longitude"];
+							$fDistance = DoCalculateDistance($fLat1, $fLong1, $fLat2, $fLong2);
+							$bResult = round($fDistance) <= ((int)$strTradieMaxDistance + 5);
+						}
+						else
+						{
+							PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for second postcode '" . $strPostcode1 . "'\")", 3, true);
+						}
 					}
 					else
 					{
-						PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for second postcode '" . $strPostcode1 . "'\")", 3, true);
+						PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find second postcode '" . $strPostcode2 . "'\")", 3, true);
 					}
 				}
 				else
 				{
-					PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find second postcode '" . $strPostcode2 . "'\")", 3, true);
+					PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for first postcode '" . $strPostcode1 . "'\")", 3, true);
 				}
 			}
 			else
 			{
-				PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not get row for first postcode '" . $strPostcode1 . "'\")", 3, true);
+				PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find first postcode '" . $strPostcode1 . "'\")", 3, true);
 			}
-		}
-		else
-		{
-			PrintJavascriptLine("AlertError(\"Function 'IsDistanceMatch(...)' - could not find first postcode '" . $strPostcode1 . "'\")", 3, true);
 		}
 		return $bResult;
 	}
@@ -3167,26 +3174,38 @@ echo "@@@@@@@<br>";
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoCreateTradieRow($rowMember)
+	function DoCreateTradieRow($rowMember, $bTryOut)
 	{
+		$strHREF = "mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'";
+		$strPhone = $rowMember["phone"];
+		$strMobile = $rowMember["mobile"];
+		$strTryOut = "false";
+		if ($bTryOut)
+		{
+			$strHREF = "mailto://dummy_email@gmail.com?subject=RE: 'Find a Tradie'";
+			$strPhone = "94010000";
+			$strMobile = "0455000000";
+			$strTryOut = "true";
+		}
 		echo "<tr>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["id"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'\"><img src=\"images/email.png\" alt=\"email.png\" class=\"function_button_image\" /></a></button></td>\n";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["phone"] . "</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["mobile"] . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"" . $strHREF . "\"><img src=\"images/email.png\" alt=\"email.png\" class=\"function_button_image\" /></a></button></td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $strPhone . "</td>\n";
+		echo "<td class=\"cell_no_borders search_cell\">" . $strMobile . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["suburb"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["state"] . "</td>\n";
 		echo "<td class=\"cell_no_borders search_cell\">" . $rowMember["postcode"] . "</td>\n";
-		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"View feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\"><img src=\"images/view.png\" alt=\"view.png\" class=\"function_button_image\" /></a></button></td>\n";
+		echo "<td class=\"cell_no_borders search_cell\"><button class=\"function_button_hidden\" title=\"View feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "&try_out=" . $strTryOut . "\"><img src=\"images/view.png\" alt=\"view.png\" class=\"function_button_image\" /></a></button></td>\n";
 		echo "</tr>\n";
 	}
 
-	function DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance)
+	function DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance, $bTryOut = false)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$rowMember = null;
+		$nRowCount = 0;
 		$strPostcode = $_SESSION["account_postcode"];
 		
 		if (isset($_POST["text_postcode"]))
@@ -3201,17 +3220,18 @@ echo "@@@@@@@<br>";
 		{
 			while ($rowMember = $results->fetch_assoc())
 			{
-				if (IsDistanceMatch($strPostcode, $rowMember["postcode"], $strMaxDistance) || 
-					(strlen($strMaxDistance) == 0))
+				if ((strlen($strMaxDistance) == 0) || IsDistanceMatch($strPostcode, $rowMember["postcode"], $strMaxDistance))
 				{
 					if (((strcmp($strPostcode, $rowMember["postcode"]) == 0) || (strlen($strPostcode) == 0)) ||
 						((strcmp($strSuburb, $rowMember["suburb"]) == 0) || (strlen($strSuburb) == 0)))
 					{
-						DoCreateTradieRow($rowMember);
+						DoCreateTradieRow($rowMember, $bTryOut);
+						$nRowCount++;
 					}
 				}
 			}
 		}
+		return $nRowCount > 0;
 	}
 	
 ?>

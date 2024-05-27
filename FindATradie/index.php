@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -109,25 +109,6 @@
 			<!-- #BeginEditable "content" -->
 
 
-
-
-
-
-
-
-<?php
-
-	$strResultsDisplay = "none";
-	$arrayResults = [];
-
-	if (isset($_POST["submit_search"]))
-	{
-		$arrayResults = DoSearchTradies($_POST["select_trade"], $_POST["select_job_size"], $_POST["text_maximum_budget"], $_POST["text_postcode"]);
-		if (count($arrayResults) > 0)
-			$strResultsDisplay = "block";
-	}
-
-?>
 				<div class="note" style="display:none;font-weight:bold;font-size:medium;margin-top:0px;height:70px;">
 					<img src="images/UnderConstruction.jpg" alt="images/UnderConstruction.jpg" width="150" style="float:left;" />
 					Tradies can join for their first 6 months, free of charge.
@@ -167,9 +148,9 @@
 					<hr/>
 					<h6>Both customers &amp; tradies need to register and login to use this service.</h6>
 					<p style="font-size:large;">However if you are new here then you can give it a test run...</p>
-					<form method="post" action="index.php" style="width:745px">
+					<form method="post" action="index.php" style="width:745px" class="form">
 						
-						<table class="table_no_borders">
+						<table class="form_table">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders">
 									<b>What type of tradie are you looking for?</b>
@@ -180,31 +161,9 @@
 											if (isset($_POST["select_trade"]))
 												DoGeneratePrimaryTradeOptions($_POST["select_trade"]);
 											else
-												DoGeneratePrimaryTradeOptions("");
+												DoGeneratePrimaryTradeOptions("52");
 											?>
 									</select>
-								</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;" class="cell_no_borders">
-									<b>What is you maximum budget?</b>
-								</td>
-								<td class="cell_no_borders">
-									$&nbsp;<input type="text" id="text_maximum_budget" name="text_maximum_budget" maxlength="6" value="<?php if (isset($_POST["text_maximum_budget"])) echo $_POST["text_maximum_budget"]; ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
-								</td>
-							</tr>
-							<tr>
-								<td style="text-align:right;" class="cell_no_borders">
-									<b>What is the size of your job?</b>
-								</td>
-								<td class="cell_no_borders">
-									&nbsp;&nbsp;&nbsp;<select id="select_job_size" name="select_job_size">
-										<option value="0" <?php if ((isset($_POST["select_trade"]) && ($_POST["select_trade"] == "0")) || !isset($_POST["select_trade"])) echo "selected"; ?>>Up to 50</option>
-										<option value="1" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "1")) echo "selected"; ?>>50 - 100</option>
-										<option value="2" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "2")) echo "selected"; ?>>100 - 250</option>
-										<option value="3" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "3")) echo "selected"; ?>>250 - 500</option>
-										<option value="4" <?php if (isset($_POST["select_trade"]) && ($_POST["select_trade"] == "4")) echo "selected"; ?>>More than 500</option>
-									</select>&nbsp;<b>m<sup>2</sup></b>
 								</td>
 							</tr>
 							<tr>
@@ -225,22 +184,37 @@
 							</tr>
 						</table>
 					</form>
-					<div id="results" style="display: <?php echo $strResultsDisplay; ?>;">
-						<h6><u>RESULTS</u></h6>
-						<select id="text_results" size="10" style="font-size:large;width:850px;border-width:medium;border-color:var(--NoteHeadingColor);">
-							<?php
-								$strSelected = " selected";
-								for ($nI = 0; $nI < count($arrayResults); $nI++)
-								{
-									echo "<option value=\"" . $arrayResults[$nI][1] . "\"" . $strSelected . ">";
-									echo $arrayResults[$nI][0];
-									echo "</option>\n";
-									$strSelected = "";
-								}
-							?>
-						</select>
-						<br/><br/>
-						<input type="button" value="VIEW DETAILS" onclick="alert('You need to register and login to use this feature.')" />
+					<br/>
+					<div class="form">
+						<table cellpadding ="0" cellspacing="0" border="0" class="form_table">
+							<tr>
+								<td class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></td>
+								<td class="cell_no_borders search_cell" style="width:8em;"><b>Name</b></td>
+								<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Send email</b></td>
+								<td class="cell_no_borders search_cell" style="width:2em;"><b>Phone</b></td>
+								<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Mobile</b></td>
+								<td class="cell_no_borders search_cell" style="width:4em;"><b>Suburb</b></td>
+								<td class="cell_no_borders search_cell" style="width:1em;"><b>State</b></td>
+								<td class="cell_no_borders search_cell" style="width:1.5em;"><b>Postcode</b></td>
+								<td class="cell_no_borders search_cell" style="width:8em;"><b>Feedback</b></td>
+							</tr>
+						<?php
+						
+							$strTradeID = "";
+							$strPostcode = "";			
+							
+							if (isset($_POST["submit_search"]))
+							{
+								if (isset($_POST["select_trade"]))
+									$strTradeID = $_POST["select_trade"];
+								if (isset($_POST["text_postcode"]))
+									$strPostcode = $_POST["text_postcode"];
+							}
+							if (!DoGetWebTradies($strTradeID, $strPostcode, "", 0, true))
+								echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";
+							
+						?>
+						</table>
 					</div>
 				</div>
 
