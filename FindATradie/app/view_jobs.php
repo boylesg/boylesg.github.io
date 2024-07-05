@@ -42,25 +42,37 @@
 		$objectJobDetails->date_added = $dateTemp->format("d/m/Y");
 		
 		$objectJobDetails->date_paid = "";
-		$objectJobDetails->paid = strcmp($row["paid"], "1") == 0;
-		if ($objectJobDetails->paid)
+		$objectJobDetails->paid = false;
+		if (($row["paid"] !== NULL) && (strcmp($row->paid, "1") == 0))
 		{
-			$dateTemp = new DateTime($row["date_paid"]);
-			$objectJobDetails->date_paid = $dateTemp->format("d/m/Y");
+			$objectJobDetails->paid = true;
+			if (($row["date_paid"] !== NULL) && strlen($row["date_paid"]) > 0)
+			{
+				$dateTemp = new DateTime($row["date_paid"]);
+				$objectJobDetails->date_paid = $dateTemp->format("d/m/Y");
+			}
 		}
 		$objectJobDetails->date_completed = "";
-		$objectJobDetails->completed = strcmp($row["completed"], "1") == 0;
-		if ($objectJobDetails->completed)
+		$objectJobDetails->completed = false;
+		if (($row["completed"] !== NULL) && (strcmp($row["completed"], "1") == 0))
 		{
-			$dateTemp = new DateTime($row["date_completed"]);
-			$objectJobDetails->date_completed = $dateTemp->format("d/m/Y");
+			$objectJobDetails->completed = true;
+			if (($row["date_completed"] !== NULL) && strlen($row["date_completed"]) > 0)
+			{
+				$dateTemp = new DateTime($row["date_completed"]);
+				$objectJobDetails->date_completed = $dateTemp->format("d/m/Y");
+			}
 		}
 		$objectJobDetails->date_accepted = "";
-		$objectJobDetails->accepted = strcmp($row["accepted_by_member_id"], "0") != 0;
-		if ($objectJobDetails->accepted)
+		$objectJobDetails->accepted = false;
+		if (($row["accepted_by_member_id"] !== NULL) && (strlen($row["accepted_by_member_id"]) > 0))
 		{
-			$dateTemp = new DateTime($row["date_accepted"]);
-			$objectJobDetails->date_accepted = $dateTemp->format("d/m/Y");
+			$objectJobDetails->accepted = true;
+			if (($row["date_accepted"] !== NULL) && strlen($row["date_accepted"]) > 0)
+			{
+				$dateTemp = new DateTime($row["date_accepted"]);
+				$objectJobDetails->date_accepted = $dateTemp->format("d/m/Y");
+			}
 		}
 		$objectJobDetails->accepted_by_member_id = $row["accepted_by_member_id"];			
 		$objectJobDetails->description = $row["description"];
@@ -157,7 +169,7 @@
 											{
 												if (IsDistanceMatch($_POST["postcode"], DoGetColumnValue("members", "id", $row["member_id"], "postcode"), $_POST["maximum_distance"]))
 												{
-													if (IsTradeMatch($_POST["trade_id"], $_POST["additional_trades"], $row["trade_id"]))
+													if (IsTradeMatch($_POST["trade_id"], json_decode($_POST["additional_trades"]), $row["trade_id"]))
 													{
 														$objectJobDetails = DoGetJobDetails($row);
 														$arrayJobsList[] = $objectJobDetails;
