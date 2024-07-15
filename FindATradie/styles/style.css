@@ -131,11 +131,6 @@
 	margin-right: 30px;
 	opacity: 1.0;
 	background-color: var(--ColorMastheadButtonBG);
-	/*
-	background-image: url('/images/rock_texture3.jpg');
-	background-repeat: repeat;
-	background-position: center center;
-	*/
 	color: var(--LinkColorText);
 	font-size: small;
 	font-weight: bold;
@@ -146,13 +141,6 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	box-shadow: 2px 2px black;
-
-	/*
-	border-top-color: rgb(220, 220, 220);
-	border-left-color: rgb(220, 220, 220);
-	border-bottom-color: rgb(200, 200, 200);
-	border-right-color: rgb(200, 200, 200);
-	*/
 	text-decoration: none;
 }
 
@@ -214,12 +202,37 @@ a.masthead_button:hover
 	border-radius: var(--BorderRadiusButton);
 }
 
+.app_button
+{
+	display: inline-block;
+	position: relative;
+	float: right;
+	top: -70px;
+	margin-right: 10px;
+}
+
+.app_button:hover
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--ColorMastheadButtonBG);
+	border-radius: 5px;
+}
+
 .social_media
 {
 	display: inline-block;
 	position: relative;
 	float: right;
 	top: -58px;
+}
+
+.social_media:hover
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: var(--ColorMastheadButtonBG);
+	border-radius: 5px;
 }
 
 .page_heading

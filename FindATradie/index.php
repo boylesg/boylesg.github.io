@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -60,26 +60,27 @@
 				<div class="title text_outline" id="title">FIND A TRADIE</div>
 				<div class="tag text_outline" id="tag">Created by an Australian tradie</div>
 			</div>
-			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;">TRADIE REGISTRATION</a>
-			<a class="masthead_button" href="new_customer.php">CUSTOMER REGISTRATION</a>
+			<a class="masthead_button" href="new_tradie.php" style="margin-right:0px;" title="Join find-a-tradie as a tradie looking for customers...">TRADIE REGISTRATION</a>
+			<a class="masthead_button" href="new_customer.php" title="Join find-a-tradie as a customer looking for tradies...">CUSTOMER REGISTRATION</a>
 			<?php 
 				$g_strLoginButtonDisplay = "block";
 				$g_strLogoutButtonDisplay = "none";
-				
+					
 				if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
 				{
 					$g_strLoginButtonDisplay = "none";
 					$g_strLogoutButtonDisplay = "block";
 				}
 			?>
-			<a class="masthead_button" href="login.php" style="display:<?php echo $g_strLoginButtonDisplay; ?>;">LOG IN</a>
-			<a class="masthead_button" href="login.php?submit_logout=LOG OUT" style="display:<?php echo $g_strLogoutButtonDisplay; ?>;">LOG OUT</a>
+			<a class="masthead_button" href="login.php" style="display:<?php echo $g_strLoginButtonDisplay; ?>;" title="Login to your account...">LOG IN</a>
+			<a class="masthead_button" href="login.php?submit_logout=LOG OUT" style="display:<?php echo $g_strLogoutButtonDisplay; ?>;" title="Logout of your account...">LOG OUT</a>
+			
 			<!-- Begin Navigation -->
 			<nav class="navigation" id="navigation">
 				<ul class="navigation_list">
-					<li class="navigation_list_item"><a class="navigation_link" href="index.php">HOME</a></li>
-					<li class="navigation_list_item"><a class="navigation_link" href="benefits.php">BENEFITS</a></li>
-					<li class="navigation_list_item"><a class="navigation_link" href="about.php">ABOUT</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="index.php" title="Return to the home page...">HOME</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="benefits.php" title="Read about the many benefits of becoming a find-a-tradie member...">BENEFITS</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="about.php" title="Read about why find-a-tradie was created...">ABOUT</a></li>
 						<?php
 		
 							if (isset($_SESSION["account_id"]) && ($_SESSION["account_id"] != ""))
@@ -88,12 +89,15 @@
 								echo "<li class=\"navigation_list_item\"><a class=\"navigation_link\" href=\"login.php\">LOG IN</a></li>\n";
 								
 						?>
-					<li class="navigation_list_item"><a class="navigation_link" href="faq.php">FAQ</a></li>
-					<li class="navigation_list_item"><a class="navigation_link" href="contact.php">CONTACT</a></li>
-					<li class="navigation_list_item"><a class="navigation_link" href="forum.php">FORUM</a></li>
-					<li class="navigation_list_item" <?php if (isset($_SESSION["account_admin"]) && ($_SESSION["account_admin"] == 0)) echo "style=\"display:none;\"";?>><a class="navigation_link" href="admin.php">ADMIN</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="faq.php" title="Frequently Asked Questions answered...">FAQ</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="contact.php" title="Contact find-a-tradie...">CONTACT</a></li>
+					<li class="navigation_list_item"><a class="navigation_link" href="forum.php" title="Talk to tradies about your job...">FORUM</a></li>
+					<li class="navigation_list_item" <?php if (isset($_SESSION["account_admin"]) && ($_SESSION["account_admin"] == 0)) echo "style=\"display:none;\"";?>><a class="navigation_link" href="admin.php" title="For the web administrator only...">ADMIN</a></li>
 				</ul>
-				<a href="https://www.facebook.com/FindATradiePage" class="social_media" ><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a href="https://www.facebook.com/FindATradiePage" class="social_media" title="Go to the facebook page..."><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
+				<a id="find-a-tradie-app" class="app_button" href="https://www.find-a-tradie.com.au/app/find_a_tradie.apk" download title="Download the android app...">
+					<img src="images/AppIcon.png" width="30" />
+				</a>
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -107,6 +111,12 @@
 				<?php DoGenerateAdvertSlotHTML(); ?>
 			</div>
 			<!-- #BeginEditable "content" -->
+
+
+
+
+
+
 
 
 				<div class="note" style="display:none;font-weight:bold;font-size:medium;margin-top:0px;height:70px;">
