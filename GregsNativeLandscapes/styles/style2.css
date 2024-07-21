@@ -14,6 +14,8 @@ body
 }
 #masthead 
 {
+	display: block;
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	text-align: right;
@@ -140,54 +142,17 @@ body
 .website_banner
 {
 	display: inline-block;
+	position: relative;
 	text-align:left;
 	float:left;
 	margin-left:30px;
-	width:62%;
+	width:68%;
 	margin-left: 10px;
 	font-weight: bold;
 	overflow: hidden;
 	color: navy;
 	font-family: "Cooper Black";
 	/*background-color: aqua;*/
-}
-.website_heading
-{
-	/*background-color: red;*/
-	font-size: 47.8px;
-	line-height: 1.1;
-}
-.website_motto
-{
-	/*background-color: yellow;*/
-	font-size: x-large;
-}
-.page_title
-{
-	color: navy;
-}
-.contact
-{
-	display: inline-block;
-	text-align:left;
-	float:right;
-	font-size: small;
-	margin-right: 10px;
-	overflow: hidden;
-	color: navy
-	/*background-color: fuchsia;*/
-}
-.Author
-{
-	
-}
-.Email
-{
-	color: red;
-}
-#Contact a:hover
-{
-	color: black;
 }
 .logo
 {
@@ -197,6 +162,40 @@ body
 	margin-left: 10px;
 	overflow: hidden;
 	/*background-color: lime;*/
+}
+.website_heading
+{
+	/*background-color: red;*/
+	display: inline-block;
+	position: relative;
+	font-size: 47.8px;
+	line-height: 1.1;
+	width: 100%;
+}
+.website_motto
+{
+	/*background-color: yellow;*/
+	font-size: x-large;
+	display: inline-block;
+	position: relative;
+}
+.page_title
+{
+	color: navy;
+}
+.contact
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: small;
+	margin-right: 10px;
+	overflow: hidden;
+	color: navy
+	/*background-color: fuchsia;*/
+}
+
+#Contact a:hover
+{
+	color: black;
 }
 #masthead p 
 {

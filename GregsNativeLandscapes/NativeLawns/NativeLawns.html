@@ -38,6 +38,12 @@
 
 
 
+
+
+
+
+
+
 				.List
 				{
 					font-size: large;
@@ -62,18 +68,6 @@
 			{
 				for (var nI = 0; nI < nNumberSpaces; nI++)
 					document.write("&nbsp;");
-			}
-
-			function GenerateGregsEmailAddress()
-			{
-				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
-				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
-			}
-
-			function GenerateGregsMobile()
-			{
-				var strMobile = "04" + "55" + "328" + "886";
-				document.write(strMobile);
 			}
 
 		</script>
@@ -120,15 +114,7 @@
 				<div class="center_vertically website_banner">
 					<div class="website_heading">Greg's Australian Native Landscapes<br/></div>
 					<div class="website_motto">Celebrate diverse Australian flora in your garden</div>
-				</div>
-				<div class="center_vertically contact" id="Contact">
-					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
-					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/>
-					<b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/<br/><br/>
-					<div class="Author" id="Author">
-						<b>Web site coded by me &amp; hosted for free</b><br/>
-						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
-					</div>
+					<p class="contact"><br/><b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/</p>
 				</div>
 			</div>
 			<!-- End Masthead -->
