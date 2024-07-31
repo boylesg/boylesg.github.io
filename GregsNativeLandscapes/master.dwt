@@ -13,10 +13,40 @@
 			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
+		
 			function SpaceGap(nNumberSpaces)
 			{
 				for (var nI = 0; nI < nNumberSpaces; nI++)
 					document.write("&nbsp;");
+			}
+			
+			var nLevel = 0;
+			
+			function BuildTOC(arrayTOC, nLevel)
+			{
+				var strIndent = "", nI = 0;
+				
+				for (nI = 0; nI < nLevel; nI++)
+					strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+					
+				for (nI = 0; nI < arrayTOC.length; nI++)
+				{
+					if (Array.isArray(arrayTOC[nI]))
+					{
+						BuildTOC(arrayTOC[nI], nLevel + 1);
+					}
+					else
+					{
+						document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+					}
+				}
+			}
+			if (arrayTOC.length > 0)
+			{
+				document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+				document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+				BuildTOC(arrayTOC, nLevel);
+				document.write("<hr class=\"TOCLine\"></ul>");
 			}
 
 		</script>
@@ -27,100 +57,75 @@
 				
 			</script>
 		<!-- #EndEditable -->
+		
 	</head>
 	
 	<body>
 	
-		<!-- Begin Container -->
-		<div id="container">
-			<!-- Begin Masthead -->
-			<div id="masthead">
-				<div class="center_vertically logo">
-					<img alt="" height="100" src="images/BanksiaLogo.png" />
-				</div>
-				<div class="center_vertically website_banner">
-					<div class="website_heading">Greg's Australian Native Landscapes<br/></div>
-					<div class="website_motto">Celebrate diverse Australian flora in your garden</div>
-					<br/><br/>
-					<p class="contact"><b>Facebook: </b><a href="https://www.facebook.com/GregsNativeLandscapes">https://www.facebook.com/GregsNativeLandscapes</a></p>
-					<br/>
-				</div>
+		<!-- Begin Masthead -->
+		<div class="masthead">
+			<div class="center_vertically logo">
+				<img alt="" height="100" src="images/BanksiaLogo.png" />
 			</div>
-			<!-- End Masthead -->
-			<!-- Begin Page Content -->
-			<div id="page_content">
-				<!-- Begin Sidebar -->
-				<div id="sidebar">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="Portfolio/Portfolio.html">Previous Jobs</a></li>
-						<li><a href="NativePlants/NativePlants.html">Native Plants</a></li>
-						<li><a href="NativeLawns/NativeLawns.html">Native Lawns</a></li>
-						<li><a href="ArtificialLawns/ArtificialLawns.html">Artificial Lawns</a></li>
-						<li><a href="PlasticWeedMat/PlasticWeedMat.html">Weed Mat</a></li>
-					</ul>
-				</div>
-				<!-- End Sidebar -->
-				<!-- Begin Content -->
-				<div id="content">
-					<script type="text/javascript">
-						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
-						
-						var nLevel = 0;
-						
-						function BuildTOC(arrayTOC, nLevel)
-						{
-							var strIndent = "", nI = 0;
-							
-							for (nI = 0; nI < nLevel; nI++)
-								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-								
-							for (nI = 0; nI < arrayTOC.length; nI++)
-							{
-								if (Array.isArray(arrayTOC[nI]))
-								{
-									BuildTOC(arrayTOC[nI], nLevel + 1);
-								}
-								else
-								{
-									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
-								}
-							}
-						}
-						if (arrayTOC.length > 0)
-						{
-							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
-							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
-							BuildTOC(arrayTOC, nLevel);
-							document.write("<hr class=\"TOCLine\"></ul>");
-						}
-					</script>
-					<!-- #BeginEditable "content" -->
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
-					<!-- #EndEditable --></div>
-				<!-- End Content --></div>
-			<!-- End Page Content -->
-			<!-- Begin Footer -->
-			<div class="footer" id="footer">
-				<div id="footer_links" class="footer_links">
-					<span class="footer_link" id="footer_link"><img alt="" width="1%" class="footer_image" src="images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
-					<span class="footer_link" id="footer_link"><img alt="" width="3%" class="footer_image" src="images/STEM.png" />&nbsp;<a href="../GregsSTEMTuition/index.html">Greg's STEM Tutition</a></span>
-					<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/HighVoltage.png" />&nbsp;<a href="../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>
-					<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/IOTLogo.png" />&nbsp;<a href="../GregsCodingClub/index.html">Greg's Code Club</a></span>
-				</div>
-				<div class="footer_copyright" id="footer_copyright">
-					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
-				</div>
+			<div class="center_vertically website_banner">
+				<div class="website_heading">Greg's Australian Native Landscapes<br/></div>
+				<div class="website_motto">Celebrate diverse Australian flora in your garden</div>
+				<p class="contact"><br/><b>Facebook:</b> https://www.facebook.com/GregsNativeLandscapes/</p>
 			</div>
-			<!-- End Footer --></div>
-		<!-- End Container -->
-	
+		</div>
+		<!-- End Masthead -->
+		<!-- Begin Page Content -->
+		<div class="page">
+
+			<!-- Begin Sidebar -->
+			<div class="sidebar">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="Portfolio/Portfolio.html">Portfolio of Jobs</a></li>
+					<li><a href="NativePlants/NativePlants.html">Native Plants</a></li>
+					<li><a href="NativeLawns/NativeLawns.html">Native Lawns</a></li>
+					<li><a href="ArtificialLawns/ArtificialLawns.html">Artificial Lawns</a></li>
+					<li><a href="PlasticWeedMat/PlasticWeedMat.html">Plastic Weed Mat</a></li>
+				</ul>
+			</div>
+			<!-- End Sidebar -->
+			<!-- Begin Content -->
+			<div class="content">
+			
+				<script type="text/javascript">
+					document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+				</script>
+				
+				<!-- #BeginEditable "content" -->
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+				<!-- #EndEditable -->
+
+			<!-- End Content -->
+			</div>
+
+		<!-- End Page -->
+		</div>
+		
+		<!-- Begin Footer -->
+		<div class="footer" id="footer">
+			<div id="footer_links" class="footer_links">
+				<span class="footer_link" id="footer_link"><img alt="" width="1%" class="footer_image" src="images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+				<!--<span class="footer_link" id="footer_link"><img alt="" width="3%" class="footer_image" src="images/STEM.png" />&nbsp;<a href="../GregsSTEMTuition/index.html">Greg's STEM Tutition</a></span>-->
+				<!--<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/HighVoltage.png" />&nbsp;<a href="../GregsHighVoltage/index.htm">Greg's High Voltage</a></span>-->
+				<!--<span class="footer_link" id="footer_link"><img alt="" width="2%" class="footer_image" src="images/IOTLogo.png" />&nbsp;<a href="../GregsCodingClub/index.html">Greg's Code Club</a></span>-->
+			</div>
+			<div class="footer_copyright" id="footer_copyright">
+				Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+			</div>
+		</div>
+		<!-- End Footer -->	
+		
 	</body>
 	
 </html>

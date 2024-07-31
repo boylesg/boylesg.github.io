@@ -96,8 +96,13 @@
 				</ul>
 				<a href="https://www.facebook.com/FindATradiePage" class="social_media" title="Go to the facebook page..."><img src="images/Facebook.png" alt="images/Facebook.png" width="30" /></a>
 				<a id="find-a-tradie-app" class="app_button" href="https://www.find-a-tradie.com.au/app/find_a_tradie.apk" download title="Download the android app...">
-					<img src="images/AppIcon.png" width="30" />
+					<img src="images/AndroidMobile.png" height="60" />
 				</a>
+				&nbsp;
+				<a id="find-a-tradie-app" class="app_button" href="" download title="IOS app is comming...">
+					<img src="images/AppleMobile.png" height="60" />
+				</a>
+
 			</nav>
 			<!-- End Navigation -->
 		</div>
@@ -119,12 +124,25 @@
 
 
 
-				<div class="note" style="display:none;font-weight:bold;font-size:medium;margin-top:0px;height:70px;">
-					<img src="images/UnderConstruction.jpg" alt="images/UnderConstruction.jpg" width="150" style="float:left;" />
-					Tradies can join for their first 6 months, free of charge.
-				</div>
-
 				<div class="note" style="display:block;">
+					<table cellpadding="0" cellspacing="10" border="0" style="float: right">
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>
+								<a href="https://www.find-a-tradie.com.au/app/find_a_tradie.apk" download title="Download the android app...">
+									<img src="images/AndroidMobile.png" height="100" />
+								</a>
+							</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>
+								<a href="" download title="IOS app is coming...">
+									<img src="images/AppleMobile.png" height="100" />
+								</a>
+							</td>
+						</tr>
+					</table>
 					<img src="images/Lawn-Mowing.jpg" alt="images/Lawn-Mowing.jpg" width="180" style="float:left;margin-right:10px;margin-bottom:10px;"/>
 					<h6><a href="benefits.php">Click here</a> to read the benefits of becoming a member.</h6>
 					<p style="font-size:large;">
