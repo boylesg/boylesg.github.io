@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/BingSiteAuth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/BingSiteAuth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/BusinessJSON.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/BusinessJSON.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/paypal_styles" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/paypal_styles" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../GregsNativeLandscapes/BingSiteAuth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GregsNativeLandscapes/BingSiteAuth.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reloadium-1.5.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +50,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.AustraliaPost.executor": "Debug",
+    "Python.RemoveDuplicateBusinesses.executor": "Debug",
     "Python.RemoveDuplicateEmails.executor": "Debug",
     "Python.ScrapeYellowPages.executor": "Debug",
     "Python.SendEmails.executor": "Debug",
@@ -74,6 +73,30 @@
       <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\FindATradie\data" />
       <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\PythonProject" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RemoveDuplicateEmails" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="PythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.venv/Scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -102,19 +125,29 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
-          <line>327</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
-          <line>402</line>
+          <line>410</line>
           <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
+          <line>325</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
+          <line>313</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
