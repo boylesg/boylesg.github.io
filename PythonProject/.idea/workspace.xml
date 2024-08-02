@@ -4,50 +4,92 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e9d9d8a-60d8-4719-8db2-857ebf06edfa" name="Changes" comment="">
+    <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../FindATradie/BingSiteAuth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/BingSiteAuth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/paypal_styles" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/paypal_styles" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GregsNativeLandscapes/BingSiteAuth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GregsNativeLandscapes/BingSiteAuth.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reloadium-1.5.1.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2k3TzqgSbZpllmbzT7TBndBLCnk" />
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Programs/Python/Python312/Lib/http/client.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2h3X6amSYdceiUTiEfW16PLrnJM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.AustraliaPost.executor": "Debug",
+    "Python.RemoveDuplicateEmails.executor": "Debug",
     "Python.ScrapeYellowPages.executor": "Debug",
+    "Python.SendEmails.executor": "Debug",
+    "Python.errorhandler.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/gregaryb/Downloads",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gregaryb\Downloads" />
+      <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\PythonProject\.venv\Scripts" />
+      <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\FindATradie\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\FindATradie\data" />
+      <recent name="C:\Users\gregaryb\Documents\GitHub\boylesg.github.io\PythonProject" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-eebebe6c2be4-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15325.20" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9e9d9d8a-60d8-4719-8db2-857ebf06edfa" name="Changes" comment="" />
-      <created>1722511525689</created>
+      <changelist id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="" />
+      <created>1716823568651</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1722511525689</updated>
+      <updated>1716823568651</updated>
     </task>
     <servers />
   </component>
@@ -55,11 +97,33 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
-          <line>399</line>
-          <option name="timeStamp" value="2" />
+          <line>327</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
+          <line>402</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>
