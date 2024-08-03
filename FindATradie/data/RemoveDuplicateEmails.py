@@ -23,8 +23,6 @@ def Wait(nSeconds):
         time.sleep(nSecondsSleep)
 
 
-
-
 def DoCheckEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
     g_browserChrome.get("https://email-checker.net/check")
@@ -89,8 +87,6 @@ def DoCheckEmailAddresses(dictEmailAddress):
         sleep(12)
         '''
     return arrayValidEmailAddresses
-
-
 
 
 dictEmails = {}
