@@ -5,6 +5,8 @@ import http.client
 import lxml.html as html # pip install 'lxml>=2.3.1'
 from selenium import webdriver # pip install selenium
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 # Create a new Chrome WebDriver instance
@@ -15,17 +17,20 @@ g_browserChrome = webdriver.Chrome()
 
 def DoCheckEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
+    g_browserChrome.get("https://email-checker.net/check")
+
     for strKey, strEmail in dictEmailAddress.items():
         nTries = 0
         while nTries < 20:
             try:
-                g_browserChrome.get("https://email-checker.net/check")
                 EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
                 if EmailEditField:
+                    EmailEditField.clear()
                     EmailEditField.send_keys(strEmail)
                     arrayButton = g_browserChrome.find_elements(By.CSS_SELECTOR, ".button-primary")
                     if arrayButton:
                         arrayButton[0].click()
+                        element = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
                         arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
                         if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
                             arrayValidEmailAddresses.append(strEmail)
@@ -35,20 +40,25 @@ def DoCheckEmailAddresses(dictEmailAddress):
                             TitleElement = g_browserChrome.find_element(By.TAG_NAME, "title")
                             if TitleElement and (TitleElement.get_attribute("innerText") == "503 Service Temporarily Unavailable"):
                                 nTries += 1
-                                time.sleep(3600)
+                                time.sleep(300)
                                 if nTries == 19:
                                     arrayValidEmailAddresses.append(strEmail)
                                     print("Could not verify email address: " + strEmail)
                                     break
                             else:
                                 arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                                strText = arrayBadSpan[0].get_attribute("innerText")
                                 if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                    print("Bad email address: " + strEmail)
-                                    break
+                                    if ("exceeded" in strText) or ("Exceeded" in strText):
+                                        time.sleep(3600)
+                                    else:
+                                        print("Bad email address: " + strEmail)
+                                        break
             except Exception:
+
                 nTries += 1
                 continue
-        time.sleep(720)
+        #time.sleep(720)
         '''
         Connection = http.client.HTTPSConnection("email-checker.p.rapidapi.com")
 
@@ -74,7 +84,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
 dictEmails = {}
 nKeyNum = 0
 strTrade = "ELECTRICIANS"
-with open("C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTrade + ".email", "r") as fileEmails:
+with open("C:\\Users\\grega\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTrade + ".email", "r") as fileEmails:
     for strLine in fileEmails:
         if "@" in strLine:
             nPosAt = strLine.index("@")
@@ -87,9 +97,10 @@ with open("C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradi
                 pass
             if ((nPosStartComma > -1) and (nPosEndComma) > -1):
                 strLine = strLine[nPosStartComma + 1 : nPosEndComma] + "\n"
-
+            strLine = strLine.replace("\n", "")
             dictEmails[strLine] = strLine
         elif "," not in strLine:
+            strLine = strLine.remove("\n")
             dictEmails["line" + str(nKeyNum)] = strLine
             nKeyNum += 1
     else:
