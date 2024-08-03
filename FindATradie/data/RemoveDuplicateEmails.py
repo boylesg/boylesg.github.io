@@ -15,6 +15,18 @@ g_browserChrome = webdriver.Chrome()
 
 
 
+def wait(nSeconds):
+    nSeconds2Wait = 5
+    nSecondsSoFar = 0
+    print("Waiting for " + str(nSeconds) + "...")
+    while (nSecondsSoFar < nSeconds):
+        print("Seconds remaining: " + str(nSeconds - nSecondsSoFar) + "...")
+        nSecondsSoFar += nSeconds2Wait
+        time.sleep(nSeconds2Wait)
+
+
+
+
 def DoCheckEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
     g_browserChrome.get("https://email-checker.net/check")
@@ -42,33 +54,6 @@ def DoCheckEmailAddresses(dictEmailAddress):
                                 nTries += 1
                                 wait(300)
                                 g_browserChrome.get("https://email-checker.net/check")
-                                def Wait(nSeconds):
-                                    nSecondsSoFar = 0
-                                    nSecondsSleep = 5
-                                    print("Sleeping for " + str(nSeconds) + "seconds...")
-                                    while (nSecondsSoFar < nSeconds):
-                                        nSecondsSoFar += nSecondsSleep
-                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
-                                        time.sleep(nSecondsSleep)
-
-                                def Wait(nSeconds):
-                                    nSecondsSoFar = 0
-                                    nSecondsSleep = 5
-                                    print("Sleeping for " + str(nSeconds) + "seconds...")
-                                    while (nSecondsSoFar < nSeconds):
-                                        nSecondsSoFar += nSecondsSleep
-                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
-                                        time.sleep(nSecondsSleep)
-
-                                def Wait(nSeconds):
-                                    nSecondsSoFar = 0
-                                    nSecondsSleep = 5
-                                    print("Sleeping for " + str(nSeconds) + "seconds...")
-                                    while (nSecondsSoFar < nSeconds):
-                                        nSecondsSoFar += nSecondsSleep
-                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
-                                        time.sleep(nSecondsSleep)
-
                                 if nTries == 19:
                                     arrayValidEmailAddresses.append(strEmail)
                                     print("Could not verify email address: " + strEmail)
