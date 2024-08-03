@@ -40,7 +40,35 @@ def DoCheckEmailAddresses(dictEmailAddress):
                             TitleElement = g_browserChrome.find_element(By.TAG_NAME, "title")
                             if TitleElement and (TitleElement.get_attribute("innerText") == "503 Service Temporarily Unavailable"):
                                 nTries += 1
-                                time.sleep(300)
+                                wait(300)
+                                g_browserChrome.get("https://email-checker.net/check")
+                                def Wait(nSeconds):
+                                    nSecondsSoFar = 0
+                                    nSecondsSleep = 5
+                                    print("Sleeping for " + str(nSeconds) + "seconds...")
+                                    while (nSecondsSoFar < nSeconds):
+                                        nSecondsSoFar += nSecondsSleep
+                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
+                                        time.sleep(nSecondsSleep)
+
+                                def Wait(nSeconds):
+                                    nSecondsSoFar = 0
+                                    nSecondsSleep = 5
+                                    print("Sleeping for " + str(nSeconds) + "seconds...")
+                                    while (nSecondsSoFar < nSeconds):
+                                        nSecondsSoFar += nSecondsSleep
+                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
+                                        time.sleep(nSecondsSleep)
+
+                                def Wait(nSeconds):
+                                    nSecondsSoFar = 0
+                                    nSecondsSleep = 5
+                                    print("Sleeping for " + str(nSeconds) + "seconds...")
+                                    while (nSecondsSoFar < nSeconds):
+                                        nSecondsSoFar += nSecondsSleep
+                                        print(str(nSeconds - nSecondsSoFar) + " remaining...")
+                                        time.sleep(nSecondsSleep)
+
                                 if nTries == 19:
                                     arrayValidEmailAddresses.append(strEmail)
                                     print("Could not verify email address: " + strEmail)
@@ -50,7 +78,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
                                 strText = arrayBadSpan[0].get_attribute("innerText")
                                 if arrayBadSpan and arrayBadSpan[0].is_displayed():
                                     if ("exceeded" in strText) or ("Exceeded" in strText):
-                                        time.sleep(3600)
+                                        wait(3600)
                                     else:
                                         print("Bad email address: " + strEmail)
                                         break
