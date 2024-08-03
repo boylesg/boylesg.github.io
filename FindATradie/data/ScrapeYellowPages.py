@@ -315,8 +315,8 @@ def DoCheckEmailAddresses(dictEmailAddress):
                 if EmailEditField:
                     EmailEditField.clear()
                     EmailEditField.send_keys(strEmail)
-                    arrayButton = g_browserChrome.find_elements(By.CSS_SELECTOR, ".button-primary")
-                    if arrayButton:
+                    arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
+                    if arrayButton and (len(arrayButton) == 1):
                         arrayButton[0].click()
                         element = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
                         arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
