@@ -323,6 +323,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
                         if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
                             arrayValidEmailAddresses.append(strEmail)
                             print("Good email address: " + strEmail)
+                            wait(1)
                             break
                         else:
                             arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
@@ -332,6 +333,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
                                     wait(3600)
                                 else:
                                     print("Bad email address: " + strEmail)
+                                    wait(1)
                                     break
             except Exception:
                 g_browserChrome.get("https://email-checker.net/check")
