@@ -291,18 +291,34 @@ def DoGetAllBusiness(arrayBusinessLinks, arrayAllBusinessDetails, dictEmailAddre
 
 
 
+def Wait(nSeconds):
+    nSecondsSoFar = 0
+    nSecondsSleep = 5
+    print("Sleeping for " + str(nSeconds) + "seconds...")
+    while (nSecondsSoFar < nSeconds):
+        nSecondsSoFar += nSecondsSleep
+        print(str(nSeconds - nSecondsSoFar) + " remaining...")
+        time.sleep(nSecondsSleep)
+
+
+
+
 def DoCheckEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
-    for strKey, strEmail in dictEmailAddress:
+    g_browserChrome.get("https://email-checker.net/check")
+
+    for strKey, strEmail in dictEmailAddress.items():
+        nTries = 0
         while nTries < 20:
             try:
-                g_browserChrome.get("https://email-checker.net/check")
                 EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
                 if EmailEditField:
+                    EmailEditField.clear()
                     EmailEditField.send_keys(strEmail)
                     arrayButton = g_browserChrome.find_elements(By.CSS_SELECTOR, ".button-primary")
                     if arrayButton:
                         arrayButton[0].click()
+                        element = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
                         arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
                         if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
                             arrayValidEmailAddresses.append(strEmail)
@@ -312,20 +328,27 @@ def DoCheckEmailAddresses(dictEmailAddress):
                             TitleElement = g_browserChrome.find_element(By.TAG_NAME, "title")
                             if TitleElement and (TitleElement.get_attribute("innerText") == "503 Service Temporarily Unavailable"):
                                 nTries += 1
-                                time.sleep(3600)
+                                wait(300)
+                                g_browserChrome.get("https://email-checker.net/check")
+
                                 if nTries == 19:
                                     arrayValidEmailAddresses.append(strEmail)
                                     print("Could not verify email address: " + strEmail)
                                     break
                             else:
                                 arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                                strText = arrayBadSpan[0].get_attribute("innerText")
                                 if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                    print("Bad email address: " + strEmail)
-                                    break
+                                    if ("exceeded" in strText) or ("Exceeded" in strText):
+                                        wait(3600)
+                                    else:
+                                        print("Bad email address: " + strEmail)
+                                        break
             except Exception:
+
                 nTries += 1
                 continue
-        sleep(720)
+        #time.sleep(720)
         '''
         Connection = http.client.HTTPSConnection("email-checker.p.rapidapi.com")
 
@@ -333,6 +356,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
             'x-rapidapi-key': "a43d37af33msh10d261c773e1134p1f249ejsn7b2897c4f657",
             'x-rapidapi-host': "email-checker.p.rapidapi.com"
         }
+        strEmail = strEmail.replace("\n", "")
         strEmail = strEmail.replace("@", "%40")
         Connection.request("GET", "/verify/v1?email=" + strEmail, headers=headers)
         Response = Connection.getresponse()
@@ -343,6 +367,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
         sleep(12)
         '''
     return arrayValidEmailAddresses
+
 
 
 
