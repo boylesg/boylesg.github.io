@@ -1,18 +1,12 @@
 #!/usr/bin/env python
-import sys
-from contextlib import closing
+from common import *
 
-import lxml.html as html # pip install 'lxml>=2.3.1'
-from selenium import webdriver # pip install selenium
-from selenium.webdriver.common.by import By
-import time
-import json
-import http.client
-#from AustraliaPost import *
 
-# Create a new Chrome WebDriver instance
-g_browserChrome = webdriver.Chrome()
-#g_browserChrome.minimize_window()
+
+global g_browserChrome
+
+
+
 
 def DoGetCode(strURL):
     strCode = ""
@@ -291,83 +285,6 @@ def DoGetAllBusiness(arrayBusinessLinks, arrayAllBusinessDetails, dictEmailAddre
 
 
 
-def Wait(nSeconds):
-    nSecondsSoFar = 0
-    nSecondsSleep = 5
-    print("Sleeping for " + str(nSeconds) + "seconds...")
-    while (nSecondsSoFar < nSeconds):
-        nSecondsSoFar += nSecondsSleep
-        print(str(nSeconds - nSecondsSoFar) + " remaining...")
-        time.sleep(nSecondsSleep)
-
-
-
-
-def DoCheckEmailAddresses(dictEmailAddress):
-    arrayValidEmailAddresses = []
-    g_browserChrome.get("https://email-checker.net/check")
-
-    for strKey, strEmail in dictEmailAddress.items():
-        nTries = 0
-        while nTries < 20:
-            try:
-                EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
-                if EmailEditField:
-                    EmailEditField.clear()
-                    EmailEditField.send_keys(strEmail)
-                    arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
-                    if arrayButton and (len(arrayButton) == 1):
-                        arrayButton[0].click()
-                        element = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
-                        arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
-                        if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
-                            arrayValidEmailAddresses.append(strEmail)
-                            print("Good email address: " + strEmail)
-                            wait(1)
-                            break
-                        else:
-                            arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
-                            strText = arrayBadSpan[0].get_attribute("innerText")
-                            if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                if ("exceeded" in strText) or ("Exceeded" in strText):
-                                    wait(3600)
-                                else:
-                                    print("Bad email address: " + strEmail)
-                                    wait(1)
-                                    break
-            except Exception:
-                g_browserChrome.get("https://email-checker.net/check")
-                nTries += 1
-                if nTries == 19:
-                    arrayValidEmailAddresses.append(strEmail)
-                    print("Could not verify email address: " + strEmail)
-                    continue
-                else:
-                    break
-        #time.sleep(720)
-        '''
-        Connection = http.client.HTTPSConnection("email-checker.p.rapidapi.com")
-
-        headers = {
-            'x-rapidapi-key': "a43d37af33msh10d261c773e1134p1f249ejsn7b2897c4f657",
-            'x-rapidapi-host': "email-checker.p.rapidapi.com"
-        }
-        strEmail = strEmail.replace("\n", "")
-        strEmail = strEmail.replace("@", "%40")
-        Connection.request("GET", "/verify/v1?email=" + strEmail, headers=headers)
-        Response = Connection.getresponse()
-        strResponse = Response.read()
-        strResponse = strResponse.decode("utf-8")
-        print(strResponse)
-        arrayValidEmailAddresses.append(strEmail)
-        sleep(12)
-        '''
-    return arrayValidEmailAddresses
-
-
-
-
-
 arrayLinksByTrade = [{"strDesc": "GARDENERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/gardeners-14621-category-"},
                      {"strDesc": "CLEANERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/home-cleaning-13986-category-"},
                      {"strDesc": "CONCRETERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/concrete-contractors-34622-category-"},
@@ -400,7 +317,7 @@ for nJ in range(8, 9):
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
             if True:
-                fileBusinessJSON = open("C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\BusinessJSON.txt", "a")
+                fileBusinessJSON = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\BusinessJSON.txt", "a")
                 fileBusinessJSON.write("\n" + strTradeDesc + "\n")
                 for nI in range(0, len(strTradeDesc)):
                     fileBusinessJSON.write("-")
@@ -411,7 +328,6 @@ for nJ in range(8, 9):
                 fileBusinessJSON.close()
 
             if True:
-                strFilename = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTradeDesc + ".csv"
                 fileBusinessCSV = open(strFilename, "w")
                 fileBusinessCSV.write("BUSINESS NAME, PHONE, WEB, EMAIL, STREET, SUBURB, STATE, POSTCODE, GPS LATITUDE, GPS LONGITUDE\n")
                 for nI in range(0, len(arrayAllBusinessDetails)):
@@ -428,7 +344,7 @@ for nJ in range(8, 9):
                 fileBusinessCSV.close()
 
             if True:
-                fileEmails = open("C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTradeDesc + ".email", "w")
+                fileEmails = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTradeDesc + ".email", "w")
                 arrayEmailAddresses = []
                 arrayEmailAddresses = DoCheckEmailAddresses(dictEmailAddresses)
                 for strEmail in arrayEmailAddresses:
