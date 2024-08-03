@@ -325,29 +325,23 @@ def DoCheckEmailAddresses(dictEmailAddress):
                             print("Good email address: " + strEmail)
                             break
                         else:
-                            TitleElement = g_browserChrome.find_element(By.TAG_NAME, "title")
-                            if TitleElement and (TitleElement.get_attribute("innerText") == "503 Service Temporarily Unavailable"):
-                                nTries += 1
-                                wait(300)
-                                g_browserChrome.get("https://email-checker.net/check")
-
-                                if nTries == 19:
-                                    arrayValidEmailAddresses.append(strEmail)
-                                    print("Could not verify email address: " + strEmail)
+                            arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                            strText = arrayBadSpan[0].get_attribute("innerText")
+                            if arrayBadSpan and arrayBadSpan[0].is_displayed():
+                                if ("exceeded" in strText) or ("Exceeded" in strText):
+                                    wait(3600)
+                                else:
+                                    print("Bad email address: " + strEmail)
                                     break
-                            else:
-                                arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
-                                strText = arrayBadSpan[0].get_attribute("innerText")
-                                if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                    if ("exceeded" in strText) or ("Exceeded" in strText):
-                                        wait(3600)
-                                    else:
-                                        print("Bad email address: " + strEmail)
-                                        break
             except Exception:
-
+                g_browserChrome.get("https://email-checker.net/check")
                 nTries += 1
-                continue
+                if nTries == 19:
+                    arrayValidEmailAddresses.append(strEmail)
+                    print("Could not verify email address: " + strEmail)
+                    continue
+                else:
+                    break
         #time.sleep(720)
         '''
         Connection = http.client.HTTPSConnection("email-checker.p.rapidapi.com")
