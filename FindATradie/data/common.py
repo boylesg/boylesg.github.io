@@ -25,9 +25,10 @@ def wait(nSeconds):
     nSecondsSleep = 5
     strMsg = "Sleeping for " + str(nSeconds) + " "
     if (nSecondsSleep > 1):
-        strMsg += "second..."
-    else:
         strMsg += "seconds..."
+    else:
+        strMsg += "second..."
+    print(strMsg)
 
     while (nSecondsSoFar < nSeconds):
         nSecondsSoFar += nSecondsSleep
@@ -37,7 +38,7 @@ def wait(nSeconds):
             strSeconds = "seconds"
         else:
             strSeconds = "second"
-        print(str(nSecondsRemaining) + strSeconds + " remaining...")
+        print(str(nSecondsRemaining) + " " + strSeconds + " remaining...")
         time.sleep(nSecondsSleep)
 
 
