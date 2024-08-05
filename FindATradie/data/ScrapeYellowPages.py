@@ -304,6 +304,7 @@ for nJ in range(8, 9):
         print("ERROR at nJ == " + str(nJ))
     else:
         try:
+            arrayBusinessLinks = []
             for nI in range(len(arrayAlphabeticLinkURLs)):
                 print(str(nI) + " of " + str(len(arrayAlphabeticLinkURLs)) + " (" + arrayAlphabeticLinkURLs[nI] + ")")
                 strCode = DoGetCode(arrayAlphabeticLinkURLs[nI])
