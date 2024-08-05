@@ -52,23 +52,6 @@ def wait(nSeconds):
 
 
 
-def DoLoginEmailChecker():
-    g_browserChrome.get("https://bulk.email-checker.net/users/sign_in")
-    EmailEditField = g_browserChrome.find_element(By.ID, "user_email")
-    if EmailEditField:
-        EmailEditField.clear()
-        EmailEditField.send_keys("gregaryjboyles37@gmail.com")
-        PasswordEditField = g_browserChrome.find_element(By.ID, "user_password")
-        if PasswordEditField:
-            PasswordEditField.clear()
-            PasswordEditField.send_keys("Pulsar112358#")
-            SubmitButton = g_browserChrome.find_element(By.NAME, "commit")
-            SubmitButton.click()
-            arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
-
-
-
-
 def DoCheckValidEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
     if (g_browserChrome):
@@ -137,6 +120,35 @@ def DoCheckValidEmailAddresses(dictEmailAddress):
         print("g_browserChrome is null!")
 
     return arrayValidEmailAddresses
+
+
+def DoCheckValidEmailAddressAlt(strEmailAddress):
+    bResult = False
+    if (g_browserChrome):
+        g_browserChrome.get("https://www.verifyemailaddress.org/")
+        EmailEditField = g_browserChrome.find_element(By.NAME, "email")
+        if EmailEditField:
+            EmailEditField.clear()
+            EmailEditField.send_keys(strEmailAddress)
+            SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
+            if SubmitButton:
+                SubmitButton.click()
+                Results = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.XPATH,
+                                                "li[@data-text='" + strEmailAddress + " seems to be valid']")))
+                Results = g_browserChrome.find_element(By.XPATH,
+                                                "li[@data-text='" + strEmailAddress + " seems to be valid']")
+                if Results:
+                    print("Good email address: " + strEmailAddress)
+                    bResult = True
+                else:
+                    Results = g_browserChrome.find_element(By.XPATH,
+                                                "li[@data-text='" + strEmailAddress + " seems not to be valid']")
+                    if Results:
+                        print("Bad email address: " + strEmailAddress)
+                        bResult = False
+                wait(5)
+                
+
 
 
 def DoCheckValidEmailAddress(strEmailAddress):
