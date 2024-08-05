@@ -10,6 +10,7 @@ import time
 import json
 import http.client
 import time
+import io
 
 
 
@@ -18,11 +19,18 @@ g_strWindowsUserFolder = "gregaryb"
 g_browserChrome = webdriver.Chrome()
 
 
+def get_file_size(file):
+    file.seek(0, io.SEEK_END)  # move the cursor to the end of the file
+    nSize = file.tell()
+    file.seek(0)
+    return nSize
+
+
 
 
 def wait(nSeconds):
     nSecondsSoFar = 0
-    nSecondsSleep = 5
+    nSecondsSleep = 1
     strMsg = "Sleeping for " + str(nSeconds) + " "
     if (nSecondsSleep > 1):
         strMsg += "seconds..."
@@ -44,11 +52,28 @@ def wait(nSeconds):
 
 
 
-def DoCheckEmailAddresses(dictEmailAddress):
+def DoLoginEmailChecker():
+    g_browserChrome.get("https://bulk.email-checker.net/users/sign_in")
+    EmailEditField = g_browserChrome.find_element(By.ID, "user_email")
+    if EmailEditField:
+        EmailEditField.clear()
+        EmailEditField.send_keys("gregaryjboyles37@gmail.com")
+        PasswordEditField = g_browserChrome.find_element(By.ID, "user_password")
+        if PasswordEditField:
+            PasswordEditField.clear()
+            PasswordEditField.send_keys("Pulsar112358#")
+            SubmitButton = g_browserChrome.find_element(By.NAME, "commit")
+            SubmitButton.click()
+            arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
+
+
+
+
+def DoCheckValidEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
     if (g_browserChrome):
         g_browserChrome.get("https://email-checker.net/check")
-
+        nI = 0
         for strKey, strEmail in dictEmailAddress.items():
             nTries = 0
             while nTries < 20:
@@ -64,8 +89,9 @@ def DoCheckEmailAddresses(dictEmailAddress):
                             arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
                             if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
                                 arrayValidEmailAddresses.append(strEmail)
-                                print("Good email address: " + strEmail)
-                                wait(1)
+                                nI += 1
+                                print("Good email address: " + strEmail + " , " + str(nI) + " emails processed...")
+                                wait(5)
                                 break
                             else:
                                 arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
@@ -75,8 +101,9 @@ def DoCheckEmailAddresses(dictEmailAddress):
                                     if ("EXCEEDED" in strText) :
                                         wait(3600)
                                     else:
-                                        print("Bad email address: " + strEmail)
-                                        wait(1)
+                                        nI += 1
+                                        print("Bad email address: " + strEmail + " , " + str(nI) + " emails processed...")
+                                        wait(5)
                                         break
                 except Exception:
                     g_browserChrome.get("https://email-checker.net/check")
@@ -86,6 +113,7 @@ def DoCheckEmailAddresses(dictEmailAddress):
                         print("Could not verify email address: " + strEmail)
                         break
                     else:
+                        wait(5)
                         continue
             #time.sleep(720)
             '''
@@ -109,3 +137,50 @@ def DoCheckEmailAddresses(dictEmailAddress):
         print("g_browserChrome is null!")
 
     return arrayValidEmailAddresses
+
+
+def DoCheckValidEmailAddress(strEmailAddress):
+    bResult = False
+    if (g_browserChrome):
+        g_browserChrome.get("https://email-checker.net/check")
+        nTries = 0
+        while nTries < 20:
+            try:
+                EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
+                if EmailEditField:
+                    EmailEditField.clear()
+                    EmailEditField.send_keys(strEmailAddress)
+                    arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
+                    if arrayButton and (len(arrayButton) == 1):
+                        arrayButton[0].click()
+                        arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
+                        arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
+                        if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
+                            print("Good email address: " + strEmailAddress)
+                            bResult = True
+                            break
+                        else:
+                            arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                            strText = arrayBadSpan[0].get_attribute("innerText")
+                            strText = strText.upper()
+                            if arrayBadSpan and arrayBadSpan[0].is_displayed():
+                                if ("EXCEEDED" in strText):
+                                    wait(3600)
+                                else:
+                                    print("Bad email address: " + strEmailAddress)
+                                    bResult = False
+                                    break
+            except Exception:
+                wait(5)
+                g_browserChrome.get("https://email-checker.net/check")
+                nTries += 1
+                if nTries == 19:
+                    print("Could not verify email address: " + strEmail)
+                    break
+                else:
+                    continue
+
+    else:
+        print("g_browserChrome is null!")
+
+    return bResult
