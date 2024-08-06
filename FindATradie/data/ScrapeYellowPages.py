@@ -321,7 +321,7 @@ for nJ in range(8, 9):
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
             if True:
-                fileBusinessJSON = open(g_strPath + strTradeDesc + ".json", "a")
+                fileBusinessJSON = open(g_strPath + strTradeDesc + ".json", "w")
                 fileBusinessJSON.write(jsonAllBusinessDetails)
                 fileBusinessJSON.write("\n\n")
                 fileBusinessJSON.close()
