@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="" />
+    <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +46,7 @@
   "keyToString": {
     "Python.AustraliaPost.executor": "Debug",
     "Python.RemoveDuplicateBusinesses.executor": "Debug",
-    "Python.RemoveDuplicateEmails.executor": "Run",
+    "Python.RemoveDuplicateEmails.executor": "Debug",
     "Python.ScrapeYellowPages.executor": "Debug",
     "Python.SendEmails.executor": "Debug",
     "Python.errorhandler.executor": "Debug",
@@ -132,12 +136,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
-          <line>186</line>
+          <line>196</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
-          <line>175</line>
+          <line>185</line>
           <option name="timeStamp" value="105" />
         </line-breakpoint>
       </breakpoints>

@@ -53,6 +53,13 @@ def wait(nSeconds):
 
 
 
+def DoWait(strURL, nTimeout):
+    wait(nTimeout)
+    g_browserChrome.get(strURL)
+
+
+
+
 def DoCheckValidEmailAddresses(dictEmailAddress):
     arrayValidEmailAddresses = []
     if (g_browserChrome):
@@ -69,35 +76,38 @@ def DoCheckValidEmailAddresses(dictEmailAddress):
                         arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
                         if arrayButton and (len(arrayButton) == 1):
                             arrayButton[0].click()
-                            arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
-                            arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
-                            if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
-                                arrayValidEmailAddresses.append(strEmail)
-                                nI += 1
-                                print("Good email address: " + strEmail + " , " + str(nI) + " emails processed...")
-                                wait(5)
-                                break
+                            strCode = g_browserChrome.page_source
+                            if ("503 Service Temporarily Unavailable" in strCode):
+                                DoWait("https://email-checker.net/check", 5)
                             else:
-                                arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
-                                strText = arrayBadSpan[0].get_attribute("innerText")
-                                strText = strText.upper()
-                                if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                    if ("EXCEEDED" in strText) :
-                                        wait(3600)
-                                    else:
-                                        nI += 1
-                                        print("Bad email address: " + strEmail + " , " + str(nI) + " emails processed...")
-                                        wait(5)
-                                        break
+                                #arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
+                                arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
+                                if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
+                                    arrayValidEmailAddresses.append(strEmail)
+                                    nI += 1
+                                    print("Good email address: " + strEmail + " , " + str(nI) + " emails processed...")
+                                    wait(5)
+                                    break
+                                else:
+                                    arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                                    strText = arrayBadSpan[0].get_attribute("innerText")
+                                    strText = strText.upper()
+                                    if arrayBadSpan and arrayBadSpan[0].is_displayed():
+                                        if ("EXCEEDED" in strText) :
+                                            DoWait("https://email-checker.net/check", 3600)
+                                        else:
+                                            nI += 1
+                                            print("Bad email address: " + strEmail + " , " + str(nI) + " emails processed...")
+                                            wait(5)
+                                            break
                 except Exception:
-                    g_browserChrome.get("https://email-checker.net/check")
                     nTries += 1
                     if nTries == 19:
                         arrayValidEmailAddresses.append(strEmail)
                         print("Could not verify email address: " + strEmail)
                         break
                     else:
-                        wait(5)
+                        DoWait("https://email-checker.net/check", 5)
                         continue
             #time.sleep(720)
             '''
