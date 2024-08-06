@@ -345,7 +345,7 @@ for nJ in range(8, 9):
             if True:
                 fileEmails = open(g_strPath + strTradeDesc + ".email", "w")
                 arrayEmailAddresses = []
-                arrayEmailAddresses = DoCheckEmailAddresses(dictEmailAddresses)
+                arrayEmailAddresses = DoCheckValidEmailAddresses(dictEmailAddresses)
                 for strEmail in arrayEmailAddresses:
                     fileEmails.write(strEmail + "\n")
                 fileEmails.close()

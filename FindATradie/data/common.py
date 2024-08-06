@@ -136,29 +136,32 @@ def DoCheckValidEmailAddresses(dictEmailAddress):
 def DoCheckValidEmailAddressAlt(strEmailAddress):
     bResult = False
     if (g_browserChrome):
-        g_browserChrome.get("https://www.verifyemailaddress.org/")
-        EmailEditField = g_browserChrome.find_element(By.NAME, "email")
-        if EmailEditField:
-            EmailEditField.clear()
-            EmailEditField.send_keys(strEmailAddress)
-            SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
-            if SubmitButton:
-                SubmitButton.click()
-                Results = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.XPATH,
-                                                "li[@data-text='" + strEmailAddress + " seems to be valid']")))
-                Results = g_browserChrome.find_element(By.XPATH,
-                                                "li[@data-text='" + strEmailAddress + " seems to be valid']")
-                if Results:
-                    print("Good email address: " + strEmailAddress)
-                    bResult = True
-                else:
-                    Results = g_browserChrome.find_element(By.XPATH,
-                                                "li[@data-text='" + strEmailAddress + " seems not to be valid']")
-                    if Results:
-                        print("Bad email address: " + strEmailAddress)
-                        bResult = False
-                wait(5)
-                
+        try:
+            g_browserChrome.get("https://www.verifyemailaddress.org/")
+            EmailEditField = g_browserChrome.find_element(By.NAME, "email")
+            if EmailEditField:
+                EmailEditField.clear()
+                EmailEditField.send_keys(strEmailAddress)
+                SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
+                if SubmitButton:
+                    SubmitButton.click()
+                    strCode = g_browserChrome.page_source
+                    if ("503 Service Temporarily Unavailable" in strCode):
+                        DoWait("https://www.verifyemailaddress.org/", 300)
+                    else:
+                        Results = g_browserChrome.find_element(By.XPATH, "li[@data-text='" + strEmailAddress + " seems to be valid']")
+                        if Results:
+                            print("Good email address: " + strEmailAddress)
+                            bResult = True
+                        else:
+                            Results = g_browserChrome.find_element(By.XPATH,
+                                                            "li[@data-text='" + strEmailAddress + " seems not to be valid']")
+                            if Results:
+                                print("Bad email address: " + strEmailAddress)
+                                bResult = False
+                        DoWait("https://www.verifyemailaddress.org/", 5)
+        except Exception:
+            DoWait("https://www.verifyemailaddress.org/", 5)
 
 
 
@@ -176,31 +179,34 @@ def DoCheckValidEmailAddress(strEmailAddress):
                     arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
                     if arrayButton and (len(arrayButton) == 1):
                         arrayButton[0].click()
-                        arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
-                        arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
-                        if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
-                            print("Good email address: " + strEmailAddress)
-                            bResult = True
-                            break
+                        strCode = g_browserChrome.page_source
+                        if ("503 Service Temporarily Unavailable" in strCode):
+                            DoWait("https://www.verifyemailaddress.org/", 3600)
                         else:
-                            arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
-                            strText = arrayBadSpan[0].get_attribute("innerText")
-                            strText = strText.upper()
-                            if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                if ("EXCEEDED" in strText):
-                                    wait(3600)
-                                else:
-                                    print("Bad email address: " + strEmailAddress)
-                                    bResult = False
-                                    break
+                            arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
+                            if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
+                                print("Good email address: " + strEmailAddress)
+                                bResult = True
+                                break
+                            else:
+                                arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                                strText = arrayBadSpan[0].get_attribute("innerText")
+                                strText = strText.upper()
+                                if arrayBadSpan and arrayBadSpan[0].is_displayed():
+                                    if ("EXCEEDED" in strText):
+                                        DoWait("https://www.verifyemailaddress.org/", 3600)
+                                    else:
+                                        print("Bad email address: " + strEmailAddress)
+                                        bResult = False
+                                        break
+                            DoWait("https://www.verifyemailaddress.org/", 5)
             except Exception:
-                wait(5)
-                g_browserChrome.get("https://email-checker.net/check")
                 nTries += 1
                 if nTries == 19:
                     print("Could not verify email address: " + strEmail)
                     break
                 else:
+                    DoWait("https://www.verifyemailaddress.org/", 5)
                     continue
 
     else:

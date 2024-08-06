@@ -1,0 +1,31 @@
+def DoCheckValidEmailAddressAlt(strEmailAddress):
+    bResult = False
+    if (g_browserChrome):
+        while True:
+            try:
+                EmailEditField = g_browserChrome.find_element(By.NAME, "email")
+                if EmailEditField:
+                    EmailEditField.clear()
+                    EmailEditField.send_keys(strEmailAddress)
+                    SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
+                    if SubmitButton:
+                        SubmitButton.click()
+                        strCode = g_browserChrome.page_source
+                        if ("503 Service Temporarily Unavailable" in strCode):
+                            DoWait("https://www.verifyemailaddress.org/", 300)
+                        elif "seems to be valid" in strCode:
+                            print("Good email address: " + strEmailAddress)
+                            bResult = True
+                            break;
+                        elif ("seems not to be valid" in strCode) or ("failed" in strCode):
+                            print("Bad email address: " + strEmailAddress)
+                            bResult = False
+                            break
+                        else:
+                            print("ERROR")
+                            wait(300)
+            except Exception:
+                g_browserChrome.get("https://www.verifyemailaddress.org/")
+                continue
+            wait(random.randrange(3, 15, 1))
+    return bResult
