@@ -351,6 +351,7 @@ for nJ in range(8, 9):
                 fileEmails.close()
 
         except Exception:
+            print(Exception)
             pass
 
 
