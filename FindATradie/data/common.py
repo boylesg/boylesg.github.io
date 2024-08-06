@@ -16,6 +16,7 @@ import io
 
 
 g_strWindowsUserFolder = "gregaryb"
+g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.github.io/FindATradie/data/"
 g_browserChrome = webdriver.Chrome()
 
 
