@@ -256,7 +256,7 @@ def DoGetGPS(strCode):
 
 
 
-def DoGetAllBusiness(arrayBusinessLinks, arrayAllBusinessDetails, dictEmailAddresses):
+def DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails, dictEmailAddresses):
     nLength = len(arrayBusinessLinks)
     #nLength = 1
     for nI in range(0, nLength):
@@ -280,7 +280,7 @@ def DoGetAllBusiness(arrayBusinessLinks, arrayAllBusinessDetails, dictEmailAddre
         dictBusiness["suburb"] = dictLocation["suburb"]
         dictBusiness["postcode"] = dictLocation["postcode"]
         dictBusiness["gps"] = strGPS
-        arrayAllBusinessDetails.append(dictBusiness)
+        dictAllBusinessDetails[strBusinessName] = dictBusiness
 
 
 
@@ -312,24 +312,22 @@ for nJ in range(8, 9):
                 #time.sleep(0.5)
 
             dictEmailAddresses = {}
-            arrayAllBusinessDetails = []
+            dictAllBusinessDetails = {}
 
-            DoGetAllBusiness(arrayBusinessLinks, arrayAllBusinessDetails, dictEmailAddresses)
+            DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails, dictEmailAddresses)
+            arrayAllBusinessDetails = []
+            for strKeyBusinessName, dictBusinessDetails in dictAllBusinessDetails.items():
+                arrayAllBusinessDetails.append(dictBusinessDetails)
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
             if True:
-                fileBusinessJSON = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\BusinessJSON.txt", "a")
-                fileBusinessJSON.write("\n" + strTradeDesc + "\n")
-                for nI in range(0, len(strTradeDesc)):
-                    fileBusinessJSON.write("-")
-                fileBusinessJSON.write("\n")
-                jsonAllBusinessDetails = jsonAllBusinessDetails.replace("\\", "~")
+                fileBusinessJSON = open(g_strPath + strTradeDesc + ".json", "a")
                 fileBusinessJSON.write(jsonAllBusinessDetails)
                 fileBusinessJSON.write("\n\n")
                 fileBusinessJSON.close()
 
             if True:
-                fileBusinessCSV = open(strFilename, "w")
+                fileBusinessCSV = open(g_strPath + strTradeDesc + ".csv", "w")
                 fileBusinessCSV.write("BUSINESS NAME, PHONE, WEB, EMAIL, STREET, SUBURB, STATE, POSTCODE, GPS LATITUDE, GPS LONGITUDE\n")
                 for nI in range(0, len(arrayAllBusinessDetails)):
                     nColCount = 0
@@ -345,7 +343,7 @@ for nJ in range(8, 9):
                 fileBusinessCSV.close()
 
             if True:
-                fileEmails = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTradeDesc + ".email", "w")
+                fileEmails = open(g_strPath + strTradeDesc + ".email", "w")
                 arrayEmailAddresses = []
                 arrayEmailAddresses = DoCheckEmailAddresses(dictEmailAddresses)
                 for strEmail in arrayEmailAddresses:
