@@ -318,7 +318,7 @@ for nJ in range(8, 9):
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
             if True:
-                fileBusinessJSON = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\BusinessJSON.txt", "a")
+                fileBusinessJSON = open(g_strPath + strTradeDesc + ".json", "a")
                 fileBusinessJSON.write("\n" + strTradeDesc + "\n")
                 for nI in range(0, len(strTradeDesc)):
                     fileBusinessJSON.write("-")
@@ -329,7 +329,7 @@ for nJ in range(8, 9):
                 fileBusinessJSON.close()
 
             if True:
-                fileBusinessCSV = open(strFilename, "w")
+                fileBusinessCSV = open(g_strPath + strTradeDesc + ".csv", "w")
                 fileBusinessCSV.write("BUSINESS NAME, PHONE, WEB, EMAIL, STREET, SUBURB, STATE, POSTCODE, GPS LATITUDE, GPS LONGITUDE\n")
                 for nI in range(0, len(arrayAllBusinessDetails)):
                     nColCount = 0
@@ -345,7 +345,7 @@ for nJ in range(8, 9):
                 fileBusinessCSV.close()
 
             if True:
-                fileEmails = open("C:\\Users\\" + g_strWindowsUserFolder + "\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\" + strTradeDesc + ".email", "w")
+                fileEmails = open(g_strPath + strTradeDesc + ".email", "w")
                 arrayEmailAddresses = []
                 arrayEmailAddresses = DoCheckEmailAddresses(dictEmailAddresses)
                 for strEmail in arrayEmailAddresses:
