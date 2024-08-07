@@ -46,3 +46,5 @@ except Exception:
     continiue
 fileCSV.close()
 print("COMPLETE!")
+
+
