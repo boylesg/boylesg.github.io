@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +56,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/gregaryb/Downloads",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "reference.idesettings.emmet"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -124,6 +124,26 @@
           <url>file://$PROJECT_DIR$/.venv/Scripts/ScrapeYellowPages.py</url>
           <line>320</line>
           <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
+          <line>156</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
+          <line>218</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
+          <line>189</line>
+          <option name="timeStamp" value="123" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
