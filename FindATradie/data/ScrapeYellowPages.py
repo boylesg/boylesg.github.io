@@ -290,14 +290,14 @@ arrayLinksByTrade = [{"strDesc": "GARDENERS", "strURLTemplate": "https://www.yel
                      {"strDesc": "CONCRETERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/concrete-contractors-34622-category-"},
                      {"strDesc": "PAINTERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/painters-decorators-17302-category-"},
                      {"strDesc": "ARBORISTS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/tree-stump-removal-services-28061-category-"},
-                     {"strDesc": "PET CARERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/pet-care-27995-category-"},
                      {"strDesc": "GLAZIERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/glazier-glass-replacement-services-27049-category-"},
-                     {"strDesc": "ELECTRICIANS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/electricians-electrical-contractors-22683-category-"},
-                     {"strDesc": "PLUMBERS", "strURLTemplate": "https://www.yellowpages.com.au//xxxx//plumbers-gas-fitters-12157-category-"}]
+                     {"strDesc": "PET CARERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/pet-care-27995-category-"},
+                     {"strDesc": "PLUMBERS", "strURLTemplate": "https://www.yellowpages.com.au//xxxx//plumbers-gas-fitters-12157-category-"},
+                     {"strDesc": "ELECTRICIANS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/electricians-electrical-contractors-22683-category-"}]
 
 arrayBusinessLinks = []
 
-for nJ in range(8, 9):
+for nJ in range(5, 8):
     arrayAlphabeticLinkURLs = DoGetAlphabeticLinks(arrayLinksByTrade[nJ].get("strURLTemplate"))
     strTradeDesc = arrayLinksByTrade[nJ].get("strDesc")
     if (arrayAlphabeticLinkURLs == None) or (strTradeDesc == None):
@@ -316,7 +316,7 @@ for nJ in range(8, 9):
 
             DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails, dictEmailAddresses)
             arrayAllBusinessDetails = []
-            for strKeyBusinessName, dictBusinessDetails in dictAllBusinessDetails.items():
+            for strKeyBusinessName, dictBusinessDetails in dictAllBusinessDetails.items() :
                 arrayAllBusinessDetails.append(dictBusinessDetails)
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
@@ -345,13 +345,14 @@ for nJ in range(8, 9):
             if True:
                 fileEmails = open(g_strPath + strTradeDesc + ".email", "w")
                 arrayEmailAddresses = []
-                arrayEmailAddresses = DoCheckValidEmailAddresses(dictEmailAddresses)
+                #arrayEmailAddresses = DoCheckValidEmailAddresses(dictEmailAddresses)
+                for strKey, dictBusinessDetails in dictAllBusinessDetails.items():
+                    arrayEmailAddresses.append(dictBusinessDetails["email"])
                 for strEmail in arrayEmailAddresses:
                     fileEmails.write(strEmail + "\n")
                 fileEmails.close()
 
         except Exception:
-            print(Exception)
             pass
 
 
