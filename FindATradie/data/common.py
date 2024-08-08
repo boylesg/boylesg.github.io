@@ -11,13 +11,18 @@ import json
 import http.client
 import time
 import io
+from threading import Thread
+import time
+from dns import *
 
 
 
 
 g_strWindowsUserFolder = "gregaryb"
 g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.github.io/FindATradie/data/"
-g_browserChrome = webdriver.Chrome()
+g_browserChrome = False
+
+
 
 
 def get_file_size(file):
@@ -60,157 +65,158 @@ def DoWait(strURL, nTimeout):
 
 
 
-def DoCheckValidEmailAddresses(dictEmailAddress):
-    arrayValidEmailAddresses = []
-    if (g_browserChrome):
-        g_browserChrome.get("https://email-checker.net/check")
-        nI = 0
-        for strKey, strEmail in dictEmailAddress.items():
-            nTries = 0
-            while nTries < 20:
-                try:
-                    EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
-                    if EmailEditField:
-                        EmailEditField.clear()
-                        EmailEditField.send_keys(strEmail)
-                        arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
-                        if arrayButton and (len(arrayButton) == 1):
-                            arrayButton[0].click()
-                            strCode = g_browserChrome.page_source
-                            if ("503 Service Temporarily Unavailable" in strCode):
-                                DoWait("https://email-checker.net/check", 5)
-                            else:
-                                #arrayOkaySpan = WebDriverWait(g_browserChrome, 10).until(EC.presence_of_element_located((By.ID, "result-box")))
-                                arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
-                                if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
-                                    arrayValidEmailAddresses.append(strEmail)
-                                    nI += 1
-                                    print("Good email address: " + strEmail + " , " + str(nI) + " emails processed...")
-                                    wait(5)
-                                    break
-                                else:
-                                    arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
-                                    strText = arrayBadSpan[0].get_attribute("innerText")
-                                    strText = strText.upper()
-                                    if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                        if ("EXCEEDED" in strText) :
-                                            DoWait("https://email-checker.net/check", 3600)
-                                        else:
-                                            nI += 1
-                                            print("Bad email address: " + strEmail + " , " + str(nI) + " emails processed...")
-                                            wait(5)
-                                            break
-                except Exception:
-                    nTries += 1
-                    if nTries == 19:
-                        arrayValidEmailAddresses.append(strEmail)
-                        print("Could not verify email address: " + strEmail)
-                        break
-                    else:
-                        DoWait("https://email-checker.net/check", 5)
-                        continue
-            #time.sleep(720)
-            '''
-            Connection = http.client.HTTPSConnection("email-checker.p.rapidapi.com")
-    
-            headers = {
-                'x-rapidapi-key': "a43d37af33msh10d261c773e1134p1f249ejsn7b2897c4f657",
-                'x-rapidapi-host': "email-checker.p.rapidapi.com"
-            }
-            strEmail = strEmail.replace("\n", "")
-            strEmail = strEmail.replace("@", "%40")
-            Connection.request("GET", "/verify/v1?email=" + strEmail, headers=headers)
-            Response = Connection.getresponse()
-            strResponse = Response.read()
-            strResponse = strResponse.decode("utf-8")
-            print(strResponse)
-            arrayValidEmailAddresses.append(strEmail)
-            sleep(12)
-            '''
-    else:
-        print("g_browserChrome is null!")
-
-    return arrayValidEmailAddresses
-
-
 def DoCheckValidEmailAddressAlt(strEmailAddress):
     bResult = False
-    if (g_browserChrome):
-        while True:
-            try:
-                EmailEditField = g_browserChrome.find_element(By.NAME, "email")
-                if EmailEditField:
-                    EmailEditField.clear()
-                    EmailEditField.send_keys(strEmailAddress)
-                    SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
-                    if SubmitButton:
-                        SubmitButton.click()
-                        strCode = g_browserChrome.page_source
-                        if ("503 Service Temporarily Unavailable" in strCode):
-                            DoWait("https://www.verifyemailaddress.org/", 300)
-                        elif "seems to be valid" in strCode:
-                            print("Good email address: " + strEmailAddress)
-                            bResult = True
-                            break;
-                        elif ("seems not to be valid" in strCode) or ("failed" in strCode):
-                            print("Bad email address: " + strEmailAddress)
-                            bResult = False
-                            break
-                        else:
-                            print("ERROR")
-                            wait(300)
-            except Exception:
-                g_browserChrome.get("https://www.verifyemailaddress.org/")
-                continue
-            wait(random.randrange(3, 15, 1))
+    global g_browserChrome
+    
+    if (not g_browserChrome):
+        g_browserChrome = webdriver.Chrome()
+
+    while True:
+        try:
+            EmailEditField = g_browserChrome.find_element(By.NAME, "email")
+            if EmailEditField:
+                EmailEditField.clear()
+                EmailEditField.send_keys(strEmailAddress)
+                SubmitButton = g_browserChrome.find_element(By.XPATH, '//button[text()="Verify Email"]')
+                if SubmitButton:
+                    SubmitButton.click()
+                    strCode = g_browserChrome.page_source
+                    if ("503 Service Temporarily Unavailable" in strCode):
+                        DoWait("https://www.verifyemailaddress.org/", int(input_timeout("Number of seconds to wait: ").strip() or "3600"))
+                    elif "seems to be valid" in strCode:
+                        print("Good email address: " + strEmailAddress)
+                        bResult = True
+                        break;
+                    elif ("seems not to be valid" in strCode) or ("failed" in strCode):
+                        print("Bad email address: " + strEmailAddress)
+                        bResult = False
+                        break
+                    else:
+                        print("ERROR")
+                        wait(300)
+        except Exception:
+            g_browserChrome.get("https://www.verifyemailaddress.org/")
+            continue
+        wait(random.randrange(3, 15, 1))
     return bResult
+
+
 
 
 def DoCheckValidEmailAddress(strEmailAddress):
     bResult = False
-    if (g_browserChrome):
-        g_browserChrome.get("https://email-checker.net/check")
-        nTries = 0
-        while nTries < 20:
-            try:
-                EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
-                if EmailEditField:
-                    EmailEditField.clear()
-                    EmailEditField.send_keys(strEmailAddress)
-                    arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
-                    if arrayButton and (len(arrayButton) == 1):
-                        arrayButton[0].click()
-                        strCode = g_browserChrome.page_source
-                        if ("503 Service Temporarily Unavailable" in strCode):
-                            DoWait("https://email-checker.net/check", 3600)
+    strURL = "https://email-checker.net/check"
+    strPrompt = "Number seconds to wait: "
+    global g_browserChrome
+
+    if (not g_browserChrome):
+        g_browserChrome = webdriver.Chrome()
+
+    if (g_browserChrome.current_url != strURL):
+        g_browserChrome.get(strURL)
+    nTries = 0
+    while nTries < 20:
+        try:
+            EmailEditField = g_browserChrome.find_element(By.ID, "ltrInput")
+            if EmailEditField:
+                EmailEditField.clear()
+                EmailEditField.send_keys(strEmailAddress)
+                arrayButton = g_browserChrome.find_elements(By.TAG_NAME, "button")
+                if arrayButton and (len(arrayButton) == 1):
+                    arrayButton[0].click()
+                    strCode = g_browserChrome.page_source
+                    if ("503 Service Temporarily Unavailable" in strCode):
+                        DoWait(strURL, 10)
+                    else:
+                        arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
+                        if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
+                            print("Good email address: " + strEmailAddress)
+                            bResult = True
+                            wait(5)
+                            break
                         else:
-                            arrayOkaySpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".green")
-                            if arrayOkaySpan and arrayOkaySpan[0].is_displayed():
-                                print("Good email address: " + strEmailAddress)
-                                bResult = True
-                                break
-                            else:
-                                arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                            arrayBadSpan = g_browserChrome.find_elements(By.CSS_SELECTOR, ".red")
+                            if arrayBadSpan and arrayBadSpan[0].is_displayed():
                                 strText = arrayBadSpan[0].get_attribute("innerText")
                                 strText = strText.upper()
-                                if arrayBadSpan and arrayBadSpan[0].is_displayed():
-                                    if ("EXCEEDED" in strText):
-                                        DoWait("https://email-checker.net/check", 3600)
-                                    else:
-                                        print("Bad email address: " + strEmailAddress)
-                                        bResult = False
-                                        break
-                            DoWait("https://email-checker.net/check", 5)
-            except Exception:
-                nTries += 1
-                if nTries == 19:
-                    print("Could not verify email address: " + strEmail)
-                    break
-                else:
-                    DoWait("https://email-checker.net/check", 5)
-                    continue
-
-    else:
-        print("g_browserChrome is null!")
+                                if ("EXCEEDED" in strText):
+                                    wait(3600)
+                                    print("Waking up...")
+                                else:
+                                    print("Bad email address: " + strEmailAddress)
+                                    bResult = False
+                                    wait(5)
+                                    break
+                        #DoWait(strURL, 10)
+        except Exception:
+            nTries += 1
+            if nTries == 19:
+                print("Could not verify email address: " + strEmail)
+                break
+            else:
+                DoWait(strURL, 10)
+                continue
 
     return bResult
+
+
+
+
+def DoCheckValidEmailAddresses(dictEmailAddress):
+    arrayValidEmailAddresses = []
+    global g_browserChrome
+
+    if (not g_browserChrome):
+        g_browserChrome = webdriver.Chrome()
+
+    g_browserChrome.get("https://email-checker.net/check")
+    nI = 0
+    for strKey, strEmail in dictEmailAddress.items():
+        if (DoCheckValidEmailAddress(strEmail)):
+            arrayValidEmailAddresses.append(strEmail)
+
+    return arrayValidEmailAddresses
+
+
+
+
+def DoPingEmailAddress(strEmailAddress):
+    bValid = False
+    nPos = strEmailAddress.find("@")
+    strServer = strEmailAddress[nPos + 1:]
+
+    try:
+        # Get the MX record for the domain
+        records = dns.resolver.query(domain_name, 'MX')
+        mxRecord = records[0].exchange
+        mxRecord = str(mxRecord)
+
+        # Step 3: ping email server
+        # check if the email address exists
+
+        # Get local server hostname
+        host = socket.gethostname()
+
+        # SMTP lib setup (use debug level for full output)
+        server = smtplib.SMTP()
+        server.set_debuglevel(0)
+
+        # SMTP Conversation
+        server.connect(mxRecord)
+        server.helo(host)
+        server.mail(strEmailAddress)
+        nCode, strMessage = server.rcpt(strEmailAddress)
+        server.quit()
+
+        # Assume 250 as Success
+        if nCode == 250:
+            print("Good email address: ")
+            bValid = True
+        else:
+            print("Bad email address: ")
+        print(strEmailAddress)
+    except Exception as e:
+        print(e)
+
+    return bValid
