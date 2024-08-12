@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/BusinessJSON.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/BusinessJSON.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.email" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +98,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-eebebe6c2be4-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15325.20" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>
