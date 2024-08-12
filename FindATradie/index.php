@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -216,15 +216,15 @@
 					<div class="form">
 						<table cellpadding ="0" cellspacing="0" border="0" class="form_table">
 							<tr>
-								<td class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></td>
-								<td class="cell_no_borders search_cell" style="width:8em;"><b>Name</b></td>
-								<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Send email</b></td>
-								<td class="cell_no_borders search_cell" style="width:2em;"><b>Phone</b></td>
-								<td class="cell_no_borders search_cell" style="width:2.5em;"><b>Mobile</b></td>
-								<td class="cell_no_borders search_cell" style="width:4em;"><b>Suburb</b></td>
-								<td class="cell_no_borders search_cell" style="width:1em;"><b>State</b></td>
-								<td class="cell_no_borders search_cell" style="width:1.5em;"><b>Postcode</b></td>
-								<td class="cell_no_borders search_cell" style="width:8em;"><b>Feedback</b></td>
+								<th class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></th>
+								<th class="cell_no_borders search_cell" style="width:8em;"><b>Name</b></th>
+								<th class="cell_no_borders search_cell" style="width:2.5em;"><b>Send email</b></th>
+								<th class="cell_no_borders search_cell" style="width:2em;"><b>Phone</b></th>
+								<th class="cell_no_borders search_cell" style="width:2.5em;"><b>Mobile</b></th>
+								<th class="cell_no_borders search_cell" style="width:4em;"><b>Suburb</b></th>
+								<th class="cell_no_borders search_cell" style="width:1em;"><b>State</b></th>
+								<th class="cell_no_borders search_cell" style="width:1.5em;"><b>Postcode</b></th>
+								<th class="cell_no_borders search_cell" style="width:8em;"><b>Feedback</b></th>
 							</tr>
 						<?php
 						
