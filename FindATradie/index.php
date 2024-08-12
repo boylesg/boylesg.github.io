@@ -214,7 +214,7 @@
 					</form>
 					<br/>
 					<div class="form">
-						<table cellpadding ="0" cellspacing="0" border="0" class="form_table">
+						<table cellpadding ="0" cellspacing="0" border="0" class="form_table" style="position:sticky;">
 							<tr>
 								<th class="cell_no_borders search_cell" style="width:1em;"><b>ID</b></th>
 								<th class="cell_no_borders search_cell" style="width:8em;"><b>Name</b></th>
@@ -226,23 +226,26 @@
 								<th class="cell_no_borders search_cell" style="width:1.5em;"><b>Postcode</b></th>
 								<th class="cell_no_borders search_cell" style="width:8em;"><b>Feedback</b></th>
 							</tr>
-						<?php
-						
-							$strTradeID = "";
-							$strPostcode = "";			
-							
-							if (isset($_POST["submit_search"]))
-							{
-								if (isset($_POST["select_trade"]))
-									$strTradeID = $_POST["select_trade"];
-								if (isset($_POST["text_postcode"]))
-									$strPostcode = $_POST["text_postcode"];
-							}
-							if (!DoGetWebTradies($strTradeID, $strPostcode, "", 0, true))
-								echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";
-							
-						?>
 						</table>
+						<div style="max-height:300px;width:100%;overflow-y:auto;">
+							<table cellpadding ="0" cellspacing="0" border="0" class="form_table" style="">
+								<?php
+								
+									$strTradeID = "";
+									$strPostcode = "";			
+									
+									if (isset($_POST["submit_search"]))
+									{
+										if (isset($_POST["select_trade"]))
+											$strTradeID = $_POST["select_trade"];
+										if (isset($_POST["text_postcode"]))
+											$strPostcode = $_POST["text_postcode"];
+									}
+									if (!DoGetWebTradies($strTradeID, $strPostcode, "", 0, true))
+										echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";									
+								?>
+							</table>
+						</div>
 					</div>
 				</div>
 
