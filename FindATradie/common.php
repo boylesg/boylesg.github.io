@@ -3206,7 +3206,7 @@ echo "@@@@@@@<br>";
 		global $g_strQuery;
 		$rowMember = null;
 		$nRowCount = 0;
-		$strPostcode = $_SESSION["account_postcode"];
+		$strPostcode = "";
 		
 		if (isset($_POST["text_postcode"]))
 			$strPostcode = $_POST["text_postcode"];
