@@ -33,7 +33,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -226,38 +226,43 @@
 										echo "<br/>";
 									}
 									echo "</div>\n";
-									echo "<div class=\"tradie_feedback\">\n";
-									echo "<b><u>FEEDBACK AS A CLIENT</u></b>\n";
-									DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
-	
-									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
-									echo "	<tr>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Tradie name<br/>Business name<br/>Location</td>\n";
-									echo "</tr>\n";
-									DoDisplayFeedbackAs($_GET["member_id"], "customer");
-									echo "</table>\n";
-									echo "</div>\n";
-									
-									echo "<div class=\"tradie_feedback\">\n";
-									echo "<b><u>FEEDBACK AS A TRADIE</u></b>\n";
-										
-									DoDisplayFeedbackPercentages($_GET["member_id"], "", "tradie");
-										
-									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
-									echo "	<tr>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Feedback comments</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Client name<br/>Location</td>\n";
-									echo "</tr>\n";
-									DoDisplayFeedbackAs($_GET["member_id"], "tradie");
-									echo "</table>\n";
-									echo "</div>\n";
+									if (IsTradie($_SESSION["account_id"]))
+									{
+										echo "<div class=\"tradie_feedback\">\n";
+										echo "<b><u>FEEDBACK AS A CUSTOMER</u></b>\n";
+										DoDisplayFeedbackPercentages($_GET["member_id"], "");
+		
+										echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+										echo "	<tr>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Member name<br/>Business name<br/>Location</td>\n";
+										echo "</tr>\n";
+										DoDisplayFeedback($_GET["member_id"], "");
+										echo "</table>\n";
+										echo "</div>\n";
+									}
+									if (IsTradie($_GET["member_id"]))
+									{
+										echo "<div class=\"tradie_feedback\">\n";
+										echo "<b><u>FEEDBACK AS A TRADIE</u></b>\n";
+											
+										DoDisplayFeedbackPercentages("", $_GET["member_id"]);
+											
+										echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
+										echo "	<tr>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Feedback comments</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Client name<br/>Location</td>\n";
+										echo "</tr>\n";
+										DoDisplayFeedback("", $_GET["member_id"]);
+										echo "</table>\n";
+										echo "</div>\n";
+									}
 								}
 								else
 								{

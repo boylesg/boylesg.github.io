@@ -229,7 +229,7 @@
 			
 				<?php
 				
-					if (IsTradie($_SESSION["account_trade"]))
+					if (IsTradie($_SESSION["account_id"]))
 					{
 						echo "g_arrayTabs.push({tab:\"tab_button1\", contents:\"tab_contents1\"});\n";
 						echo "g_arrayTabs.push({tab:\"tab_button2\", contents:\"tab_contents2\"});\n";
@@ -949,7 +949,7 @@
 					
 						<?php
 							$strDisplayTradieStuff = "none";
-							if (IsTradie($_SESSION["account_trade"]))
+							if (IsTradie($_SESSION["account_id"]))
 								$strDisplayTradieStuff = "block";
 						?>
 						
@@ -964,7 +964,7 @@
 
 						<div id="tab_contents1" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;">
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;width:1200px;">
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;width:1200px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
@@ -1278,7 +1278,7 @@
 								</fieldset>
 							</form>
 							
-							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:500px;display:<?php if (isset($_SESSION["account_trade"]) && IsTradie($_SESSION["account_trade"])) echo "block"; else echo "none"; ?>;">
+							<form method="post" id="form_logo_image" action="" class="form" enctype="multipart/form-data" style="width:500px;display:<?php if (isset($_SESSION["account_trade"]) && IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;">
 								<fieldset>
 									<legend>Business logo image:</legend>
 									<br/>

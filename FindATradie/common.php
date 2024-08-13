@@ -1707,18 +1707,16 @@
 		return $row;
 	}
 	
-	function IsTradie($nTradieID)
+	function IsCustomer($strMemberID)
 	{
-		global $g_dbFindATradie;
-		$bResult = false;
-		
-		$result = DoFindQuery1($g_dbFindATradie, "trades", "id", $nTradieID);
-		if ($result && ($result->num_rows > 0))
-		{
-			$row = $result->fetch_assoc();
-			$bResult = strcasecmp($row["name"], "Customer") != 0;
-		}
-		return $bResult;
+		$row = DoGetMember($strMemberID);
+		return strcmp($row["trade_id"], DoGetCustomerTradeID()) == 0;
+	}
+
+	function IsTradie($strMemberID)
+	{
+		$row = DoGetMember($strMemberID);
+		return strcmp($row["trade_id"], DoGetCustomerTradeID()) != 0;
 	}
 	
 	function GenerateJSErrorMessage($strCommand, $arrayOutput, $nError)
@@ -2303,7 +2301,7 @@ echo "@@@@@@@<br>";
 		{
 			$row = $results->fetch_assoc(); 
 			$dateExpiry = new DateTime($row["expiry_date"]);
-			echo "<a href=\"tradie.php?member_id=" . $row["member_id"] . "&advert_id=" . $row["id"] . "\"><img src=\"images/" . $_SESSION["account_logo_filename"] . 
+			echo "<a href=\"view_member.php?member_id=" . $row["member_id"] . "&advert_id=" . $row["id"] . "\"><img src=\"images/" . $_SESSION["account_logo_filename"] . 
 					"\" alt=\"" . $_SESSION["account_logo_filename"] . "\" class=\"advert_image\" height=\"" .  $nImageHeight . "\" />\n";
 			echo "<div class=\"advert_text\" style=\"height:" . $nImageHeight . "px;line-height:" . $nImageHeight . "px\";\">" . $row["text"] . "</div></a>\n";
 			echo "<div class=\"advert_expires\">Advert expires on " . $dateExpiry->format("D d M Y") . "</div>\n";
@@ -2594,7 +2592,7 @@ echo "@@@@@@@<br>";
 		}
 	}
 	
-	function DoDisplayFeedbackPercentages($strRecipientID, $strProviderID, $strAs = "")
+	function DoDisplayFeedbackPercentages($strRecipientID, $strProviderID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -2603,11 +2601,11 @@ echo "@@@@@@@<br>";
 		$nPercentageNegative = 0;
 		$nCustomerTradeID = DoGetCustomerTradeID();		
 					
-		if ($strRecipientID != "")
+		if (strlen($strRecipientID) > 0)
 		{
 			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
 		}
-		else if ($strProviderID != "")
+		else if (strlen($strProviderID) > 0)
 		{
 			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
 		}
@@ -2621,21 +2619,18 @@ echo "@@@@@@@<br>";
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
 				$rowMember = DoGetMember($rowFeedback["provider_id"]);
-				$bInclude = (strlen($strAs) == 0) || 
-							((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
-							((strcmp($strAs, "tradie") == 0) && ($rowMember["trade_id"] == $nCustomerTradeID));
-				if ($bInclude)
-				{
-					if ($rowFeedback["positive"])
-						$nPositive++;
-					else
-						$nNegative++;
-	
-					$nTotal++;
-				}
+				if ($rowFeedback["positive"])
+					$nPositive++;
+				else
+					$nNegative++;
+
+				$nTotal++;
 			}
-			$nPercentagePositive = ($nPositive * 100) / $nTotal;
-			$nPercentageNegative = ($nNegative * 100) / $nTotal;
+			if ($nTotal > 0)
+			{
+				$nPercentagePositive = ($nPositive * 100) / $nTotal;
+				$nPercentageNegative = ($nNegative * 100) / $nTotal;
+			}
 		}
 		echo "<br/><br/><hr/>\n";
 		echo "<table class=\"search_table\" cellspacing=\"0\" cellpadding=\"10\" style=\"width:30em;margin-left:0.5em;\">\n";
@@ -2676,30 +2671,32 @@ echo "@@@@@@@<br>";
 		echo $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
 	}
 
-	function DoDisplayFeedbackAs($strRecipientID, $strAs/* "customer" or "tradie" */)
+	function DoDisplayFeedback($strRecipientID, $strProviderID)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
-		$results  = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
-		$nCustomerTradeID = DoGetCustomerTradeID();
+		$queryResult = NULL;
+		//$nCustomerTradeID = DoGetCustomerTradeID();
 		
-		if ($results && ($results->num_rows > 0))
+		if (strlen($strProviderID) > 0)
 		{
-			while ($rowFeedback = $results->fetch_assoc())
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
+		}
+		else if (strlen($strRecipientID) > 0)
+		{
+			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
+		}
+		if ($queryResult && ($queryResult->num_rows > 0))
+		{
+			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
 				$rowMember = DoGetMember($rowFeedback["provider_id"]);
-				$bInclude = ((strcmp($strAs, "customer") == 0) && ($rowMember["trade_id"] != $nCustomerTradeID)) ||
-							((strcmp($strAs, "tradie") == 0) && ($rowMember["trade_id"] == $nCustomerTradeID));
-
-				if ($bInclude)
-				{
-					DoCreateFeedbackRow($rowFeedback, $rowMember);			
-				}
+				DoCreateFeedbackRow($rowFeedback, $rowMember);			
 			}
 		}
 	}
-	
+/*	
 	function DoDisplayFeedback($strRecipientID, $strProviderID)
 	{
 		global $g_dbFindATradie;
@@ -2765,7 +2762,7 @@ echo "@@@@@@@<br>";
 			echo "<td colspan=\"6\" class=\"cell_no_borders search_cell\">No feedback yet...</td>\n";
 		}
 	}
-	
+*/	
 	
 	
 	
@@ -2817,7 +2814,7 @@ echo "@@@@@@@<br>";
 				if ($row["accepted_by_member_id"] > 0)
 				{
 					$rowMember = DoGetMember($row["accepted_by_member_id"]);
-					echo "<a href=\"tradie.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
+					echo "<a href=\"view_member.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
 							$rowMember["first_name"] . " " . $rowMember["surname"] . ", " . 
 							$rowMember["business_name"] . "</a><br/>\n";
 					if (strlen($row["unit"]) > 0)
