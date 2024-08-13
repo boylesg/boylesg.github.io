@@ -23,19 +23,17 @@
 		{		
 			if (!empty($row["accepted_by_member_id"]))
 			{
-				$rowMember = DoGetMember($row["accepted_by_member_id"]);
-				$objectJobDetails->accepted_by_name = $rowMember["first_name"] . " " . $rowMember["surname"];
-				$objectJobDetails->accepted_by_mobile = $rowMember["mobile"];
-				$objectJobDetails->accepted_by_email = $rowMember["email"];
+				$objectJobDetails->accepted_by_name = DoGetMemberColumn($row["accepted_by_member_id"], "first_name") . " " . DoGetMemberColumn($row["accepted_by_member_id"], "surname");
+				$objectJobDetails->accepted_by_mobile = DoGetMemberColumn($row["accepted_by_member_id"], "mobile");
+				$objectJobDetails->accepted_by_email = DoGetMemberColumn($row["accepted_by_member_id"], "email");
 			}
 		}
 		else if ($_POST["which"] == "other_jobs")
-		{
-			$rowMember = DoGetMember($row["member_id"]);
-			$objectJobDetails->first_name = $rowMember["first_name"];
-			$objectJobDetails->surname = $rowMember["surname"];
-			$objectJobDetails->mobile = $rowMember["mobile"];
-			$objectJobDetails->email = $rowMember["email"];
+		{ 
+			$objectJobDetails->first_name = DoGetMemberColumn($row["member_id"], "first_name");
+			$objectJobDetails->surname = DoGetMemberColumn($row["member_id"], "surname");
+			$objectJobDetails->mobile = DoGetMemberColumn($row["member_id"], "mobile");
+			$objectJobDetails->email = DoGetMemberColumn($row["member_id"], "email");
 		}
 		$objectJobDetails->trade_id = $row["trade_id"];
 		$dateTemp = new DateTime($row["date_added"]);

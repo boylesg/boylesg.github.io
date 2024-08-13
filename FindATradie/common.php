@@ -936,7 +936,7 @@
 		if ($results && ($results->num_rows > 0))
 		{
 			if ($row = $results->fetch_assoc())
-			{
+			{			
 				$strCustomerTradeID = $row["id"];
 			}
 		}
@@ -1695,28 +1695,31 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function DoGetMember($strMemberID)
+	function DoGetMemberColumn($strMemberID, $strColumn)
 	{
 		global $g_dbFindATradie;
-		$row = NULL;
+		$rowMember = NULL;
+		
 		
 		$results = DoFindQuery1($g_dbFindATradie, "members", "id", $strMemberID);
 		if ($results && ($results->num_rows > 0))
-			$row = $results->fetch_assoc();
-			
-		return $row;
+		{
+			$rowMember = $results->fetch_assoc();
+			$strColumn = $rowMember[$strColumn];
+		}	
+		return $strColumn;
 	}
 	
 	function IsCustomer($strMemberID)
 	{
-		$row = DoGetMember($strMemberID);
-		return strcmp($row["trade_id"], DoGetCustomerTradeID()) == 0;
+		$strTradeID = DoGetMemberColumn($strMemberID, "trade_id");
+		return strcmp($strTradeID, DoGetCustomerTradeID()) == 0;
 	}
 
 	function IsTradie($strMemberID)
 	{
-		$row = DoGetMember($strMemberID);
-		return strcmp($row["trade_id"], DoGetCustomerTradeID()) != 0;
+		$strTradeID = DoGetMemberColumn($strMemberID, "trade_id");
+		return strcmp($strTradeID, DoGetCustomerTradeID()) != 0;
 	}
 	
 	function GenerateJSErrorMessage($strCommand, $arrayOutput, $nError)
@@ -2145,10 +2148,9 @@ echo "@@@@@@@<br>";
 				$rowAdvert = DoFindActiveAdvert($rowSpace["id"], $strPageName);
 				if ($rowAdvert)
 				{
-					$rowMember = DoGetMember($rowAdvert["member_id"]);
 					if ($rowMember)
 					{
-						$strLogoURL = $rowMember["logo_filename"];
+						$strLogoURL = DoGetMemberColumn($rowAdvert["member_id"], "logo_filename");
 						$strAdvertText = $rowAdvert["text"];
 						$strAdvertID = $rowAdvert["id"];
 						$strMemberID = $rowMember["id"];
@@ -2405,10 +2407,9 @@ echo "@@@@@@@<br>";
 				$dateNow = new DateTime();
 				if ($dateExpiry >= $dateNow)
 				{
-					$objectAdvertDetails = (object)[];
-					$rowMember = DoGetMember($row["member_id"]);
-					$objectAdvertDetails->strBusinessName = $rowMember["business_name"];
-					$objectAdvertDetails->strBusinessLogo = $rowMember["logo_filename"];
+					$objectAdvertDetails = (object)[];					
+					$objectAdvertDetails->strBusinessName =DoGetMemberColumn($row["member_id"], "business_name");
+					$objectAdvertDetails->strBusinessLogo = DoGetMemberColumn($row["member_id"], "logo_filename");
 					$objectAdvertDetails->strID = $row["id"];
 					$objectAdvertDetails->strMemberID = $row["member_id"];
 					$rowAdvertSpace = GetAdvertSpace($row["space_id"]);
@@ -2618,7 +2619,6 @@ echo "@@@@@@@<br>";
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
-				$rowMember = DoGetMember($rowFeedback["provider_id"]);
 				if ($rowFeedback["positive"])
 					$nPositive++;
 				else
@@ -2652,7 +2652,7 @@ echo "@@@@@@@<br>";
 		echo "<hr/><br/><br/>";
 	}
 	
-	function DoCreateFeedbackRow($rowFeedback, $rowMember)
+	function DoCreateFeedbackRow($rowFeedback, $strMemberID)
 	{
 		echo "<tr>\n";
 		echo "<td class=\"feedback_row\">";
@@ -2665,10 +2665,10 @@ echo "@@@@@@@<br>";
 		echo $dateAdded->format("d/m/Y");
 		echo "</td>\n";
 
-		echo "<td class=\"feedback_row\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "<br/>"; 
-		if ($rowMember["business_name"] && (strlen($rowMember["business_name"]) > 0))
-			echo $rowMember["business_name"] . "<br/>";
-		echo $rowMember["suburb"] . ", " . $rowMember["state"] . ", " . $rowMember["postcode"] . "</td>\n";
+		echo "<td class=\"feedback_row\">" . DoGetMemberColumn($strMemberID, "first_name") . " " . DoGetMemberColumn($strMemberID, "surname") . "<br/>"; 
+		if (DoGetMemberColumn($strMemberID, "business_name") && (strlen(DoGetMemberColumn($strMemberID, "business_name")) > 0))
+			echo DoGetMemberColumn($strMemberID, "business_name") . "<br/>";
+		echo DoGetMemberColumn($strMemberID, "suburb") . ", " . DoGetMemberColumn($strMemberID, "state") . ", " . DoGetMemberColumn($strMemberID, "postcode") . "</td>\n";
 	}
 
 	function DoDisplayFeedback($strRecipientID, $strProviderID)
@@ -2691,8 +2691,7 @@ echo "@@@@@@@<br>";
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
-				$rowMember = DoGetMember($rowFeedback["provider_id"]);
-				DoCreateFeedbackRow($rowFeedback, $rowMember);			
+				DoCreateFeedbackRow($rowFeedback, $rowFeedback["provider_id"]);			
 			}
 		}
 	}
@@ -2724,11 +2723,11 @@ echo "@@@@@@@<br>";
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				if ($bReceived)
-					$rowMember = DoGetMember($rowFeedback["provider_id"]);
+					$strMemberID = $rowFeedback["provider_id"];
 				else
-					$rowMember = DoGetMember($rowFeedback["recipient_id"]);
+					$strMemberID = $rowFeedback["recipient_id"];
 				
-				DoCreateFeedbackRow($rowFeedback, $rowMember);
+				DoCreateFeedbackRow($rowFeedback, $strMemberID);
 				
 				echo "<td class=\"feedback_row\">";
 				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
@@ -2813,10 +2812,9 @@ echo "@@@@@@@<br>";
 				echo "<td class=\"search_cell\">";
 				if ($row["accepted_by_member_id"] > 0)
 				{
-					$rowMember = DoGetMember($row["accepted_by_member_id"]);
 					echo "<a href=\"view_member.php?member_id=" . $row["accepted_by_member_id"] . "\">" . 
-							$rowMember["first_name"] . " " . $rowMember["surname"] . ", " . 
-							$rowMember["business_name"] . "</a><br/>\n";
+							DoGetMemberColumn($row["accepted_by_member_id"], "first_name") . " " . DoGetMemberColumn($row["accepted_by_member_id"], "surname") . ", " . 
+							DoGetMemberColumn($row["accepted_by_member_id"], "business_name") . "</a><br/>\n";
 					if (strlen($row["unit"]) > 0)
 						echo $row["unit"] . ", ";
 					echo $row["street"] . "<br/>" . $row["suburb"] . ", " . $row["state"] . ", " . $row["postcode"];
@@ -2943,11 +2941,10 @@ echo "@@@@@@@<br>";
 		if ($bRequired)
 			$strRequired = " required";
 			
-		$rowMember = DoGetMember($strRecipientID);
 		if (($strFeedbackID == NULL) || (strcmp($strFeedbackID, "") == 0))
 		{
 			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\"" . $strRequired . "cols=\"32\" rows=\"1\"></textarea>\n";
-			$strPrompt = "You can add your feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . " here...";
+			$strPrompt = "You can add your feedback for " . DoGetMemberColumn($strRecipientID, "first_name") . " " . DoGetMemberColumn($strRecipientID, "surname") . " here...";
 		}
 		else
 		{
@@ -3063,9 +3060,7 @@ echo "@@@@@@@<br>";
 		{
 			while ($rowJob = $results->fetch_assoc())
 			{
-				$rowMember = DoGetMember($rowJob["member_id"]);
-
-				if (IsDistanceMatch($_SESSION["account_postcode"], $rowMember["postcode"], $_SESSION["account_maximum_distance"]))
+				if (IsDistanceMatch($_SESSION["account_postcode"], DoGetMemberColumn($rowJob["member_id"], "postcode"), $_SESSION["account_maximum_distance"]))
 				{
 					if (DoGetSizeIndex($rowJob["size"]) <= DoGetSizeIndex($_SESSION["account_maximum_size"]))
 					{
