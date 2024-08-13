@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/common.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,23 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.AustraliaPost.executor": "Debug",
-    "Python.RemoveDuplicateBusinesses.executor": "Debug",
-    "Python.RemoveDuplicateEmails.executor": "Debug",
-    "Python.ScrapeYellowPages.executor": "Debug",
-    "Python.SendEmails.executor": "Debug",
-    "Python.common.executor": "Debug",
-    "Python.errorhandler.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/gregaryb/Downloads",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.AustraliaPost.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.RemoveDuplicateBusinesses.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.RemoveDuplicateEmails.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ScrapeYellowPages.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.SendEmails.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.common.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.errorhandler.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.message.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gregaryb/Downloads&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gregaryb\Downloads" />
@@ -125,8 +130,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>115</line>
-          <option name="timeStamp" value="95" />
+          <line>90</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

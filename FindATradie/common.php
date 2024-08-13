@@ -2848,7 +2848,7 @@ echo "@@@@@@@<br>";
 				if ($row["completed"] == 1)
 				{
 					$dateCompleted = new DateTime($row["date_completed"]);
-					$strHREF = "mailto://" . $rowMember["email"] . "?subject=RE: job in " . $_SESSION["account_suburb"] . "(" .
+					$strHREF = "mailto://" . DoGetMemberColumn($row["accepted_by_member_id"], "email") . "?subject=RE: job in " . $_SESSION["account_suburb"] . "(" .
 								$_SESSION["account_postcode"] . ") with ID '" . $row["id"] . 
 								"'&body=Job Completed: " . $dateCompleted->format("d/m/Y") . $g_strMailToNewLine . $g_strMailToNewLine . 
 								"Client name: " . $_SESSION["account_first_name"] . " " . $_SESSION["account_surname"] . 
@@ -3077,12 +3077,12 @@ echo "@@@@@@@<br>";
 								$date = new DateTime($rowJob["date_added"]);
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\">" . $rowMember["first_name"] . " " . $rowMember["surname"] . "</a><br/>\n";
+								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . DoGetMemberColumn($rowJob["member_id"], "id") . "\">" . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . "</a><br/>\n";
 								if (strlen($rowJob["unit"]) > 0)
 									echo $rowJob["unit"] . ", ";
 								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
-								echo "<a href=\"mailto://" . $rowMember["email"] .
-										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . $rowMember["email"] . "</a></td>\n";
+								echo "<a href=\"mailto://" . DoGetMemberColumn($rowJob["member_id"], "email") .
+										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . DoGetMemberColumn($rowJob["member_id"], "email") . "</a></td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
 								DoDisplayBoolean($rowJob["urgent"] == 1, "function_button_image");
@@ -3107,11 +3107,11 @@ echo "@@@@@@@<br>";
 								echo "     <input type=\"hidden\" name=\"text_accepted_by_member_id\" value=\"" . $rowJob["accepted_by_member_id"] . "\" />\n";
 								
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
-								echo "<button title=\"Email " . $rowMember["first_name"] . " " . $rowMember["surname"] . 
-										" about this job\" class=\"function_button_hidden\"><a href=\"mailto://" . $rowMember["email"] .
+								echo "<button title=\"Email " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . 
+										" about this job\" class=\"function_button_hidden\"><a href=\"mailto://" . DoGetMemberColumn($rowJob["member_id"], "email") .
 										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . 
 										" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
-								echo "<button type=\"button\" class=\"function_button\" title=\"View feedback history of " . $rowMember["first_name"] . " " . $rowMember["surname"] . "\"><a href=\"view_member.php?member_id=" . $rowMember["id"] . "\"><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></a></button>&nbsp;\n";
+								echo "<button type=\"button\" class=\"function_button\" title=\"View feedback history of " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . "\"><a href=\"view_member.php?member_id=" . DoGetMemberColumn($rowJob["member_id"], "id") . "\"><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></a></button>&nbsp;\n";
 
 								if ($rowJob["accepted_by_member_id"] == 0)
 								{

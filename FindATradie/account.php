@@ -35,72 +35,6 @@
 						
 			<style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 				:root 
 				{
 					--Width: 98%;
@@ -166,7 +100,7 @@
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
 					min-height: 400px;
-					min-width: 1000px;
+					min-width: 1224px;
 					overflow: auto;
 					/*height: 1000px;*/
 				}
@@ -1023,7 +957,7 @@
 								</form>
 								<p>If you hover the mouse pointer over the function buttons then you will see what they do.</p>
 								
-								<table class="table_no_borders search_table">
+								<table class="table_no_borders search_table" style="width:1100px;">
 									<tr>
 										<td class="cell_no_borders search_cell" style="width:1.5em;"><b>ID</b></td>
 										<td class="cell_no_borders search_cell" style="width:6em;"><b>Date</b></td>
