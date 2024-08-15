@@ -12,7 +12,6 @@ import http.client
 import time
 import io
 from threading import Thread
-import time
 
 
 

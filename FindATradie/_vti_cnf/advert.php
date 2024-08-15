@@ -1,5 +1,5 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|31 Jul 2024 14:38:07 -0000
+vti_timelastmodified:TR|14 Aug 2024 15:09:59 -0000
 vti_extenderversion:SR|12.0.0.0
 vti_author:SR|LATITUDE-E5430\\gregaryb
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
@@ -7,7 +7,7 @@ vti_timecreated:TR|07 May 2024 09:17:31 -0000
 vti_title:SR|Create an advertisement
 vti_backlinkinfo:VX|advert.php
 vti_nexttolasttimemodified:TR|31 Jul 2024 14:37:57 -0000
-vti_cacheddtm:TX|31 Jul 2024 14:37:05 -0000
+vti_cacheddtm:TX|14 Aug 2024 15:09:59 -0000
 vti_filesize:IR|15424
 vti_cachedtitle:SR|Create an advertisement
 vti_cachedbodystyle:SR|<body class="body" onload="DoChangeBackgroundImage()">

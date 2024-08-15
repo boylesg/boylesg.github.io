@@ -1,3 +1,4 @@
+import random
 import smtplib
 import os
 import os.path
@@ -22,31 +23,36 @@ def MakeAddress(strDisplayName, strEmailAddress):
 
 
 g_arrayEmailServers = [{"server": "smtp-mail.outlook.com", "port": 587, "username": "find-a-tradie@outlook.com", "password": "Pulsar112358#"},
-                       {"server": "smtp-mail.outlook.com", "port": 587, "username": "gregary_boyles@outlook.com", "password": "Pulsar112358#"},
-                       {"server": "smtp.gmail.com", "port": 587, "username": "greparyjboyles37@gmail.com", "password": "Pulsar112358#"},
-                       {"server": "smtp.gmail.com", "port": 587, "username": "Find.A.Tradie.Australia@gmail.com", "password": "Pulsar112358#"}]
+                       {"server": "smtp-mail.outlook.com", "port": 587, "username": "gregary_boyles@outlook.com", "password": "Pulsar112358#"}]
 g_nEmailServer = 0
 g_SMTPObject = ""
 
-def DoConnectEmailServer(dictEmailServer):
+def DoConnectEmailServer():
+    global g_arrayEmailServers
+    global g_nEmailServer
     global g_SMTPObject
     bResult = False;
+    dictEmailServer = {}
 
-    try:
-        # Send the email via our own SMTP server.
-        print("\n\nConnecting to email server '" + dictEmailServer["server"] + "' on port " + str(dictEmailServer["port"]) + "...")
-        if (IsEmailServerOpen(g_SMTPObject)):
-            g_SMTPObject.quit()
-        g_SMTPObject = smtplib.SMTP(dictEmailServer["server"], dictEmailServer["port"])
-        g_SMTPObject.connect(dictEmailServer["server"], dictEmailServer["port"])
-        g_SMTPObject.ehlo()
-        g_SMTPObject.starttls()
-        g_SMTPObject.ehlo()
-        print("Logging in with username '" + dictEmailServer["username"] + "' and password '" + dictEmailServer["password"] + "'...\n")
-        g_SMTPObject.login(dictEmailServer["username"], dictEmailServer["password"])
-        bResult = True
-    except Exception as error:
-        print("EMAIL SERVER ERROR: ", error)
+    while (g_nEmailServer < len(g_arrayEmailServers)):
+        dictEmailServer = g_arrayEmailServers[g_nEmailServer]
+        try:
+            # Send the email via our own SMTP server.
+            print("\n\nConnecting to email server '" + dictEmailServer["server"] + "' on port " + str(dictEmailServer["port"]) + "...")
+            if (IsEmailServerOpen(g_SMTPObject)):
+                g_SMTPObject.quit()
+            g_SMTPObject = smtplib.SMTP(dictEmailServer["server"], dictEmailServer["port"])
+            g_SMTPObject.connect(dictEmailServer["server"], dictEmailServer["port"])
+            g_SMTPObject.ehlo()
+            g_SMTPObject.starttls()
+            g_SMTPObject.ehlo()
+            print("Logging in with username '" + dictEmailServer["username"] + "' and password '" + dictEmailServer["password"] + "'...\n")
+            g_SMTPObject.login(dictEmailServer["username"], dictEmailServer["password"])
+            bResult = True
+            break
+        except Exception as error:
+            g_nEmailServer += 1
+            print("EMAIL SERVER ERROR: ", error)
 
     return bResult
 
@@ -158,16 +164,24 @@ def DoSendEmail(strToEmail):
             bResult = True
             break;
         except Exception as error:
-            if (error.smtp_code == 554):
-                print("\n\nEMAIL SERVER ERROR: outbound spam email blocked...\n", error)
+            bReconnect = False
+            if (isinstance(error.args[0], int)):
+                strErrorMsg = error.args[1].decode("utf-8")
+            else:
+                strErrorMsg = error.args[0][strToEmail][1].decode("utf-8")
+            if ("Server not connected" in strErrorMsg):
+                print("\nEMAIL SERVER ERROR: server disconnected unexpectedly...\n", error)
+            elif ("Connection timed out" in strErrorMsg):
+                print("\nEMAIL SERVER ERROR: time out...", error)
+            elif ("OutboundSpamException" in strErrorMsg):
+                print("\nEMAIL SERVER ERROR: outbound spam email blocked...\n", error)
                 g_nEmailServer += 1
-                if (g_nEmailServer < len(g_arrayEmailServers)):
-                    while ((g_nEmailServer < len(g_arrayEmailServers)) and (not DoConnectEmailServer(g_arrayEmailServers[g_nEmailServer]))):
-                        g_nEmailServer += 1
-                    if (g_nEmailServer >= len(g_arrayEmailServers)):
-                        break
+                bReconnect = True
             else:
                 error
+            if (bReconnect):
+                if not DoConnectEmailServer():
+                    break
 
     return bResult
 
@@ -198,62 +212,64 @@ def SaveEmailPlace(strEmail, strEmailFile):
 
 
 print("\n\n")
-DoConnectEmailServer(g_arrayEmailServers[g_nEmailServer])
-if False:
-    DoSendEmail("gregplants@bigpond.com")
-else:
-    nCount = 0;
-    bEmailSendError = False
-    strLastEmailFile = g_arrayEmailFiles[0]
-    strLastEmail = ""
-    if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
-        fileLastEmail = open(g_strPath + g_strSavedEmailFile, "r")
-        if (fileLastEmail):
-            strLastEmailFile = fileLastEmail.readline()
-            strLastEmailFile = strLastEmailFile.replace("\n", "")
-            strLastEmail = fileLastEmail.readline()
-            strLastEmail = strLastEmail.replace("\n", "")
+DoConnectEmailServer()
 
+nEmailCount = nFileCount = 0;
+bEmailSendError = False
+strLastEmailFile = g_arrayEmailFiles[0]
+strLastEmail = ""
+if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
+    fileLastEmail = open(g_strPath + g_strSavedEmailFile, "r")
+    if (fileLastEmail):
+        strLastEmailFile = fileLastEmail.readline()
+        strLastEmailFile = strLastEmailFile.replace("\n", "")
+        strLastEmail = fileLastEmail.readline()
+        strLastEmail = strLastEmail.replace("\n", "")
+    else:
+        fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
+        fileLastEmail.write("\n")
+        fileLastEmail.write("\n")
+
+
+while (nFileCount < len(g_arrayEmailFiles)):
     for strEmailFile in g_arrayEmailFiles:
-
+        nFileCount += 1
         if (strEmailFile != strLastEmailFile):
             continue
 
         nFileSize = os.path.getsize(g_strPath + strEmailFile)
         if (nFileSize > 0):
             fileEmail = open(g_strPath + strEmailFile, "r")
-            print("Processing email file " + strEmailFile + "...")
-
-            if (strLastEmail != ""):
-                strEmail = fileEmail.readline()
-                strEmail = strEmail.replace("\n", "")
-                while (strEmail != strLastEmail):
+            if (fileEmail):
+                print("Processing email file " + strEmailFile + "...")
+    
+                if (strLastEmail != ""):
+                    strEmail = "xxxx"
+                    while (strEmail != strLastEmail):
+                        strEmail = fileEmail.readline()
+                        strEmail = strEmail.replace("\n", "")
+                        nEmailCount += 1
+                else:
                     strEmail = fileEmail.readline()
                     strEmail = strEmail.replace("\n", "")
-                    nCount += 1
-            else:
-                strEmail = fileEmail.readline()
-                strEmail = strEmail.replace("\n", "")
+    
+                while (strEmail != ""):
+                    if (len(strEmail) > 0):
+                        print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
+                        SaveEmailPlace(strEmail, strEmailFile)
+                        if (not DoSendEmail(strEmail)):
+                            wait(43200)
+                            break;
+                        else:
+                            wait(random.randrange(3, 15, 1))
+                    strEmail = fileEmail.readline()
+                    if (strEmail != ""):
+                        strEmail = strEmail.replace("\n", "")
+                        nEmailCount += 1
 
-            while (True):
-                if (len(strEmail) > 0):
-                    print("(" + str(nCount) + ") Sending email to " + strEmail + "...")
-                    SaveEmailPlace(strEmail, strEmailFile)
-                    if (not DoSendEmail(strEmail)):
-                        bEmailSendError = True
-                        break;
-                    else:
-                        wait(30)
-                else:
-                    break;
-                strEmail = fileEmail.readline()
-                strEmail = strEmail.replace("\n", "")
-                nCount += 1
-            fileLastEmail.close()
-            print("\n---------------------------------\n")
+                fileLastEmail.close()
+                print("\n---------------------------------\n")
 
-        if (bEmailSendError):
-            break
 if (IsEmailServerOpen(g_SMTPObject)):
     g_SMTPObject.quit()
 print("FINISHED!")
