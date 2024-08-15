@@ -91,7 +91,6 @@
 					display: none;
 					padding: 6px 12px;
 					border-top: none;
-					width: var(--Width);
 					border-style: var(--BorderStyle);
 					border-width: var(--BorderWidth);
 					border-color: var(--BorderColor);
@@ -99,10 +98,8 @@
 					border-bottom-left-radius: var(--BorderRadius);
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
-					min-height: 400px;
 					min-width: 1224px;
 					overflow: auto;
-					/*height: 1000px;*/
 				}
 				
 				.paypal_table
@@ -765,7 +762,7 @@
 
 
 
-				<div class="note" style="flex-wrap:wrap;">
+				<div class="note" style="flex-wrap:wrap;width:1120px;">
 					
 					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
 
@@ -906,7 +903,7 @@
 
 						<div id="tab_contents1" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;">
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;width:1200px;">
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;width:1100px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
@@ -917,10 +914,6 @@
 											<td class="form_table_cell" style="width:125px;"><b>Acceptance</b></td>
 											<td class="form_table_cell" style="width:125px;"><b>Completeness</b></td>
 											<td class="form_table_cell" style="width:100px;"><b>Payment</b></td>
-											<td class="form_table_cell" style="width:80px;text-align:center;" rowspan="2">
-												<input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" style="width:5em;margin:5px;" /><br/>
-												<input type="reset" id="reset_job_search" name="reset_job_search" value="RESET" style="width:5em;;margin:5px;" />
-											</td>
 										</tr>
 										<tr>	
 											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php echo DoGetMaxDistance() ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
@@ -959,6 +952,13 @@
 												<input type="radio" name="radio_payment" value="all" <?php if ((isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "all")) || !isset($_POST["radio_payment"])) echo "checked";?>/><label>All</label><br/>
 												<input type="radio" name="radio_payment" value="paid"  <?php if (isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "paid")) echo "checked";?>/><label>Paid jobs</label><br/>
 												<input type="radio" name="radio_payment" value="unpaid"  <?php if (isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "unpaid")) echo "checked";?>/>Unpaid jobs<br/>
+											</td>
+										</tr>
+										<tr>
+											<td class="form_table_cell" colspan="8">
+												<button type="submit" id="submit_job_search" name="submit_job_search"><img src="images/search.png" alt="SEARCH" width="30" /></button>
+												&nbsp;
+												<button type="reset" id="reset_job_search" name="reset_job_search"><img src="images/delete.png" alt="RESET" width="30" /></button>
 											</td>
 										</tr>
 									</table>
@@ -1002,7 +1002,7 @@
 						<div id="tab_contents2" class="tab_content">
 							<h2 id="tab_heading2"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
 							
-							<form method="post" action="" id="form_filter_jobs" class="form search_form">
+							<form method="post" action="" id="form_filter_jobs" class="form search_form" style="width:640px;">
 								<h6>Filter Jobs</h6>
 								<table cellspacing="0" cellpadding="3" border="0" class="form_table">
 									<tr>
@@ -1010,10 +1010,6 @@
 										<td class="form_table_cell" style="width:100px;"><b>Budget</b></td>
 										<td class="form_table_cell" style="width:125px;"><b>Size</b></td>
 										<td class="form_table_cell" style="width:60px;"><b>Urgent</b></td>
-										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
-										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
-											<input id="submit_job_posted_search" name="submit_job_posted_search" type="submit" value="SUBMIT" />
-										</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1060,20 +1056,15 @@
 								</table>
 							</form>
 							<br/>
-							<form method="post" action="" id="form_edit_job" class="form search_form" style="display:none;">
+							<form method="post" action="" id="form_edit_job" class="form search_form" style="display:none;width:1040px;">
 								<h6 id="job_edit_form_heading">New Job</h6>
-								<table cellspacing="0" cellpadding="3" border="1" class="form_table">
+								<table cellspacing="0" cellpadding="3" border="0" class="form_table">
 									<tr>
 										<td class="form_table_cell" style="width:330px;"><b>Trade type</b></td>
 										<td class="form_table_cell" style="width:100px;"><b>Budget</b></td>
 										<td class="form_table_cell" style="width:125px;"><b>Size</b></td>
 										<td class="form_table_cell" style="width:60px;"><b>Urgent</b></td>
 										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
-										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
-											<input id="submit_job" name="submit_job" type="submit" value="SUBMIT" onclick="OnClickJobButton()" />
-											<br/><br/>
-											<input type="submit" value="CLOSE" onclick="DoToggleEditJobForm()" />
-										</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1104,9 +1095,11 @@
 											<textarea id="text_job_description_edit" name="text_job_description_edit" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
 										</td>
 									</tr>
-									<tr><td colspan="6"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td></tr>
 									<tr>
-										<td colspan="6">&nbsp;</td>
+										<td colspan="5"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td>
+									</tr>
+									<tr>
+										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1380,7 +1373,7 @@
 						<div id="tab_contents6" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;" >
 							<h2 id="tab_heading6"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
-							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
+							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:960px;">
 								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">
 									<tr>
 										<td class="form_table_cell" style="text-align:right;width:6em;">Start Date</td>
@@ -1399,7 +1392,13 @@
 											</select></td>
 										<td class="form_table_cell" style="text-align:right;width:11em;">Hide Expired Adverts</td>
 										<td class="form_table_cell" style="text-align:left;"><input name="checkbox_hide_expired_adverts" type="checkbox"<?php if (isset($_POST["checkbox_hide_expired_adverts"]) && ($_POST["checkbox_hide_expired_adverts"] == "on")) echo " checked"; ?>/></td>
-										<td class="form_table_cell" style="text-align:right;width:8em;"><input name="submit_search_adverts" type="submit" value="SEARCH" /></td>
+									</tr>
+									<tr>
+										<td class="form_table_cell" colspan="8">
+											<button type="submit" id="submit_search_adverts" name="submit_search_adverts">
+												<img src="images/search.png" alt="SEARCH" width="30px" />
+											</button>
+										</td>
 									</tr>
 								</table>
 							</form>
@@ -1440,14 +1439,13 @@
 						
 						<div id="tab_contents7" class="tab_content">
 							<h2 id="tab_heading7"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:1000px;">
+								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:920px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:350px;"><b>Trade type</b></td>
 											<td class="form_table_cell" style="width:100px;"><b>Postcode</b></td>
 											<td class="form_table_cell" style="width:250px;"><b>Suburb</b></td>
 											<td class="form_table_cell" style="width:200px;"><b>Maximum distance from you</b></td>
-											<td class="form_table_cell" style="width:100px;text-align:center;" rowspan="2"><input type="submit" id="submit_tradie_search" name="submit_tradie_search" value="SEARCH" /></td>
 										</tr>
 										<tr>	
 											<td class="form_table_cell">
@@ -1465,7 +1463,14 @@
 												<input type="text" id="text_maximum_distance0" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; else printf("%d", $_SESSION["account_maximum_distance"]); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
 											</td>
 										</tr>
-										<tr><td colspan="5"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
+										<tr><td colspan="4"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
+										<tr>
+											<td class="form_table_cell" colspan="4">
+												<button type="submit" id="submit_tradie_search" name="submit_tradie_search">
+													<img src="images/search.png" alt="SEARCH" width="30px" />
+												</button>
+											</td>
+										</tr>
 									</table>
 								</form>
 								<table class="table_no_borders search_table">
