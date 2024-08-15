@@ -1342,7 +1342,7 @@
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Tradie name<br/>Business name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Business name<br/>Location</td>
 									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
 								</tr>
 
@@ -1361,8 +1361,8 @@
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Client name<br/>Location</td>
-									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Business name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:14em;">Functions</td>
 								</tr>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"]);

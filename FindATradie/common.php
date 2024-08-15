@@ -1249,6 +1249,7 @@
 	function DoGenerateJobSizeOptions($strJobSize)
 	{
 		$arrayJobSize = ["Not applicable", "Up to 50", "50 - 100", "100 - 250", "250 - 500", "More than 500"];
+		$strSelected = "";
 		if (strlen($strJobSize) == 0)
 			$strSelected = " selected";
 					
@@ -2662,10 +2663,30 @@ echo "@@@@@@@<br>";
 		echo $dateAdded->format("d/m/Y");
 		echo "</td>\n";
 
-		echo "<td class=\"feedback_row\">" . DoGetMemberColumn($strMemberID, "first_name") . " " . DoGetMemberColumn($strMemberID, "surname") . "<br/>"; 
-		if (DoGetMemberColumn($strMemberID, "business_name") && (strlen(DoGetMemberColumn($strMemberID, "business_name")) > 0))
-			echo DoGetMemberColumn($strMemberID, "business_name") . "<br/>";
+		echo "<td class=\"feedback_row\">" . DoGetMemberColumn($rowFeedback["recipient_id"], "first_name") . " " . 
+				DoGetMemberColumn($rowFeedback["recipient_id"], "surname") . "<br/>"; 
+		if (DoGetMemberColumn($rowFeedback["recipient_id"], "business_name") && (strlen(DoGetMemberColumn($rowFeedback["recipient_id"], "business_name")) > 0))
+			echo DoGetMemberColumn($rowFeedback["recipient_id"], "business_name") . "<br/>";
+		else
+			echo "-<br/>";
 		echo DoGetMemberColumn($strMemberID, "suburb") . ", " . DoGetMemberColumn($strMemberID, "state") . ", " . DoGetMemberColumn($strMemberID, "postcode") . "</td>\n";
+		echo "<td class=\"feedback_row\">";
+		if (($rowFeedback["recipient_id"] == $_SESSION["account_id"]) && ($rowFeedback["positive"] == 0)) 
+		{
+			$date = new DateTime($rowFeedback["date_added"]);
+			echo "<button title=\"Email " . DoGetMemberColumn($rowFeedback["provider_id"], "first_name") . " " . 
+					DoGetMemberColumn($rowFeedback["provider_id"], "surname") . 
+					" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . 
+					DoGetMemberColumn($rowFeedback["provider_id"], "email") .
+					"?subject=RE: job id: " . $rowFeedback["job_id"] . ", posted on date: " . $date->format("d/m/Y") . 
+					" on 'Find a Tradie'\"><img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+		}
+		else if ($rowFeedback["provider_id"] == $_SESSION["account_id"])
+		{	
+			DoCreateFeedbackTextArea(true, $rowFeedback["id"], $rowFeedback["recipient_id"], 
+										$rowFeedback["provider_id"], $rowFeedback["job_id"]);
+		}
+		echo "</td>\n";
 	}
 
 	function DoDisplayFeedback($strRecipientID, $strProviderID)
@@ -2673,7 +2694,6 @@ echo "@@@@@@@<br>";
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$queryResult = NULL;
-		//$nCustomerTradeID = DoGetCustomerTradeID();
 		
 		if (strlen($strProviderID) > 0)
 		{
@@ -2691,75 +2711,7 @@ echo "@@@@@@@<br>";
 				DoCreateFeedbackRow($rowFeedback, $rowFeedback["provider_id"]);			
 			}
 		}
-	}
-/*	
-	function DoDisplayFeedback($strRecipientID, $strProviderID)
-	{
-		global $g_dbFindATradie;
-		global $g_strQuery;
-		global $g_strMailToNewLine;
-		$queryResult = NULL;
-		$bReceived = strlen($strRecipientID) > 0;
-		$rowMember = NULL;
-		
-		if (!$bReceived)
-			$strFormID = "given";
-		else
-			$strFormID = "received";
-		
-		if (strcmp($strRecipientID, "") != 0)
-		{
-			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "recipient_id", $strRecipientID);
-		}
-		else if (strcmp($strProviderID, "") != 0)
-		{
-			$queryResult = DoFindQuery1($g_dbFindATradie, "feedback", "provider_id", $strProviderID);
-		}
-		if ($queryResult && ($queryResult->num_rows > 0))
-		{
-			while ($rowFeedback = $queryResult->fetch_assoc())
-			{
-				if ($bReceived)
-					$strMemberID = $rowFeedback["provider_id"];
-				else
-					$strMemberID = $rowFeedback["recipient_id"];
-				
-				DoCreateFeedbackRow($rowFeedback, $strMemberID);
-				
-				echo "<td class=\"feedback_row\">";
-				echo "<form id=\"form_feedback_given\" method=\"post\" class=\"function_form\">\n";
-				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
-				echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>";
-				if ($bReceived && !$rowFeedback["positive"])
-				{
-					$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
-					$rowClient = DoGetRow1("members", "id", $rowJob["member_id"]);
-					$rowTradie = DoGetRow1("members", "id", $rowJob["accepted_by_member_id"]);
-					$dateAdded = new DateTime($rowJob["date_added"]);
-					echo "&nbsp;<a href=\"mailto://" . $rowTradie["email"] . "?subject=RE: Negative feedback left on 'Find a Tradie'&body=JOB ID: " . 
-							sprintf("%d", $rowFeedback["job_id"]) . $g_strMailToNewLine . "DATE: " . $dateAdded->format("d/m/Y") . $g_strMailToNewLine . 
-							"LOCATION: " . $rowTradie["suburb"] . ", " . $rowTradie["state"] . ", " . $rowTradie["postcode"] . $g_strMailToNewLine . $g_strMailToNewLine . 
-							"JOB DESCRIPTION" . $g_strMailToNewLine . "----------------" . $g_strMailToNewLine . $rowJob["description"] . "&from=" .  $rowClient["email"] . 
-							"\")\"><button title=\"'Email " . $rowTradie["first_name"] . " " . $rowTradie["surname"] . " about this negative feedback'\" class=\"function_button_hidden\"><img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></button></a>\n";
-				}
-				else if (!$bReceived)
-				{
-					echo "<br/>";
-					DoCreateFeedbackTextArea(false, $rowFeedback["id"], $rowFeedback["recipient_id"], $rowFeedback["provider_id"], $rowFeedback["job_id"], true);
-				}
-				echo "</form>\n";
-				echo "</td>\n";
-				echo "</tr>\n";
-			}
-			echo "</table>\n";
-		}
-		else
-		{
-			echo "<td colspan=\"6\" class=\"cell_no_borders search_cell\">No feedback yet...</td>\n";
-		}
-	}
-*/	
-	
+	}	
 	
 	
 	//******************************************************************************
@@ -2856,7 +2808,7 @@ echo "@@@@@@@<br>";
 				if ($row["completed"] == 1)
 				{
 					$dateCompleted = new DateTime($row["date_completed"]);
-					$strHREF = "mailto://" . DoGetMemberColumn($row["accepted_by_member_id"], "email") . "?subject=RE: job in " . $_SESSION["account_suburb"] . "(" .
+					$strHREF = "mailto:" . DoGetMemberColumn($row["accepted_by_member_id"], "email") . "?subject=RE: job in " . $_SESSION["account_suburb"] . "(" .
 								$_SESSION["account_postcode"] . ") with ID '" . $row["id"] . 
 								"'&body=Job Completed: " . $dateCompleted->format("d/m/Y") . $g_strMailToNewLine . $g_strMailToNewLine . 
 								"Client name: " . $_SESSION["account_first_name"] . " " . $_SESSION["account_surname"] . 
@@ -2969,7 +2921,8 @@ echo "@@@@@@@<br>";
 				echo "<img src=\"images/" . $strFilename . "\" alt=\"images/" . $strFilename . "\" class=\"function_button_image\" />&nbsp;\n";
 			}
 			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\" " . $strRequired . " cols=\"32\" rows=\"1\">\n" . $strFeedbackDesc . "</textarea>\n";
-			$strPrompt = "You can edit your feedback for " . $rowMember["first_name"] . " " . $rowMember["surname"] . " here...";
+			$strPrompt = "You can edit your feedback for " . DoGetMemberColumn($strRecipientID, "first_name") . " " . 
+			DoGetMemberColumn($strRecipientID, "surname") . " here...";
 		}
 		echo "<button type=\"submit\" name=\"submit_positive_feedback\" class=\"function_button\" title=\"Provide positive feedback\" value=\"POSITIVE FEEDBACK\" /><img src=\"images/thumbs_up.png\" alt=\"images/thumbs_up.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 		echo "<button type=\"submit\" name=\"submit_negative_feedback\" class=\"function_button\" title=\"Provide negative feedback\" value=\"NEGATIVE FEEDBACK\" /><img src=\"images/thumbs_down.png\" alt=\"images/thumbs_down.png\" class=\"function_button_image\" /></button>\n";
@@ -3089,7 +3042,7 @@ echo "@@@@@@@<br>";
 								if (strlen($rowJob["unit"]) > 0)
 									echo $rowJob["unit"] . ", ";
 								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
-								echo "<a href=\"mailto://" . DoGetMemberColumn($rowJob["member_id"], "email") .
+								echo "<a href=\"mailto:" . DoGetMemberColumn($rowJob["member_id"], "email") .
 										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . DoGetMemberColumn($rowJob["member_id"], "email") . "</a></td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
@@ -3116,7 +3069,7 @@ echo "@@@@@@@<br>";
 								
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 								echo "<button title=\"Email " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . 
-										" about this job\" class=\"function_button_hidden\"><a href=\"mailto://" . DoGetMemberColumn($rowJob["member_id"], "email") .
+										" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . DoGetMemberColumn($rowJob["member_id"], "email") .
 										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . 
 										" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
 								echo "<button type=\"button\" class=\"function_button\" title=\"View feedback history of " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . "\"><a href=\"view_member.php?member_id=" . DoGetMemberColumn($rowJob["member_id"], "id") . "\"><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></a></button>&nbsp;\n";
@@ -3176,13 +3129,13 @@ echo "@@@@@@@<br>";
 	
 	function DoCreateTradieRow($rowMember, $bTryOut)
 	{
-		$strHREF = "mailto://" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'";
+		$strHREF = "mailto:" . $rowMember["email"] . "?subject=RE: 'Find a Tradie'";
 		$strPhone = $rowMember["phone"];
 		$strMobile = $rowMember["mobile"];
 		$strTryOut = "false";
 		if ($bTryOut)
 		{
-			$strHREF = "mailto://dummy_email@gmail.com?subject=RE: 'Find a Tradie'";
+			$strHREF = "mailto:dummy_email@gmail.com?subject=RE: 'Find a Tradie'";
 			$strPhone = "94010000";
 			$strMobile = "0455000000";
 			$strTryOut = "true";
