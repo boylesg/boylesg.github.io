@@ -1267,7 +1267,7 @@
 	{
 		global $g_dbFindATradie;
 		$strSelected = "";
-		
+
 		if (isset($strTradeID) && (strlen($strTradeID) == 0))
 			$strSelected = " selected";
 	 
@@ -1281,7 +1281,7 @@
 			{
 				echo " selected";
 			}
-			echo ">" . $row["name"] . "</option>\n";
+			echo ">" . $row["id"] . ". " . $row["name"] . "</option>\n";
 			$strSelected = "";
 	    }
 	    $queryResult->free_result();
@@ -1348,7 +1348,7 @@
 		
 			if ($nI == ($queryResult->num_rows - 1))
 				$strComma = "";
-			$arrayTrades[] = "\"" . $row["name"] . "\":\"" . $row["description"] . "\"" . $strComma;
+			$arrayTrades[] = "\"" . $row["id"] . ". " . $row["name"] . "\":\"" . $row["description"] . "\"" . $strComma;
 			$nI++;
 		}
 		$arrayTrades[] = "};";
@@ -2148,15 +2148,12 @@ echo "@@@@@@@<br>";
 				$rowAdvert = DoFindActiveAdvert($rowSpace["id"], $strPageName);
 				if ($rowAdvert)
 				{
-					if ($rowMember)
-					{
-						$strLogoURL = DoGetMemberColumn($rowAdvert["member_id"], "logo_filename");
-						$strAdvertText = $rowAdvert["text"];
-						$strAdvertID = $rowAdvert["id"];
-						$strMemberID = $rowMember["id"];
-						$dateExpiry = new DateTime($rowAdvert["expiry_date"]);
-						$strExpiryDate = $dateExpiry->format("d/m/Y");
-					}
+					$strLogoURL = DoGetMemberColumn($rowAdvert["member_id"], "logo_filename");
+					$strAdvertText = $rowAdvert["text"];
+					$strAdvertID = $rowAdvert["id"];
+					$strMemberID = DoGetMemberColumn($rowAdvert["member_id"], "id");
+					$dateExpiry = new DateTime($rowAdvert["expiry_date"]);
+					$strExpiryDate = $dateExpiry->format("d/m/Y");
 				}
 				else
 				{
@@ -2790,7 +2787,18 @@ echo "@@@@@@@<br>";
 		global $g_strQuery;
 		$row = null;
 		
-		$results = DoFindQuery1($g_dbFindATradie, "jobs", "member_id", $_SESSION["account_id"]);
+		if (isset($_POST["submit_search_my_jobs"]))
+		{
+			$nIsUrgent = 0;
+			if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "ON") == "1"))
+				$nIsUrgent = 1;
+			$results = DoFindQuery4($g_dbFindATradie, "jobs", "member_id", $_SESSION["account_id"], "trade_id", $_POST["select_trade_job"], 
+									"urgent",$nIsUrgent, "size", $_POST["select_job_size"], "maximum_budget <= " . $_POST["text_maximum_budget"]);
+		}
+		else
+		{
+			$results = DoFindQuery1($g_dbFindATradie, "jobs", "member_id", $_SESSION["account_id"]);
+		}
 		if ($results && ($results->num_rows > 0))
 		{
 			while ($row = $results->fetch_assoc())
@@ -2840,11 +2848,11 @@ echo "@@@@@@@<br>";
 				echo "<td class=\"search_cell\">";
 				echo "	<form method=\"post\" action=\"\" class=\"function_form\">\n";	
 				echo "    <button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $row["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
-				if ($row["accepted_by_member_id"] == 0)
+				if ($row["completed"] == 0)
 				{
 					echo "    <button type=\"button\" class=\"function_button\" title=\"Edit this job\" value=\"EDIT\" onclick=\"OnClickEditJobButton('" . $row["id"] . "', '" . $row["member_id"] . "', '" . $row["trade_id"] . "', '" . $row["maximum_budget"] . "', '" . $row["size"] . "', '" . $row["urgent"] . "', '" . $row["description"] . "', '" . $row["unit"] . "', '" . $row["street"] . "', '" . $row["suburb"] . "', '" . $row["state"] . "', '" . $row["postcode"] . "')\" /><img src=\"images/edit.png\" alt=\"images/edit.png\" class=\"function_button_image\" /></button>\n";
+					echo "	  <button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 				}
-				echo "	  <button type=\"submit\ id=\"submit_job_delete\" name=\"submit_job_delete\" class=\"function_button\" title=\"Delete your feedback\" value=\"DELETE\" /><img src=\"images/delete.png\" alt=\"images/delete.png\" class=\"function_button_image\" /></button>&nbsp;\n";
 				if ($row["completed"] == 1)
 				{
 					$dateCompleted = new DateTime($row["date_completed"]);

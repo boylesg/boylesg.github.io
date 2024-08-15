@@ -126,13 +126,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>180</line>
+          <line>184</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>167</line>
+          <line>171</line>
           <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
+          <line>187</line>
+          <option name="timeStamp" value="109" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

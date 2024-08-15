@@ -605,11 +605,19 @@
 	{
 		// See in tab below
 	}
-	else if (isset($_POST["submit_job_search"]))
+	else if (isset($_POST["submit_search_all_my_jobs"]))
 	{
 		// See in tab below
 	}
-	else if (isset($_POST["submit_job_posted_search"]))
+	else if (isset($_POST["submit_search_my_jobs"]))	
+	{
+		// See in tab below
+	}
+	else if (isset($_POST["submit_new_job"]))
+	{
+		// See in tab below
+	}
+	else if (isset($_POST["submit_edit_job"]))
 	{
 		// See in tab below
 	}
@@ -1032,17 +1040,29 @@
 										<td class="form_table_cell">
 											<input type="checkbox" id="check_urgent" name="check_urgent" <?php if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "on") == 0)) echo " checked"; ?> />
 										</td class="form_table_cell">
-										<td class="form_table_cell" >
-											<textarea id="text_job_description" name="text_job_description" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
-										</td>
 									</tr>
 									<tr><td colspan="6"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
+									<tr>
+										<td colspan="5">
+											<button type="submit" id="submit_search_my_jobs" name="submit_search_my_jobs" title="Filter my jobs...">
+												<img src="images/search.png" alt="FILTER JOBS" width="30" />
+											</button>
+											&nbsp;
+											<button type="submit" id="submit_search_all_my_jobs" name="submit_search_all_my_jobs" title="Reset jobs...">
+												<img src="images/refresh.png" alt="ALL JOBS" width="30" />
+											</button>
+											&nbsp;
+											<button type="button" id="button_new_job" title="Add a new job..." onclick="OnClickButtonNewJob()">
+												<img src="images/add.png" alt="ALL JOBS" width="30" />
+											</button>
+										</td>
+									</tr>
 								</table>
 							</form>
 							<br/>
 							<form method="post" action="" id="form_edit_job" class="form search_form" style="display:none;">
-								<h6 id="h6_heading">New Job</h6>
-								<table cellspacing="0" cellpadding="3" border="0" class="form_table">
+								<h6 id="job_edit_form_heading">New Job</h6>
+								<table cellspacing="0" cellpadding="3" border="1" class="form_table">
 									<tr>
 										<td class="form_table_cell" style="width:330px;"><b>Trade type</b></td>
 										<td class="form_table_cell" style="width:100px;"><b>Budget</b></td>
@@ -1050,16 +1070,9 @@
 										<td class="form_table_cell" style="width:60px;"><b>Urgent</b></td>
 										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
 										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
-											<script type="text/javascript">
-												function OnClickJobButton()
-												{
-													DoGetInput("form_edit_job").style.display = "none";
-												}
-												
-											</script>
 											<input id="submit_job" name="submit_job" type="submit" value="SUBMIT" onclick="OnClickJobButton()" />
 											<br/><br/>
-											<input type="submit" value="CLOSE" onclick="OnClickJobButton()" />
+											<input type="submit" value="CLOSE" onclick="DoToggleEditJobForm()" />
 										</td>
 									</tr>
 									<tr>
@@ -1121,29 +1134,120 @@
 											</table>
 										</td>
 									</tr>
+									<tr>
+										<td colspan="5">
+											<button type="submit" id="submit_edit_job" name="submit_edit_job" class="function_button" title="Edit this job..."><img src="images/save.png" alt="SAVE JOB EDITS" width="30" /></button>
+											<button type="submit" id="submit_new_job" name="submit_new_job" class="function_button" title="Add this job..." style="display:none;"><img src="images/save.png" alt="ADD NEW JOB" width="30" /></button>
+											&nbsp;
+											<button type="button" id="button_cancel_job" class="function_button" title="Discard changes to this job..." onclick="DoToggleEditJobForm()"><img src="images/delete.png" alt="CANCEL" width="30" /></button>
+										</td>
+									</tr>
 								</table>
 								<input type="hidden" id="text_member_id" name="text_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
 								<input type="hidden" id="text_job_id" name="text_job_id" value="" />
 							</form>
+<?php
+
+	if (isset($_POST["submit_new_job"]))
+	{
+		$nUrgent = 0;
+		if (isset($_POST["check_urgent_job_edit"]))
+		{
+			if (strcmp($_POST["check_urgent_job_edit"], "on") == 0)
+			{
+				$nUrgent = 1;
+			}
+		}
+		if (!DoInsertQuery11($g_dbFindATradie, "jobs", "member_id", $_POST["text_member_id"], "trade_id", $_POST["select_trade_id_edit"], 
+								"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
+								"urgent", $nUrgent, "description", $_POST["text_job_description_edit"], 
+								"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
+								"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
+								"postcode", $_POST["text_postcode_edit"]))
+		{
+		}
+	}
+	else if (isset($_POST["submit_edit_job"]))
+	{
+		$nUrgent = 0;
+		if (isset($_POST["check_urgent_job_edit"]))
+		{
+			if (strcmp($_POST["check_urgent_job_edit"], "on") == 0)
+			{
+				$nUrgent = 1;
+			}
+		}
+		if (!DoUpdateQuery10($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_id_edit"], 
+							"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
+							"urgent", $nUrgent, "description", $_POST["text_job_description_edit"], 
+							"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
+							"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
+							"postcode", $_POST["text_postcode_edit"], "id", $_POST["text_job_id"]))
+		{
+		}
+	}
+	
+?>
 							<p>
 								If you hover the mouse pointer over the function buttons then you will see what they do.
 								<br/><b>NOTE: </b>The tradie doing the work is responsible for marking jobs as complete &amp; paid.
 							</p>
 							<script type="text/javascript">
 							
-								function OnClickAddJobButton()
+								function DoToggleEditJobForm()
 								{
-									DoGetInput("h6_heading").innerText = "New Job";
-									DoGetInput("form_edit_job").style.display = "block";
+									var formEditJob = document.getElementById("form_edit_job");
+									
+									if (formEditJob)
+									{
+										if (formEditJob.style.display == "block")
+											formEditJob.style.display = "none";
+										else
+											formEditJob.style.display = "block";
+									}
+								}
+								
+								function OnClickButtonNewJob()
+								{							
+									var headingEditJob = DoGetInput("job_edit_form_heading", "job_edit_form_heading");
+									
+									if (headingEditJob)
+									{
+										headingEditJob.innerText = "New Job";
+										DoGetInput("submit_edit_job").style.display = "none";
+										DoGetInput("submit_new_job").style.display = "inline-block";
+										DoToggleEditJobForm();
+									}
 								}
 
 								function OnClickEditJobButton(strJobID, strMemberID, strTradeID, strMaximumBudget, strSize, 
 																strUrgent, strDescription, strUnit, strStreet, strSuburb, 
 																strState, strPostcode)
 								{
+									var headingEditJob = DoGetInput("job_edit_form_heading", "job_edit_form_heading");
+									
+									if (headingEditJob)
+									{
+										headingEditJob.innerText = "Edit Job";
+										DoGetInput("submit_edit_job").style.display = "inline-blobk";
+										DoGetInput("submit_new_job").style.display = "none";
+										DoToggleEditJobForm();
+									}
 									DoGetInput("text_job_id").value = strJobID;
 									DoGetInput("text_member_id").value = strMemberID;
-									DoGetInput("select_trade_id_edit").selectedIndex = strTradeID - 1;
+									
+									var nI = 0, 
+										selectTrade = DoGetInput("select_trade_id_edit"),
+										nTradeID = Number(strTradeID);
+										
+									for (nI = 0; nI < selectTrade.options.length; nI++)
+									{
+										if (nTradeID == Number(selectTrade.options[nI].value))
+										{
+											selectTrade.selectedIndex = nI;
+											break;
+										}
+									}
 									DoGetInput("text_maximum_budget_edit").value = strMaximumBudget;
 									DoGetInput("select_job_size_edit").selectedIndex = DoGetJobSizeSelectionIndex(strSize);
 									DoGetInput("check_urgent_job_edit").checked = strUrgent == 1;
@@ -1153,9 +1257,6 @@
 									DoGetInput("text_suburb_edit").value = strSuburb;
 									DoGetInput("select_state_edit").selectedIndex = DoGetStateSelectionIndex(strState);
 									DoGetInput("text_postcode_edit").value =strPostcode;
-
-									DoGetInput("h6_heading").innerText = "Edit Job";
-									DoGetInput("form_edit_job").style.display = "block";
 								}
 								OnChangeTrade(DoGetInput("select_trade_id_edit"), DoGetInput('trade_description_job_edit'));
 							</script>
