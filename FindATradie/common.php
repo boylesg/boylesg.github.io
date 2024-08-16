@@ -2938,8 +2938,10 @@ echo "@@@@@@@<br>";
 	
 	function DoCreateMailToLink($strMemberID, $strJobID, $date)
 	{
-		echo "<a href=\"mailto:" . DoGetMemberColumn($strMemberID, "email") .
-			"?subject=RE: job id: " . $strJobID . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . DoGetMemberColumn($strMemberID, "email") . "</a>";
+		echo "<a href=\"mailto:" . DoGetMemberColumn($strMemberID, "email") . 
+			"?subject=RE: job id: " . $strJobID . ", posted on date: " . $date->format("d/m/Y") . 
+			" on 'Find a Tradie'\" title=\"Email " . DoGetMemberColumn($strMemberID, "first_name") . 
+			" " . DoGetMemberColumn($strMemberID, "surname") ."...\">" . DoGetMemberColumn($strMemberID, "email") . "</a>";
 	}
 	
 	function DoCreateMailToLinkButton($strMemberID, $strJobID, $date)
@@ -2947,7 +2949,7 @@ echo "@@@@@@@<br>";
 		echo "<button title=\"Email " . DoGetMemberColumn($strMemberID, "first_name") . " " . DoGetMemberColumn($strMemberID, "surname") . 
 				" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . DoGetMemberColumn($strMemberID, "email") .
 				"?subject=RE: job id: " . $strJobID . ", posted on date: " . $date->format("d/m/Y") . 
-				" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+				" on 'Find a Tradie'\" title=\"Email " . DoGetMemberColumn($strMemberID, "first_name") . " " . DoGetMemberColumn($strMemberID, "surname") . "\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
 	
 	}
 	
@@ -3056,7 +3058,11 @@ echo "@@@@@@@<br>";
 								$date = new DateTime($rowJob["date_added"]);
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["id"] . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\">" . $date->format("d/m/Y") . "</td>\n";
-								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . DoGetMemberColumn($rowJob["member_id"], "id") . "\">" . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . "</a><br/>\n";
+								echo "<td class=\"cell_no_borders search_cell\"><a href=\"view_member.php?member_id=" . 
+										DoGetMemberColumn($rowJob["member_id"], "id") . "\" title=\"View feedback history of " . 
+										DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . 
+										"...\">" . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . 
+										DoGetMemberColumn($rowJob["member_id"], "surname") . "</a><br/>\n";
 								if (strlen($rowJob["unit"]) > 0)
 									echo $rowJob["unit"] . ", ";
 								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
