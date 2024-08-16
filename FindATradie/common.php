@@ -2663,10 +2663,10 @@ echo "@@@@@@@<br>";
 		echo $dateAdded->format("d/m/Y");
 		echo "</td>\n";
 
-		echo "<td class=\"feedback_row\">" . DoGetMemberColumn($rowFeedback["recipient_id"], "first_name") . " " . 
-				DoGetMemberColumn($rowFeedback["recipient_id"], "surname") . "<br/>"; 
-		if (DoGetMemberColumn($rowFeedback["recipient_id"], "business_name") && (strlen(DoGetMemberColumn($rowFeedback["recipient_id"], "business_name")) > 0))
-			echo DoGetMemberColumn($rowFeedback["recipient_id"], "business_name") . "<br/>";
+		echo "<td class=\"feedback_row\">" . DoGetMemberColumn($strMemberID, "first_name") . " " . 
+				DoGetMemberColumn($strMemberID, "surname") . "<br/>"; 
+		if (DoGetMemberColumn($strMemberID, "business_name") && (strlen(DoGetMemberColumn($strMemberID, "business_name")) > 0))
+			echo DoGetMemberColumn($strMemberID, "business_name") . "<br/>";
 		else
 			echo "-<br/>";
 		echo DoGetMemberColumn($strMemberID, "suburb") . ", " . DoGetMemberColumn($strMemberID, "state") . ", " . DoGetMemberColumn($strMemberID, "postcode") . "</td>\n";
@@ -2674,17 +2674,12 @@ echo "@@@@@@@<br>";
 		if (($rowFeedback["recipient_id"] == $_SESSION["account_id"]) && ($rowFeedback["positive"] == 0)) 
 		{
 			$date = new DateTime($rowFeedback["date_added"]);
-			echo "<button title=\"Email " . DoGetMemberColumn($rowFeedback["provider_id"], "first_name") . " " . 
-					DoGetMemberColumn($rowFeedback["provider_id"], "surname") . 
-					" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . 
-					DoGetMemberColumn($rowFeedback["provider_id"], "email") .
-					"?subject=RE: job id: " . $rowFeedback["job_id"] . ", posted on date: " . $date->format("d/m/Y") . 
-					" on 'Find a Tradie'\"><img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+			DoCreateMailToLinkButton($rowFeedback["provider_id"], $rowFeedback["job_id"], $date);
 		}
 		else if ($rowFeedback["provider_id"] == $_SESSION["account_id"])
 		{	
 			DoCreateFeedbackTextArea(true, $rowFeedback["id"], $rowFeedback["recipient_id"], 
-										$rowFeedback["provider_id"], $rowFeedback["job_id"]);
+										$rowFeedback["provider_id"], $rowFeedback["job_id"], true, true);
 		}
 		echo "</td>\n";
 	}
@@ -2894,13 +2889,17 @@ echo "@@@@@@@<br>";
 		return $date->format("d/m/Y");
 	}
 	
-	function DoCreateFeedbackTextArea($bDisplayCurrentFeedback, $strFeedbackID, $strRecipientID, $strProviderID, $strJobID, $bRequired = false)
+	function DoCreateFeedbackTextArea($bDisplayCurrentFeedback, $strFeedbackID, $strRecipientID, $strProviderID, $strJobID, $bRequired = false, $bCreateForm = false)
 	{
 		$strPrompt = "";
 		$strRequired = "";
 		if ($bRequired)
 			$strRequired = " required";
 			
+		if ($bCreateForm)
+		{
+			echo "<form method=\"post\">\n";
+		}
 		if (($strFeedbackID == NULL) || (strcmp($strFeedbackID, "") == 0))
 		{
 			echo "<textarea name=\"text_feedback\" placeholder=\"Type your feedback...\"" . $strRequired . "cols=\"32\" rows=\"1\"></textarea>\n";
@@ -2931,6 +2930,25 @@ echo "@@@@@@@<br>";
 		echo "<input type=\"hidden\" name=\"text_recipient_id\" value=\"" . $strRecipientID . "\" />\n";
 		echo "<input type=\"hidden\" name=\"text_provider_id\" value=\"" . $strProviderID . "\" />\n";
 		echo "<input type=\"hidden\" name=\"text_job_id\" value=\"" . $strJobID . "\" />\n";
+		if ($bCreateForm)
+		{
+			echo "</form>\n";
+		}
+	}
+	
+	function DoCreateMailToLink($strMemberID, $strJobID, $date)
+	{
+		echo "<a href=\"mailto:" . DoGetMemberColumn($strMemberID, "email") .
+			"?subject=RE: job id: " . $strJobID . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . DoGetMemberColumn($strMemberID, "email") . "</a>";
+	}
+	
+	function DoCreateMailToLinkButton($strMemberID, $strJobID, $date)
+	{
+		echo "<button title=\"Email " . DoGetMemberColumn($strMemberID, "first_name") . " " . DoGetMemberColumn($strMemberID, "surname") . 
+				" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . DoGetMemberColumn($strMemberID, "email") .
+				"?subject=RE: job id: " . $strJobID . ", posted on date: " . $date->format("d/m/Y") . 
+				" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+	
 	}
 	
 	function DoGetWebJobs($strTradeID, &$mapAddedJobIDs)
@@ -3042,8 +3060,7 @@ echo "@@@@@@@<br>";
 								if (strlen($rowJob["unit"]) > 0)
 									echo $rowJob["unit"] . ", ";
 								echo $rowJob["street"] . "<br/" . $rowJob["suburb"] . ", " . $rowJob["postcode"] . "<br/>\n";
-								echo "<a href=\"mailto:" . DoGetMemberColumn($rowJob["member_id"], "email") .
-										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . " on 'Find a Tradie'\">" . DoGetMemberColumn($rowJob["member_id"], "email") . "</a></td>\n";
+								DoCreateMailToLink($rowJob["member_id"], $rowJob["id"], $date);
 								echo "<td class=\"cell_no_borders search_cell\">" . $rowJob["size"] . " m<sup>2</sup><br/>" . sprintf("$%d", $rowJob["maximum_budget"]) . "</td>\n";
 								echo "<td class=\"cell_no_borders search_cell\" style=\"text-align:center;\">\n";
 								DoDisplayBoolean($rowJob["urgent"] == 1, "function_button_image");
@@ -3068,10 +3085,7 @@ echo "@@@@@@@<br>";
 								echo "     <input type=\"hidden\" name=\"text_accepted_by_member_id\" value=\"" . $rowJob["accepted_by_member_id"] . "\" />\n";
 								
 								echo "<button type=\"button\" class=\"function_button\" title=\"View the job description\" onclick=\"AlertInformation('JOB DESCRIPTION', '" . $rowJob["description"] . "');return false;\"><img src=\"images/view.png\" alt=\"images/view.png\" class=\"function_button_image\" /></button>&nbsp;\n";
-								echo "<button title=\"Email " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . 
-										" about this job\" class=\"function_button_hidden\"><a href=\"mailto:" . DoGetMemberColumn($rowJob["member_id"], "email") .
-										"?subject=RE: job id: " . $rowJob["id"] . ", posted on date: " . $date->format("d/m/Y") . 
-										" on 'Find a Tradie'\">" . "<img class=\"function_button_image\" src=\"images/email.png\" alt=\"images/email.png\"/></a></button>&nbsp;\n";
+								DoCreateMailToLinkButton($rowJob["member_id"], $rowJob["id"], $date);
 								echo "<button type=\"button\" class=\"function_button\" title=\"View feedback history of " . DoGetMemberColumn($rowJob["member_id"], "first_name") . " " . DoGetMemberColumn($rowJob["member_id"], "surname") . "\"><a href=\"view_member.php?member_id=" . DoGetMemberColumn($rowJob["member_id"], "id") . "\"><img src=\"images/feedback.png\" alt=\"images/feedback.png\" class=\"function_button_image\" /></a></button>&nbsp;\n";
 
 								if ($rowJob["accepted_by_member_id"] == 0)
