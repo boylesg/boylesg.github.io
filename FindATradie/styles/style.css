@@ -22,10 +22,11 @@
 
 .body 
 { 
+	display: block;
 	position: relative;
+	width: 100%;
 	margin: 0px;
 	padding: 0px;
-	
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: small;
@@ -259,6 +260,8 @@ a.masthead_button:hover
 	position: relative;
 	overflow: auto;
 	padding: var(--Padding);
+	width: 1308px;
+	margin: 0px;
 }
 
 .note

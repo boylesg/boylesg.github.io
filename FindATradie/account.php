@@ -35,6 +35,7 @@
 						
 			<style>
 
+
 				:root 
 				{
 					--Width: 98%;
@@ -98,7 +99,7 @@
 					border-bottom-left-radius: var(--BorderRadius);
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
-					min-width: 1224px;
+					min-width: 1120px;
 					overflow: auto;
 				}
 				
@@ -755,9 +756,14 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
-				<div class="note" style="flex-wrap:wrap;width:1120px">
-					
-					<div style="width:1270px;visibility:hidden">SPACE FILLER</div>
+
+
+
+
+
+
+
+				<div class="note" style="flex-wrap:wrap;width:1220px">
 
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
 						<h2 id="tab_heading">It is time to renew your membership...</h2><br/>
@@ -1030,9 +1036,9 @@
 											<input type="checkbox" id="check_urgent" name="check_urgent" <?php if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "on") == 0)) echo " checked"; ?> />
 										</td class="form_table_cell">
 									</tr>
-									<tr><td colspan="6"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
+									<tr><td colspan="4"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
 									<tr>
-										<td colspan="5">
+										<td colspan="4">
 											<button type="submit" id="submit_search_my_jobs" name="submit_search_my_jobs" title="Filter my jobs...">
 												<img src="images/search.png" alt="FILTER JOBS" width="30" />
 											</button>
