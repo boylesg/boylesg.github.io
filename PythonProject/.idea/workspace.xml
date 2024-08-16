@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/common.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,8 +126,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>90</line>
-          <option name="timeStamp" value="98" />
+          <line>184</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
+          <line>171</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
+          <line>187</line>
+          <option name="timeStamp" value="109" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -142,5 +148,12 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="error.args[0]" language="Python" />
+        <watch expression="error.args[1]" language="Python" />
+        <watch expression="g_nEmailServer" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

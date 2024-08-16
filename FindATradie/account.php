@@ -35,6 +35,7 @@
 						
 			<style>
 
+
 				:root 
 				{
 					--Width: 98%;
@@ -91,7 +92,6 @@
 					display: none;
 					padding: 6px 12px;
 					border-top: none;
-					width: var(--Width);
 					border-style: var(--BorderStyle);
 					border-width: var(--BorderWidth);
 					border-color: var(--BorderColor);
@@ -99,10 +99,8 @@
 					border-bottom-left-radius: var(--BorderRadius);
 					border-bottom-right-radius: var(--BorderRadius);
 					border-top-right-radius:  var(--BorderRadius);
-					min-height: 400px;
-					min-width: 1224px;
+					min-width: 1120px;
 					overflow: auto;
-					/*height: 1000px;*/
 				}
 				
 				.paypal_table
@@ -605,11 +603,19 @@
 	{
 		// See in tab below
 	}
-	else if (isset($_POST["submit_job_search"]))
+	else if (isset($_POST["submit_search_all_my_jobs"]))
 	{
 		// See in tab below
 	}
-	else if (isset($_POST["submit_job_posted_search"]))
+	else if (isset($_POST["submit_search_my_jobs"]))	
+	{
+		// See in tab below
+	}
+	else if (isset($_POST["submit_new_job"]))
+	{
+		// See in tab below
+	}
+	else if (isset($_POST["submit_edit_job"]))
 	{
 		// See in tab below
 	}
@@ -757,9 +763,7 @@
 
 
 
-				<div class="note" style="flex-wrap:wrap;">
-					
-					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
+				<div class="note" style="flex-wrap:wrap;width:1220px">
 
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
 						<h2 id="tab_heading">It is time to renew your membership...</h2><br/>
@@ -898,7 +902,7 @@
 
 						<div id="tab_contents1" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;">
 							<h2 id="tab_heading1"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;width:1200px;">
+								<form method="post" action="" id="form_job_search" class="form search_form" style="display:<?php if (IsTradie($_SESSION["account_id"])) echo "block"; else echo "none"; ?>;width:1100px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:150px;"><b>Maximum distance</b></td>
@@ -909,10 +913,6 @@
 											<td class="form_table_cell" style="width:125px;"><b>Acceptance</b></td>
 											<td class="form_table_cell" style="width:125px;"><b>Completeness</b></td>
 											<td class="form_table_cell" style="width:100px;"><b>Payment</b></td>
-											<td class="form_table_cell" style="width:80px;text-align:center;" rowspan="2">
-												<input type="submit" id="submit_job_search" name="submit_job_search" value="SEARCH" style="width:5em;margin:5px;" /><br/>
-												<input type="reset" id="reset_job_search" name="reset_job_search" value="RESET" style="width:5em;;margin:5px;" />
-											</td>
 										</tr>
 										<tr>	
 											<td class="form_table_cell"><input type="text" id="text_maximum_distance" name="text_maximum_distance" maxlength="4" size="15" value="<?php echo DoGetMaxDistance() ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b></td>
@@ -951,6 +951,13 @@
 												<input type="radio" name="radio_payment" value="all" <?php if ((isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "all")) || !isset($_POST["radio_payment"])) echo "checked";?>/><label>All</label><br/>
 												<input type="radio" name="radio_payment" value="paid"  <?php if (isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "paid")) echo "checked";?>/><label>Paid jobs</label><br/>
 												<input type="radio" name="radio_payment" value="unpaid"  <?php if (isset($_POST["radio_payment"]) && ($_POST["radio_payment"] == "unpaid")) echo "checked";?>/>Unpaid jobs<br/>
+											</td>
+										</tr>
+										<tr>
+											<td class="form_table_cell" colspan="8">
+												<button type="submit" id="submit_job_search" name="submit_job_search"><img src="images/search.png" alt="SEARCH" width="30" /></button>
+												&nbsp;
+												<button type="reset" id="reset_job_search" name="reset_job_search"><img src="images/delete.png" alt="RESET" width="30" /></button>
 											</td>
 										</tr>
 									</table>
@@ -994,7 +1001,7 @@
 						<div id="tab_contents2" class="tab_content">
 							<h2 id="tab_heading2"><script type="text/javascript">document.write(document.getElementById("tab_button2").innerText);</script></h2>
 							
-							<form method="post" action="" id="form_filter_jobs" class="form search_form">
+							<form method="post" action="" id="form_filter_jobs" class="form search_form" style="width:640px;">
 								<h6>Filter Jobs</h6>
 								<table cellspacing="0" cellpadding="3" border="0" class="form_table">
 									<tr>
@@ -1002,10 +1009,6 @@
 										<td class="form_table_cell" style="width:100px;"><b>Budget</b></td>
 										<td class="form_table_cell" style="width:125px;"><b>Size</b></td>
 										<td class="form_table_cell" style="width:60px;"><b>Urgent</b></td>
-										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
-										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
-											<input id="submit_job_posted_search" name="submit_job_posted_search" type="submit" value="SUBMIT" />
-										</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1032,16 +1035,28 @@
 										<td class="form_table_cell">
 											<input type="checkbox" id="check_urgent" name="check_urgent" <?php if (isset($_POST["check_urgent"]) && (strcmp($_POST["check_urgent"], "on") == 0)) echo " checked"; ?> />
 										</td class="form_table_cell">
-										<td class="form_table_cell" >
-											<textarea id="text_job_description" name="text_job_description" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
+									</tr>
+									<tr><td colspan="4"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
+									<tr>
+										<td colspan="4">
+											<button type="submit" id="submit_search_my_jobs" name="submit_search_my_jobs" title="Filter my jobs...">
+												<img src="images/search.png" alt="FILTER JOBS" width="30" />
+											</button>
+											&nbsp;
+											<button type="submit" id="submit_search_all_my_jobs" name="submit_search_all_my_jobs" title="Reset jobs...">
+												<img src="images/refresh.png" alt="ALL JOBS" width="30" />
+											</button>
+											&nbsp;
+											<button type="button" id="button_new_job" title="Add a new job..." onclick="OnClickButtonNewJob()">
+												<img src="images/add.png" alt="ALL JOBS" width="30" />
+											</button>
 										</td>
 									</tr>
-									<tr><td colspan="6"><label id="trade_description_job">XXXXXXXXXXXXX</label></td></tr>
 								</table>
 							</form>
 							<br/>
-							<form method="post" action="" id="form_edit_job" class="form search_form" style="display:none;">
-								<h6 id="h6_heading">New Job</h6>
+							<form method="post" action="" id="form_edit_job" class="form search_form" style="display:none;width:1040px;">
+								<h6 id="job_edit_form_heading">New Job</h6>
 								<table cellspacing="0" cellpadding="3" border="0" class="form_table">
 									<tr>
 										<td class="form_table_cell" style="width:330px;"><b>Trade type</b></td>
@@ -1049,18 +1064,6 @@
 										<td class="form_table_cell" style="width:125px;"><b>Size</b></td>
 										<td class="form_table_cell" style="width:60px;"><b>Urgent</b></td>
 										<td class="form_table_cell" style="width:360px;"><b>Job description</b></td>
-										<td rowspan="2" class="form_table_cell" style="vertical-align:middle;width:80px;">
-											<script type="text/javascript">
-												function OnClickJobButton()
-												{
-													DoGetInput("form_edit_job").style.display = "none";
-												}
-												
-											</script>
-											<input id="submit_job" name="submit_job" type="submit" value="SUBMIT" onclick="OnClickJobButton()" />
-											<br/><br/>
-											<input type="submit" value="CLOSE" onclick="OnClickJobButton()" />
-										</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1091,9 +1094,11 @@
 											<textarea id="text_job_description_edit" name="text_job_description_edit" maxlength="512" cols="48" rows="3" required><?php echo DoGetDefaultJobDescription(); ?></textarea>
 										</td>
 									</tr>
-									<tr><td colspan="6"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td></tr>
 									<tr>
-										<td colspan="6">&nbsp;</td>
+										<td colspan="5"><label id="trade_description_job_edit">XXXXXXXXXXXXX</label></td>
+									</tr>
+									<tr>
+										<td colspan="5">&nbsp;</td>
 									</tr>
 									<tr>
 										<td class="form_table_cell">
@@ -1121,29 +1126,120 @@
 											</table>
 										</td>
 									</tr>
+									<tr>
+										<td colspan="5">
+											<button type="submit" id="submit_edit_job" name="submit_edit_job" class="function_button" title="Edit this job..."><img src="images/save.png" alt="SAVE JOB EDITS" width="30" /></button>
+											<button type="submit" id="submit_new_job" name="submit_new_job" class="function_button" title="Add this job..." style="display:none;"><img src="images/save.png" alt="ADD NEW JOB" width="30" /></button>
+											&nbsp;
+											<button type="button" id="button_cancel_job" class="function_button" title="Discard changes to this job..." onclick="DoToggleEditJobForm()"><img src="images/delete.png" alt="CANCEL" width="30" /></button>
+										</td>
+									</tr>
 								</table>
 								<input type="hidden" id="text_member_id" name="text_member_id" value="<?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; ?>" />
 								<input type="hidden" id="text_job_id" name="text_job_id" value="" />
 							</form>
+<?php
+
+	if (isset($_POST["submit_new_job"]))
+	{
+		$nUrgent = 0;
+		if (isset($_POST["check_urgent_job_edit"]))
+		{
+			if (strcmp($_POST["check_urgent_job_edit"], "on") == 0)
+			{
+				$nUrgent = 1;
+			}
+		}
+		if (!DoInsertQuery11($g_dbFindATradie, "jobs", "member_id", $_POST["text_member_id"], "trade_id", $_POST["select_trade_id_edit"], 
+								"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
+								"urgent", $nUrgent, "description", $_POST["text_job_description_edit"], 
+								"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
+								"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
+								"postcode", $_POST["text_postcode_edit"]))
+		{
+		}
+	}
+	else if (isset($_POST["submit_edit_job"]))
+	{
+		$nUrgent = 0;
+		if (isset($_POST["check_urgent_job_edit"]))
+		{
+			if (strcmp($_POST["check_urgent_job_edit"], "on") == 0)
+			{
+				$nUrgent = 1;
+			}
+		}
+		if (!DoUpdateQuery10($g_dbFindATradie, "jobs", "trade_id", $_POST["select_trade_id_edit"], 
+							"maximum_budget", $_POST["text_maximum_budget_edit"], "size", $_POST["select_job_size_edit"], 
+							"urgent", $nUrgent, "description", $_POST["text_job_description_edit"], 
+							"unit", $_POST["text_unit_edit"], "street", $_POST["text_street_edit"], 
+							"suburb", $_POST["text_suburb_edit"], "state", $_POST["select_state_edit"], 
+							"postcode", $_POST["text_postcode_edit"], "id", $_POST["text_job_id"]))
+		{
+		}
+	}
+	
+?>
 							<p>
 								If you hover the mouse pointer over the function buttons then you will see what they do.
 								<br/><b>NOTE: </b>The tradie doing the work is responsible for marking jobs as complete &amp; paid.
 							</p>
 							<script type="text/javascript">
 							
-								function OnClickAddJobButton()
+								function DoToggleEditJobForm()
 								{
-									DoGetInput("h6_heading").innerText = "New Job";
-									DoGetInput("form_edit_job").style.display = "block";
+									var formEditJob = document.getElementById("form_edit_job");
+									
+									if (formEditJob)
+									{
+										if (formEditJob.style.display == "block")
+											formEditJob.style.display = "none";
+										else
+											formEditJob.style.display = "block";
+									}
+								}
+								
+								function OnClickButtonNewJob()
+								{							
+									var headingEditJob = DoGetInput("job_edit_form_heading", "job_edit_form_heading");
+									
+									if (headingEditJob)
+									{
+										headingEditJob.innerText = "New Job";
+										DoGetInput("submit_edit_job").style.display = "none";
+										DoGetInput("submit_new_job").style.display = "inline-block";
+										DoToggleEditJobForm();
+									}
 								}
 
 								function OnClickEditJobButton(strJobID, strMemberID, strTradeID, strMaximumBudget, strSize, 
 																strUrgent, strDescription, strUnit, strStreet, strSuburb, 
 																strState, strPostcode)
 								{
+									var headingEditJob = DoGetInput("job_edit_form_heading", "job_edit_form_heading");
+									
+									if (headingEditJob)
+									{
+										headingEditJob.innerText = "Edit Job";
+										DoGetInput("submit_edit_job").style.display = "inline-blobk";
+										DoGetInput("submit_new_job").style.display = "none";
+										DoToggleEditJobForm();
+									}
 									DoGetInput("text_job_id").value = strJobID;
 									DoGetInput("text_member_id").value = strMemberID;
-									DoGetInput("select_trade_id_edit").selectedIndex = strTradeID - 1;
+									
+									var nI = 0, 
+										selectTrade = DoGetInput("select_trade_id_edit"),
+										nTradeID = Number(strTradeID);
+										
+									for (nI = 0; nI < selectTrade.options.length; nI++)
+									{
+										if (nTradeID == Number(selectTrade.options[nI].value))
+										{
+											selectTrade.selectedIndex = nI;
+											break;
+										}
+									}
 									DoGetInput("text_maximum_budget_edit").value = strMaximumBudget;
 									DoGetInput("select_job_size_edit").selectedIndex = DoGetJobSizeSelectionIndex(strSize);
 									DoGetInput("check_urgent_job_edit").checked = strUrgent == 1;
@@ -1153,9 +1249,6 @@
 									DoGetInput("text_suburb_edit").value = strSuburb;
 									DoGetInput("select_state_edit").selectedIndex = DoGetStateSelectionIndex(strState);
 									DoGetInput("text_postcode_edit").value =strPostcode;
-
-									DoGetInput("h6_heading").innerText = "Edit Job";
-									DoGetInput("form_edit_job").style.display = "block";
 								}
 								OnChangeTrade(DoGetInput("select_trade_id_edit"), DoGetInput('trade_description_job_edit'));
 							</script>
@@ -1248,7 +1341,7 @@
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Tradie name<br/>Business name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Business name<br/>Location</td>
 									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
 								</tr>
 
@@ -1267,8 +1360,8 @@
 									<td class="cell_no_borders search_cell" style="width:10em;">Feedback comments</td>
 									<td class="cell_no_borders search_cell" style="width:1.5em;">Job ID</td>
 									<td class="cell_no_borders search_cell" style="width:3.5em;">Date feedback</td>
-									<td class="cell_no_borders search_cell" style="width:8em;">Client name<br/>Location</td>
-									<td class="cell_no_borders search_cell" style="width:13em;">Functions</td>
+									<td class="cell_no_borders search_cell" style="width:8em;">Member name<br/>Business name<br/>Location</td>
+									<td class="cell_no_borders search_cell" style="width:14em;">Functions</td>
 								</tr>
 <?php
 	DoDisplayFeedback("", $_SESSION["account_id"]);
@@ -1279,7 +1372,7 @@
 						<div id="tab_contents6" class="tab_content" style="display:<?php echo $strDisplayTradieStuff; ?>;" >
 							<h2 id="tab_heading6"><script type="text/javascript">document.write(document.getElementById("tab_button6").innerText);</script></h2>
 							
-							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:88%;">
+							<form method="post" action="" id="form_search_adverts" class="form search_form" style="width:960px;">
 								<table cellspacing="0" cellpadding="1" border="0" class="forrm_table">
 									<tr>
 										<td class="form_table_cell" style="text-align:right;width:6em;">Start Date</td>
@@ -1298,7 +1391,13 @@
 											</select></td>
 										<td class="form_table_cell" style="text-align:right;width:11em;">Hide Expired Adverts</td>
 										<td class="form_table_cell" style="text-align:left;"><input name="checkbox_hide_expired_adverts" type="checkbox"<?php if (isset($_POST["checkbox_hide_expired_adverts"]) && ($_POST["checkbox_hide_expired_adverts"] == "on")) echo " checked"; ?>/></td>
-										<td class="form_table_cell" style="text-align:right;width:8em;"><input name="submit_search_adverts" type="submit" value="SEARCH" /></td>
+									</tr>
+									<tr>
+										<td class="form_table_cell" colspan="8">
+											<button type="submit" id="submit_search_adverts" name="submit_search_adverts">
+												<img src="images/search.png" alt="SEARCH" width="30px" />
+											</button>
+										</td>
 									</tr>
 								</table>
 							</form>
@@ -1339,14 +1438,13 @@
 						
 						<div id="tab_contents7" class="tab_content">
 							<h2 id="tab_heading7"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:1000px;">
+								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:920px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:350px;"><b>Trade type</b></td>
 											<td class="form_table_cell" style="width:100px;"><b>Postcode</b></td>
 											<td class="form_table_cell" style="width:250px;"><b>Suburb</b></td>
 											<td class="form_table_cell" style="width:200px;"><b>Maximum distance from you</b></td>
-											<td class="form_table_cell" style="width:100px;text-align:center;" rowspan="2"><input type="submit" id="submit_tradie_search" name="submit_tradie_search" value="SEARCH" /></td>
 										</tr>
 										<tr>	
 											<td class="form_table_cell">
@@ -1364,7 +1462,14 @@
 												<input type="text" id="text_maximum_distance0" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; else printf("%d", $_SESSION["account_maximum_distance"]); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
 											</td>
 										</tr>
-										<tr><td colspan="5"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
+										<tr><td colspan="4"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
+										<tr>
+											<td class="form_table_cell" colspan="4">
+												<button type="submit" id="submit_tradie_search" name="submit_tradie_search">
+													<img src="images/search.png" alt="SEARCH" width="30px" />
+												</button>
+											</td>
+										</tr>
 									</table>
 								</form>
 								<table class="table_no_borders search_table">
