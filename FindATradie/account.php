@@ -755,16 +755,9 @@
 			</div>
 			<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
-				<div class="note" style="flex-wrap:wrap;width:1120px;">
+				<div class="note" style="flex-wrap:wrap;width:1120px">
 					
-					<div style="width:2000px;visibility:hidden">SPACE FILLER</div>
+					<div style="width:1270px;visibility:hidden">SPACE FILLER</div>
 
 					<div id="paypal" style="display:<?php echo 	$strPaypalDisplay; ?>;">						
 						<h2 id="tab_heading">It is time to renew your membership...</h2><br/>
