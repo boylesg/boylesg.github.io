@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +123,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
-          <line>77</line>
+          <line>94</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -138,6 +140,11 @@
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
           <line>187</line>
           <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
