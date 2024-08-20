@@ -40,24 +40,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.AustraliaPost.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateBusinesses.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ScrapeYellowPages.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.SendEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.common.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.errorhandler.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.message.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gregaryb/Downloads&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Doctests in smtplib.executor": "Debug",
+    "Python.AustraliaPost.executor": "Debug",
+    "Python.RemoveDuplicateBusinesses.executor": "Debug",
+    "Python.RemoveDuplicateEmails.executor": "Debug",
+    "Python.ScrapeYellowPages.executor": "Debug",
+    "Python.SendEmails.executor": "Debug",
+    "Python.common.executor": "Debug",
+    "Python.errorhandler.executor": "Debug",
+    "Python.message.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/gregaryb/Downloads",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gregaryb\Downloads" />
@@ -121,23 +122,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
-          <line>77</line>
+          <line>95</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>184</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>171</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>187</line>
-          <option name="timeStamp" value="109" />
+          <line>138</line>
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -150,9 +141,9 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
+        <watch expression="error" language="Python" />
         <watch expression="error.args[0]" language="Python" />
-        <watch expression="error.args[1]" language="Python" />
-        <watch expression="g_nEmailServer" language="Python" />
+        <watch expression="error.args[0][strToEmail]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
