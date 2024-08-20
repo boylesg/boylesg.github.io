@@ -1,5 +1,6 @@
 import random
 import smtplib
+import datetime
 import os
 import os.path
 from email.message import EmailMessage
@@ -70,6 +71,14 @@ def IsEmailServerOpen(SMTPObject):
 
 
 
+def DoWaitTillNewDay():
+    timeNow = datetime.datetime.now()
+    nNumHours = 24 - timeNow.hour
+    wait((nNumHours * 60 * 60) + (30 * 60))
+
+
+
+
 def DoSendEmail(strToEmail):
     global g_arrayEmailServers
     global g_nEmailServer
@@ -131,16 +140,23 @@ def DoSendEmail(strToEmail):
                 print("\nEMAIL SERVER ERROR: server disconnected unexpectedly...\n", error)
             elif ("Connection timed out" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: time out...", error)
+            elif ("Connection expired" in strErrorMsg):
+                print("\nEMAIL SERVER ERROR: connection expired...", error)
+                bReconnect = True
             elif ("OutboundSpamException" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: outbound spam email blocked...\n", error)
                 g_nEmailServer += 1
+                bReconnect = True
+            elif ("Daily user sending limit exceeded"):
+                print("\nEMAIL SERVER ERROR: sending limit reached...\n", error)
+                DoWaitTillNewDay()
                 bReconnect = True
             else:
                 bReconnect = True
             if (bReconnect):
                 if (g_nEmailServer >= len(g_arrayEmailServers)):
                     g_nEmailServer = 0
-                    wait(43200)
+                    DoWaitTillNewDay()
                 if not DoConnectEmailServer():
                     break
 
@@ -211,6 +227,7 @@ if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
 
         if len(g_strHTMLEmailContent) > 0:
             DoConnectEmailServer()
+            #DoSendEmail("cathschwag@ozemail.com.au")
             while (nFileCount < len(g_arrayEmailFiles)):
                 for strEmailFile in g_arrayEmailFiles:
                     nFileCount += 1
@@ -238,10 +255,10 @@ if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
                                     print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
                                     SaveEmailPlace(strEmail, strEmailFile)
                                     if (not DoSendEmail(strEmail)):
-                                        wait(43200)
-                                        break;
+                                        DoWaitTillNewDay()
                                     else:
-                                        wait(random.randrange(3, 15, 1))
+                                        #wait(random.randrange(3, 15, 1))
+                                        wait(1)
                                 strEmail = fileEmail.readline()
                                 if (strEmail != ""):
                                     strEmail = strEmail.replace("\n", "")
