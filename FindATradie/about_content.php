@@ -67,18 +67,41 @@
 		</li>
 		<li class="list">Tradies can manage their jobs:<br/><br/>
 			<ul>
-				<li class="sublist">Mark the job as accepted - in which case it will not appear in the lists of other tradies browsing for jobs.</li>
-				<li class="sublist">The tradie can then contact the client via phone, mobile or email and send them a quote via whatever means suits them.</li>
-				<li class="sublist">If the client does not accpet the quote then the tradie should mark the job as 'unaccepted' so that other tradies can have a go at quoting it.</li>
-				<li class="sublist">If the client accepts the quote then the tradie can later mark the job as completed and send an invoice to the client via what ever means suits them.</li>
-				<li class="sublist">Once payment is cleared the tradie can then mark the job as paid and leave the client positive feedback.</li>
+				<li class="sublist">
+					Mark the job as accepted - in which case it will not appear in the lists of other tradies browsing 
+					for jobs.
+				</li>
+				<li class="sublist">
+					The tradie can then contact the client via phone, mobile or email and send them a quote via 
+					whatever means suits them.
+				</li>
+				<li class="sublist">
+					If the client does not accept the quote then the tradie should mark the job as 'unaccepted' so that 
+					other tradies can have a go at quoting it.
+				</li>
+				<li class="sublist">
+					If the client accepts the quote then the tradie can later mark the job as completed and send an 
+					invoice to the client via what ever means suits them.
+				</li>
+				<li class="sublist">
+					Once payment is cleared the tradie can then mark the job as paid and leave the client positive 
+					feedback.
+				</li>
 			</ul>
 		</li>
-		<li class="list">New tradies get their first 6 months of membership for free, with no time limits.</li>
-		<li class="list">Customers get free membership.</li>
-		<li class="list">If tradies are qualified in more than one trade then they can list additional trades as well as a primary trade. And jobs matching theor primary trade or any of their additional trades will come up.</li>
 		<li class="list">
-			There is a forum available for customers and tradies can use to discuss jobs, reqirements and tips etc. Information in the forum will not be sold to marketing data miners.<br/>
+			New tradies get their first 6 months of membership for free, from the time they register.
+		</li>
+		<li class="list">
+			Customers get free membership.
+		</li>
+		<li class="list">
+			If tradies are qualified in more than one trade then they can list additional trades as well as a primary 
+			trade. And jobs matching their primary trade or any of their additional trades will come up.
+		</li>
+		<li class="list">
+			There is a forum available for customers and tradies can use to discuss jobs, requirements and tips etc. 
+			Information in the forum will not be sold to marketing data miners.<br/>
 			<a href="images/forum.jpg"><img src="images/forum.jpg" alt="images/forum.jpg" width="1000"></a>
 		</li>
 		<li class="list">Membership is a flat monthly or yearly fee.</li>

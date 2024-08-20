@@ -99,8 +99,6 @@
 					<a class="navigation_link" href="../contact.php" title="Contact find-a-tradie...">CONTACT</a></li>
 					<li class="navigation_list_item">
 					<a class="navigation_link" href="../forum.php" title="Talk to tradies about your job...">FORUM</a></li>
-					<li class="navigation_list_item" <?php if (isset($_SESSION["account_admin"]) && ($_SESSION["account_admin"] == 0)) echo "style=\"display:none;\"";?>>
-					<a class="navigation_link" href="../admin.php" title="For the web administrator only...">ADMIN</a></li>
 				</ul>
 				<a href="https://www.facebook.com/FindATradiePage" class="social_media" title="Go to the facebook page...">
 				<img src="../images/Facebook.png" alt="images/Facebook.png" width="30" /></a>

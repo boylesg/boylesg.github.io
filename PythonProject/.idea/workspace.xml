@@ -48,6 +48,7 @@
     "Python.RemoveDuplicateEmails.executor": "Debug",
     "Python.ScrapeYellowPages.executor": "Debug",
     "Python.SendEmails.executor": "Debug",
+    "Python.ValidateEmails.executor": "Debug",
     "Python.common.executor": "Debug",
     "Python.errorhandler.executor": "Debug",
     "Python.message.executor": "Debug",
@@ -121,14 +122,14 @@
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/RemoveDuplicateEmails.py</url>
-          <line>95</line>
-          <option name="timeStamp" value="90" />
+          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
+          <line>146</line>
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>138</line>
-          <option name="timeStamp" value="128" />
+          <url>file://$PROJECT_DIR$/.venv/Scripts/common.py</url>
+          <line>93</line>
+          <option name="timeStamp" value="131" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
