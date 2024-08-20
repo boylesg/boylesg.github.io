@@ -1,6 +1,6 @@
 import random
 import smtplib
-import datetime
+from datetime import datetime, timedelta
 import os
 import os.path
 from email.message import EmailMessage
@@ -71,10 +71,19 @@ def IsEmailServerOpen(SMTPObject):
 
 
 
+g_timeRestart = datetime.now()
+g_timeRestart = g_timeRestart.replace(hour=1, minute=0)
+
 def DoWaitTillNewDay():
-    timeNow = datetime.datetime.now()
-    nNumHours = 24 - timeNow.hour
-    wait((nNumHours * 60 * 60) + (30 * 60))
+    global g_timeRestart
+    timeNow = datetime.now()
+    timeDiff = g_timeRestart - timeNow
+    nSeconds = int(timeDiff.total_seconds())
+    while (nSeconds < 0):
+        g_timeRestart += timedelta(hours=1)
+        timeDiff = g_timeRestart - timeNow
+        nSeconds = int(timeDiff.total_seconds())
+    wait(nSeconds)
 
 
 

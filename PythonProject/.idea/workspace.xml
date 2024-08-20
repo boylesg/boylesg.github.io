@@ -123,7 +123,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>154</line>
+          <line>163</line>
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -133,8 +133,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
-          <line>75</line>
-          <option name="timeStamp" value="134" />
+          <line>81</line>
+          <option name="timeStamp" value="140" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -147,9 +147,10 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="error" language="Python" />
-        <watch expression="error.args[0]" language="Python" />
-        <watch expression="error.args[0][strToEmail]" language="Python" />
+        <watch expression="timeDiff" language="Python" />
+        <watch expression="timeDiff.total_seconds()" language="Python" />
+        <watch expression="timeRestart" language="Python" />
+        <watch expression="timeNow" language="Python" />
       </configuration>
     </watches-manager>
   </component>
