@@ -256,15 +256,14 @@ def DoGetGPS(strCode):
 
 
 
-def DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails):
+def DoGetAllBusiness(arrayBusinessLinks):
+    dictAllBusinessDetails = {}
     nLength = len(arrayBusinessLinks)
     #nLength = 1
     for nI in range(0, nLength):
         print(str(nI + 1) + " of " + str(len(arrayBusinessLinks)) + " (" + arrayBusinessLinks[nI] + ")")
         strCode = DoGetCode("https://www.yellowpages.com.au" + arrayBusinessLinks[nI])
         strEmail = DoGetEmailAddress(strCode)
-        if (len(strEmail) > 0):
-            dictEmailAddresses[strEmail] = strEmail
         strPhone = DoGetPhoneNumber(strCode)
         strWebSite = DoGetWebSite(strCode)
         strBusinessName = DoGetBusinessName(strCode)
@@ -282,22 +281,26 @@ def DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails):
         dictBusiness["gps"] = strGPS
         dictAllBusinessDetails[strBusinessName] = dictBusiness
 
+    return dictAllBusinessDetails
 
 
 
-arrayLinksByTrade = [{"strDesc": "GARDENERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/gardeners-14621-category-"},
+
+arrayLinksByTrade = [{"strDesc": "ARBORISTS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/tree-stump-removal-services-28061-category-"},
+                     {"strDesc": "CABINETRY", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/cabinet-makers-designers-15164-category-"},
                      {"strDesc": "CLEANERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/home-cleaning-13986-category-"},
                      {"strDesc": "CONCRETERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/concrete-contractors-34622-category-"},
-                     {"strDesc": "PAINTERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/painters-decorators-17302-category-"},
-                     {"strDesc": "ARBORISTS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/tree-stump-removal-services-28061-category-"},
-                     {"strDesc": "PET CARERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/pet-care-27995-category-"},
-                     {"strDesc": "GLAZIERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/glazier-glass-replacement-services-27049-category-"},
                      {"strDesc": "ELECTRICIANS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/electricians-electrical-contractors-22683-category-"},
+                     {"strDesc": "GARDENERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/gardeners-14621-category-"},
+                     {"strDesc": "GLAZIERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/glazier-glass-replacement-services-27049-category-"},
+                     {"strDesc": "PAINTERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/painters-decorators-17302-category-"},
+                     {"strDesc": "PET CARERS", "strURLTemplate": "https://www.yellowpages.com.au/xxxx/pet-care-27995-category-"},
                      {"strDesc": "PLUMBERS", "strURLTemplate": "https://www.yellowpages.com.au//xxxx//plumbers-gas-fitters-12157-category-"}]
 
 arrayBusinessLinks = []
+dictEmailAddresses = {}
 
-for nJ in range(8, 9):
+for nJ in range(1, 2):
     arrayAlphabeticLinkURLs = DoGetAlphabeticLinks(arrayLinksByTrade[nJ].get("strURLTemplate"))
     strTradeDesc = arrayLinksByTrade[nJ].get("strDesc")
     if (arrayAlphabeticLinkURLs == None) or (strTradeDesc == None):
@@ -311,13 +314,11 @@ for nJ in range(8, 9):
                 arrayBusinessLinks += DoGetBusinessLinks(strCode)
                 #time.sleep(0.5)
 
-            dictEmailAddresses = {}
-            dictAllBusinessDetails = {}
-
-            DoGetAllBusiness(arrayBusinessLinks, dictAllBusinessDetails)
+            dictAllBusinessDetails = DoGetAllBusiness(arrayBusinessLinks)
             arrayAllBusinessDetails = []
             for strKeyBusinessName, dictBusinessDetails in dictAllBusinessDetails.items():
                 arrayAllBusinessDetails.append(dictBusinessDetails)
+                dictEmailAddresses[dictBusinessDetails["email"]] = dictBusinessDetails["email"]
             jsonAllBusinessDetails = json.dumps(arrayAllBusinessDetails)
 
             if True:
