@@ -74,11 +74,11 @@ def IsEmailServerOpen(SMTPObject):
 g_timeRestart = datetime.now()
 g_timeRestart = g_timeRestart.replace(hour=1, minute=0)
 
-def DoWaitTillNewDay():
+def DoWait():
     global g_timeRestart
     timeNow = datetime.now()
     timeDiff = g_timeRestart - timeNow
-    nSeconds = int(timeDiff.total_seconds())
+    nSeconds = int(abs(timeDiff.total_seconds()))
     while (nSeconds < 0):
         g_timeRestart += timedelta(hours=1)
         timeDiff = g_timeRestart - timeNow
@@ -158,14 +158,14 @@ def DoSendEmail(strToEmail):
                 bReconnect = True
             elif ("Daily user sending limit exceeded"):
                 print("\nEMAIL SERVER ERROR: sending limit reached...\n", error)
-                DoWaitTillNewDay()
+                DoWait()
                 bReconnect = True
             else:
                 bReconnect = True
             if (bReconnect):
                 if (g_nEmailServer >= len(g_arrayEmailServers)):
                     g_nEmailServer = 0
-                    DoWaitTillNewDay()
+                    DoWait()
                 if not DoConnectEmailServer():
                     break
 
@@ -192,6 +192,7 @@ def SaveEmailPlace(strEmail, strEmailFile):
     fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
     fileLastEmail.write(strEmailFile + "\n")
     fileLastEmail.write(strEmail + "\n")
+    fileLastEmail.flush()
     fileLastEmail.close()
 
 
@@ -264,7 +265,7 @@ if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
                                     print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
                                     SaveEmailPlace(strEmail, strEmailFile)
                                     if (not DoSendEmail(strEmail)):
-                                        DoWaitTillNewDay()
+                                        DoWait()
                                     else:
                                         #wait(random.randrange(3, 15, 1))
                                         wait(1)
