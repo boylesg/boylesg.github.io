@@ -6,15 +6,15 @@ from pathlib import Path
 
 
 g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.github.io/FindATradie/data/"
+g_strTrade = "PLUMBERS"
 
 
 
-
-if True:
-    fileJSON = open(g_strPath + "ELECTRICIANS.json", "r")
+if False:
+    fileJSON = open(g_strPath + g_strTrade + ".json", "r")
     if (fileJSON):
         arrayBusinessDetails = json.load(fileJSON)
-        fileEmail = open(g_strPath + "ELECTRICIANS.email", "w")
+        fileEmail = open(g_strPath + g_strTrade + ".email", "w")
         if (fileEmail):
             for dictBusinessDetails in arrayBusinessDetails:
                 if (len(dictBusinessDetails["email"]) > 0):
@@ -30,11 +30,9 @@ if True:
     global g_browserChrome
     dictEmails = {}
     nKeyNum = 0
-    strTrade = "CONCRETERS"
-    strLastEmail = "wael1@live.com.au"
-    strUncheckedFilename = g_strPath + strTrade + ".email"
-    strCheckedFilename = g_strPath + strTrade + ".email_"
-    strBadFilename = g_strPath + strTrade + ".email__"
+    strUncheckedFilename = g_strPath + g_strTrade + ".email"
+    strCheckedFilename = g_strPath + g_strTrade + ".email_"
+    strBadFilename = g_strPath + g_strTrade + ".email__"
     try:
         fileEmails = open(strUncheckedFilename, "r")
         fileBadEmails = open(strBadFilename, "w")
