@@ -10,6 +10,7 @@ g_strTrade = "PLUMBERS"
 
 
 
+
 if False:
     fileJSON = open(g_strPath + g_strTrade + ".json", "r")
     if (fileJSON):
@@ -22,6 +23,33 @@ if False:
             fileEmail.close()
         fileJSON.close()
 
+
+
+
+g_strUpToEmailFilename = g_strPath + g_strTrade + ".email___"
+
+def DoReadEmailPlace():
+    strEmail = ""
+    try:
+        fileUpToEmail = open(g_strUpToEmailFilename, "r")
+        if fileUpToEmail:
+            strEmail = fileUpToEmail.read()
+            strEmail = strEmail.replace("\n", "")
+            fileUpToEmail.close()
+    except Exception as error:
+        fileUpToEmail = open(g_strUpToEmailFilename, "w")
+        fileUpToEmail.close()
+
+    return strEmail
+
+
+
+
+def DoSaveEmailPlace(strEmail):
+    fileUpToEmail = open(g_strUpToEmailFilename, "w")
+    if fileUpToEmail:
+        fileUpToEmail.write(strEmail + "\n")
+        fileUpToEmail.close()
 
 
 
@@ -68,35 +96,28 @@ if True:
         if not fileCheckedEmails.is_file():
             fileCheckedEmails = open(strCheckedFilename, "w")
             fileCheckedEmails.close()
-        fileCheckedEmails = open(strCheckedFilename, "r")
         fileBadEmails = open(strBadFilename, "w")
-        arrayEmailAddresses = fileCheckedEmails.readlines()
-        if (len(arrayEmailAddresses) > 0):
-            strLastCheckedEmail = arrayEmailAddresses[len(arrayEmailAddresses) - 1]
-            print("Starting at email " + strLastCheckedEmail + "...")
-            strLastCheckedEmail = strLastCheckedEmail.replace("\n", "")
-        else:
-            strLastCheckedEmail = ""
-        fileCheckedEmails.close()
-
-        fileUncheckEmails = open(strUncheckedFilename, "r")
-        nFileSize = get_file_size(fileUncheckEmails)
-        strEmail = ""
-        if (len(strLastCheckedEmail) > 0):
-            while (strEmail != strLastCheckedEmail):
-                strEmail = fileUncheckEmails.readline()
-                strEmail = strEmail.replace("\n", "")
-                if (strEmail == ""):
-                    fileUncheckEmails.seek(0)
-                    break
         fileCheckedEmails = open(strCheckedFilename, "a")
-        nFilePos = 0
-        while (nFilePos < nFileSize):
-            strEmail = fileUncheckEmails.readline()
-            nFilePos = fileUncheckEmails.tell()
-            strEmail = strEmail.replace("\n", "")
+        fileUncheckedEmails = open(strUncheckedFilename, "r")
+        arrayEmailAddresses = fileUncheckedEmails.readlines()
+        fileUncheckedEmails.close()
+        nStartIndex = 0
+        if (len(arrayEmailAddresses) > 0):
+            nI = 0
+            strEmailStartAt = DoReadEmailPlace()
+            if (strEmailStartAt != ""):
+                for strEmail in arrayEmailAddresses:
+                    strEmail = strEmail.replace("\n", "")
+                    arrayEmailAddresses[nI] = strEmail
+                    if (strEmail == strEmailStartAt):
+                        nStartIndex = nI
+                    nI += 1
+            print("Starting at email " + str(nStartIndex) + ". '" + arrayEmailAddresses[nStartIndex] + "'...")
+
+        for nI in range(nStartIndex + 1, len(arrayEmailAddresses)):
+            strEmail = arrayEmailAddresses[nI]
+            DoSaveEmailPlace(strEmail)
             if (DoCheckValidEmailAddress(strEmail)):
-            #if (validate_email(strEmail, True, True, True, 10)):
                 fileCheckedEmails.write(strEmail + "\n")
                 fileCheckedEmails.flush()
             else:
@@ -104,8 +125,7 @@ if True:
                 fileBadEmails.flush()                                                                                                                                                                                                   
             wait(1)
         fileCheckedEmails.close()
-    
-        #arrayEmailAddresses = DoCheckEmailAddresses(dictEmails)
+        fileBadEmails.close()
 
-    except Exception:
+    except Exception as error:
         Exception = Exception
