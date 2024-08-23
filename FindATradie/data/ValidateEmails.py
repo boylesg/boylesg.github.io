@@ -96,7 +96,7 @@ if True:
         if not fileCheckedEmails.is_file():
             fileCheckedEmails = open(strCheckedFilename, "w")
             fileCheckedEmails.close()
-        fileBadEmails = open(strBadFilename, "w")
+        fileBadEmails = open(strBadFilename, "a")
         fileCheckedEmails = open(strCheckedFilename, "a")
         fileUncheckedEmails = open(strUncheckedFilename, "r")
         arrayEmailAddresses = fileUncheckedEmails.readlines()

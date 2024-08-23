@@ -6,11 +6,15 @@ import os.path
 from email.message import EmailMessage
 from email.headerregistry import Address
 from email.utils import make_msgid
+from email import message_from_bytes
+from imaplib import IMAP4_SSL
+import contextlib
 from common import *
 
 
 
 g_strPath = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\"
+g_strLastEmailFile = ""
 
 
 
@@ -71,18 +75,119 @@ def IsEmailServerOpen(SMTPObject):
 
 
 
+def SaveEmails2Delete(arrayEmails2Delete):
+    if (len(arrayEmails2Delete) > 0):
+        fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "a+")
+        if fileEmails2Delete:
+            for strEmail in arrayEmails2Delete:
+                fileEmails2Delete.write(strEmail + "\n")
+            fileEmails2Delete.close()
+
+
+
+
+def UpdateEmailFile():
+    arrayEmails2Delete = []
+    fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "r+")
+    fileUpdatedEmails = open(g_strPath + g_strLastEmailFile + "_", "w+")
+    fileEmails = open(g_strPath + g_strLastEmailFile, "r")
+    dictEmails = {}
+    if (fileEmails2Delete and fileUpdatedEmails and fileEmails):
+        for strEmail in fileEmails:
+            dictEmails[strEmail] = strEmail
+        for strEmail in fileEmails2Delete:
+            if (strEmail in dictEmails):
+                dictEmails.pop(strEmail, None)
+        for strKey, strEmail in dictEmails.items():
+            fileUpdatedEmails.write(strEmail)
+        fileEmails2Delete.close()
+        fileUpdatedEmails.close()
+        fileEmails.close()
+        fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "w")
+
+
+
+
+def DoRemoveInvalidEmails():
+    strSuccessCode = "OK"
+    arrayEmails2Delete = []
+    dictEmailServer = g_arrayEmailServers[g_nEmailServer]
+    with IMAP4_SSL(dictEmailServer["server"]) as mail_server:
+        mail_server.login(dictEmailServer["username"], dictEmailServer["password"])
+        mail_server.list()
+        mail_server.select('INBOX')
+        (strReturnCode, messages) = mail_server.search(None, "(OR (ALL) (FROM " + dictEmailServer["username"] + "))")
+        if (strReturnCode == strSuccessCode) and messages[0]:
+            for nI, nJ in enumerate(messages[0].split()):
+                strReturnCode, byteData = mail_server.fetch(nJ, '(RFC822)')
+                if (strReturnCode == strSuccessCode) and byteData:
+                    objectMsg = message_from_bytes(byteData[0][1])
+                    for objectMsgPart in objectMsg.walk():
+                        # each part is a either non-multipart, or another multipart message
+                        # that contains further parts... Message is organized like a tree
+                        if objectMsgPart.get_content_type() == 'text/plain':
+                            strMessage = objectMsgPart.get_payload()
+                            strEmail = ""
+                            with contextlib.suppress(Exception):
+                                if ("Delivery incomplete" in strMessage) or ("Message not delivered" in strMessage) or ("Address not found" in strMessage):
+                                    '''
+                                    EXAMPLE EMAILS
+                                    ===============
+    
+                                    ** Address not found **
+                                    
+                                    Your message wasn't delivered to admin@pjconcreting.com.au because the domain pjconcreting.com.au couldn't be found. Check for typos or unnecessary spaces and try again.
+                                    
+                                    
+                                    
+                                    The response was:
+                                    
+                                    DNS Error: DNS type 'mx' lookup of pjconcreting.com.au responded with code SERVFAIL
+                                    
+                                    
+                                    * Recipient inbox full **
+    
+                                    Your message couldn't be delivered to mb.concreteconstruction@gmail.com. Their inbox is full, or it's getting too much mail right now.
+    
+                                    Learn more here: https://support.google.com/mail/?p=OverQuotaTemp
+    
+                                    The response was:
+    
+                                    452 4.2.2 The recipient's inbox is out of storage space. Please direct the recipient to https://support.google.com/mail/?p=OverQuotaTemp 586e51a60fabf-273cea1b9c9sor1506374fac.11 - gsmtp 
+                                    '''
+                                    nPos1 = strMessage.index("@")
+                                    nPos1 = strMessage.rfind(" ", 0, nPos1) + 1
+                                    nPos2 = strMessage.find(" ", nPos1)
+                                    strEmail = strMessage[nPos1:nPos2]
+                                    strEmail = strEmail.strip(". ")
+
+                            if (strEmail != ""):
+                                arrayEmails2Delete.append(strEmail)
+                                (strReturnCode, data) = mail_server.store(nJ, "+FLAGS", "\\Deleted")
+
+    SaveEmails2Delete(arrayEmails2Delete)
+    UpdateEmailFile()
+
+
+
+
+
+
 g_timeRestart = datetime.now()
 g_timeRestart = g_timeRestart.replace(hour=1, minute=0)
 
 def DoWait():
+    '''
     global g_timeRestart
     timeNow = datetime.now()
     timeDiff = g_timeRestart - timeNow
-    nSeconds = int(abs(timeDiff.total_seconds()))
-    while (nSeconds < 0):
-        g_timeRestart += timedelta(hours=1)
-        timeDiff = g_timeRestart - timeNow
+    nSeconds = int(timeDiff.total_seconds())
+    if (nSeconds < 0):
+        timeDiff = timeNow - g_timeRestart
         nSeconds = int(timeDiff.total_seconds())
+    '''
+    DoRemoveInvalidEmails()
+    nSeconds = 2 * 60 * 60
     wait(nSeconds)
 
 
@@ -201,13 +306,13 @@ def SaveEmailPlace(strEmail, strEmailFile):
 print("\n\n")
 nEmailCount = nFileCount = 0;
 bEmailSendError = False
-strLastEmailFile = g_arrayEmailFiles[0]
+g_strLastEmailFile = g_arrayEmailFiles[0]
 strLastEmail = ""
 if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
     fileLastEmail = open(g_strPath + g_strSavedEmailFile, "r")
     if (fileLastEmail):
-        strLastEmailFile = fileLastEmail.readline()
-        strLastEmailFile = strLastEmailFile.replace("\n", "")
+        g_strLastEmailFile = fileLastEmail.readline()
+        g_strLastEmailFile = g_strLastEmailFile.replace("\n", "")
         strLastEmail = fileLastEmail.readline()
         strLastEmail = strLastEmail.replace("\n", "")
     else:
@@ -241,7 +346,7 @@ if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
             while (nFileCount < len(g_arrayEmailFiles)):
                 for strEmailFile in g_arrayEmailFiles:
                     nFileCount += 1
-                    if (strEmailFile != strLastEmailFile):
+                    if (strEmailFile != g_strLastEmailFile):
                         continue
 
                     nFileSize = os.path.getsize(g_strPath + strEmailFile)
