@@ -418,11 +418,10 @@ if (LoadEmailMessages()):
                         strEmail = strEmail.replace("\n", "")
                         nEmailCount += 1
 
-                fileLastEmail.close()
-                DoRemoveInvalidEmails()
+                DoRemoveInvalidEmails(strEmailFile)
                 print("\n---------------------------------\n")
 
-        fileLastEmail = open(g_strPath + g_strLastEmailFile, "w")
+        fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
         if (IsEmailServerOpen(g_SMTPObject)):
             g_SMTPObject.quit()
         print("FINISHED!")
