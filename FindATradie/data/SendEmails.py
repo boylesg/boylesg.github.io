@@ -14,7 +14,6 @@ from common import *
 
 
 g_strPath = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\"
-g_strLastEmailFile = ""
 
 
 
@@ -75,40 +74,43 @@ def IsEmailServerOpen(SMTPObject):
 
 
 
-def SaveEmails2Delete(arrayEmails2Delete):
+def SaveEmails2Delete(arrayEmails2Delete, strEmailFilename):
     if (len(arrayEmails2Delete) > 0):
-        fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "a+")
+        fileEmails2Delete = open(g_strPath + strEmailFilename + "__", "a+")
         if fileEmails2Delete:
             for strEmail in arrayEmails2Delete:
                 fileEmails2Delete.write(strEmail + "\n")
             fileEmails2Delete.close()
+    arrayEmails2Delete
 
 
 
 
-def UpdateEmailFile():
+def UpdateEmailFile(strEmailFilename):
     arrayEmails2Delete = []
-    fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "r+")
-    fileUpdatedEmails = open(g_strPath + g_strLastEmailFile + "_", "w+")
-    fileEmails = open(g_strPath + g_strLastEmailFile, "r")
+    fileEmails2Delete = open(g_strPath + strEmailFilename + "__", "r+")
+    fileUpdatedEmails = open(g_strPath + strEmailFilename + "_", "w+")
+    fileEmails = open(g_strPath + strEmailFilename, "r")
     dictEmails = {}
     if (fileEmails2Delete and fileUpdatedEmails and fileEmails):
         for strEmail in fileEmails:
+            strEmail = strEmail.replace("\n", "")
             dictEmails[strEmail] = strEmail
         for strEmail in fileEmails2Delete:
+            strEmail = strEmail.replace("\n", "")
             if (strEmail in dictEmails):
                 dictEmails.pop(strEmail, None)
         for strKey, strEmail in dictEmails.items():
-            fileUpdatedEmails.write(strEmail)
+            fileUpdatedEmails.write(strEmail + "\n")
         fileEmails2Delete.close()
         fileUpdatedEmails.close()
         fileEmails.close()
-        fileEmails2Delete = open(g_strPath + g_strLastEmailFile + "__", "w")
+        #fileEmails2Delete = open(g_strPath + strLastEmailFile + "__", "w")
 
 
 
 
-def DoRemoveInvalidEmails():
+def DoRemoveInvalidEmails(strEmailFilename):
     strSuccessCode = "OK"
     arrayEmails2Delete = []
     dictEmailServer = g_arrayEmailServers[g_nEmailServer]
@@ -129,7 +131,19 @@ def DoRemoveInvalidEmails():
                             strMessage = objectMsgPart.get_payload()
                             strEmail = ""
                             with contextlib.suppress(Exception):
-                                if ("Delivery incomplete" in strMessage) or ("Message not delivered" in strMessage) or ("Address not found" in strMessage):
+                                if ("Delivery has failed to these recipients or groups" in strMessage):
+                                    '''
+                                    Delivery has failed to these recipients or groups:
+                                    
+                                    Fellow Tradie (macsplumbing@hotmail.com)
+                                    The recipient's mailbox is full and can't accept messages now. Please try resending your message later, or contact the recipient directly.
+                                    
+                                    '''
+                                    nPos1 = strMessage.index("@")
+                                    nPos1 = strMessage.rfind("(", 0, nPos1) + 1
+                                    nPos2 = strMessage.find(")", nPos1)
+                                    strEmail = strMessage[nPos1:nPos2]
+                                elif ("Delivery incomplete" in strMessage) or ("Message not delivered" in strMessage) or ("Address not found" in strMessage) or ("Recipient inbox full" in strMessage) or ("Message blocked" in strMessage):
                                     '''
                                     EXAMPLE EMAILS
                                     ===============
@@ -165,8 +179,8 @@ def DoRemoveInvalidEmails():
                                 arrayEmails2Delete.append(strEmail)
                                 (strReturnCode, data) = mail_server.store(nJ, "+FLAGS", "\\Deleted")
 
-    SaveEmails2Delete(arrayEmails2Delete)
-    UpdateEmailFile()
+    SaveEmails2Delete(arrayEmails2Delete, strEmailFilename)
+    UpdateEmailFile(strEmailFilename)
 
 
 
@@ -176,7 +190,7 @@ def DoRemoveInvalidEmails():
 g_timeRestart = datetime.now()
 g_timeRestart = g_timeRestart.replace(hour=1, minute=0)
 
-def DoWait():
+def DoWait(strEmailFilename):
     '''
     global g_timeRestart
     timeNow = datetime.now()
@@ -186,14 +200,15 @@ def DoWait():
         timeDiff = timeNow - g_timeRestart
         nSeconds = int(timeDiff.total_seconds())
     '''
-    DoRemoveInvalidEmails()
+    wait(600)
+    DoRemoveInvalidEmails(strEmailFilename)
     nSeconds = 2 * 60 * 60
     wait(nSeconds)
 
 
 
 
-def DoSendEmail(strToEmail):
+def DoSendEmail(strToEmail, strEmailFilename):
     global g_arrayEmailServers
     global g_nEmailServer
     global g_SMTPObject
@@ -263,14 +278,14 @@ def DoSendEmail(strToEmail):
                 bReconnect = True
             elif ("Daily user sending limit exceeded"):
                 print("\nEMAIL SERVER ERROR: sending limit reached...\n", error)
-                DoWait()
+                DoWait(strEmailFilename)
                 bReconnect = True
             else:
                 bReconnect = True
             if (bReconnect):
                 if (g_nEmailServer >= len(g_arrayEmailServers)):
                     g_nEmailServer = 0
-                    DoWait()
+                    DoWait(strEmailFilename)
                 if not DoConnectEmailServer():
                     break
 
@@ -280,19 +295,8 @@ def DoSendEmail(strToEmail):
 
 
 
-strMsg = ""
-g_arrayEmailFiles = ["ARBORISTS.email",
-                        "CLEANERS.email",
-                        "CONCRETERS.email",
-                        "ELECTRICIANS.email",
-                        "GARDENERS.email",
-                        "PAINTERS.email",
-                        "PET CARERS.email",
-                        "PLUMBERS.email"]
-
-
-
 g_strSavedEmailFile = "last_email.txt"
+
 def SaveEmailPlace(strEmail, strEmailFile):
     fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
     fileLastEmail.write(strEmailFile + "\n")
@@ -303,24 +307,42 @@ def SaveEmailPlace(strEmail, strEmailFile):
 
 
 
-print("\n\n")
-nEmailCount = nFileCount = 0;
-bEmailSendError = False
-g_strLastEmailFile = g_arrayEmailFiles[0]
-strLastEmail = ""
-if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
-    fileLastEmail = open(g_strPath + g_strSavedEmailFile, "r")
-    if (fileLastEmail):
-        g_strLastEmailFile = fileLastEmail.readline()
-        g_strLastEmailFile = g_strLastEmailFile.replace("\n", "")
-        strLastEmail = fileLastEmail.readline()
-        strLastEmail = strLastEmail.replace("\n", "")
-    else:
-        fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
-        fileLastEmail.write("\n")
-        fileLastEmail.write("\n")
+g_arrayEmailFiles = ["ARBORISTS.email",
+                        "CLEANERS.email",
+                        "CONCRETERS.email",
+                        "ELECTRICIANS.email",
+                        "GARDENERS.email",
+                        "PAINTERS.email",
+                        "PET CARERS.email",
+                        "PLUMBERS.email"]
 
-    if (os.path.isfile(g_strPath + "email.html")) and (os.path.isfile(g_strPath + "email.html")):
+def GetLastEmail():
+    strLastEmail = ""
+    strLastEmailFile = ""
+
+    if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
+        fileLastEmail = open(g_strPath + g_strSavedEmailFile, "r")
+        if (fileLastEmail):
+            strLastEmailFile = fileLastEmail.readline()
+            strLastEmailFile = strLastEmailFile.replace("\n", "")
+            strLastEmail = fileLastEmail.readline()
+            strLastEmail = strLastEmail.replace("\n", "")
+        else:
+            fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
+            fileLastEmail.write("\n")
+            fileLastEmail.write("\n")
+            strLastEmailFile = g_arrayEmailFiles[0]
+            strLastEmail = ""
+    return {"last_email_filename": strLastEmailFile, "last_email": strLastEmail}
+
+
+
+
+def LoadEmailMessages():
+    global g_strHTMLEmailContent
+    global g_strTextEmailContent
+    bResult = True
+    if (os.path.isfile(g_strPath + "email.html")) and (os.path.isfile(g_strPath + "email.txt")):
         fileEmailContents = open(g_strPath + "email.html", "r", encoding="utf-8")
         strLine = ""
         while (True):
@@ -339,51 +361,70 @@ if (os.path.isfile(g_strPath + g_strSavedEmailFile)):
             else:
                 break
         fileEmailContents.close()
-
-        if len(g_strHTMLEmailContent) > 0:
-            DoConnectEmailServer()
-            #DoSendEmail("cathschwag@ozemail.com.au")
-            while (nFileCount < len(g_arrayEmailFiles)):
-                for strEmailFile in g_arrayEmailFiles:
-                    nFileCount += 1
-                    if (strEmailFile != g_strLastEmailFile):
-                        continue
-
-                    nFileSize = os.path.getsize(g_strPath + strEmailFile)
-                    if (nFileSize > 0):
-                        fileEmail = open(g_strPath + strEmailFile, "r")
-                        if (fileEmail):
-                            print("Processing email file " + strEmailFile + "...")
-
-                            if (strLastEmail != ""):
-                                strEmail = "xxxx"
-                                while (strEmail != strLastEmail):
-                                    strEmail = fileEmail.readline()
-                                    strEmail = strEmail.replace("\n", "")
-                                    nEmailCount += 1
-                            else:
-                                strEmail = fileEmail.readline()
-                                strEmail = strEmail.replace("\n", "")
-
-                            while (strEmail != ""):
-                                if (len(strEmail) > 0):
-                                    print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
-                                    SaveEmailPlace(strEmail, strEmailFile)
-                                    if (not DoSendEmail(strEmail)):
-                                        DoWait()
-                                    else:
-                                        #wait(random.randrange(3, 15, 1))
-                                        wait(1)
-                                strEmail = fileEmail.readline()
-                                if (strEmail != ""):
-                                    strEmail = strEmail.replace("\n", "")
-                                    nEmailCount += 1
-
-                            fileLastEmail.close()
-                            print("\n---------------------------------\n")
-
-            if (IsEmailServerOpen(g_SMTPObject)):
-                g_SMTPObject.quit()
-            print("FINISHED!")
     else:
-        print("ERROR: Email content file is empty!")
+        if (not os.path.isfile(g_strPath + "email.html")):
+            print("File email.html not found!")
+        elif (not os.path.isfile(g_strPath + "email.txt")):
+            print("File email.txt not found!")
+        bResult = False
+        print
+
+    return bResult
+
+
+
+print("\n\n")
+nEmailCount = nFileNumber = 0;
+dictLast = GetLastEmail()
+DoRemoveInvalidEmails(dictLast["last_email_filename"])
+
+if (LoadEmailMessages()):
+    if len(g_strHTMLEmailContent) > 0:
+        DoConnectEmailServer()
+        while (nFileNumber < len(g_arrayEmailFiles)):
+            strEmailFile = g_arrayEmailFiles[nFileNumber]
+            if (strEmailFile == dictLast["last_email_filename"]):
+                break
+            else:
+                nFileNumber += 1
+
+        for nI in range(nFileNumber, len(g_arrayEmailFiles)):
+            strEmailFile = g_arrayEmailFiles[nI]
+            fileEmail = open(g_strPath + strEmailFile, "r")
+            if (fileEmail):
+                print("Processing email file " + strEmailFile + "...")
+                nEmailCount = 0
+                if (dictLast["last_email"] != ""):
+                    strEmail = "xxxx"
+                    while (strEmail != dictLast["last_email"]):
+                        strEmail = fileEmail.readline()
+                        strEmail = strEmail.replace("\n", "")
+                        nEmailCount += 1
+                else:
+                    strEmail = fileEmail.readline()
+                    strEmail = strEmail.replace("\n", "")
+
+                while (strEmail != ""):
+                    if (strEmail != ""):
+                        print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
+                        SaveEmailPlace(strEmail, strEmailFile)
+                        if (not DoSendEmail(strEmail, dictLast["last_email_filename"])):
+                            DoWait()
+                        else:
+                            #wait(random.randrange(3, 15, 1))
+                            wait(1)
+                    strEmail = fileEmail.readline()
+                    if (strEmail != ""):
+                        strEmail = strEmail.replace("\n", "")
+                        nEmailCount += 1
+
+                fileLastEmail.close()
+                DoRemoveInvalidEmails()
+                print("\n---------------------------------\n")
+
+        fileLastEmail = open(g_strPath + g_strLastEmailFile, "w")
+        if (IsEmailServerOpen(g_SMTPObject)):
+            g_SMTPObject.quit()
+        print("FINISHED!")
+else:
+    print("ERROR: Email content file is empty!")
