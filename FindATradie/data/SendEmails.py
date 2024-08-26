@@ -86,9 +86,20 @@ def SaveEmails2Delete(arrayEmails2Delete, strEmailFilename):
 
 
 
+def DoOpenFile(strFilename):
+    fileObject = None
+    if (not os.path.isfile(strFilename)):
+        fileObject = open(strFilename, "w+")
+        fileObject.close()
+    fileObject = open(strFilename, "r+")
+    return fileObject
+
+
+
+
 def UpdateEmailFile(strEmailFilename):
     arrayEmails2Delete = []
-    fileEmails2Delete = open(g_strPath + strEmailFilename + "__", "r+")
+    fileEmails2Delete = DoOpenFile(g_strPath + strEmailFilename + "__")
     fileUpdatedEmails = open(g_strPath + strEmailFilename + "_", "w+")
     fileEmails = open(g_strPath + strEmailFilename, "r")
     dictEmails = {}
@@ -308,6 +319,7 @@ def SaveEmailPlace(strEmail, strEmailFile):
 
 
 g_arrayEmailFiles = ["ARBORISTS.email",
+                        "CABINETRY.email",
                         "CLEANERS.email",
                         "CONCRETERS.email",
                         "ELECTRICIANS.email",
@@ -419,6 +431,14 @@ if (LoadEmailMessages()):
                         nEmailCount += 1
 
                 DoRemoveInvalidEmails(strEmailFile)
+                try:
+                    os.remove(g_strPath + strEmailFile)
+                    os.rename(g_strPath + strEmailFile + "_", g_strPath + strEmailFile)
+                    os.remove(g_strPath + strEmailFile + "__")
+                    os.remove(g_strPath + strEmailFile + "___")
+                except Exception as error:
+                    print(error)
+                    pass
                 print("\n---------------------------------\n")
 
         fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
