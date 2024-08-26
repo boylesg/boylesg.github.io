@@ -11,11 +11,8 @@ from imaplib import IMAP4_SSL
 import contextlib
 from common import *
 
-
-
-g_strPath = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\"
-
-
+#g_strPath = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\"
+g_strPath = ""
 
 
 def MakeAddress(strDisplayName, strEmailAddress):
@@ -24,42 +21,24 @@ def MakeAddress(strDisplayName, strEmailAddress):
     return EmailAddress
 
 
+def DoConnectEmailServer(dictEmailServer):
+    SMTPObject = None
 
+    try:
+        # Send the email via our own SMTP server.
+        print("\n\nConnecting to email server '" + dictEmailServer["url"] + "' on port " + str(
+            dictEmailServer["port"]) + "...")
+        SMTPObject = smtplib.SMTP(dictEmailServer["url"], dictEmailServer["port"])
+        SMTPObject.connect(dictEmailServer["server"], dictEmailServer["port"])
+        SMTPObject.ehlo()
+        SMTPObject.starttls()
+        print("Logging in with username '" + dictEmailServer["username"] + "' and password '" + dictEmailServer[
+            "password"] + "'...\n")
+        SMTPObject.login(dictEmailServer["username"], dictEmailServer["password"])
+    except Exception as Error:
+        print("EMAIL SERVER ERROR: ", Error)
 
-g_arrayEmailServers = [{"server": "smtp.gmail.com", "port": 587, "username": "gregaryjboyles37@gmail.com", "password": "hkxb fxwc fwog gxrd "},
-                        {"server": "smtp-mail.outlook.com", "port": 587, "username": "find-a-tradie@outlook.com", "password": "Pulsar112358#"}]
-g_nEmailServer = 0
-g_SMTPObject = ""
-g_strHTMLEmailContent = ""
-g_strTextEmailContent = ""
-
-def DoConnectEmailServer():
-    global g_arrayEmailServers
-    global g_nEmailServer
-    global g_SMTPObject
-    bResult = False;
-    dictEmailServer = {}
-
-    while (g_nEmailServer < len(g_arrayEmailServers)):
-        dictEmailServer = g_arrayEmailServers[g_nEmailServer]
-        try:
-            # Send the email via our own SMTP server.
-            print("\n\nConnecting to email server '" + dictEmailServer["server"] + "' on port " + str(dictEmailServer["port"]) + "...")
-            if (IsEmailServerOpen(g_SMTPObject)):
-                g_SMTPObject.quit()
-            g_SMTPObject = smtplib.SMTP(dictEmailServer["server"], dictEmailServer["port"])
-            g_SMTPObject.connect(dictEmailServer["server"], dictEmailServer["port"])
-            g_SMTPObject.ehlo()
-            g_SMTPObject.starttls()
-            print("Logging in with username '" + dictEmailServer["username"] + "' and password '" + dictEmailServer["password"] + "'...\n")
-            g_SMTPObject.login(dictEmailServer["username"], dictEmailServer["password"])
-            bResult = True
-            break
-        except Exception as error:
-            g_nEmailServer += 1
-            print("EMAIL SERVER ERROR: ", error)
-
-    return bResult
+    return SMTPObject
 
 
 def IsEmailServerOpen(SMTPObject):
@@ -67,11 +46,9 @@ def IsEmailServerOpen(SMTPObject):
     try:
         nStatus = SMTPObject.noop()[0]
     except:
-        nStatus = -1 # smtplib.SMTPServerDisconnected
+        nStatus = -1  # smtplib.SMTPServerDisconnected
     bResult = nStatus == 250
     return bResult
-
-
 
 
 def SaveEmails2Delete(arrayEmails2Delete, strEmailFilename):
@@ -84,8 +61,6 @@ def SaveEmails2Delete(arrayEmails2Delete, strEmailFilename):
     arrayEmails2Delete
 
 
-
-
 def DoOpenFile(strFilename):
     fileObject = None
     if (not os.path.isfile(strFilename)):
@@ -93,8 +68,6 @@ def DoOpenFile(strFilename):
         fileObject.close()
     fileObject = open(strFilename, "r+")
     return fileObject
-
-
 
 
 def UpdateEmailFile(strEmailFilename):
@@ -116,15 +89,11 @@ def UpdateEmailFile(strEmailFilename):
         fileEmails2Delete.close()
         fileUpdatedEmails.close()
         fileEmails.close()
-        #fileEmails2Delete = open(g_strPath + strLastEmailFile + "__", "w")
 
 
-
-
-def DoRemoveInvalidEmails(strEmailFilename):
+def DoRemoveInvalidEmails(strEmailFilename, dictEmailServer):
     strSuccessCode = "OK"
     arrayEmails2Delete = []
-    dictEmailServer = g_arrayEmailServers[g_nEmailServer]
     with IMAP4_SSL(dictEmailServer["server"]) as mail_server:
         mail_server.login(dictEmailServer["username"], dictEmailServer["password"])
         mail_server.list()
@@ -154,7 +123,10 @@ def DoRemoveInvalidEmails(strEmailFilename):
                                     nPos1 = strMessage.rfind("(", 0, nPos1) + 1
                                     nPos2 = strMessage.find(")", nPos1)
                                     strEmail = strMessage[nPos1:nPos2]
-                                elif ("Delivery incomplete" in strMessage) or ("Message not delivered" in strMessage) or ("Address not found" in strMessage) or ("Recipient inbox full" in strMessage) or ("Message blocked" in strMessage):
+                                elif ("Delivery incomplete" in strMessage) or (
+                                        "Message not delivered" in strMessage) or (
+                                        "Address not found" in strMessage) or (
+                                        "Recipient inbox full" in strMessage) or ("Message blocked" in strMessage):
                                     '''
                                     EXAMPLE EMAILS
                                     ===============
@@ -194,12 +166,9 @@ def DoRemoveInvalidEmails(strEmailFilename):
     UpdateEmailFile(strEmailFilename)
 
 
-
-
-
-
 g_timeRestart = datetime.now()
 g_timeRestart = g_timeRestart.replace(hour=1, minute=0)
+
 
 def DoWait(strEmailFilename):
     '''
@@ -217,12 +186,7 @@ def DoWait(strEmailFilename):
     wait(nSeconds)
 
 
-
-
-def DoSendEmail(strToEmail, strEmailFilename):
-    global g_arrayEmailServers
-    global g_nEmailServer
-    global g_SMTPObject
+def DoSendEmail(strToEmail, strEmailFilename, SMTPObject, dictEmailServer):
     bResult = False
 
     while True:
@@ -230,27 +194,29 @@ def DoSendEmail(strToEmail, strEmailFilename):
             # Create the base text message.
             msg = EmailMessage()
             msg["Subject"] = "NEW SERVICE for tradies: find-a-tradie.com.au"
-            msg["From"] = MakeAddress("Find a Tradie", g_arrayEmailServers[g_nEmailServer]["username"])
+            msg["From"] = MakeAddress("Find a Tradie", dictEmailServer["username"])
             msg["Reply-To"] = MakeAddress("Find a Tradie", "find-a-tradie@outlook.com")
 
             msg["To"] = MakeAddress("Fellow Tradie", strToEmail)
-            msg.set_content(g_strTextEmailContent)
+            msg.set_content(dictEmailServer["txt_content"])
 
             # Add the html version.  This converts the message into a multipart/alternative
             # container, with the original text message as the first part and the new html
             # message as the second part.
-            #strCIDHomePage = make_msgid("home", "page")
-            #strCIDFeedback = make_msgid("feedback", "trust")
-            #strCIDCustomerFeedback = make_msgid("customer", "feedback")
-            #strCIDTradieFeedback = make_msgid("tradie", "feedback")
+            # strCIDHomePage = make_msgid("home", "page")
+            # strCIDFeedback = make_msgid("feedback", "trust")
+            # strCIDCustomerFeedback = make_msgid("customer", "feedback")
+            # strCIDTradieFeedback = make_msgid("tradie", "feedback")
             strCIDHomePage = "home@page"
             strCIDFeedback = "feedback@trust"
             strCIDCustomerFeedback = "customer@feedback"
             strCIDTradieFeedback = "tradie@feedback"
 
-            msg.add_alternative(g_strHTMLEmailContent.format(strCIDHomePage=strCIDHomePage[1:-1], strCIDFeedback=strCIDFeedback[1:-1],
-                    strCIDCustomerFeedback=strCIDCustomerFeedback[1:-1], strCIDTradieFeedback=strCIDTradieFeedback[1:-1]),
-                    subtype='html')
+            msg.add_alternative(
+                dictEmailServer["html_content"].format(strCIDHomePage=strCIDHomePage[1:-1], strCIDFeedback=strCIDFeedback[1:-1],
+                                             strCIDCustomerFeedback=strCIDCustomerFeedback[1:-1],
+                                             strCIDTradieFeedback=strCIDTradieFeedback[1:-1]),
+                subtype='html')
             # NOTE: we needed to peel the <> off the msgid for use in the html.
 
             # Now add the related image to the html part.
@@ -267,46 +233,33 @@ def DoSendEmail(strToEmail, strEmailFilename):
                 msg.get_payload()[1].add_related(img.read(), "image", "jpeg",
                                                  cid=strCIDTradieFeedback)
 
-            g_SMTPObject.send_message(msg)
+            SMTPObject.send_message(msg)
             bResult = True
-            break;
+            break
+
         except Exception as error:
-            bReconnect = False
             if (isinstance(error.args[0], int)):
                 strErrorMsg = error.args[1].decode("utf-8")
             else:
                 strErrorMsg = error.args[0][strToEmail][1].decode("utf-8")
+
             if ("Server not connected" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: server disconnected unexpectedly...\n", error)
             elif ("Connection timed out" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: time out...", error)
             elif ("Connection expired" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: connection expired...", error)
-                bReconnect = True
             elif ("OutboundSpamException" in strErrorMsg):
                 print("\nEMAIL SERVER ERROR: outbound spam email blocked...\n", error)
-                g_nEmailServer += 1
-                bReconnect = True
             elif ("Daily user sending limit exceeded"):
                 print("\nEMAIL SERVER ERROR: sending limit reached...\n", error)
                 DoWait(strEmailFilename)
-                bReconnect = True
-            else:
-                bReconnect = True
-            if (bReconnect):
-                if (g_nEmailServer >= len(g_arrayEmailServers)):
-                    g_nEmailServer = 0
-                    DoWait(strEmailFilename)
-                if not DoConnectEmailServer():
-                    break
 
     return bResult
 
 
-
-
-
 g_strSavedEmailFile = "last_email.txt"
+
 
 def SaveEmailPlace(strEmail, strEmailFile):
     fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
@@ -316,19 +269,7 @@ def SaveEmailPlace(strEmail, strEmailFile):
     fileLastEmail.close()
 
 
-
-
-g_arrayEmailFiles = ["ARBORISTS.email",
-                        "CABINETRY.email",
-                        "CLEANERS.email",
-                        "CONCRETERS.email",
-                        "ELECTRICIANS.email",
-                        "GARDENERS.email",
-                        "PAINTERS.email",
-                        "PET CARERS.email",
-                        "PLUMBERS.email"]
-
-def GetLastEmail():
+def GetLastEmail(arrayEmailFiles):
     strLastEmail = ""
     strLastEmailFile = ""
 
@@ -343,24 +284,22 @@ def GetLastEmail():
             fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
             fileLastEmail.write("\n")
             fileLastEmail.write("\n")
-            strLastEmailFile = g_arrayEmailFiles[0]
+            strLastEmailFile = arrayEmailFiles[0]
             strLastEmail = ""
     return {"last_email_filename": strLastEmailFile, "last_email": strLastEmail}
 
 
+def LoadEmailMessages(dictEmailFiles):
+    strHTMLEmailContent = ""
+    strTextEmailContent = ""
 
-
-def LoadEmailMessages():
-    global g_strHTMLEmailContent
-    global g_strTextEmailContent
-    bResult = True
     if (os.path.isfile(g_strPath + "email.html")) and (os.path.isfile(g_strPath + "email.txt")):
         fileEmailContents = open(g_strPath + "email.html", "r", encoding="utf-8")
         strLine = ""
         while (True):
             strLine = fileEmailContents.readline()
             if (len(strLine) > 0):
-                g_strHTMLEmailContent += strLine
+                strHTMLEmailContent += strLine
             else:
                 break
         fileEmailContents.close()
@@ -369,39 +308,41 @@ def LoadEmailMessages():
         while (True):
             strLine = fileEmailContents.readline()
             if (len(strLine) > 0):
-                g_strTextEmailContent += strLine
+                strTextEmailContent += strLine
             else:
                 break
         fileEmailContents.close()
+        dictEmailFiles["html_content"] = strHTMLEmailContent
+        dictEmailFiles["txt_content"] = strTextEmailContent
     else:
         if (not os.path.isfile(g_strPath + "email.html")):
             print("File email.html not found!")
         elif (not os.path.isfile(g_strPath + "email.txt")):
             print("File email.txt not found!")
-        bResult = False
-        print
 
-    return bResult
+    return dictEmailFiles
 
 
+def DoStart(dictConfig):
+    nEmailCount = nFileNumber = 0
+    SMTPObject = DoConnectEmailServer(dictConfig["email_server"])
 
-print("\n\n")
-nEmailCount = nFileNumber = 0;
-dictLast = GetLastEmail()
-DoRemoveInvalidEmails(dictLast["last_email_filename"])
+    print("\n\n")
+    dictLast = GetLastEmail(dictConfig["email_file_list"])
+    DoRemoveInvalidEmails(dictLast["last_email_filename"], dictConfig["email_server"])
 
-if (LoadEmailMessages()):
-    if len(g_strHTMLEmailContent) > 0:
-        DoConnectEmailServer()
-        while (nFileNumber < len(g_arrayEmailFiles)):
-            strEmailFile = g_arrayEmailFiles[nFileNumber]
+    dictConfig["email_file_list"] = LoadEmailMessages(dictConfig["email_file_list"])
+    if (len(dictConfig["email_files"]["html_content"]) > 0) and (len(dictConfig["email_files"]["txt_content"]) > 0) and SMTPObject is not None:
+        DoConnectEmailServer(dictConfig["email_server"])
+        while (nFileNumber < len(dictConfig["email_file_list"])):
+            strEmailFile = dictConfig["email_file_list"][nFileNumber]
             if (strEmailFile == dictLast["last_email_filename"]):
                 break
             else:
                 nFileNumber += 1
 
-        for nI in range(nFileNumber, len(g_arrayEmailFiles)):
-            strEmailFile = g_arrayEmailFiles[nI]
+        for nI in range(nFileNumber, len(dictConfig["email_file_list"])):
+            strEmailFile = dictConfig["email_file_list"][nI]
             fileEmail = open(g_strPath + strEmailFile, "r")
             if (fileEmail):
                 print("Processing email file " + strEmailFile + "...")
@@ -420,17 +361,17 @@ if (LoadEmailMessages()):
                     if (strEmail != ""):
                         print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
                         SaveEmailPlace(strEmail, strEmailFile)
-                        if (not DoSendEmail(strEmail, dictLast["last_email_filename"])):
+                        if (not DoSendEmail(strEmail, dictLast["last_email_filename"], SMTPObject)):
                             DoWait()
                         else:
-                            #wait(random.randrange(3, 15, 1))
+                            # wait(random.randrange(3, 15, 1))
                             wait(1)
                     strEmail = fileEmail.readline()
                     if (strEmail != ""):
                         strEmail = strEmail.replace("\n", "")
                         nEmailCount += 1
 
-                DoRemoveInvalidEmails(strEmailFile)
+                DoRemoveInvalidEmails(strEmailFile, dictEmailServer)
                 try:
                     os.remove(g_strPath + strEmailFile)
                     os.rename(g_strPath + strEmailFile + "_", g_strPath + strEmailFile)
@@ -442,8 +383,6 @@ if (LoadEmailMessages()):
                 print("\n---------------------------------\n")
 
         fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
-        if (IsEmailServerOpen(g_SMTPObject)):
-            g_SMTPObject.quit()
+        if (IsEmailServerOpen(SMTPObject)):
+            SMTPObject.quit()
         print("FINISHED!")
-else:
-    print("ERROR: Email content file is empty!")
