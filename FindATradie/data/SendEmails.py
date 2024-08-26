@@ -328,21 +328,22 @@ def DoStart(dictConfig):
     SMTPObject = DoConnectEmailServer(dictConfig["email_server"])
 
     print("\n\n")
-    dictLast = GetLastEmail(dictConfig["email_file_list"])
     DoRemoveInvalidEmails(dictLast["last_email_filename"], dictConfig["email_server"])
 
     dictConfig["email_file_list"] = LoadEmailMessages(dictConfig["email_file_list"])
     if (len(dictConfig["email_files"]["html_content"]) > 0) and (len(dictConfig["email_files"]["txt_content"]) > 0) and SMTPObject is not None:
         DoConnectEmailServer(dictConfig["email_server"])
-        while (nFileNumber < len(dictConfig["email_file_list"])):
-            strEmailFile = dictConfig["email_file_list"][nFileNumber]
-            if (strEmailFile == dictLast["last_email_filename"]):
-                break
-            else:
-                nFileNumber += 1
+        dictLast = GetLastEmail(dictConfig["selected_email_file_list"])
+        if (dictLast["last_email_filename"] != ""):
+            while (nFileNumber < len(dictConfig["email_file_list"])):
+                strEmailFile = dictConfig["email_file_list"][nFileNumber]
+                if (strEmailFile == dictLast["last_email_filename"]):
+                    break
+                else:
+                    nFileNumber += 1
 
-        for nI in range(nFileNumber, len(dictConfig["email_file_list"])):
-            strEmailFile = dictConfig["email_file_list"][nI]
+        for nI in range(nFileNumber, len(dictConfig["selected_email_file_list"])):
+            strEmailFile = dictConfig["selected_email_file_list"][nI]
             fileEmail = open(g_strPath + strEmailFile, "r")
             if (fileEmail):
                 print("Processing email file " + strEmailFile + "...")

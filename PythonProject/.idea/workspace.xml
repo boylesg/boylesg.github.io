@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email__" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/last_email.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/last_email.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,16 +114,6 @@
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
-          <line>106</line>
-          <option name="timeStamp" value="276" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
-          <line>110</line>
-          <option name="timeStamp" value="277" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../FindATradie/data/SendEmails.py</url>
           <line>30</line>
           <option name="timeStamp" value="278" />
@@ -145,7 +129,10 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="dictValues[&quot;email_server_show_password&quot;]" language="Python" />
+        <watch expression="listEmailFiles.get()" language="Python" />
+        <watch expression="nI" language="Python" />
+        <watch expression="listEmailFiles.get()[arrayIndexes[nI]]" language="Python" />
+        <watch expression="dictEmailServer[&quot;server&quot;]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
