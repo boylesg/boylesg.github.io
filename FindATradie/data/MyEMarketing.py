@@ -4,7 +4,6 @@ import os.path
 import os
 from SendEmails import *
 
-
 ######################################################################################
 ######################################################################################
 ##
@@ -13,10 +12,13 @@ from SendEmails import *
 ######################################################################################
 ######################################################################################
 g_dictConfig = {"email_server":
-                    {"url": "", "username": "", "password": ""},
+                    {"email_url": "", "email_port": "", "email_username": "", "email_password": ""},
                 "email_files":
                     {"html": "email.html", "txt": "email.txt", "html_content": "", "txt_content": ""},
-                "email_file_list": [], "selected_email_file_list": []
+                "email_lists":
+                    {"email_files": [], "selected_email_files": []},
+                "facebook":
+                    {"facebook_username": "", "facebook_password": "", "facebook_groups": [], "facebook_posts": []}
                 }
 
 g_dictFilenames = {"config_filename": "config.json"}
@@ -52,70 +54,196 @@ def DoGetEmailFileList():
     return arrayFilenames
 
 
+def DoGetFacebookGroupList(arrayFacebookGroups):
+    arrayFacebookGroups4Listbox = []
+    for dictGroup in arrayFacebookGroups:
+        arrayFacebookGroups4Listbox.append(dictGroup["name"] + " (" + dictGroup["url"] + ")")
+    return arrayFacebookGroups4Listbox
+
+
+def DoSaveFacebookGroupList(arrayFacebookGroupsFromListbox):
+    arrayFacebookGroups = []
+    for strItem in arrayFacebookGroupsFromListbox:
+        arrayParts = strItem.split(" (")
+        strName = arrayParts[0]
+        strURL = arrayParts[1]
+        strName = strName.strip("( )")
+        strURL = strURL.strip("( )")
+        arrayFacebookGroups.append({"name": strName, "url": strURL})
+    return arrayFacebookGroups
+
+
 def DoRun():
     global g_dictConfig
     arrayEmailFiles = DoGetEmailFileList()
+    arrayFacebookGroups = DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"])
 
     DoLoadConfigFile()
     #######################################################################################
     # START LAYOUTS
     #######################################################################################
-    layoutConfig = [[SG.Text("      ")], [SG.Text("Email Server")],
-                    [SG.Push(), SG.Text("Server URL:"), SG.Input(g_dictConfig["email_server"]["url"], key="url")],
-                    [SG.Push(), SG.Text("Server Port:"), SG.Input(g_dictConfig["email_server"]["port"], key="port", enable_events=True)],
-                    [SG.Push(), SG.Text("Server Username:"), SG.Input(g_dictConfig["email_server"]["username"], key="username")],
-                    [SG.Push(), SG.Text("Server Password:"), SG.Input(g_dictConfig["email_server"]["password"], key="password", password_char="*")],
-                    [SG.Push(), SG.Checkbox("Show Password", default=False, key="email_server_show_password")],
-                    [SG.Text("      ")],
+    strSpaces = "                                                                                                                       "
+    layoutConfig = [[SG.Text("Email Server")],
+                    [SG.Push(), SG.Text("Server URL:"),
+                     SG.InputText(g_dictConfig["email_server"]["email_url"], key="email_url"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Text("Server Port:"),
+                     SG.InputText(g_dictConfig["email_server"]["email_port"], key="email_port", enable_events=True, size=(5, 1)), SG.Text(strSpaces), SG.Text("                                                                   ")],
+                    [SG.Push(), SG.Text("Server Username:"),
+                     SG.InputText(g_dictConfig["email_server"]["email_username"], key="email_username"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Text("Server Password:"),
+                     SG.InputText(g_dictConfig["email_server"]["email_password"], key="email_password", password_char="*"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Checkbox("Show Password", default=False, key="email_server_show_password"), SG.Text(strSpaces)],
+                    [SG.HorizontalSeparator(color='black')],
                     [SG.Text("Email Messages To Send")],
-                    [SG.Push(), SG.Text("HTML Email Filename:"), SG.Input(g_dictConfig["email_files"]["html"], key="html")],
-                    [SG.Push(), SG.Text("Text Email Filename:"), SG.Input(g_dictConfig["email_files"]["txt"], key="txt")],
-                    [SG.Text("      ")],
-                    [SG.Push(), SG.Button("SAVE", key="save_email_server")],
-                    [SG.Text("      ")]]
+                    [SG.Push(), SG.Text("HTML Email Filename:"),
+                     SG.InputText(g_dictConfig["email_files"]["html"], key="html"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Text("Text Email Filename:"),
+                     SG.InputText(g_dictConfig["email_files"]["txt"], key="txt"), SG.Text(strSpaces)],
+                    [SG.HorizontalSeparator(color='black')],
+                    [SG.Text("Facebook")],
+                    [SG.Push(), SG.Text("Username:"), SG.InputText(g_dictConfig["facebook"]["facebook_username"], key="facebook_username"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Text("Password:"), SG.InputText(g_dictConfig["facebook"]["facebook_password"], password_char="*", key="facebook_password"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Checkbox("Show Password", default=False, key="facebook_show_password"), SG.Text(strSpaces)],
+                    [SG.Push(), SG.Button("SAVE", key="save_config"), SG.Text(strSpaces)]]
 
-    layoutSendEmails = [[SG.Text("      ")],
-                        [SG.Text("Email Lists (.email)              "), SG.Button("SEND", key="send_emails")],
-                        [SG.Listbox(arrayEmailFiles, size=(30, 15), select_mode="extended", key="list_of_email_files")],
-                        [SG.Text("Select the email files you want to process...")],
-                        [SG.Text("      ")]]
+    layoutSendEmails = [[SG.Button("HELP", key="help_email")],
+                        [SG.HorizontalSeparator(color='black')],
+                        [SG.Text("Email Lists (.email)")],
+                        [SG.Listbox(arrayEmailFiles, size=(35, 17), select_mode="extended", key="list_of_email_files")],
+                        [SG.Button("REFRESH", key="refresh_email_lists"), SG.Button("SEND", key="send_emails")],
+                        [SG.Text("Select the email files you want to process...")]]
 
-    layout = [[SG.Exit("QUIT", key="quit")], [SG.Text("      ")],
-              [SG.TabGroup([[SG.Tab("Configuration", layoutConfig), SG.Tab("Send Marketing Emails", layoutSendEmails)]])]]
+    layoutFacebookColumn1 = [[SG.Text("Facebook Group List")],
+                             [SG.Listbox(DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]), size=(80, 17), select_mode="extended", key="list_of_facebook_groups", enable_events=True)],
+                             [SG.Button("ADD", key="add_facebook_group", size=(10, 1)), SG.Text(" "),
+                              SG.Button("DELETE", key="delete_facebook_group", size=(10, 1), disabled=True), SG.Text(" "),
+                              SG.Button("SAVE", key="save_facebook_groups", size=(10, 1)), SG.VPush()]]
+
+    layoutFacebookColumn2 = [[SG.Text("List of Posts")],
+                             [SG.Listbox(g_dictConfig["facebook"]["facebook_posts"], size=(44, 15), select_mode="extended", key="list_of_facebook_posts", enable_events=True)],
+                             [SG.Button("REFRESH", key="refresh_facebook_post", size=(10, 1)),
+                              SG.Button("POST", key="start_facebook_posts", size=(10, 1)), SG.Push(),
+                              SG.Text("Post Delay:"), SG.InputText(key="facebook_post_delay", size=(5, 1), default_text="1", enable_events=True)],
+                              [SG.Push(), SG.Combo(values=["minute(s)", "hour(s)", "day(s)"], default_value="hour(s)", key="facebook_post_delay_type")]]
+
+    layoutFacebook = [[SG.Button("HELP", key="help_facebook")],
+                      [SG.HorizontalSeparator(color='black')],
+                      [SG.Column(layoutFacebookColumn1, element_justification="left"),
+                       SG.Column(layoutFacebookColumn2, element_justification="left")]]
+
+    layoutTwitter = [[]]
+
+    layout = [[SG.Exit("QUIT", key="quit")],
+              [SG.TabGroup(
+                  [[SG.Tab("Configuration", layoutConfig),
+                    SG.Tab("Marketing Emails", layoutSendEmails),
+                    SG.Tab("Facebook Marketing", layoutFacebook),
+                    SG.Tab("Twitter Marketing", layoutTwitter)]])],
+              [[SG.Text("Output")], [SG.Text(key="output_email", size=(132, 8))]]]
     #######################################################################################
     # END LAYOUTS
     #######################################################################################
-    g_dictConfig["email_list_files"] = arrayEmailFiles
-    MainWindow = SG.Window(title="My E-Marketing", layout=layout, margins=(10, 10))
-    bShowPassword = False
+    g_dictConfig["email_lists"]["email_files"] = arrayEmailFiles
+    MainWindow = SG.Window(title="My E-Marketing", layout=layout, margins=(10, 10), size=(1000, 640))
+    bShowEmailServerPassword = False
+    bShowFacebookPassword = False
+
 
     while True:
         strEvent, dictValues = MainWindow.read(500)
 
         if (strEvent == "quit") or (strEvent is None):
             break
-        elif strEvent == "save_email_server":
-            g_dictConfig["url"] = MainWindow["url"].get()
-            g_dictConfig["username"] = MainWindow["username"].get()
-            g_dictConfig["password"] = MainWindow["password"].get()
-            g_dictConfig["html"] = MainWindow["html"].get()
-            g_dictConfig["txt"] = MainWindow["txt"].get()
+        elif strEvent == "save_config":
+            g_dictConfig["email_server"]["email_url"] = MainWindow["email_url"].get()
+            g_dictConfig["email_server"]["email_username"] = MainWindow["email_username"].get()
+            g_dictConfig["email_server"]["email_password"] = MainWindow["email_password"].get()
+            g_dictConfig["email_files"]["html"] = MainWindow["html"].get()
+            g_dictConfig["email_files"]["txt"] = MainWindow["txt"].get()
+
+            g_dictConfig["facebook"]["facebook_username"] = MainWindow["facebook_username"].get()
+            g_dictConfig["facebook"]["facebook_password"] = MainWindow["facebook_password"].get()
+
             DoSaveConfigFile()
+        elif strEvent == "refresh_email_lists":
+            MainWindow["list_of_facebook_posts"].update(values=g_dictConfig["email_lists"]["email_files"])
+        elif strEvent == "save_facebook_groups":
+            FacebookGroupListbox = MainWindow["list_of_facebook_groups"]
+            arrayFacebookGroups = FacebookGroupListbox.Values
+            g_dictConfig["facebook"]["facebook_groups"] = DoSaveFacebookGroupList(arrayFacebookGroups)
+            DoSaveConfigFile()
+        elif strEvent == "delete_facebook_group":
+            arraySelectedIndexes = MainWindow["list_of_facebook_groups"].get_indexes()
+            arrayListboxValues = MainWindow["list_of_facebook_groups"].Values
+            for nI in range(0, len(arraySelectedIndexes)):
+                arrayListboxValues.pop(arraySelectedIndexes[nI])
+            MainWindow["list_of_facebook_groups"].update(values=arrayListboxValues)
+            MainWindow["delete_facebook_group"].update(disabled=True)
+        elif strEvent == "add_facebook_group":
+            dictResults = Popup2xText(SG, "Enter new Facebook group", "Group Name", "", "URL", "https://www.facebook.com/groups/")
+            if dictResults["OK"]:
+                arrayListboxValues = MainWindow["list_of_facebook_groups"].Values
+                arrayListboxValues.append({"name": dictResults["Text1"], "url": dictResults["Text2"]})
+                MainWindow["list_of_facebook_groups"].update(values=arrayListboxValues)
+        elif strEvent == "list_of_facebook_groups":
+            MainWindow["delete_facebook_group"].update(disabled=False)
         elif strEvent == "send_emails":
             arraySelectedEmailFiles = MainWindow["list_of_email_files"].get()
-            g_dictConfig["selected_email_file_list"] = arraySelectedEmailFiles
-            DoStart(g_dictConfig)
-        elif strEvent == "port":
-            strText = dictValues["port"]
-            if not strText.isdigit():
-                MainWindow["port"].update(value=strText[:-1])
+            g_dictConfig["email_lists"]["selected_email_files"] = arraySelectedEmailFiles
+            DoStartSendingEmails(g_dictConfig)
+        elif strEvent == "refresh_facebook_posts":
+            MainWindow["list_of_facebook_posts"].update(values=g_dictConfig["facebook"]["facebook_posts"])
+        elif strEvent == "save_facebook_posts":
+            FacebookGroupListbox = MainWindow["list_of_facebook_posts"]
+            arrayFacebookPosts = FacebookGroupListbox.Values
+            g_dictConfig["facebook"]["facebook_posts"] = arrayFacebookPosts
+            DoSaveConfigFile()
+        elif strEvent == "start_facebook_posts":
+            nMillisDelay = int(MainWindow["facebook_post_delay"].get())
+            nSelectedIndex = MainWindow["facebook_post_delay_type"].get_indexes()[0]
+            if nSelectedIndex == 0:
+                nMillisDelay *= 60 * 1000
+            elif nSelectedIndex == 1:
+                nMillisDelay *= 60 * 60 * 1000
+            elif nSelectedIndex == 2:
+                nMillisDelay *= 24 * 60 * 60 * 1000
+        elif strEvent == "help_facebook":
+            strText = "XXXX"
+            SG.popup(strText, title="HELP - With Facebook Posts")
+        elif strEvent == "help_email":
+            strText = ("Files containing email address lists must be:\n" +
+                       "1) Plain text format\n" +
+                       "2) Have the extension .email\n" +
+                       "3) Be located in the same folder as 'MyEMarketing.py\n\n" +
+                       "The .email files are automatically detected and listed here.\n\n" +
+                       "You should select at least one of the .email files from the list and then click the 'SEND' button\n\n" +
+                       "Each email file will then be processed with an email being sent to each email address in that file.\n\n" +
+                       "You must have specified the email server details, as well as files containing a html and a text version of the email you want to send, in the 'Configuration' tab.\n\n" +
+                       "The progress, and any errors, will be displayed in the 'Output' window.\n\n" +
+                       "If the daily sent email limit for your web server is reached then the process will bookmark the current email file and the current email address in that file, and then sleep for 2 hours at a time until emails can be successfully sent again. ")
+            SG.popup(strText, title="HELP - Sending Marketing Emails")
+        elif strEvent == "email_port":
+            strText = dictValues["email_port"]
+            if (not strText.isdigit()) or (len(strText) > 3):
+                MainWindow["email_port"].update(value=strText[:-1])
+        elif strEvent == "facebook_post_delay":
+            strText = dictValues["facebook_post_delay"]
+            if (not strText.isdigit()) or (len(strText) > 3):
+                MainWindow["facebook_post_delay"].update(value=strText[:-1])
 
-        if bShowPassword != dictValues["email_server_show_password"]:
+        if bShowEmailServerPassword != dictValues["email_server_show_password"]:
             if dictValues["email_server_show_password"]:
-                MainWindow["password"].update(password_char="")
+                MainWindow["email_password"].update(password_char="")
             else:
-                MainWindow["password"].update(password_char="*")
-            bShowPassword = dictValues["email_server_show_password"]
+                MainWindow["email_password"].update(password_char="*")
+            bShowEmailServerPassword = dictValues["email_server_show_password"]
+        if bShowFacebookPassword != dictValues["facebook_show_password"]:
+            if dictValues["facebook_show_password"]:
+                MainWindow["facebook_password"].update(password_char="")
+            else:
+                MainWindow["facebook_password"].update(password_char="*")
+            bShowFacebookPassword = dictValues["facebook_show_password"]
+
     MainWindow.close()
 
 

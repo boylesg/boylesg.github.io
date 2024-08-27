@@ -1,7 +1,7 @@
 import sys
 from contextlib import closing
-import lxml.html as html # pip install 'lxml>=2.3.1'
-from selenium import webdriver # pip install selenium
+import lxml.html as html  # pip install 'lxml>=2.3.1'
+from selenium import webdriver  # pip install selenium
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,14 +13,9 @@ import time
 import io
 from threading import Thread
 
-
-
-
 g_strWindowsUserFolder = "gregaryb"
 g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.github.io/FindATradie/data/"
 g_browserChrome = False
-
-
 
 
 def get_file_size(file):
@@ -28,8 +23,6 @@ def get_file_size(file):
     nSize = file.tell()
     file.seek(0)
     return nSize
-
-
 
 
 def wait(nSeconds):
@@ -54,19 +47,15 @@ def wait(nSeconds):
         time.sleep(nSecondsSleep)
 
 
-
-
 def DoWait(strURL, nTimeout):
     wait(nTimeout)
     g_browserChrome.get(strURL)
 
 
-
-
 def DoCheckValidEmailAddressAlt(strEmailAddress):
     bResult = False
     global g_browserChrome
-    
+
     if (not g_browserChrome):
         g_browserChrome = webdriver.Chrome()
 
@@ -81,7 +70,8 @@ def DoCheckValidEmailAddressAlt(strEmailAddress):
                     SubmitButton.click()
                     strCode = g_browserChrome.page_source
                     if ("503 Service Temporarily Unavailable" in strCode):
-                        DoWait("https://www.verifyemailaddress.org/", int(input_timeout("Number of seconds to wait: ").strip() or "3600"))
+                        DoWait("https://www.verifyemailaddress.org/",
+                               int(input_timeout("Number of seconds to wait: ").strip() or "3600"))
                     elif "seems to be valid" in strCode:
                         print("Good email address: " + strEmailAddress)
                         bResult = True
@@ -98,8 +88,6 @@ def DoCheckValidEmailAddressAlt(strEmailAddress):
             continue
         wait(random.randrange(3, 15, 1))
     return bResult
-
-
 
 
 def DoCheckValidEmailAddress(strEmailAddress):
@@ -146,7 +134,7 @@ def DoCheckValidEmailAddress(strEmailAddress):
                                     bResult = False
                                     wait(5)
                                     break
-                        #DoWait(strURL, 10)
+                        # DoWait(strURL, 10)
         except Exception:
             nTries += 1
             if nTries == 19:
@@ -157,8 +145,6 @@ def DoCheckValidEmailAddress(strEmailAddress):
                 continue
 
     return bResult
-
-
 
 
 def DoCheckValidEmailAddresses(dictEmailAddress):
@@ -175,8 +161,6 @@ def DoCheckValidEmailAddresses(dictEmailAddress):
             arrayValidEmailAddresses.append(strEmail)
 
     return arrayValidEmailAddresses
-
-
 
 
 def DoPingEmailAddress(strEmailAddress):
@@ -218,3 +202,19 @@ def DoPingEmailAddress(strEmailAddress):
         print(e)
 
     return bValid
+
+
+def Popup2xText(SG, strTitle, strLabel1, strValue1, strLabel2, strValue2):
+    try:
+        popup = SG.Window(strTitle,
+                          [[SG.Text(strLabel1)],
+                           [SG.InputText(strValue1, key="text_1")],
+                           [SG.Text(strLabel2)],
+                           [SG.InputText(strValue2, key="text_2")],
+                           [SG.OK(), SG.Cancel()]])
+    except Exception as Error:
+        pass
+
+    strEvent, arrayValues = popup.read()
+    popup.close()
+    return {"OK": strEvent == "OK", "Text1": popup["text_1"].get(), "Text2": popup["text_2"].get()}
