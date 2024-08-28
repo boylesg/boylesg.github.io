@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email__" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/__" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

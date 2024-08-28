@@ -13,7 +13,7 @@
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
-		sessionStorage["member_id"] = <?php echo $_SESSION["account_id"]; ?>
+		sessionStorage["member_id"] = <?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; else echo "-1"; ?>
 	
 	</script>
 	<!-- #BeginEditable "server" -->
@@ -34,6 +34,8 @@
 		<!-- #BeginEditable "page_styles" -->
 						
 			<style>
+
+
 
 
 				:root 

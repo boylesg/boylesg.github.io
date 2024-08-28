@@ -94,9 +94,6 @@ def UpdateEmailFile(strEmailFilename):
 def DoRemoveInvalidEmails(strEmailFilename, dictEmailServer):
     strSuccessCode = "OK"
     arrayEmails2Delete = []
-
-    print(dictEmailServer)
-
     with IMAP4_SSL(dictEmailServer["email_url"]) as mail_server:
         mail_server.login(dictEmailServer["email_username"], dictEmailServer["email_password"])
         mail_server.list()
@@ -272,7 +269,7 @@ def SaveEmailPlace(strEmail, strEmailFile):
     fileLastEmail.close()
 
 
-def GetLastEmail(arrayEmailFiles):
+def GetLastEmail(strDefaultLastEmail):
     strLastEmail = ""
     strLastEmailFile = ""
 
@@ -287,7 +284,7 @@ def GetLastEmail(arrayEmailFiles):
             fileLastEmail = open(g_strPath + g_strSavedEmailFile, "w")
             fileLastEmail.write("\n")
             fileLastEmail.write("\n")
-            strLastEmailFile = arrayEmailFiles[0]
+            strLastEmailFile = strDefaultLastEmail
             strLastEmail = ""
     return {"last_email_filename": strLastEmailFile, "last_email": strLastEmail}
 
@@ -328,8 +325,10 @@ def LoadEmailMessages(dictEmailFiles):
 def DoStartSendingEmails(dictConfig):
     nEmailCount = nFileNumber = 0
     SMTPObject = DoConnectEmailServer(dictConfig["email_server"])
-    dictLast = GetLastEmail(dictConfig["email_lists"]["selected_email_files"])
-
+    if len(dictConfig["email_lists"]["selected_email_files"]) > 0:
+        dictLast = GetLastEmail(dictConfig["email_lists"]["selected_email_files"][0])
+    else:
+        dictLast = GetLastEmail(dictConfig["email_lists"]["email_files"][0])
     print("\n\n")
     DoRemoveInvalidEmails(dictLast["last_email_filename"], dictConfig["email_server"])
     dictConfig["email_lists"]["email_file_list"] = LoadEmailMessages(dictConfig["email_lists"]["email_file_list"])
