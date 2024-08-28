@@ -9,7 +9,6 @@
 	?>
 	<script type="text/javascript">	
 	
-		var g_nCurrentAdvert = 0;
 		var g_arrayAdverts = [
 								<?php DoGenerateJSAdvertArray(); ?>
 					 		 ];
@@ -215,10 +214,7 @@
 					
 				document.body.style.backgroundImage = strFilename;
 			}
-			
-			if (document.title != "Admin Functions")
-				setInterval(DoNextAdvert, g_nMillisAdvertTimeout);
-			
+						
 		</script>
 	</head>
 
@@ -282,9 +278,8 @@
 		<!-- End Masthead -->
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
-			<div style="display:<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
-				<?php DoGenerateAdvertSlotHTML(); ?>
-			</div>
+			<marquee id="advert_marquee " behavior="alternate" scrolldelay="80" truespeed loop="-1" style="<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
+				<?php DoGenerateAdvertSlotHTML(); ?></marquee>
 			<!-- #BeginEditable "content" -->
 
 

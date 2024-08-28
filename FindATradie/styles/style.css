@@ -285,7 +285,7 @@ a.masthead_button:hover
 	background-color: #171763;
 	margin: 20px;
 	overflow: hidden;
-	width: 700px;
+	width: 1260px;
 	height: 132px;
 	border-style: solid;
 	border-width: thick;
@@ -315,12 +315,13 @@ a.masthead_button:hover
 
 .advert_text
 {
+	display: block;
 	vertical-align: middle;
 	font-size: medium;
 	font-weight: bold;
 	color: black;
 	/*background-color: lime;*/
-	width: 500px;
+	width: 200px;
 	height: 100%;
 	padding: 5px;
 }

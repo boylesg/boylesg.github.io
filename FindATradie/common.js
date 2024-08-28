@@ -422,26 +422,11 @@
 	//** 
 	//******************************************************************************
 	//******************************************************************************
-
-	let g_nMillisAdvertTimeout = 5000;
 	
 	function DoOpenAdvertEditor(nAdvertIndex)
 	{
 		document.location = "advert.php?location=" + strAdvertSpaceName;
-	}
-			
-	function DoNextAdvert()
-	{
-		let strID = "advert_" + (g_nCurrentAdvert + 1).toString();
-		DoGetInput(strID).style.display = "none";
-		g_nCurrentAdvert++;
-		if (g_nCurrentAdvert == g_arrayAdverts.length)
-			g_nCurrentAdvert = 0;
-		DoGetInput("advert_" + (g_nCurrentAdvert + 1).toString()).style.display = "block";
-	}
-	
-	
-	
+	}	
 	
 	function DoSetAdverts()
 	{

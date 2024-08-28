@@ -204,17 +204,32 @@ def DoPingEmailAddress(strEmailAddress):
     return bValid
 
 
-def Popup2xText(SG, strTitle, strLabel1, strValue1, strLabel2, strValue2):
+def Popup2xText(SG, strTitle, strLabel1, strValue1, bFileBrowseButton1, tuppleFileTypes1, strLabel2, strValue2, bFileBrowseButton2, tuppleFileTypes2):
     try:
+        layoutBrowseButton1 = []
+        layoutBrowseButton2 = []
+
+        if bFileBrowseButton1:
+            layoutBrowseButton1 = SG.FileBrowse(key="FileBrowse1", file_types = tuppleFileTypes1)
+
+        if bFileBrowseButton2:
+            layoutBrowseButton2 = SG.FileBrowse(key="FileBrowse2", file_types = tuppleFileTypes2)
+
         popup = SG.Window(strTitle,
                           [[SG.Text(strLabel1)],
-                           [SG.InputText(strValue1, key="text_1")],
+                           [SG.InputText(strValue1, key="text_1"), layoutBrowseButton1],
                            [SG.Text(strLabel2)],
-                           [SG.InputText(strValue2, key="text_2")],
-                           [SG.OK(), SG.Cancel()]])
+                           [SG.InputText(strValue2, key="text_2"), layoutBrowseButton2],
+                           [SG.OK(), SG.Cancel()]],
+                          )
     except Exception as Error:
         pass
 
-    strEvent, arrayValues = popup.read()
+    while True:
+        strEvent, dictValues = popup.read(500)
+
+        if (strEvent == "OK") or (strEvent is None):
+            break
+
     popup.close()
     return {"OK": strEvent == "OK", "Text1": popup["text_1"].get(), "Text2": popup["text_2"].get()}

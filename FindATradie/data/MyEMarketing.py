@@ -3,6 +3,7 @@ import json
 import os.path
 import os
 from SendEmails import *
+from PostFacebook import *
 
 ######################################################################################
 ######################################################################################
@@ -18,7 +19,7 @@ g_dictConfig = {"email_server":
                 "email_lists":
                     {"email_files": [], "selected_email_files": []},
                 "facebook":
-                    {"facebook_username": "", "facebook_password": "", "facebook_groups": [], "facebook_posts": [], "selected_facebook_posts": []}
+                    {"facebook_username": "", "facebook_password": "", "facebook_groups": [{"name": "", "url": ""}], "facebook_posts": [{"post_filename": "", "image_filename": ""}], "selected_facebook_posts": [{"post_filename": "", "image_filename": ""}]}
                 }
 
 g_dictFilenames = {"config_filename": "config.json"}
@@ -73,19 +74,42 @@ def DoSaveFacebookGroupList(arrayFacebookGroupsFromListbox):
     return arrayFacebookGroups
 
 
+def DoGetFileContentsTxt(strFilename):
+    strContents = ""
+    with open(strFilename, "rb") as file:
+        strContents = file.read()
+    return strContents
+
+
 def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
+    global g_dictConfig
+
     for nI in range(0, nRepeat):
-        for strPostFilename in arrayPosts:
-            "XXXX"
+        for dictPost in arrayPosts:
+            DoPostFacebook(g_dictConfig["facebook"]["facebook_username"], g_dictConfig["facebook"]["facebook_password"], DoGetFileContentsTxt(dictPost["post_filename"]), dictPost["image_filename"], g_dictConfig["facebook"]["facebook_groups"])
         wait(nMillisDelay)
+
+
+def DoSaveFacebookPost(strFilenamePost, strFilenameImage):
+    g_dictConfig["facebook"]["facebook_posts"].append({"post_filename": strFilenamePost, "image_filename": strFilenameImage})
+
+
+def DoGetFacebookPostList(arrayConfigFacebookPosts):
+    arrayFacebookPosts4Listbox = []
+    for dictPost in arrayConfigFacebookPosts:
+        strFilename = dictPost["post_filename"]
+        strListItem = strFilename[strFilename.rfind("/") + 1:]
+        strFilename = dictPost["image_filename"]
+        if strFilename != "":
+            strListItem = strListItem + " (with image " + strFilename[strFilename.rfind("/") + 1:] + ")"
+        arrayFacebookPosts4Listbox.append(strListItem)
+    return arrayFacebookPosts4Listbox
 
 
 def DoRun():
     global g_dictConfig
     arrayEmailFiles = DoGetFileList(".email")
     g_dictConfig["email_lists"]["email_files"] = arrayEmailFiles
-    arrayFaceBookFiles = DoGetFileList(".facebook")
-    g_dictConfig["facebook"]["facebook_posts"] = arrayFaceBookFiles
     arrayFacebookGroups = DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"])
 
     DoLoadConfigFile()
@@ -114,25 +138,26 @@ def DoRun():
                     [SG.Push(), SG.Text("Username:"), SG.InputText(g_dictConfig["facebook"]["facebook_username"], key="facebook_username"), SG.Text(strSpaces)],
                     [SG.Push(), SG.Text("Password:"), SG.InputText(g_dictConfig["facebook"]["facebook_password"], password_char="*", key="facebook_password"), SG.Text(strSpaces)],
                     [SG.Push(), SG.Checkbox("Show Password", default=False, key="facebook_show_password"), SG.Text(strSpaces)],
-                    [SG.Push(), SG.Button("SAVE", key="save_config"), SG.Text(strSpaces)]]
+                    [SG.Push(), SG.Button(image_filename="save.png", key="save_config"), SG.Text(strSpaces)]]
 
     layoutSendEmails = [[SG.Button("HELP", key="help_email")],
                         [SG.HorizontalSeparator(color='black')],
                         [SG.Text("Email Lists (.email)")],
                         [SG.Listbox(arrayEmailFiles, size=(35, 17), select_mode="extended", key="list_of_email_files")],
-                        [SG.Button("REFRESH", key="refresh_email_lists"), SG.Button("SEND", key="send_emails")],
+                        [SG.Button(image_filename="refresh.png", key="refresh_email_lists"), SG.Button(image_filename="email.png", key="send_emails")],
                         [SG.Text("Select the email files you want to process...")]]
 
     layoutFacebookColumn1 = [[SG.Text("Facebook Group List")],
                              [SG.Listbox(DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]), size=(80, 17), select_mode="extended", key="list_of_facebook_groups", enable_events=True)],
-                             [SG.Button("ADD", key="add_facebook_group", size=(10, 1)), SG.Text(" "),
-                              SG.Button("DELETE", key="delete_facebook_group", size=(10, 1), disabled=True), SG.Text(" "),
-                              SG.Button("SAVE", key="save_facebook_groups", size=(10, 1)), SG.VPush()]]
+                             [SG.Button(image_filename="add.png", key="add_facebook_group", size=(10, 1)), SG.Text(" "),
+                              SG.Button(image_filename="subtract.png", key="delete_facebook_group", size=(10, 1), disabled=True), SG.Text(" "),
+                              SG.Button(image_filename="save.png", key="save_facebook_groups", size=(10, 1)), SG.VPush()]]
 
     layoutFacebookColumn2 = [[SG.Text("List of Posts")],
-                             [SG.Listbox(arrayFaceBookFiles, size=(44, 15), select_mode="extended", key="list_of_facebook_posts", enable_events=True)],
-                             [SG.Button("REFRESH", key="refresh_facebook_post", size=(10, 1)),
-                              SG.Button("POST", key="start_facebook_posts", size=(10, 1)), SG.Push(),
+                             [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]), size=(44, 15), select_mode="extended", key="list_of_facebook_posts", enable_events=True)],
+                             [SG.Button(image_filename="add.png", key="add_facebook_post", size=(2, 1)),
+                              SG.Button(image_filename="subtract.png", key="delete_facebook_posts", disabled=True, size=(2, 1)),
+                              SG.Button(image_filename="Facebook.png", key="start_facebook_posts", size=(10, 1)), SG.Push(),
                               SG.Text("Post Delay:"), SG.InputText(key="facebook_post_delay", size=(5, 1), default_text="1", enable_events=True)],
                              [SG.Push(), SG.Text("Post repeat"), SG.InputText(key="facebook_post_repeat", size=(5, 1), default_text="1", enable_events=True),
                              SG.Combo(values=["minute(s)", "hour(s)", "day(s)"], default_value="hour(s)", key="facebook_post_delay_type")]]
@@ -150,7 +175,7 @@ def DoRun():
                     SG.Tab("Marketing Emails", layoutSendEmails),
                     SG.Tab("Facebook Marketing", layoutFacebook),
                     SG.Tab("Twitter Marketing", layoutTwitter)]])],
-              [[SG.Text("Output")], [SG.Text(key="output_email", size=(132, 8))]]]
+              [[SG.Text("Output")], [SG.Text(key="output", size=(132, 8))]]]
     #######################################################################################
     # END LAYOUTS
     #######################################################################################
@@ -176,8 +201,21 @@ def DoRun():
             g_dictConfig["facebook"]["facebook_password"] = MainWindow["facebook_password"].get()
 
             DoSaveConfigFile()
-        elif strEvent == "refresh_email_lists":
-            MainWindow["list_of_facebook_posts"].update(values=g_dictConfig["email_lists"]["email_files"])
+        elif strEvent == "add_facebook_post":
+            dictResults = Popup2xText(SG, "New Facebook Post", "File containing the post", "", True, (("Text Files", "*.txt"),("All Files", "*.*")), "Image file", "", True, (("JPEG Files", "*.jpg"), ("JPEG Files", "*.jpeg"), ("PNG Files", "*.png")))
+            if dictResults["OK"]:
+                DoSaveFacebookPost(dictResults["Text1"], dictResults["Text2"])
+                arrayFacebookPostListbox = DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"])
+                MainWindow["list_of_facebook_posts"].update(values=arrayFacebookPostListbox)
+        elif strEvent == "delete_facebook_posts":
+            arrayFacebookPostList = MainWindow["list_of_facebook_posts"].Values
+            arraySelectedIndexes = MainWindow["list_of_facebook_posts"].get_indexes()
+            for nI in range(0, len(arraySelectedIndexes)):
+                arrayFacebookPostList.pop(arraySelectedIndexes[nI])
+            MainWindow["list_of_facebook_posts"].update(values=arrayFacebookPostList)
+            MainWindow["delete_facebook_posts"].update(disabled=True)
+        elif strEvent == "list_of_facebook_posts":
+            MainWindow["delete_facebook_posts"].update(disabled=False)
         elif strEvent == "save_facebook_groups":
             FacebookGroupListbox = MainWindow["list_of_facebook_groups"]
             arrayFacebookGroups = FacebookGroupListbox.Values
@@ -191,10 +229,11 @@ def DoRun():
             MainWindow["list_of_facebook_groups"].update(values=arrayListboxValues)
             MainWindow["delete_facebook_group"].update(disabled=True)
         elif strEvent == "add_facebook_group":
-            dictResults = Popup2xText(SG, "Enter new Facebook group", "Group Name", "", "URL", "https://www.facebook.com/groups/")
+            dictResults = Popup2xText(SG, "Enter new Facebook group", "Group Name", "", False, "", "URL", "https://www.facebook.com/groups/", False, "")
             if dictResults["OK"]:
                 arrayListboxValues = MainWindow["list_of_facebook_groups"].Values
-                arrayListboxValues.append({"name": dictResults["Text1"], "url": dictResults["Text2"]})
+                g_dictConfig["facebook"]["facebook_groups"].append({"name": dictResults["Text1"], "url": dictResults["Text2"]})
+                arrayListboxValues.append(dictResults["Text1"] + " (" + dictResults["Text2"] + ")")
                 MainWindow["list_of_facebook_groups"].update(values=arrayListboxValues)
         elif strEvent == "list_of_facebook_groups":
             MainWindow["delete_facebook_group"].update(disabled=False)
@@ -211,7 +250,7 @@ def DoRun():
             DoSaveConfigFile()
         elif strEvent == "start_facebook_posts":
             nMillisDelay = int(MainWindow["facebook_post_delay"].get())
-            nSelectedIndex = MainWindow["facebook_post_delay_type"].get_indexes()[0]
+            nSelectedIndex = MainWindow["facebook_post_delay_type"].Values.index(MainWindow["facebook_post_delay_type"].get())
             if nSelectedIndex == 0:
                 nMillisDelay *= 60 * 1000
             elif nSelectedIndex == 1:
@@ -221,14 +260,15 @@ def DoRun():
             nRepeat = int(MainWindow["facebook_post_repeat"].get())
 
             FacebookPostListbox = MainWindow["list_of_facebook_posts"]
-            arraySelectedPosts = FacebookPostListbox.get()
-            arrayPosts = FacebookPostListbox.Values
-            g_dictConfig["facebook"]["selected_facebook_posts"] = arraySelectedPosts
-            g_dictConfig["facebook"]["facebook_posts"] = arrayPosts
-            if len(arraySelectedPosts) > 0:
-                DoStartFacebookPosts(arraySelectedPosts, nMillisDelay, nRepeat)
+            arraySelectedIndexes = FacebookPostListbox.get_indexes()
+            arrayPosts = []
+            if len(arraySelectedIndexes) > 0:
+                for nI in arraySelectedIndexes:
+                    arrayPosts.append(g_dictConfig["facebook"]["facebook_posts"][nI])
             else:
-                DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat)
+                arrayPosts = g_dictConfig["facebook"]["facebook_posts"]
+            g_dictConfig["facebook"]["selected_facebook_posts"] = arrayPosts
+            DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat)
         elif strEvent == "help_facebook":
             strText = "XXXX"
             SG.popup(strText, title="HELP - With Facebook Posts")

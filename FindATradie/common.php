@@ -2180,7 +2180,6 @@ echo "@@@@@@@<br>";
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$strPageName = DoGetPageName();
-		$strDisplay = "block";
 		
 		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (app_or_web = 'web')");			
 		if ($results && ($results->num_rows > 0))
@@ -2189,18 +2188,17 @@ echo "@@@@@@@<br>";
 			while ($row = $results->fetch_assoc())
 			{
 				$nCount++;
-				echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"advert_" . $nCount . "\" style=\"display: " . $strDisplay . ";\">\n";
+				echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"advert_" . $nCount . "\" style=\"display:inline-block;table-layout:fixed;\">\n";
 				echo "						<tr class=\"advert_row\">\n";
 				echo "							<td>\n";
 				echo "								<button type=\"button\" onclick=\"DoClickAdvert(" . $nCount . ")\" class=\"advert_button\" width=\"80px;\">\n";
 				echo "									<img class=\"advert_logo\" id=\"advert_image_" .  $nCount . "\" src=\"images/AdvertiseHere.png\" alt=\"AdvertiseHere.png\" />\n";
 				echo "								</button>\n";
 				echo "							</td>\n";
-				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">ADVERT " . $nCount . " HTML</td>\n";
+				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">ADVERT SLOT</td>\n";
 				echo "						</tr>";
-				echo "						<tr><td class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">Advert expires on 0/0/0000</td></tr>\n";
+				echo "						<tr><td colspan=\"2\" class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">Advert expires on 0/0/0000</td></tr>\n";
 				echo "					</table>\n";
-				$strDisplay = "none";
 			}
 		}
 	}
