@@ -5,48 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/about.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/advert.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/advert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/benefits.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/benefits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/edit_advert.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/edit_advert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/faq.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/faq.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/forum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/master.dwt" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/master.dwt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/new_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/new_customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/new_tradie.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/new_tradie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/view_member.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/view_member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/about.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/advert.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/advert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/app/_vti_cnf/file_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/app/_vti_cnf/file_upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/app/file_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/app/file_upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/benefits.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/benefits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/common.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/contact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email__" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email___" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/edit_advert.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/edit_advert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/faq.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/faq.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/forum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/master.dwt" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/master.dwt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/new_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/new_customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/new_tradie.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/new_tradie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/styles/_vti_cnf/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/view_member.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/view_member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie1.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie1.facebook" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie2.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie2.facebook" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie3.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie3.facebook" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie4.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie4.facebook" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie5.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie5.facebook" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,28 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Doctests in smtplib.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.AustraliaPost.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.MyEMarketing.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.PostFacebook.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateBusinesses.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ScrapeYellowPages.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.SendEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ValidateEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.common.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.errorhandler.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.message.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/FindATradie/data&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Doctests in smtplib.executor": "Debug",
+    "Python.AustraliaPost.executor": "Debug",
+    "Python.MyEMarketing.executor": "Debug",
+    "Python.PostFacebook.executor": "Debug",
+    "Python.RemoveDuplicateBusinesses.executor": "Debug",
+    "Python.RemoveDuplicateEmails.executor": "Debug",
+    "Python.ScrapeYellowPages.executor": "Debug",
+    "Python.SendEmails.executor": "Debug",
+    "Python.ValidateEmails.executor": "Debug",
+    "Python.common.executor": "Debug",
+    "Python.errorhandler.executor": "Debug",
+    "Python.message.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/FindATradie/data",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gregaryb\Downloads" />
@@ -157,9 +127,9 @@
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/PostFacebook.py</url>
-          <line>83</line>
-          <option name="timeStamp" value="300" />
+          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
+          <line>109</line>
+          <option name="timeStamp" value="356" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -172,7 +142,12 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="arrayElements" language="Python" />
+        <watch expression="nI" language="Python" />
+        <watch expression="nJ" language="Python" />
+        <watch expression="nK" language="Python" />
+        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;last_post&quot;]" language="Python" />
+        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;last_group&quot;]" language="Python" />
+        <watch expression="dictGroup" language="Python" />
       </configuration>
     </watches-manager>
   </component>

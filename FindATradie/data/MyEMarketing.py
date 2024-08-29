@@ -76,18 +76,51 @@ def DoSaveFacebookGroupList(arrayFacebookGroupsFromListbox):
 
 def DoGetFileContentsTxt(strFilename):
     strContents = ""
-    with open(strFilename, "rb") as file:
-        strContents = file.read()
+    with open(strFilename, "r") as file:
+        arrayLines = file.readlines()
+    strContents = format("\n".join(arrayLines[0:]))
     return strContents
 
 
 def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
     global g_dictConfig
 
-    for nI in range(0, nRepeat):
-        for dictPost in arrayPosts:
-            DoPostFacebook(g_dictConfig["facebook"]["facebook_username"], g_dictConfig["facebook"]["facebook_password"], DoGetFileContentsTxt(dictPost["post_filename"]), dictPost["image_filename"], g_dictConfig["facebook"]["facebook_groups"])
-        wait(nMillisDelay)
+    if g_dictConfig["facebook"]["last_group"] is None:
+        g_dictConfig["facebook"]["last_group"] = -1
+
+    if g_dictConfig["facebook"]["last_post"] is None:
+        g_dictConfig["facebook"]["last_post"] = 0
+
+    if DoFacebookInit(g_dictConfig["facebook"]["facebook_username"], g_dictConfig["facebook"]["facebook_password"]):
+        for nI in range(0, nRepeat):
+            for nJ in range(0, len(arrayPosts)):
+                dictPost = arrayPosts[nJ]
+
+                if nJ <= g_dictConfig["facebook"]["last_post"]:
+                    continue
+                else:
+                    strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
+                    if g_dictConfig["facebook"]["last_group"] == -1:
+                        DoPostFacebook(strPostContents, dictPost["image_filename"], "Find-A-Tradie", "", True)
+
+                    for nK in range(0, len(g_dictConfig["facebook"]["facebook_groups"])):
+                        if nK <= g_dictConfig["facebook"]["last_group"]:
+                            continue
+                        else:
+                            dictGroup = g_dictConfig["facebook"]["facebook_groups"][nK]
+                            DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"], dictGroup["url"], False)
+                            g_dictConfig["facebook"]["last_group"] = nK
+                            DoSaveConfigFile()
+
+                    g_dictConfig["facebook"]["last_group"] = -1
+                    g_dictConfig["facebook"]["last_post"] = nJ
+                    DoSaveConfigFile()
+                    wait(nMillisDelay)
+
+            g_dictConfig["facebook"]["last_post"] = 0
+            DoSaveConfigFile()
+    else:
+        print("DoFacebookInit() failed!")
 
 
 def DoSaveFacebookPost(strFilenamePost, strFilenameImage):

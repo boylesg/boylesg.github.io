@@ -15,7 +15,18 @@ from threading import Thread
 
 g_strWindowsUserFolder = "gregaryb"
 g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.github.io/FindATradie/data/"
-g_browserChrome = False
+g_browserChrome = None
+
+
+def DoGetElement(browserChrome, Selector, strSelectorString, nTimeoutSeconds = 5):
+    Element = None
+    try:
+        Element = WebDriverWait(browserChrome, nTimeoutSeconds).until(EC.presence_of_element_located((Selector, strSelectorString)))
+        #Element. browserChrome.find_element(Selector, strSelectorString)
+    except Exception as Error:
+        print(Error)
+        pass
+    return Element
 
 
 def get_file_size(file):
@@ -56,7 +67,7 @@ def DoCheckValidEmailAddressAlt(strEmailAddress):
     bResult = False
     global g_browserChrome
 
-    if (not g_browserChrome):
+    if g_browserChrome == None:
         g_browserChrome = webdriver.Chrome()
 
     while True:

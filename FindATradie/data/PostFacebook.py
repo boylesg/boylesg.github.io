@@ -7,28 +7,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
 from common import *
 
 
 def DoLogin(strFacebookUsername, strFacebookPassword, browserChrome):
     bSuccess = False
-    EmailEditField = browserChrome.find_element(By.ID, "email")
+    EmailEditField = DoGetElement(browserChrome, By.ID, "email")
     if EmailEditField:
         EmailEditField.clear()
         EmailEditField.send_keys(strFacebookUsername)
-        PasswordEditField = browserChrome.find_element(By.ID, "pass")
+        PasswordEditField = DoGetElement(browserChrome, By.ID, "pass")
         if PasswordEditField:
             PasswordEditField.clear()
             PasswordEditField.send_keys(strFacebookPassword)
-            arrayElements = browserChrome.find_elements(By.ID, "loginbutton")
-            if len(arrayElements) > 0:
+            LoginButton = DoGetElement(browserChrome, By.ID, "loginbutton")
+            if LoginButton:
                 wait(1)
-                for element in arrayElements:
-                    try:
-                        element.click()
-                    except Exception as Error:
-                        continue
-
+                try:
+                    LoginButton.click()
+                except Exception as Error:
+                    pass
+                divOK = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='OK']")
+                if divOK != None:
+                    divOK.click()
                 strCode = browserChrome.page_source
                 '''
                     "ACCOUNT_ID":"100001521276779","USER_ID":"100001521276779","NAME":"Greg Boyles","SHORT_NAME"
@@ -43,10 +45,9 @@ def DoChangeProfile(browserChrome):
     divYourProfile = ""
     bResult = False
     try:
-        divYourProfile = browserChrome.find_element(By.CSS_SELECTOR, "[aria-label='Your profile']")
+        divYourProfile = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Your profile']")
         divYourProfile.click()
-        wait(5)
-        divSwitchFindATradie = browserChrome.find_element(By.CSS_SELECTOR, "[aria-label='Switch to Find-a-tradie']")
+        divSwitchFindATradie = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Switch to Find-a-tradie']")
         divSwitchFindATradie.click()
         bResult = True
     except Exception as Error:
@@ -54,19 +55,67 @@ def DoChangeProfile(browserChrome):
 
     return bResult
 
+def DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage):
+    strImageUploadButton =          "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div/div[1]/div/span/div"
+    strImageDragDropButton =        "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div"
+    if not bFindATradieHomePage:
+        strImageUploadButton =      ""
+        strImageDragDropButton =    ""
 
-def DoPost(strPostText, strImageFilename, browserChrome):
-    PostButton = browserChrome.find_element(By.XPATH, "//input[contains(@placeholder,'Write something...')]")
-    if PostButton:
-        PostButton.click()
+    ImageUploadButton = DoGetElement(browserChrome, By.XPATH, strImageUploadButton)
+    if ImageUploadButton is not None:
+        ImageDragDropButton = None
+        while ImageDragDropButton is None:
+            ImageUploadButton.click()
+            ImageDragDropButton = DoGetElement(browserChrome, By.XPATH, strImageDragDropButton)
+        if ImageDragDropButton is not None:
+            # ImageDragDropButton.click()
+            strImageFilename = strImageFilename.replace("/", "\\")
+            ImageDragDropButton.send_keys(strImageFilename)
 
-        #PostField.clear()
-        #PostField.send_keys(strPostText)
 
-g_browserChrome = None
+def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
+    strStartPostButtonXPATH =       "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div"
+    strTextFieldXPATH =             "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]"
+    strPostButtonXPATH =            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div"
+    if not bFindATradieHomePage:
+        strStartPostButtonXPATH =   "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"
+        strTextFieldXPATH =         "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div"
+        strPostButtonXPATH =        "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div"
+
+    if strGroupURL == "":
+        strGroupURL = "https://www.facebook.com/FindATradiePage"
+
+    try:
+        print("Posting to Group: " + strGroupName + "(" + strGroupURL + ")")
+        print("Post Contents\n--------------")
+        strPostText = strPostText.replace("\n\n", "\n")
+        print(strPostText)
+        StartPostButton = DoGetElement(browserChrome, By.XPATH,strStartPostButtonXPATH)
+        if StartPostButton:
+            TextField = None
+            PostButton = None
+            while TextField is None:
+                StartPostButton.click()
+                TextField = DoGetElement(browserChrome, By.XPATH, strTextFieldXPATH)
+                PostButton = DoGetElement(browserChrome, By.XPATH, strPostButtonXPATH)
+
+            if (TextField is not None):
+                TextField.send_keys(strPostText)
+                #DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage)
+                if PostButton is not None:
+                    PostButton.click()
+
+                print("Post status: succeeded!")
+    except Exception as Error:
+        print("Post status: failed!")
+        print(Error)
+        pass
+    print("==================================================")
 
 def DoGetBrowser():
     global g_browserChrome
+
     if g_browserChrome == None:
         options = webdriver.ChromeOptions()
         options.add_argument('--disable-notifications')
@@ -74,16 +123,34 @@ def DoGetBrowser():
     return g_browserChrome
 
 
-def DoPostFacebook(strFacebookUsername, strFacebookPassword, strPostText, strImageFilename, arrayFacebookGroups):
+def DoFacebookInit(strFacebookUsername, strFacebookPassword):
+    bResult = False
     browserChrome = DoGetBrowser()
     browserChrome.get("https://www.facebook.com/login")
     if DoLogin(strFacebookUsername, strFacebookPassword, browserChrome):
-        wait(5)
         if DoChangeProfile(browserChrome):
-            for dictFacebookGroup in arrayFacebookGroups:
-                strURL = dictFacebookGroup["url"]
-                browserChrome.get(strURL)
-                DoPost(strPostText, strImageFilename, browserChrome)
+            bResult = True
+            wait(10)
+        else:
+            print("Could not change profile to Find-a-tradie!")
     else:
         print("Login to facebook failed with username '" + strFacebookUsername + "' and password '" + strFacebookPassword + "'!")
         browserChrome.close()
+
+    return bResult
+
+
+def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFindATradieHomePage):
+    if strGroupURL != "":
+        try:
+            g_browserChrome.get(strGroupURL)
+            if (g_browserChrome.page_source.find("<title>Facebook</title>")):
+                print("URL '" + strGroupURL + " cannot be reached at this time!")
+            else
+                DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
+        except Exception as Error:
+            print("Invalid URL: " + strGroupURL + "!")
+    else:
+        DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
+
+
