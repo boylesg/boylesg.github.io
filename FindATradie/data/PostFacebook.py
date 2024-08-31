@@ -75,11 +75,12 @@ def DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage):
 
 
 def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
+    bSuccess = False
     strStartPostButtonXPATH =       "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div"
     strTextFieldXPATH =             "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]"
     strPostButtonXPATH =            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div"
     if not bFindATradieHomePage:
-        strStartPostButtonXPATH =   "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"
+        strStartPostButtonXPATH =   "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"
         strTextFieldXPATH =         "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div"
         strPostButtonXPATH =        "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div"
 
@@ -87,11 +88,11 @@ def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChro
         strGroupURL = "https://www.facebook.com/FindATradiePage"
 
     try:
-        print("Posting to Group: " + strGroupName + "(" + strGroupURL + ")")
+        print("Posting to Group: " + strGroupName + " (" + strGroupURL + ")")
         print("Post Contents\n--------------")
         strPostText = strPostText.replace("\n\n", "\n")
         print(strPostText)
-        StartPostButton = DoGetElement(browserChrome, By.XPATH,strStartPostButtonXPATH)
+        StartPostButton = DoGetElement(browserChrome, By.XPATH, strStartPostButtonXPATH)
         if StartPostButton:
             TextField = None
             PostButton = None
@@ -105,13 +106,21 @@ def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChro
                 #DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage)
                 if PostButton is not None:
                     PostButton.click()
+                    bSuccess = True
+                else:
+                    print("Post button not found...")
 
-                print("Post status: succeeded!")
+                print("Post succeeded!")
+            else:
+                print("Text field not found...")
+        else:
+            print("Can't post to this group...")
     except Exception as Error:
-        print("Post status: failed!")
+        print("Post failed!")
         print(Error)
         pass
     print("==================================================")
+    return bSuccess
 
 def DoGetBrowser():
     global g_browserChrome
@@ -141,16 +150,20 @@ def DoFacebookInit(strFacebookUsername, strFacebookPassword):
 
 
 def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFindATradieHomePage):
+    bSuccess = True
+
     if strGroupURL != "":
         try:
             g_browserChrome.get(strGroupURL)
-            if (g_browserChrome.page_source.find("<title>Facebook</title>")):
+            if (g_browserChrome.page_source.find("<title>Facebook</title>") > -1):
                 print("URL '" + strGroupURL + " cannot be reached at this time!")
-            else
-                DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
+                bSuccess = False
+            else:
+                bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
         except Exception as Error:
             print("Invalid URL: " + strGroupURL + "!")
+            bSuccess = false
     else:
-        DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
+        bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
 
-
+    return bSuccess
