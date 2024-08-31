@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-</style>
+			</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -182,7 +182,11 @@
 									{
 										echo "<img src=\"" . $row["profile_filename"] . "\" alt=\"images/" . $row["profile_filename"] . "\" width=\"200\" style=\"display:block;\" />";
 									}
-									echo "</td>\n";
+									echo "</td>\n";									
+									echo "	<tr>\n";
+									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;vertical-align:top;\"><b>Gender:</b></td>\n";
+									echo "		<td class=\"cell_no_borders\">" . $row["gender"] . "</td>\n";
+									echo "</tr>\n";
 									echo "	</tr>\n";
 									echo "	<tr>\n";
 									echo "		<td class=\"cell_no_borders\" style=\"text-align:right;\"><b>Phone:</b></td>\n";
