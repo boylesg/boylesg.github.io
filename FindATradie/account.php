@@ -554,7 +554,8 @@
 										"postcode", $_POST["text_postcode"], 
 										"phone", $_POST["text_phone"], 
 										"mobile", $_POST["text_mobile"], 
-										"email", $_POST["text_email"]) .
+										"email", $_POST["text_email"],
+										"gender", $_POST["select_gender"]) .
 					" WHERE id='" . $_SESSION["account_id"] . "'";
 		$result = DoQuery($g_dbFindATradie, $strQuery);
 		if ($result)
@@ -1448,13 +1449,14 @@
 						
 						<div id="tab_contents7" class="tab_content">
 							<h2 id="tab_heading7"><script type="text/javascript">document.write(document.getElementById("tab_button1").innerText);</script></h2>
-								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:920px;">
+								<form method="post" action="" id="form_tradie_search" class="form search_form" style="width:935px;">
 									<table  cellspacing="0" cellpadding="3" border="0" class="forrm_table">
 										<tr>
 											<td class="form_table_cell" style="width:350px;"><b>Trade type</b></td>
 											<td class="form_table_cell" style="width:100px;"><b>Postcode</b></td>
 											<td class="form_table_cell" style="width:250px;"><b>Suburb</b></td>
 											<td class="form_table_cell" style="width:200px;"><b>Maximum distance from you</b></td>
+											<td class="form_table_cell" style="width:200px;"><b>Gender</b></td>
 										</tr>
 										<tr>	
 											<td class="form_table_cell">
@@ -1471,10 +1473,13 @@
 											<td class="form_table_cell">
 												<input type="text" id="text_maximum_distance0" name="text_maximum_distance" maxlength="4" size="15" value="<?php if (isset($_POST["text_maximum_distance"])) echo $_POST["text_maximum_distance"]; else printf("%d", $_SESSION["account_maximum_distance"]); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
 											</td>
+											<td class="form_table_cell">
+												<?php DoGenerateGenderCombo("select_gender_tradies", true); ?>
+											</td>
 										</tr>
-										<tr><td colspan="4"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
+										<tr><td colspan="5"><label id="trade_description_tradies">XXXXXXXXXXXXX</label></td></tr>
 										<tr>
-											<td class="form_table_cell" colspan="4">
+											<td class="form_table_cell" colspan="5">
 												<button type="submit" id="submit_tradie_search" name="submit_tradie_search">
 													<img src="images/search.png" alt="SEARCH" width="30px" />
 												</button>
@@ -1501,7 +1506,8 @@
 										$strTradeID = "";
 										$strPostcode = "";
 										$strSuburb = "";
-										$strMaxDistance = "";				
+										$strMaxDistance = "";
+										$strGender = "";		
 										
 										if (isset($_POST["submit_tradie_search"]))
 										{
@@ -1513,8 +1519,10 @@
 												$strTrade = $_POST["text_suburb"];
 											if (isset($_POST["text_maximum_distance"]))
 												$strMaxDistance = $_POST["text_maximum_distance"];
+											if (isset($_POST["select_gender_tradie"]))
+												$strGender = $_POST["select_gender_tradie"];
 										}
-										if (!DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance) == 0)
+										if (!DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance, $strGender) == 0)
 											echo "<tr><td colspan=\"7\" style=\"height:30px;\">No tradies found based on your current search criteria...</td></tr>\n";
 											
 									?>

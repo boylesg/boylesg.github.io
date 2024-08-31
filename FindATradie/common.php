@@ -130,6 +130,18 @@
 		return $nI;
 	}
 	
+	function DoGenerateGenderCombo($strID, $bIcludeAnyOption)
+	{
+		echo "<select id=\"" . $strID . "\" name=\"select_gender\" required>\n";
+		if ($bIcludeAnyOption)
+			echo "	<option value=\"any\">Any</option>\n";
+		echo "	<option value=\"male\">Male</option>\n";
+		echo "	<option value=\"female\">Female</option>\n";
+		echo "	<option value=\"LGBTQ+\">LGBTQ+</option>\n";
+		echo "	<option value=\"none\">Not disclosed</option>\n";
+		echo "</select>\n";
+	}
+	
 	function DoGetJobSizeSelectionIndex($strJobSize)
 	{
 		$nI = 0;
@@ -3171,7 +3183,7 @@ echo "@@@@@@@<br>";
 		echo "</tr>\n";
 	}
 
-	function DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance, $bTryOut = false)
+	function DoGetWebTradies($strTradeID, $strPostcode, $strSuburb, $strMaxDistance, $strGender, $bTryOut = false)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -3196,8 +3208,13 @@ echo "@@@@@@@<br>";
 					if (((strcmp($strPostcode, $rowMember["postcode"]) == 0) || (strlen($strPostcode) == 0)) ||
 						((strcmp($strSuburb, $rowMember["suburb"]) == 0) || (strlen($strSuburb) == 0)))
 					{
-						DoCreateTradieRow($rowMember, $bTryOut);
-						$nRowCount++;
+						if ((strcmp($strGender, "any") == 0) || (strcmp($strGender, "") == 0) || 
+							(((strcmp($strGender, "LGBTQ+") == 0) || (strcmp($strGender, "none") == 0)) && 
+							 ((strcmp($rowMember["gender"], "LGBTQ+") == 0) || (strcmp($rowMember["gender"], "none") == 0))))
+						{
+							DoCreateTradieRow($rowMember, $bTryOut);
+							$nRowCount++;
+						}
 					}
 				}
 			}
