@@ -261,7 +261,78 @@
 				<td class="cell_no_borders" style="text-align:right;">
 					<button class="function_button" title="Go to next form" type="button" name="button_contact_details" id="button_contact_next" onclick="DoClickNextPreviousButton('form_contact_details', 'form_user_details')"><img class="function_button_image" id="contact_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
 					<button title="Save these contact details" class="function_button" type="button" id="button_contact_save" name="button_contact_save" onclick="DoClickSave('form_contact_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" colspan="2">
 					<input type="hidden" name="button_contact_save" value="SAVE_CONTACT">
+					<?php
+						
+						function DoGetDigitImageFile($nDigit)
+						{
+							$strDigitFilename = "UNEXPECTED DIGIT";
+							switch ($nDigit)
+							{
+								case 0: $strDigitFilename = "images/Digit0.png"; break;
+								case 1: $strDigitFilename = "images/Digit1.png"; break;
+								case 2: $strDigitFilename = "images/Digit2.png"; break;
+								case 3: $strDigitFilename = "images/Digit3.png"; break;
+								case 4: $strDigitFilename = "images/Digit4.png"; break;
+								case 5: $strDigitFilename = "images/Digit5.png"; break;
+								case 6: $strDigitFilename = "images/Digit6.png"; break;
+								case 7: $strDigitFilename = "images/Digit7.png"; break;
+								case 8: $strDigitFilename = "images/Digit8.png"; break;
+								case 9: $strDigitFilename = "images/Digit9.png"; break;
+							}
+							return $strDigitFilename;
+						}
+						
+						function DoGetDigits($nNum)
+						{
+							$nUnits = 0;
+							$nTens = 0;
+							$nHundreds = 0;
+							$nThousands = 0;
+							$nDivisor = 1000;
+							$arrayDisplayDigits = ["", "", "", ""];
+							while ($nNum > 0)
+							{
+								$nDigit = intdiv($nNum, $nDivisor);
+								if ($nDivisor == 1000)
+									$nThousands = $nDigit;
+								else if ($nDivisor == 100)
+									$nHundreds = $nDigit;
+								else if ($nDivisor == 10)
+									$nTens = $nDigit;
+								else if ($nDivisor == 1)
+									$nUnits = $nDigit;
+								$nNum %= $nDivisor;	
+								$nDivisor /= 10;
+							}
+							$arrayDisplayDigits[0] = DoGetDigitImageFile($nUnits);						
+							$arrayDisplayDigits[1] = DoGetDigitImageFile($nTens);						
+							$arrayDisplayDigits[2] = DoGetDigitImageFile($nHundreds);						
+							$arrayDisplayDigits[3] = DoGetDigitImageFile($nThousands);	
+							
+							return $arrayDisplayDigits;					
+						}
+						
+						if (isset($_SESSION["NEW"]))
+						{
+							$nRandomNum = rand(0, 9999);
+							$arrayDisplayDigits = ["", "", "", ""];
+							$arrayDisplayDigits = DoGetDigits($nRandomNum);
+							
+		
+							echo "<img src=\"" . $arrayDisplayDigits[0] . "\" alt=\"DIGIT\" width=\"30\"/><img src=\"" . $arrayDisplayDigits[1] . "\" alt=\"DIGIT\" width=\"30\"/>";
+							echo "<img src=\"" . $arrayDisplayDigits[2] . "\" alt=\"DIGIT\" width=\"30\"/><img src=\"" . $arrayDisplayDigits[3] . "\" alt=\"DIGIT\" width=\"30\"/>";
+							echo "<label for=\"text_number\">  <b>What is the number?</b> </label><input type=\"text\" id=\"text_number_test\" name=\"text_number_test\" size=\"4\" maxlength=\"4\" required onkeydown=\"OnKeyPressDigitsOnly(event)\" >";
+							$_SESSION["text_number_test"] = $nRandomNum;
+						}
+						
+					?>
+				</td>
+				<td class="cell_no_borders" style="text-align:right;">
 					<button class="function_button" title="Save these details" type="button" id="button_save_all" name="button_save_all" onclick="DoSaveAll()"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
 				</td>
 			</tr>
@@ -303,6 +374,7 @@
 	<input type="text"  id="htext_phone" name="text_phone" />
 	<input type="text"  id="htext_mobile" name="text_mobile" />
 	<input type="text"  id="htext_email" name="text_email" />
+	<input type="text"  id="htext_number_test" name="text_number_test" />
 	<input type="hidden" id="button_save_all" name="button_save_all" value="SAVE_ALL" />
 </form>
 
@@ -588,6 +660,7 @@
 		DoCopyTextInput("text_mobile", "htext_mobile");
 		DoCopyTextInput("text_email", "htext_email");
 		DoCopySelectInput("select_state", "hselect_state");
+		DoCopyTextInput("text_number_test", "htext_number_test");
 		DoGetInput("form_all_details").submit();
 	}
 	

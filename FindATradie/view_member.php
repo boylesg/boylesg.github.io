@@ -32,7 +32,7 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 			<style>
-			</style>
+</style>
 		<!-- #EndEditable -->
 		<script type="text/javascript">
 			
@@ -108,7 +108,7 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 			<marquee id="advert_marquee " behavior="alternate" scrolldelay="80" truespeed loop="-1" style="<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
-				<?php DoGenerateAdvertSlotHTML(); ?></marquee>
+				<?php DoGenerateAdvertSlotHTML(__FILE__); ?></marquee>
 			<!-- #BeginEditable "content" -->
 
 
@@ -388,12 +388,6 @@
 	</body>
 	
 	<footer>
-		
-		<script type="text/javascript">	
-		
-			DoSetAdverts();
-		
-		</script>
 		
 		<!-- #BeginEditable "footer" -->
 

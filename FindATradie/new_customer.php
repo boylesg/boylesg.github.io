@@ -108,7 +108,7 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 			<marquee id="advert_marquee " behavior="alternate" scrolldelay="80" truespeed loop="-1" style="<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
-				<?php DoGenerateAdvertSlotHTML(); ?></marquee>
+				<?php DoGenerateAdvertSlotHTML(__FILE__); ?></marquee>
 			<!-- #BeginEditable "content" -->
 
 
@@ -122,6 +122,8 @@
 				<h6>You can become a member for <span style="color:red;">FREE</span>!</h6>	
 
 <?php
+	
+	$_SESSION["NEW"] = true;
 				
 	include "member_details_forms.html"; 
 	
@@ -135,7 +137,7 @@
 	//*******************************************************************************************
 	//*******************************************************************************************
 	
-	if (isset($_POST["button_save_all"]))
+	if (isset($_POST["button_save_all"]) && DoCheckCorrectNumberTest($_POST["text_number_test"]))
 	{
 		/*
 			Array ( 
@@ -195,10 +197,6 @@
 			}
 		}
 	}
-	else if (count($_POST) > 0)
-	{
-		print_r($_POST);
-	}
 
 ?>
 			</div>	
@@ -224,12 +222,6 @@
 	</body>
 	
 	<footer>
-		
-		<script type="text/javascript">	
-		
-			DoSetAdverts();
-		
-		</script>
 		
 		<!-- #BeginEditable "footer" -->
 

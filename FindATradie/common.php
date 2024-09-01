@@ -57,7 +57,7 @@
 	require_once "CryptoJSAES.php";
 	$g_strKey = "dPRBqi32EH7LgfxuhWXm";
 	
-	setcookie("find-a-tradie", "encryption_key=" . $g_strKey . ",SameSite=Strict", 0, "/");
+	//setcookie("find-a-tradie", "encryption_key=" . $g_strKey . ",SameSite=None", 0, "/");
 	
 	function DoAESEncrypt($strPlainText)
 	{
@@ -128,6 +128,21 @@
 			$nI = 7;
 		}
 		return $nI;
+	}
+	
+	function DoCheckCorrectNumberTest($strTestNumber)
+	{
+		$bResult = false;
+		
+		if (intval($strTestNumber) == $_SESSION["text_number_test"])
+		{
+			$bResult = true;
+		}
+		else
+		{
+			PrintJSAlertWarning("The test number '" . strval($_SESSION["text_number_test"])  . "' does not match the number you entered '" . $strTestNumber . "'!", 1);
+		}
+		return $bResult;
 	}
 	
 	function DoGenerateGenderCombo($strID, $bIcludeAnyOption)
@@ -1421,7 +1436,7 @@
 	function DoGetDefaultUsername()
 	{
 		$strUsername = "";
-		
+				
 		if (isset($_POST["text_username"]))
 			$strUsername = $_POST["text_username"];
 		else if (isset($_SESSION["NEW"]) && !$_SESSION["NEW"] && isset($_SESSION['account_username'])) 
@@ -2123,19 +2138,21 @@ echo "@@@@@@@<br>";
 	
 	
 	
-	
+	$row = NULL;
 	function DoFindActiveAdvert($strSpaceID, $strPageName)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$dateNow = new DateTime();
-		$row = NULL;
+		global $row;
 		
 		$results = DoFindQuery2($g_dbFindATradie, "adverts", "space_id", $strSpaceID, "page_name", $strPageName, "expiry_date > '" . $dateNow->format("Y-m-d") . "'");
 
 		if ($results && ($results->num_rows > 0))
 			$row = $results->fetch_assoc();
-			
+		else
+			$row = NULL;
+	
 		return $row;
 	}
 	
@@ -2147,12 +2164,7 @@ echo "@@@@@@@<br>";
 		global $g_strQuery;
 		$strPageName = DoGetPageName();
 		$strSpaceCode = "";
-		$strLogoURL = "";
-		$strAdvertText = "";
-		$strAdvertID = "";
 		$strMemberID = "";
-		$dateExpiry = new DateTime;
-		$strExpiryDate = "";
 		
 		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (`app_or_web` = 'web')");
 		if ($results && ($results->num_rows > 0))
@@ -2163,60 +2175,66 @@ echo "@@@@@@@<br>";
 				// {space_code:"advert_1", image_url:"", text:"", member_id:""}
 				$nCount++;
 				$strSpaceCode = $strPageName . "_" . $nCount;
-				
 				$rowAdvert = DoFindActiveAdvert($rowSpace["id"], $strPageName);
 				if ($rowAdvert)
 				{
-					$strLogoURL = DoGetMemberColumn($rowAdvert["member_id"], "logo_filename");
-					$strAdvertText = $rowAdvert["text"];
-					$strAdvertID = $rowAdvert["id"];
 					$strMemberID = DoGetMemberColumn($rowAdvert["member_id"], "id");
-					$dateExpiry = new DateTime($rowAdvert["expiry_date"]);
-					$strExpiryDate = $dateExpiry->format("d/m/Y");
 				}
 				else
 				{
-					$strLogoURL = "";
-					$strAdvertText = "";
-					$strAdvertID = "";
 					$strMemberID = "";
-					$strExpiryDate = "";
 				}
-				echo "{space_id:\"" . $rowSpace["id"] . "\", space_code:\"" . $strSpaceCode . 
-						"\", cost_per_year:\"" . sprintf("%.2f", $rowSpace["cost_per_year"]) . 
-						"\", image_url:\"". $strLogoURL . "\", text:\"" . $strAdvertText . "\", advert_id:\"" . $strAdvertID . 
-						"\", expiry_date:\"" . $strExpiryDate . "\", member_id:\"" . $strMemberID . "\"}";
+				echo "\"" . $strMemberID . "\"";
 				if ($nCount < $results->num_rows)
 					echo ",";
 				echo "\n";
 			}
 		}
 	}
-	
+		
 	function DoGenerateAdvertSlotHTML()
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$strPageName = DoGetPageName();
-		
+				
 		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (app_or_web = 'web')");			
 		if ($results && ($results->num_rows > 0))
 		{
-			$nCount = 0;
+			$nCount = 1;
+			$strImageFilename = "";
+			$strAdvertExpires = "";
+			$strAdvertHTML = "";
 			while ($row = $results->fetch_assoc())
 			{
-				$nCount++;
+				$strSpaceCode = $strPageName . "_" . strval($nCount);
+				$strSpaceID = DoGetSpaceID($strSpaceCode);
+				$rowAdvert = DoFindActiveAdvert($strSpaceID, $strPageName);	
+				if ($rowAdvert != NULL)
+				{
+					$strImageFilename = DoGetColumnValue("members", "id", $rowAdvert["member_id"], "logo_filename");
+					$strAdvertHTML = $rowAdvert["text"];
+					$dateExpires = new DateTime($rowAdvert["expiry_date"]);
+					$strAdvertExpires = "Advert expires on " . $dateExpires->format("d/m/Y") . "...";
+				}
+				else
+				{
+					$strImageFilename = "images/AdvertiseHere.png";
+					$strAdvertHTML = "ADVERT SLOT " . strval($nCount);
+					$strAdvertExpires = "Click the button...";
+				}	
 				echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"advert_" . $nCount . "\" style=\"display:inline-block;table-layout:fixed;\">\n";
 				echo "						<tr class=\"advert_row\">\n";
 				echo "							<td>\n";
 				echo "								<button type=\"button\" onclick=\"DoClickAdvert(" . $nCount . ")\" class=\"advert_button\" width=\"80px;\">\n";
-				echo "									<img class=\"advert_logo\" id=\"advert_image_" .  $nCount . "\" src=\"images/AdvertiseHere.png\" alt=\"AdvertiseHere.png\" />\n";
+				echo "									<img class=\"advert_logo\" id=\"advert_image_" .  $nCount . "\" src=\"" . $strImageFilename . "\" alt=\"" . $strImageFilename . "\" />\n";
 				echo "								</button>\n";
 				echo "							</td>\n";
-				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">ADVERT SLOT</td>\n";
+				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">" . $strAdvertHTML . "</td>\n";
 				echo "						</tr>";
-				echo "						<tr><td colspan=\"2\" class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">Advert expires on 0/0/0000</td></tr>\n";
+				echo "						<tr><td colspan=\"2\" class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">" . $strAdvertExpires . "</td></tr>\n";
 				echo "					</table>\n";
+				$nCount++;
 			}
 		}
 	}

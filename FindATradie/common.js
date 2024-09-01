@@ -428,24 +428,7 @@
 		document.location = "advert.php?location=" + strAdvertSpaceName;
 	}	
 	
-	function DoSetAdverts()
-	{
-		for (let nI = 0; nI < g_arrayAdverts.length; nI++)
-		{
-			if (g_arrayAdverts[nI].advert_id.length > 0)
-			{
-				DoGetInput("advert_image_" + (nI + 1).toString()).src = "https://www.find-a-tradie.com.au/" + g_arrayAdverts[nI].image_url;
-				DoGetInput("advert_text_" + (nI + 1).toString()).innerHTML = g_arrayAdverts[nI].text;
-				DoGetInput("advert_expires_" + (nI + 1).toString()).innerText = "Advert expires on " + g_arrayAdverts[nI].expiry_date;
-			}
-			else
-			{
-				DoGetInput("advert_text_" + (nI + 1).toString()).innerHTML = "<b style=\"color:darkgreen;\">Advertisment slot " + (nI + 1).toString() + "!</b>";
-				DoGetInput("advert_expires_" + (nI + 1).toString()).innerText = "$" + g_arrayAdverts[nI].cost_per_year + " per year...";
-			}
-		}
-	}
-	
+
 	
 	
 	
@@ -464,10 +447,10 @@
 
 	function DoClickAdvert(nAdvertIndex)
 	{
-		if (g_arrayAdverts[nAdvertIndex].image_url.length > 0)
+		if (g_arrayAdverts[nAdvertIndex - 1].length > 0)
 		{
-			document.location = "<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/view_member.php?member_id=" + 
-								g_arrayAdvertIDs[nAdvertIndex].member_id;
+			document.location = "https://www.find-a-tradie.com.au/view_member.php?member_id=" + 
+								g_arrayAdverts[nAdvertIndex - 1];
 		}
 		else
 		{ 
