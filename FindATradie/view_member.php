@@ -243,13 +243,13 @@
 	
 									echo "<table cellspacing=\"0\" cellpadding=\"10\" border=\"0\" class=\"table_no_borders search_table\">\n";
 									echo "	<tr>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1em;\">+/-</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3em;\">+/-</td>\n";
 									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:10em;\">Feedback comments</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:1.5em;\">Job ID</td>\n";
-									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Job ID</td>\n";
+									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8.5em;\">Date feedback</td>\n";
 									echo "		<td class=\"cell_no_borders search_cell\" style=\"width:8em;\">Member name<br/>Business name<br/>Location</td>\n";
 									echo "</tr>\n";
-									DoDisplayFeedback($_GET["member_id"], "");
+									DoDisplayFeedback($_GET["member_id"], "", false);
 									echo "</table>\n";
 									echo "</div>\n";
 									if (IsTradie($_GET["member_id"]))
@@ -267,7 +267,7 @@
 										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:3.5em;\">Date feedback</td>\n";
 										echo "		<td class=\"cell_no_borders search_cell\" style=\"width:6em;\">Client name<br/>Location</td>\n";
 										echo "</tr>\n";
-										DoDisplayFeedback("", $_GET["member_id"]);
+										DoDisplayFeedback("", $_GET["member_id"], false);
 										echo "</table>\n";
 										echo "</div>\n";
 									}

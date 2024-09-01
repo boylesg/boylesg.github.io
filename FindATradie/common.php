@@ -134,8 +134,14 @@
 	{
 		echo "<select id=\"" . $strID . "\" name=\"select_gender\" required>\n";
 		if ($bIcludeAnyOption)
-			echo "	<option value=\"any\">Any</option>\n";
-		echo "	<option value=\"male\">Male</option>\n";
+		{
+			echo "	<option selected value=\"any\">Any</option>\n";
+			echo "	<option value=\"male\">Male</option>\n";
+		}
+		else
+		{
+			echo "	<option value=\"male\" selected>Male</option>\n";
+		}
 		echo "	<option value=\"female\">Female</option>\n";
 		echo "	<option value=\"LGBTQ+\">LGBTQ+</option>\n";
 		echo "	<option value=\"none\">Not disclosed</option>\n";
@@ -2660,7 +2666,7 @@ echo "@@@@@@@<br>";
 		echo "<hr/><br/><br/>";
 	}
 	
-	function DoCreateFeedbackRow($rowFeedback, $strMemberID)
+	function DoCreateFeedbackRow($rowFeedback, $strMemberID, $bDisplayFeedbackEdit)
 	{
 		echo "<tr>\n";
 		echo "<td class=\"feedback_row\">";
@@ -2686,7 +2692,7 @@ echo "@@@@@@@<br>";
 			$date = new DateTime($rowFeedback["date_added"]);
 			DoCreateMailToLinkButton($rowFeedback["provider_id"], $rowFeedback["job_id"], $date);
 		}
-		else if ($rowFeedback["provider_id"] == $_SESSION["account_id"])
+		else if (($rowFeedback["provider_id"] == $_SESSION["account_id"]) && $bDisplayFeedbackEdit)
 		{	
 			DoCreateFeedbackTextArea(true, $rowFeedback["id"], $rowFeedback["recipient_id"], 
 										$rowFeedback["provider_id"], $rowFeedback["job_id"], true, true);
@@ -2694,7 +2700,7 @@ echo "@@@@@@@<br>";
 		echo "</td>\n";
 	}
 
-	function DoDisplayFeedback($strRecipientID, $strProviderID)
+	function DoDisplayFeedback($strRecipientID, $strProviderID, $bDisplayFeedbackEdit)
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
@@ -2713,7 +2719,7 @@ echo "@@@@@@@<br>";
 			while ($rowFeedback = $queryResult->fetch_assoc())
 			{
 				$rowJob = DoGetRow1("jobs", "id", $rowFeedback["job_id"]);
-				DoCreateFeedbackRow($rowFeedback, $rowFeedback["provider_id"]);			
+				DoCreateFeedbackRow($rowFeedback, $rowFeedback["provider_id"], $bDisplayFeedbackEdit);			
 			}
 		}
 	}	
@@ -3208,7 +3214,7 @@ echo "@@@@@@@<br>";
 					if (((strcmp($strPostcode, $rowMember["postcode"]) == 0) || (strlen($strPostcode) == 0)) ||
 						((strcmp($strSuburb, $rowMember["suburb"]) == 0) || (strlen($strSuburb) == 0)))
 					{
-						if ((strcmp($strGender, "any") == 0) || (strcmp($strGender, "") == 0) || 
+						if ((strcmp($strGender, "any") == 0) || (strcmp($strGender, "") == 0) || (strcmp($strGender, $rowMember["gender"]) == 0) || 
 							(((strcmp($strGender, "LGBTQ+") == 0) || (strcmp($strGender, "none") == 0)) && 
 							 ((strcmp($rowMember["gender"], "LGBTQ+") == 0) || (strcmp($rowMember["gender"], "none") == 0))))
 						{

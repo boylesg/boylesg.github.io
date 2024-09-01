@@ -1357,7 +1357,7 @@
 								</tr>
 
 <?php
-	DoDisplayFeedback($_SESSION["account_id"], "");
+	DoDisplayFeedback($_SESSION["account_id"], "", true);
 ?>
 							</table>
 						</div>
@@ -1375,7 +1375,7 @@
 									<td class="cell_no_borders search_cell" style="width:14em;">Functions</td>
 								</tr>
 <?php
-	DoDisplayFeedback("", $_SESSION["account_id"]);
+	DoDisplayFeedback("", $_SESSION["account_id"], true);
 ?>							
 							</table>
 						</div>

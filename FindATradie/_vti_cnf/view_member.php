@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|DESKTOP-KFJ8F7O\\boyle
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
-vti_timelastmodified:TR|31 Aug 2024 13:12:52 -0000
+vti_timelastmodified:TR|01 Sep 2024 04:47:58 -0000
 vti_timecreated:TR|18 Nov 2023 12:45:10 -0000
 vti_title:SR|Member Details
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|
-vti_nexttolasttimemodified:TW|31 Aug 2024 13:11:54 -0000
-vti_cacheddtm:TX|31 Aug 2024 13:12:52 -0000
-vti_filesize:IR|17693
+vti_nexttolasttimemodified:TW|01 Sep 2024 04:44:53 -0000
+vti_cacheddtm:TX|01 Sep 2024 04:47:58 -0000
+vti_filesize:IR|17707
 vti_cachedtitle:SR|Member Details
 vti_cachedbodystyle:SR|<body class="body" onload="DoChangeBackgroundImage()">
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style.css S|images/FATLogo.png H|new_tradie.php H|new_customer.php H|login.php H|login.php H|index.php H|benefits.php H|about.php H|faq.php H|contact.php H|forum.php H|https://www.facebook.com/FindATradiePage S|images/Facebook.png H|https://www.find-a-tradie.com.au/app/find_a_tradie.apk S|images/AndroidMobile.png S|images/AppleMobile.png
