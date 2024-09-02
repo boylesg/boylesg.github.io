@@ -2158,45 +2158,12 @@ echo "@@@@@@@<br>";
 	
 	
 	
-	function DoGenerateJSAdvertArray()
-	{
-		global $g_dbFindATradie;
-		global $g_strQuery;
-		$strPageName = DoGetPageName();
-		$strSpaceCode = "";
-		$strMemberID = "";
-		
-		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (`app_or_web` = 'web')");
-		if ($results && ($results->num_rows > 0))
-		{
-			$nCount = 0;
-			while ($rowSpace = $results->fetch_assoc())
-			{
-				// {space_code:"advert_1", image_url:"", text:"", member_id:""}
-				$nCount++;
-				$strSpaceCode = $strPageName . "_" . $nCount;
-				$rowAdvert = DoFindActiveAdvert($rowSpace["id"], $strPageName);
-				if ($rowAdvert)
-				{
-					$strMemberID = DoGetMemberColumn($rowAdvert["member_id"], "id");
-				}
-				else
-				{
-					$strMemberID = "";
-				}
-				echo "\"" . $strMemberID . "\"";
-				if ($nCount < $results->num_rows)
-					echo ",";
-				echo "\n";
-			}
-		}
-	}
 		
 	function DoGenerateAdvertSlotHTML()
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
-		$strPageName = DoGetPageName();
+		$strPageName = DoGetPageName();			
 				
 		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (app_or_web = 'web')");			
 		if ($results && ($results->num_rows > 0))
@@ -2205,10 +2172,11 @@ echo "@@@@@@@<br>";
 			$strImageFilename = "";
 			$strAdvertExpires = "";
 			$strAdvertHTML = "";
+			$strHREF = "";
 			while ($row = $results->fetch_assoc())
 			{
 				$strSpaceCode = $strPageName . "_" . strval($nCount);
-				$strSpaceID = DoGetSpaceID($strSpaceCode);
+				$strSpaceID = $row["id"];
 				$rowAdvert = DoFindActiveAdvert($strSpaceID, $strPageName);	
 				if ($rowAdvert != NULL)
 				{
@@ -2216,21 +2184,27 @@ echo "@@@@@@@<br>";
 					$strAdvertHTML = $rowAdvert["text"];
 					$dateExpires = new DateTime($rowAdvert["expiry_date"]);
 					$strAdvertExpires = "Advert expires on " . $dateExpires->format("d/m/Y") . "...";
+					$strHREF = "https://www.find-a-tradie.com.au/view_member.php?member_id=" . $rowAdvert["member_id"];
 				}
 				else
 				{
 					$strImageFilename = "images/AdvertiseHere.png";
 					$strAdvertHTML = "ADVERT SLOT " . strval($nCount);
-					$strAdvertExpires = "Click the button...";
+					$strAdvertExpires = "Click the button to place your advert...";
+					$strHREF = "https://www.find-a-tradie.com.au/edit_advert.php?page_name=" . $strPageName . "&" . 
+																							  "advert_slot_index=" . strval($nCount) .
+																							  "&current_page=" . $_SERVER["REQUEST_URI"] . 
+																							  "&cost_per_year=" . $row["cost_per_year"];
+																							  
 				}	
 				echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"advert_" . $nCount . "\" style=\"display:inline-block;table-layout:fixed;\">\n";
 				echo "						<tr class=\"advert_row\">\n";
 				echo "							<td>\n";
-				echo "								<button type=\"button\" onclick=\"DoClickAdvert(" . $nCount . ")\" class=\"advert_button\" width=\"80px;\">\n";
+				echo "								<a href=\"" . $strHREF . "\">";
 				echo "									<img class=\"advert_logo\" id=\"advert_image_" .  $nCount . "\" src=\"" . $strImageFilename . "\" alt=\"" . $strImageFilename . "\" />\n";
-				echo "								</button>\n";
+				echo "                          	</a>";
 				echo "							</td>\n";
-				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\">" . $strAdvertHTML . "</td>\n";
+				echo "							<td class=\"advert_text\" id=\"advert_text_" . $nCount . "\"><a href=\"" . $strHREF . "\">" . $strAdvertHTML . "</a></td>\n";
 				echo "						</tr>";
 				echo "						<tr><td colspan=\"2\" class=\"advert_expires\" id=\"advert_expires_" . $nCount . "\" colspan=\"2\">" . $strAdvertExpires . "</td></tr>\n";
 				echo "					</table>\n";

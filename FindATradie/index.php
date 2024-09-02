@@ -8,10 +8,7 @@
 		require_once $_SERVER['DOCUMENT_ROOT'] . "/advert_stuff.php";
 	?>
 	<script type="text/javascript">	
-	
-		var g_arrayAdverts = [
-								<?php DoGenerateJSAdvertArray(); ?>
-					 		 ];
+
 		sessionStorage["member_id"] = <?php if (isset($_SESSION["account_id"])) echo $_SESSION["account_id"]; else echo "0"; ?>
 	
 	</script>
@@ -108,7 +105,7 @@
 		<!-- Begin Page Content -->
 		<div class="page_content" id="page_content">
 			<marquee id="advert_marquee " behavior="alternate" scrolldelay="80" truespeed loop="-1" style="<?php if (strcmp(basename($_SERVER['REQUEST_URI']), "admin.php") == 0) echo "none"; else echo "block";?>;" class="advert_marquee">
-				<?php DoGenerateAdvertSlotHTML(__FILE__); ?></marquee>
+				<?php DoGenerateAdvertSlotHTML(); ?></marquee>
 			<!-- #BeginEditable "content" -->
 
 

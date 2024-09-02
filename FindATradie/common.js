@@ -415,60 +415,6 @@
 	
 
 
-	//******************************************************************************
-	//******************************************************************************
-	//** 
-	//** ADVERTS
-	//** 
-	//******************************************************************************
-	//******************************************************************************
-	
-	function DoOpenAdvertEditor(nAdvertIndex)
-	{
-		document.location = "advert.php?location=" + strAdvertSpaceName;
-	}	
-	
-
-	
-	
-	
-	function DoGetPageName()
-	{
-		let strURL = document.location.toString();
-		nPos1 = strURL.lastIndexOf("/") + 1;
-		nPos2 = strURL.lastIndexOf(".php");
-		let strPageName = strURL.substring(nPos1, nPos2);
-		
-		return strPageName;
-	}
-
-
-
-
-	function DoClickAdvert(nAdvertIndex)
-	{
-		if (g_arrayAdverts[nAdvertIndex - 1].length > 0)
-		{
-			document.location = "https://www.find-a-tradie.com.au/view_member.php?member_id=" + 
-								g_arrayAdverts[nAdvertIndex - 1];
-		}
-		else
-		{ 
-			if ((sessionStorage["member_id"] == undefined) || (sessionStorage["member_id"] == ""))
-			{
-				AlertWarning("You must be logged in to add an advert!");
-			}
-			else
-			{
-				document.location = "https://www.find-a-tradie.com.au/edit_advert.php?page_name=" + DoGetPageName() + "&" + 
-																							  "advert_slot_index=" + nAdvertIndex.toString() + "&" + 
-																							  "current_page=" + document.location + "&" + 
-																							  "cost_per_year=" + g_arrayAdverts[nAdvertIndex].cost_per_year;
-			}
-		}
-	}	
-
-
 
 
 	//******************************************************************************
