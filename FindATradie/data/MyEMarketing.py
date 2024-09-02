@@ -82,16 +82,19 @@ def DoGetFileContentsTxt(strFilename):
     return strContents
 
 
-def DoRemoveGroup(nGroupIndex):
+def DoPromptWhat2Do():
     strResponse = ""
-    while (strResponse != "Y") and (strResponse != "y") and (strResponse != "N") and (strResponse != "n"):
-        strResponse = input("Delete group (Y/N)?: ")
-        if (strResponse != "Y") and (strResponse != "y") and (strResponse != "N") and (strResponse != "n"):
+    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
+        strResponse = input("Re-try or delete group (D/d/R/r)?: ")
+        if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
             print("Invalid response...")
-        elif (strResponse == "Y") or (strResponse == "y"):
-            g_dictConfig["facebook"]["facebook_groups"].pop(nGroupIndex)
-            DoSaveConfigFile()
 
+    if strResponse == "d":
+        strResponse = "D"
+    elif strResponse == "r":
+        strResponse = "R"
+
+    return strResponse
 
 def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
     global g_dictConfig
@@ -111,18 +114,38 @@ def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
                     continue
                 else:
                     strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
+                    print("Post Contents\n--------------")
+                    strPostContents = strPostContents.replace("\n\n", "\n")
+                    print(strPostContents + "\n\n")
+
                     if g_dictConfig["facebook"]["last_group"] == -1:
                         DoPostFacebook(strPostContents, dictPost["image_filename"], "Find-A-Tradie", "", True)
 
-                    for nK in range(0, len(g_dictConfig["facebook"]["facebook_groups"])):
+                    arrayDeletedGroups = []
+                    nK = 0
+                    while nK > len(g_dictConfig["facebook"]["facebook_groups"]):
                         if nK <= g_dictConfig["facebook"]["last_group"]:
-                            continue
+                            nK += 1
                         else:
                             dictGroup = g_dictConfig["facebook"]["facebook_groups"][nK]
+                            print("Posting to Group " + str(nK) + " of " + str(len(g_dictConfig["facebook"]["facebook_groups"])) + ": " + dictGroup["name"] + " (" + dictGroup["url"] + ")")
                             if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"], dictGroup["url"], False):
-                                DoRemoveGroup(nK)
-                            g_dictConfig["facebook"]["last_group"] = nK
-                            DoSaveConfigFile()
+                                strResponse = DoPromptWhat2Do()
+                                if strResponse == "D":
+                                    arrayDeletedGroups.append(nK)
+                                    nK += 1
+                                elif strResponse == "R":
+                                    nK = nK
+                            else:
+                                g_dictConfig["facebook"]["last_group"] = nK
+                                DoSaveConfigFile()
+                                nK += 1
+
+                    if (len(arrayDeletedGroups) > 0):
+                        for nK in range(0, len(arrayDeletedGroups)):
+                            g_dictConfig["facebook"]["facebook_groups"].pop(arrayDeletedGroups[nK])
+                        DoSaveConfigFile()
+
                     g_dictConfig["facebook"]["last_group"] = -1
                     g_dictConfig["facebook"]["last_post"] = nJ
                     DoSaveConfigFile()
@@ -187,19 +210,19 @@ def DoRun():
     layoutSendEmails = [[SG.Button(key="help_email", image_filename="help.png")],
                         [SG.HorizontalSeparator(color='black')],
                         [SG.Text("Email Lists (.email)")],
-                        [SG.Listbox(arrayEmailFiles, size=(35, 17), select_mode="extended", key="list_of_email_files")],
+                        [SG.Listbox(arrayEmailFiles, size=(35, 14), select_mode="extended", key="list_of_email_files")],
                         [SG.Button(image_filename="refresh.png", key="refresh_email_lists"), SG.Button(image_filename="email.png", key="send_emails")],
                         [SG.Text("Select the email files you want to process...")]]
 
     layoutFacebookColumn1 = [[SG.Text("Facebook Group List")],
-                             [SG.Listbox(DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]), size=(80, 17), select_mode="extended", key="list_of_facebook_groups", enable_events=True)],
+                             [SG.Listbox(DoGetFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]), size=(80, 16), select_mode="extended", key="list_of_facebook_groups", enable_events=True)],
                              [SG.Button(image_filename="refresh.png", key="refresh_facebook_groups"),
                               SG.Button(image_filename="add.png", key="add_facebook_group", size=(10, 1)),
                               SG.Button(image_filename="subtract.png", key="delete_facebook_group", size=(10, 1), disabled=True),
                               SG.Button(image_filename="save.png", key="save_facebook_groups", size=(10, 1)), SG.VPush()]]
 
     layoutFacebookColumn2 = [[SG.Text("List of Posts")],
-                             [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]), size=(44, 15), select_mode="extended", key="list_of_facebook_posts", enable_events=True)],
+                             [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]), size=(44, 14), select_mode="extended", key="list_of_facebook_posts", enable_events=True)],
                              [SG.Button(image_filename="add.png", key="add_facebook_post", size=(2, 1)),
                               SG.Button(image_filename="subtract.png", key="delete_facebook_posts", disabled=True, size=(2, 1)),
                               SG.Button(image_filename="Facebook.png", key="start_facebook_posts", size=(10, 1)), SG.Push(),
@@ -220,7 +243,7 @@ def DoRun():
                     SG.Tab("Marketing Emails", layoutSendEmails),
                     SG.Tab("Facebook Marketing", layoutFacebook),
                     SG.Tab("Twitter Marketing", layoutTwitter)]])],
-              [[SG.Text("Output")], [SG.Text(key="output", size=(132, 8))]]]
+              [[SG.Text("Output")], [SG.Text(key="output", size=(132, 10))]]]
     #######################################################################################
     # END LAYOUTS
     #######################################################################################

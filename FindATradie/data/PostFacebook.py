@@ -88,10 +88,6 @@ def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChro
         strGroupURL = "https://www.facebook.com/FindATradiePage"
 
     try:
-        print("Posting to Group: " + strGroupName + " (" + strGroupURL + ")")
-        print("Post Contents\n--------------")
-        strPostText = strPostText.replace("\n\n", "\n")
-        print(strPostText)
         StartPostButton = DoGetElement(browserChrome, By.XPATH, strStartPostButtonXPATH)
         if StartPostButton:
             TextField = None
@@ -163,7 +159,5 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFi
         except Exception as Error:
             print("Invalid URL: " + strGroupURL + "!")
             bSuccess = false
-    else:
-        bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
 
     return bSuccess
