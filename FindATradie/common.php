@@ -2159,12 +2159,27 @@ echo "@@@@@@@<br>";
 	
 	
 		
+	function DoGenerateAdvertSpacer()
+	{
+		echo "					<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"display:inline-block;table-layout:fixed;\">\n";
+		echo "						<tr class=\"advert_row\">\n";
+		echo "							<td style=\"height:138px;\">&nbsp;</td>\n";
+		echo "							<td class=\"advert_text\">&nbsp;</td>\n";
+		echo "						</tr>";
+		echo "						<tr><td colspan=\"2\" class=\"advert_expires\" colspan=\"2\">&nbsp;</td></tr>\n";
+		echo "					</table>\n";
+	}
+	
+	
+	
+	
 	function DoGenerateAdvertSlotHTML()
 	{
 		global $g_dbFindATradie;
 		global $g_strQuery;
 		$strPageName = DoGetPageName();			
-				
+			
+		DoGenerateAdvertSpacer();	
 		$results = DoFindAllQuery($g_dbFindATradie, "advert_spaces", "(INSTR(`space_code`, '{$strPageName}') > 0) AND (app_or_web = 'web')");			
 		if ($results && ($results->num_rows > 0))
 		{
@@ -2211,6 +2226,7 @@ echo "@@@@@@@<br>";
 				$nCount++;
 			}
 		}
+		DoGenerateAdvertSpacer();
 	}
 	
 	
