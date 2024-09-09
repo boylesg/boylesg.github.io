@@ -74,34 +74,51 @@ def DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage):
             ImageDragDropButton.send_keys(strImageFilename)
 
 
+def DoFindElement(browserChrome, Selector, arraySelectorStrings):
+    Element = None
+    nI = 0
+
+    while (nI < len(arraySelectorStrings)):
+        Element = DoGetElement(browserChrome, Selector, arraySelectorStrings[nI])
+        if Element is not None:
+            break
+        nI += 1
+
+    return Element
+
 def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
     bSuccess = False
-    strStartPostButtonXPATH =       "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div"
-    strTextFieldXPATH =             "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]"
-    strPostButtonXPATH =            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div"
-    if not bFindATradieHomePage:
-        strStartPostButtonXPATH =   "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"
-        strTextFieldXPATH =         "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div"
-        strPostButtonXPATH =        "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div"
+    arrayPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
+                            "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
+                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"]
+    arrayTextFieldXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]",
+                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div"]
+    arrayPostButtonXPATH = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div",
+                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div"]
 
     if strGroupURL == "":
         strGroupURL = "https://www.facebook.com/FindATradiePage"
 
     try:
-        StartPostButton = DoGetElement(browserChrome, By.XPATH, strStartPostButtonXPATH)
+        StartPostButton = DoFindElement(browserChrome, By.XPATH, arrayPostButtonXPaths)
+
         if StartPostButton:
             TextField = None
             PostButton = None
             while TextField is None:
-                StartPostButton.click()
-                TextField = DoGetElement(browserChrome, By.XPATH, strTextFieldXPATH)
-                PostButton = DoGetElement(browserChrome, By.XPATH, strPostButtonXPATH)
+                browserChrome.execute_script("arguments[0].click();", StartPostButton)
+                #StartPostButton.click()
+                TextField = DoFindElement(browserChrome, By.XPATH, arrayTextFieldXPaths)
+                PostButton = DoFindElement(browserChrome, By.XPATH, arrayPostButtonXPaths)
 
             if (TextField is not None):
+                TextField.clear()
                 TextField.send_keys(strPostText)
                 #DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage)
                 if PostButton is not None:
-                    PostButton.click()
+                    browserChrome.execute_script("arguments[0].scrollIntoView();", PostButton)
+                    browserChrome.execute_script("arguments[0].click();", PostButton)
+                    #PostButton.click()
                     bSuccess = True
                 else:
                     print("Post button not found...")
@@ -150,7 +167,8 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFi
 
     if strGroupURL != "":
         try:
-            g_browserChrome.get(strGroupURL)
+            #g_browserChrome.get(strGroupURL)
+            WebDriverWait(g_browserChrome, 30).until(EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
             if (g_browserChrome.page_source.find("<title>Facebook</title>") > -1):
                 print("URL '" + strGroupURL + " cannot be reached at this time!")
                 bSuccess = False

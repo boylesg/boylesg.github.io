@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/_vti_cnf/common.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,8 +119,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
-          <line>133</line>
+          <line>145</line>
           <option name="timeStamp" value="366" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
+          <line>163</line>
+          <option name="timeStamp" value="368" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../FindATradie/data/PostFacebook.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="376" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -130,13 +143,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="nI" language="Python" />
-        <watch expression="nJ" language="Python" />
-        <watch expression="nK" language="Python" />
-        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;last_post&quot;]" language="Python" />
-        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;last_group&quot;]" language="Python" />
-        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;facebook_groups&quot;]" language="Python" />
-        <watch expression="g_dictConfig[&quot;facebook&quot;][&quot;last_post&quot;]" language="Python" />
+        <watch expression="Error" language="Python" />
       </configuration>
     </watches-manager>
   </component>
