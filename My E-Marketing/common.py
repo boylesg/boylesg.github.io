@@ -239,7 +239,7 @@ def Popup2xText(SG, strTitle, strLabel1, strValue1, bFileBrowseButton1, tuppleFi
     while True:
         strEvent, dictValues = popup.read(500)
 
-        if (strEvent == "OK") or (strEvent is None):
+        if (strEvent == "OK") or (strEvent == "Cancel") or (strEvent is None):
             break
 
     popup.close()

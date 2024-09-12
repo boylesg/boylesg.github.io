@@ -5,9 +5,108 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FindATradie/data/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/Facebook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/RemoveDuplicateBusinesses.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ValidateEmails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email__" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.email" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PLUMBERS.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PLUMBERS.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/RemoveDuplicateBusinesses.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/RemoveDuplicateEmails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ScrapeYellowPages.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/SendEmails.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/customer_feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/home_page.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/last_email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/tradie_feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/customer_feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/debug.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie1.facebook" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie2.facebook" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie3.facebook" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie4.facebook" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie5.facebook" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/help.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/home_page.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/last_email.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/quit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/refresh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/save.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/subtract.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FindATradie/data/tradie_feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,28 +142,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Doctests in smtplib.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.AustraliaPost.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.MyEMarketing.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.PostFacebook.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateBusinesses.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.RemoveDuplicateEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ScrapeYellowPages.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.SendEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.ValidateEmails.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.common.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.errorhandler.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.message.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/FindATradie/data&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Doctests in smtplib.executor": "Debug",
+    "Python.AustraliaPost.executor": "Debug",
+    "Python.E-Marketing Gardening.executor": "Debug",
+    "Python.E-Marketing find-a-tradie.executor": "Debug",
+    "Python.MyEMarketing.executor": "Debug",
+    "Python.PostFacebook.executor": "Debug",
+    "Python.RemoveDuplicateBusinesses.executor": "Debug",
+    "Python.RemoveDuplicateEmails.executor": "Debug",
+    "Python.ScrapeYellowPages.executor": "Debug",
+    "Python.SendEmails.executor": "Debug",
+    "Python.ValidateEmails.executor": "Debug",
+    "Python.common.executor": "Debug",
+    "Python.errorhandler.executor": "Debug",
+    "Python.message.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/FindATradie/data",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gregaryb\Downloads" />
@@ -117,21 +218,6 @@
           <line>440</line>
           <option name="timeStamp" value="251" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
-          <line>145</line>
-          <option name="timeStamp" value="366" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py</url>
-          <line>163</line>
-          <option name="timeStamp" value="368" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../FindATradie/data/PostFacebook.py</url>
-          <line>131</line>
-          <option name="timeStamp" value="376" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -143,7 +229,8 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="Error" language="Python" />
+        <watch expression="MainWindow[&quot;list_of_customer_facebook_groups&quot;]" language="Python" />
+        <watch expression="MainWindow[&quot;list_of_customer_facebook_groups&quot;].get()" language="Python" />
       </configuration>
     </watches-manager>
   </component>

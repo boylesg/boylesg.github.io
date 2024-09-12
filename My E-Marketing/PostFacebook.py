@@ -40,14 +40,14 @@ def DoLogin(strFacebookUsername, strFacebookPassword, browserChrome):
     return bSuccess
 
 
-def DoChangeProfile(browserChrome):
+def DoChangeProfile(browserChrome, strProfile):
     svgYourProfile = ""
     divYourProfile = ""
     bResult = False
     try:
         divYourProfile = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Your profile']")
         divYourProfile.click()
-        divSwitchFindATradie = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Switch to Find-a-tradie']")
+        divSwitchFindATradie = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='" + strProfile + "']")
         divSwitchFindATradie.click()
         bResult = True
     except Exception as Error:
@@ -89,15 +89,29 @@ def DoFindElement(browserChrome, Selector, arraySelectorStrings):
 def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
     bSuccess = False
     arrayPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
-                            "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div"]
+                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
+                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
+                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
+                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
+                             "",
+                             "",
+                             "",
+                             "",
+                             "",
+                             ""]
     arrayTextFieldXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]",
-                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div"]
+                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div",
+                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div/div",
+                            "//html/body/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div/div",
+                            "",
+                            "",
+                            ""]
     arrayPostButtonXPATH = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div",
-                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div"]
-
-    if strGroupURL == "":
-        strGroupURL = "https://www.facebook.com/FindATradiePage"
+                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div",
+                            "",
+                            "",
+                            "",
+                            ""]
 
     try:
         StartPostButton = DoFindElement(browserChrome, By.XPATH, arrayPostButtonXPaths)
@@ -145,12 +159,12 @@ def DoGetBrowser():
     return g_browserChrome
 
 
-def DoFacebookInit(strFacebookUsername, strFacebookPassword):
+def DoFacebookInit(strFacebookUsername, strFacebookPassword, strProfile):
     bResult = False
     browserChrome = DoGetBrowser()
     browserChrome.get("https://www.facebook.com/login")
     if DoLogin(strFacebookUsername, strFacebookPassword, browserChrome):
-        if DoChangeProfile(browserChrome):
+        if DoChangeProfile(browserChrome, strProfile):
             bResult = True
             wait(10)
         else:
