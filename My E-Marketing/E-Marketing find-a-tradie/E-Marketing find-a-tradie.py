@@ -192,7 +192,7 @@ def DoGetFacebookPostList(arrayConfigFacebookPosts):
 
 def DoGetNewPost(MainWindow, arrayPosts, strListBoxKey, strConfigPostListKey):
     dictResults = Popup2xText(SG, "New Facebook Post", "File containing the post", "", True,
-                              (("Text Files", "*.txt"), ("All Files", "*.*")), "Image file", "", True,
+                              (("Facebook posts", "*.facebook"), ("All Files", "*.*")), "Image file", "", True,
                               (("JPEG Files", "*.jpg"), ("JPEG Files", "*.jpeg"), ("PNG Files", "*.png")))
     if dictResults["OK"]:
         DoSaveFacebookPost(dictResults["Text1"], dictResults["Text2"], strConfigPostListKey)
@@ -381,18 +381,20 @@ def DoRun():
                       [SG.Column(layoutFacebookCustomerColumn1, element_justification="left"),
                        SG.Column(layoutFacebookCustomerColumn2, element_justification="left")]]
 
+    layoutOutput = [[SG.VPush(), SG.Output(key="output", size=(132, 25)), SG.VPush()]]
+
     layout = [[SG.Button(key="quit", image_filename="../quit.png")],
               [SG.TabGroup(
                   [[SG.Tab("Configuration", layoutConfig),
                     SG.Tab("Marketing Emails", layoutSendEmails),
                     SG.Tab("Facebook Tradie Marketing", layoutFacebookTradie),
-                    SG.Tab("Facebook Customer Marketing", layoutFacebookCustomer)]])],
-              [[SG.Text("Output")], [SG.Output(key="output", size=(132, 10))]]]
+                    SG.Tab("Facebook Customer Marketing", layoutFacebookCustomer),
+                    SG.Tab("Output", layoutOutput)]])]]
     #######################################################################################
     # END LAYOUTS
     #######################################################################################
     g_dictConfig["email_lists"]["email_files"] = arrayEmailFiles
-    MainWindow = SG.Window(title="E-Marketing find-a-tradie", layout=layout, margins=(10, 10), size=(1000, 640))
+    MainWindow = SG.Window(title="E-Marketing find-a-tradie", layout=layout, margins=(10, 10), size=(1000, 500))
     bShowEmailServerPassword = False
     bShowFacebookPassword = False
 
