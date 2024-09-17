@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening10.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening10.facebook" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening9.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening9.facebook" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,11 +131,6 @@
           <url>file://$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py</url>
           <line>174</line>
           <option name="timeStamp" value="260" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="261" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

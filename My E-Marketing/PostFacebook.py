@@ -52,7 +52,7 @@ def DoChangeProfile(browserChrome, strProfile):
             xeuugli xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1o1ewxj 
             x3x9cwd x1e5q0jg x13rtm0m x1q0g3np x87ps6o x1lku1pv x1a2a7pz x1lliihq" role="button" tabindex="0">
         '''
-        divYourProfile = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Your profile']")
+        divYourProfile = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label=\"Your profile\"]")
         divYourProfile.click()
         divSwitchFindATradie = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label=\"" + strProfile + "\"]")
         divSwitchFindATradie.click()
