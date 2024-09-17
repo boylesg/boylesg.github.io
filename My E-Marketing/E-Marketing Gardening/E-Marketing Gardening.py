@@ -4,6 +4,7 @@ import os.path
 import os
 import pprint
 import sys
+
 sys.path.append("C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/My E-Marketing")
 from SendEmails import *
 from PostFacebook import *
@@ -24,9 +25,9 @@ g_dictConfig = {"email_server":
                 "facebook":
                     {"facebook_username": "", "facebook_password": "", "facebook_groups": [{"name": "", "url": ""}],
                      "facebook_posts": [{"post_filename": "", "image_filename": ""}],
-                     "customer_facebook_posts": [{"post_filename": "", "image_filename": ""}],
+                     "facebook_posts": [{"post_filename": "", "image_filename": ""}],
                      "selected_tradie_facebook_posts": [{"post_filename": "", "image_filename": ""}],
-                     "selected_customer_facebook_posts": [{"post_filename": "", "image_filename": ""}]}
+                     "selected_facebook_posts": [{"post_filename": "", "image_filename": ""}]}
                 }
 
 g_dictFilenames = {"config_filename": "E-Marketing Gardening.json"}
@@ -91,88 +92,6 @@ def DoGetFileContentsTxt(strFilename):
     return strContents
 
 
-def DoPromptWhat2Do():
-    strResponse = ""
-    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
-        strResponse = input("Re-try or delete group (D/d/R/r)?: ")
-        if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
-            print("Invalid response...")
-
-    if strResponse == "d":
-        strResponse = "D"
-    elif strResponse == "r":
-        strResponse = "R"
-
-    return strResponse
-
-
-def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
-    global g_dictConfig
-
-    if g_dictConfig["facebook"]["last_tradie_group"] is None:
-        g_dictConfig["facebook"]["last_tradie_group"] = -1
-
-    if g_dictConfig["facebook"]["last_tradie_post"] is None:
-        g_dictConfig["facebook"]["last_tradie_post"] = 0
-
-    nLastPost = g_dictConfig["facebook"]["last_tradie_post"]
-
-    if DoFacebookInit(g_dictConfig["facebook"]["facebook_username"], g_dictConfig["facebook"]["facebook_password"], "Switch to Greg's Native Landscapes"):
-        for nI in range(0, nRepeat):
-            for nJ in range(0, len(arrayPosts)):
-                dictPost = arrayPosts[nJ]
-
-                if nJ <= nLastPost:
-                    continue
-                else:
-                    strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
-                    print("Post Contents\n--------------")
-                    strPostContents = strPostContents.replace("\n\n", "\n")
-                    print(strPostContents + "\n\n")
-
-                    if g_dictConfig["facebook"]["last_tradie_group"] == -1:
-                        DoPostFacebook(strPostContents, dictPost["image_filename"], "Greg's Native Landscapes", "https://www.facebook.com/GregsNativeLandscapes", True)
-
-                    arrayDeletedGroups = []
-                    nK = 0
-                    nLastGroup = g_dictConfig["facebook"]["last_tradie_group"]
-                    while nK < len(g_dictConfig["facebook"]["facebook_groups"]):
-                        if nK <= nLastGroup:
-                            nK += 1
-                        else:
-                            dictGroup = g_dictConfig["facebook"]["facebook_groups"][nK]
-                            print("Posting to Group " + str(nK + 1) + " of " + str(
-                                len(g_dictConfig["facebook"]["facebook_groups"])) + ": " + dictGroup["name"] + " (" +
-                                  dictGroup["url"] + ")")
-                            if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
-                                                  dictGroup["url"], False):
-                                strResponse = DoPromptWhat2Do()
-                                if strResponse == "D":
-                                    arrayDeletedGroups.append(nK)
-                                    nK += 1
-                                elif strResponse == "R":
-                                    nK = nK
-                            else:
-                                g_dictConfig["facebook"]["last_tradie_group"] = nK
-                                DoSaveConfigFile()
-                                nK += 1
-
-                    if (len(arrayDeletedGroups) > 0):
-                        for nK in range(0, len(arrayDeletedGroups)):
-                            g_dictConfig["facebook"]["facebook_groups"].pop(arrayDeletedGroups[nK])
-                        DoSaveConfigFile()
-
-                    g_dictConfig["facebook"]["last_tradie_group"] = -1
-                    g_dictConfig["facebook"]["last_tradie_post"] = nJ
-                    DoSaveConfigFile()
-                    wait(nMillisDelay)
-
-            g_dictConfig["facebook"]["last_tradie_post"] = -1
-            DoSaveConfigFile()
-    else:
-        print("DoFacebookInit() failed!")
-
-
 def DoSaveFacebookPost(strFilenamePost, strFilenameImage, strConfigPostListKey):
     g_dictConfig["facebook"][strConfigPostListKey].append(
         {"post_filename": strFilenamePost, "image_filename": strFilenameImage})
@@ -234,28 +153,80 @@ def DoSaveFacebookGroups(MainWindow, strGroupListKey, strConfigGroupListKey):
     DoSaveConfigFile()
 
 
-def DoStartFacebookPosts(strPostDelayKey, strPostDelayTypeKey, strPostRepeatKey, strPostListKey,
-                         strConfigPostListKey, strConfigSelectedPostListKey):
-    nMillisDelay = int(MainWindow[strPostDelayKey].get())
-    nSelectedIndex = MainWindow[strPostDelayTypeKey].Values.index(
-        MainWindow[strPostDelayTypeKey].get())
-    if nSelectedIndex == 0:
-        nMillisDelay *= 60 * 1000
-    elif nSelectedIndex == 1:
-        nMillisDelay *= 60 * 60 * 1000
-    elif nSelectedIndex == 2:
-        nMillisDelay *= 24 * 60 * 60 * 1000
-    nRepeat = int(MainWindow[strPostRepeatKey].get())
-    FacebookPostListbox = MainWindow[strPostListKey]
-    arraySelectedIndexes = FacebookPostListbox.get_indexes()
-    arrayPosts = []
-    if len(arraySelectedIndexes) > 0:
-        for nI in arraySelectedIndexes:
-            arrayPosts.append(g_dictConfig["facebook"][strConfigPostListKey][nI])
+def DoStartFacebookPosts(strFacebookUsername, strFacebookPassword, strFacebookBusinessName,
+                         nPostDelay, strDelayPostDelayType, nPostRepeat, listboxPosts, strKeyConfigPosts,
+                         strKeyConfigSelectedPosts, strKeyPostBookmark, strKeyGroupBookmark):
+    global g_dictConfig
+
+    if g_dictConfig["facebook"][strKeyGroupBookmark] is None:
+        g_dictConfig["facebook"][strKeyGroupBookmark] = -1
+
+    if g_dictConfig["facebook"][strKeyPostBookmark] is None:
+        g_dictConfig["facebook"][strKeyPostBookmark] = 0
+
+    if "hour" in strDelayPostDelayType:
+        nPostDelay *= 60
+    elif "day" in strDelayPostDelayType:
+        nPostDelay *= 60 * 24
+
+    nLastPost = g_dictConfig["facebook"][strKeyPostBookmark]
+
+    if DoFacebookInit(strFacebookUsername, strFacebookPassword, strFacebookBusinessName):
+        for nI in range(0, nRepeat):
+            for nJ in range(0, len(arrayPosts)):
+                dictPost = arrayPosts[nJ]
+
+                if nJ <= nLastPost:
+                    continue
+                else:
+                    strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
+                    print("Post Contents\n--------------")
+                    strPostContents = strPostContents.replace("\n\n", "\n")
+                    print(strPostContents + "\n\n")
+
+                    if g_dictConfig["facebook"]["last_facebook_group"] == -1:
+                        DoPostFacebook(strPostContents, dictPost["image_filename"], "Find-A-Tradie",
+                                       "https://www.facebook.com/FindATradiePage/", True)
+
+                    arrayDeletedGroups = []
+                    nK = 0
+                    nLastGroup = g_dictConfig["facebook"]["last_facebook_group"]
+                    while nK < len(g_dictConfig["facebook"]["tradie_facebook_groups"]):
+                        if nK <= nLastGroup:
+                            nK += 1
+                        else:
+                            dictGroup = g_dictConfig["facebook"]["tradie_facebook_groups"][nK]
+                            print("Posting to Group " + str(nK + 1) + " of " + str(
+                                len(g_dictConfig["facebook"]["tradie_facebook_groups"])) + ": " + dictGroup[
+                                      "name"] + " (" +
+                                  dictGroup["url"] + ")")
+                            if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
+                                                  dictGroup["url"], False):
+                                strResponse = DoPromptWhat2Do()
+                                if strResponse == "D":
+                                    arrayDeletedGroups.append(nK)
+                                    nK += 1
+                                elif strResponse == "R":
+                                    nK = nK
+                            else:
+                                g_dictConfig["facebook"]["last_facebook_group"] = nK
+                                DoSaveConfigFile()
+                                nK += 1
+
+                    if (len(arrayDeletedGroups) > 0):
+                        for nK in range(0, len(arrayDeletedGroups)):
+                            g_dictConfig["facebook"]["tradie_facebook_groups"].pop(arrayDeletedGroups[nK])
+                        DoSaveConfigFile()
+
+                    g_dictConfig["facebook"]["last_facebook_group"] = -1
+                    g_dictConfig["facebook"]["last_facebook_post"] = nJ
+                    DoSaveConfigFile()
+                    wait(nMillisDelay)
+
+            g_dictConfig["facebook"]["last_facebook_post"] = -1
+            DoSaveConfigFile()
     else:
-        arrayPosts = g_dictConfig["facebook"][strConfigPostListKey]
-    g_dictConfig["facebook"][strConfigSelectedPostListKey] = arrayPosts
-    DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat)
+        print("DoFacebookInit() failed!")
 
 
 def DoRun():
@@ -263,6 +234,7 @@ def DoRun():
 
     DoLoadConfigFile()
     arrayFacebookGroups = DoGetNewFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"])
+    arrayEmailFiles = []
     arrayEmailFiles = DoGetFileList(".email")
     g_dictConfig["email_lists"]["email_files"] = arrayEmailFiles
 
@@ -270,6 +242,7 @@ def DoRun():
     # START LAYOUTS
     #######################################################################################
     strSpaces = "                                                                                                                       "
+
     layoutConfig = [[SG.Text("Email Server")],
                     [SG.Push(), SG.Text("Server URL:"),
                      SG.InputText(g_dictConfig["email_server"]["email_url"], key="email_url"), SG.Text(strSpaces)],
@@ -311,55 +284,56 @@ def DoRun():
                          SG.Button(image_filename="../email.png", key="send_emails")],
                         [SG.Text("Select the email files you want to process...")]]
 
-    layoutFacebookTradieColumn1 = [[SG.Text("Facebook Group List")],
-                                   [SG.Listbox(DoGetNewFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]),
-                                               size=(80, 16), select_mode="single", key="list_of_tradie_facebook_groups",
-                                               enable_events=True)],
-                                   [SG.Button(image_filename="../refresh.png", key="refresh_tradie_facebook_groups"),
-                                    SG.Button(image_filename="../add.png", key="add_tradie_facebook_group", size=(10, 1)),
-                                    SG.Button(image_filename="../edit.png", key="edit_tradie_facebook_group", size=(10, 1)),
-                                    SG.Button(image_filename="../subtract.png", key="delete_tradie_facebook_group", size=(10, 1),
-                                              disabled=True),
-                                    SG.Button(image_filename="../save.png", key="save_tradie_facebook_groups", size=(10, 1)),
-                                    SG.VPush()]]
+    layoutFacebookColumn1 = [[SG.Text("Facebook Group List")],
+                             [SG.Listbox(DoGetNewFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]),
+                                         size=(80, 16), select_mode="single", key="list_of_facebook_groups",
+                                         enable_events=True)],
+                             [SG.Button(image_filename="../refresh.png", key="refresh_facebook_groups"),
+                              SG.Button(image_filename="../add.png", key="add_facebook_group", size=(10, 1)),
+                              SG.Button(image_filename="../edit.png", key="edit_facebook_group", size=(10, 1)),
+                              SG.Button(image_filename="../subtract.png", key="delete_facebook_group", size=(10, 1),
+                                        disabled=True),
+                              SG.Button(image_filename="../save.png", key="save_facebook_groups", size=(10, 1)),
+                              SG.VPush()]]
 
-    layoutFacebookTradieColumn2 = [[SG.Text("List of Posts")],
-                                   [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]),
-                                               size=(44, 14), select_mode="extended", key="list_of_tradie_facebook_posts",
-                                               enable_events=True)],
-                                   [SG.Button(image_filename="../add.png", key="add_tradie_facebook_post", size=(2, 1)),
-                                    SG.Button(image_filename="../subtract.png", key="delete_tradie_facebook_posts", disabled=True,
-                                              size=(2, 1)),
-                                    SG.Button(image_filename="../Facebook.png", key="start_tradie_facebook_posts", size=(10, 1)),
-                                    SG.Push(),
-                                    SG.Text("Post Delay:"),
-                                    SG.InputText(key="tradie_facebook_post_delay", size=(5, 1), default_text="1",
-                                                 enable_events=True)],
-                                   [SG.Push(), SG.Text("Post repeat"),
-                                    SG.InputText(key="facebook_tradie_post_repeat", size=(5, 1), default_text="1",
-                                                 enable_events=True),
-                                    SG.Combo(values=["minute(s)", "hour(s)", "day(s)"], default_value="hour(s)",
-                                             key="tradie_facebook_post_delay_type")]]
+    layoutFacebookColumn2 = [[SG.Text("List of Posts")],
+                             [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]),
+                                         size=(44, 14), select_mode="extended", key="list_of_facebook_posts",
+                                         enable_events=True)],
+                             [SG.Button(image_filename="../add.png", key="add_facebook_post", size=(2, 1)),
+                              SG.Button(image_filename="../subtract.png", key="delete_facebook_posts", disabled=True,
+                                        size=(2, 1)),
+                              SG.Button(image_filename="../Facebook.png", key="start_facebook_posts", size=(10, 1)),
+                              SG.Push(),
+                              SG.Text("Post Delay:"),
+                              SG.InputText(key="facebook_post_delay", size=(5, 1), default_text="1",
+                                           enable_events=True)],
+                             [SG.Push(), SG.Text("Post repeat"),
+                              SG.InputText(key="facebook_post_repeat", size=(5, 1), default_text="1",
+                                           enable_events=True),
+                              SG.Combo(values=["minute(s)", "hour(s)", "day(s)"], default_value="hour(s)",
+                                       key="facebook_post_delay_type")]]
 
-    layoutFacebookTradie = [[SG.Button(key="help_facebook_tradie", image_filename="../help.png")],
+    layoutFacebook = [[SG.Button(key="help_facebook", image_filename="../help.png")],
                       [SG.HorizontalSeparator(color='black')],
-                      [SG.Column(layoutFacebookTradieColumn1, element_justification="left"),
-                       SG.Column(layoutFacebookTradieColumn2, element_justification="left")]]
+                      [SG.Column(layoutFacebookColumn1, element_justification="left"),
+                       SG.Column(layoutFacebookColumn2, element_justification="left")]]
 
-    layoutOutput = [[SG.VPush(), SG.Output(key="output", size=(132, 25)), SG.VPush()]]
+    layoutOutput = [[SG.VPush(), SG.Text(key="output", size=(132, 25)), SG.VPush()]]
 
     layout = [[SG.Button(key="quit", image_filename="../quit.png")],
               [SG.TabGroup(
                   [[SG.Tab("Configuration", layoutConfig),
                     SG.Tab("Marketing Emails", layoutSendEmails),
-                    SG.Tab("Facebook Marketing", layoutFacebookTradie),
+                    SG.Tab("Facebook Marketing", layoutFacebook),
                     SG.Tab("Output", layoutOutput)]])]]
 
     #######################################################################################
     # END LAYOUTS
     #######################################################################################
     g_dictConfig["email_lists"]["email_files"] = arrayEmailFiles
-    MainWindow = SG.Window(title="E-Marketing Greg's Native Landscapes", layout=layout, margins=(10, 10), size=(1000, 500))
+    MainWindow = SG.Window(title="E-Marketing Greg's Native Landscapes", layout=layout, margins=(10, 10),
+                           size=(1000, 500))
     bShowEmailServerPassword = False
     bShowFacebookPassword = False
 
@@ -377,67 +351,52 @@ def DoRun():
             g_dictConfig["facebook"]["facebook_username"] = MainWindow["facebook_username"].get()
             g_dictConfig["facebook"]["facebook_password"] = MainWindow["facebook_password"].get()
             DoSaveConfigFile()
-        elif strEvent == "add_tradie_facebook_post":
-            DoGetNewPost(MainWindow, g_dictConfig["facebook"]["facebook_posts"], "list_of_tradie_facebook_posts", "facebook_posts")
-        elif strEvent == "add_customer_facebook_post":
-            DoGetNewPost(MainWindow, g_dictConfig["facebook"]["customer_facebook_posts"], "list_of_customer_facebook_posts", "customer_facebook_posts")
-        elif strEvent == "delete_tradie_facebook_posts":
-            DoDeleteListItem(MainWindow, "list_of_tradie_facebook_posts", "delete_tradie_facebook_posts", "")
-        elif strEvent == "delete_customer_facebook_posts":
-            DoDeleteListItem(MainWindow, "list_of_customer_facebook_posts", "delete_customer_facebook_posts", "")
-        elif strEvent == "list_of_tradie_facebook_posts":
-            MainWindow["delete_tradie_facebook_posts"].update(disabled=False)
-        elif strEvent == "list_of_customer_facebook_posts":
-            MainWindow["delete_customer_facebook_posts"].update(disabled=False)
-        elif strEvent == "refresh_tradie_facebook_groups":
-            MainWindow["list_of_tradie_facebook_groups"].update(values = DoGetNewFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]))
-        elif strEvent == "refresh_customer_facebook_groups":
-            MainWindow["list_of_customer_facebook_groups"].update(values = DoGetNewFacebookGroupList(g_dictConfig["facebook"]["customer_facebook_groups"]))
-        elif strEvent == "list_of_tradie_facebook_groups":
-            MainWindow["delete_tradie_facebook_group"].update(disabled=False)
-            MainWindow["edit_tradie_facebook_group"].update(disabled=False)
-        elif strEvent == "list_of_customer_facebook_groups":
-            MainWindow["delete_customer_facebook_group"].update(disabled=False)
-            MainWindow["edit_customer_facebook_group"].update(disabled=False)
-        elif strEvent == "save_tradie_facebook_groups":
-            DoSaveFacebookGroups(MainWindow, "list_of_tradie_facebook_groups", "facebook_groups")
-        elif strEvent == "save_customer_facebook_groups":
-            DoSaveFacebookGroups(MainWindow, "list_of_customer_facebook_groups", "customer_facebook_groups")
-        elif strEvent == "delete_tradie_facebook_group":
-            DoDeleteListItem(MainWindow, "list_of_tradie_facebook_groups", "delete_tradie_facebook_group", "edit_tradie_facebook_group")
-        elif strEvent == "delete_customer_facebook_group":
-            DoDeleteListItem(MainWindow, "list_of_customer_facebook_groups", "delete_customer_facebook_group", "edit_customer_facebook_group")
-        elif strEvent == "add_tradie_facebook_group":
-            DoGetFacebookGroup(MainWindow, "list_of_tradie_facebook_groups", "facebook_groups", "")
-        elif strEvent == "add_customer_facebook_group":
-            DoGetFacebookGroup(MainWindow, "list_of_customer_facebook_groups", "customer_facebook_groups", "")
-        elif strEvent == "edit_tradie_facebook_group":
-            DoGetFacebookGroup(MainWindow, "list_of_tradie_facebook_groups", "facebook_groups", MainWindow["list_of_tradie_facebook_groups"].get()[0])
-        elif strEvent == "edit_customer_facebook_group":
-            DoGetFacebookGroup(MainWindow, "list_of_customer_facebook_groups", "customer_facebook_groups", MainWindow["list_of_customer_facebook_groups"].get()[0])
+        elif strEvent == "add_facebook_post":
+            DoGetNewPost(MainWindow, g_dictConfig["facebook"]["facebook_posts"], "list_of_facebook_posts",
+                         "facebook_posts")
+        elif strEvent == "delete_facebook_posts":
+            DoDeleteListItem(MainWindow, "list_of_facebook_posts", "delete_facebook_posts", "")
+        elif strEvent == "list_of_facebook_posts":
+            MainWindow["delete_facebook_posts"].update(disabled=False)
+        elif strEvent == "refresh_facebook_groups":
+            MainWindow["list_of_facebook_groups"].update(
+                values=DoGetNewFacebookGroupList(g_dictConfig["facebook"]["facebook_groups"]))
+        elif strEvent == "list_of_facebook_groups":
+            MainWindow["delete_facebook_group"].update(disabled=False)
+            MainWindow["edit_facebook_group"].update(disabled=False)
+        elif strEvent == "save_facebook_groups":
+            DoSaveFacebookGroups(MainWindow, "list_of_facebook_groups", "facebook_groups")
+        elif strEvent == "delete_facebook_group":
+            DoDeleteListItem(MainWindow, "list_of_facebook_groups", "delete_facebook_group", "edit_facebook_group")
+        elif strEvent == "add_facebook_group":
+            DoGetFacebookGroup(MainWindow, "list_of_facebook_groups", "facebook_groups", "")
+        elif strEvent == "edit_facebook_group":
+            DoGetFacebookGroup(MainWindow, "list_of_facebook_groups", "facebook_groups",
+                               MainWindow["list_of_facebook_groups"].get()[0])
         elif strEvent == "send_emails":
             arraySelectedEmailFiles = MainWindow["list_of_email_files"].get()
             g_dictConfig["email_lists"]["selected_email_files"] = arraySelectedEmailFiles
             DoStartSendingEmails(g_dictConfig)
         elif strEvent == "refresh_facebook_posts":
-            MainWindow["list_of_tradie_facebook_posts"].update(values=g_dictConfig["facebook"]["facebook_posts"])
+            MainWindow["list_of_facebook_posts"].update(values=g_dictConfig["facebook"]["facebook_posts"])
         elif strEvent == "save_facebook_posts":
-            FacebookPostListbox = MainWindow["list_of_tradie_facebook_posts"]
+            FacebookPostListbox = MainWindow["list_of_facebook_posts"]
             arrayFacebookPosts = FacebookPostListbox.Values
             g_dictConfig["facebook"]["facebook_posts"] = arrayFacebookPosts
             DoSaveConfigFile()
-        elif strEvent == "start_tradie_facebook_posts":
-            DoStartFacebookPosts("tradie_facebook_post_delay", "tradie_facebook_post_delay_type",
-                                 "facebook_tradie_post_repeat", "list_of_tradie_facebook_posts",
-                                 "facebook_posts", "selected_tradie_facebook_posts")
-        elif strEvent == "start_customer_facebook_posts":
-            DoStartFacebookPosts("customer_facebook_post_delay", "customer_facebook_post_delay_type",
-                                 "facebook_customer_post_repeat", "list_of_customer_facebook_posts",
-                                 "customer_facebook_posts", "selected_customer_facebook_posts")
-        elif strEvent == "help_facebook_tradie":
-            strText = "XXXX"
-            SG.popup(strText, title="HELP - With Facebook Tradie Posts")
-        elif strEvent == "help_facebook_customer":
+        elif strEvent == "start_facebook_posts":
+            DoStartFacebookPosts(
+                g_dictConfig["facebook"]["facebook_username"],
+                g_dictConfig["facebook"]["facebook_password"],
+                "Switch to Greg's Native Landscapes",
+                MainWindow["facebook_post_delay"].get(),
+                MainWindow["facebook_post_delay_type"].get(),
+                int(MainWindow["facebook_post_repeat"].get()),
+                MainWindow["list_of_facebook_posts"].get(),
+                "facebook_posts", "selected_facebook_posts",
+                "last_facebook_post","last_facebook_group")
+
+        elif strEvent == "help_facebook":
             strText = "YYYY"
             SG.popup(strText, title="HELP - With Facebook Customer Posts")
         elif strEvent == "help_email":
@@ -456,14 +415,14 @@ def DoRun():
             strText = dictValues["email_port"]
             if (not strText.isdigit()) or (len(strText) > 3):
                 MainWindow["email_port"].update(value=strText[:-1])
-        elif strEvent == "tradie_facebook_post_delay":
-            strText = dictValues["tradie_facebook_post_delay"]
+        elif strEvent == "facebook_post_delay":
+            strText = dictValues["facebook_post_delay"]
             if (not strText.isdigit()) or (len(strText) > 3):
-                MainWindow["tradie_facebook_post_delay"].update(value=strText[:-1])
-        elif strEvent == "facebook_tradie_post_repeat":
-            strText = dictValues["facebook_tradie_post_repeat"]
+                MainWindow["facebook_post_delay"].update(value=strText[:-1])
+        elif strEvent == "facebook_post_repeat":
+            strText = dictValues["facebook_post_repeat"]
             if (not strText.isdigit()) or (len(strText) > 3):
-                MainWindow["facebook_tradie_post_repeat"].update(value=strText[:-1])
+                MainWindow["facebook_post_repeat"].update(value=strText[:-1])
         if bShowEmailServerPassword != dictValues["email_server_show_password"]:
             if dictValues["email_server_show_password"]:
                 MainWindow["email_password"].update(password_char="")

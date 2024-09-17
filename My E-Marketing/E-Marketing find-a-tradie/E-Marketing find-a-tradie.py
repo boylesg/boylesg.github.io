@@ -91,21 +91,6 @@ def DoGetFileContentsTxt(strFilename):
     return strContents
 
 
-def DoPromptWhat2Do():
-    strResponse = ""
-    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
-        strResponse = input("Re-try or delete group (D/d/R/r)?: ")
-        if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
-            print("Invalid response...")
-
-    if strResponse == "d":
-        strResponse = "D"
-    elif strResponse == "r":
-        strResponse = "R"
-
-    return strResponse
-
-
 def DoStartFacebookPosts(arrayPosts, nMillisDelay, nRepeat):
     global g_dictConfig
 

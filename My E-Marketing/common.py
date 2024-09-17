@@ -18,7 +18,7 @@ g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.gi
 g_browserChrome = None
 
 
-def DoGetElement(browserChrome, Selector, strSelectorString, nTimeoutSeconds = 5):
+def DoGetElement(browserChrome, Selector, strSelectorString, nTimeoutSeconds=5):
     Element = None
     try:
         Element = WebDriverWait(browserChrome, nTimeoutSeconds).until(EC.presence_of_element_located((Selector, strSelectorString)))
@@ -213,6 +213,23 @@ def DoPingEmailAddress(strEmailAddress):
         print(e)
 
     return bValid
+
+
+def DoPromptWhat2Do():
+    strResponse = ""
+    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
+        strResponse = input("Re-try, ignore or delete group (R/r/I/i/D/D)?: ")
+        if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
+            print("Invalid response...")
+
+    if strResponse == "d":
+        strResponse = "D"
+    elif strResponse == "r":
+        strResponse = "R"
+    elif strResponse == "i":
+        strResponse = "I"
+
+    return strResponse
 
 
 def Popup2xText(SG, strTitle, strLabel1, strValue1, bFileBrowseButton1, tuppleFileTypes1, strLabel2, strValue2, bFileBrowseButton2, tuppleFileTypes2):
