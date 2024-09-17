@@ -5,109 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ARBORISTS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CABINETRY.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CLEANERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/CONCRETERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ELECTRICIANS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/Facebook.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GARDENERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/GLAZIERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/MyEMarketing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PAINTERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PET CARERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PLUMBERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/PostFacebook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/RemoveDuplicateBusinesses.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ScrapeYellowPages.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/SendEmails.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/ValidateEmails.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ARBORISTS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CLEANERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.email__" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/CONCRETERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ELECTRICIANS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GARDENERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/GLAZIERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PAINTERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.email" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PET CARERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PLUMBERS.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/PLUMBERS.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/RemoveDuplicateBusinesses.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/RemoveDuplicateEmails.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/ScrapeYellowPages.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/SendEmails.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/customer_feedback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/email.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/feedback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/home_page.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/last_email.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/_vti_cnf/tradie_feedback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/customer_feedback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/debug.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/email.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/feedback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie1.facebook" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie2.facebook" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie3.facebook" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie4.facebook" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/find-a-tradie5.facebook" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/help.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/home_page.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/last_email.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/quit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/refresh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/save.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/subtract.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FindATradie/data/tradie_feedback.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +63,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/FindATradie/data",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
   <component name="RecentsManager">
