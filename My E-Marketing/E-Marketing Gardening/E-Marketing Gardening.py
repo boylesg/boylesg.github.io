@@ -84,14 +84,6 @@ def DoSaveFacebookGroupList(arrayFacebookGroupsFromListbox):
     return arrayFacebookGroups
 
 
-def DoGetFileContentsTxt(strFilename):
-    strContents = ""
-    with open(strFilename, "r") as file:
-        arrayLines = file.readlines()
-    strContents = format("\n".join(arrayLines[0:]))
-    return strContents
-
-
 def DoSaveFacebookPost(strFilenamePost, strFilenameImage, strConfigPostListKey):
     g_dictConfig["facebook"][strConfigPostListKey].append(
         {"post_filename": strFilenamePost, "image_filename": strFilenameImage})
@@ -151,82 +143,6 @@ def DoSaveFacebookGroups(MainWindow, strGroupListKey, strConfigGroupListKey):
     arrayFacebookGroups = FacebookGroupListbox.Values
     g_dictConfig["facebook"][strConfigGroupListKey] = DoSaveFacebookGroupList(arrayFacebookGroups)
     DoSaveConfigFile()
-
-
-def DoStartFacebookPosts(strFacebookUsername, strFacebookPassword, strFacebookBusinessName,
-                         nPostDelay, strDelayPostDelayType, nPostRepeat, listboxPosts, strKeyConfigPosts,
-                         strKeyConfigSelectedPosts, strKeyPostBookmark, strKeyGroupBookmark):
-    global g_dictConfig
-
-    if g_dictConfig["facebook"][strKeyGroupBookmark] is None:
-        g_dictConfig["facebook"][strKeyGroupBookmark] = -1
-
-    if g_dictConfig["facebook"][strKeyPostBookmark] is None:
-        g_dictConfig["facebook"][strKeyPostBookmark] = 0
-
-    if "hour" in strDelayPostDelayType:
-        nPostDelay *= 60
-    elif "day" in strDelayPostDelayType:
-        nPostDelay *= 60 * 24
-
-    nLastPost = g_dictConfig["facebook"][strKeyPostBookmark]
-
-    if DoFacebookInit(strFacebookUsername, strFacebookPassword, strFacebookBusinessName):
-        for nI in range(0, nRepeat):
-            for nJ in range(0, len(arrayPosts)):
-                dictPost = arrayPosts[nJ]
-
-                if nJ <= nLastPost:
-                    continue
-                else:
-                    strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
-                    print("Post Contents\n--------------")
-                    strPostContents = strPostContents.replace("\n\n", "\n")
-                    print(strPostContents + "\n\n")
-
-                    if g_dictConfig["facebook"]["last_facebook_group"] == -1:
-                        DoPostFacebook(strPostContents, dictPost["image_filename"], "Find-A-Tradie",
-                                       "https://www.facebook.com/FindATradiePage/", True)
-
-                    arrayDeletedGroups = []
-                    nK = 0
-                    nLastGroup = g_dictConfig["facebook"]["last_facebook_group"]
-                    while nK < len(g_dictConfig["facebook"]["tradie_facebook_groups"]):
-                        if nK <= nLastGroup:
-                            nK += 1
-                        else:
-                            dictGroup = g_dictConfig["facebook"]["tradie_facebook_groups"][nK]
-                            print("Posting to Group " + str(nK + 1) + " of " + str(
-                                len(g_dictConfig["facebook"]["tradie_facebook_groups"])) + ": " + dictGroup[
-                                      "name"] + " (" +
-                                  dictGroup["url"] + ")")
-                            if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
-                                                  dictGroup["url"], False):
-                                strResponse = DoPromptWhat2Do()
-                                if strResponse == "D":
-                                    arrayDeletedGroups.append(nK)
-                                    nK += 1
-                                elif strResponse == "R":
-                                    nK = nK
-                            else:
-                                g_dictConfig["facebook"]["last_facebook_group"] = nK
-                                DoSaveConfigFile()
-                                nK += 1
-
-                    if (len(arrayDeletedGroups) > 0):
-                        for nK in range(0, len(arrayDeletedGroups)):
-                            g_dictConfig["facebook"]["tradie_facebook_groups"].pop(arrayDeletedGroups[nK])
-                        DoSaveConfigFile()
-
-                    g_dictConfig["facebook"]["last_facebook_group"] = -1
-                    g_dictConfig["facebook"]["last_facebook_post"] = nJ
-                    DoSaveConfigFile()
-                    wait(nMillisDelay)
-
-            g_dictConfig["facebook"]["last_facebook_post"] = -1
-            DoSaveConfigFile()
-    else:
-        print("DoFacebookInit() failed!")
 
 
 def DoRun():
@@ -298,7 +214,7 @@ def DoRun():
 
     layoutFacebookColumn2 = [[SG.Text("List of Posts")],
                              [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["facebook_posts"]),
-                                         size=(44, 14), select_mode="extended", key="list_of_facebook_posts",
+                                         size=(44, 14), select_mode="single", key="list_of_facebook_posts",
                                          enable_events=True)],
                              [SG.Button(image_filename="../add.png", key="add_facebook_post", size=(2, 1)),
                               SG.Button(image_filename="../subtract.png", key="delete_facebook_posts", disabled=True,
@@ -385,16 +301,17 @@ def DoRun():
             g_dictConfig["facebook"]["facebook_posts"] = arrayFacebookPosts
             DoSaveConfigFile()
         elif strEvent == "start_facebook_posts":
-            DoStartFacebookPosts(
-                g_dictConfig["facebook"]["facebook_username"],
-                g_dictConfig["facebook"]["facebook_password"],
+            DoStartFacebookPosts(g_dictConfig,
                 "Switch to Greg's Native Landscapes",
+                "https://www.facebook.com/GregsNativeLandscapes",
                 MainWindow["facebook_post_delay"].get(),
                 MainWindow["facebook_post_delay_type"].get(),
                 int(MainWindow["facebook_post_repeat"].get()),
-                MainWindow["list_of_facebook_posts"].get(),
+                MainWindow["list_of_facebook_posts"].get_indexes(),
+                "facebook_groups",
                 "facebook_posts", "selected_facebook_posts",
-                "last_facebook_post","last_facebook_group")
+                "last_facebook_post",
+                "last_facebook_group")
 
         elif strEvent == "help_facebook":
             strText = "YYYY"

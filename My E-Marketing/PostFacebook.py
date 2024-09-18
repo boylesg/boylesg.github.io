@@ -183,7 +183,7 @@ def DoFacebookInit(strFacebookUsername, strFacebookPassword, strProfile):
     return bResult
 
 
-def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFindATradieHomePage):
+def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bHomePage):
     bSuccess = True
 
     if strGroupURL != "":
@@ -194,9 +194,96 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bFi
                 print("URL '" + strGroupURL + " cannot be reached at this time!")
                 bSuccess = False
             else:
-                bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bFindATradieHomePage)
+                bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bHomePage)
         except Exception as Error:
             print("Invalid URL: " + strGroupURL + "!")
             bSuccess = false
 
     return bSuccess
+
+
+def DoGetFileContentsTxt(strFilename):
+    strContents = ""
+    with open(strFilename, "r") as file:
+        arrayLines = file.readlines()
+    strContents = format("\n".join(arrayLines[0:]))
+    return strContents
+
+def DoStartFacebookPosts(dictConfig, strFacebookBusinessName, strFacebookBusinessURL,
+                         nPostDelay, strDelayPostDelayType, nPostRepeat, arraySelectedPosts, strKeyConfigGroups,
+                         strKeyConfigPosts, strKeyConfigSelectedPosts, strKeyLastPost, strKeyLastGroup):
+    nLastGroup = 0
+    nLastPost = -1
+
+    if dictConfig["facebook"][strKeyLastGroup] is None:
+        dictConfig["facebook"][strKeyLastGroup] = -1
+
+    if dictConfig["facebook"][strKeyLastPost] is None:
+        dictConfig["facebook"][strKeyLastPost] = 0
+
+    if "hour" in strDelayPostDelayType:
+        nPostDelay *= 60
+    elif "day" in strDelayPostDelayType:
+        nPostDelay *= 60 * 24
+
+    if len(arraySelectedPosts) > 0:
+        nLastPost = arraySelectedPosts[0]
+    else:
+        nLastPost = dictConfig["facebook"][strKeyLastPost]
+
+    if DoFacebookInit(dictConfig["facebook"]["facebook_username"], dictConfig["facebook"]["facebook_password"], strFacebookBusinessName):
+        for nI in range(0, nPostRepeat):
+            for nJ in range(0, len(dictConfig["facebook"][strKeyConfigPosts])):
+                dictPost = dictConfig["facebook"][strKeyConfigPosts][nJ]
+
+                if nJ <= nLastPost:
+                    continue
+                else:
+                    strPostContents = DoGetFileContentsTxt(dictPost["post_filename"])
+                    print("Post Contents\n--------------")
+                    strPostContents = strPostContents.replace("\n\n", "\n")
+                    print(strPostContents + "\n\n")
+
+                    if dictConfig["facebook"][strKeyLastGroup] == -1:
+                        DoPostFacebook(strPostContents, dictPost["image_filename"], strFacebookBusinessName,
+                                       strFacebookBusinessURL, True)
+
+                    arrayDeletedGroups = []
+                    nK = 0
+                    nLastGroup = dictConfig["facebook"][strKeyLastGroup]
+                    while nK < len(dictConfig["facebook"][strKeyLastGroup]):
+                        if nK <= nLastGroup:
+                            nK += 1
+                        else:
+                            dictGroup = dictConfig["facebook"][strKeyConfigPosts][nK]
+                            print("Posting to Group " + str(nK + 1) + " of " + str(
+                                len(dictConfig["facebook"][strKeyConfigPosts])) + ": " + dictGroup[
+                                      "name"] + " (" +
+                                  dictGroup["url"] + ")")
+                            if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
+                                                  dictGroup["url"], False):
+                                strResponse = DoPromptWhat2Do()
+                                if strResponse == "D":
+                                    arrayDeletedGroups.append(nK)
+                                    nK += 1
+                                elif strResponse == "R":
+                                    nK = nK
+                            else:
+                                dictConfig["facebook"][strKeyLastGroup] = nK
+                                DoSaveConfigFile()
+                                nK += 1
+
+                    if (len(arrayDeletedGroups) > 0):
+                        for nK in range(0, len(arrayDeletedGroups)):
+                            dictConfig["facebook"][strKeyConfigGroups].pop(arrayDeletedGroups[nK])
+                        DoSaveConfigFile()
+
+                    dictConfig["facebook"][strKeyLastGroup] = -1
+                    dictConfig["facebook"][strKeyLastPost] = nJ
+                    DoSaveConfigFile()
+                    wait(nMillisDelay)
+
+            dictConfig["facebook"][strKeyLastPost] = -1
+            DoSaveConfigFile()
+    else:
+        print("DoFacebookInit() failed!")

@@ -310,7 +310,7 @@ def DoRun():
 
     layoutFacebookTradieColumn2 = [[SG.Text("List of Posts")],
                                    [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["tradie_facebook_posts"]),
-                                               size=(44, 14), select_mode="extended", key="list_of_tradie_facebook_posts",
+                                               size=(44, 14), select_mode="single", key="list_of_tradie_facebook_posts",
                                                enable_events=True)],
                                    [SG.Button(image_filename="../add.png", key="add_tradie_facebook_post", size=(2, 1)),
                                     SG.Button(image_filename="../subtract.png", key="delete_tradie_facebook_posts", disabled=True,
@@ -345,7 +345,7 @@ def DoRun():
 
     layoutFacebookCustomerColumn2 = [[SG.Text("List of Posts")],
                                    [SG.Listbox(DoGetFacebookPostList(g_dictConfig["facebook"]["customer_facebook_posts"]),
-                                               size=(44, 14), select_mode="extended", key="list_of_customer_facebook_posts",
+                                               size=(44, 14), select_mode="single", key="list_of_customer_facebook_posts",
                                                enable_events=True)],
                                    [SG.Button(image_filename="../add.png", key="add_customer_facebook_post", size=(2, 1)),
                                     SG.Button(image_filename="../subtract.png", key="delete_customer_facebook_posts", disabled=True,
