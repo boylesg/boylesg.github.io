@@ -95,7 +95,7 @@ def DoFindElement(browserChrome, Selector, arraySelectorStrings):
 
 def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
     bSuccess = False
-    arrayPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
+    arrayStartPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
                              "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
                              "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
                              "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
@@ -113,7 +113,7 @@ def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChro
                             "",
                             "",
                             ""]
-    arrayPostButtonXPATH = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div",
+    arrayPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div",
                             "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div",
                             "",
                             "",
@@ -121,7 +121,7 @@ def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChro
                             ""]
 
     try:
-        StartPostButton = DoFindElement(browserChrome, By.XPATH, arrayPostButtonXPaths)
+        StartPostButton = DoFindElement(browserChrome, By.XPATH, arrayStartPostButtonXPaths)
 
         if StartPostButton:
             TextField = None
@@ -209,7 +209,14 @@ def DoGetFileContentsTxt(strFilename):
     strContents = format("\n".join(arrayLines[0:]))
     return strContents
 
-def DoStartFacebookPosts(dictConfig, strFacebookBusinessName, strFacebookBusinessURL,
+
+def DoSaveConfigFile(dictConfig, strConfigFilename):
+
+    with open(strConfigFilename, "w+") as fileConfig:
+        json.dump(dictConfig, fileConfig)
+        fileConfig.close()
+
+def DoStartFacebookPosts(strConfigFilename, dictConfig, strFacebookBusinessName, strFacebookBusinessURL,
                          nPostDelay, strDelayPostDelayType, nPostRepeat, arraySelectedPosts, strKeyConfigGroups,
                          strKeyConfigPosts, strKeyConfigSelectedPosts, strKeyLastPost, strKeyLastGroup):
     nLastGroup = 0
@@ -251,13 +258,13 @@ def DoStartFacebookPosts(dictConfig, strFacebookBusinessName, strFacebookBusines
                     arrayDeletedGroups = []
                     nK = 0
                     nLastGroup = dictConfig["facebook"][strKeyLastGroup]
-                    while nK < len(dictConfig["facebook"][strKeyLastGroup]):
+                    while nK < len(dictConfig["facebook"][strKeyConfigGroups]):
                         if nK <= nLastGroup:
                             nK += 1
                         else:
-                            dictGroup = dictConfig["facebook"][strKeyConfigPosts][nK]
+                            dictGroup = dictConfig["facebook"][strKeyConfigGroups][nK]
                             print("Posting to Group " + str(nK + 1) + " of " + str(
-                                len(dictConfig["facebook"][strKeyConfigPosts])) + ": " + dictGroup[
+                                len(dictConfig["facebook"][strKeyConfigGroups])) + ": " + dictGroup[
                                       "name"] + " (" +
                                   dictGroup["url"] + ")")
                             if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
@@ -270,20 +277,20 @@ def DoStartFacebookPosts(dictConfig, strFacebookBusinessName, strFacebookBusines
                                     nK = nK
                             else:
                                 dictConfig["facebook"][strKeyLastGroup] = nK
-                                DoSaveConfigFile()
+                                DoSaveConfigFile(dictConfig, strConfigFilename)
                                 nK += 1
 
                     if (len(arrayDeletedGroups) > 0):
                         for nK in range(0, len(arrayDeletedGroups)):
                             dictConfig["facebook"][strKeyConfigGroups].pop(arrayDeletedGroups[nK])
-                        DoSaveConfigFile()
+                        DoSaveConfigFile(dictConfig, strConfigFilename)
 
                     dictConfig["facebook"][strKeyLastGroup] = -1
                     dictConfig["facebook"][strKeyLastPost] = nJ
-                    DoSaveConfigFile()
+                    DoSaveConfigFile(dictConfig, strConfigFilename)
                     wait(nMillisDelay)
 
             dictConfig["facebook"][strKeyLastPost] = -1
-            DoSaveConfigFile()
+            DoSaveConfigFile(dictConfig, strConfigFilename)
     else:
         print("DoFacebookInit() failed!")
