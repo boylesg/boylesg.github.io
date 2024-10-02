@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../GregsNativeLandscapes/_vti_cnf/BingSiteAuth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GregsNativeLandscapes/_vti_cnf/BingSiteAuth.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../My E-Marketing/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/common.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -217,8 +217,8 @@ def DoPingEmailAddress(strEmailAddress):
 
 def DoPromptWhat2Do():
     strResponse = ""
-    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r"):
-        strResponse = input("Re-try, ignore or delete group (R/r/I/i/D/D)?: ")
+    while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
+        strResponse = input("Retry, ignore or delete group (R/r/I/i/D/D)?: ")
         if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
             print("Invalid response...")
 
