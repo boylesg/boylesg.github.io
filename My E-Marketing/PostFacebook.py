@@ -81,80 +81,115 @@ def DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage):
             ImageDragDropButton.send_keys(strImageFilename)
 
 
-def DoFindElement(browserChrome, Selector, arraySelectorStrings):
-    Element = None
-    nI = 0
+def DoGetStartPostButton(browserChrome):
+    StartPostButton = None
+    nWaitSeconds = 5
+    arrayNames = ["What's on your mind?", "Write something..."]
 
-    while (nI < len(arraySelectorStrings)):
-        Element = DoGetElement(browserChrome, Selector, arraySelectorStrings[nI])
-        if Element is not None:
+    Wait = WebDriverWait(browserChrome, nWaitSeconds)
+    strSelectorString = ("[role=\"button\"")
+    arrayElements = browserChrome.find_elements(By.CSS_SELECTOR, strSelectorString)
+
+    for Element in arrayElements:
+        bBreak = False
+        for nI in range(0, len(arrayNames)):
+            if (Element.accessible_name == arrayNames[nI]) and (Element.aria_role == "button"):
+                StartPostButton = Element
+                bBreak = True
+                break
+        if bBreak:
             break
-        nI += 1
 
-    return Element
+    return StartPostButton
 
-def DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome, bFindATradieHomePage):
-    bSuccess = False
-    arrayStartPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div[1]/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
-                             "/html/body/div[1]/div/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[4]/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div[1]/div",
-                             "",
-                             "",
-                             "",
-                             "",
-                             ""]
-    arrayTextFieldXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div[1]",
-                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div",
-                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div/div",
-                            "//html/body/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[2]/div[1]/div[1]/div[1]/div[1]/div/div/div/div/div/div",
-                            "",
-                            "",
-                            ""]
-    arrayPostButtonXPaths = ["/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/form/div/div[1]/div/div/div/div[3]/div[4]/div/div",
-                            "/html/body/div[1]/div/div/div[1]/div/div[4]/div/div/div[1]/div/div[2]/div/div/div/div/div[1]/form/div/div[1]/div/div/div[1]/div/div[3]/div[3]/div/div",
-                            "",
-                            "",
-                            "",
-                            ""]
+def DoGetPostButton(browserChrome):
+    PostButton = None
+    nWaitSeconds = 5
+    Wait = WebDriverWait(browserChrome, nWaitSeconds)
+    strSelectorString = "[aria-label=\"Post\"]"
+    PostButton = Wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, strSelectorString)))
+    Wait = WebDriverWait(browserChrome, nWaitSeconds)
+    PostButton = Wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, strSelectorString)))
 
-    try:
-        StartPostButton = DoFindElement(browserChrome, By.XPATH, arrayStartPostButtonXPaths)
+    return PostButton
 
-        if StartPostButton:
-            TextField = None
-            PostButton = None
-            while TextField is None:
-                browserChrome.execute_script("arguments[0].click();", StartPostButton)
-                #StartPostButton.click()
-                TextField = DoFindElement(browserChrome, By.XPATH, arrayTextFieldXPaths)
-                PostButton = DoFindElement(browserChrome, By.XPATH, arrayPostButtonXPaths)
 
-            if (TextField is not None):
-                TextField.clear()
-                TextField.send_keys(strPostText)
-                #DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage)
-                if PostButton is not None:
-                    browserChrome.execute_script("arguments[0].scrollIntoView();", PostButton)
-                    browserChrome.execute_script("arguments[0].click();", PostButton)
-                    #PostButton.click()
-                    bSuccess = True
+def DoGetTextField(browserChrome):
+    TextField = None
+    arrayAriaLabels = ["What's on your mind?", "Write something..."]
+    nWaitSeconds = 5
+
+    for nI in range(0, len(arrayAriaLabels)):
+        try:
+            Wait = WebDriverWait(browserChrome, nWaitSeconds)
+            strSelectorString = "[aria-label=\"" + arrayAriaLabels[nI] + "\"]"
+            TextField = Wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, strSelectorString)))
+            Wait = WebDriverWait(browserChrome, nWaitSeconds)
+            TextField = Wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, strSelectorString)))
+            if TextField is not None:
+                break
+        except Exception as Error:
+            continue
+
+    return TextField
+
+def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome):
+    nReturnCode = False
+    if strGroupURL != "":
+        g_browserChrome.get(strGroupURL)
+        WebDriverWait(g_browserChrome, 30).until(EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
+
+        while True:
+            try:
+                StartPostButton = None
+                TextField = None
+                PostButton = None
+
+                StartPostButton = DoGetStartPostButton(browserChrome)
+                if StartPostButton is not None:
+                    browserChrome.execute_script("arguments[0].click();", StartPostButton)
+                    TextField = DoGetTextField(browserChrome)
+                    if TextField is not None:
+                        ActionChains(browserChrome).move_to_element(TextField).perform()
+                        browserChrome.execute_script("arguments[0].click();", TextField)
+                        TextField.clear()
+                        TextField.send_keys(strPostText)
+                        #DoUploadImage(strImageFilename, browserChrome)
+                        PostButton = DoGetPostButton(browserChrome)
+                        if PostButton is not None:
+                            browserChrome.execute_script("arguments[0].scrollIntoView();", PostButton)
+                            browserChrome.execute_script("arguments[0].click();", PostButton)
+                            #PostButton.click()
+                            nReturnCode = True
+                            print("Post succeeded!")
+                            break
+                    else:
+                        print("Post failed!")
                 else:
-                    print("Post button not found...")
+                    print("Post failed!")
 
-                print("Post succeeded!")
+            except Exception as Error:
+                print("Post failed!")
+                print(Error)
+                browserChrome.get(strGroupURL)
+                WebDriverWait(browserChrome, 30).until(
+                                EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
+                continue
+
+            if not nReturnCode:
+                nReturnCode = DoPromptWhat2Do()
+                if nReturnCode == "R":
+                    browserChrome.get(strGroupURL)
+                    WebDriverWait(browserChrome, 30).until(
+                        EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
+                else:
+                    break
             else:
-                print("Text field not found...")
-        else:
-            print("Can't post to this group...")
-    except Exception as Error:
-        print("Post failed!")
-        print(Error)
-        pass
-    print("==================================================")
-    return bSuccess
+                break
+
+        print("==================================================")
+
+    return nReturnCode
 
 def DoGetBrowser():
     global g_browserChrome
@@ -163,12 +198,14 @@ def DoGetBrowser():
         options = webdriver.ChromeOptions()
         options.add_argument('--disable-notifications')
         g_browserChrome = webdriver.Chrome(options=options)
+        g_browserChrome.maximize_window()
     return g_browserChrome
 
 
 def DoFacebookInit(strFacebookUsername, strFacebookPassword, strProfile):
     bResult = False
     browserChrome = DoGetBrowser()
+
     browserChrome.get("https://www.facebook.com/login")
     if DoLogin(strFacebookUsername, strFacebookPassword, browserChrome):
         if DoChangeProfile(browserChrome, strProfile):
@@ -181,26 +218,6 @@ def DoFacebookInit(strFacebookUsername, strFacebookPassword, strProfile):
         browserChrome.close()
 
     return bResult
-
-
-def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bHomePage):
-    bSuccess = True
-
-    if strGroupURL != "":
-        try:
-            #g_browserChrome.get(strGroupURL)
-            WebDriverWait(g_browserChrome, 30).until(EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
-            if (g_browserChrome.page_source.find("<title>Facebook</title>") > -1):
-                print("URL '" + strGroupURL + " cannot be reached at this time!")
-                bSuccess = False
-            else:
-                bSuccess = DoPost(strPostText, strImageFilename, strGroupName, strGroupURL, g_browserChrome, bHomePage)
-        except Exception as Error:
-            print("Invalid URL: " + strGroupURL + "!")
-            bSuccess = false
-
-    return bSuccess
-
 
 def DoGetFileContentsTxt(strFilename):
     strContents = ""
@@ -252,8 +269,9 @@ def DoStartFacebookPosts(strConfigFilename, dictConfig, strFacebookBusinessName,
                     print(strPostContents + "\n\n")
 
                     if dictConfig["facebook"][strKeyLastGroup] == -1:
-                        DoPostFacebook(strPostContents, dictPost["image_filename"], strFacebookBusinessName,
-                                       strFacebookBusinessURL, True)
+                        bSuccess = False
+                        print("Posting to " + strFacebookBusinessName.replace("Switch to", "") + " (" + strFacebookBusinessURL + ")")
+                        nReturnCode = DoPostFacebook(strPostContents, dictPost["image_filename"], strFacebookBusinessName, strFacebookBusinessURL, g_browserChrome)
 
                     arrayDeletedGroups = []
                     nK = 0
@@ -267,15 +285,15 @@ def DoStartFacebookPosts(strConfigFilename, dictConfig, strFacebookBusinessName,
                                 len(dictConfig["facebook"][strKeyConfigGroups])) + ": " + dictGroup[
                                       "name"] + " (" +
                                   dictGroup["url"] + ")")
-                            if not DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
-                                                  dictGroup["url"], False):
-                                strResponse = DoPromptWhat2Do()
-                                if strResponse == "D":
-                                    arrayDeletedGroups.append(nK)
-                                    nK += 1
-                                elif strResponse == "R":
-                                    nK = nK
-                            else:
+                            nReturnCode = DoPostFacebook(strPostContents, dictPost["image_filename"], dictGroup["name"],
+                                                            dictGroup["url"], g_browserChrome)
+
+                            if nReturnCode == "D":
+                                arrayDeletedGroups.append(nK)
+                                nK += 1
+                            elif nReturnCode == "R":
+                                nK = nK
+                            elif (nReturnCode == "I") or nReturnCode:
                                 dictConfig["facebook"][strKeyLastGroup] = nK
                                 DoSaveConfigFile(dictConfig, strConfigFilename)
                                 nK += 1
@@ -288,7 +306,7 @@ def DoStartFacebookPosts(strConfigFilename, dictConfig, strFacebookBusinessName,
                     dictConfig["facebook"][strKeyLastGroup] = -1
                     dictConfig["facebook"][strKeyLastPost] = nJ
                     DoSaveConfigFile(dictConfig, strConfigFilename)
-                    wait(nMillisDelay)
+                    wait(nPostDelay)
 
             dictConfig["facebook"][strKeyLastPost] = -1
             DoSaveConfigFile(dictConfig, strConfigFilename)

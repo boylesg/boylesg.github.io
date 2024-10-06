@@ -20,11 +20,15 @@ g_browserChrome = None
 
 def DoGetElement(browserChrome, Selector, strSelectorString, nTimeoutSeconds=5):
     Element = None
+    nWaitSeconds = 10
     try:
-        Element = WebDriverWait(browserChrome, nTimeoutSeconds).until(EC.presence_of_element_located((Selector, strSelectorString)))
+        Wait = WebDriverWait(browserChrome, nWaitSeconds)
+        Element = Wait.until(EC.presence_of_element_located((Selector, strSelectorString)))
+        Wait = WebDriverWait(browserChrome, nWaitSeconds)
+        Element = Wait.until(EC.element_to_be_clickable((Selector, strSelectorString)))
         #Element. browserChrome.find_element(Selector, strSelectorString)
     except Exception as Error:
-        print(Error)
+        #print(Error)
         pass
     return Element
 
@@ -38,7 +42,17 @@ def get_file_size(file):
 
 def wait(nSeconds):
     nSecondsSoFar = 0
-    nSecondsSleep = 1
+
+    if nSeconds < 0.001:
+        nSecondsSleep = 0.0001
+    elif nSeconds < 0.01:
+        nSecondsSleep = 0.001
+    elif nSeconds < 0.1:
+        nSecondsSleep = 0.01
+    elif nSeconds < 1:
+        nSecondsSleep = 0.1
+    else:
+        nSecondsSleep = 1
     strMsg = "Sleeping for " + str(nSeconds) + " "
     if (nSecondsSleep > 1):
         strMsg += "seconds..."
@@ -69,6 +83,7 @@ def DoCheckValidEmailAddressAlt(strEmailAddress):
 
     if g_browserChrome == None:
         g_browserChrome = webdriver.Chrome()
+        g_browserChrome.maximize_window()
 
     while True:
         try:
@@ -109,6 +124,7 @@ def DoCheckValidEmailAddress(strEmailAddress):
 
     if (not g_browserChrome):
         g_browserChrome = webdriver.Chrome()
+        g_browserChrome.maximize_window()
 
     if (g_browserChrome.current_url != strURL):
         g_browserChrome.get(strURL)
@@ -164,6 +180,7 @@ def DoCheckValidEmailAddresses(dictEmailAddress):
 
     if (not g_browserChrome):
         g_browserChrome = webdriver.Chrome()
+        g_browserChrome.maximize_window()
 
     g_browserChrome.get("https://email-checker.net/check")
     nI = 0
@@ -218,7 +235,7 @@ def DoPingEmailAddress(strEmailAddress):
 def DoPromptWhat2Do():
     strResponse = ""
     while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
-        strResponse = input("Retry, ignore or delete group (R/r/I/i/D/D)?: ")
+        strResponse = input("Retry, ignore or delete group (R/r/I/i/D/d)?: ")
         if (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
             print("Invalid response...")
 

@@ -301,10 +301,10 @@ def DoRun():
             g_dictConfig["facebook"]["facebook_posts"] = arrayFacebookPosts
             DoSaveConfigFile()
         elif strEvent == "start_facebook_posts":
-            DoStartFacebookPosts(g_dictConfig,
+            DoStartFacebookPosts(g_dictFilenames["config_filename"], g_dictConfig,
                 "Switch to Greg's Native Landscapes",
                 "https://www.facebook.com/GregsNativeLandscapes",
-                MainWindow["facebook_post_delay"].get(),
+                int(MainWindow["facebook_post_delay"].get()),
                 MainWindow["facebook_post_delay_type"].get(),
                 int(MainWindow["facebook_post_repeat"].get()),
                 MainWindow["list_of_facebook_posts"].get_indexes(),
