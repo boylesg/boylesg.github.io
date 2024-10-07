@@ -84,7 +84,7 @@ def DoUploadImage(strImageFilename, browserChrome, bFindATradieHomePage):
 def DoGetStartPostButton(browserChrome):
     StartPostButton = None
     nWaitSeconds = 5
-    arrayNames = ["What's on your mind?", "Write something..."]
+    arrayNames = ["What's on your mind?", "Write something...", "Escriu alguna cosa..."]
 
     Wait = WebDriverWait(browserChrome, nWaitSeconds)
     strSelectorString = ("[role=\"button\"")
@@ -105,18 +105,26 @@ def DoGetStartPostButton(browserChrome):
 def DoGetPostButton(browserChrome):
     PostButton = None
     nWaitSeconds = 5
-    Wait = WebDriverWait(browserChrome, nWaitSeconds)
-    strSelectorString = "[aria-label=\"Post\"]"
-    PostButton = Wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, strSelectorString)))
-    Wait = WebDriverWait(browserChrome, nWaitSeconds)
-    PostButton = Wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, strSelectorString)))
+    arrayNames = ["Post", "Publica"]
+
+    for nI in range(0, len(arrayNames)):
+        try:
+            Wait = WebDriverWait(browserChrome, nWaitSeconds)
+            strSelectorString = "[aria-label=\"" + arrayNames[nI] + "\"]"
+            PostButton = Wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, strSelectorString)))
+            Wait = WebDriverWait(browserChrome, nWaitSeconds)
+            PostButton = Wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, strSelectorString)))
+            if PostButton is not None:
+                break
+        except Exception as Error:
+            continue
 
     return PostButton
 
 
 def DoGetTextField(browserChrome):
     TextField = None
-    arrayAriaLabels = ["What's on your mind?", "Write something..."]
+    arrayAriaLabels = ["What's on your mind?", "Write something...", "Create a public post…", "Escriu alguna cosa..."]
     nWaitSeconds = 5
 
     for nI in range(0, len(arrayAriaLabels)):
@@ -165,8 +173,10 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                             break
                     else:
                         print("Post failed!")
+                        nReturnCode = False
                 else:
                     print("Post failed!")
+                    nReturnCode = False
 
             except Exception as Error:
                 print("Post failed!")
@@ -174,7 +184,6 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                 browserChrome.get(strGroupURL)
                 WebDriverWait(browserChrome, 30).until(
                                 EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
-                continue
 
             if not nReturnCode:
                 nReturnCode = DoPromptWhat2Do()
@@ -182,10 +191,9 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                     browserChrome.get(strGroupURL)
                     WebDriverWait(browserChrome, 30).until(
                         EC.presence_of_element_located((By.ID, "has-finished-comet-page")))
-                else:
+                elif nReturnCode == "I":
+                    nReturnCode = True
                     break
-            else:
-                break
 
         print("==================================================")
 

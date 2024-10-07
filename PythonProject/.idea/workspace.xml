@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening1.facebook" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/gardening1.facebook" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,34 +130,14 @@
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>171</line>
-          <option name="timeStamp" value="314" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>275</line>
-          <option name="timeStamp" value="352" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../My E-Marketing/common.py</url>
           <line>84</line>
           <option name="timeStamp" value="364" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>164</line>
-          <option name="timeStamp" value="375" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>296</line>
-          <option name="timeStamp" value="377" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>290</line>
-          <option name="timeStamp" value="378" />
+          <line>298</line>
+          <option name="timeStamp" value="389" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -177,6 +153,7 @@
         <watch expression="dictConfig" language="Python" />
         <watch expression="dictConfig[&quot;facebook&quot;][strKeyLastGroup]" language="Python" />
         <watch expression="nK" language="Python" />
+        <watch expression="Error" language="Python" />
       </configuration>
     </watches-manager>
   </component>
