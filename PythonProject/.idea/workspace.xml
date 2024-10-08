@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad7ebae9-8d9e-4d3a-845f-fa3c1c241dae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing Gardening/E-Marketing Gardening.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/E-Marketing find-a-tradie/E-Marketing find-a-tradie.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/PostFacebook.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../My E-Marketing/MonitorWAN.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/MonitorWAN.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../My E-Marketing/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../My E-Marketing/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -66,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/My E-Marketing/PostFacebook.py",
+    "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/My E-Marketing/SendEmails.py",
     "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
@@ -132,11 +129,6 @@
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
           <line>440</line>
           <option name="timeStamp" value="251" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/common.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="364" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>

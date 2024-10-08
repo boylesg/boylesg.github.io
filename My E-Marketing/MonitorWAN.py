@@ -152,17 +152,20 @@ def DoUpdateWebCentral(browserChrome, strNewIPAddress):
 
 
 DoLoadConfigFile()
-g_browserChrome = DoGetBrowser()
 while True:
     strNewWANIPAddress = DoGetWANIPAddress()
     if strNewWANIPAddress != g_dictConfig["wan_ip_address"]:
-        print("New WAN IP address detected...")
-        print("New IP Address: " + strNewWANIPAddress)
-        print("OLD IP Address: " + g_dictConfig["wan_ip_address"])
-        print("Updating IP address at Web Central domains...")
+        strSubject = "New WAN IP address detected..."
+        print(strSubject)
+        strContent = "New IP Address: " + strNewWANIPAddress + "\nOLD IP Address: " + g_dictConfig["wan_ip_address"] + "\nUpdating IP address at Web Central domains..."
+        print(strContent)
         g_dictConfig["wan_ip_address"] = strNewWANIPAddress
         DoSaveConfigFile()
+        g_browserChrome = DoGetBrowser()
         DoUpdateWebCentral(g_browserChrome, strNewWANIPAddress)
+        SMTPObject = DoConnectEmailServer(strEmailServerURL, strEmailServerPort, strUsername, strPassword)
+        if SMTPObject is not None:
+            DoSendAnEmail("gregplants@bigpond.com", "gregplants@bigpond.com", SMTPObject, strSubject, strContent, strContent)
     else:
         print("No change to WAN IP Address detected...")
 

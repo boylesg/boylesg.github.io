@@ -241,6 +241,85 @@ def DoPingEmailAddress(strEmailAddress):
     return bValid
 
 
+def DoSendAnEmail(strToEmail, strFromEmail, SMTPObject, strSubject, strTextContent, strHTMLContent, arrayEmbeddedImages=[]):
+    bResult = False
+
+    while True:
+        try:
+            # Create the base text message.
+            msg = EmailMessage()
+            msg["Subject"] = "NEW SERVICE for tradies: find-a-tradie.com.au"
+            msg["From"] = MakeAddress("Find a Tradie", strFromEmail)
+            msg["Reply-To"] = MakeAddress("Find a Tradie", "find-a-tradie@outlook.com")
+
+            msg["To"] = MakeAddress("Fellow Tradie", strToEmail)
+            msg.set_content(strTextContent)
+
+            # Add the html version.  This converts the message into a multipart/alternative
+            # container, with the original text message as the first part and the new html
+            # message as the second part.
+            # strCIDHomePage = make_msgid("home", "page")
+            # strCIDFeedback = make_msgid("feedback", "trust")
+            # strCIDCustomerFeedback = make_msgid("customer", "feedback")
+            # strCIDTradieFeedback = make_msgid("tradie", "feedback")
+
+            if (len(arrayEmbeddedImages) > 0):
+                for nI in range(0, len(arrayEmbeddedImages)):
+                    strCIDImage = "image@" + str(arrayEmbeddedImages[nI])
+                    '''<img src="cid:home@page" alt="HOME PAGE" width="800"/>'''
+                    strHTMLContent = strHTMLContent.format(strCIDImage=strCIDHomePage[1:-1], subtype='html')
+
+                    # NOTE: we needed to peel the <> off the msgid for use in the html.
+                    # Now add the related image to the html part.
+                    with open(arrayEmbeddedImages[nI], "rb") as img:
+                        msg.get_payload()[1].add_related(img.read(), "image", "jpeg",
+                                                 cid=strCIDImage)
+                msg.add_alternative(strHTMLContent)
+
+            SMTPObject.send_message(msg)
+            bResult = True
+            break
+
+        except Exception as error:
+            if isinstance(error.args[0], int):
+                strErrorMsg = error.args[1].decode("utf-8")
+            else:
+                strErrorMsg = error.args[0][strToEmail][1].decode("utf-8")
+
+            if "Server not connected" in strErrorMsg:
+                print("\nEMAIL SERVER ERROR: server disconnected unexpectedly...\n", error)
+            elif "Connection timed out" in strErrorMsg:
+                print("\nEMAIL SERVER ERROR: time out...", error)
+            elif "Connection expired" in strErrorMsg:
+                print("\nEMAIL SERVER ERROR: connection expired...", error)
+            elif "OutboundSpamException" in strErrorMsg:
+                print("\nEMAIL SERVER ERROR: outbound spam email blocked...\n", error)
+            elif "Daily user sending limit exceeded":
+                print("\nEMAIL SERVER ERROR: sending limit reached...\n", error)
+                wait(60 * 60 * 24)
+
+    return bResult
+
+
+def DoConnectEmailServer(strEmailServerURL, strEmailServerPort, strUsername, strPassword):
+    SMTPObject = None
+
+    try:
+        # Send the email via our own SMTP server.
+        print("\n\nConnecting to email server '" + strEmailServerURL + "' on port " + str(
+            strEmailServerPort) + "...")
+        SMTPObject = smtplib.SMTP(strEmailServerURL, strEmailServerPort)
+        SMTPObject.connect(strEmailServerURL, strEmailServerPort)
+        SMTPObject.ehlo()
+        SMTPObject.starttls()
+        print("Logging in with username '" + strUsername + "' and password '" + strPassword + "'...\n")
+        SMTPObject.login(strUsername, strPassword)
+    except Exception as Error:
+        print("EMAIL SERVER ERROR: ", Error)
+
+    return SMTPObject
+
+
 def DoPromptWhat2Do():
     strResponse = ""
     while (strResponse != "D") and (strResponse != "d") and (strResponse != "R") and (strResponse != "r") and (strResponse != "I") and (strResponse != "i"):
