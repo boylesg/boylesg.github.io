@@ -175,7 +175,7 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                         print("Post failed!")
                         nReturnCode = False
                 else:
-                    print("Post failed!")
+                    print("Group cannot be posted to!")
                     nReturnCode = False
 
             except Exception as Error:
@@ -194,21 +194,12 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                 elif nReturnCode == "I":
                     nReturnCode = True
                     break
+                elif nReturnCode == "D":
+                    break
 
         print("==================================================")
 
     return nReturnCode
-
-def DoGetBrowser():
-    global g_browserChrome
-
-    if g_browserChrome == None:
-        options = webdriver.ChromeOptions()
-        options.add_argument('--disable-notifications')
-        g_browserChrome = webdriver.Chrome(options=options)
-        g_browserChrome.maximize_window()
-    return g_browserChrome
-
 
 def DoFacebookInit(strFacebookUsername, strFacebookPassword, strProfile):
     bResult = False

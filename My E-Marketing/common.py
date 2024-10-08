@@ -18,19 +18,28 @@ g_strPath = "C:/Users/" + g_strWindowsUserFolder + "/Documents/GitHub/boylesg.gi
 g_browserChrome = None
 
 
-def DoGetElement(browserChrome, Selector, strSelectorString, nTimeoutSeconds=5):
+def DoGetElement(ParentElement, Selector, strSelectorString, nTimeoutSeconds=5):
     Element = None
     nWaitSeconds = 10
     try:
-        Wait = WebDriverWait(browserChrome, nWaitSeconds)
+        Wait = WebDriverWait(ParentElement, nWaitSeconds)
         Element = Wait.until(EC.presence_of_element_located((Selector, strSelectorString)))
-        Wait = WebDriverWait(browserChrome, nWaitSeconds)
         Element = Wait.until(EC.element_to_be_clickable((Selector, strSelectorString)))
         #Element. browserChrome.find_element(Selector, strSelectorString)
     except Exception as Error:
         #print(Error)
         pass
     return Element
+
+
+def DoGetChildElements(ParentElement, Selector, strSelectorString, nTimeoutSeconds=5):
+    arrayElements = []
+    try:
+        arrayElements = ParentElement.find_elements(Selector, strSelectorString)
+    except Exception as Error:
+        #print(Error)
+        pass
+    return arrayElements
 
 
 def get_file_size(file):
@@ -278,3 +287,16 @@ def Popup2xText(SG, strTitle, strLabel1, strValue1, bFileBrowseButton1, tuppleFi
 
     popup.close()
     return {"OK": strEvent == "OK", "Text1": popup["text_1"].get(), "Text2": popup["text_2"].get()}
+
+
+def DoGetBrowser():
+    global g_browserChrome
+
+    if g_browserChrome == None:
+        options = webdriver.ChromeOptions()
+        options.add_argument('--disable-notifications')
+        g_browserChrome = webdriver.Chrome(options=options)
+        g_browserChrome.maximize_window()
+    return g_browserChrome
+
+

@@ -41,11 +41,12 @@ def DoLoadConfigFile():
         with open(g_dictFilenames["config_filename"], "w+") as fileConfig:
             json.dump(g_dictConfig, fileConfig)
             fileConfig.close()
-    with open(g_dictFilenames["config_filename"], "r") as fileConfig:
-        g_dictConfig = json.load(fileConfig)
-        fileConfig.close()
-        pprint.pprint(g_dictConfig)
-        print("\n\n")
+    else:
+        with open(g_dictFilenames["config_filename"], "r") as fileConfig:
+            g_dictConfig = json.load(fileConfig)
+            fileConfig.close()
+            pprint.pprint(g_dictConfig)
+            print("\n\n")
 
 
 def DoSaveConfigFile():
