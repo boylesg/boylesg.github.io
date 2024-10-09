@@ -172,3 +172,5 @@ while True:
     print("Going to sleep for 4 hours...")
     print("-------------------------------\n")
     time.sleep(60 * 60 * 4)
+if g_browserChrome is not None:
+    g_browserChrome.quite()

@@ -416,6 +416,8 @@ def DoRun():
             bShowFacebookPassword = dictValues["facebook_show_password"]
 
     MainWindow.close()
+    if g_browserChrome is not None:
+        g_browserChrome.quite()
 
 
 DoRun()
