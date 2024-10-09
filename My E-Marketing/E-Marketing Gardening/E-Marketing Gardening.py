@@ -356,7 +356,7 @@ def DoRun():
 
     MainWindow.close()
     if g_browserChrome is not None:
-        g_browserChrome.quite()
+        g_browserChrome.quit()
 
 
 DoRun()

@@ -38,31 +38,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Doctests in smtplib.executor": "Debug",
-    "Python.AustraliaPost.executor": "Debug",
-    "Python.E-Marketing Gardening.executor": "Debug",
-    "Python.E-Marketing find-a-tradie.executor": "Debug",
-    "Python.MonitorWAN.executor": "Debug",
-    "Python.MyEMarketing.executor": "Debug",
-    "Python.PostFacebook.executor": "Debug",
-    "Python.RemoveDuplicateBusinesses.executor": "Debug",
-    "Python.RemoveDuplicateEmails.executor": "Debug",
-    "Python.ScrapeYellowPages.executor": "Debug",
-    "Python.SendEmails.executor": "Debug",
-    "Python.ValidateEmails.executor": "Debug",
-    "Python.common.executor": "Debug",
-    "Python.errorhandler.executor": "Debug",
-    "Python.message.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/My E-Marketing/SendEmails.py",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Doctests in smtplib.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.AustraliaPost.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.E-Marketing Gardening.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.E-Marketing find-a-tradie.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.MonitorWAN.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.MyEMarketing.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.PostFacebook.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.RemoveDuplicateBusinesses.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.RemoveDuplicateEmails.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ScrapeYellowPages.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.SendEmails.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ValidateEmails.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.common.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.errorhandler.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.message.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gregaryb/Documents/GitHub/boylesg.github.io/My E-Marketing/SendEmails.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gregaryb\Downloads" />
@@ -125,11 +125,6 @@
           <url>file://$PROJECT_DIR$/.venv/Scripts/SendEmails.py</url>
           <line>440</line>
           <option name="timeStamp" value="251" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../My E-Marketing/PostFacebook.py</url>
-          <line>203</line>
-          <option name="timeStamp" value="401" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
