@@ -141,6 +141,17 @@ def DoGetTextField(browserChrome):
 
     return TextField
 
+
+def HaveJoinedGroup(browserChrome, strGroupURL):
+    bJoined = False
+
+    JoinButton = DoGetElement(browserChrome, By.CSS_SELECTOR, "[aria-label='Join group']")
+    if JoinGroup is not None:
+        bJoinded = True
+
+    return bJoined
+
+
 def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, browserChrome):
     nReturnCode = False
     if strGroupURL != "":
@@ -152,28 +163,31 @@ def DoPostFacebook(strPostText, strImageFilename, strGroupName, strGroupURL, bro
                 StartPostButton = None
                 TextField = None
                 PostButton = None
-
-                StartPostButton = DoGetStartPostButton(browserChrome)
-                if StartPostButton is not None:
-                    browserChrome.execute_script("arguments[0].click();", StartPostButton)
-                    TextField = DoGetTextField(browserChrome)
-                    if TextField is not None:
-                        ActionChains(browserChrome).move_to_element(TextField).perform()
-                        browserChrome.execute_script("arguments[0].click();", TextField)
-                        TextField.clear()
-                        TextField.send_keys(strPostText)
-                        #DoUploadImage(strImageFilename, browserChrome)
-                        PostButton = DoGetPostButton(browserChrome)
-                        if PostButton is not None:
-                            browserChrome.execute_script("arguments[0].scrollIntoView();", PostButton)
-                            browserChrome.execute_script("arguments[0].click();", PostButton)
-                            #PostButton.click()
-                            nReturnCode = True
-                            print("Post succeeded!")
-                            break
+                if HaveJoinedGroup(strGroupURL):
+                    StartPostButton = DoGetStartPostButton(browserChrome)
+                    if StartPostButton is not None:
+                        browserChrome.execute_script("arguments[0].click();", StartPostButton)
+                        TextField = DoGetTextField(browserChrome)
+                        if TextField is not None:
+                            ActionChains(browserChrome).move_to_element(TextField).perform()
+                            browserChrome.execute_script("arguments[0].click();", TextField)
+                            TextField.clear()
+                            TextField.send_keys(strPostText)
+                            #DoUploadImage(strImageFilename, browserChrome)
+                            PostButton = DoGetPostButton(browserChrome)
+                            if PostButton is not None:
+                                browserChrome.execute_script("arguments[0].scrollIntoView();", PostButton)
+                                browserChrome.execute_script("arguments[0].click();", PostButton)
+                                #PostButton.click()
+                                nReturnCode = True
+                                print("Post succeeded!")
+                                break
+                        else:
+                            print("Post failed!")
+                            nReturnCode = False
                     else:
-                        print("Post failed!")
-                        nReturnCode = False
+                        print("Group has not been joined - skipping it!")
+                        nReturnCode = "I"
                 else:
                     print("Group cannot be posted to!")
                     nReturnCode = False
