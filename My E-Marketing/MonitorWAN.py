@@ -173,4 +173,4 @@ while True:
     print("-------------------------------\n")
     time.sleep(60 * 60 * 4)
 if g_browserChrome is not None:
-    g_browserChrome.quit()
+    g_browserChrome.quit ()

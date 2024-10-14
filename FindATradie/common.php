@@ -91,6 +91,106 @@
 	//******************************************************************************
 	//******************************************************************************
 	
+	//******************************************************************************			
+	
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+	
+	require "PHPMailer/src/Exception.php";
+	require "PHPMailer/src/PHPMailer.php";
+	require "PHPMailer/src/SMTP.php";
+	
+	$g_strEmailServer = "";
+	$g_nEmailServerPort = 0;
+	$g_strEmailServerUsername = "";
+	$g_strEmailServerPassword = "";
+
+	
+	function DoInitSMTPServer($strMailServerURL, $nPort, $strUsername, $strPassword)
+	{
+		global $g_strEmailServer;
+		global $g_nEmailServerPort;
+		global $g_strEmailServerUsername;
+		global $g_strEmailServerPassword;
+		
+		$g_strEmailServer = $strMailServerURL;
+		$g_nEmailServerPort = $nPort;
+		$g_strEmailServerUsername = $strUsername;
+		$g_strEmailServerPassword = $strPassword;
+	}
+
+	function DoSendEmail($strToEmail, $strSubject, $strHTMLMessage, $strTextMessage)
+	{
+		global $g_strAdminEmail;
+		global $g_strEmailServer;
+		global $g_nEmailServerPort;
+		global $g_strEmailServerUsername;
+		global $g_strEmailServerPassword;
+		
+	/*
+		ini_set("SMTP", $strMailServerURL);
+		ini_set("smtp_port", $nPort);
+		ini_set("sendmail_from", $g_strAdminEmail);
+		ini_set("", "");
+		ini_set("", "");
+		ini_set("", "");
+		mail($strToEmail, $strSubject, $strMessage);
+	*/
+		if ((strcmp($g_strEmailServer, "") == 0) || (strcmp($g_strEmailServerUsername, "") == 0) ||  
+			(strcmp($g_strEmailServerPassword, "") == 0) || ($g_nEmailServerPort == 0))
+		{
+			PrintJSAlertError("'DoInitEmailServer(...) has not been called!", 5, false);
+		}
+		else
+		{
+			try
+			{
+				$mail = new PHPMailer();
+				
+				// Settings
+				$mail->IsSMTP();
+				$mail->CharSet = 'UTF-8';
+				
+				$mail->Host       = $g_strEmailServer;
+				$mail->SMTPDebug  = 0;       // enables SMTP debug information (for testing)
+				$mail->SMTPAuth   = true;    // enable SMTP authentication
+				$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+				$mail->Port       = $g_nEmailServerPort;
+				$mail->Username   = $g_strEmailServerUsername;
+				$mail->Password   = $g_strEmailServerPassword;
+				
+				// Content
+				$mail->setFrom($g_strAdminEmail);   
+				$mail->addAddress($strToEmail);
+				
+				$mail->isHTML(true);                       // Set email format to HTML
+				$mail->Subject = 'Here is the subject';
+				$mail->Body    = $strHTMLMessage;
+				$mail->AltBody = $strTextMessage;
+				
+				$mail->send();
+			}
+			catch (Exception $e)
+			{
+				echo "Email could not be sent! Mailer Error: {$mail->ErrorInfo}";
+			}
+		}
+	}
+	
+	function GetRandomString($length = 10)
+	{
+    	$strCharacters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    	$strRandomString = "";
+    	$nMax = strlen($strCharacters) - 1;
+
+    	for ($nI = 0; $nI < $length; $nI++)
+    	{
+        	$strRandomString .= $strCharacters[random_int(0, $nMax)];
+        }
+
+    	return $strRandomString;
+	}
+
 	function DoGetStateSelectionIndex($strState)
 	{
 		$nI = 0;
@@ -307,10 +407,13 @@
 		PrintJavascriptLine("AlertWarning(\"" . $strMsg . "\");", $nNumIndents, true);
 	}
 	
-	function PrintJSAlertError($strMsg, $nNumIndents)
+	function PrintJSAlertError($strMsg, $nNumIndents, $bDisplayQueryString = true)
 	{
 		global $g_strQuery;
-		PrintJavascriptLine("AlertError(\"" . $strMsg . "\\n\\ng_strQuery = ". $g_strQuery . "\");", $nNumIndents, true);
+		if ($bDisplayQueryString)
+			PrintJavascriptLine("AlertError(\"" . $strMsg . "\\n\\ng_strQuery = ". $g_strQuery . "\");", $nNumIndents, true);
+		else
+			PrintJavascriptLine("AlertError(\"" . $strMsg . "\");", $nNumIndents, true);
 	}
 	
 	function PrintJavascriptLines($arrayStrCode, $nNumIndents, $bScriptTags)

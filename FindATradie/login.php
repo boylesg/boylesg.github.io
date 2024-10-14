@@ -30,14 +30,26 @@
 		<!-- #BeginEditable "page_styles" -->
 		
 			<style>
-</style>
+			</style>
 						
 <?php
 
-	$g_strLogin = "block";
-	$g_strRecover = "none";
+	DoInitSMTPServer("smtp-mail.outlook.com", 587, true, "tls", "find-a-tradie@outlook.com", "Pulsar112358#");
+
+	function DoSendCode()
+	{
+		$_SESSION["code"] = GetRandomString(6);
+		DoSendEmail($_SESSION["account_email"], "Login code", "<b>CODE: </b>" . $_SESSION["code"], 
+					"Login code", "CODE: " . $_SESSION["code"]);
+		
+	}
+
+	$g_strLoginDisplay = "block";
+	$g_strRecoverDisplay = "none";
+	$g_strCodeDisplay = "none";
 	$_SESSION["account_username"] = "";
 	$_SESSION["account_password"] = "";
+	$g_b2Factor = false;
 		
 	// Processing post data.
 	if (isset($_POST["submit_login"]))
@@ -86,12 +98,36 @@
 					$_SESSION["account_additional_trades"][] = $row["trade_id"];
 				}
 			}
-			PrintJavascriptLine("document.location = \"account.php?member_id=" . $_SESSION["account_id"] . "\";", 5, true);
+			if ($g_b2Factor)
+			{			
+				$g_strLoginDisplay = "none";
+				$g_strCodeDisplay = "block";
+				DoSendCode();
+			}
+			else
+			{
+				PrintJavascriptLine("document.location = \"account.php?member_id=" . $_SESSION["account_id"] . "\";", 5, true);
+			}
 		}
 		else
 		{
 			PrintJavascriptLine("AlertError('Username and/or password is incorrect!')", 5, true);
 		}
+	}
+	else if (isset($_POST["submit_code"]))
+	{
+		if (strcmp($_POST["text_code"], $_SESSION["code"]) == 0)
+			PrintJavascriptLine("document.location = \"account.php?member_id=" . $_SESSION["account_id"] . "\";", 5, true);
+		else
+		{
+			PrintJavascriptLine("AlertError('The code is incorrect!')", 5, true);
+		}
+	}
+	else if (isset($_POST["submit_resend"]))
+	{
+		$g_strLoginDisplay = "none";
+		$g_strCodeDisplay = "block";
+		DoSendCode();
 	}
 	else if (isset($_GET["submit_logout"]) && (strlen($_GET["submit_logout"]) > 0))
 	{
@@ -132,8 +168,8 @@
 		else
 		{
 			PrintJavascriptLine("alert(\"Account with username '" . $_POST["text_recover_username"] . "', business name '" . $_POST["text_recover_business_name"] . "' and mobile '" . $_POST["text_recover_mobile"] . "' was not found!\");", 3);
-			$g_strLogin = "none";
-			$g_strRecover = "block";
+			$g_strLoginDisplay = "none";
+			$g_strRecoverDisplay = "block";
 		}
 	}
 
@@ -217,13 +253,6 @@
 				<?php DoGenerateAdvertSlotHTML(); ?></marquee>
 			<!-- #BeginEditable "content" -->
 
-
-
-
-
-
-
-
 				<?php
 					
 					function DoGetUsername()
@@ -254,7 +283,7 @@
 
 				<div class="note">
 
-					<form method="post" id="form_recover" class="form" action="login.php" style="width:560px;display:<?php echo $g_strRecover; ?>;">
+					<form method="post" id="form_recover" class="form" action="login.php" style="width:560px;display:<?php echo $g_strRecoverDisplay; ?>;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_recover_surname" id="label_surname">Username or email: </label></td>
@@ -281,7 +310,7 @@
 						</table>
 					</form>
 					
-					<form method="post" id="form_login" class="form" action="login.php" style="width:560px;display:<?php echo $g_strLogin; ?>;">
+					<form method="post" id="form_login" class="form" action="login.php" style="width:560px;display:<?php echo $g_strLoginDisplay; ?>;">
 						<table class="table_no_borders">
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_username" id="label_username">Username or email: </label></td>
@@ -300,9 +329,27 @@
 								<td style="text-align:left;" class="cell_no_borders"><br/><input type="button" id="button_recover" value="I FORGET MY PASSWORD" onclick="OnShowForm('form_recover', 'form_login')"/></td>
 								<td style="text-align:right;" class="cell_no_borders"><br/><input type="button" id="submit_login" name="submit_login" value="LOG IN" onclick="OnClickButtonSubmit()"/></td>
 							</tr>
+							<tr>
+								<td colspan="2">We use two factor authentication. An email will be sent to you containing a code that you will need to enter at the next stage.</td>
+							</tr>
 						</table>
 						<input type="hidden" name="submit_login" value="LOG IN" />
-					</form>					
+					</form>	
+					<form method="post" id="form_emailed_code" class="form" action="login.php" style="width:560px;display:<?php echo $g_strCodeDisplay; ?>;">
+						<table class="table_no_borders">					
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders"><label for="text_code" id="label_code">Code emailed to you: </label></td>
+								<td class="cell_no_borders">
+									<input name="text_username" id="text_code" style="width: 20em" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:right;" class="cell_no_borders" ><br/><input type="submit" id="submit_resend" name="submit_resend" value="RESEND CODE" /></td>
+								<td style="text-align:right;" class="cell_no_borders" ><br/><input type="submit" id="submit_code" name="submit_code" value="SUBMIT CODE" /></td>
+							</tr>
+						</table>
+					</form>	
+				
 				</div>	
 
 
@@ -328,13 +375,9 @@
 	<footer>
 		
 		<!-- #BeginEditable "footer" -->
-
-
-
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 				
 				<script type="text/javascript">
-										
+															
 					function OnClickButtonSubmit()
 					{
 						let textUsername = DoGetInput("text_username"),
