@@ -3,12 +3,6 @@ import smtplib
 from datetime import datetime, timedelta
 import os
 import os.path
-from email.message import EmailMessage
-from email.headerregistry import Address
-from email.utils import make_msgid
-from email import message_from_bytes
-from imaplib import IMAP4_SSL
-import contextlib
 from common import *
 
 #g_strPath = "C:\\Users\\gregaryb\\Documents\\GitHub\\boylesg.github.io\\FindATradie\\data\\"
@@ -362,8 +356,8 @@ def DoStartSendingEmails(dictConfig):
                     if strEmail != "":
                         print("(" + str(nEmailCount) + ") Sending email to " + strEmail + "...")
                         SaveEmailPlace(strEmail, strEmailFile)
-                        if not DoSendEmail(strEmail, dictLast["last_email_filename"], SMTPObject):
-                            DoWait()
+                        if not DoSendEmail(strEmail, dictLast["last_email_filename"], SMTPObject, dictEmailServer):
+                            DoWait(strEmailFile, dictEmailServer)
                         else:
                             # wait(random.randrange(3, 15, 1))
                             wait(1)

@@ -29,18 +29,18 @@
 		<link href="styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
 		<!-- #BeginEditable "page_styles" -->
 		
-			<style>
-			</style>
 						
 <?php
 
-	DoInitSMTPServer("smtp-mail.outlook.com", 587, true, "tls", "find-a-tradie@outlook.com", "Pulsar112358#");
-
 	function DoSendCode()
 	{
-		$_SESSION["code"] = GetRandomString(6);
-		DoSendEmail($_SESSION["account_email"], "Login code", "<b>CODE: </b>" . $_SESSION["code"], 
-					"Login code", "CODE: " . $_SESSION["code"]);
+		global $g_strAdminEmail;
+		global $g_strAdminName;
+		
+		$_SESSION["login_code"] = GetRandomString(6);
+		DoSendEmail($_SESSION["account_email"], $_SESSION["account_first_name"] . " " . $_SESSION["account_surname"], 
+					$g_strAdminEmail, $g_strAdminName, "Login code", "<b>CODE: </b>" . $_SESSION["login_code"], 
+					"Login code", "CODE: " . $_SESSION["login_code"]);
 		
 	}
 
@@ -49,7 +49,7 @@
 	$g_strCodeDisplay = "none";
 	$_SESSION["account_username"] = "";
 	$_SESSION["account_password"] = "";
-	$g_b2Factor = false;
+	$g_b2Factor = true;
 		
 	// Processing post data.
 	if (isset($_POST["submit_login"]))
@@ -116,7 +116,14 @@
 	}
 	else if (isset($_POST["submit_code"]))
 	{
-		if (strcmp($_POST["text_code"], $_SESSION["code"]) == 0)
+		/*
+		echo "<div style=\"background-color:white;\">";
+		print_r($_SESSION);
+		echo "<br>=================<br>";
+		print_r($_POST);
+		echo "</div>";
+		*/
+		if (strcmp($_POST["text_code"], $_SESSION["login_code"]) == 0)
 			PrintJavascriptLine("document.location = \"account.php?member_id=" . $_SESSION["account_id"] . "\";", 5, true);
 		else
 		{
@@ -330,7 +337,7 @@
 								<td style="text-align:right;" class="cell_no_borders"><br/><input type="button" id="submit_login" name="submit_login" value="LOG IN" onclick="OnClickButtonSubmit()"/></td>
 							</tr>
 							<tr>
-								<td colspan="2">We use two factor authentication. An email will be sent to you containing a code that you will need to enter at the next stage.</td>
+								<td colspan="2"><?php if ($g_b2Factor) echo "We use two factor authentication. An email will be sent to you containing a code that you will need to enter at the next stage."; ?></td>
 							</tr>
 						</table>
 						<input type="hidden" name="submit_login" value="LOG IN" />
@@ -340,7 +347,7 @@
 							<tr>
 								<td style="text-align:right;" class="cell_no_borders"><label for="text_code" id="label_code">Code emailed to you: </label></td>
 								<td class="cell_no_borders">
-									<input name="text_username" id="text_code" style="width: 20em" type="text" value="" />
+									<input name="text_code" id="text_code" style="width: 20em" type="text" value="" />
 								</td>
 							</tr>
 							<tr>

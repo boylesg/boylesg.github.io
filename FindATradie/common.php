@@ -14,7 +14,12 @@
 	$g_strDivOpen = "<div style=\"background-color:white;\">";
 	$g_strDivClose = "</div>";
 	$g_nNumMonthsFree = 6;
-	$g_strAdminEmail = "find-a-tradie@outlook.com";
+	$g_strEmailServer = "smtp.gmail.com";
+	$g_nEmailServerPort = 587;
+	$g_strAdminEmail = "find.a.tradie.australia@gmail.com";
+	$g_strAdminName = "Find a Tradie";
+	$g_strAdminPassword = "zoeh zxav dgba trce ";
+	$g_strCountryCode = "61";
 	$g_strFreeMembership = "6 months";
 	$g_nYears = (int)date("Y") - 2003;	
 	$g_strPriceLevel1 = "60";
@@ -100,80 +105,51 @@
 	require "PHPMailer/src/PHPMailer.php";
 	require "PHPMailer/src/SMTP.php";
 	
-	$g_strEmailServer = "";
-	$g_nEmailServerPort = 0;
-	$g_strEmailServerUsername = "";
-	$g_strEmailServerPassword = "";
-
-	
-	function DoInitSMTPServer($strMailServerURL, $nPort, $strUsername, $strPassword)
+	function DoSendEmail($strToEmail, $strToName, $strFromEmail, $strFromName, $strSubject, $strHTMLMessage, $strTextMessage)
 	{
 		global $g_strEmailServer;
 		global $g_nEmailServerPort;
-		global $g_strEmailServerUsername;
-		global $g_strEmailServerPassword;
-		
-		$g_strEmailServer = $strMailServerURL;
-		$g_nEmailServerPort = $nPort;
-		$g_strEmailServerUsername = $strUsername;
-		$g_strEmailServerPassword = $strPassword;
-	}
-
-	function DoSendEmail($strToEmail, $strSubject, $strHTMLMessage, $strTextMessage)
-	{
 		global $g_strAdminEmail;
-		global $g_strEmailServer;
-		global $g_nEmailServerPort;
-		global $g_strEmailServerUsername;
-		global $g_strEmailServerPassword;
+		global $g_strAdminName;
+		global $g_strAdminPassword;
 		
-	/*
-		ini_set("SMTP", $strMailServerURL);
-		ini_set("smtp_port", $nPort);
-		ini_set("sendmail_from", $g_strAdminEmail);
-		ini_set("", "");
-		ini_set("", "");
-		ini_set("", "");
-		mail($strToEmail, $strSubject, $strMessage);
-	*/
-		if ((strcmp($g_strEmailServer, "") == 0) || (strcmp($g_strEmailServerUsername, "") == 0) ||  
-			(strcmp($g_strEmailServerPassword, "") == 0) || ($g_nEmailServerPort == 0))
+		try
 		{
-			PrintJSAlertError("'DoInitEmailServer(...) has not been called!", 5, false);
+			$mail = new PHPMailer();
+			
+			// Settings
+			$mail->IsSMTP();
+			$mail->CharSet = 'UTF-8';
+			
+			$mail->Host       = $g_strEmailServer;
+			$mail->SMTPDebug  = false;       // enables SMTP debug information (for testing)
+			$mail->SMTPAuth   = true;    // enable SMTP authentication
+			//$mail->AuthType = "XOAUTH2";
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Port       = $g_nEmailServerPort;
+			$mail->Username   = $g_strAdminEmail;
+			$mail->Password   = $g_strAdminPassword;
+			
+			// Content
+			$mail->ClearReplyTos();
+			$mail->addReplyTo($strFromEmail, "Find a Tradie");
+			$mail->addAddress($strToEmail, $strToName);
+			$mail->setFrom($strFromEmail); 
+			$mail->FromName = $strFromName; 
+			
+			$mail->isHTML(true);                       // Set email format to HTML
+			$mail->Subject = $strSubject;
+			$mail->Body    = $strHTMLMessage;
+			$mail->AltBody = $strTextMessage;
+											
+			if (!$mail->send())
+			{
+				PrintJSAlertError("Message could not be sent!\\n\\n" . $mail->ErrorInfo, 5, false);
+			}
 		}
-		else
+		catch (Exception $e)
 		{
-			try
-			{
-				$mail = new PHPMailer();
-				
-				// Settings
-				$mail->IsSMTP();
-				$mail->CharSet = 'UTF-8';
-				
-				$mail->Host       = $g_strEmailServer;
-				$mail->SMTPDebug  = 0;       // enables SMTP debug information (for testing)
-				$mail->SMTPAuth   = true;    // enable SMTP authentication
-				$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-				$mail->Port       = $g_nEmailServerPort;
-				$mail->Username   = $g_strEmailServerUsername;
-				$mail->Password   = $g_strEmailServerPassword;
-				
-				// Content
-				$mail->setFrom($g_strAdminEmail);   
-				$mail->addAddress($strToEmail);
-				
-				$mail->isHTML(true);                       // Set email format to HTML
-				$mail->Subject = 'Here is the subject';
-				$mail->Body    = $strHTMLMessage;
-				$mail->AltBody = $strTextMessage;
-				
-				$mail->send();
-			}
-			catch (Exception $e)
-			{
-				echo "Email could not be sent! Mailer Error: {$mail->ErrorInfo}";
-			}
+			PrintJSAlertError("Email could not be sent!\\n\\n" . $mail->ErrorInfo, 5, false);
 		}
 	}
 	
