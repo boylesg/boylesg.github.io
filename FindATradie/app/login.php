@@ -50,7 +50,8 @@
 	{
 		if ($row = $results->fetch_assoc())
 		{
-			if (DoAESDecrypt($row["password"]) == $strPassword)
+			if (strcmp($row["password"], $strPassword) == 0)
+			//if (strcmp(DoAESDecrypt($row["password"]). $strPassword) == 0)
 			{
 				$objectMember = (object)[];
 				
@@ -82,7 +83,7 @@
 				$objectMember->mobile = $row["mobile"];
 				$objectMember->email = $row["email"];
 				$objectMember->username = $row["username"];
-				$objectMember->password = DoAESDecrypt($row["password"]);
+				$objectMember->password = $row["password"];
 				$objectMember->expiry_date = $row["expiry_date"];
 				$objectMember->date_joined = $row["date_joined"];
 				
@@ -111,7 +112,9 @@
 	
 			if ($results)
 			{
-				if ($results->num_rows > 1)
+				if ($results->num_rows == 0)
+					echo "FAILEDInvalid username '" . $_POST["username"] . "'!";
+				else if ($results->num_rows > 1)
 					echo "FAILEDMore than once member with username '" . $_POST["username"] . "'!";
 				else if ($results->num_rows == 1)
 				{
