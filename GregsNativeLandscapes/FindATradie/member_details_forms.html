@@ -1,0 +1,676 @@
+﻿<form method="post" id="form_user_details" action="" class="form" style="width: 1100px;">
+	<fieldset>
+		<legend>User details</legend>
+		<table class="table_no_borders">
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;width:170px;"><b>Username or email</b></td>
+				<td class="cell_no_borders" style="">
+					<input type="text" id="text_username" name="text_username" required minlength="8" value="<?php echo DoGetDefaultUsername(); ?>" />
+					<br/><br/>
+					Letters, digits, @ $ ! % * # ? &amp;, 8 chracters minimum.
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_password" name="text_password" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php echo DoGetDefaultPassword(); ?>" />
+					<br/><br/>
+					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.					
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Password again</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_password_again" required pattern="(?=[a-zA-Z0-9#@$?\-\.]{8,}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*" value="<?php echo DoGetDefaultPassword(); ?>" />
+					<br/><br/>
+					At least 1 uppercase letter, 1 lower case letter, 1 digit, optional @ $ ! % * ? # &amp; -, 8 chracters minimum.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders">
+					<button title="Go to previous form" class="function_button" type="button" id="button_user_previous" onclick="DoClickNextPreviousButton('form_user_details', 'form_contact_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+				</td>
+				<td class="cell_no_borders" style="text-align:right;">
+					<button title="Go to next form" class="cell_no_borders" type="button" id="button_user_next" onclick="DoClickNextPreviousButton('form_user_details', 'form_trade_details')"><img class="function_button_image" id="user_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these user details" class="function_button" type="button" id="button_user_save" name="button_user_save" onclick="DoClickSave('form_user_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+					<input type="hidden" name="button_user_save" value="SAVE_USER">
+				</td>
+
+			</tr>
+		</table>		
+	</fieldset>
+</form>
+<br/><br/>
+<form method="post" id="form_trade_details" action="" class="form" style="width:950px;">
+	<fieldset>
+		<legend>Trade details</legend>
+			<table class="table_no_borders">
+				<tr>
+					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Primary trade</b></td>
+					<td class="cell_no_borders">
+						<select id="select_trade" name="select_trade" required onchange="OnChangeTrade(this, DoGetInput('trade_description'))">
+							<?php DoGeneratePrimaryTradeOptions(DoGetDefaultTrade()); ?>
+						</select>
+						<br/><br/>
+						<label id="trade_description">XXXXXXXXXXXXX</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Additional trades</b></td>
+					<td class="cell_no_borders">
+						<select id="select_additional_trades" name="select_additional_trades[]" multiple="multiple" required size="10">
+							<?php DoGenerateAdditionalTradeOptions(DoGetDefaultAdditionalTrades()); ?>
+						</select>&nbsp;<button type="button" title="Clear all selections" onclick="DoGetInput('select_additional_trades').selectedIndex = -1;"><img src="images/delete.png" alt="images/delete.png" class="function_button_image" /></button><br/>
+						<b><i>Hold down the CTRL key and click the left mouse button to select multiple items...</i></b>
+					</td>
+				</tr>
+				<tr>
+					<td class="cell_no_borders" colspan="2">
+					<?php
+						echo "<a style=\"color:MidnightBlue;\" href=\"mailto:gregplants@bigpond.com?subject=Request a new trade&body=Trade name: %0D%0A%0D%0A%0D%0ADescription%0D%0A----------------%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A\">Request addition of a new trade.</a>";
+					?>
+					</td>
+				</tr>
+				<tr>
+					<td class="cell_no_borders" colspan="3">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="cell_no_borders" colspan="3">
+						<button title="Go to previous form" class="function_button" type="button" id="button_trade_previous" onclick="DoClickNextPreviousButton('form_trade_details', 'form_user_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+					</td>
+					<td class="cell_no_borders" style="text-align:right;">
+						<button title="Go to next form" class="function_button" type="button" id="button_trade_next" onclick="DoClickNextPreviousButton('form_trade_details', 'form_business_details')"><img class="function_button_image" id="trade_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+						<button title="Save these trade details" class="function_button" type="button" id="button_trade_save" name="button_trade_save" onclick="DoClickSave('form_trade_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+						<input type="hidden" name="button_trade_save" value="SAVE_TRADE">
+					</td>
+				</tr>
+			</table>
+	</fieldset>
+	<br/><br/>		
+</form>
+<form method="post" id="form_business_details" action="" class="form" style="width:1175px;">
+	<fieldset>
+		<legend>Business details</legend>
+		<table class="table_no_borders">
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;width:338px;"><b>Business name</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_business_name" name="text_business_name" size="32" required pattern="^(?=[^A-Za-z]*[A-Za-z])[ -~]*$" value="<?php echo DoGetDefaultBusinessName(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>ABN</b></td>
+				<td class="cell_no_borders"><input type="text" id="text_abn" name="text_abn" size="32" required pattern="^(\d *?){11}$" value="<?php echo DoGetDefaultABN() ?>" onkeydown="OnKeyPressDigitsSpaceOnly(event)" /> e.g. 51 824 753 556</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Business structure</b></td>
+				<td class="cell_no_borders">
+					<select id="select_structure" name="select_structure" required>
+						<?php include "business_structure.html"; ?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Trade license numbers etc.</b></td>
+				<td class="cell_no_borders">
+					<textarea id="text_license" name="text_license" cols="64" rows="4"><?php echo DoGetDefaultLicense(); ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Business description &amp; philosophy etc.</b></td>
+				<td class="cell_no_borders">
+					<textarea id="text_description" name="text_description" cols="64" rows="16" required><?php echo DoGetDefaultDescription(); ?></textarea>
+					<br/><br/>
+					Enter a more detailed description of your business: services, specialties, offers and philosophy etc.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Minimum charge</b></td>
+				<td class="cell_no_borders">
+					<b>$</b>&nbsp;<input type="text" id="text_minimum_charge" size="8" name="text_minimum charge" required value="<?php echo DoGetDefaultMinimumCharge(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<br/><br/>
+					Be fairdinkum here - you are no more or less likely to get the job if you don't disclose this up front.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Minimum budget</b></td>
+				<td class="cell_no_borders">
+					<b>$</b>&nbsp;<input type="text" id="text_minimum_budget" size="8" name="text_minimum_budget" required value="<?php echo DoGetDefaultMinimumBudget(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+					<br/><br/>
+					This is for tradies who are not interested in small value jobs. Enter 0 if you will accept jobs of any value.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Maximum size</b></td>
+				<td class="cell_no_borders">
+					<select id="select_maximum_size" name="select_maximum_size" required>
+						<?php DoGenerateJobSizeOptions(DoGetDefaultMaximumSize()); ?>
+					</select>&nbsp;<b>m<sup>2</sup></b>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;vertical-align:top;"><b>Maximum distance</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_maximum_distance" name="text_maximum distance" size="8" required value="<?php echo DoGetDefaultMaximumDistance() ?>" style="text-align:right" onkeydown="OnKeyPressDigitsOnly(event)" />&nbsp;<b>km</b>
+					<br/><br/>
+					Enter 0 if you will travel any distance.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders">
+					<button class="function_button" title="Go to previous form" type="button" id="button_business_previous" onclick="DoClickNextPreviousButton('form_business_details', 'form_trade_details')"><img class="function_button_image" id="trade_details_previous_image" src="images/back.png" alt="images/back.png"></button>
+				</td>
+				<td class="cell_no_borders" style="text-align:right;">
+					<button class="function_button" title="Go to next form" type="button" id="button_business_next" onclick="DoClickNextPreviousButton('form_business_details', 'form_contact_details')"><img class="function_button_image" id="business_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these business details" class="function_button" type="button" id="button_business_save" name="button_business_save" onclick="DoClickSave('form_business_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+					<input type="hidden" name="button_business_save" value="SAVE_BUSINESS">
+				</td>
+			</tr>
+		</table>			
+	</fieldset>
+	<br/><br/>
+</form>
+<form method="post" id="form_contact_details" action="" class="form" style="width:650px;">
+	<fieldset>
+		<legend>Contact details</legend>
+		<table class="table_no_borders">
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>First name</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_first_name" name="text_first_name" size="32" required pattern="^[A-Za-z ,.'\-]+$" value="<?php echo DoGetDefaultFirstName(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Surname</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_surname" name="text_surname" size="32" required pattern="^[A-Za-z ,.'\-]+$" value="<?php echo DoGetDefaultSurname(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Gender</b></td>
+				<td class="cell_no_borders">
+					<?php DoGenerateGenderCombo("select_gender", false); ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Unit</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_unit" name="text_unit" size="32" value="<?php echo DoGetDefaultUnit(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Street</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_street" name="text_street" size="32" pattern="^(\b\D+\b)?\s*(\b.*?\d.*?\b)\s*(\b\D+\b)?$" value="<?php echo DoGetDefaultStreet(); ?>" />
+					<br/>You are not required to enter a street address.
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>City/suburb/town</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_suburb" name="text_suburb" size="32" required pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$" value="<?php echo DoGetDefaultSuburb(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>State</b></td>
+				<td class="cell_no_borders">
+					<select id="select_state" name="select_state" required>
+						<?php include "states.html"; ?>
+					</select>
+					<script type="text/javascript"> SetSelectionValue("select_state", "<?php echo DoGetDefaultState(); ?>"); </script>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Postcode</b></td>
+				<td class="cell_no_borders">
+					<input type="text" id="text_postcode" name="text_postcode" size="6" length="4" maxlength="4" required pattern="^[0-9]{4}$" value="<?php echo DoGetDefaultPostcode(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Phone</b></td>
+				<td class="cell_no_borders">
+					<input type="text"  id="text_phone" name="text_phone" maxlength="8" pattern="^[0-9]{8}$" value="<?php echo DoGetDefaultPhone(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Mobile</b></td>
+				<td class="cell_no_borders">
+					<input type="text"  id="text_mobile" name="text_mobile" maxlength="10" required pattern="^[0-9]{10}$" value="<?php echo DoGetDefaultMobile(); ?>" onkeydown="OnKeyPressDigitsOnly(event)" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" style="text-align:right;"><b>Email</b></td>
+				<td class="cell_no_borders">
+					<input type="text"  id="text_email" name="text_email" required pattern="^^[A-Za-z]{1,}[A-Za-z0-9\.\-_]{1,}@[A-Za-z0-9\-_]{1,}\.[A-Za-z]{3,}(\.*[A-Za-z]{2}){0,1}$" value="<?php echo DoGetDefaultEmail(); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders">
+					<button class="function_button" title="Go to previous form" type="button" id="button_contact_previous" style="display:none;" onclick="DoClickNextPreviousButton('form_contact_details', 'form_business_details')"><img class="function_button_image" src="images/back.png" alt="images/back.png"></button>
+				</td>
+				<td class="cell_no_borders" style="text-align:right;">
+					<button class="function_button" title="Go to next form" type="button" name="button_contact_details" id="button_contact_next" onclick="DoClickNextPreviousButton('form_contact_details', 'form_user_details')"><img class="function_button_image" id="contact_details_next_image" src="images/forward.png" alt="images/forward.png"></button>
+					<button title="Save these contact details" class="function_button" type="button" id="button_contact_save" name="button_contact_save" onclick="DoClickSave('form_contact_details')"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+				</td>
+			</tr>
+			<tr>
+				<td class="cell_no_borders" colspan="2">
+					<input type="hidden" name="button_contact_save" value="SAVE_CONTACT">
+					<?php
+						
+						function DoGetDigitImageFile($nDigit)
+						{
+							$strDigitFilename = "UNEXPECTED DIGIT";
+							switch ($nDigit)
+							{
+								case 0: $strDigitFilename = "images/Digit0.png"; break;
+								case 1: $strDigitFilename = "images/Digit1.png"; break;
+								case 2: $strDigitFilename = "images/Digit2.png"; break;
+								case 3: $strDigitFilename = "images/Digit3.png"; break;
+								case 4: $strDigitFilename = "images/Digit4.png"; break;
+								case 5: $strDigitFilename = "images/Digit5.png"; break;
+								case 6: $strDigitFilename = "images/Digit6.png"; break;
+								case 7: $strDigitFilename = "images/Digit7.png"; break;
+								case 8: $strDigitFilename = "images/Digit8.png"; break;
+								case 9: $strDigitFilename = "images/Digit9.png"; break;
+							}
+							return $strDigitFilename;
+						}
+						
+						function DoGetDigits($nNum)
+						{
+							$nUnits = 0;
+							$nTens = 0;
+							$nHundreds = 0;
+							$nThousands = 0;
+							$nDivisor = 1000;
+							$arrayDisplayDigits = ["", "", "", ""];
+							while ($nNum > 0)
+							{
+								$nDigit = intdiv($nNum, $nDivisor);
+								if ($nDivisor == 1000)
+									$nThousands = $nDigit;
+								else if ($nDivisor == 100)
+									$nHundreds = $nDigit;
+								else if ($nDivisor == 10)
+									$nTens = $nDigit;
+								else if ($nDivisor == 1)
+									$nUnits = $nDigit;
+								$nNum %= $nDivisor;	
+								$nDivisor /= 10;
+							}
+							$arrayDisplayDigits[0] = DoGetDigitImageFile($nUnits);						
+							$arrayDisplayDigits[1] = DoGetDigitImageFile($nTens);						
+							$arrayDisplayDigits[2] = DoGetDigitImageFile($nHundreds);						
+							$arrayDisplayDigits[3] = DoGetDigitImageFile($nThousands);	
+							
+							return $arrayDisplayDigits;					
+						}
+						
+						if (isset($_SESSION["NEW"]))
+						{
+							$nRandomNum = rand(0, 9999);
+							$arrayDisplayDigits = ["", "", "", ""];
+							$arrayDisplayDigits = DoGetDigits($nRandomNum);
+							
+		
+							echo "<img src=\"" . $arrayDisplayDigits[0] . "\" alt=\"DIGIT\" width=\"30\"/><img src=\"" . $arrayDisplayDigits[1] . "\" alt=\"DIGIT\" width=\"30\"/>";
+							echo "<img src=\"" . $arrayDisplayDigits[2] . "\" alt=\"DIGIT\" width=\"30\"/><img src=\"" . $arrayDisplayDigits[3] . "\" alt=\"DIGIT\" width=\"30\"/>";
+							echo "<label for=\"text_number\">  <b>What is the number?</b> </label><input type=\"text\" id=\"text_number_test\" name=\"text_number_test\" size=\"4\" maxlength=\"4\" required onkeydown=\"OnKeyPressDigitsOnly(event)\" >";
+							$_SESSION["text_number_test"] = $nRandomNum;
+						}
+						
+					?>
+				</td>
+				<td class="cell_no_borders" style="text-align:right;">
+					<button class="function_button" title="Save these details" type="button" id="button_save_all" name="button_save_all" onclick="DoSaveAll()"><img class="function_button_image" src="images/save.png" alt="images/save.png"></button>
+				</td>
+			</tr>
+		</table>			
+	</fieldset>
+</form>
+
+<form method="post" id="form_all_details" action="" class="form" style="display:none;">
+	<input type="text" id="htext_username" name="text_username" />
+	<input type="password" id="htext_password" name="text_password" />
+	<select id="hselect_trade" name="select_trade">
+		<?php DoGeneratePrimaryTradeOptions(""); ?>
+	</select>
+	<select id="hselect_additional_trades" name="select_additional_trades[]" multiple="multiple">
+		<?php DoGenerateAdditionalTradeOptions($_SESSION["account_additional_trades"]); ?>
+	</select>
+	<input type="text" id="htext_business_name" name="text_business_name" />
+	<input type="text" id="htext_abn" name="text_abn" />
+	<select id="hselect_structure" name="select_structure">
+		<?php include "business_structure.html"; ?>
+	</select>
+	<textarea id="htext_license" name="text_license"></textarea>
+	<textarea id="htext_description" name="text_description"></textarea>
+	<input type="htext" id="htext_minimum_charge" name="text_minimum charge" />
+	<input type="htext" id="htext_minimum_budget" name="text_minimum_budget" />
+	<select id="hselect_maximum_size" name="select_maximum_size">
+		<?php DoGenerateJobSizeOptions(""); ?>
+	</select>
+	<input type="text" id="htext_maximum_distance" name="text_maximum distance" />
+	<input type="text" id="htext_first_name" name="text_first_name" />
+	<input type="text" id="htext_surname" name="text_surname" />
+	<input type="text" id="htext_unit" name="text_unit" />
+	<input type="text" id="htext_street" name="text_street" />
+	<input type="text" id="htext_suburb" name="text_suburb" />
+	<select id="hselect_state" name="select_state">
+		<?php include "states.html"; ?>
+	</select>
+	<input type="text" id="htext_postcode" name="text_postcode" />
+	<input type="text"  id="htext_phone" name="text_phone" />
+	<input type="text"  id="htext_mobile" name="text_mobile" />
+	<input type="text"  id="htext_email" name="text_email" />
+	<input type="text"  id="htext_number_test" name="text_number_test" />
+	<input type="hidden" id="button_save_all" name="button_save_all" value="SAVE_ALL" />
+</form>
+
+<script type="text/javascript">
+	
+	let g_bIsCustomer = false;
+	let g_bIsStaged = true;
+	
+	//******************************************************************************
+	//******************************************************************************
+	//** 
+	//** FUNCTIONS FOR THE ABOVE FORMS
+	//** 
+	//******************************************************************************
+	//******************************************************************************
+	
+	const g_mapFormInputs = new Map([
+								["form_trade_details", ["select_trade" , "select_additional_trades"]],
+								["form_business_details", ["text_business_name", "text_abn", "select_structure", "text_license", 
+									"text_description", "text_minimum_charge", "text_minimum_budget", "select_maximum_size", 
+									"text_maximum_distance"]],
+								["form_contact_details", ["text_first_name", "text_surname",  "text_unit",  "text_street",  
+									"text_suburb",  "select_state",  "text_postcode",  "text_phone",  "text_mobile",  
+									"text_email"]],
+								["form_user_details", [ "text_username", "text_password",  "text_password_again"]]
+									]);
+
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description'));
+
+	function IsValid(Input)
+	{
+		let bResult = true,
+			bWasPassword = false;
+		
+		if (Input.type === "password")
+		{	
+			bWasPassword = true;
+			Input.type = "text";
+		}
+		if (Input.type === "text")
+		{
+			if (!Input.checkValidity())
+			{
+				Input.reportValidity();
+				Input.focus();
+				bResult = false;
+			}
+		}
+		if (bWasPassword)
+		{
+			Input.type = "password";
+		}
+		return bResult;
+	}
+	
+	function DoChangeButtonFunction(strButtonID, NewFunction)
+	{
+		let button = DoGetInput(strButtonID, "button");
+		if (button)
+		{
+			button.onclick  = NewFunction;
+		}
+	}
+	
+	function DoFormValidate(strFormID)
+	{
+		let arrayInputIDs = null,
+			input = null,
+			bResult = true,
+			form = DoGetInput(strFormID, 'form');
+		
+		if (form)
+		{
+			arrayInputIDs = g_mapFormInputs.get(form.id);
+			
+			for (let nI = 0; nI < arrayInputIDs.length; nI++) 
+			{
+				input = DoGetInput(arrayInputIDs[nI], 'input');
+				if (input)
+				{
+	    	        if (!IsValid(input))
+	        		{
+	        			bResult = false;
+	        			break;
+	        		}
+	        	}
+	        	else
+	        	{
+					AlertIDError(arrayInputIDs[nI], "input");
+	        		bResult = false;
+	        		break;
+	        	}
+			}	
+		}
+		else
+		{
+			AlertIDError(strFormID , "form");
+		}
+		return bResult;
+	}
+	
+	function DoCopyTextInput(strIDSrc, strIDDest)
+	{
+		let inputTextSrc = DoGetInput(strIDSrc),
+			inputTextDest = DoGetInput(strIDDest);
+			
+		if (inputTextSrc && inputTextDest)
+		{
+			inputTextDest.value = inputTextSrc.value;
+		}
+	}
+	
+	function DoCopySelectInput(strIDSrc, strIDDest)
+	{
+		let inputSelectSrc = DoGetInput(strIDSrc),
+			inputSelectDest = DoGetInput(strIDDest);
+			
+		if (inputSelectSrc && inputSelectDest)
+		{
+			inputSelectDest.selectedIndex = inputSelectSrc.selectedIndex;
+		}
+	}
+	
+	function DoClickNextPreviousButton(strHideFormID, strShowFormID)
+	{
+		if (DoFormValidate(strHideFormID))
+		{
+			if (g_bIsCustomer)
+			{
+				if ((strHideFormID == "form_user_details") && (strShowFormID == "form_trade_details"))
+				{
+					strShowFormID = "form_contact_details";
+				}
+				else if ((strHideFormID == "form_contact_details") && (strShowFormID == "form_business_details"))
+				{
+					strShowFormID = "form_user_details";
+				}
+			}
+			DoGetInput(strHideFormID).style.display = "none";
+			DoGetInput(strShowFormID).style.display = "block";
+		}
+	}
+		
+	function DoClickSave(strFormID)
+	{
+		if (DoFormValidate(strFormID))
+		{
+			if (strFormID == "form_user_details")
+			{
+				let textPassword = DoGetInput("text_password"),
+					textPasswordAgain = DoGetInput("text_password_again");
+				
+				if (!textPassword)
+				{
+					AlertIDError("text_password", "password input");
+				}
+				else if (!textPasswordAgain)
+				{
+					AlertIDError("text_password_again", "password input");
+				}
+				else if (textPassword.value != textPasswordAgain.value)
+				{
+					AlertError("The two passwords do not match!");
+					textPassword.focus();
+				}
+				else
+				{
+					document.getElementById(strFormID).submit();
+				}
+			}
+			else
+			{
+				document.getElementById(strFormID).submit();
+			}
+		}
+	}
+		
+	function DoSetStaged()
+	{
+		if (g_bIsCustomer)
+		{
+			DoGetInput("form_trade_details").style.display = "none";
+			DoGetInput("form_business_details").style.display = "none";
+			DoGetInput("form_contact_details").style.display = "none";
+			DoGetInput("form_user_details").style.display = "block";
+		}
+		else
+		{
+			DoGetInput("form_trade_details").style.display = "none";
+			DoGetInput("form_business_details").style.display = "none";
+			DoGetInput("form_contact_details").style.display = "none";
+			DoGetInput("form_user_details").style.display = "block";
+		}
+		DoGetInput("button_save_all").style.display = "inline";
+		
+		DoGetInput("button_contact_previous").style.display = "inline";
+		DoGetInput("button_business_previous").style.display = "inline";
+		DoGetInput("button_trade_previous").style.display = "inline";
+		DoGetInput("button_user_previous").style.display = "inline";
+
+		DoGetInput("button_contact_next").style.display = "inline";
+		DoGetInput("button_business_next").style.display = "inline";
+		DoGetInput("button_trade_next").style.display = "inline";
+		DoGetInput("button_user_next").style.display = "inline";
+
+		DoGetInput("button_contact_save").style.display = "none";
+		DoGetInput("button_business_save").style.display = "none";
+		DoGetInput("button_trade_save").style.display = "none";
+		DoGetInput("button_user_save").style.display = "none";
+
+		g_bIsStaged = true;
+	}
+	
+	function DoSetNotStaged()
+	{
+		if (g_bIsCustomer)
+		{
+			DoGetInput("form_business_details").style.display = "none";
+			DoGetInput("form_trade_details").style.display = "none";
+		}
+		else
+		{
+			DoGetInput("form_business_details").style.display = "block";
+			DoGetInput("form_trade_details").style.display = "block";
+		}
+		DoGetInput("button_save_all").style.display = "none";
+		
+		DoGetInput("button_contact_previous").style.display = "none";
+		DoGetInput("button_business_previous").style.display = "none";
+		DoGetInput("button_trade_previous").style.display = "none";
+		DoGetInput("button_user_previous").style.display = "none";
+
+		DoGetInput("button_contact_next").style.display = "none";
+		DoGetInput("button_business_next").style.display = "none";
+		DoGetInput("button_trade_next").style.display = "none";
+		DoGetInput("button_user_next").style.display = "none";
+
+		DoGetInput("button_contact_save").style.display = "inline";
+		DoGetInput("button_business_save").style.display = "inline";
+		DoGetInput("button_trade_save").style.display = "inline";
+		DoGetInput("button_user_save").style.display = "inline";
+
+		g_bIsStaged = false;
+
+	}
+	
+	function DoSetCustomer()
+	{
+		DoGetInput("button_save_all").value = "SUBMIT_NEW_CUSTOMER";
+		g_bIsCustomer = true;
+	}
+	
+	function DoSetTradie()
+	{
+		DoGetInput("button_save_all").value = "SUBMIT_NEW_TRADIE";
+		g_bIsCustomer = false;
+	}
+	
+	function DoSaveAll()
+	{
+		DoGetInput("htext_username").value = DoGetInput("text_username").value;
+		if (!g_bIsCustomer)
+		{
+			DoCopySelectInput("select_trade", "hselect_trade");
+			DoCopySelectInput("select_additional_trades", "hselect_additional_trades");
+			DoCopyTextInput("text_business_name", "htext_business_name");
+			DoCopyTextInput("text_abn", "htext_abn");
+			DoCopyTextInput("text_license", "htext_license");
+			DoCopyTextInput("text_description", "htext_description");
+			DoCopyTextInput("text_minimum_charge", "htext_minimum_charge");
+			DoCopyTextInput("text_minimum_budget", "htext_minimum_budget");
+			DoCopyTextInput("text_maximum_distance", "htext_maximum_distance");
+			DoCopySelectInput("select_structure", "hselect_structure");
+			DoCopySelectInput("select_maximum_size", "hselect_maximum_size");
+		}
+		DoCopyTextInput("text_first_name", "htext_first_name");
+		DoCopyTextInput("text_surname", "htext_surname");
+		DoCopyTextInput("text_unit", "htext_unit");
+		DoCopyTextInput("text_street", "htext_street");
+		DoCopyTextInput("text_suburb", "htext_suburb");
+		DoCopyTextInput("text_postcode", "htext_postcode");
+		DoCopyTextInput("text_phone", "htext_phone");
+		DoCopyTextInput("text_mobile", "htext_mobile");
+		DoCopyTextInput("text_email", "htext_email");
+		DoCopySelectInput("select_state", "hselect_state");
+		DoCopyTextInput("text_number_test", "htext_number_test");
+		DoGetInput("form_all_details").submit();
+	}
+	
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_search'));
+	OnChangeTrade(document.getElementById('select_trade'), document.getElementById('trade_description_job'));
+			
+	SetSelection("select_structure", "<?php if (isset($_SESSION["account_structure"])) echo $_SESSION["account_structure"]; else echo ""; ?>");
+	SetSelection("select_maximum_size", "<?php if (isset($_SESSION["account_maximum_size"])) echo $_SESSION["account_maximum_size"]; else echo ""; ?>");
+	SetSelection("select_state", "<?php if (isset($_SESSION["account_state"])) echo $_SESSION["account_state"]; else echo ""; ?>");
+	
+</script>
+
+	

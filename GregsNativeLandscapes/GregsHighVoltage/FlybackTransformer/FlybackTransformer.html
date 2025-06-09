@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>Flyback Transformer</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+</style>
+		<!-- #EndEditable -->
+		<script type="text/javascript">
+			
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+			
+			function GenerateGregsEmailAddress()
+			{
+				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
+				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
+			}
+
+			function GenerateGregsMobile()
+			{
+				var strMobile = "04" + "55" + "328" + "886";
+				document.write(strMobile);
+			}
+
+		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/logo.png" />
+				</div>
+				<div class="center_vertically page_heading">
+					<div class="website_heading">Greg's High Voltage Electronics<br/></div>
+					<div class="website_motto">DANGER - enter at your own risk!</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.htm">Home</a></li>
+						<li><a href="../TeslaCoil/default.html">Tesla Coils</a></li>
+						<li><a href="../PlasmaGlobe/PlasmaGlobe.html">Plasma Globes</a></li>
+						<li><a href="FlybackTransformer.html">Flyback Transformers</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
+					</script>
+					<div style="width:100%;">
+						<img alt="" src="../images/electrical-arc-header.jpg" width="100%" />
+					</div>
+				<!-- #BeginEditable "content" -->
+					<h2>Building Your Own Transformer</h2>
+					<h3>The Core</h3>
+					<p>First of all you will need to obtain a core, which look 
+					like this:</p>
+					<p>
+					<img alt="" src="images/FlybackTransformerCore.jpg" width="300" /></p>
+					<p>You can salvage them from the circuit board of old 
+					cathode ray TVs and monitors:</p>
+					<p>
+					<img alt="" src="images/CircuitBoardCathodeRayTV.jpg" width="300" /></p>
+					<p>In this example you can see the flyback transformer in 
+					the upper right corner, and also the core. It takes a bit of 
+					effort to de-solder the flyback transformer from the circuit 
+					board because their are 9 to 12 pins.<br />
+					<br />
+					The black plastic structure around it contain the primary 
+					and secondary windings embedded in epoxy resin. You can use 
+					the flyback transformer as is however there is a lot of 
+					messing around with a multimter to figure out which pins are 
+					attached to the primary winding and which are attached 
+					attached to the high voltage secondary winding.These flyback 
+					transformers also contain rectifier diodes and generate high 
+					voltage DC current which limit what projects you can use 
+					them for. For example you can't use them to drive a plasma 
+					globe as they require AC high voltage current.</p>
+					<p>Once it is off the circuit board to can proceed to remove 
+					the core. But you need to do this carefully because the core 
+					is generally held in the plastic assembly with dobs of hot 
+					glue. This must be carefully picked away to free the core. 
+					The ferrite cores are rather fragile and will easily break 
+					if you try an lever out the two halves if the core with a 
+					screw driver for example.</p>
+					<h3>Make Your Own Bobbin</h3>
+					<p>
+					<img alt="" src="images/Bobbins.png" width="300" /></p>
+					<p>This will be for the secondary transformer winding that 
+					will generate the high voltage.</p>
+					<p>The first thing you need to find is a plastic pipe that 
+					nicely fits around the cylinderical part of the ferrite core 
+					without rattling around too much. Smaller diameter PVC 
+					pressure pipe or electrical conduit might be suitable. It is 
+					just a matter of hunting around until you find something 
+					suitable. If you luck in you might be able to find a complete 
+					bobbin for electrical wire that is just the right size.</p>
+					<p>If you can't find a suitable size bobbin then will need 
+					to make one ourt of PVC pipe and fittings. First find the 
+					smallest diameter PVC pipe that will fit as snuggly and 
+					possible around the cylinderical part of the ferite core. 
+					Cut a length of PVC pipe such that it fits inside the closed 
+					ferite core.</p>
+					<p>Next you need to make some end disks for the bobbin. You 
+					can make them out of presepex or PVC sheet. If hard pressed 
+					you can cut a short length of large diameter PVC pipe, slit 
+					it down its length, heat it in the oven at 120 degrees for 
+					10 minutes until it becomes soft and pliable and then 
+					sandwich it between 2 heavy sheets of MDF with a car b 
+					attery or something else heavy to weigh the top sheet down. 
+					The PVC will re-harden into a flat sheet. Alternatively 
+					obtain a large diameter PVC end cap and cut the disks out of 
+					the flat part of the cap.</p>
+					<p>Use a 4-5cm diameter hole saw to cut out two disks:</p>
+					<p>
+					<img alt="" src="images/HoleSaw.jpg" width="300" /></p>
+					<p>Then you will need to enlarge the hole at the center of 
+					the disks to fit snuggly around the PVC pipe. You can use a 
+					smaller diameter hole saw or a spade bit. The disks must fit 
+					tightly around the PVC pipe so use a spade bit that is 
+					smaller then the outer diameter of the PVC pipe rather than 
+					a large one.</p>
+					<p>
+					<img alt="" src="images/SpadeBit.jpg" width="300" /></p>
+					<p>You may need to use some sand paper wrapped around a 
+					piece of dowel or PVC pipe, as a round file, to smooth off 
+					the edges of the inner hole. </p>
+					<p>
+					<img alt="" src="images/ConstructingTheBobbin.jpg" width="300" /></p>
+					<p>You can then use PVC pipe glue to fix the 
+					disks at the ends of short length of PVC pipe.<br />
+					</p>
+					<p>You can use a tooth pick to make sure the gap between the 
+					disk and the pipe is evenly filled with glue. Clean off any 
+					excess with methylated spirits before the glue hardens. 
+					Don't use too much metho or it will dissolve away the glue 
+					from the gap.</p>
+					<p>
+					<img alt="" src="images/WindingTheSecondary.jpg" width="300" /></p>
+					<p>You will then need to drill a small hole in one of the 
+					disks flush with the pipe. When you start winding you will 
+					first poke the wire through this hole and sucure it inside 
+					the pipe.</p>
+					<p>
+					<img alt="" src="images/BobbinHoleForWire.jpg" width="300" /></p>
+					<h3>Magnet Wire</h3>
+					<p>Old cathod ray TVs also have a good supply of magnet 
+					wire.</p>
+					<p>
+					<img alt="" src="images/MagnetWire.jpg" width="300" />&nbsp;</p>
+					<p>You can see the magnet wire on those funny shaped ferrite 
+					cores. This whole plastic assembly is quite easy to break 
+					apart. You will need to cut the wires to free the ferrite 
+					cores. Then wind the magnet wire onto a handly bobbin or 
+					length of thick dowel. There are usually dobs of hot glue on 
+					the ferrite cores to prevent the magnet wire from 
+					unravelling. However it is easy to break this apart and 
+					scrape it off the magnet wire with your finger nails.</p>
+					<p>If you need more length and if you have a steady hand 
+					then it is possible to join lengths of magnet wire together 
+					in a similar way to this, except with solder.</p>
+					<p><img alt="" src="images/SplicingMagnetWire.png" width="300" /></p>
+					<p>You can restore the insulation around the solder joint 
+					with a smear of epoxy glue. Of course if you can't be bothered with salvaging the 
+					magnet wire then you can always buy a reel of it. AWG 23 to 
+					28 is OK.</p>
+					<h3>Winding The Secondary Coil</h3>
+					<p>Wind the wire around the bobbin neatly like this:</p>
+					<p>
+					<img alt="" src="images/WindingTheSecondary.jpg" width="300" /></p>
+					<p>Once you reach the end of the bobbin tape a strip of 
+					overhead transparency sheet in place like this. Then smear 
+					some epoxy resin glue on the underside of the strip at the 
+					other end.</p>
+					<p>
+					<img alt="" src="images/OverheadTransparencyStripTaped.jpg" width="300" /></p>
+					<p>Then wrap the transparency strip tightly around the 
+					windings, tape it in place and wait for the glue to harden.</p>
+					<p>
+					<img alt="" src="images/OverheadTransparencyStripWrapped.jpg" width="300" /></p>
+					<p>
+					Once the glue is hardened remove the tape and then bend the wire at 90 degrees and take it across the 
+					other side of the bobbin. Bend it again at 90 degrees and 
+					continue winding the next layer. Use a thin strip of tape to 
+					hold it in place temporarily. If you then wrap a few loops 
+					around the horizontal part and tighten the loops then they 
+					will hold the horizontal part on place. Without releasing 
+					tension on the loops use your finger nail to push the loops 
+					against the end of the bobbin.</p>
+					<p>
+					<img alt="" src="images/OverheadTransparencyStripTapeRemoved.jpg" width="300" /></p>
+					<p>
+					Once you have a few loops in place you can remove the strip 
+					of tape.</p>
+					<p>
+					<img alt="" src="images/NextWindingLayer.jpg" width="300" /></p>
+					<p>
+					Keep winding till the layer is complete.</p>
+					<p>
+					<img alt="" src="images/NextWindingLayerComplete.jpg" width="300" /></p>
+					<p>Repeat this process as many times as it takes to fill up the 
+					bobbin almost to the edge of the disks.<br />
+					</p>
+					<h3>Electrical Contacts</h3>
+					<p>You can stick 2x of these terminal blocks to each of the 
+					bobbin disks, without obstructing the lumen of the pipe. </p>
+					<p>
+					<img alt="" src="images/TerminalBlock.jpg" width="300" /></p>
+					<p>You will need to lightly sand the edges of the bobbin 
+					disks and the bottom of the terminal blocks. This allows the 
+					glue to gain purchase. Two of these terminal blocks will 
+					provide a greater surface area for the glue, but you will 
+					only need to use one side.</p>
+					<p>Glue these at either end og the bobbin the distance 
+					between them, as well as the fact the terminal blocks will 
+					be submerged in oil, will pevent any unauthorised HV 
+					discharges.</p>
+					<p>You will need to strip the ends of the magnet wire with a 
+					match and some fine emery paper. Fold the end of the wire 
+					2-3 times and solder the folds together. This will provide a 
+					large target for the screws of the terminal block to bite on 
+					to.</p>
+					<p>Into the other end of the terminal block clamp a short 
+					length of much thicker diameter wire. This will be easier to 
+					handle than the fine magnet wire. The inner conductors of 
+					standard house hold apliance cables are ideal. </p>
+					<h3>Transformer Oil</h3>
+					<p>It is a good idea to submerge the whole transformer in 
+					oil to further reduce the likelhood of HV discharges within 
+					the transformer. An ideal oil is liquid paraffin or baby 
+					oil. It has a much higher break down voltage than does air.</p>
+					<p>
+					<img alt="" src="images/LiquidParaffin.jpg" width="300" /></p>
+					<p>
+					You will need to obtain or make a container to store the 
+					transformer under oil with holes in the lid for the 
+					electrical cables to be exposed. Plastic or glass jars or 
+					food containers of an appropriate size are OK. Or you can 
+					make one out of PVC pipe and end caps. The bottom end cap 
+					can be cemented on permamently with PVC pipe glue. The top 
+					end cap will need to be removable.</p>
+					<p>
+					<img alt="" src="images/TransformerContainer.jpg" width="300" /></p>
+					<p>
+					You can terminal block can be used for the low voltage 
+					primary coil, but the cables from the high voltage secondary 
+					coil will need to be widely spaced to reduce any risk of 
+					them coming into contact and causing an arc to discharge 
+					through the insulation on the cables.</p>
+					<h3>The Driver Circuit</h3>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+				<!-- #EndEditable -->
+				</div>
+						
+				<!-- End Content -->
+				
+			</div>	
+			<!-- End Page Content -->
+					
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div class="footer_links" id="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/STEM.png" />&nbsp;<a href="../../GregsSTEMTuition/index.htm">Greg's STEM Tuition</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer -->
+			
+		</div>	
+		<!-- End Container -->	
+		
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>

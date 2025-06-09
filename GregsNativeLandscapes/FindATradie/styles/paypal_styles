@@ -1,0 +1,7 @@
+﻿.table_cell
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-weight: bold;
+	text-align: center;
+}

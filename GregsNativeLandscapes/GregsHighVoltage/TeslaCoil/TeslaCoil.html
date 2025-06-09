@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+<title>Tesla Coils</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style2.css" rel="stylesheet" type="text/css" />
+		<!-- #BeginEditable "page_styles" -->
+			<style>
+</style>
+		<!-- #EndEditable -->
+		<script type="text/javascript">
+			
+			function SpaceGap(nNumberSpaces)
+			{
+				for (var nI = 0; nI < nNumberSpaces; nI++)
+					document.write("&nbsp;");
+			}
+			
+			function GenerateGregsEmailAddress()
+			{
+				var strEmailAddress = "gregplants" + "@" + "bigpond" + "." + "com";
+				document.write("<a class=\"Email\" id=\"Email\" href=\"mailto: " + strEmailAddress + "\">" + strEmailAddress + "</a>");
+			}
+
+			function GenerateGregsMobile()
+			{
+				var strMobile = "04" + "55" + "328" + "886";
+				document.write(strMobile);
+			}
+
+		</script>
+		<!-- #BeginEditable "TOC" -->
+			<script type="text/javascript">
+			
+				var arrayTOC = [];
+				
+			</script>
+		<!-- #EndEditable -->
+	</head>
+	
+	<body>
+	
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div id="masthead">
+				<div class="center_vertically logo">
+					<img alt="" height="100" src="../images/logo.png" />
+				</div>
+				<div class="center_vertically page_heading">
+					<div class="website_heading">Greg's High Voltage Electronics<br/></div>
+					<div class="website_motto">DANGER - enter at your own risk!</div>
+				</div>
+				<div class="center_vertically contact" id="Contact">
+					<b>Mobile:</b> <script type="text/javascript">GenerateGregsMobile();</script><br />
+					<b>Email:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script><br/><br/>
+					<div class="Author" id="Author">
+						<b>Web site coded by me &amp; hosted for free</b><br/>
+						<b>Enquiries:</b> <script type="text/javascript">GenerateGregsEmailAddress();</script>
+					</div>
+				</div>
+			</div>
+			<!-- End Masthead -->
+			<!-- Begin Page Content -->
+			<div id="page_content">
+				<!-- Begin Sidebar -->
+				<div id="sidebar">
+					<ul>
+						<li><a href="../index.htm">Home</a></li>
+						<li><a href="default.html">Tesla Coils</a></li>
+						<li><a href="../PlasmaGlobe/PlasmaGlobe.html">Plasma Globes</a></li>
+						<li>
+						<a href="../FlybackTransformer/FlybackTransformer.html">Flyback Transformers</a></li>
+					</ul>
+				</div>
+				<!-- End Sidebar -->
+				<!-- Begin Content -->
+				<div id="content">
+					<script type="text/javascript">
+						document.write("<h1 class=\"page_title\" id=\"" + document.title + "\"><u>" + document.title + "</u></h1>");
+						
+						var nLevel = 0;
+						
+						function BuildTOC(arrayTOC, nLevel)
+						{
+							var strIndent = "", nI = 0;
+							
+							for (nI = 0; nI < nLevel; nI++)
+								strIndent += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+								
+							for (nI = 0; nI < arrayTOC.length; nI++)
+							{
+								if (Array.isArray(arrayTOC[nI]))
+								{
+									BuildTOC(arrayTOC[nI], nLevel + 1);
+								}
+								else
+								{
+									document.write("<li class=\"TOCListItem\">&nbsp;&nbsp;" + strIndent + "<a class=\"TOCLink\" href=\"#" + arrayTOC[nI] + "\">" + arrayTOC[nI] + "</a></li>");
+								}
+							}
+						}
+						if (arrayTOC.length > 0)
+						{
+							document.write("<ul id=\"TOCList\" class=\"TOCList\">");
+							document.write("<hr class=\"TOCLine\"><h4 class=\"TOCHeading\">&nbsp;&nbsp;ON THIS PAGE</h4><hr class=\"TOCLine\">");
+							BuildTOC(arrayTOC, nLevel);
+							document.write("<hr class=\"TOCLine\"></ul>");
+						}
+					</script>
+					<div style="width:100%;">
+						<img alt="" src="../images/electrical-arc-header.jpg" width="100%" />
+					</div>
+				<!-- #BeginEditable "content" -->
+			<h2>About Company</h2>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque 
+			ornare ipsum at erat. Quisque elementum tempus urna. Donec ornare fringilla 
+			erat. Phasellus gravida lectus vel dui. Fusce eget justo at odio posuere 
+			dignissim.</p>
+			<h3>Subheading</h3>
+			<p>Sed porta, turpis sit amet viverra rhoncus, mauris urna interdum 
+			erat, nec semper dui diam ut libero. Donec adipiscing placerat metus. 
+			Integer eu eros vel risus ornare consequat. Curabitur sem erat, tempor 
+			non, ullamcorper quis, dapibus a, ante. Aliquam tempus tellus eget est. 
+			In hendrerit turpis sed ligula. Integer vulputate nibh congue magna. 
+			Duis commodo leo sit amet quam. Nunc commodo sodales nunc. Donec est 
+			nunc, porttitor et, accumsan nec, pretium quis, mauris. Duis sapien. 
+			Nulla felis lorem, accumsan vitae, ultricies et, hendrerit vel, massa. 
+			In nonummy tortor et metus. Aenean lacinia orci non risus. Aenean vulputate 
+			vel lectus. Aliquam erat volutpat. Duis diam.</p>
+			<h4>Subheading 2</h4>
+			<ul>
+				<li>Proin sed turpis in urna varius venenatis. Morbi sit amet ligula 
+				eget est semper tempor. Sed sodales, arcu quis semper iaculis, nibh 
+				tortor feugiat purus, et dignissim turpis sem vitae sem. Morbi aliquet 
+				purus eget tellus.</li>
+				<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean 
+				enim justo, tincidunt sed, vestibulum sed, pretium eget, arcu.</li>
+			</ul>
+				<!-- #EndEditable -->
+				</div>
+						
+				<!-- End Content -->
+				
+			</div>	
+			<!-- End Page Content -->
+					
+			<!-- Begin Footer -->
+			<div class="footer" id="footer">
+				<div class="footer_links" id="footer_links">
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="1%" class="footer_image" src="../images/Top.png" />&nbsp;<a href="#Top">Top of Page</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/BanksiaLogo.png" />&nbsp;<a href="../../GregsNativeLandscapes/index.html">Greg's Native Landscapes</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="3%" class="footer_image" src="../images/STEM.png" />&nbsp;<a href="../../GregsSTEMTuition/index.htm">Greg's STEM Tuition</a></span>
+					<span class="footer_link" id="footer_link">
+					<img alt="" width="2%" class="footer_image" src="../images/IOTLogo.png" />&nbsp;<a href="../../GregsCodingClub/index.html">Greg's Code Club</a></span>
+				</div>
+				<div class="footer_copyright" id="footer_copyright">
+					Copyright &copy; 2023 Gregary Boyles. All Rights Reserved.
+				</div>
+			</div>
+			<!-- End Footer -->
+			
+		</div>	
+		<!-- End Container -->	
+		
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>

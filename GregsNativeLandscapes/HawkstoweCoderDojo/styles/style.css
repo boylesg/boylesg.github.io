@@ -1,0 +1,176 @@
+﻿@import url("layout.css");
+
+:root 
+{
+  --margin_content: 10px;
+  --border_radius: 10px;
+}
+
+body
+{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	overflow: auto;
+	background-color: #90b7f1;
+}
+.container
+{
+	margin-top: var(--margin_content);
+	margin-left: var(--margin_content);
+	margin-right: var(--margin_content);
+	padding: 5px;
+	background-color: white;
+	border-radius: var(--border_radius);
+	overflow: auto;
+}
+.masthead
+{
+	padding-left: 10px;
+	padding-bottom: 10px;
+	background-color: navy;
+	border-radius: var(--border_radius);
+	margin-bottom: 10px;
+}
+/* Masthead Styles */
+.masthead h1
+{
+	color: white;
+	font-size: 80px;
+	font-weight: bold;
+	margin: 0px;
+}
+.masthead h3
+{
+	font-weight: bold;
+	font-size: 30px;
+	color: #b22222;
+	margin: 0px;
+}
+.navigation
+{
+	margin-left: var(--margin);
+	width: 100%;
+	clear: both;
+	overflow: hidden;
+	font-size: large;
+}
+/* Navigation Styles */
+.navigation ul
+{
+	list-style-type: none;
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+.navigation li
+{
+	float: left;
+}
+.navigation a
+{
+	text-decoration: none;
+	color: white;
+	display: block;
+	margin-right: 5px;
+	padding: 5px;
+	border: 1px solid #708090;
+	background-color: navy;
+	border-radius: 10px;
+	border-color: navy;
+}
+.navigation a:hover
+{
+	text-decoration: none;
+	color: #800000;
+	background-color: #d0dffa;
+}
+.page_content
+{
+	margin-left: var(--margin);
+	width: 100%;
+	overflow: scroll;
+}
+.content
+{
+	position: relative;
+	float: left;
+	width: 290px;
+	padding-top: 7px;
+	text-align: left;
+}
+.sidebar
+{
+	float: right;
+	width: 350px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+}
+.footer
+{
+	clear: both;
+	width: 670px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 5px;
+	text-align: left;
+}
+/* Content Styles */
+.content h1,h2,h3,h4,h5,h6
+{
+	color: #b22222;
+}
+.content img
+{
+	padding: 5px;
+	border: 1px solid #358;
+}
+/* Sidebar Styles */
+.sidebar p
+{
+	color: #222;
+}
+.sidebar img
+{
+	float: right;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+/* Footer Styles */
+.footer p
+{
+	font-size: 0.85em;
+	color: #808080;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.footer a
+{
+	color: #47b;
+	text-decoration: underline;
+	font-size: large;
+}
+.footer a:hover
+{
+	color: #237;
+	text-decoration: none;
+	font-size: large;
+}
+/* Link Styles */
+a
+{
+	color: #191970;
+	text-decoration: underline;
+}
+a:hover
+{
+	color: #800000;
+	text-decoration: underline;
+}
+.style_bold
+{
+	font-weight: bold;
+}
+.style_italic
+{
+	font-style: italic;
+}

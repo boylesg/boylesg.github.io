@@ -1,0 +1,335 @@
+[18-Feb-2024 09:40:22 UTC] PHP Warning:  include(common.php): Failed to open stream: No such file or directory in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 3
+[18-Feb-2024 09:40:22 UTC] PHP Warning:  include(): Failed opening 'common.php' for inclusion (include_path='.;C:\php\pear') in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 3
+[18-Feb-2024 09:54:49 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\screen1.php on line 54
+[18-Feb-2024 10:40:31 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:41:37 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:41:39 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 65
+[18-Feb-2024 10:43:40 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[18-Feb-2024 10:44:17 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 84
+[18-Feb-2024 10:47:47 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 88
+[18-Feb-2024 10:49:07 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 55
+[18-Feb-2024 10:50:12 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[18-Feb-2024 10:50:54 UTC] PHP Parse error:  syntax error, unexpected token "else" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 91
+[23-Feb-2024 06:06:15 UTC] PHP Parse error:  syntax error, unexpected variable "$_POST" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 80
+[23-Feb-2024 06:47:25 UTC] PHP Parse error:  syntax error, unexpected token "," in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 604
+[23-Feb-2024 07:37:04 UTC] PHP Parse error:  syntax error, unexpected token ";", expecting "]" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 64
+[23-Feb-2024 07:50:39 UTC] PHP Parse error:  syntax error, unexpected token "}", expecting ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 636
+[23-Feb-2024 07:51:54 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:09 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:11 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:12 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 07:53:12 UTC] PHP Parse error:  syntax error, unexpected token "}" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 679
+[23-Feb-2024 09:02:09 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[23-Feb-2024 09:04:31 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 66
+[23-Feb-2024 09:53:32 UTC] PHP Parse error:  syntax error, unexpected identifier "DoGenerateJavascriptTradeArray" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 814
+[24-Feb-2024 04:58:21 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 33
+[24-Feb-2024 05:30:44 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 33
+[24-Feb-2024 05:31:50 UTC] PHP Fatal error:  Constant expression contains invalid operations in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 12
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:49:48 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nAll in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nPositive in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 31
+[24-Feb-2024 06:50:26 UTC] PHP Warning:  Undefined variable $g_nNegative in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 32
+[24-Feb-2024 09:59:16 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 10:04:18 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 10:53:58 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 12:08:00 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 113
+[24-Feb-2024 13:44:18 UTC] PHP Parse error:  syntax error, unexpected variable "$objectFeedback" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\feedback.php on line 54
+[25-Feb-2024 04:42:16 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 31
+[25-Feb-2024 04:42:55 UTC] PHP Parse error:  Unclosed '[' does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 43
+[25-Feb-2024 04:43:29 UTC] PHP Parse error:  Unclosed '[' does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 43
+[25-Feb-2024 04:43:32 UTC] PHP Parse error:  Unclosed '[' does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 43
+[25-Feb-2024 04:44:12 UTC] PHP Parse error:  syntax error, unexpected token "{" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 09:55:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetWebOrApp() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 19
+[25-Feb-2024 11:27:39 UTC] PHP Fatal error:  Cannot redeclare DoGetCostPerMonth() (previously declared in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:634) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1190
+[25-Feb-2024 11:27:39 UTC] PHP Fatal error:  Cannot redeclare DoGetCostPerMonth() (previously declared in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:634) in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1190
+[25-Feb-2024 11:37:56 UTC] PHP Parse error:  syntax error, unexpected variable "$dateRow" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 11:37:56 UTC] PHP Parse error:  syntax error, unexpected variable "$dateRow" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 44
+[25-Feb-2024 14:33:03 UTC] PHP Parse error:  syntax error, unexpected token "." in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 112
+[25-Feb-2024 14:34:23 UTC] PHP Parse error:  syntax error, unexpected token "." in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 148
+[25-Feb-2024 14:40:36 UTC] PHP Parse error:  Unclosed '{' on line 162 in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 194
+[25-Feb-2024 14:40:36 UTC] PHP Parse error:  Unclosed '{' on line 162 in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 194
+[26-Feb-2024 04:18:43 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 61
+[26-Feb-2024 04:19:38 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 61
+[26-Feb-2024 05:08:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "dateExpiry" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:60
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 05:09:33 UTC] PHP Warning:  Undefined variable $dateExpiry in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 05:09:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:60
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 60
+[26-Feb-2024 07:09:32 UTC] PHP Warning:  Undefined array key "id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:09:32 UTC] PHP Warning:  Undefined array key "space_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:16:21 UTC] PHP Warning:  Undefined array key "id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 07:16:21 UTC] PHP Warning:  Undefined array key "space_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 164
+[26-Feb-2024 09:44:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetAdvertSpaceName() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:81
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 81
+[26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47
+[26-Feb-2024 09:49:06 UTC] PHP Parse error:  syntax error, unexpected token "global" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 47
+[26-Feb-2024 10:19:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetAdvertSpaceCost() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:183
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 183
+[26-Feb-2024 13:29:20 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:29:20 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:50:28 UTC] PHP Warning:  Undefined array key "cost_per_month" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1165
+[26-Feb-2024 13:50:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoGetCostPerMonth() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:107
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 107
+[26-Feb-2024 15:26:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function format() on bool in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:105
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 105
+[26-Feb-2024 15:34:30 UTC] PHP Fatal error:  Uncaught TypeError: strtotime(): Argument #1 ($datetime) must be of type string, DateTime given in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:113
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php(113): strtotime(Object(DateTime))
+#1 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 113
+[28-Feb-2024 07:16:08 UTC] PHP Warning:  Undefined array key "HTTP_X_REQUESTED_WITH" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144
+[28-Feb-2024 07:16:38 UTC] PHP Warning:  Array to string conversion in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 144
+[28-Feb-2024 12:47:18 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:07 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:11 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:12 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:12 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:50:13 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:51:54 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:56:18 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 22
+[28-Feb-2024 12:56:56 UTC] PHP Warning:  Undefined array key "file_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\file_upload.php on line 24
+[29-Feb-2024 11:53:06 UTC] PHP Fatal error:  Uncaught Error: Attempt to assign property "space_id" on null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php:98
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 98
+[29-Feb-2024 11:53:06 UTC] PHP Warning:  Undefined array key "image_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 63
+[29-Feb-2024 11:53:06 UTC] PHP Warning:  Undefined array key "image_name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\adverts.php on line 63
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[29-Feb-2024 15:05:22 UTC] PHP Warning:  Undefined array key "name" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\login.php on line 20
+[01-Mar-2024 11:43:40 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 31
+[01-Mar-2024 11:48:42 UTC] PHP Parse error:  syntax error, unexpected variable "$_POST" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 53
+[01-Mar-2024 11:49:47 UTC] PHP Parse error:  syntax error, unexpected token ";", expecting ")" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 825
+[01-Mar-2024 11:51:00 UTC] PHP Parse error:  syntax error, unexpected variable "$bMatch" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1029
+[01-Mar-2024 11:52:09 UTC] PHP Warning:  Undefined variable $strMemberID in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 14
+[01-Mar-2024 11:52:09 UTC] PHP Warning:  Undefined variable $row in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 833
+[01-Mar-2024 11:52:09 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 833
+[01-Mar-2024 11:52:09 UTC] PHP Warning:  Undefined variable $row in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 833
+[01-Mar-2024 11:52:09 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 833
+[01-Mar-2024 11:55:46 UTC] PHP Warning:  Undefined variable $strMemberID in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 14
+[01-Mar-2024 13:18:42 UTC] PHP Warning:  Undefined array key "date_accepted" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 41
+[01-Mar-2024 13:18:42 UTC] PHP Warning:  Undefined array key "date_accepted" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 41
+[02-Mar-2024 04:10:15 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 20
+[02-Mar-2024 04:10:15 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[02-Mar-2024 04:23:57 UTC] PHP Parse error:  syntax error, unexpected identifier "member_id", expecting "," or ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 23
+[02-Mar-2024 09:30:20 UTC] PHP Warning:  Undefined array key "trade_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 92
+[02-Mar-2024 09:30:20 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[02-Mar-2024 09:36:58 UTC] PHP Warning:  Undefined array key "trade_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 92
+[02-Mar-2024 09:36:58 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 09:10:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertQuery6() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php:88
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 88
+[03-Mar-2024 09:13:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function DoInsertQuery6() in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php:88
+Stack trace:
+#0 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 88
+[03-Mar-2024 12:22:14 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:14 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:17 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:17 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:17 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:17 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:17 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:17 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:19 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:19 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:20 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:20 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:20 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:20 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:22:20 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:22:20 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:31:15 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:31:15 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:32:50 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:32:50 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:39:50 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:39:50 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:51:59 UTC] PHP Warning:  Undefined array key "account_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 106
+[03-Mar-2024 12:51:59 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 12:53:52 UTC] PHP Warning:  Undefined array key "member_id" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 105
+[03-Mar-2024 12:53:52 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 242
+[03-Mar-2024 13:35:16 UTC] PHP Parse error:  syntax error, unexpected identifier "str_replace" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 319
+[03-Mar-2024 13:38:19 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:27 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 324
+[03-Mar-2024 13:38:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:28 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:29 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:29 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:30 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:30 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:31 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:49 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:57 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:38:58 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 323
+[03-Mar-2024 13:39:15 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 324
+[03-Mar-2024 13:45:10 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function DoUpdateQuery2(), 6 passed in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 111 and exactly 8 expected in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php:463
+Stack trace:
+#0 C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php(111): DoUpdateQuery2(Object(mysqli), 'jobs', 'accepted_by_mem...', '0', 'id', '1')
+#1 {main}
+  thrown in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 463
+[04-Mar-2024 08:52:21 UTC] PHP Parse error:  syntax error, unexpected variable "$_POST" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 14
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:13 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:14 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:53:14 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:53:14 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:54:44 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 08:55:15 UTC] PHP Warning:  Undefined array key "" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 38
+[04-Mar-2024 10:33:27 UTC] PHP Parse error:  syntax error, unexpected token "&&" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 24
+[04-Mar-2024 10:40:22 UTC] PHP Parse error:  Unclosed '{' on line 22 does not match ')' in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 28
+[04-Mar-2024 10:51:19 UTC] PHP Parse error:  syntax error, unexpected token ")" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 27
+[04-Mar-2024 10:52:28 UTC] PHP Warning:  Undefined array key "maximum_budget_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 25
+[04-Mar-2024 10:52:28 UTC] PHP Warning:  Undefined array key "maximum_budget_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 25
+[04-Mar-2024 10:53:19 UTC] PHP Warning:  Undefined array key "maximum_budget_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 25
+[04-Mar-2024 10:53:19 UTC] PHP Warning:  Undefined array key "maximum_budget_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 25
+[04-Mar-2024 11:12:36 UTC] PHP Warning:  Undefined array key "suburb_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 27
+[04-Mar-2024 11:13:47 UTC] PHP Warning:  Undefined array key "suburb_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 28
+[04-Mar-2024 11:14:38 UTC] PHP Warning:  Undefined array key "suburb_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 29
+[04-Mar-2024 11:15:31 UTC] PHP Warning:  Undefined array key "suburb_on" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 29
+[04-Mar-2024 11:38:57 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 28
+[04-Mar-2024 11:42:43 UTC] PHP Parse error:  syntax error, unexpected double-quoted string "@@@", expecting "," or ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 27
+[04-Mar-2024 11:49:56 UTC] PHP Parse error:  syntax error, unexpected token "||" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 29
+[04-Mar-2024 11:51:06 UTC] PHP Parse error:  syntax error, unexpected token "||" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 29
+[04-Mar-2024 11:52:04 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 32
+[04-Mar-2024 12:20:37 UTC] PHP Parse error:  syntax error, unexpected variable "$objectTradieDetails" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 35
+[05-Mar-2024 08:15:37 UTC] PHP Warning:  Undefined array key "licenses" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_tradies.php on line 39
+[05-Mar-2024 11:33:37 UTC] PHP Warning:  Undefined variable $g_strQuery in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_member.php on line 15
+[05-Mar-2024 11:34:15 UTC] PHP Parse error:  syntax error, unexpected identifier "g_strQuery", expecting variable or "$" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_member.php on line 13
+[06-Mar-2024 07:44:30 UTC] PHP Warning:  Undefined variable $results in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\member_details.php on line 48
+[06-Mar-2024 11:03:45 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 44
+[06-Mar-2024 11:03:45 UTC] PHP Deprecated:  hex2bin(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 44
+[06-Mar-2024 11:03:45 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 45
+[06-Mar-2024 11:03:45 UTC] PHP Deprecated:  hex2bin(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 45
+[06-Mar-2024 11:03:45 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 46
+[06-Mar-2024 11:03:45 UTC] PHP Deprecated:  base64_decode(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 46
+[06-Mar-2024 11:04:32 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 44
+[06-Mar-2024 11:04:32 UTC] PHP Deprecated:  hex2bin(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 44
+[06-Mar-2024 11:04:32 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 45
+[06-Mar-2024 11:04:32 UTC] PHP Deprecated:  hex2bin(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 45
+[06-Mar-2024 11:04:32 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 46
+[06-Mar-2024 11:04:32 UTC] PHP Deprecated:  base64_decode(): Passing null to parameter #1 ($string) of type string is deprecated in C:\inetpub\wwwroot\www.find-a-tradie.com.au\CryptoJSAES.php on line 46
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1062
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1064
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1066
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1068
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1070
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1072
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1062
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1064
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1066
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1068
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1070
+[06-Mar-2024 12:58:12 UTC] PHP Warning:  Undefined variable $strTradieMaxSize in C:\inetpub\wwwroot\www.find-a-tradie.com.au\common.php on line 1072
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:00:09 UTC] PHP Warning:  Undefined array key "show_urgent_jobs_only" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 34
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:11:32 UTC] PHP Warning:  Undefined array key "hide_accepted_jobs" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 36
+[07-Mar-2024 12:15:04 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\inetpub\wwwroot\www.find-a-tradie.com.au\app\view_jobs.php on line 90
