@@ -78,7 +78,6 @@ body
 	padding: 10px;
 	border: 2px solid var(--start_color);
 	background-color: white;
-	overflow: auto;
 }
 .page_heading
 {
