@@ -36,7 +36,7 @@
 		<!-- Begin Navigation -->
 		<div class="navigation">
 			<ul>
-				<li><a href="home.html">Home</a></li>
+				<li><a href="index.html">Home</a></li>
 				<li><a href="about/about.html">About</a></li>
 				<li><a href="news/news.html">News</a></li>
 				<li><a href="Calendar/Calendar.html">Timetable</a></li>
@@ -61,7 +61,7 @@
 	</div>
 	<!-- Begin Footer -->
 	<div class="footer">
-		<p><a href="home.html">Home</a> | <a href="about/about.html">About</a> 
+		<p><a href="index.html">Home</a> | <a href="about/about.html">About</a> 
 		| <a href="news/news.html">News</a> | 
 		<a href="Calendar/Calendar.html">
 		Calendar</a> | <a href="photos/photos.html">Photo Gallery</a> |
