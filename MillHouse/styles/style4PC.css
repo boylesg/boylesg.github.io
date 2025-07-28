@@ -158,6 +158,10 @@ body
 {
 	color: var(--start_color);
 }
+.content p
+{
+	font-size: medium;
+}
 .content img 
 {
 	padding: 5px;
