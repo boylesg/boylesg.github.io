@@ -155,7 +155,7 @@ body
 /* Content Styles */
 .content h1,h2,h3,h4,h5,h6 
 {
-	color: #3d6c87;
+	color: var(--start_color);
 }
 .content img 
 {
