@@ -23,11 +23,14 @@ body
 	height: 120px;
 	background-image: linear-gradient(var(--start_color), var(--end_color));
 }
-.permanent-marker-regular 
+
+.gluten
 {
-  font-family: "Permanent Marker", cursive;
-  font-weight: 400;
+  font-family: "Gluten", cursive;
+  font-optical-sizing: auto;
+  /*font-weight: 100 - 900;*/
   font-style: normal;
+  font-variation-settings: "slnt" 0;
 }
 .masthead_text
 {
@@ -41,12 +44,12 @@ body
 .masthead h1 
 {
 	color: white;
-	font-size: 100px;
+	font-weight: 500;
 }
 .masthead h3 
 {
 	color: white;
-	font-size: medium;
+	font-weight: 200;
 }
 .masthead_image
 {
