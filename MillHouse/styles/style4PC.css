@@ -145,6 +145,8 @@ body
 	padding: 5px;
 	border: 1px solid #fff;
 	background-color: #fff;
+	font-size: medium;
+	font-weight: bold;
 }
 .navigation a:hover 
 {
