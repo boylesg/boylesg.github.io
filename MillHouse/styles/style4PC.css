@@ -28,9 +28,23 @@ body
 {
   font-family: "Gluten", cursive;
   font-optical-sizing: auto;
-  /*font-weight: 100 - 900;*/
+  font-weight: 400;/*100 - 900;*/
   font-style: normal;
   font-variation-settings: "slnt" 0;
+}
+.playwrite-gb-s 
+{
+  font-family: "Playwrite GB S", cursive;
+  font-optical-sizing: auto;
+  font-weight: 200;/*100 - 400*/
+  font-style: normal;
+}
+.playwrite-gb-j
+{
+  font-family: "Playwrite GB J", cursive;
+  font-optical-sizing: auto;
+  font-weight: 200;/*100 - 400*/;
+  font-style: normal;
 }
 .masthead_text
 {
