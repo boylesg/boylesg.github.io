@@ -55,7 +55,7 @@
 				<!-- End Navigation -->
 				<!-- Begin Content -->
 				<div class="content">
-					<h1 class="page_heading"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
+					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
 					<!-- #BeginEditable "content" -->
 					<p>insert content here</p>
 					<!-- #EndEditable "content" --></div>
