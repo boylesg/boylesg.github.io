@@ -36,22 +36,13 @@ body
 {
 	color: white;
 	font-size: xx-large;
-	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	font-family: "Permanent Marker", cursive;
 }
 .masthead h3 
 {
 	color: white;
 	font-size: medium;
-	font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-.mill_house_heading_image
-{
-	border-style: double;
-	border-color: white;
-	border-width: medium;
-	border-radius: 5px;
-	padding: 5px;
-	height: 60px;
+	font-family: "Permanent Marker", cursive;
 }
 .masthead_image
 {
