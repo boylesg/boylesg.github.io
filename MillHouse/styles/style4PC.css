@@ -200,7 +200,7 @@ body
 /* Footer Styles */
 .footer p 
 {
-	color: #808080;
+	color: var(--end_color);
 	margin-top: 5px;
 }
 .footer a 
