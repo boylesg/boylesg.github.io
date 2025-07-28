@@ -23,6 +23,12 @@ body
 	height: 120px;
 	background-image: linear-gradient(var(--start_color), var(--end_color));
 }
+.permanent-marker-regular 
+{
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 .masthead_text
 {
 	display: inline-block;
@@ -36,13 +42,11 @@ body
 {
 	color: white;
 	font-size: xx-large;
-	font-family: "Permanent Marker", cursive;
 }
 .masthead h3 
 {
 	color: white;
 	font-size: medium;
-	font-family: "Permanent Marker", cursive;
 }
 .masthead_image
 {
