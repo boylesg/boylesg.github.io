@@ -97,6 +97,7 @@ body
 .page_heading
 {
 	color: var(--start_color);
+	font-size: xx-large;
 }
 .adverts_table
 {
