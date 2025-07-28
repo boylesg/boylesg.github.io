@@ -44,6 +44,14 @@ body
 	font-size: medium;
 	font-family:"Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
+.mill_house_heading_image
+{
+	border-style: double;
+	border-color: white;
+	border-width: medium;
+	border-radius: 5px;
+	padding: 5px;
+}
 .masthead_image
 {
 	display: inline-block;
