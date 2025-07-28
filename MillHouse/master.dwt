@@ -26,7 +26,7 @@
 			<img class="mill_house_heading_image "src="images/MillHouseHeading.png" alt="Mill House Heading" height="200"/>
 		</div>
 		<div class="masthead_image" style="float:right;">
-			<img src="images/OldKnittingMillAerial.jpg" alt="" height="110"/>
+			<img src="images/OldKnittingMillAerial.jpg" alt="" />
 		</div>
 		<div class="masthead_image" style="float:right;">
 			<img src="images/OldKnittingMill.jpg" alt="" height="110"/>
