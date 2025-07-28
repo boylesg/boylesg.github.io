@@ -36,11 +36,13 @@ body
 {
 	color: white;
 	font-size: xx-large;
+	font-family:PoetsenOne;
 }
 .masthead h3 
 {
 	color: white;
 	font-size: medium;
+	font-family:PoetsenOne;
 }
 .masthead_image
 {
