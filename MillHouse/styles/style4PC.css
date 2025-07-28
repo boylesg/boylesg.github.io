@@ -45,13 +45,17 @@ body
 {
 	color: white;
 	font-weight: 500;
-	font-size: xx-large
+	font-size: 100px;
+	margin-top: 5px;
+	margin-bottom: 0px;
 }
 .masthead h3 
 {
 	color: white;
 	font-weight: 500;
-	font-size: medium
+	font-size: xx-large;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 .masthead_image
 {
