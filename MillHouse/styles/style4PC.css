@@ -10,6 +10,7 @@ body
 	font-size: 0.8em;
 	background-attachment: scroll;
 	background-color: var(--end_color);
+	width: 1400px;
 }
 .container 
 {
@@ -79,7 +80,9 @@ body
 	border-color: white;
 	border-radius: 10px;
 	overflow: hidden;
-	margin: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-right: 10px;
 }
 .below_masthead
 {
