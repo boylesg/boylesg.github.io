@@ -32,7 +32,7 @@ body
   font-style: normal;
   font-variation-settings: "slnt" 0;
 }
-.playwrite-gb-s 
+.playwrite-gb-s
 {
   font-family: "Playwrite GB S", cursive;
   font-optical-sizing: auto;
@@ -46,14 +46,6 @@ body
   font-weight: 100;/*100 - 400*/;
   font-style: normal;
 }
-.playwrite-gb-j-heavy
-{
-  font-family: "Playwrite GB J", cursive;
-  font-optical-sizing: auto;
-  font-weight: 400;/*100 - 400*/;
-  font-style: normal;
-}
-
 .masthead_text
 {
 	display: inline-block;
@@ -167,6 +159,7 @@ body
 	padding: 5px;
 	border: 1px solid #fff;
 	background-color: #fff;
+	
 	font-family: "Gluten", cursive;
   	font-optical-sizing: auto;
   	font-weight: 400;/*100 - 900;*/
@@ -197,22 +190,36 @@ body
 {
 	font-family: "Playwrite GB J", cursive;
 	font-optical-sizing: auto;
-	font-weight: 200;/*100 - 400*/;
+	font-weight: 300;/*100 - 900*/;
 	font-style: normal;
-	font-weight:bold;
 	font-size: medium;
 }
-.content img 
+.content b
 {
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 600;/*100 - 900*/;
+	font-style: normal;
+	font-size: medium;
 }
 /* Footer Styles */
 .footer p 
 {
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 300;/*100 - 400*/;
+	font-style: normal;
+	font-size: medium;
 	color: var(--end_color);
 	margin-top: 5px;
 }
 .footer a 
 {
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 300;/*100 - 400*/;
+	font-style: normal;
+	font-size: medium;
 	color: var(--end_color);
 	text-decoration: underline;
 }
@@ -223,6 +230,12 @@ body
 }
 a 
 {
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 300;/*100 - 400*/;
+	font-style: normal;
+	font-size: medium;
+
 	color: #5f8ea9;
 	text-decoration: underline;
 }
