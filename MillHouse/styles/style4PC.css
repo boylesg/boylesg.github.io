@@ -27,25 +27,25 @@ body
 
 .gluten
 {
-  font-family: "Gluten", cursive;
-  font-optical-sizing: auto;
-  font-weight: 400;/*100 - 900;*/
-  font-style: normal;
-  font-variation-settings: "slnt" 0;
+	font-family: "Gluten", cursive;
+	font-optical-sizing: auto;
+	font-weight: 400;/*100 - 900;*/
+	font-style: normal;
+	font-variation-settings: "slnt" 0;
 }
 .playwrite-gb-s
 {
-  font-family: "Playwrite GB S", cursive;
-  font-optical-sizing: auto;
-  font-weight: 100;/*100 - 400*/
-  font-style: normal;
+	font-family: "Playwrite GB S", cursive;
+	font-optical-sizing: auto;
+	font-weight: 100;/*100 - 400*/
+	font-style: normal;
 }
 .playwrite-gb-j
 {
-  font-family: "Playwrite GB J", cursive;
-  font-optical-sizing: auto;
-  font-weight: 100;/*100 - 400*/;
-  font-style: normal;
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 100;/*100 - 400*/;
+	font-style: normal;
 }
 .masthead_text
 {
@@ -218,10 +218,11 @@ body
 }
 .footer a 
 {
-	font-family: "Playwrite GB J", cursive;
+	font-family: "Gluten", cursive;
 	font-optical-sizing: auto;
-	font-weight: 300;/*100 - 400*/;
+	font-weight: 600;/*100 - 900;*/
 	font-style: normal;
+	font-variation-settings: "slnt" 0;
 	font-size: medium;
 	color: var(--end_color);
 	text-decoration: underline;
