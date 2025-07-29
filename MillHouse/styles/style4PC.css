@@ -46,6 +46,14 @@ body
   font-weight: 100;/*100 - 400*/;
   font-style: normal;
 }
+.playwrite-gb-j-heavy
+{
+  font-family: "Playwrite GB J", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;/*100 - 400*/;
+  font-style: normal;
+}
+
 .masthead_text
 {
 	display: inline-block;
