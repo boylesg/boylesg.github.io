@@ -74,45 +74,6 @@
 							color: var(--start_color);
 							font-size:large;
 						}
-						.input_text
-						{
-							width: 300px;
-							border-style: inset;
-							border-width: thin;
-							border-radius: 5px;
-							}
-						.input_button
-						{
-							border-radius: 5px;
-							border-width: thin;
-							background-color: #999999;
-							text-align: center;
-							width: 80px;
-							color: black;
-							font-weight: bold;
-						}
-						.input_textarea
-						{
-							border-style: inset;
-							resize: none;
-							border-radius: 5px;
-						}
-						.form
-						{
-							background-color: silver;
-							border-style: outset;
-							border-width: thin;
-							width: 385px;
-							padding: 20px;
-							font-family: Arial, Helvetica, sans-serif;
-							border-radius: 5px;
-						}
-						.table_cell
-						{
-							font-weight: bold;
-							font-family: Arial, Helvetica, sans-serif;
-							text-align:right;
-						}
 					</style>
 					<p><b class="bold_font">Manager:</b> Michelle Baker</p>
 					<p><b class="bold_font">Located:</b> 88-90 Burke St, Maryborough, VIC, 3465</p>
@@ -125,27 +86,27 @@
 					<form class="form" action="_self" method="post">
 						<table cellpadding="0" cellspacing="5" border="0">
 							<tr>
-								<td style="text-align:center;" class="table_cell" colspan="2">Send an Email</td>
+								<td style="text-align:center;" colspan="2"><label><u>Send an Email</u></label><br/><br/></td>
 							</tr>
 							<tr>
-								<td class="table_cell">Name: </td>
-								<td><input class="input_text" name="name" id="name" type="text"/></td>
+								<td><label for="name">Name: </label></td>
+								<td><input name="name" id="name" type="text"/></td>
 							</tr>
 							<tr>
-								<td class="table_cell">Phone: </td>
-								<td><input class="input_text" name="phone" id="phone" type="text" /></td>
+								<td><label for="phone">Phone: </label></td>
+								<td><input name="phone" id="phone" type="text" /></td>
 							</tr>
 							<tr>
-								<td class="table_cell">Email: </td>
-								<td><input class="input_text" name="email" id="email" type="text" /></td>
+								<td><label for="email">Email: </label></td>
+								<td><input name="email" id="email" type="text" /></td>
 							</tr>
 							<tr>
-								<td class="table_cell">Message: </td>
-								<td><textarea class="input_textarea" rows="10" cols="39"></textarea></td>
+								<td><label for="message">Message: </label></td>
+								<td><textarea rows="10" cols="39" name="message" id="message"></textarea></td>
 							</tr>
 							<tr>
-								<td class="table_cell" colspan="2">
-									<input class="input_button" name="send" id="send" value="SEND"/>
+								<td colspan="2" style="text-align:right;">
+									<input type="button" name="send" id="send" value="SEND"/>
 								</td>
 							</tr>
 						</table>
