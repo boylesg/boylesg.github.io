@@ -67,9 +67,6 @@
 					<!-- #BeginEditable "content" -->
 					<style>
 
-
-
-
 						.google_map
 						{
 							display:inline-block;
@@ -123,8 +120,21 @@
 
 						if (!empty($_POST))
 						{
-							$bResults = mail($_SESSION["email"], "Query from ".$_POST["name"], $_POST["message"].
-											"\n\nPhone: ".$_POST["phone"], "From: ".$_POST["name"]."<".$_POST["email"].">");		 			 
+							$bResult = mail($_SESSION["email"], "Query from ".$_POST["name"], $_POST["message"].
+											"\n\nPhone: ".$_POST["phone"], "From: ".$_POST["name"]."<".$_POST["email"].">");	
+							
+							if ($bResult == FALSE)
+							{
+ 								$ErrorInfo = error_get_last();
+    							if ($ErrorInfo)
+    							{
+        							echo "<script type=\"text/javascript\">alert(\"An error occurred while sending your (" . $ErrorInfo["message"] . ").\");</script>
+        						}
+   							}
+							else
+							{
+								echo "<script type=\"text/javascript\">alert(\"Your email was sent.\");</script>
+;	 			 			}
 						}
 
 					?>
