@@ -1,15 +1,15 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|LATITUDE-E5430\\gregaryb
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
-vti_timelastmodified:TR|30 Jul 2025 08:51:41 -0000
+vti_timelastmodified:TR|30 Jul 2025 08:56:01 -0000
 vti_timecreated:TR|26 Jul 2025 05:25:40 -0000
 vti_title:SR|Home
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|photos/photos.php index.php master.dwt contact/Contact.php information/information.php Calendar/Calendar.php site_history/site_history.php coder_dojo/CoderDojo.php
-vti_nexttolasttimemodified:TR|30 Jul 2025 08:51:16 -0000
+vti_nexttolasttimemodified:TW|30 Jul 2025 08:51:41 -0000
 vti_structuredtm:TR|30 Jul 2025 08:51:40 -0000
-vti_cacheddtm:TX|30 Jul 2025 08:51:41 -0000
-vti_filesize:IR|5521
+vti_cacheddtm:TX|30 Jul 2025 08:56:01 -0000
+vti_filesize:IR|5518
 vti_cachedtitle:SR|Home
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style4PC.css H|https://fonts.googleapis.com H|https://fonts.gstatic.com Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 S|images/MillHouse.jpg S|images/OldKnittingMill.jpg S|images/KnittingMill1961.jpg H|index.php H|site_history/site_history.php H|Calendar/Calendar.php H|photos/photos.php H|information/information.php H|coder_dojo/CoderDojo.php H|contact/Contact.php S|images/loans.jpg S|images/RoomHire.jpg S|images/ParentPathways.jpg S|images/VicStateGov.jpg S|images/BendigoBank.jpg S|images/FRRR.jpg H|index.php H|site_history/site_history.php H|Calendar/Calendar.php H|photos/photos.php H|information/information.php H|coder_dojo/CoderDojo.php H|contact/Contact.php
