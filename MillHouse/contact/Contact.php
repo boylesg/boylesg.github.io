@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
 <!-- #BeginTemplate "../master.dwt" -->
@@ -43,13 +43,13 @@
 				<!-- Begin Navigation -->
 				<div class="navigation">
 					<ul>
-						<li><a href="../index.html">Home</a></li>
-						<li><a href="../site_history/site_history.html">Site History</a></li>
-						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
-						<li><a href="../photos/photos.html">Photos</a></li>
-						<li><a href="../information/information.html">Information</a></li>
-						<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
-						<li><a href="Contact.html">Contact</a></li>
+						<li><a href="../index.php">Home</a></li>
+						<li><a href="../site_history/site_history.php">Site History</a></li>
+						<li><a href="../Calendar/Calendar.php">Calendar</a></li>
+						<li><a href="../photos/photos.php">Photos</a></li>
+						<li><a href="../information/information.php">Information</a></li>
+						<li><a href="../coder_dojo/CoderDojo.php">CoderDojo</a></li>
+						<li><a href="Contact.php">Contact</a></li>
 					</ul>
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
@@ -111,6 +111,15 @@
 							</tr>
 						</table>
 					</form>
+					<?php
+
+						if (!empty($_POST))
+						{
+							$bResults = mail($_SESSION["email"], "Query from ".$_POST["name"], $_POST["message"].
+											"\n\nPhone: ".$_POST["phone"], "From: ".$_POST["name"]."<".$_POST["email"].">");		 			 
+						}
+
+					?>
 					<p><b class="bold_font">Facebook:</b> <a href="https://www.facebook.com/groups/250881336853460">Click here<br/><img src="images/FacebookGroup.jpg" alt="Click me" width="600" /></a></p>
 					<!-- #EndEditable "content" --></div>
 				<!-- End Content -->
@@ -118,13 +127,13 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<p>
-					<a href="../index.html">Home</a> | 
-					<a href="../site_history/site_history.html">Site History</a> | 
-					<a href="../Calendar/Calendar.html">Calendar</a> | 
-					<a href="../photos/photos.html">Photos</a> |
-					<a href="../information/information.html">Information</a> |
-					<a href="../coder_dojo/CoderDojo.html">CoderDojo</a> | 
-					<a href="Contact.html">Contact</a>
+					<a href="../index.php">Home</a> | 
+					<a href="../site_history/site_history.php">Site History</a> | 
+					<a href="../Calendar/Calendar.php">Calendar</a> | 
+					<a href="../photos/photos.php">Photos</a> |
+					<a href="../information/information.php">Information</a> |
+					<a href="../coder_dojo/CoderDojo.php">CoderDojo</a> | 
+					<a href="Contact.php">Contact</a>
 				</p>
 			</div>
 			<!-- End Footer --></div>
