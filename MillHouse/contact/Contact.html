@@ -6,7 +6,8 @@
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
-<title>Contact</title>
+		<title>Contact</title>
+		
 		<!-- #EndEditable -->
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -73,6 +74,45 @@
 							color: var(--start_color);
 							font-size:large;
 						}
+						.input_text
+						{
+							width: 300px;
+							border-style: inset;
+							border-width: thin;
+							border-radius: 5px;
+							}
+						.input_button
+						{
+							border-radius: 5px;
+							border-width: thin;
+							background-color: #999999;
+							text-align: center;
+							width: 80px;
+							color: black;
+							font-weight: bold;
+						}
+						.input_textarea
+						{
+							border-style: inset;
+							resize: none;
+							border-radius: 5px;
+						}
+						.form
+						{
+							background-color: silver;
+							border-style: outset;
+							border-width: thin;
+							width: 385px;
+							padding: 20px;
+							font-family: Arial, Helvetica, sans-serif;
+							border-radius: 5px;
+						}
+						.table_cell
+						{
+							font-weight: bold;
+							font-family: Arial, Helvetica, sans-serif;
+							text-align:right;
+						}
 					</style>
 					<p><b class="bold_font">Manager:</b> Michelle Baker</p>
 					<p><b class="bold_font">Located:</b> 88-90 Burke St, Maryborough, VIC, 3465</p>
@@ -81,7 +121,35 @@
 					<iframe class="google_map" src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sau!4v1753712852384!5m2!1sen!2sau!6m8!1m7!1s_mjNs34tYidqQSOy8Ssrsw!2m2!1d-37.04881190016663!2d143.7404980017168!3f157.31082!4f0!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 					<p><b class="bold_font">Open:</b> 9 am to 4 pm, Tuesday to Friday - Saturday to Monday for booked activities</p>
 					<p><b class="bold_font">Phone:</b> 03 5461 3185</p>
-					<p><b class="bold_font">Email:</b> manager AT millhouse.org.au</p>
+					<p><b class="bold_font">Email:</b> manager&amp;millhouse&#46;org&#46;au</p>
+					<form class="form" action="_self" method="post">
+						<table cellpadding="0" cellspacing="5" border="0">
+							<tr>
+								<td style="text-align:center;" class="table_cell" colspan="2">Send an Email</td>
+							</tr>
+							<tr>
+								<td class="table_cell">Name: </td>
+								<td><input class="input_text" name="name" id="name" type="text"/></td>
+							</tr>
+							<tr>
+								<td class="table_cell">Phone: </td>
+								<td><input class="input_text" name="phone" id="phone" type="text" /></td>
+							</tr>
+							<tr>
+								<td class="table_cell">Email: </td>
+								<td><input class="input_text" name="email" id="email" type="text" /></td>
+							</tr>
+							<tr>
+								<td class="table_cell">Message: </td>
+								<td><textarea class="input_textarea" rows="10" cols="39"></textarea></td>
+							</tr>
+							<tr>
+								<td class="table_cell" colspan="2">
+									<input class="input_button" name="send" id="send" value="SEND"/>
+								</td>
+							</tr>
+						</table>
+					</form>
 					<p><b class="bold_font">Facebook:</b> <a href="https://www.facebook.com/groups/250881336853460">Click here<br/><img src="images/FacebookGroup.jpg" alt="Click me" width="600" /></a></p>
 					<!-- #EndEditable "content" --></div>
 				<!-- End Content -->
