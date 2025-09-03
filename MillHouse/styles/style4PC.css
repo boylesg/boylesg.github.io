@@ -127,6 +127,16 @@ body
 {
 	width: 120px;
 }
+.contents_item
+{
+	background-color: var(--end_color);
+	border-radius: 10px;
+	
+}
+.contents_item a
+{
+	color: var(--start_color);
+}
 .footer 
 {
 	text-align: center;
