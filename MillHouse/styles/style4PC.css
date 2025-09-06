@@ -230,6 +230,14 @@ body
 	font-style: normal;
 	font-size: medium;
 }
+.content li
+{
+	font-family: "Playwrite GB J", cursive;
+	font-optical-sizing: auto;
+	font-weight: 300;/*100 - 900*/;
+	font-style: normal;
+	font-size: medium;
+}
 /* Footer Styles */
 .footer p 
 {

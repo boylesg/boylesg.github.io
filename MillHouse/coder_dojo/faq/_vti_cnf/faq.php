@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|LATITUDE-E5430\\gregaryb
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
-vti_timelastmodified:TR|06 Sep 2025 09:22:00 -0000
+vti_timelastmodified:TR|06 Sep 2025 12:02:45 -0000
 vti_timecreated:TR|06 Sep 2025 08:13:01 -0000
 vti_title:SR|Coder Dojo - FAQ
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|
-vti_nexttolasttimemodified:TW|06 Sep 2025 09:21:20 -0000
-vti_cacheddtm:TX|06 Sep 2025 09:22:00 -0000
-vti_filesize:IR|4876
+vti_nexttolasttimemodified:TW|06 Sep 2025 12:00:00 -0000
+vti_cacheddtm:TX|06 Sep 2025 12:02:45 -0000
+vti_filesize:IR|4879
 vti_cachedtitle:SR|Coder Dojo - FAQ
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|../coderdojo_master.dwt Q|../../styles/style4PC.css H|https://fonts.googleapis.com H|https://fonts.gstatic.com Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 S|../../images/MillHouse.jpg S|../../images/OldKnittingMill.jpg S|../../images/KnittingMill1961.jpg H|../../index.html H|../../site_history/site_history.html H|../../Calendar/Calendar.html H|../../photos/photos.html H|../../information/information.html H|../CoderDojo.html H|../../contact/Contact.html H|../information/information.html H|faq.html H|../rules/rules.html H|../information/information.html H|../../index.html H|../../site_history/site_history.html H|../../Calendar/Calendar.html H|../../photos/photos.html H|../../information/information.html H|../CoderDojo.html H|../../contact/Contact.html

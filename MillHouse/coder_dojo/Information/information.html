@@ -16,7 +16,6 @@
 		
 		<style>
 
-
 			.contents_cell			
 			{
 				background-color: var(--end_color);
@@ -25,9 +24,26 @@
 				width: 100px;
 			}	
 
+
 			.contents_cell a
 			{
 				color: var(--start_color);
+			}
+			
+			.table_cell
+			{
+				vertical-align: top;
+			}
+			
+			.table_cell a
+			{
+				text-decoration-color: var(--start_color);
+			}
+			
+			.table_cell a:hover h3
+			{
+				text-decoration-color: #33627d;
+				color: #33627d;
 			}
 			
 			.link_image
@@ -35,11 +51,6 @@
 				width: 500px;
 			}
 			
-			.table_cell
-			{
-				vertical-align: top;
-			}
-
 		</style>
 			
 		<!-- # EndEditable -->
@@ -124,19 +135,29 @@
 					
 					
 					
-					<table cellpadding="0" cellspacing="30" border="0">
+					<table cellpadding="0" cellspacing="30" border="1">
 						<tr>
 							<td class="table_cell">
 								<a href="https://learning.kidzcancode.com/courses/all">
 									<h3>KidzCanCode Tutorials</h3>
 									<img alt="" class="link_image" src="images/KidzCanCode.jpg" />
 								</a>
+								<p>Contains courses in a range of coding platforms and languages. Each course 
+								consists of a series of tutorials of increasing difficulty.</p>
 							</td>
 							<td class="table_cell">
+		
 								<a href="https://www.tinkercad.com/">
 									<h3>Tinkercad</h3>
 									<img alt="" class="link_image" src="images/Tinkercad.jpg" />
 								</a>
+								<p>Allows you to do either:</p>
+								<ul>
+									<li>3D design for 3D printers.</li>
+									<li>Design electronic circuits with a range of microcontrollers, relays, LEDs, 
+									DC engines and sensors etc. You can program the virtual micrcontrollers with code 
+									blocks or C/C++.</li>
+								</ul>
 							</td>
 						</tr>
 						<tr>
@@ -147,12 +168,16 @@
 									<br/><br/>
 									<img alt="" class="link_image" src="images/MITAppInventor2.jpg" />
 								</a>
+								<p>This allows you to code Android or IOS apps, with code blocks, simply and 
+								quickly. Quite sophisticated apps are possible.</p>
 							</td>
 							<td class="table_cell">
 								<a href="https://www.arduino.cc/en/software/">
 									<h3>Arduino IDE</h3>
 									<img alt="" class="link_image" src="images/Arduino.jpg" />
 								</a>
+								<p>This allows you to code Arduino microcontrollers in C/C++.</p>
+								<img src="images/ArduinoMicrocontrollers.png" alt="" class="link_image" />
 							</td>
 						</tr>
 						<tr>
@@ -161,6 +186,8 @@
 									<h3>Thonny</h3>
 									<img alt="" class="link_image" src="images/Thonny.jpg" />
 								</a>
+								<p>This allows yo to code Raspberry Pi Pico microcontrollers in Python.</p>
+								<img src="images/RaspberryPiPico.jpg" alt="" class="link_image" />
 							</td>
 							<td class="table_cell">
 								<a href="https://www.majorgeeks.com/mg/getmirror/microsoft_expression_web,1.html#google_vignette">
@@ -227,12 +254,24 @@
 									<h3>MS Visual Studio Community</h3>
 									<img alt="" class="link_image" src="images/MSVisualStudio.png" />
 								</a>
+								<p>This allows you to code a wide range of Windows, Apple and Android apps in Visual C++,
+								Visual Basic, Python and Java etc.</p>
+								<img src="images/WindowsApp.jpg" alt="" class="link_image" />
+								<p>Here is one tutorial for beginners on how to create 
+								your first Visual C++ MFC app. MFC is an acronym for <b>M</b>icrofoft <b>F</b>oundation 
+								<b>C</b>lasses. <a href="https://www.youtube.com/watch?v=SY6jvhuk9eA">Visual C++ MFC Basics 2 Project File Structure and VS Environment | VC++ Lesson</a></p>
 							</td>
 							<td class="table_cell">
 								<a href="https://unity.com/download">
 									<h3>Unity</h3>
 									<img alt="" class="link_image" src="images/Unity.png" />
 								</a>
+								<p>This allows you to code really sophisticated games that can run on Windows, IOS and 
+								Android.</p>
+								<img src="images/UnityGame.jpg" alt="" class="link_image" />
+								<p>Unity provides two excellent video tutorials to get you started with the software. 
+								Here is one for beginners <a href="https://www.youtube.com/watch?v=zlnJP0vloDg">
+								Roll a Ball<br/><img src="images/RollABall.jpg" alt="" /></a></p>
 							</td>
 						</tr>
 					</table>

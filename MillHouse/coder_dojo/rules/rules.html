@@ -29,7 +29,7 @@
 			{
 				color: var(--start_color);
 			}
-
+			
 		</style>
 			
 		<!-- # EndEditable -->
