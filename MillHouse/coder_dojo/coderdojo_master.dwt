@@ -10,6 +10,27 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title></title>
 		<!-- #EndEditable -->
+		<!-- #BeginEditable CustomStyles -->
+		
+		<style>
+
+			.contents_cell			
+			{
+				background-color: var(--end_color);
+				border-radius: 10px;
+				vertical-align: middle;
+				width: 100px;
+			}	
+
+
+			.contents_cell a
+			{
+				color: var(--start_color);
+			}
+
+		</style>
+			
+		<!-- # EndEditable -->
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,9 +85,18 @@
 					
 					<!-- Begin Navigation -->
 					<h1>Contents</h1>
-					<table cellpadding="10" cellspacing="10" border="0">
+					<table cellpadding="5" cellspacing="10" border="0">
 						<tr>
-							<td class="contents_item">
+							<td class="contents_cell">
+								<a href="information/information.html"><b>Information</b></a>
+							</td>
+							<td class="contents_cell">
+								<a href="faq/faq.html"><b>FAQ</b></a>
+							</td>
+							<td class="contents_cell">
+								<a href="rules/rules.html"><b>Rules</b></a>
+							</td>
+							<td class="contents_cell">
 								<a href="information/information.html"><b>Information</b></a>
 							</td>
 						</tr>
