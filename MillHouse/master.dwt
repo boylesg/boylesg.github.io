@@ -10,6 +10,13 @@
 		<!-- #BeginEditable "doctitle" -->
 		<title></title>
 		<!-- #EndEditable -->
+		<!-- #BeginEditable CustomStyles -->
+		
+		<style>
+
+		</style>
+			
+		<!-- # EndEditable -->
 		<link href="styles/style4PC.css" rel="stylesheet" type="text/css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,6 +56,7 @@
 						<li><a href="Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="photos/photos.html">Photos</a></li>
 						<li><a href="information/information.html">Information</a></li>
+						<li><a href="events/events.html">Events</a></li>
 						<li><a href="coder_dojo/CoderDojo.html">CoderDojo</a></li>
 						<li><a href="contact/Contact.html">Contact</a></li>
 					</ul>
@@ -74,6 +82,7 @@
 					<a href="Calendar/Calendar.html">Calendar</a> | 
 					<a href="photos/photos.html">Photos</a> |
 					<a href="information/information.html">Information</a> |
+					<a href="events/events.html">Events</a> |
 					<a href="coder_dojo/CoderDojo.html">CoderDojo</a> | 
 					<a href="contact/Contact.html">Contact</a>
 				</div>

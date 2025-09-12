@@ -30,7 +30,6 @@
 				width: 100px;
 			}	
 
-
 			.contents_cell a
 			{
 				color: var(--start_color);
@@ -104,6 +103,7 @@
 						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="../photos/photos.html">Photos</a></li>
 						<li><a href="../information/information.html">Information</a></li>
+						<li><a href="events/events.html">Events</a></li>
 						<li>
 							<a href="CoderDojo.html">CoderDojo</a>
 							<ul>
@@ -158,6 +158,7 @@
 					<a href="../Calendar/Calendar.html">Calendar</a> | 
 					<a href="../photos/photos.html">Photos</a> |
 					<a href="../information/information.html">Information</a> |
+					<a href="events/events.html">Events</a> |
 					<a href="CoderDojo.html">CoderDojo</a> | 
 					<a href="../contact/Contact.html">Contact</a>
 				</div>

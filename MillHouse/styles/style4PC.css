@@ -214,6 +214,30 @@ body
   	font-variation-settings: "slnt" 0;
 	color: var(--start_color);
 }
+.content h1
+{
+	font-size: xx-large;
+}
+.content h2
+{
+	font-size: x-large;
+}
+.content h3
+{
+	font-size: large;
+}
+.content h4
+{
+	font-size: medium;
+}
+.content h5
+{
+	font-size: x-small;
+}
+.content h6
+{
+	font-size: xx-small;
+}
 .content p
 {
 	font-family: "Playwrite GB J", cursive;
@@ -280,6 +304,20 @@ a:hover
 {
 	color: #33627d;
 	text-decoration: underline;
+}
+.PageContentsItem
+{
+	font-family: "Gluten", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 600;/*100 - 900;*/
+  	font-style: normal;
+  	font-variation-settings: "slnt" 0;
+	color: var(--start_color);
+	font-size: small;
+}
+.PageContentsItem:hover
+{
+	cursor: pointer;
 }
 input[type=text]
 {
