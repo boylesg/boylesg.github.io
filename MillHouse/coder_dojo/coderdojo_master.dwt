@@ -59,13 +59,13 @@
 				width: 500px;
 			}
 						
-		.submenu_item a
-		{
-			font-size: small;
-			font-weight: normal;
-			padding-left: 15px;
-			color: var(--start_color);
-		}
+			.submenu_item a
+			{
+				font-size: small;
+				font-weight: normal;
+				padding-left: 15px;
+				color: var(--start_color);
+			}
 			
 		</style>
 			

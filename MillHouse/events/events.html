@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
-<!-- #BeginTemplate "../master.dwt" -->
+<!-- #BeginTemplate "events_master.dwt" -->
 
 <?php
 	session_start();
@@ -12,32 +11,21 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
 		<title>Events</title>
-		<style>
-
-		#Contents a
-{
-	font-family: "Gluten", cursive;
-  	font-optical-sizing: auto;
-  	font-weight: 600;/*100 - 900;*/
-  	font-style: normal;
-  	font-variation-settings: "slnt" 0;
-	color: var(--start_color);
-}
-
-		</style>
 		<!-- #EndEditable -->
-		<!-- #BeginEditable CustomStyles -->
 		
-		<style>
-		</style>
-			
-		<!-- # EndEditable -->
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet" />
+
+		<!-- #BeginEditable CustomStyles -->
+		
+		<style>
+</style>
+			
+		<!-- # EndEditable -->
 	</head>
 	<body>
 
@@ -71,8 +59,21 @@
 						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="../photos/photos.html">Photos</a></li>
 						<li><a href="../information/information.html">Information</a></li>
-						<li><a href="events.html">Events</a></li>
 						<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
+						<li>
+							<a href="events.html">Events</a>
+							<ul>
+								<li class="submenu_item"><a href="art4soul/art4soul.html"><b>Art for Soul</b></a></li>
+								<li class="submenu_item"><a href="bridge/bridge.html"><b>Bridge</b></a></li>
+								<li class="submenu_item"><a href="cyber_cafe/cyber_cafe.html"><b>Cyber Cafe</b></a></li>
+								<li class="submenu_item"><a href="deadly/deadly.html"><b>Deadly Catch-up</b></a></li>
+								<li class="submenu_item"><a href="dugeons_dragons/dugeons_dragons.html"><b>Dungeons &Aacute; Dragons</b></a></li>
+								<li class="submenu_item"><a href="hooker/hookers.html"><b>Hookers</b></a></li>
+								<li class="submenu_item"><a href="playgroup/playgroup.html"><b>Millhouse Playgroup</b></a></li>
+								<li class="submenu_item"><a href="parent_pathways/parent_pathways.html"><b>Parent Pathways</b></a></li>
+								<li class="submenu_item"><a href="u3a_writers/u3a_writers.html"><b>U3a Writers Groups</b></a></li>
+							</ul>
+						</li>
 						<li><a href="../contact/Contact.html">Contact</a></li>
 					</ul>
 					<p>&nbsp;</p>
@@ -84,128 +85,23 @@
 				<!-- Begin Content -->
 				<div class="content">
 					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
+									
 					<!-- #BeginEditable "content" -->
-				
-					<hr/>
-					<h2 id="Contents">Page Contents</h2>
-					<ul>
-						<li><a class="PageContentsItem" id="Art4Soul" onclick="OnClickPageContents('Art4Soul_div')">Art for the Soul</a></li>
-						<li><a class="PageContentsItem" id="Bridge" onclick="OnClickPageContents('Art4Soul_div')">Bridge Group</a></li>
-						<li><a class="PageContentsItem" id="CoderDojo" onclick="OnClickPageContents('CoderDojo_div')">Coder Dojo</a></li>
-						<li><a class="PageContentsItem" id="CyberCafe" onclick="OnClickPageContents('CyberCafe_div')">Cybercafe</a></li>
-						<li><a class="PageContentsItem" id="DeadlyCatchup" onclick="OnClickPageContents('DeadlyCatchup_div')">Deadly Catch Up</a></li>
-						<li><a class="PageContentsItem" id="DungeonsAndDragons" onclick="OnClickPageContents('DungeonsAndDragons_div')">Dungeons &Aacute; Dragons</a></li>
-						<li><a class="PageContentsItem" id="Hookers" onclick="OnClickPageContents('Hookers_div')">Hookers</a></li>
-						<li><a class="PageContentsItem" id="MillHousePlayGroup" onclick="OnClickPageContents('MillHousePlayGroup_div')">Millhouse Playgroup</a></li>
-						<li><a class="PageContentsItem" id="ParentPathways" onclick="OnClickPageContents('ParentPathways_div')">Parent Pathways</a></li>
-						<li><a class="PageContentsItem" id="U3AWriters" onclick="OnClickPageContents('U3AWriters_div')">U3A Writers Group</a></li>
-						<script type="text/javascript">
-							
-							var strHideDiv = "Art4Soul_div";
-							
-							function OnClickPageContents(strShowDiv)
-							{
-							
-								if (strHideDiv.length > 0)
-									document.getElementById(strHideDiv).style.display = "none";
-								document.getElementById(strShowDiv).style.display = "block";
-								strHideDiv = strShowDiv;
-							}
-							
-						</script>
-					</ul>
-					<hr/>
 					
-					<div id="Art4Soul_div">
-						<h2 id="Art4Soul0">Art for the Soul</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents" class="PageContentsItem">Jump to page contents</a></p>
-					</div>
-					<div id="Bridge_div" style="display: none;">
-						<h2 id="Bridge0">Bridge Group</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="CoderDojo_div" style="display: none;">
-						<h2 id="CoderDojo0">Coder Dojo</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="CyberCafe_div" style="display: none;">
-						<h2 id="CyberCafe0">Cybercafe</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="DeadlyCatchup_div" style="display: none;">
-						<h2 id="DeadlyCatchup0">Deadly Catch Up</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="DungeonsAndDragons_div" style="display: none;">
-						<h2 id="DungeonsAndDragons0">Dungeons &Aacute; Dragons</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="Hookers_div" style="display: none;">
-						<h2 id="Hookers0">Hookers</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="MillHousePlayGroup_div" style="display: none;">
-						<h2 id="MillHousePlayGroup0">Millhouse Playgroup</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-					</div>
-					<div id="ParentPathways_div" style="display: none;">
-						<h2 id="ParentPathways0">Parent Pathways</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-					<div id="U3AWriters_div" style="display: none;">
-						<h2 id="U3AWriters0">U3A Writers Group</h2>
-						<p>Lorem ipsum dolor sit amet. Eos aspernatur neque et nihil eligendi ut molestiae culpa ut 
-						illum omnis est accusantium neque ad culpa error ut numquam voluptatem? Sed nesciunt obcaecati 
-						et suscipit cumque qui ipsa culpa a fuga error ab animi laborum et galisum officiis ut sint 
-						odit. In voluptatem necessitatibus ad quidem nisi quo quia quos in corporis obcaecati id harum 
-						veritatis ea aliquam beatae.</p>
-						<p><a href="#Contents">Jump to page contents</a></p>
-					</div>
-			
+					<p>You can keep track of all the ongoing events of the various groups fromm here. The current groups 
+					are:</p>
+					<ul>
+						<li>Art for Soul</li>
+						<li>Bridge</li>
+						<li>Cyber Cafe</li>
+						<li>Deadly Catch-up</li>
+						<li>Dungeons &Aacute; Dragons</li>
+						<li>Hookers</li>
+						<li>Millhouse Playgroup</li>
+						<li>Parent Pathways</li>
+						<li>U3a Writers Groups</li>
+					</ul>					
+					
 					<!-- #EndEditable "content" --></div>
 				<!-- End Content -->
 			</div>
