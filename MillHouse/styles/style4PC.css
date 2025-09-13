@@ -204,6 +204,13 @@ body
 	border: 1px solid var(--end_color);
 	background-color: var(--start_color);
 }
+.submenu_item a
+{
+	font-size: small;
+	font-weight: normal;
+	padding-left: 15px;
+	color: var(--start_color);
+}
 /* Content Styles */
 .content h1,h2,h3,h4,h5,h6 
 {
@@ -361,7 +368,7 @@ form
 	background-color: #E1E1E1;
 	border-style: outset;
 	border-width: 2px;
-	width: 385px;
+	width: 500px;
 	padding: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 	border-radius: 5px;

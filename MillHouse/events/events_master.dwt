@@ -94,7 +94,7 @@
 								<td style="text-align:center;" colspan="2"><label><h3>Login to add or edit group events</h3></label><br/><br/></td>
 							</tr>
 							<tr>
-								<td><label for="password">Password: </label></td>
+								<td style="text-align: right;"><label for="password">Password: </label></td>
 								<td><input name="password" id="password" type="text" required/></td>
 							</tr>
 							<tr>
@@ -113,16 +113,29 @@
 								<td style="text-align:center;" colspan="2"><label><h3>Add or edit group events</h3></label><br/><br/></td>
 							</tr>
 							<tr>
-								<td><label for="date">Event Date: </label></td>
+								<td style="text-align: right;"><label for="date">Event Date: </label></td>
 								<td><input name="date" id="date" type="date" required/></td>
 							</tr>
 							<tr>
-								<td><label for="description">Event Description: </label></td>
+								<td style="text-align: right;"><label for="description">Event Description: </label></td>
 								<td><textarea name="description" id="description" cols="40" rows="20" required ></textarea></td>
 							</tr>
 							<tr>
-								<td><label for="photo">Photo: </label></td>
+								<td style="text-align: right;"><label for="photo">Photo: </label></td>
 								<td><input name="photo" id="photo" type="file" accept="image/*"/></td>
+							</tr>
+							<tr>
+								<td style="text-align: right;"><label for="event_list">Current events:</label></td>
+								<td>
+									<select id="event_list" name="event_list">
+									<?php
+									
+									?>
+									</select><br/>
+									<input type="submit" name="load" id="load" value="LOAD"/>
+									&nbsp;
+									<input type="reset" name="reset" id="reset" value="RESET"/>
+								</td>
 							</tr>
 							<tr>
 								<td colspan="2" style="text-align:right;">
