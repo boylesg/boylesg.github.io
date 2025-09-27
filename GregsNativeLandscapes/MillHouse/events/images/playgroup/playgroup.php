@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../../events_master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<?php require "../common.php"; ?>
+		<!-- #BeginEditable "doctitle" -->
+		<title>Events - <?php $g_strGroupName = "playgroup"; echo DoGetGroupDescription($g_strGroupName); ?></title>
+		<!-- #EndEditable -->
+		
+		<link href="../../../styles/style4PC.css" rel="stylesheet" type="text/css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet" />
+
+		<!-- #BeginEditable CustomStyles -->
+		
+		<style>
+</style>
+					
+		<!-- #EndEditable -->
+	</head>
+	<body>
+
+		<!-- Begin Container -->
+		<div id="container">
+			<!-- Begin Masthead -->
+			<div class="masthead">
+				<div class="masthead_image" style="float:left;">
+					<a href="../../..images/MillHouse.jpg">
+					<img src="../../../images/MillHouse.jpg" alt="" height="110"/></a>
+				</div>
+				<div class="masthead_text">
+					<h1 class="gluten">MillHouse</h1>
+					<h3 class="gluten">Neighbourhood House</h3>
+				</div>
+				<div class="masthead_image" style="float:right;">
+					<a href="../../..images/OldKnittingMill.jpg">
+					<img src="../../../images/OldKnittingMill.jpg" alt="" height="110"/></a>
+				</div>
+				<div class="masthead_image" style="float:right;">
+					<a href="../../..images/KnittingMill1961.jpg">
+					<img src="../../../images/KnittingMill1961.jpg" alt="" height="110"/></a>
+				</div>
+			<!-- End Masthead --></div>
+
+			<form method="post" target="_self" id="form_current_div" style="visibility:hidden;">
+				<input type="hidden" name="text_current_div" id="text_current_div" value="div_event_page" />
+			</form>
+			
+			<!-- Begin Below_masthead -->
+			<div class="below_masthead">
+				
+				<?php 
+						
+						function DoGenerateHyperlinks()
+						{
+							global $g_dbMillhouse;
+							global $g_strQuery;
+							$strHTML = "";
+					
+							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups"))
+							{
+								if ($result->num_rows > 0)
+								{
+									while ($row = $result->fetch_assoc())
+									{
+										if ((int)$row["display"] == 1)
+										{
+											$strHTML .= "<li class=\"submenu_item\"><a href=\"#" . $row["name"] ."\" onclick=\"DoClickEventHyperlink('div_" . $row["name"] . "')\"><b>";
+											$strHTML .= $row["description"] . "</b></a></li>\n								";
+										}
+									}
+								}
+							}
+							return $strHTML;
+						}
+						require "../common.js";
+				?>
+				<script type="text/javascript">
+			
+					function DoClickEventHyperlink(strEventDivToShow)
+					{
+						document.getElementById("text_current_div").value = strEventDivToShow;
+						document.getElementById("form_current_div").submit();
+					}
+					
+				</script>			
+				
+				<!-- Begin Navigation -->
+				<div class="navigation">
+					<ul>
+						<li><a href="../../../index.html">Home</a></li>
+						<li><a href="../../../site_history/site_history.html">Site History</a></li>
+						<li><a href="../../../Calendar/Calendar.html">Calendar</a></li>
+						<li><a href="../../../photos/photos.html">Photos</a></li>
+						<li><a href="../../../information/information.html">Information</a></li>
+						<li><a href="../../../coder_dojo/CoderDojo.html">CoderDojo</a></li>
+						<li>
+							<a href="../../events.php#div_event_page" onclick="DoClickEventHyperlink('div_event_page')">Events</a>
+							<ul>
+								<?php echo DoGenerateHyperlinks(); ?>
+							</ul>
+						</li>
+						<li><a href="../../../contact/Contact.php">Contact</a></li>
+					</ul>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+				<!-- End Navigation --></div>
+				<!-- Begin Content -->
+				<div class="content">
+					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
+					<!-- #BeginEditable "content" --> 
+					
+					
+					
+					<?php 
+						require "../EventForms.php";
+					?>
+										
+					
+					
+
+					<!-- #EndEditable "content" -->
+				<!-- End Content --></div>
+			<!-- End Below_masthead--></div>
+			<!-- Begin Footer -->
+			<div class="footer" >
+				<div class="footer_navigation">
+					<a href="../../../index.html">Home</a> | 
+					<a href="../../../site_history/site_history.html">Site History</a> | 
+					<a href="../../../Calendar/Calendar.html">Calendar</a> | 
+					<a href="../../../photos/photos.html">Photos</a> |
+					<a href="../../../information/information.html">Information</a> |
+					<a href="../../events.php">Events</a> |
+					<a href="../../../coder_dojo/CoderDojo.html">CoderDojo</a> | 
+					<a href="../../../contact/Contact.php">Contact</a>
+				</div>
+				<div class="footer_attribution">
+					<b>Web site by: </b> Gregary Boyles 2025<br/>
+					<b>Email: </b><script type="text/javascript">document.write("gregplants" + "@" + "bigpond" + "." + "com");</script>
+				</div>
+			<!-- End Footer --></div>
+		<!-- End Container --></div>
+		
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>

@@ -1,10 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
-<?php
-	session_start();
-	$_SESSION["email"] = "manager&millhouse.org.au";
-?>
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<!-- #BeginEditable "doctitle" -->
@@ -30,19 +26,15 @@
 		<div id="container">
 			<!-- Begin Masthead -->
 			<div class="masthead">
-				<div class="masthead_image" style="float:left;">
-					<img src="images/MillHouse.jpg" alt="" height="110"/>
-				</div>
 				<div class="masthead_text">
 					<h1 class="gluten">MillHouse</h1>
 					<h3 class="gluten">Neighbourhood House</h3>
 				</div>
 				<div class="masthead_image" style="float:right;">
-					<img src="images/OldKnittingMill.jpg" alt="" height="110"/>
+					<a href="..images/OldKnittingMill.jpg"><img src="../images/OldKnittingMill.jpg" alt="" height="110"/></a>
 				</div>
 				<div class="masthead_image" style="float:right;">
-					<img src="images/KnittingMill1961.jpg" alt="" height="110"/>
-		
+					<a href="..images/KnittingMill1961.jpg"><img src="../images/KnittingMill1961.jpg" alt="" height="110"/></a>
 				</div>
 			</div>
 			
@@ -53,12 +45,13 @@
 					<ul>
 						<li><a href="index.html">Home</a></li>
 						<li><a href="site_history/site_history.html">Site History</a></li>
+						<li><a href="people/people.html">Millhouse People</a></li>
 						<li><a href="Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="photos/photos.html">Photos</a></li>
 						<li><a href="information/information.html">Information</a></li>
-						<li><a href="events/events.html">Events</a></li>
+						<li><a href="events/events.php">Events</a></li>
 						<li><a href="coder_dojo/CoderDojo.html">CoderDojo</a></li>
-						<li><a href="contact/Contact.html">Contact</a></li>
+						<li><a href="contact/Contact.php">Contact</a></li>
 					</ul>
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
@@ -82,9 +75,9 @@
 					<a href="Calendar/Calendar.html">Calendar</a> | 
 					<a href="photos/photos.html">Photos</a> |
 					<a href="information/information.html">Information</a> |
-					<a href="events/events.html">Events</a> |
+					<a href="events/events.php">Events</a> |
 					<a href="coder_dojo/CoderDojo.html">CoderDojo</a> | 
-					<a href="contact/Contact.html">Contact</a>
+					<a href="contact/Contact.php">Contact</a>
 				</div>
 				<div class="footer_attribution">
 					<b>Web site by: </b> Gregary Boyles 2025<br/>
