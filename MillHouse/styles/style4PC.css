@@ -217,7 +217,23 @@ body
 }
 /* Content Styles */
 .content h1,
+{
+	font-family: "Gluten", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 600;/*100 - 900;*/
+  	font-style: normal;
+  	font-variation-settings: "slnt" 0;
+	color: var(--start_color);
+}
 .content h2,
+{
+	font-family: "Gluten", cursive;
+  	font-optical-sizing: auto;
+  	font-weight: 600;/*100 - 900;*/
+  	font-style: normal;
+  	font-variation-settings: "slnt" 0;
+	color: var(--start_color);
+}
 .content h3,
 .content h4,
 .content h5,
