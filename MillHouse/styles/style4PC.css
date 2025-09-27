@@ -216,7 +216,7 @@ body
 	color: var(--start_color);
 }
 /* Content Styles */
-.content h1,
+.content h1,.content h2,.content h3,.content h4,.content h5,.content h6
 {
 	font-family: "Gluten", cursive;
   	font-optical-sizing: auto;
@@ -225,33 +225,7 @@ body
   	font-variation-settings: "slnt" 0;
 	color: var(--start_color);
 }
-.content h2,
-{
-	font-family: "Gluten", cursive;
-  	font-optical-sizing: auto;
-  	font-weight: 600;/*100 - 900;*/
-  	font-style: normal;
-  	font-variation-settings: "slnt" 0;
-	color: var(--start_color);
-}
-.content h3,
-.content h4,
-.content h5,
-.content h6
-{
-	font-family: "Gluten", cursive;
-  	font-optical-sizing: auto;
-  	font-weight: 600;/*100 - 900;*/
-  	font-style: normal;
-  	font-variation-settings: "slnt" 0;
-	color: var(--start_color);
-}
-.form h1,
-.form h2,
-.form h3,
-.form h4,
-.form h5,
-.form h6
+.form h1,.form h2,.form h3,.form h4,.form h5,.form h6
 {
 	font-family: Arial, Helvetica, sans-serif;
   	font-weight: bold;
