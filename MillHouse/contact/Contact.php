@@ -74,6 +74,7 @@
 
 
 
+
 						.google_map
 						{
 							display:inline-block;

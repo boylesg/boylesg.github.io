@@ -60,7 +60,7 @@
 							global $g_strQuery;
 							$strHTML = "";
 					
-							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups"))
+							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups", "", "description", true))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -93,6 +93,7 @@
 					<ul>
 						<li><a href="../index.html">Home</a></li>
 						<li><a href="../site_history/site_history.html">Site History</a></li>
+						<li><a href="people/people.html">Millhouse People</a></li>
 						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="../photos/photos.html">Photos</a></li>
 						<li><a href="../information/information.html">Information</a></li>
@@ -480,24 +481,24 @@
 								{
 									while ($row = $result->fetch_assoc())
 									{
-										// Login form display control
-										if (!isset($_SESSION["display_event_login_form_" . $row["name"]]))
-											$_SESSION["display_event_login_form_" . $row["name"]] = "block";
-										
-										// Event form display control
-										if (!isset($_SESSION["display_event_form_" . $row["name"]]))
-											$_SESSION["display_event_form_" . $row["name"]] = "none";
-											
-										// Event form data persistance
-										if (!isset($_SESSION["date_" . $row["name"]]))
-										{
-											$_SESSION["date_" . $row["name"]] = "";
-											$_SESSION["shortkey_" . $row["name"]] = "";
-											$_SESSION["description_" . $row["name"]] = "";
-											$_SESSION["photo_" . $row["name"]] = "none";
-										}
 										if (((int)$row["display"]) == 1)
 										{
+											// Login form display control
+											if (!isset($_SESSION["display_event_login_form_" . $row["name"]]))
+												$_SESSION["display_event_login_form_" . $row["name"]] = "block";
+											
+											// Event form display control
+											if (!isset($_SESSION["display_event_form_" . $row["name"]]))
+												$_SESSION["display_event_form_" . $row["name"]] = "none";
+												
+											// Event form data persistance
+											if (!isset($_SESSION["date_" . $row["name"]]))
+											{
+												$_SESSION["date_" . $row["name"]] = "";
+												$_SESSION["shortkey_" . $row["name"]] = "";
+												$_SESSION["description_" . $row["name"]] = "";
+												$_SESSION["photo_" . $row["name"]] = "none";
+											}
 											$strDisplay = "none";
 											if (strcmp($strCurrentVisibleDiv, "div_" . $row["name"]) == 0)
 												$strDisplay = "block";

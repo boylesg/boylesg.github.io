@@ -12,7 +12,7 @@
 		<!-- #BeginEditable CustomStyles -->
 		
 		<style>
-		</style>
+</style>
 			
 		<!-- # EndEditable -->
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
@@ -49,6 +49,7 @@
 					<ul>
 						<li><a href="../index.html">Home</a></li>
 						<li><a href="../site_history/site_history.html">Site History</a></li>
+						<li><a href="../people/people.html">Millhouse People</a></li>
 						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="../photos/photos.html">Photos</a></li>
 						<li><a href="../information/information.html">Information</a></li>
@@ -67,6 +68,9 @@
 					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
 					<!-- #BeginEditable "content" -->
 					<style>
+
+
+
 
 
 
