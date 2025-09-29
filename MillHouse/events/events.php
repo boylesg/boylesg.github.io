@@ -1149,6 +1149,14 @@
 										<label for="toggle_password_group">Show password</label>
 									</td>
 								</tr>
+								<tr>
+									<td style="text-align: right;">
+										<label for="cost">The purpose of this group</label><br/>
+									</td>
+									<td>
+										<textarea id="purpose" name="purpose" autocomplete="on" cols="40" rows="20" placeholder="A description of the group's purpose..."> <?php if (isset($_SESSION["purpose"]) && (strlen($_SESSION["purpose"]) > 0)) echo $_SESSION["purpose"]; ?> </textarea>
+									</td>
+								</tr>
 								<tr><td colspan="2"><h4>Meeting day(s) of week &amp; frequency</h4></td></tr>
 								<tr>
 									<td style="text-align: right;">
@@ -1216,14 +1224,6 @@
 									</td>
 									<td>
 										<input type="number" id="cost" name="cost" autocomplete="on" min="0" value="<?php echo $_SESSION["cost"]; ?>" />
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align: right;">
-										<label for="cost">The purpose of this group</label><br/>
-									</td>
-									<td>
-										<textarea id="purpose" name="purpose" autocomplete="on" cols="40" rows="20" placeholder="A description of the group's purpose..."> <?php echo $_SESSION["purpose"]; ?> </textarea>
 									</td>
 								</tr>
 								<tr>
