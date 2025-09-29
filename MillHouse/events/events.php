@@ -20,7 +20,7 @@
 		<!-- #BeginEditable CustomStyles -->
 		
 		<style>
-</style>
+		</style>
 			
 		<!-- #EndEditable -->
 	</head>
@@ -157,6 +157,7 @@
 						$_SESSION["time2"] = 0;
 						$_SESSION["duration"] = 0;
 						$_SESSION["cost"] = 0;
+						$_SESSION["purpose"] = "";
 						$_SESSION["display"] = false;
 						$_SESSION["password_group"] = "";
 						$g_strImageWidth = 400;
@@ -293,13 +294,13 @@
 							{
 								if ($_POST["group_shortkey"] == 0)
 								{
-									if ($result = DoInsertQuery13($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], ))
+									if ($result = DoInsertQuery14($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "purpose", $_POST["purpose"]))
 									{
 									}
 								}
 								else
 								{
-									if ($result = DoUpdateQuery13($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "shortkey", $_POST["group_shortkey"]))
+									if ($result = DoUpdateQuery14($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "purpose", $_POST["purpose"], "shortkey", $_POST["group_shortkey"]))
 									{
 									}
 								}
@@ -317,6 +318,7 @@
 								$_SESSION["time1"] = "";
 								$_SESSION["duration"] = "";
 								$_SESSION["cost"] = "";
+								$_SESSION["purpose"] = "";
 								$_SESSION["display"] = false;
 								$_SESSION["display_group_login_form"] = "none";
 								$_SESSION["display_group_form"] = "block";
@@ -341,6 +343,7 @@
 								$_SESSION["time1"] = "";
 								$_SESSION["duration"] = "";
 								$_SESSION["cost"] = "";
+								$_SESSION["purpose"] = "";
 								$_SESSION["display"] = false;
 								$_SESSION["display_group_login_form"] = "none";
 								$_SESSION["display_group_form"] = "block";
@@ -629,6 +632,9 @@
 											if (($row["cost"] !== NULL) && ($row["cost"] != 0))
 												$strCost = "$" . number_format($row["cost"], 2);
 											echo "<b>COST: </b>" . $strCost . "<br/>\n";
+											
+											echo "<b><u>PURPOSE</b></u><br/>\n";
+											echo "<p>" . $row["purpose"] . "</p>\n";
 	
 											echo DoGetEvents($row["name"]);
 											echo "</div>\n";
@@ -730,6 +736,7 @@
 										$_SESSION["time2"] = $row["time2"];
 										$_SESSION["hours"] = $row["hours"];
 										$_SESSION["cost"] = $row["cost"];
+										$_SESSION["purpose"] = $row["purpose"];
 										$_SESSION["display"] = $row["display"];
 									}
 								}
@@ -1209,6 +1216,14 @@
 									</td>
 									<td>
 										<input type="number" id="cost" name="cost" autocomplete="on" min="0" value="<?php echo $_SESSION["cost"]; ?>" />
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">
+										<label for="cost">The purpose of this group</label><br/>
+									</td>
+									<td>
+										<textarea id="purpose" name="purpose" autocomplete="on" cols="40" rows="20" placeholder="A description of the group's purpose..."> <?php echo $_SESSION["purpose"]; ?> </textarea>
 									</td>
 								</tr>
 								<tr>

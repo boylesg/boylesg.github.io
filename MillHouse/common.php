@@ -452,6 +452,22 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 
+	function DoUpdateQuery14($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10, $strColumnName11, $strColumnValue11, $strColumnName12, $strColumnValue12, $strColumnName13, $strColumnValue13, $strColumnName14, $strColumnValue14, $strFindColumnName, $strFindColumnValue)
+	{
+		global $g_strQuery;
+		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "', " . 
+			$strColumnName2 . "='" .  EscapeSingleQuote($strColumnValue2) . "', " . $strColumnName3 . "='" .  EscapeSingleQuote($strColumnValue3) . "', " .
+			$strColumnName4 . "='" .  EscapeSingleQuote($strColumnValue4) . "', " . $strColumnName5 . "='" .  EscapeSingleQuote($strColumnValue5) . 
+			$strColumnName6 . "='" .  EscapeSingleQuote($strColumnValue6) . "', " . $strColumnName7 . "='" .  EscapeSingleQuote($strColumnValue7) .
+			$strColumnName8 . "='" .  EscapeSingleQuote($strColumnValue8) . "', " . $strColumnName9 . "='" .  EscapeSingleQuote($strColumnValue9) . 
+			$strColumnName10 . "='" .  EscapeSingleQuote($strColumnValue10) . "', " . $strColumnName11 . "='" .  EscapeSingleQuote($strColumnValue11) .
+			$strColumnName12 . "='" .  EscapeSingleQuote($strColumnValue12) . $strColumnName13 . "='" .  EscapeSingleQuote($strColumnValue13) . 
+			$strColumnName14 . "='" .  EscapeSingleQuote($strColumnValue14) . 
+			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
+
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+
 	function DoDeleteQuery($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
@@ -564,10 +580,14 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-
-
-
-
+	function DoInsertQuery14($dbConnection, $strTableName, $strColumnName1, $strColumnValue1, $strColumnName2, $strColumnValue2, $strColumnName3, $strColumnValue3, $strColumnName4, $strColumnValue4, $strColumnName5, $strColumnValue5, $strColumnName6, $strColumnValue6, $strColumnName7, $strColumnValue7, $strColumnName8, $strColumnValue8, $strColumnName9, $strColumnValue9, $strColumnName10, $strColumnValue10, $strColumnName11, $strColumnValue11, $strColumnName12, $strColumnValue12, $strColumnName13, $strColumnValue13, $strColumnName14, $strColumnValue14)
+	{
+		global $g_strQuery;
+		$g_strQuery = "INSERT INTO " . $strTableName . "(" . $strColumnName1 . "," . $strColumnName2 . "," . $strColumnName3 . "," . $strColumnName4 . "," . $strColumnName5 . "," . $strColumnName6 . "," . $strColumnName7 . "," . $strColumnName8 . "," . $strColumnName9 . "," . $strColumnName10 . "," . $ . "," . $strColumnName11 . "," . $strColumnName12 . "," . $strColumnName13 . "," . $strColumnName14 . ") VALUES('" . EscapeSingleQuote($strColumnValue1) . "','" . EscapeSingleQuote($strColumnValue2) . "','" . EscapeSingleQuote($strColumnValue3) . "','" . EscapeSingleQuote($strColumnValue4) . "','" . EscapeSingleQuote($strColumnValue5) . "','" . EscapeSingleQuote($strColumnValue6) . "','" . EscapeSingleQuote($strColumnValue7) . "','" . EscapeSingleQuote($strColumnValue8) . "','" . EscapeSingleQuote($strColumnValue9)  . "','" . EscapeSingleQuote($strColumnValue10) . "','" . EscapeSingleQuote($strColumnValue11) . "','" . EscapeSingleQuote($strColumnValue12) . "','" . EscapeSingleQuote($strColumnValue13) . "','" . EscapeSingleQuote($strColumnValue14) . "')";
+		
+		return DoQuery($dbConnection, $g_strQuery);
+	}
+	
 	function DoDeleteQuery1($dbConnection, $strTableName, $strColumnName, $strColumnValue)
 	{
 		global $g_strQuery;
