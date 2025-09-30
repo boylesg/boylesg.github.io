@@ -93,7 +93,7 @@
 					<ul>
 						<li><a href="../index.html">Home</a></li>
 						<li><a href="../site_history/site_history.html">Site History</a></li>
-						<li><a href="people/people.html">Millhouse People</a></li>
+						<li><a href="../people/people.html">Millhouse People</a></li>
 						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 						<li><a href="../photos/photos.html">Photos</a></li>
 						<li><a href="../information/information.html">Information</a></li>
@@ -614,7 +614,7 @@
 											if ($row["time1"] !== NULL)
 											{
 												$time = new DateTime($row["time1"]);
-												$strTime = $time->format("H:m");
+												$strTime = $time->format("H:i");
 												if ($row["time2"] !== NULL)
 												{
 													$time = new DateTime($row["time2"]);
@@ -626,7 +626,7 @@
 											$strHours = "NOT SET";
 											if (($row["hours"] !== NULL) && ($row["hours"] != 0))
 												$strHours = (string)$row["hours"] . " hours";
-											echo "<b>DURATION(s): </b>" . $strHours . "<br/>\n";
+											echo "<b>DURATION: </b>" . $strHours . "<br/>\n";
 											
 											$strCost = "FREE";
 											if (($row["cost"] !== NULL) && ($row["cost"] != 0))
