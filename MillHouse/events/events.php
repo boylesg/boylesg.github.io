@@ -46,7 +46,7 @@
 			<!-- End Masthead --></div>
 
 			<form method="post" target="_self" id="form_current_div" style="visibility:hidden;">
-				<input type="hidden" name="text_current_div" id="text_current_div" value="div_event_page" />
+				<input type="hidden" name="text_current_div" id="text_current_div" value="div_groups" />
 			</form>
 			
 			<!-- Begin Below_masthead -->
@@ -88,35 +88,40 @@
 					
 				</script>			
 				
-				<!-- Begin Navigation -->
-				<div class="navigation">
-					<ul>
-						<li><a href="../index.html">Home</a></li>
-						<li><a href="../site_history/site_history.html">Site History</a></li>
-						<li><a href="../people/people.html">Millhouse People</a></li>
-						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
-						<li><a href="../photos/photos.html">Photos</a></li>
-						<li><a href="../information/information.html">Information</a></li>
-						<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
-						<li>
-							<a href="events.php#div_event_page" onclick="DoClickEventHyperlink('div_event_page')">Events</a>
-							<ul>
-								<?php echo DoGenerateHyperlinks(); ?>
-							</ul>
-						</li>
-						<li><a href="../contact/Contact.php">Contact</a></li>
-					</ul>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-				<!-- End Navigation --></div>
-				<!-- Begin Content -->
-				<div class="content">
-					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
-					<!-- #BeginEditable "content" --> 
-					
-					
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td style="vertical-align:top;">
+							<!-- Begin Navigation -->
+							<div class="navigation">
+								<ul>
+									<li><a href="../index.html">Home</a></li>
+									<li><a href="../site_history/site_history.html">Site History</a></li>
+									<li><a href="../people/people.html">Millhouse People</a></li>
+									<li><a href="../Calendar/Calendar.html">Calendar</a></li>
+									<li><a href="../photos/photos.html">Photos</a></li>
+									<li><a href="../information/information.html">Information</a></li>
+									<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
+									<li>
+										<a href="events.php#div_groups" onclick="DoClickEventHyperlink('div_groups')">Events</a>
+										<ul>
+											<?php echo DoGenerateHyperlinks(); ?>
+										</ul>
+									</li>
+									<li><a href="../contact/Contact.php">Contact</a></li>
+								</ul>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							<!-- End Navigation --></div>
+						</td>
+						<td style="vertical-align:top;">
+							<!-- Begin Content -->
+							<div class="content">
+								<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
+								<!-- #BeginEditable "content" --> 
+								
+								
 					<?php
 						
 						//******************************************************************************
@@ -141,26 +146,42 @@
 						//** 
 						//******************************************************************************
 						//******************************************************************************
-						$_SESSION["group_shortkey"] = 0;
-						$_SESSION["event_shortkey"] = 0;
-						$_SESSION["date"] = "";
-						$_SESSION["name"] = "";
-						$_SESSION["description"] = "";
-						$_SESSION["photo"] = "";
-						$_SESSION["contact"] = "";
-						$_SESSION["email"] = "";
-						$_SESSION["phone"] = "";
-						$_SESSION["dow1"] = 0;
-						$_SESSION["dow2"] = 0;
-						$_SESSION["wom"] = 0;
-						$_SESSION["time1"] = 0;
-						$_SESSION["time2"] = 0;
-						$_SESSION["duration"] = 0;
-						$_SESSION["cost"] = 0;
-						$_SESSION["purpose"] = "";
-						$_SESSION["display"] = false;
-						$_SESSION["password_group"] = "";
+						function ResetSessionVars($bFormDisplayVarsToo = false)
+						{
+							$_SESSION["group_shortkey"] = 0;
+							$_SESSION["event_shortkey"] = 0;
+							$_SESSION["date"] = "";
+							$_SESSION["name"] = "";
+							$_SESSION["description"] = "";
+							$_SESSION["photo"] = "";
+							$_SESSION["contact"] = "";
+							$_SESSION["email"] = "";
+							$_SESSION["phone"] = "";
+							$_SESSION["dow1"] = 0;
+							$_SESSION["dow2"] = 0;
+							$_SESSION["wom"] = 0;
+							$_SESSION["time1"] = 0;
+							$_SESSION["time2"] = 0;
+							$_SESSION["duration"] = 0;
+							$_SESSION["cost"] = 0;
+							$_SESSION["donation"] = false;
+							$_SESSION["purpose"] = "";
+							$_SESSION["facebook"] = "";
+							$_SESSION["display"] = false;
+							$_SESSION["password_group"] = "";
+							if ($bFormDisplayVarsToo)
+							{
+								$_SESSION["display"] = false;
+								$_SESSION["display_group_login_form"] = "none";
+								$_SESSION["display_group_form"] = "block";
+							}
+						}
 						$g_strImageWidth = 400;
+						ResetSessionVars();
+						
+						if (!isset($_SESSION["current_div"]))
+							$_SESSION["current_div"] = "div_groups";
+						//$_SESSION["current_div"] = "div_groups";
 						
 						//******************************************************************************
 						//******************************************************************************
@@ -294,34 +315,17 @@
 							{
 								if ($_POST["group_shortkey"] == 0)
 								{
-									if ($result = DoInsertQuery14($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "purpose", $_POST["purpose"]))
+									if ($result = DoInsertQuery16($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"]))
 									{
 									}
 								}
 								else
 								{
-									if ($result = DoUpdateQuery14($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "purpose", $_POST["purpose"], "shortkey", $_POST["group_shortkey"]))
+									if ($result = DoUpdateQuery16($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"], "shortkey", $_POST["group_shortkey"]))
 									{
 									}
 								}
-								$_SESSION["group_shortkey"] = 0;
-								$_SESSION["name"] = "";
-								$_SESSION["description"] = "";
-								$_SESSION["password_group"] = "";
-								$_SESSION["contact"] = "";
-								$_SESSION["email"] = "";
-								$_SESSION["phone"] = "";
-								$_SESSION["dow1"] = "";
-								$_SESSION["dow2"] = "";
-								$_SESSION["wom"] = "";
-								$_SESSION["time1"] = "";
-								$_SESSION["time1"] = "";
-								$_SESSION["duration"] = "";
-								$_SESSION["cost"] = "";
-								$_SESSION["purpose"] = "";
-								$_SESSION["display"] = false;
-								$_SESSION["display_group_login_form"] = "none";
-								$_SESSION["display_group_form"] = "block";
+								ResetSessionVars();
 							}
 							else if (isset($_POST["delete_group"]))
 							{
@@ -329,24 +333,7 @@
 								{
 									rmdir("images/" . $_POST["name"]);
 								}
-								$_SESSION["group_shortkey"] = 0;
-								$_SESSION["name"] = "";
-								$_SESSION["description"] = "";
-								$_SESSION["password_group"] = "";
-								$_SESSION["contact"] = "";
-								$_SESSION["email"] = "";
-								$_SESSION["phone"] = "";
-								$_SESSION["dow1"] = "";
-								$_SESSION["dow2"] = "";
-								$_SESSION["wom"] = "";
-								$_SESSION["time1"] = "";
-								$_SESSION["time1"] = "";
-								$_SESSION["duration"] = "";
-								$_SESSION["cost"] = "";
-								$_SESSION["purpose"] = "";
-								$_SESSION["display"] = false;
-								$_SESSION["display_group_login_form"] = "none";
-								$_SESSION["display_group_form"] = "block";
+								ResetSessionVars();
 							}
 						}
 					
@@ -469,15 +456,12 @@
 							}
 							return $strDayName;
 						}
-						
+												
 						function DoDisplayGroupDivs($strCurrentVisibleDiv)
 						{
 							global $g_dbMillhouse;
 							global $g_strQuery;
-							
-							if (!isset($_SESSION["current_div"]))
-								$_SESSION["current_div"] = "div_event_page";
-							
+														
 							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups"))
 							{
 								if ($result->num_rows > 0)
@@ -525,7 +509,7 @@
 											echo "        </tr>\n";
 											echo "        <tr>\n";
 											echo "            <td colspan=\"2\" style=\"text-align:right;\">\n";
-											echo "                <input type=\"submit\" name=\"forgot_password_event_" . $row["name"] . " id=\"forgot_password_event_" . $row["name"] . "\" value=\"I FORGET THE PASSWORD\"/>&nbsp;\n";
+											echo "                <input type=\"submit\" name=\"forgot_password_event_" . $row["name"] . " id=\"forgot_password_event_" . $row["name"] . "\" value=\"I FORGET THE PASSWORD\" style=\"width:200px;\" />&nbsp;\n";
 											echo "                <input type=\"submit\" name=\"login_event_" . $row["name"] . "\" id=\"login_event_" . $row["name"] . "\" value=\"LOGIN\"/>\n";
 											echo "            </td>\n";
 											echo "        </tr>\n";
@@ -578,13 +562,11 @@
 											echo "</form>\n";
 											
 											echo "<p><b>CONTACT PERSON: </b>" . $row["contact"] . "<br/>\n";
-											if (strlen($row["email"]) > 0)
-												echo "<b>EMAIL: </b>" . $row["email"] . "<br/>\n";
+											echo "<b>EMAIL: </b><a href=\"maileto:" . $row["email"] . "\">" . $row["email"] . "</a><br/>\n";
+										
 											if (strlen($row["phone"]) > 0)
 												echo "<b>PHONE: </b>" . $row["phone"] . "<br/>\n";
-												
-											
-		
+
 											$strFrequency = "NOT SET";
 											if (($row["dow1"] !== NULL) && ($row["dow1"] !== 0))
 											{
@@ -618,7 +600,7 @@
 												if ($row["time2"] !== NULL)
 												{
 													$time = new DateTime($row["time2"]);
-													$strTime .= " and " . $time->format("H:m");
+													$strTime .= " and " . $time->format("H:i");
 												}
 											}
 											echo "<b>TIME(S): </b>" . $strTime . "<br/>\n";
@@ -626,14 +608,21 @@
 											$strHours = "NOT SET";
 											if (($row["hours"] !== NULL) && ($row["hours"] != 0))
 												$strHours = (string)$row["hours"] . " hours";
-											echo "<b>DURATION: </b>" . $strHours . "<br/>\n";
+											echo "<b>DURATION(s): </b>" . $strHours . "<br/>\n";
 											
 											$strCost = "FREE";
 											if (($row["cost"] !== NULL) && ($row["cost"] != 0))
+											{
 												$strCost = "$" . number_format($row["cost"], 2);
+												if ($row["donation"] > 0)
+													$strCost .= "(donation)";
+											}
 											echo "<b>COST: </b>" . $strCost . "<br/>\n";
 											
-											echo "<b><u>PURPOSE</b></u><br/>\n";
+											if (($row["facebook"] != NULL) && (strlen($row["facebook"]) > 0))
+												echo "<b>SOCIAL MEDIA: </b><a href=\"" . $row["facebook"] . "\">" . $row["facebook"] . "</a><br/>\n";
+											
+											echo "<b><u>PURPOSE</u></b><br/>\n";
 											echo "<p>" . $row["purpose"] . "</p>\n";
 	
 											echo DoGetEvents($row["name"]);
@@ -723,21 +712,7 @@
 								{
 									if ($row = $result->fetch_assoc())
 									{
-										$_SESSION["group_shortkey"] = $row["shortkey"];
-										$_SESSION["name"] = $row["name"];
-										$_SESSION["description"] = $row["description"];
-										$_SESSION["password_group"] = $row["password"];
-										$_SESSION["contact"] = $row["contact"];
-										$_SESSION["email"] = $row["email"];
-										$_SESSION["dow1"] = $row["dow1"];
-										$_SESSION["dow2"] = $row["dow2"];
-										$_SESSION["wom"] = $row["wom"];
-										$_SESSION["time1"] = $row["time1"];
-										$_SESSION["time2"] = $row["time2"];
-										$_SESSION["hours"] = $row["hours"];
-										$_SESSION["cost"] = $row["cost"];
-										$_SESSION["purpose"] = $row["purpose"];
-										$_SESSION["display"] = $row["display"];
+										ResetSessionVars(true);
 									}
 								}
 							}
@@ -1062,7 +1037,7 @@
 						}
 
 					</script>
-					<div id="div_event_page" style="display:<?php if (strcmp($_SESSION["current_div"], "div_event_page") == 0) echo "block"; else echo "none"; ?>;">
+					<div id="div_groups" style="display:<?php if (strcmp($_SESSION["current_div"], "div_groups") == 0) echo "block"; else echo "none"; ?>;">
 											
 						<p>Web site administration staff can use the forms below to add new groups and edit the details 
 						of existing groups. Any new groups or group name changes will automatically appear in the 
@@ -1132,8 +1107,13 @@
 									<td><input name="contact" id="contact" type="text" autocomplete="on" value="<?php echo $_SESSION["contact"]; ?>" placeholder="Group leader's name..."onkeydown="OnKeyPressName(event)"/></td>
 								</tr>
 								<tr>
-									<td style="text-align: right;"><label for="email">Group leader's email: </label></td>
-									<td><input name="email" id="email" type="text" autocomplete="on" value="<?php echo $_SESSION["email"]; ?>" placeholder="A valid email address..." onkeydown="OnKeyPressEmailAddress(event) "/></td>
+									<td style="text-align: right;vertical-align:top;">
+										<label for="email">Group leader's email address: </label><br/>
+									</td>
+									<td>
+										<input name="email" id="email" type="text" autocomplete="on" value="<?php echo $_SESSION["email"]; ?>" placeholder="Email address..." onkeydown="OnKeyPressEmailAddress(event) "/><br/>
+										<label>Also used for password recovery...</label>
+									</td>
 								</tr>
 								<tr>
 									<td style="text-align: right;"><label for="phone">Group Phone: </label></td>
@@ -1147,14 +1127,6 @@
 										<br/>
 										<input type="checkbox" id="toggle_password_group" onclick="OnClickTogglePassword('toggle_password_group', 'password_group')" />
 										<label for="toggle_password_group">Show password</label>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align: right;">
-										<label for="cost">The purpose of this group</label><br/>
-									</td>
-									<td>
-										<textarea id="purpose" name="purpose" autocomplete="on" cols="40" rows="20" placeholder="A description of the group's purpose..."> <?php if (isset($_SESSION["purpose"]) && (strlen($_SESSION["purpose"]) > 0)) echo $_SESSION["purpose"]; ?> </textarea>
 									</td>
 								</tr>
 								<tr><td colspan="2"><h4>Meeting day(s) of week &amp; frequency</h4></td></tr>
@@ -1228,7 +1200,32 @@
 								</tr>
 								<tr>
 									<td style="text-align: right;">
-										<label for="cost">Display this group?</label><br/>
+										<label for="cost">Is a donation:</label><br/>
+										
+									</td>
+									<td>
+										<input type="checkbox" id="donation" name="donation" autocomplete="on" <?php if ($_SESSION["donation"]) echo "checked"; ?> />
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">
+										<label for="cost">The group's purpose:</label><br/>
+									</td>
+									<td>
+										<textarea name="purpose" id="purpose" cols="40" rows="10" autocomplete="on" minlength="128" maxlength="256" placeholder="A description of group's purpose and what it offers participants..."><?php echo $_SESSION["purpose"]; ?></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">
+										<label for="facebook">Social Media:</label><br/>
+									</td>
+									<td>
+										<input type="text" name="facebook" id="facebook" value="<?php echo $_SESSION["facebook"]; ?>" autocomplete="on" maxlength="256" placeholder="URL of any Facebook group..." />
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">
+										<label for="cost">Display this group as a link?</label><br/>
 									</td>
 									<td>
 										<input type="checkbox" id="display" name="display" autocomplete="on" <?php if ($_SESSION["display"] == 1) echo "checked"; ?> />
@@ -1271,8 +1268,11 @@
 					
 
 				
-					<!-- #EndEditable "content" -->
-				<!-- End Content --></div>
+								<!-- #EndEditable "content" -->
+							<!-- End Content --></div>
+					</td>
+				</tr>
+			</table>
 			<!-- End Below_masthead--></div>
 			<!-- Begin Footer -->
 			<div class="footer" >

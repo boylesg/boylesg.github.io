@@ -1,0 +1,10 @@
+vti_encoding:SR|utf8-nl
+vti_timelastmodified:TR|12 Sep 2025 09:18:36 -0000
+vti_extenderversion:SR|12.0.0.0
+vti_author:SR|LATITUDE-E5430\\gregaryb
+vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
+vti_nexttolasttimemodified:TR|12 Sep 2025 09:18:03 -0000
+vti_timecreated:TR|12 Sep 2025 09:18:03 -0000
+vti_backlinkinfo:VX|
+vti_cacheddtm:TX|07 Sep 2025 12:10:23 -0000
+vti_filesize:IR|2

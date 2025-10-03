@@ -44,30 +44,38 @@
 			
 			<!-- End Masthead -->
 			<div class="below_masthead">
-				<!-- Begin Navigation -->
-				<div class="navigation">
-					<ul>
-						<li><a href="../index.html">Home</a></li>
-						<li><a href="../site_history/site_history.html">Site History</a></li>
-						<li><a href="../people/people.html">Millhouse People</a></li>
-						<li><a href="../Calendar/Calendar.html">Calendar</a></li>
-						<li><a href="../photos/photos.html">Photos</a></li>
-						<li><a href="../information/information.html">Information</a></li>
-						<li><a href="../events/events.php">Events</a></li>
-						<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
-						<li><a href="Contact.php">Contact</a></li>
-					</ul>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-					<p>&nbsp;</p>
-				</div>
-				<!-- End Navigation -->
-				<!-- Begin Content -->
-				<div class="content">
-					<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
-					<!-- #BeginEditable "content" -->
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td style="vertical-align:top;">
+							<!-- Begin Navigation -->
+							<div class="navigation">
+								<ul>
+									<li><a href="../index.html">Home</a></li>
+									<li>
+									<a href="../site_history/site_history.html">Site History</a></li>
+									<li><a href="../people/people.html">Millhouse People</a></li>
+									<li><a href="../Calendar/Calendar.html">Calendar</a></li>
+									<li><a href="../photos/photos.html">Photos</a></li>
+									<li>
+									<a href="../information/information.html">Information</a></li>
+									<li><a href="../events/events.php">Events</a></li>
+									<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
+									<li><a href="Contact.php">Contact</a></li>
+								</ul>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</div>
+							<!-- End Navigation -->
+						</td>
+						<td style="vertical-align:top;">
+							<!-- Begin Content -->
+							<div class="content">
+								<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
+								<!-- #BeginEditable "content" -->
 					<style>
+
 
 
 
@@ -147,8 +155,11 @@
 
 					?>
 					<p><b class="bold_font">Facebook:</b> <a href="https://www.facebook.com/groups/250881336853460">Click here<br/><img src="images/FacebookGroup.jpg" alt="Click me" width="600" /></a></p>
-					<!-- #EndEditable "content" --></div>
-				<!-- End Content -->
+								<!-- #EndEditable "content" --></div>
+							<!-- End Content -->
+						</td>
+					</tr>
+				</table>
 			</div>
 			<!-- Begin Footer -->
 			<div class="footer">
