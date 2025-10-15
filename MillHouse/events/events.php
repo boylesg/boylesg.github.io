@@ -160,8 +160,8 @@
 							$_SESSION["dow1"] = 0;
 							$_SESSION["dow2"] = 0;
 							$_SESSION["wom"] = 0;
-							$_SESSION["time1"] = 0;
-							$_SESSION["time2"] = 0;
+							$_SESSION["time1"] = "08:00";
+							$_SESSION["time2"] = "22:00";
 							$_SESSION["duration"] = 0;
 							$_SESSION["cost"] = 0;
 							$_SESSION["donation"] = false;
@@ -606,8 +606,8 @@
 											echo "<b>TIME(S): </b>" . $strTime . "<br/>\n";
 											
 											$strHours = "NOT SET";
-											if (($row["hours"] !== NULL) && ($row["hours"] != 0))
-												$strHours = (string)$row["hours"] . " hours";
+											if (($row["duration"] !== NULL) && ($row["duration"] != 0))
+												$strHours = (string)$row["duration"] . " hours";
 											echo "<b>DURATION(s): </b>" . $strHours . "<br/>\n";
 											
 											$strCost = "FREE";
@@ -713,6 +713,29 @@
 									if ($row = $result->fetch_assoc())
 									{
 										ResetSessionVars(true);
+										$_SESSION["group_shortkey"] = $nShortkey;
+										$_SESSION["name"] = $row["name"];
+										$_SESSION["description"] = $row["description"];
+										$_SESSION["contact"] = $row["contact"];
+										$_SESSION["email"] = $row["email"];
+										$_SESSION["phone"] = $row["phone"];
+										$_SESSION["dow1"] = $row["dow1"];
+										$_SESSION["dow2"] = $row["dow2"];
+										$_SESSION["wom"] = $row["wom"];
+										
+										$dateTime = new DateTime($row["time1"]);
+										$_SESSION["time1"] = $dateTime->format("H:i:s");
+										
+										$dateTime = new DateTime($row["time2"]);
+										$_SESSION["time2"] = $dateTime->format("H:i:s");
+										
+										$_SESSION["duration"] = $row["duration"];
+										$_SESSION["cost"] = $row["cost"];
+										$_SESSION["donation"] = $row["donation"];
+										$_SESSION["purpose"] = $row["purpose"];
+										$_SESSION["facebook"] = $row["facebook"];
+										$_SESSION["display"] = $row["display"];
+										$_SESSION["password_group"] = $row["password"];
 									}
 								}
 							}
@@ -780,7 +803,7 @@
 							$strError = "The password '" . $strPassword . "' is incorrect!";
 							DoPrintJSAlertError($strError);
 						}
-						
+				
 						if (isset($_POST["login_group"]) && !DoGroupLogin())
 						{
 							DoPrintJSAlertPasswordError($_POST["password_group_login"]);
@@ -889,7 +912,7 @@
 								}
 							}
 						}
-						
+
 					?>
 					<script type="text/javascript">
 					
