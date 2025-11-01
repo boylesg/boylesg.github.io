@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -11,8 +11,10 @@
 		<!-- #EndEditable -->
 		<!-- #BeginEditable CustomStyles -->
 		
+		<?php require "common.php"; ?>
+		
 		<style>
-</style>
+		</style>
 			
 		<!-- # EndEditable -->
 		<link href="styles/style4PC.css" rel="stylesheet" type="text/css" />
@@ -51,7 +53,7 @@
 							<!-- Begin Navigation -->
 							<div class="navigation">
 								<ul>
-									<li><a href="index.html">Home</a></li>
+									<li><a href="donation.php">Home</a></li>
 									<li><a href="site_history/site_history.html">Site History</a></li>
 									<li><a href="people/people.html">Millhouse People</a></li>
 									<li><a href="Calendar/Calendar.html">Calendar</a></li>
@@ -72,47 +74,79 @@
 							<!-- Begin Content -->
 							<div class="content">
 								<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
-								
-								<form action="https://www.sandbox.paypal.com/donate" method="post" target="_top">
-									<input type="hidden" name="hosted_button_id" value="LNMV5ALZW5FJC" />
-									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-									<img alt="" border="0" src="https://www.sandbox.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
-								</form>
-								
+																
 								<!-- #BeginEditable "content" -->
-			<h2>Everyone is welcome at MillHouse</h2>
-			<table class="adverts_table" border="0" cellspacing="20" cellpadding="0">
-				<tr>
-					<td><img src="images/loans.jpg" alt="" height="200" style="border-style:none;"/></td>
-					<td><img src="images/RoomHire.jpg" alt=""  height="200" style="border-style:none;"/></td>
-					<td><img src="images/ParentPathways.jpg" alt=""  height="200" style="border-style:none;"/></td>
-				</tr>
-			</table>
-			<!--<p class="playwrite-gb-s" style="color:var(--end_color);font-size:30px;font-weight:bold;">Everyone is 
-			welcome at MillHouse</p>-->
 			
-			<p>Mill House is a Neighbourhood House in regional Victoria, Burke Street Maryborough. Mill House has been 
-			running for 30 years and has previously been known by other names such as Skill Share, Maryborough Learning 
-			Centre, Goldfields Employment &amp; Learning Centre Inc. Despite its various iterations over the years the 
-			organisation’s goal of supporting residents and the community has never changed.</p>		
-			
-			<p>We provide a location for the community to make social connections and learn together. We provide access 
-			to internet, food security, classes and groups. We offer an all-abilities social cooking group, art classes, 
-			craft groups and a weekly community lunch.  Mill House is a resource in the community, an information and 
-			referral point also providing intangible benefits such as community pride and sense of belonging, leadership 
-			development, community voice through advocacy &amp; increased personal independence.</p>
-			
-			<p>Our activity’s &amp; programs are supported by &amp; funded through the Foundation for Rural &amp; 
-			Regional Renewal, Victorian State Government - Department of Families, Fairness and Housing, and has been 
-			supported by the Community Bank Avoca, Maryborough and St Arnaud.</p>
-			<table class="adverts_table" border="0" cellspacing="20" cellpadding="0">
-				<tr>
-					<td><img src="images/VicStateGov.jpg" alt="" height="150" style="border-style:none;"/></td>
-					<td><img src="images/BendigoBank.jpg" alt=""  height="150" style="border-style:none;"/></td>
-					<td><img src="images/FRRR.jpg" alt=""  height="150" style="border-style:none;"/></td>
-				</tr>
-			</table>
-			
+								<?php
+								
+									//*****************************************************************************************
+									//
+									// FROM PAYPAL
+									// ------------
+									//
+									// $_GET - COMPLETION
+									// 		[tx] => 6GU84877K8518040D 
+									//		[st] => Completed 
+									//		[amt] => 100.00 
+									//		[cc] => AUD [cm] => 
+									//		[item_number] => 
+									//		[item_name] => Like-minded locals, from all walks of life, come together with their neighbours at Mill 
+									//						House. )
+									//
+									// $_GET - CANCELLATION
+									//		EMPTY
+									//******************************************************************************************
+									$_GET["amt"] = 100;
+									//unset($_SESSION["donation_added"]);
+									
+									$date = new DateTime(); 
+
+									// MySQL datetime format: 2025-11-01 21:53:00
+									if (!isset($_SESSION["donation_added"]) && 
+										DoInsertQuery4($g_dbMillhouse, "millhouse_db.donations", "given_names", 
+													"", "surname", "", "amount", $_GET["amt"], 
+													"date", $date->format("Y-m-d G:i:s")))
+									{
+										$_SESSION["donation_added"] = true;
+									}
+													
+									function DoGetLastShortkey()
+									{
+										$nShortkey = 0;
+										$row = DoGetLastInserted("millhouse_db.donations", "shortkey");
+						
+										if ($row)
+										{
+											$nShortkey = $row["shortkey"];
+										}
+										return $nShortkey;
+									}
+
+									DoGetLastShortkey();
+
+								?>	
+								<h1>Thankyou for your donation of $<?php if (isset($_GET["amt"])) echo $_GET["amt"]; else echo "0" ?></h1>
+								<p>If require a receipt then please fill out the form below and click the button...</p>
+								<form method="post" action="receipt.php" target="_self" class="form">
+									<table border="0" cellpadding="5" cellspacing="0">
+										<tr>
+											<td style="text-align:right"><label for="given_names">Given names:</label></td>
+											<td><input type="text" id="given_names" name="given_names"/></td>
+										</tr>
+										<tr>
+											<td style="text-align:right"><label for="surname">Surname:</label></td>
+											<td><input type="text" id="surname" name="surname"/></td>
+										</tr>
+										<tr>
+											<td style="text-align:right"><label for="amount">Amount donated:</label></td>
+											<td>$<input type="text" id="amount" name="amount" readonly value="<?php if (isset($_GET["amt"])) echo $_GET["amt"]; ?>" /></td>
+										</tr>
+										<tr>
+											<td  style="text-align:right" colspan="2"><input type="submit" id="submit" name="submit" style="width:180px;" value="GENERATE RECEIPT" /></td>
+										</tr>
+									</table>
+									<input type="hidden" name="shortkey" value="<?php echo DoGetLastShortkey(); ?>" />
+								</form>	
 			
 								<!-- #EndEditable "content" --></div>
 							<!-- End Content -->
@@ -123,7 +157,7 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<div class="footer_navigation">
-					<a href="index.html">Home</a> | 
+					<a href="donation.php">Home</a> | 
 					<a href="site_history/site_history.html">Site History</a> | 
 					<a href="Calendar/Calendar.html">Calendar</a> | 
 					<a href="photos/photos.html">Photos</a> |

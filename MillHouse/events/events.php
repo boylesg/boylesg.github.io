@@ -20,7 +20,7 @@
 		<!-- #BeginEditable CustomStyles -->
 		
 		<style>
-</style>
+		</style>
 			
 		<!-- #EndEditable -->
 	</head>
@@ -120,21 +120,11 @@
 							<div class="content">
 								<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
 								
-								<div id="donate-button-container">
-									<div id="donate-button"></div>
-									<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-									<script>
-										PayPal.Donation.Button({
-										env:'sandbox',
-										hosted_button_id:'LNMV5ALZW5FJC',
-										image: {
-										src:'https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif',
-										alt:'Donate with PayPal button',
-										title:'PayPal - The safer, easier way to pay online!',
-										}
-										}).render('#donate-button');
-									</script>
-								</div>
+								<form action="https://www.sandbox.paypal.com/donate" method="post" target="_top">
+									<input type="hidden" name="hosted_button_id" value="LNMV5ALZW5FJC" />
+									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+									<img alt="" border="0" src="https://www.sandbox.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+								</form>
 
 								<!-- #BeginEditable "content" --> 
 								
@@ -579,7 +569,7 @@
 											echo "</form>\n";
 											
 											echo "<p><b>CONTACT PERSON: </b>" . $row["contact"] . "<br/>\n";
-											echo "<b>EMAIL: </b><a href=\"maileto:" . $row["email"] . "\">" . $row["email"] . "</a><br/>\n";
+											echo "<b>EMAIL: </b><a href=\"mailto:" . $row["email"] . "\">" . $row["email"] . "</a><br/>\n";
 										
 											if (strlen($row["phone"]) > 0)
 												echo "<b>PHONE: </b>" . $row["phone"] . "<br/>\n";

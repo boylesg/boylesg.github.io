@@ -35,7 +35,7 @@
 	function DoQuery($dbConnection, $strQuery)
 	{
 		global $g_strEmailPresident;
-		$result = "";
+		$result = NULL;
 
 		try
 		{	
@@ -748,16 +748,19 @@
 		return DoQuery($dbConnection, $g_strQuery);
 	}
 	
-	function DoGetLastInserted($strTable, $strColumn, $strValue)
+	function DoGetLastInserted($strTable, $strPrimaryKey)
 	{
 		global $g_dbMillhouse;
 		global $g_strQuery;
+		$row = NULL;
 		
-		//$g_strQuery = "SELECT LAST from " . $strTable . " WHERE " . $strColumn . " = '" . $strValue . "'";
-		$g_strQuery = "SELECT * FROM " . $strTable . " WHERE (id = @last_id) AND (" . $strColumn . " = '" . $strValue . "')";
+		$g_strQuery = "SELECT * FROM " . $strTable . " ORDER BY shortkey DESC";
 		$results = DoQuery($g_dbMillhouse, $g_strQuery);
-		
-		return $results;
+		if ($results && ($results->num_rows > 0))
+		{
+			$row = $results->fetch_assoc();
+		}
+		return $row;
 	}
 	
 	//******************************************************************************
