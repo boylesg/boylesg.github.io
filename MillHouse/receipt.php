@@ -38,7 +38,7 @@
 			$_POST["amount"] = "100";
 			/**/
 			require "common.php";
-			print_r($_POST);
+			
 			DoUpdateQuery2($g_dbMillhouse, "millhouse_db.donations", "given_names", $_POST["given_names"], "surname", 
 							$_POST["surname"], "shortkey", $_POST["shortkey"]);
 
