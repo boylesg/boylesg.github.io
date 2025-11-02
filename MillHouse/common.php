@@ -326,7 +326,7 @@
 	{
 		global $g_strQuery;
 		$g_strQuery = "UPDATE " . $strTableName . " SET " . $strColumnName1 . "='" . EscapeSingleQuote($strColumnValue1) . "'," . 
-			$strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'," . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . 
+			$strColumnName2 . "='" . EscapeSingleQuote($strColumnValue2) . "'," . $strColumnName3 . "='" . EscapeSingleQuote($strColumnValue3) . "'," .
 			$strColumnName4 . "='" .  $strColumnValue4 . 
 			"' WHERE " . $strFindColumnName . "='" . $strFindColumnValue . "'";
 

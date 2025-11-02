@@ -97,17 +97,19 @@
 									//		EMPTY
 									//******************************************************************************************
 									$_GET["amt"] = 100;
-									//unset($_SESSION["donation_added"]);
+									//unset($_SESSION["last_shortkey"]);
+									$_SESSION["last_shortkey"] = 1;
 									
 									$date = new DateTime(); 
 
 									// MySQL datetime format: 2025-11-01 21:53:00
-									if (!isset($_SESSION["donation_added"]) && 
+									if (!isset($_SESSION["last_shortkey"]) && 
 										DoInsertQuery4($g_dbMillhouse, "millhouse_db.donations", "given_names", 
 													"", "surname", "", "amount", $_GET["amt"], 
 													"date", $date->format("Y-m-d G:i:s")))
 									{
-										$_SESSION["donation_added"] = true;
+										$_SESSION["last_shortkey"] = DoGetLastShortkey();
+;
 									}
 													
 									function DoGetLastShortkey()
@@ -122,8 +124,6 @@
 										return $nShortkey;
 									}
 
-									DoGetLastShortkey();
-
 								?>	
 								<h1>Thankyou for your donation of $<?php if (isset($_GET["amt"])) echo $_GET["amt"]; else echo "0" ?></h1>
 								<p>If require a receipt then please fill out the form below and click the button...</p>
@@ -131,21 +131,33 @@
 									<table border="0" cellpadding="5" cellspacing="0">
 										<tr>
 											<td style="text-align:right"><label for="given_names">Given names:</label></td>
-											<td><input type="text" id="given_names" name="given_names"/></td>
+											<td><input type="text" id="given_names" name="given_names" required/></td>
 										</tr>
 										<tr>
 											<td style="text-align:right"><label for="surname">Surname:</label></td>
-											<td><input type="text" id="surname" name="surname"/></td>
+											<td><input type="text" id="surname" name="surname" required/></td>
 										</tr>
 										<tr>
-											<td style="text-align:right"><label for="amount">Amount donated:</label></td>
-											<td>$<input type="text" id="amount" name="amount" readonly value="<?php if (isset($_GET["amt"])) echo $_GET["amt"]; ?>" /></td>
+											<td style="text-align:right"><label for="amount">Donation: $</label></td>
+											<td><input type="text" id="amount" name="amount" readonly value="<?php if (isset($_GET["amt"])) echo $_GET["amt"]; ?>" /></td>
 										</tr>
+										<tr>
+											<td colspan="2"><h3>Are you happy to be contacted by Millhouse?</h3></td>
+										</tr>
+										<tr>
+											<td style="text-align:right"><label for="email">Email:</label></td>
+											<td><input type="text" id="email" name="email" placeholder="e.g. fred.smith@gmail.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" /></td>
+										</tr>
+										<tr>
+											<td style="text-align:right"><label for="phone">Phone:</label></td>
+											<td><input type="text" id="phone" name="phone" placeholder="e.g. 0414123456 or 94568734" pattern="^\+?(\d{1,3})?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"/></td>
+										</tr>
+										<tr><td>&nbsp;</td></tr>
 										<tr>
 											<td  style="text-align:right" colspan="2"><input type="submit" id="submit" name="submit" style="width:180px;" value="GENERATE RECEIPT" /></td>
 										</tr>
 									</table>
-									<input type="hidden" name="shortkey" value="<?php echo DoGetLastShortkey(); ?>" />
+									<input type="hidden" name="shortkey" value="<?php echo $_SESSION["last_shortkey"]; ?>" />
 								</form>	
 			
 								<!-- #EndEditable "content" --></div>

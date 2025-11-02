@@ -1,15 +1,15 @@
 vti_encoding:SR|utf8-nl
 vti_author:SR|LATITUDE-E5430\\gregaryb
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
-vti_timelastmodified:TR|01 Nov 2025 12:28:21 -0000
+vti_timelastmodified:TR|02 Nov 2025 02:38:23 -0000
 vti_timecreated:TR|26 Jul 2025 05:25:40 -0000
 vti_title:SR|Home
 vti_extenderversion:SR|12.0.0.0
-vti_nexttolasttimemodified:TW|01 Nov 2025 12:27:45 -0000
+vti_nexttolasttimemodified:TW|02 Nov 2025 02:37:44 -0000
 vti_structuredtm:TR|30 Jul 2025 09:00:38 -0000
 vti_backlinkinfo:VX|donation.php
-vti_cacheddtm:TX|01 Nov 2025 12:28:21 -0000
-vti_filesize:IR|7200
+vti_cacheddtm:TX|02 Nov 2025 02:38:23 -0000
+vti_filesize:IR|7967
 vti_cachedtitle:SR|Home
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|master.dwt Q|styles/style4PC.css H|https://fonts.googleapis.com H|https://fonts.gstatic.com Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 H|..images/MillHouse.jpg S|../images/MillHouse.jpg H|..images/OldKnittingMill.jpg S|../images/OldKnittingMill.jpg H|..images/KnittingMill1961.jpg S|../images/KnittingMill1961.jpg H|donation.php H|site_history/site_history.html H|people/people.html H|Calendar/Calendar.html H|photos/photos.html H|information/information.html H|events/events.php H|coder_dojo/CoderDojo.html H|contact/Contact.php A|receipt.php H|donation.php H|site_history/site_history.html H|Calendar/Calendar.html H|photos/photos.html H|information/information.html H|events/events.php H|coder_dojo/CoderDojo.html H|contact/Contact.php
