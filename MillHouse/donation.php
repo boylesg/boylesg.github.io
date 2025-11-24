@@ -11,10 +11,8 @@
 		<!-- #EndEditable -->
 		<!-- #BeginEditable CustomStyles -->
 		
-		<?php require "common.php"; ?>
-		
 		<style>
-		</style>
+</style>
 			
 		<!-- # EndEditable -->
 		<link href="styles/style4PC.css" rel="stylesheet" type="text/css" />
@@ -53,7 +51,7 @@
 							<!-- Begin Navigation -->
 							<div class="navigation">
 								<ul>
-									<li><a href="donation.php">Home</a></li>
+									<li><a href="index.html">Home</a></li>
 									<li><a href="site_history/site_history.html">Site History</a></li>
 									<li><a href="people/people.html">Millhouse People</a></li>
 									<li><a href="Calendar/Calendar.html">Calendar</a></li>
@@ -74,7 +72,14 @@
 							<!-- Begin Content -->
 							<div class="content">
 								<h1 class="page_heading gluten"><u><script type="text/javascript">document.write(document.title);</script></u></h1>
-																
+								
+								<form action="https://www.sandbox.paypal.com/donate" method="post" target="_top">
+									<input type="hidden" name="hosted_button_id" value="LNMV5ALZW5FJC" />
+									<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+									<img alt="" border="0" src="https://www.sandbox.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+								</form>
+								<p><a href="why_donate.html">Click here to learn why Millhouse is a worthy cause...</a></p>
+								
 								<!-- #BeginEditable "content" -->
 			
 								<?php
@@ -154,7 +159,8 @@
 										</tr>
 										<tr><td>&nbsp;</td></tr>
 										<tr>
-											<td  style="text-align:right" colspan="2"><input type="submit" id="submit" name="submit" style="width:180px;" value="GENERATE RECEIPT" /></td>
+											<td  style="text-align:right" colspan="2">
+											<input type="submit" id="submit" name="submit0" style="width:180px;" value="GENERATE RECEIPT" /></td>
 										</tr>
 									</table>
 									<input type="hidden" name="shortkey" value="<?php echo $_SESSION["last_shortkey"]; ?>" />
@@ -169,7 +175,7 @@
 			<!-- Begin Footer -->
 			<div class="footer">
 				<div class="footer_navigation">
-					<a href="donation.php">Home</a> | 
+					<a href="index.html">Home</a> | 
 					<a href="site_history/site_history.html">Site History</a> | 
 					<a href="Calendar/Calendar.html">Calendar</a> | 
 					<a href="photos/photos.html">Photos</a> |
