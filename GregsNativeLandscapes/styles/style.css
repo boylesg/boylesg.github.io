@@ -5,7 +5,7 @@ body
 	font-size: medium;
 	color: #000;
 	overflow: auto;
-	background-color: #cb8;
+	background-color: white;
 }
 .masthead 
 {
@@ -27,6 +27,7 @@ body
 	position: relative;
 	float: left;
 	width: 140px;
+	height: 485px;
 	background-color: #cb8;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -66,7 +67,7 @@ body
 {
 	margin-left: 140px;
 	padding: 10px;
-	background-color: #fff;
+	background-color: rgb(245, 245, 245);
 	overflow-y: auto;
 	overflow-x: hidden;
 	height: 465px;
