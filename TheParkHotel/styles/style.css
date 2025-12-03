@@ -1,0 +1,235 @@
+﻿@import url(layout.css);
+:root
+{
+	--masthead_text_color: #B90000;
+	--heading_color: #FF5151;
+	--button_bg: #FFB092;
+}
+body 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	font-style: normal;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url('../images/TheParkHotelNightColor.jpg');
+	background-size: cover;
+	background-position: center center;
+	overflow: auto;
+	background-attachment: fixed;
+}
+.container 
+{
+	width: 100%;
+	margin: 0;
+	position: relative;
+}
+.masthead 
+{
+	width: 100%;
+}
+.heading
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 80px;
+	color: var(--masthead_text_color);
+}
+.address
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+	color: white;
+	float: right;
+	color: var(--masthead_text_color);
+	margin-top: 20px;
+	margin-right: 20px;
+}
+.footer
+{
+	border-style: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: small;
+	color: var(--masthead_text_color);
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+.page_content 
+{
+	position: relative;
+	width: 100%;
+	height: 300px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: var(--masthead_text_color);
+	vertical-align: top;
+	text-align: center;
+}
+.page_content p
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: medium;
+	color: black;
+}
+.box p
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: medium;
+	color: black;
+}
+.box
+{
+	display: inline-block;
+	background-color: white;
+	border-style: solid;
+	border-radius: 10px;
+	border-width: medium;
+	border-color: var(--masthead_text_color);
+	width: 75%;
+	height: auto;
+	padding: 10px;
+	opacity: 0.95;
+	box-shadow: 10px 10px black;
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  	overflow: auto;
+}
+/* Styles for Masthead */
+.masthead img 
+{
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+.masthead p 
+{
+	font-size: small;
+	text-align: right;
+	color: #000;
+	margin: 10px 10px 10px 0;
+	padding: 0;
+}
+/* Styles for Navigation */
+.navigation 
+{
+	overflow: hidden;
+}
+.navigation ul 
+{
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.navigation li 
+{
+	float: left;
+}
+.navigation a 
+{
+	color: #000;
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px;
+	border: none;
+	color: var(--masthead_text_color);
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: large;
+}
+.navigation a:hover
+{
+	color: var(--masthead_text_color);
+	text-decoration: none;
+	border: 1px solid var(--masthead_text_color);
+	color: var(--masthead_text_color);
+}
+/* Styles for Content */
+button
+{
+	background-color: var(--button_bg);
+	border-color: var(--heading_color);
+	filter: brightness(100%);
+	border-radius: 5px;
+}
+button:active
+{
+	
+	filter: brightness(120%)
+}
+h1 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 2em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+h2 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.75em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+h3 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+h4 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.25em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+h5 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.75em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+h6 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.5em;
+	color: var(--masthead_text_color);
+	text-decoration: underline;
+}
+/* Styles for Footer */
+#footer p 
+{
+	font-size: x-small;
+	text-align: center;
+	color: #393939;
+	margin: 10px;
+	padding: 1px;
+}
+/* Styles for Links */
+a 
+{
+	color: #469;
+	text-decoration: underline;
+}
+a:hover 
+{
+	color: #000;
+	text-decoration: underline;
+}
+.style_bold 
+{
+	font-weight: bold;
+}
+.style_italic 
+{
+	font-style: italic;
+}

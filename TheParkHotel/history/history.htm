@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+		<title>History</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<script type="text/javascript">
+		
+			function DoPageLoadStuff()
+			{
+				var cell = null;
+				
+				if (document.title == "Home")
+				{
+					cell = document.getElementById("home");
+				}
+				else if (document.title == "Bookings")
+				{
+					cell = document.getElementById("bookings");
+				}
+				else if (document.title == "Calendar")
+				{
+					cell = document.getElementById("calendar");
+				}
+				else if (document.title == "Contact")
+				{
+					cell = document.getElementById("contact");
+				}
+				else if (document.title == "Jobs")
+				{
+					cell = document.getElementById("jobs");
+				}
+				else if (document.title == "Team")
+				{
+					cell = document.getElementById("team");
+				}
+				else if (document.title == "History")
+				{
+					cell = document.getElementById("history");
+				}
+				else if (document.title == "Menu")
+				{
+					cell = document.getElementById("menu");
+				}
+				if (cell)
+				{
+					cell.style.borderStyle = "solid";
+					cell.style.borderWidth = "thin";
+					cell.style.borderColor = "#B90000";
+				}
+			}
+			
+			function DoToggle(strIDElementToHide, strIDUpImage, strIDDownImage)
+			{
+				let div = document.getElementById(strIDElementToHide),
+					imgUp = document.getElementById(strIDUpImage),
+					imgDown = document.getElementById(strIDDownImage);
+				
+				if (div && imgUp && imgDown)
+				{
+					if ((div.style.height == "auto") || (div.style.height == ""))
+					{
+						div.style.height = "30px";
+						div.style.overflow = "hidden";
+						imgDown.style.display = "inline";
+						imgUp.style.display = "none";
+					}
+					else
+					{
+						div.style.height = "auto";
+						div.style.overflow = "auto";
+						imgDown.style.display = "none";
+						imgUp.style.display = "inline";
+					}
+				}
+			}
+			
+		</script>
+		
+	</head>
+
+	<body onload="DoPageLoadStuff()">
+
+		<!-- Begin Container -->
+		<div class="container">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<!-- Begin Masthead -->
+					<td class="masthead">
+						<span class="heading">The Park Hotel</span>
+						<span class="address">
+							191-195 High Street, Maryborough, VIC, 3465<br/>
+							Phone: (03)5461 1272
+						</span>
+					</td>
+					<!-- End Masthead -->
+				</tr>
+				<tr>
+					<!-- Begin Navigation -->
+					<td class="navigation">
+						<ul>
+							<li><a href="../index.htm" id="home">Home</a></li>
+							<li><a href="history.htm" id="history">Our History</a></li>
+							<li><a href="../menu/menu.htm" id="menu">Menu</a></li>
+							<li>
+							<a href="../bookings/bookings.htm" id="bookings">Bookings</a></li>
+							<li>
+							<a href="../calendar/calendar.htm" id="calendar">Calendar</a></li>
+							<li><a href="../team/team.htm" id="team">Our Team</a></li>
+							<li>
+							<a href="../employment/employment.htm" id="jobs">Jobs</a></li>
+							<li><a href="../contact/contact.htm" id="contact">Contact Us</a></li>
+						</ul>
+					</td>
+					<!-- End Navigation -->
+				</tr>
+				<tr>
+					<!-- Begin Page Content -->
+					<td class="page_content">
+											
+						<!-- #BeginEditable "content" -->
+
+				<div class="box" style="width:95%;">		
+					<h1>Location</h1>
+					<p>
+						The Parkway Hotel is just across the road from the main entrance to the Phillips Memorial 
+						Gardens on Alma street. The gardens were opened in 1885 and originally had cast iron gate posts. 
+						These and the gates themselves are a fine example late 19th century iron work. The fence and 
+						gates were manufactured by F. McKays, Ballarat Foundry.
+					</p>
+					<p>
+						In 1926 the iron gate posts were relocated to the northern entry of the park and replaced 
+						by the Red Cross with the current granite posts that commerate the many son's of Maryborough 
+						who were killed in action during WW1. These were restored and rededicated at a ceremony on 23 
+						September 1991.
+					</p>
+					<p><a href="images/PhillipsMemorialGardens.jpg">
+					<img src="images/PhillipsMemorialGardens.jpg" alt="PhillipsMemorialGardens.jpg" width="400" /></a></p>
+					<h1>Historical context</h1>
+					<h3>The gold rush era</h3>
+					<p>
+						The Park Road Precinct, where the hotel is located, was an important arterial route connecting 
+						Maryborough to the Golden Triangle (Dunolly, Tarnagulla, and Moliagul) during the Gold Rush. 
+						This era saw the development of affluent residential and commercial properties in the area. 
+					</p>
+					<h3>Architectural significance</h3>
+					<p>
+						The hotel is part of a late Victorian Italianate precinct, which includes other properties 
+						featuring characteristic hipped roofs, iron lacework, and deep setbacks.<br/>
+						<a href="images/Houses.jpg">
+						<img src="images/Houses.jpg" alt="Houses.jpg" width="400"/></a>
+
+					</p>
+					<h1>Ownership</h1>
+					<p>
+						The Park Hotel in Maryborough, VIC, has a history tied to the Curtain family and experienced 
+						changes in management over the years
+					</p>
+					<p>
+						<b>1891 - 1910: </b>
+						During this period the most noteable icensee was Mrs Meadway in 1891. In 1910 the building was 
+						damaged by a signficant fire.<br/>
+						<a href="images/TheParkHotel1891.jpg">
+						<img src="images/TheParkHotel1891.jpg" alt="TheParkHotel1891.jpg" width="400"/></a>
+					</p>
+
+					<p>
+						<b>1910 - 1913: </b>
+						The hotel saw several changes in management after 1910, with Lilian Amoretty selling the 
+						licence to Elizabeth Blewett in 1911, who then sold it to Conrad Lischeld in 1913. 
+					</p>
+					<p>
+						<b>1913 - mid 1930s: </b>
+						The licence was then transfered to the Curtain family, who owned the pub until 
+						the mid 1930s.
+					</p>
+					<p>
+						<b>Mid 1930s to 1954: </b>
+						During this period the pub was owned by M.S. &amp; C.A. Galvin
+					</p>
+					<p>
+						<b>1954 to present: </b>
+						The licence was transfered to Montague Sweeney Galvin in February 1954.<br/>
+						<a href="images/TheParkHotelDayColor.jpg">
+						<img src="images/TheParkHotelDayColor.jpg" alt="TheParkHotelDayColor.jpg" width="400"/></a>
+					</p>
+				</div>
+
+
+
+						<!-- #EndEditable -->
+					</td>
+					<!-- End Page Content -->
+				</tr>
+				<tr>
+					<!-- Begin Footer -->
+					<td class="footer" valign="middle" align="right">
+						Website by Gregary Boyles<br/>
+						<b>Email: </b><script type="text/javascript">document.write("gregplants" + String.fromCharCode(64) + "bigpond" + "." + "com");</script>
+					</td>
+					<!-- End Footer -->
+				</tr>
+			</table>
+		</div>
+		<!-- End Container -->
+		
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>

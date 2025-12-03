@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- #BeginTemplate "../master.dwt" -->
+
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<!-- #BeginEditable "doctitle" -->
+<title>Photo Gallery</title>
+		<!-- #EndEditable -->
+		<link href="../styles/style.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<script type="text/javascript">
+		
+			function DoPageLoadStuff()
+			{
+				var cell = null;
+				
+				if (document.title == "Home")
+				{
+					cell = document.getElementById("home");
+				}
+				else if (document.title == "Bookings")
+				{
+					cell = document.getElementById("bookings");
+				}
+				else if (document.title == "Calendar")
+				{
+					cell = document.getElementById("calendar");
+				}
+				else if (document.title == "Contact")
+				{
+					cell = document.getElementById("contact");
+				}
+				else if (document.title == "Jobs")
+				{
+					cell = document.getElementById("jobs");
+				}
+				else if (document.title == "Team")
+				{
+					cell = document.getElementById("team");
+				}
+				else if (document.title == "History")
+				{
+					cell = document.getElementById("history");
+				}
+				else if (document.title == "Menu")
+				{
+					cell = document.getElementById("menu");
+				}
+				if (cell)
+				{
+					cell.style.borderStyle = "solid";
+					cell.style.borderWidth = "thin";
+					cell.style.borderColor = "#B90000";
+				}
+			}
+			
+			function DoToggle(strIDElementToHide, strIDUpImage, strIDDownImage)
+			{
+				let div = document.getElementById(strIDElementToHide),
+					imgUp = document.getElementById(strIDUpImage),
+					imgDown = document.getElementById(strIDDownImage);
+				
+				if (div && imgUp && imgDown)
+				{
+					if ((div.style.height == "auto") || (div.style.height == ""))
+					{
+						div.style.height = "30px";
+						div.style.overflow = "hidden";
+						imgDown.style.display = "inline";
+						imgUp.style.display = "none";
+					}
+					else
+					{
+						div.style.height = "auto";
+						div.style.overflow = "auto";
+						imgDown.style.display = "none";
+						imgUp.style.display = "inline";
+					}
+				}
+			}
+			
+		</script>
+		
+	</head>
+
+	<body onload="DoPageLoadStuff()">
+
+		<!-- Begin Container -->
+		<div class="container">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<!-- Begin Masthead -->
+					<td class="masthead">
+						<span class="heading">The Park Hotel</span>
+						<span class="address">
+							191-195 High Street, Maryborough, VIC, 3465<br/>
+							Phone: (03)5461 1272
+						</span>
+					</td>
+					<!-- End Masthead -->
+				</tr>
+				<tr>
+					<!-- Begin Navigation -->
+					<td class="navigation">
+						<ul>
+							<li><a href="../index.htm" id="home">Home</a></li>
+							<li><a href="../history/history.htm" id="history">Our History</a></li>
+							<li><a href="../menu/menu.htm" id="menu">Menu</a></li>
+							<li>
+							<a href="../bookings/bookings.htm" id="bookings">Bookings</a></li>
+							<li>
+							<a href="../calendar/calendar.htm" id="calendar">Calendar</a></li>
+							<li><a href="../team/team.htm" id="team">Our Team</a></li>
+							<li>
+							<a href="../employment/employment.htm" id="jobs">Jobs</a></li>
+							<li><a href="../contact/contact.htm" id="contact">Contact Us</a></li>
+						</ul>
+					</td>
+					<!-- End Navigation -->
+				</tr>
+				<tr>
+					<!-- Begin Page Content -->
+					<td class="page_content">
+											
+						<!-- #BeginEditable "content" -->
+			<h2>Photo Gallery</h2>
+			<p>Insert your photo gallery here.</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<h4>Related resources</h4>
+			<ul>
+				<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+			</ul>
+					<h3>Headline 3</h3>
+					<p>insert content here</p>
+						<!-- #EndEditable -->
+					</td>
+					<!-- End Page Content -->
+				</tr>
+				<tr>
+					<!-- Begin Footer -->
+					<td class="footer" valign="middle" align="right">
+						Website by Gregary Boyles<br/>
+						<b>Email: </b><script type="text/javascript">document.write("gregplants" + String.fromCharCode(64) + "bigpond" + "." + "com");</script>
+					</td>
+					<!-- End Footer -->
+				</tr>
+			</table>
+		</div>
+		<!-- End Container -->
+		
+	</body>
+
+<!-- #EndTemplate -->
+
+</html>

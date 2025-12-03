@@ -5,7 +5,25 @@
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<?php require "../common.php"; ?>
+		<?php 
+			require "../common.php";
+			
+			$g_dbDatabase = ConnectToDatabase("qDHt7vvFvsOvUPG5", "millhouse_db");
+			
+			function DoGetGroupDescription($strTitle)
+			{
+				global $g_dbDatabase;
+				$strDesc = "";
+				
+				
+				echo "@@@@@@@<br>";
+				echo $strTitle . "br>";
+				echo "@@@@@@@<br>";
+				
+				return $strDesc;
+			}
+	
+		?>
 		<!-- #BeginEditable "doctitle" -->
 		<title>Events</title>
 		<!-- #EndEditable -->
@@ -56,11 +74,11 @@
 						
 						function DoGenerateHyperlinks()
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strQuery;
 							$strHTML = "";
-					
-							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups", "", "description", true))
+
+							if ($g_dbDatabase && $result = DoFindAllQuery($g_dbDatabase, "millhouse_db.groups", "", "description", true))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -201,16 +219,16 @@
 						
 						function DoSaveNewPhoto($nShortkey)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$strDestPath = "";
 							$strGroupName = "";
-							$result = DoFindQuery1($g_dbMillhouse, "millhouse_db.events", "shortkey", $nShortkey);
+							$result = DoFindQuery1($g_dbDatabase, "millhouse_db.events", "shortkey", $nShortkey);
 					
 							if ($result->num_rows > 0)
 							{
 								if ($row = $result->fetch_assoc())
 								{
-									$result = DoFindQuery1($g_dbMillhouse, "millhouse_db.groups", "shortkey", $row["group_shortkey"]);
+									$result = DoFindQuery1($g_dbDatabase, "millhouse_db.groups", "shortkey", $row["group_shortkey"]);
 									if ($result->num_rows > 0)
 									{
 										if ($row = $result->fetch_assoc())
@@ -235,17 +253,17 @@
 						
 						function DoDeleteOldPhoto($nShortkey)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$strFilename = "";
 							$strGroupName = "";
-							$result = DoFindQuery1($g_dbMillhouse, "millhouse_db.events", "shortkey", $nShortkey);
+							$result = DoFindQuery1($g_dbDatabase, "millhouse_db.events", "shortkey", $nShortkey);
 					
 							if ($result->num_rows > 0)
 							{
 								if ($row = $result->fetch_assoc())
 								{
 									$strFilename = $row["photo"];
-									$result = DoFindQuery1($g_dbMillhouse, "millhouse_db.groups", "shortkey", $row["group_shortkey"]);
+									$result = DoFindQuery1($g_dbDatabase, "millhouse_db.groups", "shortkey", $row["group_shortkey"]);
 									if ($result->num_rows > 0)
 									{
 										if ($row = $result->fetch_assoc())
@@ -270,10 +288,10 @@
 						
 						function DoGetGroupShortkey($strGroupName)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$nGroupShortkey = 0;
 					
-							if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.groups", "name", $strGroupName))
+							if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.groups", "name", $strGroupName))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -288,16 +306,16 @@
 						
 						function DoGetGroupEmailFromEventShortkey($nEventShortkey)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$strEmail = "";
 					
-							if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.events", $nEventShortkey))
+							if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.events", $nEventShortkey))
 							{
 								if ($result->num_rows > 0)
 								{
 									if ($row = $result->fetch_assoc())
 									{
-										if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.groups", $row["group_shortkey"]))
+										if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.groups", $row["group_shortkey"]))
 										{
 											if ($row = $result->fetch_assoc())
 											{
@@ -312,7 +330,7 @@
 						
 						function DoProcessGroupForm()
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strQuery;
 
 							if (isset($_POST["load_group"]))
@@ -323,13 +341,13 @@
 							{
 								if ($_POST["group_shortkey"] == 0)
 								{
-									if ($result = DoInsertQuery16($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"]))
+									if ($result = DoInsertQuery16($g_dbDatabase, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"]))
 									{
 									}
 								}
 								else
 								{
-									if ($result = DoUpdateQuery16($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"], "shortkey", $_POST["group_shortkey"]))
+									if ($result = DoUpdateQuery16($g_dbDatabase, "millhouse_db.groups", "name", $_POST["name"], "description", $_POST["description"], "password", $_POST["password_group"], "contact", $_POST["contact"], "email", $_POST["email"], "phone", $_POST["phone"], "dow1", $_POST["dow1"], "dow2", $_POST["dow2"], "wom", $_POST["wom"], "time1", $_POST["time1"], "time2", $_POST["time2"], "hours", $_POST["duration"], "cost", $_POST["cost"], "donation", $_POST["donation"], "purpose", $_POST["purpose"], "facebook", $_POST["facebook"], "shortkey", $_POST["group_shortkey"]))
 									{
 									}
 								}
@@ -337,7 +355,7 @@
 							}
 							else if (isset($_POST["delete_group"]))
 							{
-								if ($result = DoDeleteQuery($g_dbMillhouse, "millhouse_db.groups", "shortkey", $_POST["group_shortkey"]))
+								if ($result = DoDeleteQuery($g_dbDatabase, "millhouse_db.groups", "shortkey", $_POST["group_shortkey"]))
 								{
 									rmdir("images/" . $_POST["name"]);
 								}
@@ -347,11 +365,11 @@
 					
 						function DoProcessEventForm($strGroupName)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 					
 							if (isset($_POST["load_event_" . $strGroupName]))
 							{
-								if ($result = DoFindQuery1($g_dbMillhousem, "events", "shortkey", $_POST["event_list_" . $strGroupName]))
+								if ($result = DoFindQuery1($g_dbDatabasem, "events", "shortkey", $_POST["event_list_" . $strGroupName]))
 								{
 									if ($result->num_rows > 0)
 									{
@@ -369,13 +387,13 @@
 							{
 								if ($_SESSION["shortkey_" . $strGroupName] == 0)
 								{
-									if ($result = DoInsertQuery3($g_dbMillhousem, "millhouse_db.events", "date", $_POST["date_" . $strGroupName], "description", $_POST["description_" . $strGroupName], "photo", $_POST["photo_" . $strGroupName]))
+									if ($result = DoInsertQuery3($g_dbDatabasem, "millhouse_db.events", "date", $_POST["date_" . $strGroupName], "description", $_POST["description_" . $strGroupName], "photo", $_POST["photo_" . $strGroupName]))
 									{
 									}
 								}
 								else
 								{
-									if ($result = DoUpdateQuery3($g_dbMillhousem, "millhouse_db.ievents", "date", $_POST["date_" . $strGroupName], "description", $_POST["description_" . $strGroupName], "photo", $_POST["photo_" . $strGroupName], "shortkey", $_POST["shortkey_" . $strGroupName]))
+									if ($result = DoUpdateQuery3($g_dbDatabasem, "millhouse_db.ievents", "date", $_POST["date_" . $strGroupName], "description", $_POST["description_" . $strGroupName], "photo", $_POST["photo_" . $strGroupName], "shortkey", $_POST["shortkey_" . $strGroupName]))
 									{
 										DoDeleteOldPhoto($_POST["shortkey_" . $strGroupName]);
 									}
@@ -389,7 +407,7 @@
 							}
 							else if (isset($_POST["delete_event_" . $strGroupName]))
 							{
-								if ($result = DoDeleteQuery($g_dbMillhouse, "millhouse_db.events", "shortkey", $_POST["shortkey_" . $strGroupName]))
+								if ($result = DoDeleteQuery($g_dbDatabase, "millhouse_db.events", "shortkey", $_POST["shortkey_" . $strGroupName]))
 								{
 								}
 								$_SESSION["shortkey_" . $strGroupName] = 0;
@@ -409,14 +427,14 @@
 						
 						function DoGetEvents($strGroupName)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strImageWidth;
 							$nGroupShortkey = DoGetGroupShortkey($strGroupName);
 							$strHTML = "";
 					
 							if ($nGroupShortkey > 0)
 							{
-								if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.events", "group_shortkey", $nGroupShortkey, "", "date", false))
+								if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.events", "group_shortkey", $nGroupShortkey, "", "date", false))
 								{
 									if ($result->num_rows > 0)
 									{
@@ -467,10 +485,10 @@
 												
 						function DoDisplayGroupDivs($strCurrentVisibleDiv)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strQuery;
 														
-							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups"))
+							if ($g_dbDatabase && $result = DoFindAllQuery($g_dbDatabase, "millhouse_db.groups"))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -651,11 +669,11 @@
 						
 						function DoGetGroupOptions()
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strQuery;
 							$strEventOptionsHTML = "";
-					
-							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups"))
+
+							if ($g_dbDatabase && $result = DoFindAllQuery($g_dbDatabase, "millhouse_db.groups"))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -680,11 +698,11 @@
 
 						function DoGetEventOptions($strGroupName)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$strEventOptionsHTML = "";
 							$nGroupShortkey = DoGetGroupShortkey($strGroupName);
 							
-							if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.events", "group_shortkey", $nGroupShortkey))
+							if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.events", "group_shortkey", $nGroupShortkey))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -710,11 +728,11 @@
 						
 						function DoLoadGroup($nShortkey)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							global $g_strQuery;
 							$result = "";
 
-							if ($result = DoFindQuery1($g_dbMillhouse, "millhouse_db.groups", "shortkey", $nShortkey))
+							if ($result = DoFindQuery1($g_dbDatabase, "millhouse_db.groups", "shortkey", $nShortkey))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -760,10 +778,10 @@
 
 						function DoEventLogin($strGroupName)
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$bResult = true;
 
-							if ($result = DoFindQuery2($g_dbMillhouse, "millhouse_db.groups", "name", $strGroupName, "password", $_POST["password_event_" . $strGroupName]))
+							if ($result = DoFindQuery2($g_dbDatabase, "millhouse_db.groups", "name", $strGroupName, "password", $_POST["password_event_" . $strGroupName]))
 							{
 								if ($result->num_rows > 0)
 								{
@@ -778,10 +796,10 @@
 					
 						function DoGroupLogin()
 						{
-							global $g_dbMillhouse;
+							global $g_dbDatabase;
 							$bResult = false;
 					
-							if ($result = DoFindQuery2($g_dbMillhouse, "millhouse_db.groups", "name", $_POST["username"], "password", $_POST["password_group_login"]))
+							if ($result = DoFindQuery2($g_dbDatabase, "millhouse_db.groups", "name", $_POST["username"], "password", $_POST["password_group_login"]))
 							{
 								if ($result->num_rows > 0)
 								{

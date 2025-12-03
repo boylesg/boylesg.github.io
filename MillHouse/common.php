@@ -11,14 +11,14 @@
 	//******************************************************************************
 	//******************************************************************************
 	
-	function ConnectToDatabase()
+	function ConnectToDatabase($strPassword, $strSchemaName)
 	{
-		$dbFindATradie = null;
+		$dbDatabase = null;
 		global $g_strEmailPresident;
 		
 		try
 		{		
-			$dbFindATradie = new mysqli("127.0.0.1", "root", "qDHt7vvFvsOvUPG5", "millhouse_db");
+			$dbDatabase = new mysqli("127.0.0.1", "root", $strPassword, $strSchemaName);
 		}
 		catch(Exception $e)
 		{
@@ -27,10 +27,10 @@
 			PrintJavascriptLine("AlertError(\"'" . $strMsg . "'\");", 2, true);
 			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailPresident;
 		}
-		return $dbFindATradie;
+		return $dbDatabase;
 	}
-	$g_dbMillhouse = ConnectToDatabase();
 	$g_strQuery = "";
+	$g_dbDatabase = "XXXX";
 	
 	function DoQuery($dbConnection, $strQuery)
 	{
@@ -750,12 +750,12 @@
 	
 	function DoGetLastInserted($strTable, $strPrimaryKey)
 	{
-		global $g_dbMillhouse;
+		global $g_dbDatabase;
 		global $g_strQuery;
 		$row = NULL;
 		
 		$g_strQuery = "SELECT * FROM " . $strTable . " ORDER BY shortkey DESC";
-		$results = DoQuery($g_dbMillhouse, $g_strQuery);
+		$results = DoQuery($g_dbDatabase, $g_strQuery);
 		if ($results && ($results->num_rows > 0))
 		{
 			$row = $results->fetch_assoc();
