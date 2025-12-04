@@ -3,27 +3,9 @@
 
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-		<?php 
-			require "../common.php";
-			
-			$g_dbDatabase = ConnectToDatabase("qDHt7vvFvsOvUPG5", "millhouse_db");
-			
-			function DoGetGroupDescription($strTitle)
-			{
-				global $g_dbDatabase;
-				$strDesc = "";
-				
-				
-				echo "@@@@@@@<br>";
-				echo $strTitle . "br>";
-				echo "@@@@@@@<br>";
-				
-				return $strDesc;
-			}
-	
-		?>
+		<?php require "../common.php"; ?>
 		<!-- #BeginEditable "doctitle" -->
-		<title>Events - </title>
+		<title>Events - <?php $g_strGroupName = ""; echo DoGetGroupDescription($g_strGroupName); ?></title>
 		<!-- #EndEditable -->
 		
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
@@ -74,11 +56,11 @@
 						
 						function DoGenerateHyperlinks()
 						{
-							global $g_dbDatabase;
+							global $g_dbMillhouse;
 							global $g_strQuery;
 							$strHTML = "";
-
-							if ($g_dbDatabase && $result = DoFindAllQuery($g_dbDatabase, "millhouse_db.groups", "", "description", true))
+					
+							if ($result = DoFindAllQuery($g_dbMillhouse, "millhouse_db.groups", "", "description", true))
 							{
 								if ($result->num_rows > 0)
 								{

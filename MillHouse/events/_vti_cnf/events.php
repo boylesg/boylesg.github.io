@@ -1,14 +1,14 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|26 Nov 2025 07:54:39 -0000
+vti_timelastmodified:TR|24 Nov 2025 14:12:04 -0000
 vti_author:SR|LATITUDE-E5430\\gregaryb
 vti_modifiedby:SR|LATITUDE-E5430\\gregaryb
-vti_nexttolasttimemodified:TW|26 Nov 2025 07:43:46 -0000
+vti_nexttolasttimemodified:TR|01 Nov 2025 10:51:46 -0000
 vti_timecreated:TR|16 Sep 2025 03:16:16 -0000
 vti_title:SR|Events
 vti_extenderversion:SR|12.0.0.0
 vti_backlinkinfo:VX|people/people.html events/events.php events/cyber_cafe/cybercafe.php personnel_history/personnel_history.html events/events_master.dwt donation.php why_donate.html
-vti_cacheddtm:TX|26 Nov 2025 07:43:46 -0000
-vti_filesize:IR|58873
+vti_cacheddtm:TX|24 Nov 2025 14:12:04 -0000
+vti_filesize:IR|58548
 vti_cachedtitle:SR|Events
 vti_cachedbodystyle:SR|<body>
 vti_cachedlinkinfo:VX|G|events_master.dwt Q|../styles/style4PC.css H|https://fonts.googleapis.com H|https://fonts.gstatic.com Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 Q|https://fonts.googleapis.com/css2 H|..images/MillHouse.jpg S|../images/MillHouse.jpg H|..images/OldKnittingMill.jpg S|../images/OldKnittingMill.jpg H|..images/KnittingMill1961.jpg S|../images/KnittingMill1961.jpg H|../index.html H|../site_history/site_history.html H|../people/people.html H|../Calendar/Calendar.html H|../photos/photos.html H|../information/information.html H|../coder_dojo/CoderDojo.html K|events.php H|../contact/Contact.php A|https://www.sandbox.paypal.com/donate S|https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif S|https://www.sandbox.paypal.com/en_AU/i/scr/pixel.gif H|why_donate.html H|../index.html H|../site_history/site_history.html H|../Calendar/Calendar.html H|../photos/photos.html H|../information/information.html H|events.php H|../coder_dojo/CoderDojo.html H|../contact/Contact.php
