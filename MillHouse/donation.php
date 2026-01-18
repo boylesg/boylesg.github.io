@@ -29,17 +29,17 @@
 			<!-- Begin Masthead -->
 			<div class="masthead">
 				<div class="masthead_image" style="float:left;">
-					<a href="..images/MillHouse.jpg"><img src="../images/MillHouse.jpg" alt="" height="110"/></a>
+					<a href="..images/MillHouse.jpg"><img src="images/MillHouse.jpg" alt="" height="110"/></a>
 				</div>
 				<div class="masthead_text">
 					<h1 class="gluten">MillHouse</h1>
 					<h3 class="gluten">Neighbourhood House</h3>
 				</div>
 				<div class="masthead_image" style="float:right;">
-					<a href="..images/OldKnittingMill.jpg"><img src="../images/OldKnittingMill.jpg" alt="" height="110"/></a>
+					<a href="..images/OldKnittingMill.jpg"><img src="images/OldKnittingMill.jpg" alt="" height="110"/></a>
 				</div>
 				<div class="masthead_image" style="float:right;">
-					<a href="..images/KnittingMill1961.jpg"><img src="../images/KnittingMill1961.jpg" alt="" height="110"/></a>
+					<a href="..images/KnittingMill1961.jpg"><img src="images/KnittingMill1961.jpg" alt="" height="110"/></a>
 				</div>
 			</div>
 			
@@ -58,7 +58,7 @@
 									<li><a href="photos/photos.html">Photos</a></li>
 									<li><a href="information/information.html">Information</a></li>
 									<li><a href="events/events.php">Events</a></li>
-									<li><a href="coder_dojo/CoderDojo.html">CoderDojo</a></li>
+									<li><a href="coder_dojo/coder_dojo.html">CoderDojo</a></li>
 									<li><a href="contact/Contact.php">Contact</a></li>
 								</ul>
 								<p>&nbsp;</p>
@@ -181,7 +181,7 @@
 					<a href="photos/photos.html">Photos</a> |
 					<a href="CoolSpace/information.html">Information</a> |
 					<a href="events/events.php">Events</a> |
-					<a href="coder_dojo/CoderDojo.html">CoderDojo</a> | 
+					<a href="coder_dojo/coder_dojo.html">CoderDojo</a> | 
 					<a href="contact/Contact.php">Contact</a>
 				</div>
 				<div class="footer_attribution">

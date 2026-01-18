@@ -3,6 +3,7 @@
 {
 	--start_color: rgba(205,26,120,1);
 	--end_color: rgba(249,139,11,1);
+	--page_width: 1320px;
 }
 body 
 {
@@ -10,7 +11,7 @@ body
 	font-size: 0.8em;
 	background-attachment: scroll;
 	background-color: var(--end_color);
-	width: 1400px;
+	width: var(--page_width);
 }
 .container 
 {
@@ -20,7 +21,7 @@ body
 .masthead 
 {
 	display: block;
-	width: 100%;
+	width: 1344px;
 	height: 120px;
 	background-image: linear-gradient(var(--start_color), var(--end_color));
 }
@@ -106,7 +107,7 @@ body
 .content 
 {
 	display: inline-block;
-	width: /*1158px*/100px;
+	width: /*1158px*/100%;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;

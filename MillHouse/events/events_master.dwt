@@ -100,7 +100,7 @@
 									<li><a href="../Calendar/Calendar.html">Calendar</a></li>
 									<li><a href="../photos/photos.html">Photos</a></li>
 									<li><a href="../information/information.html">Information</a></li>
-									<li><a href="../coder_dojo/CoderDojo.html">CoderDojo</a></li>
+									<li><a href="../coder_dojo/coder_dojo.html">CoderDojo</a></li>
 									<li>
 										<a href="events.php#div_groups" onclick="DoClickEventHyperlink('div_groups')">Events</a>
 										<ul>
@@ -149,7 +149,7 @@
 					<a href="../photos/photos.html">Photos</a> |
 					<a href="../CoolSpace/information.html">Information</a> |
 					<a href="events.php">Events</a> |
-					<a href="../coder_dojo/CoderDojo.html">CoderDojo</a> | 
+					<a href="../coder_dojo/coder_dojo.html">CoderDojo</a> | 
 					<a href="../contact/Contact.php">Contact</a>
 				</div>
 				<div class="footer_attribution">
