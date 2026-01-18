@@ -106,7 +106,7 @@ body
 .content 
 {
 	display: inline-block;
-	/*width: 1158px;*/
+	width: 1158px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
