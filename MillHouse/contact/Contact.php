@@ -12,7 +12,7 @@
 		<!-- #BeginEditable CustomStyles -->
 		
 		<style>
-</style>
+		</style>
 			
 		<!-- # EndEditable -->
 		<link href="../styles/style4PC.css" rel="stylesheet" type="text/css" />
@@ -121,12 +121,12 @@
 							font-size:large;
 						}
 					</style>
-					<p><b class="bold_font">Manager:</b> Michelle Baker</p>
+					<p><b class="bold_font">Manager:</b> Sarah McLean</p>
 					<p><b class="bold_font">Located:</b> 88-90 Burke St, Maryborough, VIC, 3465</p>
 					<iframe class="google_map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.877082717945!2d143.73801677483826!3d-37.04897329071597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad0de1c2db10d45%3A0x50b328a3c9d8a308!2sMill%20House%20Neighbourhood%20House!5e1!3m2!1sen!2sau!4v1753712780805!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 					&nbsp;
 					<iframe class="google_map" src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sau!4v1753712852384!5m2!1sen!2sau!6m8!1m7!1s_mjNs34tYidqQSOy8Ssrsw!2m2!1d-37.04881190016663!2d143.7404980017168!3f157.31082!4f0!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-					<p><b class="bold_font">Open:</b> 9 am to 4 pm, Tuesday to Friday - Saturday to Monday for booked activities</p>
+					<p><b class="bold_font">Open:</b> 9 am to 4 pm, Monday to Friday - Saturday to Sunday for booked activities</p>
 					<p><b class="bold_font">Phone:</b> 03 5461 3185</p>
 					<p><b class="bold_font">Email:</b> manager&#64;millhouse&#46;org&#46;au</p>
 					<form class="form" action="_self" method="post">
