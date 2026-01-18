@@ -3,7 +3,9 @@
 {
 	--start_color: rgba(205,26,120,1);
 	--end_color: rgba(249,139,11,1);
-	--page_width: 1320px;
+	--body_width: 1320px;
+	--masthead_width: 1350px;
+	--content_width: 1110px;
 }
 body 
 {
@@ -11,7 +13,7 @@ body
 	font-size: 0.8em;
 	background-attachment: scroll;
 	background-color: var(--end_color);
-	width: var(--page_width);
+	width: var(--body_width);
 }
 .container 
 {
@@ -21,7 +23,7 @@ body
 .masthead 
 {
 	display: block;
-	width: 1344px;
+	width: var(--masthead_width);
 	height: 120px;
 	background-image: linear-gradient(var(--start_color), var(--end_color));
 }
@@ -107,7 +109,7 @@ body
 .content 
 {
 	display: inline-block;
-	width: /*1158px*/100%;
+	min-width: var(--content_width);
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -135,7 +137,7 @@ body
 {
 	text-align: center;
 	clear: both;
-	width: 100%;
+	width: var(--masthead_width);
 	height: 30px;
 	padding-top: 5px;
 	padding-bottom: 5px;
