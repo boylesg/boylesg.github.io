@@ -107,6 +107,7 @@
 
 
 
+
 						.google_map
 						{
 							display:inline-block;
@@ -192,7 +193,7 @@
 					<a href="../site_history/site_history.html">Site History</a> | 
 					<a href="../Calendar/Calendar.html">Calendar</a> | 
 					<a href="../photos/photos.html">Photos</a> |
-					<a href="../information/information.html">Information</a> |
+					<a href="../CoolSpace/information.html">Information</a> |
 					<a href="../events/events.php">Events</a> |
 					<a href="../coder_dojo/CoderDojo.html">CoderDojo</a> | 
 					<a href="Contact.php">Contact</a>

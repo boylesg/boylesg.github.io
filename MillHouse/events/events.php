@@ -317,7 +317,8 @@
 
 							if (isset($_POST["load_group"]))
 							{
-								$result = DoLoadGroup($_POST["group_list"]);
+								if (isset($_POST["group_list"]))
+									$result = DoLoadGroup($_POST["group_list"]);
 							}
 							else if (isset($_POST["upload_group"]))
 							{
@@ -348,19 +349,22 @@
 						function DoProcessEventForm($strGroupName)
 						{
 							global $g_dbMillhouse;
-					
+				
 							if (isset($_POST["load_event_" . $strGroupName]))
 							{
-								if ($result = DoFindQuery1($g_dbMillhousem, "events", "shortkey", $_POST["event_list_" . $strGroupName]))
+								if (isset($_POST["event_list_" . $strGroupName]))
 								{
-									if ($result->num_rows > 0)
+									if ($result = DoFindQuery1($g_dbMillhouse, "events", "shortkey", $_POST["event_list_" . $strGroupName]))
 									{
-										if ($row = $results->fetch_assoc())
+										if ($result->num_rows > 0)
 										{
-											$_SESSION["shortkey_" . $strGroupName] = $row("shortkey");
-											$_SESSION["date_" . $strGroupName] = $row["date"];
-											$_SESSION["description_" . $strGroupName] = $row["description"];
-											$_SESSION["photo_" . $strGroupName] = $row["photo"];
+											if ($row = $results->fetch_assoc())
+											{
+												$_SESSION["shortkey_" . $strGroupName] = $row("shortkey");
+												$_SESSION["date_" . $strGroupName] = $row["date"];
+												$_SESSION["description_" . $strGroupName] = $row["description"];
+												$_SESSION["photo_" . $strGroupName] = $row["photo"];
+											}
 										}
 									}
 								}
@@ -544,11 +548,11 @@
 											echo "		<tr>\n";
 											echo "			<td style=\"text-align: right;\"><label for=\"event_list_" . $row["name"] . "\">Current events:</label></td>\n";
 											echo "			<td>\n";
-											echo "				<select id=\"event_list_" . $row["name"] . "\" name=\"event_list_" . $row["name"] . "\" autocomplete=\"on\" >\n";
+											echo "				<select id=\"event_list_" . $row["name"] . "\" name=\"event_list_" . $row["name"] . "\" autocomplete=\"on\">\n";
 											echo DoGetEventOptions($row["name"]);
 											echo "				</select>\n";
 											echo "				<br/><br/>\n";
-											echo "				<input type=\"submit\" name=\"load_event_" . $row["name"] . "\" id=\"load_event_" . $row["name"] . "\" value=\"LOAD\"/>\n";
+											echo "				<input type=\"button\" name=\"load_event_" . $row["name"] . "\" id=\"load_event_" . $row["name"] . "\" value=\"LOAD\" onclick=\"OnClickLoadEvent('" . $row["name"] . "')\" />\n";
 											echo "				&nbsp;\n";
 											echo "				<input type=\"button\" name=\"reset_event_" . $row["name"] . "\" id=\"reset_event_" . $row["name"] . "\" value=\"RESET\" onclick=\"OnClickResetEventForm('" . $row["name"] . "')\" />\n";
 											echo "			</td>\n";
@@ -1000,7 +1004,7 @@
 								textDescription = document.getElementById("description_" + strGroupName),
 								filePhoto = document.getElementById("photo_" + strGroupName);
 							
-							if (textDescription && textContact && textEmail && textPhone && textPassword)
+							if (textDescription && filePhoto && dateEvent)
 							{
 								dateEvent .value = "";
 								textDescription .value = "";
@@ -1030,9 +1034,56 @@
 							}
 						}
 						
+						function OnClickLoadEvent(strGroupName)
+						{
+							let EventList = document.getElementById("event_list_" + strGroupName);
+							
+							if (EventList)
+							{
+								if (EventList.length > 1)
+								{
+									if (EventList.selectedIndex > -1)
+									{
+										document.getElementById("delete_event").disabled = false;
+										document.getElementById("load_event").type = "submit";
+										document.getElementById("details_form_event").submit();
+									}
+									else
+									{
+										AlertError("You have not selected an event to load!");
+									}
+								}
+								else
+								{
+									alert("There are no events in the list to load!");
+								}
+							}
+						}
+						
 						function OnClickLoadGroup()
 						{
-							document.getElementById("delete_group").disabled = false;
+							let GroupList = document.getElementById("group_list");
+							
+							if (GroupList)
+							{
+								if (GroupList.length > 1)
+								{
+									if (GroupList.selectedIndex > -1)
+									{
+										document.getElementById("delete_group").disabled = false;
+										document.getElementById("load_group").type = "submit";
+										document.getElementById("details_form_group").submit();
+									}
+									else
+									{
+										alert("You have not selected a group to load!");
+									}
+								}
+								else
+								{
+									AlertError("There are no groups in the list to load!");
+								}
+							}
 						}
 						
 						function OnClickDeleteEvent()
@@ -1272,7 +1323,7 @@
 										<?php echo DoGetGroupOptions(); ?>
 										</select>
 										<br/><br/>
-										<input type="submit" name="load_group" id="load_group" value="LOAD" onclick="OnClickLoadGroup()" />
+										<input type="button" name="load_group" id="load_group" value="LOAD" onclick="OnClickLoadGroup()"/>
 										&nbsp;
 										<input type="button" value="RESET" onclick="OnClickResetGroupForm()" />
 									</td>
@@ -1312,7 +1363,7 @@
 					<a href="../site_history/site_history.html">Site History</a> | 
 					<a href="../Calendar/Calendar.html">Calendar</a> | 
 					<a href="../photos/photos.html">Photos</a> |
-					<a href="../information/information.html">Information</a> |
+					<a href="../CoolSpace/information.html">Information</a> |
 					<a href="events.php">Events</a> |
 					<a href="../coder_dojo/CoderDojo.html">CoderDojo</a> | 
 					<a href="../contact/Contact.php">Contact</a>
