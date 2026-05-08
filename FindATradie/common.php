@@ -23,7 +23,7 @@
 		{
 			$strMsg = $e->getMessage();
 			$strMsg = str_replace("\"", "'", $strMsg);
-			PrintJavascriptLine("AlertError(\"'" . $strMsg . "'\");", 2, true);
+			PrintJavascriptLine("alert(\"'" . $strMsg . "'\");", 2, true);
 			//echo "ERROR: '". $e->getMessage() . "'<br/><br/>Trying to connect to database 'find_a_tradie'.<br/><br/>" . $g_strEmailManager;
 		}
 		return $dbDatabase;
