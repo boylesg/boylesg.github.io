@@ -3,75 +3,335 @@
 
 <!-- #BeginTemplate "master.dwt" -->
 
-<head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<!-- #BeginEditable "doctitle" -->
-<title>Home</title>
-<!-- #EndEditable -->
-<link href="styles/style4mobile.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
-</head>
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<link href="styles/style4PC.css" media="screen" rel="stylesheet" title="CSS" type="text/css" />
+		<!-- #BeginEditable "doctitle" -->
+		
+		<title>Home</title>
+		
+		<script type="text/javascript">
+		
+			function DoHideAllDivs()
+			{
+				let divHide = null;
+				
+				divHide = document.getElementById("div_history");
+				if (divHide !== null)
+					divHide.style.display = "none";
+					//divHide.style.visibility = "hidden";
+				divHide = document.getElementById("div_significance");
+				if (divHide !== null)
+					divHide.style.display = "none";
+					//divHide.style.visibility = "hidden";
+				divHide = document.getElementById("div_why_fight");
+				if (divHide !== null)
+					divHide.style.display = "none";
+					//divHide.style.visibility = "hidden";
+			}
+			
+			function OnClickLink(strDivID)
+			{
+				let divShow = document.getElementById(strDivID),
+					divHide = null;
+				
+				DoHideAllDivs();
+				
+				if (divShow !== null)
+				{
+					divShow.style.display = "block";
+					//divShow.style.visibility = "visible";
+					event.stopPropagation();
+				}
+			}
+						
+			function OnMouseClickBody(Event)
+			{				
+				DoHideAllDivs();
+			}
 
-<body>
+						
+		</script>
+		
+		<style type="text/css">
 
-<!-- Begin Container -->
-<div class="container">
-	<!-- Begin Masthead -->
-	<div class="masthead">
-		<h1>SAVE OUR COMMUNITY POOL</h1>
-		<h3>Friends of Maryborough Outdoor Pool</h3>
-	</div>
-	<!-- End Masthead -->
-	<!-- Begin Navigation -->
-	<div class="navigation">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="about/default.html">About</a></li>
-			<li><a href="news/default.html">News</a></li>
-			<li><a href="calendar/default.html">Calendar</a></li>
-			<li><a href="photo_gallery/default.html">Photo Gallery</a></li>
-			<li><a href="information_links/default.html">Links</a></li>
-			<li><a href="faq/default.html">FAQ</a></li>
-			<li><a href="contact/default.html">Contact</a></li>
-		</ul>
-	</div>
-	<!-- End Navigation -->
-	<!-- Begin Page Content -->
-	<div clas="page_content">
-		<!-- Begin Content -->
-		<div class="content">
-			<!-- #BeginEditable "content" -->
-			<img alt="" height="189" src="images/garden_01.jpg" width="288" />
-			<h2>Heading 2</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam porta 
-			porttitor magna. Nunc urna. Vestibulum augue. Maecenas ipsum elit, rutrum 
-			id, iaculis ac, dictum ac, eros. Phasellus elit. Vestibulum semper cursus 
-			risus. Nunc consectetuer malesuada pede. Etiam ante. Pellentesque habitant 
-			morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-			Phasellus non mi vel elit malesuada porttitor. Nunc euismod velit vitae 
-			mi. Suspendisse ac tellus. In et augue in nisl placerat cursus.</p>
-			<!-- #EndEditable --></div>
-		<!-- End Content -->
-		<!-- Begin Sidebar -->
-		<div class="sidebar">
-			<!-- #BeginEditable "sidebar" -->
-			<h3>Heading 3</h3>
-			<img alt="" class="float_right" height="248" src="images/garden_02.jpg" width="160" />
-			<p></p>
-			<!-- #EndEditable --></div>
-		<!-- End Sidebar --></div>
-	<!-- End Page Content -->
-	<!-- Begin Footer -->
-	<div class="footer">
-		<p><a href="index.html">Home</a> | <a href="about/default.html">About</a> 
-		| <a href="news/default.html">News</a> | <a href="calendar/default.html">
-		Calendar</a> | <a href="photo_gallery/default.html">Photo Gallery</a> |
-		<a href="information_links/default.html">Links</a> |
-		<a href="faq/default.html">FAQ</a> | <a href="contact/default.html">Contact</a></p>
-	</div>
-	<!-- End Footer --></div>
-<!-- End Container -->
 
-</body>
+			.popup_div
+			{
+				display: none;
+				visibility: visible;
+				width: 800px;
+				/*height: 440px;*/
+				background-color: rgba(255, 255, 255, 0.8);
+				padding: 10px;
+				border-style: var(--border_style);
+				border-width: var(--border_width);
+				border-color: var(--border_color);
+				border-radius: var(--border_radius);
+				
+				overflow: auto;
+			}
+			
+			.popup_div img
+			{
+				display: block;
+				border-width: medium;
+				opacity: 1;
+			}
+			
+			.popup_div a
+			{
+				text-decoration-color: LightBlue;
+			}
+						
+			.popup_div a:hover
+			{
+				text-decoration-color: DodgerBlue;
+			}
+			
+			.icon
+			{
+				height: 50px;
+				display: inline-block;
+				border-style: none!important;
+			}
+			
+			.icon_cell
+			{
+				width: 50px;
+			}
+
+		</style>
+		
+		<!-- #EndEditable -->
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Fredoka:wght@300..700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet"/>
+
+		<script type="text/javascript" src="common.js"></script>
+		<script type="text/javascript">
+			
+			// mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/147.0.0.0 safari/537.36
+			// Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1
+			// Mozilla/5.0 (iPod; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1
+			// Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15
+			// Mozilla/5.0 (Linux; Android 13; SM-S901B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Mobile Safari/537.36
+			// Mozilla/5.0 (Linux; Android 13; SM-X906B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 (Note the absence of the "Mobile" tag)
+			// Mozilla/5.0 (Linux; Android 13; SM-S901B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/110.0.5481.153 Mobile Safari/537.36
+			if (navigator.userAgent.includes("iPhone") ||
+				navigator.userAgent.includes("iPod") ||
+				navigator.userAgent.includes("Android"))
+			{
+				document.getElementById("style_sheet").setAttribute("href", "/styles/style4Mobile.css");
+			}
+										
+		</script>
+	</head>
+
+	<body onclick="OnMouseClickBody(event)" onload="OnBodyLoad()">
+
+		<!-- Begin Container -->
+		<div class="container">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<!-- Begin Masthead -->
+					<td class="masthead" style="border:thin black none;">
+						<table border="0" cellpadding="0" cellspacing="0" style="margin:0px;">
+							<tr>
+								<td>
+									<img src="images/LifeRing.png" alt="LifeRing.png" width="200" />
+								</td>
+								<td>
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td class="title_font main_title">SAVE OUR COMMUNITY POOL</td>
+										</tr>
+										<tr>
+											<td class="title_font sub_title">Friends of Maryborough Outdoor Pool</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<!-- End Masthead -->
+				</tr>
+				<tr>
+					<!-- Begin Navigation -->
+					<td class="navigation">
+						<hr/>
+						<ul>
+							<li><a href="index.html" id="home">Home</a></li>
+							<li><a href="about/about.html" id="about">About</a></li>
+							<li><a href="news/news.html" id="news">News</a></li>
+							<li><a href="support/support.html" id="support">Support</a></li>
+							<li><a href="history/history.html" id="history">History</a></li>
+							<li><a href="options/options.html" id="options">Options &amp; Costs</a></li>
+							<li><a href="help/help.html" id="help">How can I help? </a></li>
+							<li><a href="contact/contact.html" id="contact">Contact</a></li>
+							<li><a href="admin/admin.html" id="admin">Admin</a></li>
+						</ul>
+						<hr/>
+					</td>
+					<!-- End Navigation -->
+				</tr>
+				<tr>
+					<td>
+						<!-- Begin Page Content -->
+						<div class="page_content content_font">
+							<!-- #BeginEditable "content" -->
+
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="vertical-align:top;">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="icon_cell"><img src="images/HistoryIcon.png" alt="HistoryIcon.png" class="icon" /></td>
+					<td><h1 class="blink"><a href="#" onclick="OnClickLink('div_history')"  id="link_history">History of our pool</a></h1></td>
+				</tr>
+			</table>
+			<div class="popup_div" id="div_history">
+				<p>Referrence: <a href="https://vhd.heritagecouncil.vic.gov.au/places/5091">Herritage Victoria Listing</a></p>
+				<p>
+					<a href="images/MaryboroughPoolHistoric.jpg"><img src="images/MaryboroughPoolHistoric.jpg" alt="MaryboroughPoolHistoric.jpg" width="300" style="float:right;"/></a>
+					The Maryborough Municipal Olympic Swimming Complex was opened by Sir Frank Beaurepaire in 1940 
+					and designed by local architect EJ Peck and city engineers EJ Muntz and J Hocking. As constructed, 
+					the complex comprised an entrance pavilion, an Olympic swimming pool, an octagonal wading pool, 
+					and service buildings all within a garden setting. The reinforced concrete and brick entrance 
+					pavilion was designed in a style strongly influenced by the aesthetics of European functionalism. 
+					The Maryborough complex was contemporary with a number of other similar municipal council schemes 
+					providing modern, safe and hygienic swimming facilities, manifesting the changing public nature of 
+					bathing and swimming from chiefly a health related activity to a recreational pursuit. An 
+					intermediate pool was added to the Maryborough complex in 1973. The site remains remarkably intact, 
+					with the original pools, entrance pavilion and planting scheme retained in close to original condition.
+				</p>
+			</div>
+		</td>
+		<td style="vertical-align:middle;"> 
+			<a href="images/MaryboroughPool.jpg"><img src="images/MaryboroughPool.jpg" alt="MaryboroughPool.jpg" width="500" style="float:right;"/></a>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top;">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="icon_cell"><img src="images/FeaturesIcon.png" alt="FeaturesIcon.png" class="icon" /></td>
+					<td><h1 class="blink"><a href="#" onclick="OnClickLink('div_significance')" id="link_significance">Why is it significant?</a></h1></td>
+				</tr>
+			</table>
+			<div class="popup_div" id="div_significance">
+				<a href="images/MaryboroughPoolEntrance.jpg"><img src="images/MaryboroughPoolEntrance.jpg" alt="MaryboroughPoolEntrance.jpg" width="300" style="float:left;"/></a>
+				<p>
+					The swimming complex is architecturally significant as a rare, intact example of a swimming pool 
+					complex designed in the late 1930s. The entrance pavilion is architecturally important as a 
+					recreational building employing the architectural language promoted by European functionalist 
+					architects of the 1920s and 1930s and symbolising a concern for modernity, safety and hygiene.
+				</p>
+				<p>
+					The complex has aesthetic significance as a well planned recreational facility with an intact, 
+					late 1930s garden setting, all picturesquely set within and overlooking a nineteenth century 
+					municipal park.
+				</p>
+				<p>
+					The Maryborough Municipal Olympic Swimming Complex is historically significant as an example of 
+					a municipal pool complex illustrating the development of swimming in Victoria during the 
+					inter-war period. The pool complex has historical significance for its special association with 
+					Frank Beaurepaire, being one of the few surviving pools opened by him as part of his long 
+					commitment to swimming in Victoria and, particularly, associated with his fostering of building 
+					programmes encouraging the provision of municipal pools throughout the state.
+				</p>
+			</div>
+		</td>
+		<td style="vertical-align:middle;">
+			<a href="images/MaryboroughPoolAerial.jpg"><img src="images/MaryboroughPoolAerial.jpg" alt="MaryboroughPoolAerial.jpg" width="500" style="float:right;"/></a>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top;">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="icon_cell"><img src="images/MegaphoneIcon.png" alt="MegaphoneIcon.png" class="icon" /></td>
+					<td><h1 class="blink"><a href="#" onclick="OnClickLink('div_why_fight')" id="link_why_fight">Why should we fight to re-open it?</a></h1></td>
+				</tr>
+			</table>
+			<div class="popup_div" id="div_why_fight">
+				<a href="images/MaryboroughPoolLessons.jpg"><img src="images/MaryboroughPoolLessons.jpg" alt="MaryboroughPoolLessons.jpg" width="300" style="float:right;"/></a>
+				<p>
+					Public pools provide significant health, social, and safety benefits by offering accessible, 
+					low-impact exercise for all ages, strengthening community connection, and serving as vital 
+					water safety education hubs. They aid in improving cardiovascular health, building muscle, 
+					reducing stress, and assisting in injury rehabilitation while reducing obesity risks.
+				</p>
+				<p>
+					For families, they offer a venue to boost children’s physical health and water safety 
+					awareness. The aquatic industry also contributes to reducing social isolation and encouraging 
+					community participation.
+				</p>
+				<p>Key Benefits of Public Pools:</p>
+				<ul>
+					<li>
+						Physical health &amp; fitness: swimming offers a full-body, low-impact workout that 
+						strengthens muscles and improves cardiovascular endurance without putting pressure 
+						on joints.
+					</li>
+					<li>
+						They are ideal for rehabilitation and pain management.
+					</li>
+					<li>
+						Mental well-being: regular swimming helps reduce stress, anxiety, and depression while 
+						improving mood and cognitive function.
+					</li>
+					<li>
+						Social &amp; community Hubs: public pools serve as community hubs that foster social 
+						interaction, cohesion, and cross-cultural collaboration, often creating local jobs.
+					</li>
+					<li>
+						Safety &amp; education: they provide safe environments for children and adults to learn 
+						essential swimming and water survival skills.
+					</li>
+					<li>
+						Accessibility: they offer an affordable way to exercise and cool down, especially in 
+						remote regions or during hot weather.
+					</li>
+					<li>
+						Mental health boost: the calming effect of water and exercise can help reduce stress and 
+						anxiety, promoting overall mental health.
+					</li>
+					<li>
+						Safety improvements: public pools provide a safe and controlled environment for swimming 
+						and water safety education.					
+					</li>
+				</ul>
+			</div>
+		</td>
+		<td style="vertical-align:middle;">
+			<a href="images/MaryboroughPoolEmpty.jpg"><img src="images/MaryboroughPoolEmpty.jpg" alt="MaryboroughPoolEmpty.jpg" width="500" style="float:right;"/></a>
+		</td>
+	</tr>
+</table>
+					
+							<!-- #EndEditable -->
+						</div>							
+						<!-- End Page Content -->
+					</td>
+				</tr>
+				<tr>
+					<!-- Begin Footer -->
+					<td class="footer">
+						<hr/>
+						<span class="footer_copyright">© Friends of the Outdoor Pool Precinct Inc.</span>
+						<span class="footer_attribution">Website by Gregary Boyles (<script type="text/javascript">DoWriteEmailAddress();</script>)</span>
+						<hr/>
+					</td>
+					<!-- End Footer -->
+				</tr>
+			</table>
+
+		</div>
+		<!-- End Container -->
+
+	</body>
 
 <!-- #EndTemplate -->
 

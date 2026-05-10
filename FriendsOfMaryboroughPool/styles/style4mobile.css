@@ -10,7 +10,6 @@ body
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: 0.8em;
 	background-attachment: scroll;
-	background-color: #90b7f1;
 	background-image: url("../images/MaryboroughPoolEntranceDuncan.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
@@ -27,7 +26,6 @@ body
 	width: 100%;
 	margin-top: 57px;
 	border-bottom: 2px solid #358;
-	background-color: #fff;
 }
 /*********************************************************************
  *********************************************************************
